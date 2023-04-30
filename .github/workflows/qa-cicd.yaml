@@ -17,11 +17,6 @@ jobs:
           ref: ${{ github.event.pull_request.head.sha }}
           fetch-depth: 0
 
-      - name: Setup Flutter environment
-          uses: subosito/flutter-action@v3
-          with:
-            flutter-version: 3.7.7
-
       - name: Run Flutter dependencies
         run: flutter pub get
 
