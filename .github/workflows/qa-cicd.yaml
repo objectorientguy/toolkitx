@@ -40,3 +40,4 @@ jobs:
       - name: Analyze Static code
         run: flutter analyze .
 
+
