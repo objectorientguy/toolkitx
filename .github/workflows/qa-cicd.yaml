@@ -17,9 +17,6 @@ jobs:
           ref: ${{ github.event.pull_request.head.sha }}
           fetch-depth: 0
 
-      - name: Run Flutter doctor
-        run: flutter doctor
-
       - name: Run Flutter dependencies
         run: flutter pub get
 
