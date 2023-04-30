@@ -34,7 +34,7 @@ jobs:
         run: flutter pub get
 
       - name: Check for formatting in the code
-        run: flutter format --set-exit-if-changed .
+        run: dart format --set-exit-if-changed .
 
       - name: Analyze Static code
         run: flutter analyze .
