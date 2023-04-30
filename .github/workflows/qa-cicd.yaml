@@ -8,6 +8,6 @@ on:
 
 jobs:
   project-checks:
-    uses: ./.github/workflows/project-checks.yaml
+    uses: ./.github/workflows/project-check.yaml
 
 
