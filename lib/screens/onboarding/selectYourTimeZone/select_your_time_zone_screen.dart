@@ -38,12 +38,14 @@ class SelectYourTimeZoneScreen extends StatelessWidget {
                       shadowColor: AppColor.blueGrey,
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(tiniestSpacing)),
-                      child: const ListTile(
-                          title: Padding(
+                      child: ListTile(
+                          leading: Icon(Icons.public,
+                              size: MediaQuery.of(context).size.width * 0.065),
+                          title: const Padding(
                             padding: EdgeInsets.only(bottom: tiniestSpacing),
                             child: Text(StringConstants.kTime),
                           ),
-                          subtitle: Text(StringConstants.kTimeLocation)));
+                          subtitle: const Text(StringConstants.kTimeLocation)));
                 },
                 separatorBuilder: (BuildContext context, int index) {
                   return const SizedBox(height: tinySpacing);

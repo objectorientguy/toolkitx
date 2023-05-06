@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:toolkit/configs/app_theme.dart';
-import 'package:toolkit/screens/onboarding/login/emailAddress/login_email_screen.dart';
+import 'package:toolkit/screens/onboarding/selectYourTimeZone/select_your_time_zone_screen.dart';
 
 import 'configs/app_color.dart';
 
@@ -18,6 +18,6 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
             appBarTheme: appBarTheme,
             scaffoldBackgroundColor: AppColor.lightestBlue),
-        home: const LoginEmailScreen());
+        home: const SelectYourTimeZoneScreen());
   }
 }
