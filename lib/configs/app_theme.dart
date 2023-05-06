@@ -2,21 +2,23 @@ import 'package:flutter/material.dart';
 import 'app_color.dart';
 
 ThemeData appTheme = ThemeData(
-  colorScheme: colorScheme,
-  appBarTheme: appBarTheme,
-  cardTheme: appCardTheme,
-  scaffoldBackgroundColor: AppColor.white,
-);
-
+    colorScheme: colorScheme,
+    appBarTheme: appBarTheme,
+    cardTheme: appCardTheme,
+    scaffoldBackgroundColor: AppColor.lightestBlue);
+ButtonStyle buttonStyle =
+    ElevatedButton.styleFrom(backgroundColor: AppColor.deepBlue);
 const ColorScheme colorScheme = ColorScheme.light(
     primary: AppColor.blueGrey,
     secondary: AppColor.lightestBlue,
-    onError: AppColor.red,
     surface: AppColor.white,
     background: AppColor.white);
 
 AppBarTheme appBarTheme = const AppBarTheme(
-    elevation: 0, centerTitle: true, backgroundColor: AppColor.white);
+    elevation: 0,
+    centerTitle: true,
+    backgroundColor: AppColor.blueGrey,
+    titleTextStyle: TextStyle(color: AppColor.black));
 
 IconThemeData iconThemeData =
     IconThemeData(color: colorScheme.primary, size: 16);
@@ -29,15 +31,7 @@ extension AppTextTheme on TextTheme {
         fontSize: 24, fontFamily: 'Urbanist', color: AppColor.mediumBlack);
   }
 
-  TextStyle get large {
-    return const TextStyle(
-        fontSize: 20,
-        fontFamily: 'Urbanist',
-        fontWeight: FontWeight.normal,
-        color: AppColor.lightBlack);
-  }
-
-  TextStyle get medium {
+  TextStyle get mediumTitle {
     return const TextStyle(
         fontSize: 17,
         fontFamily: 'Urbanist',
@@ -45,16 +39,11 @@ extension AppTextTheme on TextTheme {
         color: AppColor.grey);
   }
 
-  TextStyle get small {
+  TextStyle get largeTitle {
     return const TextStyle(
-        fontSize: 15, fontFamily: 'Urbanist', color: AppColor.lightBlack);
-  }
-
-  TextStyle get xSmall {
-    return const TextStyle(
-        fontSize: 13,
+        fontSize: 17,
         fontFamily: 'Urbanist',
-        fontWeight: FontWeight.normal,
-        color: AppColor.lightBlack);
+        fontWeight: FontWeight.bold,
+        color: AppColor.black);
   }
 }
