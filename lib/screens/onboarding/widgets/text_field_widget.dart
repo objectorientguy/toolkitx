@@ -1,19 +1,24 @@
 import 'package:flutter/material.dart';
+
 import '../../../configs/app_color.dart';
 
-class EmailTextFieldWidget extends StatelessWidget {
+class TextFieldWidget extends StatelessWidget {
   final int? maxLines;
   final TextInputAction? textInputAction;
   final int? maxLength;
   final TextInputType? textInputType;
-  final TextEditingController? emailController;
-  const EmailTextFieldWidget(
+  final TextEditingController? textFieldController;
+  final String? getText;
+
+  const TextFieldWidget(
       {Key? key,
       this.maxLines,
       this.textInputAction,
       this.maxLength,
       this.textInputType,
-      this.emailController})
+      this.textFieldController,
+        this.getText
+      })
       : super(key: key);
 
   @override
@@ -22,7 +27,7 @@ class EmailTextFieldWidget extends StatelessWidget {
       height: MediaQuery.of(context).size.width * 0.1,
       width: double.infinity,
       child: TextField(
-        controller: emailController,
+        controller: textFieldController,
         onChanged: (value) {},
         keyboardType: textInputType,
         textInputAction: textInputAction,
@@ -30,11 +35,10 @@ class EmailTextFieldWidget extends StatelessWidget {
         maxLength: maxLength,
         cursorColor: AppColor.black,
         decoration: const InputDecoration(
-            counterText: "",
             enabledBorder: OutlineInputBorder(
                 borderSide: BorderSide(color: AppColor.lightGrey)),
             focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: AppColor.grey),
+              borderSide: BorderSide(color: AppColor.lightGrey),
             ),
             filled: true,
             fillColor: AppColor.white),

@@ -26,17 +26,14 @@ IconThemeData iconThemeData =
 CardTheme appCardTheme = const CardTheme();
 
 extension AppTextTheme on TextTheme {
-  TextStyle get xlarge {
+  TextStyle get xxLarge {
     return const TextStyle(
         fontSize: 24, fontFamily: 'Urbanist', color: AppColor.mediumBlack);
   }
 
-  TextStyle get mediumTitle {
+  TextStyle get xLarge {
     return const TextStyle(
-        fontSize: 17,
-        fontFamily: 'Urbanist',
-        fontWeight: FontWeight.normal,
-        color: AppColor.grey);
+        fontSize: 22, fontFamily: 'Urbanist', color: AppColor.mediumBlack);
   }
 
   TextStyle get largeTitle {

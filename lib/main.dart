@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:toolkit/configs/app_theme.dart';
-import 'package:toolkit/screens/onboarding/login/login_email_screen.dart';
+import 'package:toolkit/screens/onboarding/login/emailAddress/login_email_screen.dart';
 
 import 'configs/app_color.dart';
 

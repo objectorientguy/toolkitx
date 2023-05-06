@@ -30,11 +30,11 @@ class OnBoardingScreen extends StatelessWidget {
             Text(StringConstants.kWelcomeToToolkitX,
                 style: Theme.of(context)
                     .textTheme
-                    .xlarge
+                    .xxLarge
                     .copyWith(color: AppColor.mediumBlack)),
             const SizedBox(height: mediumSpacing),
             Text(StringConstants.kAppIntroductionNoSpacing,
-                style: Theme.of(context).textTheme.mediumTitle,
+                style: Theme.of(context).textTheme.largeTitle.copyWith(fontWeight: FontWeight.normal),
                 textAlign: TextAlign.center),
             const SizedBox(height: extraLargeSpacing),
             PrimaryButton(
