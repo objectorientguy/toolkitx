@@ -8,6 +8,8 @@ import '../../../data/enums/date_enum.dart';
 import '../../../utils/constants/string_constants.dart';
 
 class SelectYourDateFormatScreen extends StatelessWidget {
+  static const routeName = 'SelectYourDateFormatScreen';
+
   const SelectYourDateFormatScreen({Key? key}) : super(key: key);
 
   @override
@@ -58,8 +60,7 @@ class SelectYourDateFormatScreen extends StatelessWidget {
             const SizedBox(height: tinySpacing),
             PrimaryButton(
                 onPressed: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => const LoginEmailScreen()));
+                  Navigator.pushNamed(context, LoginEmailScreen.routeName);
                 },
                 textValue: StringConstants.kSave)
           ],

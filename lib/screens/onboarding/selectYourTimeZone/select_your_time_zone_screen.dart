@@ -43,9 +43,8 @@ class SelectYourTimeZoneScreen extends StatelessWidget {
                           borderRadius: BorderRadius.circular(tiniestSpacing)),
                       child: ListTile(
                           onTap: () {
-                            Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) =>
-                                const SelectYourDateFormatScreen()));
+                            Navigator.pushNamed(
+                                context, SelectYourDateFormatScreen.routeName);
                           },
                           leading: Icon(Icons.public,
                               size: MediaQuery.of(context).size.width * 0.065),

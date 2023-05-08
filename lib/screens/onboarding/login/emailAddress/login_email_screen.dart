@@ -10,6 +10,8 @@ import '../../widgets/text_field_widget.dart';
 import 'email_button.dart';
 
 class LoginEmailScreen extends StatelessWidget {
+  static const routeName = 'LoginEmailScreen';
+
   const LoginEmailScreen({Key? key}) : super(key: key);
 
   @override
@@ -38,36 +40,37 @@ class LoginEmailScreen extends StatelessWidget {
               height: MediaQuery.of(context).size.width * 0.44,
               width: double.infinity,
               child: CardWidget(
-                  margin: EdgeInsets.zero,
-                  elevation: kCardElevation,
-                  shadowColor: AppColor.blueGrey,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(tiniestSpacing),
+                margin: EdgeInsets.zero,
+                elevation: kCardElevation,
+                shadowColor: AppColor.blueGrey,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(tiniestSpacing),
+                ),
+                child: Padding(
+                  padding:
+                      EdgeInsets.all(MediaQuery.of(context).size.width * 0.042),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(StringConstants.kEmailAddress,
+                          style: Theme.of(context).textTheme.largeTitle),
+                      const SizedBox(height: tinySpacing),
+                      const TextFieldWidget(
+                          textInputType: TextInputType.emailAddress,
+                          maxLines: 1),
+                      const SizedBox(height: tinySpacing),
+                      EmailButton(
+                        onPressed: () {
+                          Navigator.pushNamed(
+                              context, PasswordScreen.routeName);
+                        },
+                        textValue: StringConstants.kNext,
+                      )
+                    ],
                   ),
-                  child: Padding(
-                    padding: EdgeInsets.all(
-                        MediaQuery.of(context).size.width * 0.042),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(StringConstants.kEmailAddress,
-                            style: Theme.of(context).textTheme.largeTitle),
-                        const SizedBox(height: tinySpacing),
-                        const TextFieldWidget(
-                            textInputType: TextInputType.emailAddress,
-                            maxLines: 1),
-                        const SizedBox(height: tinySpacing),
-                        EmailButton(
-                            onPressed: () {
-                              Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (context) =>
-                                      const PasswordScreen()));
-                            },
-                            child: const Text(StringConstants.kNext))
-                      ],
-                    ),
-                  )),
-            )
+                ),
+              ),
+            ),
           ],
         ),
       ),

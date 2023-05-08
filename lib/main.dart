@@ -5,10 +5,11 @@ import 'package:toolkit/blocs/selectYourLanguage/select_your_language_bloc.dart'
 import 'package:toolkit/configs/app_theme.dart';
 import 'package:toolkit/screens/onboarding/welcome_screen.dart';
 import 'app_module.dart';
+import 'configs/app_route.dart';
 
 void main() async {
-  await _initDependencies();
   WidgetsFlutterBinding.ensureInitialized();
+  await _initDependencies();
   runApp(const MyApp());
 }
 
@@ -32,8 +33,9 @@ class MyApp extends StatelessWidget {
         },
         child: MaterialApp(
             debugShowCheckedModeBanner: false,
+            onGenerateRoute: AppRoutes.onGenerateRoutes,
             theme: appTheme,
-            home: const OnBoardingScreen()),
+            home: const WelcomeScreen()),
       ),
     );
   }

@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:toolkit/configs/app_spacing.dart';
 import 'package:toolkit/configs/app_theme.dart';
-import 'package:toolkit/screens/onboarding/selectYourLanguage/select_your_language_screen.dart';
+import 'package:toolkit/screens/onboarding/selectYourTimeZone/select_your_time_zone_screen.dart';
 import 'package:toolkit/screens/onboarding/widgets/circle_avatar_widget.dart';
 import 'package:toolkit/utils/constants/string_constants.dart';
 import '../../configs/app_color.dart';
 import '../../widgets/primary_button.dart';
 
-class OnBoardingScreen extends StatelessWidget {
-  static const routeName = 'onBoardingScreen';
+class WelcomeScreen extends StatelessWidget {
+  static const routeName = 'WelcomeScreen';
 
-  const OnBoardingScreen({Key? key}) : super(key: key);
+  const WelcomeScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -42,9 +42,8 @@ class OnBoardingScreen extends StatelessWidget {
             const SizedBox(height: extraLargeSpacing),
             PrimaryButton(
               onPressed: () {
-                Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => const SelectYourLanguageScreen()));
-                // Navigator.pushNamed(context, SelectYourTimeZoneScreen.routeName);
+                Navigator.pushNamed(
+                    context, SelectYourTimeZoneScreen.routeName);
               },
               textValue: StringConstants.kStartNow,
             )

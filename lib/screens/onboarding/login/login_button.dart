@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
 class LoginButton extends StatelessWidget {
-  final void Function()? onPressed;
-  final ButtonStyle? style;
-  final Widget? child;
+  final void Function() onPressed;
+  final String textValue;
 
-  const LoginButton({Key? key, this.onPressed, this.style, this.child})
+  const LoginButton(
+      {Key? key, required this.onPressed, required this.textValue})
       : super(key: key);
 
   @override
@@ -14,8 +14,7 @@ class LoginButton extends StatelessWidget {
       width: MediaQuery.of(context).size.width * 0.23,
       child: ElevatedButton(
         onPressed: onPressed,
-        style: style,
-        child: child,
+        child: Text(textValue),
       ),
     );
   }

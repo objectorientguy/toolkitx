@@ -9,6 +9,8 @@ import '../../widgets/circle_avatar_widget.dart';
 import '../../widgets/text_field_widget.dart';
 
 class PasswordScreen extends StatelessWidget {
+  static const routeName = 'PasswordScreen';
+
   const PasswordScreen({Key? key}) : super(key: key);
 
   @override
@@ -60,8 +62,7 @@ class PasswordScreen extends StatelessWidget {
                             maxLines: 1),
                         const SizedBox(height: tinySpacing),
                         LoginButton(
-                            onPressed: () {},
-                            child: const Text(StringConstants.kLogin))
+                            onPressed: () {}, textValue: StringConstants.kLogin)
                       ],
                     ),
                   )),

@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 
 class EmailButton extends StatelessWidget {
-  final void Function()? onPressed;
-  final ButtonStyle? style;
-  final Widget? child;
-  const EmailButton({Key? key, this.onPressed, this.style, this.child})
+  final void Function() onPressed;
+  final String textValue;
+
+  const EmailButton(
+      {Key? key, required this.onPressed, required this.textValue})
       : super(key: key);
 
   @override
@@ -13,8 +14,7 @@ class EmailButton extends StatelessWidget {
       width: MediaQuery.of(context).size.width * 0.2,
       child: ElevatedButton(
         onPressed: onPressed,
-        style: style,
-        child: child,
+        child: Text(textValue),
       ),
     );
   }
