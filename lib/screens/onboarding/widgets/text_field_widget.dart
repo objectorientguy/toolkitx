@@ -17,8 +17,7 @@ class TextFieldWidget extends StatelessWidget {
       this.maxLength,
       this.textInputType,
       this.textFieldController,
-        this.getText
-      })
+      this.getText})
       : super(key: key);
 
   @override
