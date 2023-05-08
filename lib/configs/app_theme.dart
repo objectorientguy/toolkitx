@@ -9,8 +9,8 @@ ThemeData appTheme = ThemeData(
 ButtonStyle buttonStyle =
     ElevatedButton.styleFrom(backgroundColor: AppColor.deepBlue);
 const ColorScheme colorScheme = ColorScheme.light(
-    primary: AppColor.blueGrey,
-    secondary: AppColor.lightestBlue,
+    primary: AppColor.lightGrey,
+    secondary: AppColor.white,
     surface: AppColor.white,
     background: AppColor.white);
 
@@ -26,21 +26,16 @@ IconThemeData iconThemeData =
 CardTheme appCardTheme = const CardTheme();
 
 extension AppTextTheme on TextTheme {
-  TextStyle get xxLarge {
+  TextStyle get largeTitle {
     return const TextStyle(
-        fontSize: 24, fontFamily: 'Urbanist', color: AppColor.mediumBlack);
+        fontSize: 17, fontWeight: FontWeight.bold, color: AppColor.black);
   }
 
   TextStyle get xLarge {
-    return const TextStyle(
-        fontSize: 22, fontFamily: 'Urbanist', color: AppColor.mediumBlack);
+    return const TextStyle(fontSize: 22, color: AppColor.mediumBlack);
   }
 
-  TextStyle get largeTitle {
-    return const TextStyle(
-        fontSize: 17,
-        fontFamily: 'Urbanist',
-        fontWeight: FontWeight.bold,
-        color: AppColor.black);
+  TextStyle get xxLarge {
+    return const TextStyle(fontSize: 24, color: AppColor.mediumBlack);
   }
 }

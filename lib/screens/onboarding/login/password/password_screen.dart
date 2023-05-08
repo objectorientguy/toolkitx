@@ -58,7 +58,7 @@ class PasswordScreen extends StatelessWidget {
                         const TextFieldWidget(
                             textInputType: TextInputType.emailAddress,
                             maxLines: 1),
-                        const SizedBox(height: mediumSpacing),
+                        const SizedBox(height: tinySpacing),
                         LoginButton(
                             onPressed: () {},
                             style: buttonStyle,

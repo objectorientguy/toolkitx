@@ -12,7 +12,9 @@ abstract class StringConstants {
   static const String kEmailAddress = "Email Address";
   static const String kPassword = "Password";
   static const String kNext = "NEXT";
-  static const String kLogin= "LOGIN";
-  static const String kWelcome= "Welcome";
-  static const String kGenerateOtp= "GENERATE OTP";
+  static const String kLogin = "LOGIN";
+  static const String kWelcome = "Welcome";
+  static const String kGenerateOtp = "GENERATE OTP";
+  static const String kSelectDateFormat = "Select Your DateFormat";
+  static const String kSave = "SAVE";
 }

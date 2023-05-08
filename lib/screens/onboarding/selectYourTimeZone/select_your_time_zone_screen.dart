@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:toolkit/configs/app_spacing.dart';
 import 'package:toolkit/configs/app_theme.dart';
+import 'package:toolkit/screens/onboarding/selectYourDateFormat/select_your_date_format_screen.dart';
 import 'package:toolkit/screens/onboarding/widgets/card_widget.dart';
 import 'package:toolkit/utils/constants/string_constants.dart';
 import '../../../configs/app_color.dart';
@@ -24,7 +25,7 @@ class SelectYourTimeZoneScreen extends StatelessWidget {
           children: [
             Text(StringConstants.kSelectTimeZone,
                 style: Theme.of(context).textTheme.largeTitle),
-            const SizedBox(height: mediumSpacing),
+            const SizedBox(height: tinySpacing),
             Expanded(
               child: ListView.separated(
                 padding: EdgeInsets.zero,
@@ -39,6 +40,11 @@ class SelectYourTimeZoneScreen extends StatelessWidget {
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(tiniestSpacing)),
                       child: ListTile(
+                          onTap: () {
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) =>
+                                    const SelectYourDateFormatScreen()));
+                          },
                           leading: Icon(Icons.public,
                               size: MediaQuery.of(context).size.width * 0.065),
                           title: const Padding(

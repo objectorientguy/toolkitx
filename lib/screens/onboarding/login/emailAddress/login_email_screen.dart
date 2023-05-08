@@ -28,23 +28,14 @@ class LoginEmailScreen extends StatelessWidget {
             Material(
               elevation: kEmailCardElevation,
               borderRadius: BorderRadius.all(
-                  Radius.circular(MediaQuery
-                      .of(context)
-                      .size
-                      .width * 0.3)),
+                  Radius.circular(MediaQuery.of(context).size.width * 0.3)),
               child: CircleAvatarWidget(
-                  radius: MediaQuery
-                      .of(context)
-                      .size
-                      .width * 0.15,
+                  radius: MediaQuery.of(context).size.width * 0.15,
                   backgroundColor: AppColor.blueGrey),
             ),
             const SizedBox(height: largeSpacing),
             SizedBox(
-              height: MediaQuery
-                  .of(context)
-                  .size
-                  .width * 0.44,
+              height: MediaQuery.of(context).size.width * 0.44,
               width: double.infinity,
               child: CardWidget(
                   margin: EdgeInsets.zero,
@@ -55,27 +46,22 @@ class LoginEmailScreen extends StatelessWidget {
                   ),
                   child: Padding(
                     padding: EdgeInsets.all(
-                        MediaQuery
-                            .of(context)
-                            .size
-                            .width * 0.042),
+                        MediaQuery.of(context).size.width * 0.042),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(StringConstants.kEmailAddress,
-                            style: Theme
-                                .of(context)
-                                .textTheme
-                                .largeTitle),
+                            style: Theme.of(context).textTheme.largeTitle),
                         const SizedBox(height: tinySpacing),
                         const TextFieldWidget(
                             textInputType: TextInputType.emailAddress,
                             maxLines: 1),
-                        const SizedBox(height: mediumSpacing),
+                        const SizedBox(height: tinySpacing),
                         EmailButton(
                             onPressed: () {
                               Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (context) => const PasswordScreen()));
+                                  builder: (context) =>
+                                      const PasswordScreen()));
                             },
                             style: buttonStyle,
                             child: const Text(StringConstants.kNext))

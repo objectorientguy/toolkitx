@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:toolkit/configs/app_theme.dart';
 import 'package:toolkit/screens/onboarding/selectYourTimeZone/select_your_time_zone_screen.dart';
 
-import 'configs/app_color.dart';
-
 void main() {
   runApp(const MyApp());
 }
@@ -15,9 +13,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-            appBarTheme: appBarTheme,
-            scaffoldBackgroundColor: AppColor.lightestBlue),
+        theme: appTheme,
         home: const SelectYourTimeZoneScreen());
   }
 }

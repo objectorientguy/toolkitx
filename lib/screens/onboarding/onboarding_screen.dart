@@ -32,18 +32,21 @@ class OnBoardingScreen extends StatelessWidget {
                     .textTheme
                     .xxLarge
                     .copyWith(color: AppColor.mediumBlack)),
-            const SizedBox(height: mediumSpacing),
+            const SizedBox(height: tinySpacing),
             Text(StringConstants.kAppIntroductionNoSpacing,
-                style: Theme.of(context).textTheme.largeTitle.copyWith(fontWeight: FontWeight.normal),
+                style: Theme.of(context)
+                    .textTheme
+                    .largeTitle
+                    .copyWith(fontWeight: FontWeight.normal),
                 textAlign: TextAlign.center),
             const SizedBox(height: extraLargeSpacing),
             PrimaryButton(
-                onPressed: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => const SelectYourTimeZoneScreen()));
-                },
-                style: buttonStyle,
-                child: const Text(StringConstants.kStartNow))
+              onPressed: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => const SelectYourTimeZoneScreen()));
+              },
+              textValue: '',
+            )
           ],
         ),
       ),
