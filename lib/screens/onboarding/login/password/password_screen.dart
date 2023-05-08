@@ -61,7 +61,6 @@ class PasswordScreen extends StatelessWidget {
                         const SizedBox(height: tinySpacing),
                         LoginButton(
                             onPressed: () {},
-                            style: buttonStyle,
                             child: const Text(StringConstants.kLogin))
                       ],
                     ),

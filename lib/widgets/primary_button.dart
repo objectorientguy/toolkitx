@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:toolkit/configs/app_theme.dart';
 
 class PrimaryButton extends StatelessWidget {
   const PrimaryButton(
@@ -12,7 +11,6 @@ class PrimaryButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
       onPressed: onPressed,
-      style: buttonStyle,
       child: Text(textValue),
     );
   }

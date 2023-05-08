@@ -46,7 +46,7 @@ class OnBoardingScreen extends StatelessWidget {
                     builder: (context) => const SelectYourLanguageScreen()));
                 // Navigator.pushNamed(context, SelectYourTimeZoneScreen.routeName);
               },
-              textValue: '',
+              textValue: StringConstants.kStartNow,
             )
           ],
         ),

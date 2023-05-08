@@ -16,9 +16,7 @@ class SelectYourLanguageScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     context.read<LanguageBloc>().add(FetchLanguageEvent());
     return Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-      ),
+      appBar: AppBar(automaticallyImplyLeading: false),
       body: Padding(
         padding: const EdgeInsets.only(
             left: leftRightMargin,
@@ -35,7 +33,9 @@ class SelectYourLanguageScreen extends StatelessWidget {
             }
           }, builder: (context, state) {
             if (state is FetchLanguageLoading) {
-              return const CircularProgressIndicator();
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
             } else if (state is FetchLanguageLoaded) {
               return Expanded(
                   child: ListView.separated(

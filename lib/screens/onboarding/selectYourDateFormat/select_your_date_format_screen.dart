@@ -13,9 +13,7 @@ class SelectYourDateFormatScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-      ),
+      appBar: AppBar(automaticallyImplyLeading: false),
       body: Padding(
         padding: const EdgeInsets.only(
             left: leftRightMargin,
@@ -28,22 +26,32 @@ class SelectYourDateFormatScreen extends StatelessWidget {
                 style: Theme.of(context).textTheme.largeTitle),
             const SizedBox(height: tinySpacing),
             Container(
+              height: MediaQuery.of(context).size.width * 1.12,
               color: AppColor.white,
               child: ListView.separated(
+                physics: const NeverScrollableScrollPhysics(),
                 padding: EdgeInsets.zero,
                 shrinkWrap: true,
                 itemCount: dateFormatMap.length,
                 itemBuilder: (context, index) {
-                  return RadioListTile(
-                      title: Text(
-                          dateFormatMap.values.elementAt(index).toString()),
-                      controlAffinity: ListTileControlAffinity.trailing,
-                      value: null,
-                      groupValue: "",
-                      onChanged: (_) {});
+                  return SizedBox(
+                    height: MediaQuery.of(context).size.width * 0.1,
+                    child: Center(
+                      child: RadioListTile(
+                          title: Text(
+                              dateFormatMap.values.elementAt(index).toString()),
+                          controlAffinity: ListTileControlAffinity.trailing,
+                          value: null,
+                          groupValue: "",
+                          onChanged: (_) {}),
+                    ),
+                  );
                 },
                 separatorBuilder: (context, index) {
-                  return const Divider(thickness: kDividerThickness);
+                  return Divider(
+                    thickness: kDividerThickness,
+                    height: MediaQuery.of(context).size.width * 0.062,
+                  );
                 },
               ),
             ),

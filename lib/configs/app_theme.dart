@@ -5,23 +5,26 @@ ThemeData appTheme = ThemeData(
     colorScheme: colorScheme,
     appBarTheme: appBarTheme,
     cardTheme: appCardTheme,
-    scaffoldBackgroundColor: AppColor.lightestBlue);
-ButtonStyle buttonStyle =
-    ElevatedButton.styleFrom(backgroundColor: AppColor.deepBlue);
+    scaffoldBackgroundColor: AppColor.lightestBlue,
+    elevatedButtonTheme: elevatedButtonThemeData);
+
+ElevatedButtonThemeData elevatedButtonThemeData = ElevatedButtonThemeData(
+    style: ElevatedButton.styleFrom(backgroundColor: AppColor.deepBlue));
+
 const ColorScheme colorScheme = ColorScheme.light(
     primary: AppColor.lightGrey,
     secondary: AppColor.white,
     surface: AppColor.white,
     background: AppColor.white);
 
-AppBarTheme appBarTheme = const AppBarTheme(
+AppBarTheme appBarTheme = AppBarTheme(
     elevation: 0,
-    centerTitle: true,
     backgroundColor: AppColor.blueGrey,
-    titleTextStyle: TextStyle(color: AppColor.black));
+    iconTheme: iconThemeData,
+    titleTextStyle: const TextStyle(color: AppColor.black));
 
 IconThemeData iconThemeData =
-    IconThemeData(color: colorScheme.primary, size: 16);
+    const IconThemeData(color: Colors.black, size: 16);
 
 CardTheme appCardTheme = const CardTheme();
 

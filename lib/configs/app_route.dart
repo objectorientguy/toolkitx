@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:toolkit/screens/onboarding/onboarding_screen.dart';
+import 'package:toolkit/screens/onboarding/welcome_screen.dart';
 import 'package:toolkit/screens/onboarding/selectYourTimeZone/select_your_time_zone_screen.dart';
 
 class AppRoutes {

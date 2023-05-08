@@ -3,12 +3,12 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:toolkit/blocs/selectYourLanguage/select_your_language_bloc.dart';
 import 'package:toolkit/configs/app_theme.dart';
-import 'package:toolkit/screens/onboarding/onboarding_screen.dart';
-
+import 'package:toolkit/screens/onboarding/welcome_screen.dart';
 import 'app_module.dart';
 
 void main() async {
   await _initDependencies();
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(const MyApp());
 }
 
@@ -33,7 +33,6 @@ class MyApp extends StatelessWidget {
         child: MaterialApp(
             debugShowCheckedModeBanner: false,
             theme: appTheme,
-            // onGenerateRoute: AppRoutes.(settings) => ,
             home: const OnBoardingScreen()),
       ),
     );

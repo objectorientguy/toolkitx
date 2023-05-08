@@ -63,7 +63,6 @@ class LoginEmailScreen extends StatelessWidget {
                                   builder: (context) =>
                                       const PasswordScreen()));
                             },
-                            style: buttonStyle,
                             child: const Text(StringConstants.kNext))
                       ],
                     ),
