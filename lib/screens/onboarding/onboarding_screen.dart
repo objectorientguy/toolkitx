@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:toolkit/configs/app_spacing.dart';
 import 'package:toolkit/configs/app_theme.dart';
-import 'package:toolkit/screens/onboarding/selectYourTimeZone/select_your_time_zone_screen.dart';
+import 'package:toolkit/screens/onboarding/selectYourLanguage/select_your_language_screen.dart';
 import 'package:toolkit/screens/onboarding/widgets/circle_avatar_widget.dart';
 import 'package:toolkit/utils/constants/string_constants.dart';
 import '../../configs/app_color.dart';
@@ -43,7 +43,8 @@ class OnBoardingScreen extends StatelessWidget {
             PrimaryButton(
               onPressed: () {
                 Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => const SelectYourTimeZoneScreen()));
+                    builder: (context) => const SelectYourLanguageScreen()));
+                // Navigator.pushNamed(context, SelectYourTimeZoneScreen.routeName);
               },
               textValue: '',
             )

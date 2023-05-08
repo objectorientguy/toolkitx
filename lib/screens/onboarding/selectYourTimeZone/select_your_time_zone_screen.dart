@@ -7,6 +7,8 @@ import 'package:toolkit/utils/constants/string_constants.dart';
 import '../../../configs/app_color.dart';
 
 class SelectYourTimeZoneScreen extends StatelessWidget {
+  static const routeName = 'SelectYourTimeZoneScreen';
+
   const SelectYourTimeZoneScreen({Key? key}) : super(key: key);
 
   @override
@@ -43,7 +45,7 @@ class SelectYourTimeZoneScreen extends StatelessWidget {
                           onTap: () {
                             Navigator.of(context).push(MaterialPageRoute(
                                 builder: (context) =>
-                                    const SelectYourDateFormatScreen()));
+                                const SelectYourDateFormatScreen()));
                           },
                           leading: Icon(Icons.public,
                               size: MediaQuery.of(context).size.width * 0.065),

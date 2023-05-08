@@ -17,4 +17,5 @@ abstract class StringConstants {
   static const String kGenerateOtp = "GENERATE OTP";
   static const String kSelectDateFormat = "Select Your DateFormat";
   static const String kSave = "SAVE";
+  static const String kSelectYourLanguage = "Select Your Language";
 }
