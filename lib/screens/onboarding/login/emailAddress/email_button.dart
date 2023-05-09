@@ -10,12 +10,9 @@ class EmailButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: MediaQuery.of(context).size.width * 0.2,
-      child: ElevatedButton(
-        onPressed: onPressed,
-        child: Text(textValue),
-      ),
+    return ElevatedButton(
+      onPressed: onPressed,
+      child: Text(textValue),
     );
   }
 }

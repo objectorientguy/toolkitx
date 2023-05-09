@@ -10,12 +10,9 @@ class LoginButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: MediaQuery.of(context).size.width * 0.23,
-      child: ElevatedButton(
-        onPressed: onPressed,
-        child: Text(textValue),
-      ),
+    return ElevatedButton(
+      onPressed: onPressed,
+      child: Text(textValue),
     );
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:toolkit/configs/app_spacing.dart';
 import 'app_color.dart';
 
 ThemeData appTheme = ThemeData(
@@ -9,10 +10,15 @@ ThemeData appTheme = ThemeData(
     elevatedButtonTheme: elevatedButtonThemeData);
 
 ElevatedButtonThemeData elevatedButtonThemeData = ElevatedButtonThemeData(
-    style: ElevatedButton.styleFrom(backgroundColor: AppColor.deepBlue));
+    style: ElevatedButton.styleFrom(
+        backgroundColor: AppColor.deepBlue,
+        minimumSize: const Size(double.maxFinite, 45.0),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(kCardRadius),
+        )));
 
 const ColorScheme colorScheme = ColorScheme.light(
-    primary: AppColor.lightGrey,
+    primary: AppColor.deepBlue,
     secondary: AppColor.white,
     surface: AppColor.white,
     background: AppColor.white);

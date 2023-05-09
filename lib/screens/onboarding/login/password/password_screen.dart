@@ -4,9 +4,9 @@ import 'package:toolkit/screens/onboarding/login/login_button.dart';
 import '../../../../configs/app_color.dart';
 import '../../../../configs/app_spacing.dart';
 import '../../../../utils/constants/string_constants.dart';
-import '../../widgets/card_widget.dart';
-import '../../widgets/circle_avatar_widget.dart';
-import '../../widgets/text_field_widget.dart';
+import '../../widgets/card.dart';
+import '../../widgets/circle_avatar.dart';
+import '../../widgets/text_field.dart';
 
 class PasswordScreen extends StatelessWidget {
   static const routeName = 'PasswordScreen';
@@ -32,21 +32,23 @@ class PasswordScreen extends StatelessWidget {
                   Radius.circular(MediaQuery.of(context).size.width * 0.3)),
               child: CircleAvatarWidget(
                   radius: MediaQuery.of(context).size.width * 0.15,
-                  backgroundColor: AppColor.blueGrey),
+                  backgroundColor: AppColor.blueGrey,
+                  child: Icon(Icons.lock,
+                      size: MediaQuery.of(context).size.width * 0.1)),
             ),
             const SizedBox(height: largeSpacing),
             Text(StringConstants.kWelcome,
                 style: Theme.of(context).textTheme.xLarge),
             const SizedBox(height: tinySpacing),
             SizedBox(
-              height: MediaQuery.of(context).size.width * 0.44,
+              height: MediaQuery.of(context).size.width * 0.48,
               width: double.infinity,
               child: CardWidget(
                   margin: EdgeInsets.zero,
                   elevation: kCardElevation,
                   shadowColor: AppColor.blueGrey,
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(tiniestSpacing),
+                    borderRadius: BorderRadius.circular(kCardRadius),
                   ),
                   child: Padding(
                     padding: EdgeInsets.all(
@@ -60,7 +62,7 @@ class PasswordScreen extends StatelessWidget {
                         const TextFieldWidget(
                             textInputType: TextInputType.emailAddress,
                             maxLines: 1),
-                        const SizedBox(height: tinySpacing),
+                        const SizedBox(height: mediumSpacing),
                         LoginButton(
                             onPressed: () {}, textValue: StringConstants.kLogin)
                       ],

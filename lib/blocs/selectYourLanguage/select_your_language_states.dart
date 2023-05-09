@@ -1,33 +1,19 @@
-import 'package:equatable/equatable.dart';
-
 import '../../data/models/select_your_language_model.dart';
 
-abstract class LanguageStates extends Equatable {}
+abstract class LanguageStates {}
 
-class LanguageInitial extends LanguageStates {
-  @override
-  List<Object?> get props => [];
-}
+class LanguageInitial extends LanguageStates {}
 
-class FetchLanguageLoading extends LanguageStates {
-  @override
-  List<Object?> get props => [];
-}
+class LanguagesLoading extends LanguageStates {}
 
-class FetchLanguageLoaded extends LanguageStates {
+class LanguagesLoaded extends LanguageStates {
   final LanguageModel languageModel;
 
-  FetchLanguageLoaded({required this.languageModel});
-
-  @override
-  List<Object?> get props => [];
+  LanguagesLoaded({required this.languageModel});
 }
 
-class FetchLanguageError extends LanguageStates {
+class LanguagesError extends LanguageStates {
   final String message;
 
-  FetchLanguageError({required this.message});
-
-  @override
-  List<Object?> get props => [];
+  LanguagesError({required this.message});
 }

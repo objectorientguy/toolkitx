@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:toolkit/configs/app_spacing.dart';
 import 'package:toolkit/configs/app_theme.dart';
 import 'package:toolkit/screens/onboarding/selectYourDateFormat/select_your_date_format_screen.dart';
-import 'package:toolkit/screens/onboarding/widgets/card_widget.dart';
+import 'package:toolkit/screens/onboarding/widgets/card.dart';
 import 'package:toolkit/utils/constants/string_constants.dart';
 import '../../../configs/app_color.dart';
 
@@ -40,7 +40,7 @@ class SelectYourTimeZoneScreen extends StatelessWidget {
                       elevation: kCardElevation,
                       shadowColor: AppColor.blueGrey,
                       shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(tiniestSpacing)),
+                          borderRadius: BorderRadius.circular(kCardRadius)),
                       child: ListTile(
                           onTap: () {
                             Navigator.pushNamed(

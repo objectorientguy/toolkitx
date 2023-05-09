@@ -4,7 +4,6 @@ import 'package:toolkit/screens/onboarding/login/emailAddress/login_email_screen
 import 'package:toolkit/widgets/primary_button.dart';
 import '../../../configs/app_color.dart';
 import '../../../configs/app_spacing.dart';
-import '../../../data/enums/date_enum.dart';
 import '../../../utils/constants/string_constants.dart';
 
 class SelectYourDateFormatScreen extends StatelessWidget {
@@ -34,14 +33,13 @@ class SelectYourDateFormatScreen extends StatelessWidget {
                 physics: const NeverScrollableScrollPhysics(),
                 padding: EdgeInsets.zero,
                 shrinkWrap: true,
-                itemCount: dateFormatMap.length,
+                itemCount: 10,
                 itemBuilder: (context, index) {
                   return SizedBox(
                     height: MediaQuery.of(context).size.width * 0.1,
                     child: Center(
                       child: RadioListTile(
-                          title: Text(
-                              dateFormatMap.values.elementAt(index).toString()),
+                          title: const Text(""),
                           controlAffinity: ListTileControlAffinity.trailing,
                           value: null,
                           groupValue: "",
@@ -57,7 +55,7 @@ class SelectYourDateFormatScreen extends StatelessWidget {
                 },
               ),
             ),
-            const SizedBox(height: tinySpacing),
+            const SizedBox(height: mediumSpacing),
             PrimaryButton(
                 onPressed: () {
                   Navigator.pushNamed(context, LoginEmailScreen.routeName);

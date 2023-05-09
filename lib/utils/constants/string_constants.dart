@@ -18,4 +18,10 @@ abstract class StringConstants {
   static const String kSelectDateFormat = "Select Your DateFormat";
   static const String kSave = "SAVE";
   static const String kSelectYourLanguage = "Select Your Language";
+  static const String kPleaseConfirm = "Please Confirm";
+  static const String kDialogContent =
+      "The language file doesn't exist or an old version. Please download the latest language file.";
+  static const String kNo = "NO";
+  static const String kYes = "YES";
+  static const String kReload = "RELOAD";
 }

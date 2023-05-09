@@ -37,20 +37,20 @@ class LanguageModel {
 
 class MultilngualData {
   MultilngualData({
-    this.id,
+    required this.id,
     this.flagName,
-    this.langName,
+    required this.langName,
     this.active,
   });
 
-  final int? id;
+  final int id;
   final String? flagName;
-  final String? langName;
+  final String langName;
   final int? active;
 
   factory MultilngualData.fromJson(Map<String, dynamic> json) =>
       MultilngualData(
-        id: json["id"],
+        id: json["i"],
         flagName: json["flag_name"],
         langName: json["lang_name"],
         active: json["active"],

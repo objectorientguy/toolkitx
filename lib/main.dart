@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:toolkit/blocs/selectYourLanguage/select_your_language_bloc.dart';
 import 'package:toolkit/configs/app_theme.dart';
 import 'package:toolkit/screens/onboarding/welcome_screen.dart';
-import 'app_module.dart';
+import 'di/app_module.dart';
 import 'configs/app_route.dart';
 
 void main() async {
