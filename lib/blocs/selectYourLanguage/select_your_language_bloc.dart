@@ -18,11 +18,11 @@ class LanguageBloc extends Bloc<LanguageEvent, LanguageStates> {
   FutureOr<void> _fetchLanguage(
       FetchLanguageEvent event, Emitter<LanguageStates> emit) async {
     emit(LanguagesLoading());
-    try {
-      LanguageModel languageModel = await _languageRepository.fetchLanguages();
-      emit(LanguagesLoaded(languageModel: languageModel));
-    } catch (e) {
-      emit(LanguagesError(message: e.toString()));
-    }
+    // try {
+    LanguageModel languageModel = await _languageRepository.fetchLanguages();
+    emit(LanguagesLoaded(languageModel: languageModel));
+    // } catch (e) {
+    //   emit(LanguagesError(message: e.toString()));
+    // }
   }
 }

@@ -1,3 +1,5 @@
+// ignore_for_file: empty_catches
+
 import 'dart:async';
 import 'dart:convert';
 import 'dart:developer';
@@ -21,7 +23,7 @@ class ApiProvider {
           log("post request --> $url");
         }
         final response =
-            await http.post(url, body: jsonEncode(body), headers: headers);
+        await http.post(url, body: jsonEncode(body), headers: headers);
         responseJson = _response(response);
         if (kDebugMode) {
           log("post response Data --> $responseJson");
@@ -33,14 +35,11 @@ class ApiProvider {
         }
         rethrow;
       }
-    } on SocketException {
-      // throw FetchDataException("No Internet");
-    }
+    } on SocketException {}
   }
 
   Future<dynamic> get(String requestUrl, [String? token, Map? body]) async {
     log("get body-->$body");
-
     dynamic responseJson;
     try {
       try {
@@ -105,11 +104,6 @@ class ApiProvider {
       case 403:
         var responseJson = json.decode(response.body.toString());
         if (responseJson["message"].toString() == "Unauthorized access") {
-          // return showDialog(
-          //     barrierDismissible: false,
-          //     context: navigatorKey.currentContext!,
-          //     builder: (context) => UnauthorizedUserPopup()
-          // );
           break;
         } else {
           throw UnauthorisedException(response.body.toString());

@@ -50,7 +50,7 @@ class MultilngualData {
 
   factory MultilngualData.fromJson(Map<String, dynamic> json) =>
       MultilngualData(
-        id: json["i"],
+        id: json["id"],
         flagName: json["flag_name"],
         langName: json["lang_name"],
         active: json["active"],
