@@ -1,17 +1,15 @@
 import 'package:flutter/material.dart';
 
-class CardWidget extends StatelessWidget {
+class CustomCard extends StatelessWidget {
   final Color? color;
-  final Color? shadowColor;
   final double? elevation;
   final ShapeBorder? shape;
   final EdgeInsetsGeometry? margin;
   final Widget? child;
 
-  const CardWidget(
+  const CustomCard(
       {Key? key,
       this.color,
-      this.shadowColor,
       this.elevation,
       this.shape,
       this.margin,
@@ -22,7 +20,6 @@ class CardWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
         color: color,
-        shadowColor: shadowColor,
         elevation: elevation,
         shape: shape,
         margin: margin,

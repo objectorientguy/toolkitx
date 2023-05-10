@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:toolkit/configs/app_spacing.dart';
 import 'package:toolkit/configs/app_theme.dart';
-import 'package:toolkit/screens/onboarding/selectYourDateFormat/select_your_date_format_screen.dart';
-import 'package:toolkit/screens/onboarding/widgets/card.dart';
+import 'package:toolkit/screens/onboarding/widgets/custom_card.dart';
 import 'package:toolkit/utils/constants/string_constants.dart';
-import '../../../configs/app_color.dart';
+import '../../../widgets/generic_app_bar.dart';
+import '../selectYourDateFormat/select_your_date_format_screen.dart';
 
 class SelectYourTimeZoneScreen extends StatelessWidget {
   static const routeName = 'SelectYourTimeZoneScreen';
@@ -14,9 +14,7 @@ class SelectYourTimeZoneScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-      ),
+      appBar: const CustomAppBar(),
       body: Padding(
         padding: const EdgeInsets.only(
             left: leftRightMargin,
@@ -35,10 +33,7 @@ class SelectYourTimeZoneScreen extends StatelessWidget {
                 shrinkWrap: true,
                 itemCount: 15,
                 itemBuilder: (context, index) {
-                  return CardWidget(
-                      margin: EdgeInsets.zero,
-                      elevation: kCardElevation,
-                      shadowColor: AppColor.blueGrey,
+                  return CustomCard(
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(kCardRadius)),
                       child: ListTile(

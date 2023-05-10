@@ -32,7 +32,7 @@ AppBarTheme appBarTheme = AppBarTheme(
 IconThemeData iconThemeData =
     const IconThemeData(color: Colors.black, size: 16);
 
-CardTheme appCardTheme = const CardTheme();
+CardTheme appCardTheme = const CardTheme(elevation: 1, margin: EdgeInsets.zero);
 
 extension AppTextTheme on TextTheme {
   TextStyle get largeTitle {

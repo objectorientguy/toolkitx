@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:toolkit/configs/app_theme.dart';
 import 'package:toolkit/screens/onboarding/login/password/password_screen.dart';
-import 'package:toolkit/screens/onboarding/widgets/card.dart';
+import 'package:toolkit/screens/onboarding/widgets/custom_card.dart';
 import 'package:toolkit/screens/onboarding/widgets/circle_avatar.dart';
 import '../../../../configs/app_color.dart';
 import '../../../../configs/app_spacing.dart';
 import '../../../../utils/constants/string_constants.dart';
+import '../../../../widgets/generic_app_bar.dart';
 import '../../widgets/text_field.dart';
 import 'email_button.dart';
 
@@ -17,7 +18,7 @@ class LoginEmailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(automaticallyImplyLeading: false),
+      appBar: const CustomAppBar(),
       body: Padding(
         padding: const EdgeInsets.only(
             left: leftRightMargin,
@@ -41,10 +42,7 @@ class LoginEmailScreen extends StatelessWidget {
             SizedBox(
               height: MediaQuery.of(context).size.width * 0.48,
               width: double.infinity,
-              child: CardWidget(
-                margin: EdgeInsets.zero,
-                elevation: kCardElevation,
-                shadowColor: AppColor.blueGrey,
+              child: CustomCard(
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(kCardRadius),
                 ),
