@@ -23,8 +23,7 @@ class LanguageModel {
         message: json["Message"],
       );
 
-  Map<String, dynamic> toJson() =>
-      {
+  Map<String, dynamic> toJson() => {
         "Status": status,
         "Data": List<dynamic>.from(data!.map((x) => x.toJson())),
         "Message": message,
@@ -53,9 +52,9 @@ class MultilngualData {
       );
 
   Map<String, dynamic> toJson() => {
-    "id": id,
-    "flag_name": flagName,
-    "lang_name": langName,
-    "active": active,
-  };
+        "id": id,
+        "flag_name": flagName,
+        "lang_name": langName,
+        "active": active,
+      };
 }

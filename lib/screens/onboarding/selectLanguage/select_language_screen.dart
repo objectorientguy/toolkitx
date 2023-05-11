@@ -67,8 +67,8 @@ class SelectLanguageScreen extends StatelessWidget {
                                           leading: Image.network(
                                               "https://pandoraict.com/breedapp/images/flags/${state.languageModel.data![index].flagName}",
                                               height: MediaQuery.of(context)
-                                                  .size
-                                                  .width *
+                                                      .size
+                                                      .width *
                                                   0.08),
                                           title: Padding(
                                               padding: const EdgeInsets.only(

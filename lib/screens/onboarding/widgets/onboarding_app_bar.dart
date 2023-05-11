@@ -8,9 +8,6 @@ class OnBoardingAppBar extends StatelessWidget implements PreferredSizeWidget {
   final List<Widget>? actions;
 
   @override
-  Size get preferredSize => const Size.fromHeight(56.0);
-
-  @override
   Widget build(BuildContext context) {
     return AppBar(
       title: title,
@@ -19,4 +16,7 @@ class OnBoardingAppBar extends StatelessWidget implements PreferredSizeWidget {
       automaticallyImplyLeading: false,
     );
   }
+
+  @override
+  Size get preferredSize => const Size.fromHeight(56.0);
 }
