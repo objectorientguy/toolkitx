@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:toolkit/configs/app_theme.dart';
@@ -15,7 +13,7 @@ import '../widgets/custom_card.dart';
 import '../widgets/onboarding_app_bar.dart';
 
 class SelectLanguageScreen extends StatelessWidget {
-  static const routeName = 'SelectYourLanguageScreen';
+  static const routeName = 'SelectLanguageScreen';
 
   const SelectLanguageScreen({Key? key}) : super(key: key);
 
@@ -44,10 +42,8 @@ class SelectLanguageScreen extends StatelessWidget {
                     listener: (context, state) {},
                     builder: (context, state) {
                       if (state is LanguagesLoading) {
-                        log("loadingggg===========>");
                         return const CircularProgressIndicator();
                       } else if (state is LanguagesLoaded) {
-                        log("loadeddd===========>");
                         return Expanded(
                             child: ListView.separated(
                                 padding: EdgeInsets.zero,

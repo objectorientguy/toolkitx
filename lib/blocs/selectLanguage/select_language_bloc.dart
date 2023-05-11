@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:developer';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:toolkit/di/app_module.dart';
 import 'package:toolkit/data/models/select_your_language_model.dart';
@@ -19,15 +18,11 @@ class LanguageBloc extends Bloc<LanguageEvent, LanguageStates> {
 
   FutureOr<void> _fetchLanguage(
       FetchLanguageEvent event, Emitter<LanguageStates> emit) async {
-    log("loading bloccc=========>");
     emit(LanguagesLoading());
     try {
-      log("loadedd blocc try==========>");
       LanguageModel languageModel = await _languageRepository.fetchLanguages();
       emit(LanguagesLoaded(languageModel: languageModel));
-      log("loadedd blocc==========>");
     } catch (e) {
-      log("eeeee======>$e");
       emit(LanguagesError(message: e.toString()));
     }
   }

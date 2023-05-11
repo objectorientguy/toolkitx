@@ -15,7 +15,7 @@ import '../login/emailAddress/login_email_screen.dart';
 import '../widgets/onboarding_app_bar.dart';
 
 class SelectDateFormatScreen extends StatefulWidget {
-  static const routeName = 'SelectYourDateFormatScreen';
+  static const routeName = 'SelectDateFormatScreen';
 
   const SelectDateFormatScreen({Key? key}) : super(key: key);
 

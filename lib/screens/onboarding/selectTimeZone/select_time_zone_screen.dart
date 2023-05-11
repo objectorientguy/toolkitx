@@ -9,7 +9,7 @@ import '../selectDateFormat/select_date_format_screen.dart';
 import '../widgets/onboarding_app_bar.dart';
 
 class SelectTimeZoneScreen extends StatelessWidget {
-  static const routeName = 'SelectYourTimeZoneScreen';
+  static const routeName = 'SelectTimeZoneScreen';
 
   const SelectTimeZoneScreen({Key? key}) : super(key: key);
 

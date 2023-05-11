@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'package:toolkit/utils/constants/api_constants.dart';
 import '../../data/models/select_your_language_model.dart';
 import '../../utils/dio_client.dart';
@@ -9,7 +8,6 @@ class LanguageRepositoryImpl extends LanguageRepository {
   Future<LanguageModel> fetchLanguages() async {
     final response =
         await DioClient().get("${ApiConstants.baseUrl}common/getlanguages");
-    log("responseee======>$response");
     return LanguageModel.fromJson(response);
   }
 }
