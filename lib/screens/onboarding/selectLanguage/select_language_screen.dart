@@ -1,26 +1,29 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:toolkit/blocs/selectYourLanguage/select_your_language_bloc.dart';
-import 'package:toolkit/blocs/selectYourLanguage/select_your_language_events.dart';
-import 'package:toolkit/blocs/selectYourLanguage/select_your_language_states.dart';
 import 'package:toolkit/configs/app_theme.dart';
 import 'package:toolkit/screens/onboarding/widgets/show_error.dart';
+import '../../../blocs/selectLanguage/select_language_bloc.dart';
+import '../../../blocs/selectLanguage/select_language_events.dart';
+import '../../../blocs/selectLanguage/select_language_states.dart';
+import '../../../configs/app_dimensions.dart';
 import '../../../configs/app_spacing.dart';
 import '../../../utils/constants/string_constants.dart';
-import '../../../widgets/generic_app_bar.dart';
-import '../selectYourTimeZone/select_your_time_zone_screen.dart';
+import '../selectTimeZone/select_time_zone_screen.dart';
 import '../widgets/custom_card.dart';
+import '../widgets/onboarding_app_bar.dart';
 
-class SelectYourLanguageScreen extends StatelessWidget {
+class SelectLanguageScreen extends StatelessWidget {
   static const routeName = 'SelectYourLanguageScreen';
 
-  const SelectYourLanguageScreen({Key? key}) : super(key: key);
+  const SelectLanguageScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     context.read<LanguageBloc>().add(FetchLanguageEvent());
     return Scaffold(
-      appBar: const CustomAppBar(),
+      appBar: const OnBoardingAppBar(),
       body: Padding(
         padding: const EdgeInsets.only(
             left: leftRightMargin,
@@ -41,8 +44,10 @@ class SelectYourLanguageScreen extends StatelessWidget {
                     listener: (context, state) {},
                     builder: (context, state) {
                       if (state is LanguagesLoading) {
+                        log("loadingggg===========>");
                         return const CircularProgressIndicator();
                       } else if (state is LanguagesLoaded) {
+                        log("loadeddd===========>");
                         return Expanded(
                             child: ListView.separated(
                                 padding: EdgeInsets.zero,
@@ -56,16 +61,14 @@ class SelectYourLanguageScreen extends StatelessWidget {
                                               kCardRadius)),
                                       child: ListTile(
                                           onTap: () {
-                                            Navigator.pushNamed(
-                                                context,
-                                                SelectYourTimeZoneScreen
-                                                    .routeName);
+                                            Navigator.pushNamed(context,
+                                                SelectTimeZoneScreen.routeName);
                                           },
                                           leading: Image.network(
                                               "https://pandoraict.com/breedapp/images/flags/${state.languageModel.data![index].flagName}",
                                               height: MediaQuery.of(context)
-                                                      .size
-                                                      .width *
+                                                  .size
+                                                  .width *
                                                   0.08),
                                           title: Padding(
                                               padding: const EdgeInsets.only(

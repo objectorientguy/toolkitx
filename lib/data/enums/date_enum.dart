@@ -1,11 +1,11 @@
 enum CustomDateFormat {
-  dotDMY(dateFormat: "dd.MM.yyyy"),
-  slashMDY(dateFormat: "MM/dd/yyyy"),
-  slashDMY(dateFormat: "dd/MM/yyyy"),
-  dashYMD(dateFormat: "yyyy-M-d"),
-  slashYMD(dateFormat: "yyyy/MM/dd"),
-  dotYMD(dateFormat: "yyy.MM.dd"),
-  dashYYMD(dateFormat: "yyyy-MM-dd");
+  dotDdMmYyyy(dateFormat: "dd.MM.yyyy"),
+  slashMmDdYyyy(dateFormat: "MM/dd/yyyy"),
+  slashDdMmYyyy(dateFormat: "dd/MM/yyyy"),
+  dashYyyyMmDd(dateFormat: "yyyy-M-d"),
+  slashYyyyMmDd(dateFormat: "yyyy/MM/dd"),
+  dotYyyMmDd(dateFormat: "yyy.MM.dd"),
+  dashYyyMmDd(dateFormat: "yyyy-MM-dd");
 
   const CustomDateFormat({
     required this.dateFormat,

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../blocs/selectYourLanguage/select_your_language_bloc.dart';
-import '../../../blocs/selectYourLanguage/select_your_language_events.dart';
+import '../../../blocs/selectLanguage/select_language_bloc.dart';
+import '../../../blocs/selectLanguage/select_language_events.dart';
 import '../../../utils/constants/string_constants.dart';
 import 'error_section.dart';
 

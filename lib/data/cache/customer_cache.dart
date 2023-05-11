@@ -1,14 +1,16 @@
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:toolkit/data/cache/cache_keys.dart';
 
 class CustomerCache {
-  Future setCustomerDateFormatString(String key, String string) async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    await prefs.setString(key, string);
+  final SharedPreferences sharedPreferences;
+
+  CustomerCache({required this.sharedPreferences});
+
+  void setCustomerDateFormatString(String key, String string) async {
+    await sharedPreferences.setString(CacheKeys.dateFormatKey, string);
   }
 
-  Future<String?> getCustomerDateFormatString(String key) async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    String? string = prefs.getString(key);
-    return string;
+  Future<String?> getCustomerDateFormat(String key) async {
+    return sharedPreferences.getString(CacheKeys.dateFormatKey);
   }
 }

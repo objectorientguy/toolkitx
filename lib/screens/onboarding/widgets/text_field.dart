@@ -8,7 +8,7 @@ class TextFieldWidget extends StatelessWidget {
   final int? maxLength;
   final TextInputType? textInputType;
   final TextEditingController? textFieldController;
-  final String? getText;
+  final String? value;
 
   const TextFieldWidget(
       {Key? key,
@@ -17,7 +17,7 @@ class TextFieldWidget extends StatelessWidget {
       this.maxLength,
       this.textInputType,
       this.textFieldController,
-      this.getText})
+      this.value})
       : super(key: key);
 
   @override

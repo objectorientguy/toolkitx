@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:toolkit/configs/app_dimensions.dart';
 import 'package:toolkit/configs/app_theme.dart';
-import 'package:toolkit/screens/onboarding/login/login_button.dart';
+import 'package:toolkit/widgets/primary_button.dart';
 import '../../../../configs/app_color.dart';
 import '../../../../configs/app_spacing.dart';
 import '../../../../utils/constants/string_constants.dart';
-import '../../../../widgets/generic_app_bar.dart';
 import '../../widgets/custom_card.dart';
 import '../../widgets/circle_avatar.dart';
+import '../../widgets/onboarding_app_bar.dart';
 import '../../widgets/text_field.dart';
 
 class PasswordScreen extends StatelessWidget {
@@ -17,7 +18,7 @@ class PasswordScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: const CustomAppBar(),
+        appBar: const OnBoardingAppBar(),
         body: Padding(
             padding: const EdgeInsets.only(
                 left: leftRightMargin,
@@ -28,12 +29,10 @@ class PasswordScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Material(
-                    elevation: kEmailCardElevation,
+                    elevation: kCardRadius,
                     borderRadius: BorderRadius.all(Radius.circular(
                         MediaQuery.of(context).size.width * 0.3)),
                     child: CircleAvatarWidget(
-                        radius: MediaQuery.of(context).size.width * 0.15,
-                        backgroundColor: AppColor.blueGrey,
                         child: Icon(Icons.lock,
                             size: MediaQuery.of(context).size.width * 0.1)),
                   ),
@@ -64,7 +63,7 @@ class PasswordScreen extends StatelessWidget {
                                             TextInputType.emailAddress,
                                         maxLines: 1),
                                     const SizedBox(height: mediumSpacing),
-                                    LoginButton(
+                                    PrimaryButton(
                                         onPressed: () {},
                                         textValue: StringConstants.kLogin)
                                   ])))),

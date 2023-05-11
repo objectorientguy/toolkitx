@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:toolkit/configs/app_dimensions.dart';
 import 'package:toolkit/configs/app_theme.dart';
 import 'package:toolkit/screens/onboarding/login/password/password_screen.dart';
 import 'package:toolkit/screens/onboarding/widgets/custom_card.dart';
 import 'package:toolkit/screens/onboarding/widgets/circle_avatar.dart';
-import '../../../../configs/app_color.dart';
+import 'package:toolkit/widgets/primary_button.dart';
 import '../../../../configs/app_spacing.dart';
 import '../../../../utils/constants/string_constants.dart';
-import '../../../../widgets/generic_app_bar.dart';
+import '../../widgets/onboarding_app_bar.dart';
 import '../../widgets/text_field.dart';
-import 'email_button.dart';
 
 class LoginEmailScreen extends StatelessWidget {
   static const routeName = 'LoginEmailScreen';
@@ -18,7 +18,7 @@ class LoginEmailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const CustomAppBar(),
+      appBar: const OnBoardingAppBar(),
       body: Padding(
         padding: const EdgeInsets.only(
             left: leftRightMargin,
@@ -29,12 +29,10 @@ class LoginEmailScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Material(
-              elevation: kEmailCardElevation,
+              elevation: kCardRadius,
               borderRadius: BorderRadius.all(
                   Radius.circular(MediaQuery.of(context).size.width * 0.3)),
               child: CircleAvatarWidget(
-                  radius: MediaQuery.of(context).size.width * 0.15,
-                  backgroundColor: AppColor.blueGrey,
                   child: Icon(Icons.message,
                       size: MediaQuery.of(context).size.width * 0.1)),
             ),
@@ -59,7 +57,7 @@ class LoginEmailScreen extends StatelessWidget {
                           textInputType: TextInputType.emailAddress,
                           maxLines: 1),
                       const SizedBox(height: mediumSpacing),
-                      EmailButton(
+                      PrimaryButton(
                         onPressed: () {
                           Navigator.pushNamed(
                               context, PasswordScreen.routeName);

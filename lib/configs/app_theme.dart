@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:toolkit/configs/app_spacing.dart';
 import 'app_color.dart';
+import 'app_dimensions.dart';
 
 ThemeData appTheme = ThemeData(
     colorScheme: colorScheme,
@@ -17,11 +17,7 @@ ElevatedButtonThemeData elevatedButtonThemeData = ElevatedButtonThemeData(
           borderRadius: BorderRadius.circular(kCardRadius),
         )));
 
-const ColorScheme colorScheme = ColorScheme.light(
-    primary: AppColor.deepBlue,
-    secondary: AppColor.white,
-    surface: AppColor.white,
-    background: AppColor.white);
+const ColorScheme colorScheme = ColorScheme.light(primary: AppColor.deepBlue);
 
 AppBarTheme appBarTheme = AppBarTheme(
     elevation: 0,

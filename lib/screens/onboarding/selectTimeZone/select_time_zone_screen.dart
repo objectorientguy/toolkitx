@@ -3,18 +3,20 @@ import 'package:toolkit/configs/app_spacing.dart';
 import 'package:toolkit/configs/app_theme.dart';
 import 'package:toolkit/screens/onboarding/widgets/custom_card.dart';
 import 'package:toolkit/utils/constants/string_constants.dart';
-import '../../../widgets/generic_app_bar.dart';
-import '../selectYourDateFormat/select_your_date_format_screen.dart';
 
-class SelectYourTimeZoneScreen extends StatelessWidget {
+import '../../../configs/app_dimensions.dart';
+import '../selectDateFormat/select_date_format_screen.dart';
+import '../widgets/onboarding_app_bar.dart';
+
+class SelectTimeZoneScreen extends StatelessWidget {
   static const routeName = 'SelectYourTimeZoneScreen';
 
-  const SelectYourTimeZoneScreen({Key? key}) : super(key: key);
+  const SelectTimeZoneScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const CustomAppBar(),
+      appBar: const OnBoardingAppBar(),
       body: Padding(
         padding: const EdgeInsets.only(
             left: leftRightMargin,
@@ -39,7 +41,7 @@ class SelectYourTimeZoneScreen extends StatelessWidget {
                       child: ListTile(
                           onTap: () {
                             Navigator.pushNamed(
-                                context, SelectYourDateFormatScreen.routeName);
+                                context, SelectDateFormatScreen.routeName);
                           },
                           leading: Icon(Icons.public,
                               size: MediaQuery.of(context).size.width * 0.065),

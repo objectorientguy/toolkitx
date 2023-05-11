@@ -9,11 +9,11 @@ dependencies:
   flutter:
     sdk: flutter
   dio:
-  http:
   intl:
   get_it:
   equatable:
   open_filex:
+  flutter_svg:
   flutter_bloc:
   hive_flutter:
   url_launcher:
