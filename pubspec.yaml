@@ -8,8 +8,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
-  http:
+  dio:
   intl:
   get_it:
   equatable:
@@ -39,4 +38,4 @@ flutter:
   uses-material-design: true
   generate: true
   assets:
-    - assets/icons/
+    - assets/images/
