@@ -6,11 +6,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class HomeBloc extends Bloc<HomeEvents, HomeStates> {
   HomeBloc() : super(const HomeInitial()) {
-    startTimeCounter();
     on<SetDateAndTime>(_setDateAndTime);
+    on<StartTimer>(_startTimer);
   }
 
-  void startTimeCounter() async {
+  FutureOr<void> _startTimer(StartTimer event, Emitter<HomeStates> emit) {
     Stream.periodic(const Duration(seconds: 1), (count) => count)
         .listen((count) => add(const SetDateAndTime()));
   }

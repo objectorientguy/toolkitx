@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:toolkit/screens/home/home_screen.dart';
 
 class RootScreen extends StatefulWidget {
+  static const routeName = 'RootScreen';
+
   const RootScreen({super.key});
 
   @override

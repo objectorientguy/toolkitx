@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:toolkit/configs/app_spacing.dart';
 
 import '../../../blocs/home/home_bloc.dart';
 import '../../../blocs/home/home_states.dart';
+import '../../../configs/app_dimensions.dart';
 import '../../../utils/date_util.dart';
 
 class DateAndTimeSection extends StatelessWidget {
@@ -16,17 +18,20 @@ class DateAndTimeSection extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset('assets/icons/calendar.png', height: 20, width: 20),
-            const SizedBox(width: 5),
+            Image.asset('assets/icons/calendar.png',
+                height: kImageHeight, width: kImageWidth),
+            const SizedBox(width: tiniestSpacing),
             Text(DateUtil.formatDate(state.dateTime)),
             const SizedBox(width: 20),
-            Image.asset('assets/icons/clock.png', height: 20, width: 20),
-            const SizedBox(width: 5),
+            Image.asset('assets/icons/clock.png',
+                height: kImageHeight, width: kImageWidth),
+            const SizedBox(width: tiniestSpacing),
             Text(DateUtil.formatTime(state.dateTime)),
             const SizedBox(width: 20),
-            Image.asset('assets/icons/time_zone.png', height: 20, width: 20),
-            const SizedBox(width: 5),
-            Text(state.dateTime.timeZoneName.toString()),
+            Image.asset('assets/icons/time_zone.png',
+                height: kImageHeight, width: kImageWidth),
+            const SizedBox(width: tiniestSpacing),
+            Text(state.dateTime.timeZoneName),
           ],
         );
       } else {
