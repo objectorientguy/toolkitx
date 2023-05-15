@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../configs/app_dimensions.dart';
 
 class GenericAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -15,11 +14,11 @@ class GenericAppBar extends StatelessWidget implements PreferredSizeWidget {
         title: title,
         leading: IconButton(
             icon: const Icon(Icons.arrow_back,
-                color: Colors.black, size: kBackButtonSize),
+                color: Colors.black, size: kIconSize),
             onPressed: () => Navigator.of(context).pop()),
         actions: actions);
   }
 
   @override
-  Size get preferredSize => const Size.fromHeight(56.0);
+  Size get preferredSize => const Size.fromHeight(kAppBarHeight);
 }

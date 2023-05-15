@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:toolkit/blocs/selectDateFormat/select_date_format_bloc.dart';
 import 'package:toolkit/blocs/selectDateFormat/select_date_format_states.dart';
+import 'package:toolkit/configs/app_color.dart';
 import 'package:toolkit/configs/app_theme.dart';
 import 'package:toolkit/screens/onboarding/widgets/custom_card.dart';
 import 'package:toolkit/widgets/custom_snackbar.dart';
@@ -11,7 +12,7 @@ import '../../../configs/app_dimensions.dart';
 import '../../../configs/app_spacing.dart';
 import '../../../data/enums/date_enum.dart';
 import '../../../utils/constants/string_constants.dart';
-import '../login/emailAddress/login_email_screen.dart';
+import '../login/emailAddress/login_screen.dart';
 import '../../../widgets/generic_app_bar.dart';
 
 class SelectDateFormatScreen extends StatefulWidget {
@@ -57,7 +58,7 @@ class _SelectDateFormatScreenState extends State<SelectDateFormatScreen> {
                                   height:
                                       MediaQuery.of(context).size.width * 0.1,
                                   child: RadioListTile(
-                                      activeColor: Colors.blue,
+                                      activeColor: AppColor.deepBlue,
                                       title: Text(CustomDateFormat.values
                                           .elementAt(index)
                                           .dateFormat),
@@ -84,24 +85,23 @@ class _SelectDateFormatScreenState extends State<SelectDateFormatScreen> {
                             })),
                     const SizedBox(height: mediumSpacing),
                     BlocListener<DateFormatBloc, DateFormatStates>(
-                      listener: (context, state) {
-                        if (state is DateFormatLoading) {
-                          const CircularProgressIndicator();
-                        } else if (state is DateFormatLoaded) {
-                          Navigator.pushNamed(
-                              context, LoginEmailScreen.routeName);
-                        } else if (state is DateFormatValidation) {
-                          showCustomSnackBar(
-                              context, state.message, StringConstants.kOk);
-                        }
-                      },
-                      child: PrimaryButton(
-                          onPressed: () {
-                            context.read<DateFormatBloc>().add(SelectDateFormat(
-                                dateFormat: dateFormatValues.toString()));
-                          },
-                          textValue: StringConstants.kSave),
-                    )
+                        listener: (context, state) {
+                          if (state is DateFormatLoading) {
+                            const CircularProgressIndicator();
+                          } else if (state is DateFormatLoaded) {
+                            Navigator.pushNamed(context, LoginScreen.routeName);
+                          } else if (state is DateFormatValidation) {
+                            showCustomSnackBar(
+                                context, state.message, StringConstants.kOk);
+                          }
+                        },
+                        child: PrimaryButton(
+                            onPressed: () {
+                              context.read<DateFormatBloc>().add(
+                                  SelectDateFormat(
+                                      dateFormat: dateFormatValues.toString()));
+                            },
+                            textValue: StringConstants.kSave))
                   ])),
         ));
   }

@@ -8,4 +8,5 @@ const double kImageWidth = 20.0;
 const double kBodyMargin = 18.0;
 const double kProfileImageHeight = 22.0;
 const double kProfileImageWidth = 22.0;
-const double kBackButtonSize = 22.0;
+const double kIconSize = 22.0;
+const double kAppBarHeight = 56.0;

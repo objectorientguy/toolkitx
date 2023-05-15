@@ -18,7 +18,7 @@ class EditOptions extends StatelessWidget {
             padding: const EdgeInsets.all(midTinySpacing),
             child: Column(children: [
               CircleAvatarWidget(
-                  radius: MediaQuery.of(context).size.width * 0.13,
+                  radius: kCircleAvatarRadius,
                   borderRadius: kCircleAvatarRadius,
                   child: Icon(Icons.person,
                       size: MediaQuery.of(context).size.width * 0.1)),
@@ -39,9 +39,12 @@ class EditOptions extends StatelessWidget {
                             width: MediaQuery.of(context).size.width * 0.28,
                             child: ListTile(
                                 contentPadding: EdgeInsets.zero,
-                                title: ProfileUtil.editOptionsList()
-                                    .elementAt(index)
-                                    .image,
+                                title: Image.asset(
+                                    ProfileUtil.editOptionsList()
+                                        .elementAt(index)
+                                        .image,
+                                    height: kProfileImageHeight,
+                                    width: kProfileImageWidth),
                                 subtitle: Text(
                                     ProfileUtil.editOptionsList()
                                         .elementAt(index)

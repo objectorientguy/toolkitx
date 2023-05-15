@@ -77,7 +77,7 @@ class PasswordScreen extends StatelessWidget {
                         child: Text(StringConstants.kGenerateOtp,
                             style: Theme.of(context).textTheme.medium.copyWith(
                                 fontWeight: FontWeight.w500,
-                                color: AppColor.cyan)))
+                                color: AppColor.lightBlue)))
                   ])),
         ));
   }
