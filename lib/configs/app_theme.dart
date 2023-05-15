@@ -6,7 +6,7 @@ ThemeData appTheme = ThemeData(
     colorScheme: colorScheme,
     appBarTheme: appBarTheme,
     cardTheme: appCardTheme,
-    scaffoldBackgroundColor: AppColor.lightestBlue,
+    scaffoldBackgroundColor: AppColor.ghostWhite,
     elevatedButtonTheme: elevatedButtonThemeData);
 
 ElevatedButtonThemeData elevatedButtonThemeData = ElevatedButtonThemeData(
