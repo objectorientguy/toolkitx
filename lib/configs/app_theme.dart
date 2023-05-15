@@ -1,60 +1,46 @@
 import 'package:flutter/material.dart';
 import 'app_color.dart';
+import 'app_dimensions.dart';
 
 ThemeData appTheme = ThemeData(
-  colorScheme: colorScheme,
-  appBarTheme: appBarTheme,
-  cardTheme: appCardTheme,
-  scaffoldBackgroundColor: AppColor.white,
-);
+    colorScheme: colorScheme,
+    appBarTheme: appBarTheme,
+    cardTheme: appCardTheme,
+    scaffoldBackgroundColor: AppColor.ghostWhite,
+    elevatedButtonTheme: elevatedButtonThemeData);
 
-const ColorScheme colorScheme = ColorScheme.light(
-    primary: AppColor.blueGrey,
-    secondary: AppColor.lightestBlue,
-    onError: AppColor.red,
-    surface: AppColor.white,
-    background: AppColor.white);
+ElevatedButtonThemeData elevatedButtonThemeData = ElevatedButtonThemeData(
+    style: ElevatedButton.styleFrom(
+        backgroundColor: AppColor.deepBlue,
+        minimumSize: const Size(double.maxFinite, 45.0),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(kCardRadius),
+        )));
 
-AppBarTheme appBarTheme = const AppBarTheme(
-    elevation: 0, centerTitle: true, backgroundColor: AppColor.white);
+const ColorScheme colorScheme = ColorScheme.light(primary: AppColor.deepBlue);
+
+AppBarTheme appBarTheme = AppBarTheme(
+    elevation: 0,
+    backgroundColor: AppColor.blueGrey,
+    iconTheme: iconThemeData,
+    titleTextStyle: const TextStyle(color: AppColor.black));
 
 IconThemeData iconThemeData =
-    IconThemeData(color: colorScheme.primary, size: 16);
+    const IconThemeData(color: Colors.black, size: 16);
 
-CardTheme appCardTheme = const CardTheme();
+CardTheme appCardTheme = const CardTheme(elevation: 1, margin: EdgeInsets.zero);
 
 extension AppTextTheme on TextTheme {
-  TextStyle get xlarge {
+  TextStyle get largeTitle {
     return const TextStyle(
-        fontSize: 24, fontFamily: 'Urbanist', color: AppColor.mediumBlack);
+        fontSize: 17, fontWeight: FontWeight.bold, color: AppColor.black);
   }
 
-  TextStyle get large {
-    return const TextStyle(
-        fontSize: 20,
-        fontFamily: 'Urbanist',
-        fontWeight: FontWeight.normal,
-        color: AppColor.lightBlack);
+  TextStyle get xLarge {
+    return const TextStyle(fontSize: 22, color: AppColor.mediumBlack);
   }
 
-  TextStyle get medium {
-    return const TextStyle(
-        fontSize: 17,
-        fontFamily: 'Urbanist',
-        fontWeight: FontWeight.normal,
-        color: AppColor.grey);
-  }
-
-  TextStyle get small {
-    return const TextStyle(
-        fontSize: 15, fontFamily: 'Urbanist', color: AppColor.lightBlack);
-  }
-
-  TextStyle get xSmall {
-    return const TextStyle(
-        fontSize: 13,
-        fontFamily: 'Urbanist',
-        fontWeight: FontWeight.normal,
-        color: AppColor.lightBlack);
+  TextStyle get xxLarge {
+    return const TextStyle(fontSize: 24, color: AppColor.mediumBlack);
   }
 }
