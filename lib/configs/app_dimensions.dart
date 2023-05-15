@@ -6,3 +6,6 @@ const double kCardElevation = 0.0;
 const double kImageHeight = 20.0;
 const double kImageWidth = 20.0;
 const double kBodyMargin = 18.0;
+const double kProfileImageHeight = 22.0;
+const double kProfileImageWidth = 22.0;
+const double kBackButtonSize = 22.0;

@@ -36,4 +36,13 @@ abstract class StringConstants {
   static const String kToolKitEmail = 'Mail us at info@toolkit.com';
   static const String kPrivacyPolicy = 'Privacy Policy';
   static const String kMaturityModel = 'PTW Maturity Model';
+  static const String kPrivacyPolicyUrl =
+      'https://www.toolkitx.com/privacypolicy.html';
+  static const String kMaturityModelUrl =
+      'https://www.toolkitx.com/campaign/permit-to-work/';
+  static const String kToolkitXEmail = 'info@toolkit.com';
+  static const String kFirstName = 'First Name';
+  static const String kLastName = 'Last Name';
+  static const String kContact = 'Contact';
+  static const String kBloodGroup = 'Blood Group';
 }

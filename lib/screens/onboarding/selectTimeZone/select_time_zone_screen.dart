@@ -6,7 +6,7 @@ import 'package:toolkit/utils/constants/string_constants.dart';
 
 import '../../../configs/app_dimensions.dart';
 import '../selectDateFormat/select_date_format_screen.dart';
-import '../widgets/onboarding_app_bar.dart';
+import '../../../widgets/generic_app_bar.dart';
 
 class SelectTimeZoneScreen extends StatelessWidget {
   static const routeName = 'SelectTimeZoneScreen';
@@ -16,7 +16,7 @@ class SelectTimeZoneScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const OnBoardingAppBar(),
+      appBar: const GenericAppBar(),
       body: Padding(
         padding: const EdgeInsets.only(
             left: leftRightMargin,

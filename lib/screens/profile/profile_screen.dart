@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:toolkit/configs/app_spacing.dart';
-import 'package:toolkit/screens/onboarding/widgets/onboarding_app_bar.dart';
-import 'profile_card_options_body.dart';
-import 'profile_options_body.dart';
+import 'widgets/edit_options.dart';
+import 'widgets/profile_options.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({Key? key}) : super(key: key);
@@ -10,7 +9,6 @@ class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: const OnBoardingAppBar(),
         body: Padding(
             padding: const EdgeInsets.only(
                 left: leftRightMargin,
@@ -19,9 +17,10 @@ class ProfileScreen extends StatelessWidget {
             child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: const [
-                  ProfileCardOptionsBody(),
+                  SizedBox(height: largeSpacing),
+                  EditOptions(),
                   SizedBox(height: tinySpacing),
-                  ProfileOptionsBody()
+                  ProfileOptions()
                 ])));
   }
 }

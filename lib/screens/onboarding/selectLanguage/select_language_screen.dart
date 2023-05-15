@@ -10,7 +10,7 @@ import '../../../configs/app_spacing.dart';
 import '../../../utils/constants/string_constants.dart';
 import '../selectTimeZone/select_time_zone_screen.dart';
 import '../widgets/custom_card.dart';
-import '../widgets/onboarding_app_bar.dart';
+import '../../../widgets/generic_app_bar.dart';
 
 class SelectLanguageScreen extends StatelessWidget {
   static const routeName = 'SelectLanguageScreen';
@@ -21,7 +21,7 @@ class SelectLanguageScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     context.read<LanguageBloc>().add(FetchLanguageEvent());
     return Scaffold(
-      appBar: const OnBoardingAppBar(),
+      appBar: const GenericAppBar(),
       body: Padding(
         padding: const EdgeInsets.only(
             left: leftRightMargin,

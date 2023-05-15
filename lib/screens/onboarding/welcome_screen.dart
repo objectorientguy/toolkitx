@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:toolkit/configs/app_spacing.dart';
 import 'package:toolkit/configs/app_theme.dart';
-import 'package:toolkit/screens/onboarding/widgets/circle_avatar.dart';
+import 'package:toolkit/widgets/circle_avatar.dart';
 import 'package:toolkit/utils/constants/string_constants.dart';
 import '../../configs/app_color.dart';
+import '../../configs/app_dimensions.dart';
 import '../../widgets/primary_button.dart';
 import 'selectLanguage/select_language_screen.dart';
 
@@ -24,9 +25,9 @@ class WelcomeScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   const CircleAvatarWidget(
-                    backgroundImage:
-                        AssetImage("assets/icons/avatar-icon.png"),
-                  ),
+                      backgroundImage:
+                          AssetImage("assets/icons/avatar-icon.png"),
+                      borderRadius: kCircleAvatarRadius),
                   const SizedBox(height: largeSpacing),
                   Text(StringConstants.kWelcomeToToolkitX,
                       style: Theme.of(context)
