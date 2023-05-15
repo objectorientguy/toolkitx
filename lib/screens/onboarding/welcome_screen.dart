@@ -25,7 +25,7 @@ class WelcomeScreen extends StatelessWidget {
                 children: [
                   const CircleAvatarWidget(
                     backgroundImage:
-                        AssetImage("assets/images/avatar-icon.png"),
+                        AssetImage("assets/icons/avatar-icon.png"),
                   ),
                   const SizedBox(height: largeSpacing),
                   Text(StringConstants.kWelcomeToToolkitX,

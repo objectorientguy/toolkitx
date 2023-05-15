@@ -5,6 +5,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:toolkit/blocs/selectDateFormat/select_date_format_bloc.dart';
 import 'package:toolkit/configs/app_theme.dart';
 import 'package:toolkit/screens/profile/profile_screen.dart';
+import 'package:toolkit/screens/onboarding/welcome_screen.dart';
+import 'blocs/home/home_bloc.dart';
 import 'blocs/selectLanguage/select_language_bloc.dart';
 import 'di/app_module.dart';
 import 'configs/app_route.dart';
@@ -33,7 +35,8 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(lazy: false, create: (context) => LanguageBloc()),
-        BlocProvider(lazy: false, create: (context) => DateFormatBloc())
+        BlocProvider(lazy: false, create: (context) => DateFormatBloc()),
+        BlocProvider(lazy: false, create: (context) => HomeBloc())
       ],
       child: GestureDetector(
         onTap: () {

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:toolkit/configs/app_dimensions.dart';
 import 'package:toolkit/configs/app_theme.dart';
+import 'package:toolkit/screens/root/root_screen.dart';
 import 'package:toolkit/widgets/primary_button.dart';
 import '../../../../configs/app_color.dart';
 import '../../../../configs/app_spacing.dart';
@@ -63,7 +64,10 @@ class PasswordScreen extends StatelessWidget {
                                         maxLines: 1),
                                     const SizedBox(height: mediumSpacing),
                                     PrimaryButton(
-                                        onPressed: () {},
+                                        onPressed: () {
+                                          Navigator.pushNamed(
+                                              context, RootScreen.routeName);
+                                        },
                                         textValue: StringConstants.kLogin)
                                   ])))),
                   TextButton(

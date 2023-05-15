@@ -1,4 +1,5 @@
 const double tiniestSpacing = 5.0;
+const double midTinySpacing = 10.0;
 const double tinySpacing = 15.0;
 const double smallSpacing = 18.0;
 const double leftRightMargin = 22.0;
