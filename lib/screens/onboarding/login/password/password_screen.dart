@@ -54,9 +54,8 @@ class PasswordScreen extends StatelessWidget {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(StringConstants.kPassword,
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .largeTitle),
+                                        style:
+                                            Theme.of(context).textTheme.medium),
                                     const SizedBox(height: smallSpacing),
                                     const TextFieldWidget(
                                         textInputType:
@@ -71,10 +70,7 @@ class PasswordScreen extends StatelessWidget {
                       style: TextButton.styleFrom(padding: EdgeInsets.zero),
                       onPressed: () {},
                       child: Text(StringConstants.kGenerateOtp,
-                          style: Theme.of(context)
-                              .textTheme
-                              .largeTitle
-                              .copyWith(
+                          style: Theme.of(context).textTheme.medium.copyWith(
                                   fontWeight: FontWeight.w500,
                                   color: AppColor.cyan)))
                 ])));

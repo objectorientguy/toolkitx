@@ -51,7 +51,7 @@ class LoginEmailScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(StringConstants.kEmailAddress,
-                          style: Theme.of(context).textTheme.largeTitle),
+                          style: Theme.of(context).textTheme.medium),
                       const SizedBox(height: tinySpacing),
                       const TextFieldWidget(
                           textInputType: TextInputType.emailAddress,

@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:toolkit/blocs/selectDateFormat/select_date_format_bloc.dart';
 import 'package:toolkit/configs/app_theme.dart';
-import 'package:toolkit/screens/onboarding/welcome_screen.dart';
+import 'package:toolkit/screens/profile/profile_screen.dart';
 import 'blocs/selectLanguage/select_language_bloc.dart';
 import 'di/app_module.dart';
 import 'configs/app_route.dart';
@@ -43,7 +43,7 @@ class MyApp extends StatelessWidget {
             debugShowCheckedModeBanner: false,
             onGenerateRoute: AppRoutes.onGenerateRoutes,
             theme: appTheme,
-            home: const WelcomeScreen()),
+            home: const ProfileScreen()),
       ),
     );
   }

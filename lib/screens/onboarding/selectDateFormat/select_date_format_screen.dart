@@ -38,7 +38,7 @@ class _SelectDateFormatScreenState extends State<SelectDateFormatScreen> {
             child:
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               Text(StringConstants.kSelectDateFormat,
-                  style: Theme.of(context).textTheme.largeTitle),
+                  style: Theme.of(context).textTheme.medium),
               const SizedBox(height: tinySpacing),
               CustomCard(
                   elevation: 0,

@@ -26,4 +26,14 @@ abstract class StringConstants {
   static const String kReload = 'RELOAD';
   static const String kOk = 'Ok';
   static const String kDateFormatValidate = 'Please select a Date Format!';
+  static const String kEditProfile = 'Edit Profile';
+  static const String kChangeClient = 'Change Client';
+  static const String kLogout = 'Logout';
+  static const String kChangePassword = 'Change Password';
+  static const String kChangeLanguage = 'Change Language';
+  static const String kChangeTimezone = 'Change Timezone';
+  static const String kChangeDateFormat = 'Change DateFormat';
+  static const String kToolKitEmail = 'Mail us at info@toolkit.com';
+  static const String kPrivacyPolicy = 'Privacy Policy';
+  static const String kMaturityModel = 'PTW Maturity Model';
 }

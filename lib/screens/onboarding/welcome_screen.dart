@@ -37,7 +37,7 @@ class WelcomeScreen extends StatelessWidget {
                   Text(StringConstants.kAppIntroductionNoSpacing,
                       style: Theme.of(context)
                           .textTheme
-                          .largeTitle
+                          .medium
                           .copyWith(fontWeight: FontWeight.normal),
                       textAlign: TextAlign.center),
                   const SizedBox(height: extraLargeSpacing),

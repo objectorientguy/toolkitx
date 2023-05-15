@@ -31,7 +31,7 @@ class SelectLanguageScreen extends StatelessWidget {
           Align(
             alignment: Alignment.topLeft,
             child: Text(StringConstants.kSelectYourLanguage,
-                style: Theme.of(context).textTheme.largeTitle),
+                style: Theme.of(context).textTheme.medium),
           ),
           const SizedBox(height: tinySpacing),
           Expanded(

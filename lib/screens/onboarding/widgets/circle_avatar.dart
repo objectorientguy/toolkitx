@@ -5,8 +5,10 @@ import '../../../configs/app_color.dart';
 class CircleAvatarWidget extends StatelessWidget {
   final ImageProvider<Object>? backgroundImage;
   final Widget? child;
+  final double? radius;
 
-  const CircleAvatarWidget({Key? key, this.backgroundImage, this.child})
+  const CircleAvatarWidget(
+      {Key? key, this.backgroundImage, this.child, this.radius})
       : super(key: key);
 
   @override

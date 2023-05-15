@@ -26,7 +26,7 @@ class SelectTimeZoneScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(StringConstants.kSelectTimeZone,
-                style: Theme.of(context).textTheme.largeTitle),
+                style: Theme.of(context).textTheme.medium),
             const SizedBox(height: tinySpacing),
             Expanded(
               child: ListView.separated(
