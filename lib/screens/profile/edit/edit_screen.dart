@@ -58,37 +58,36 @@ class EditScreen extends StatelessWidget {
                           style: Theme.of(context).textTheme.medium),
                       const SizedBox(height: midTinySpacing),
                       TextFieldWidget(
-                        textInputAction: TextInputAction.next,
-                        onTextFieldValueChanged: (String textFieldValue) {
-                          editProfileDetails['firstName'] = textFieldValue;
-                        },
-                      ),
+                          textInputAction: TextInputAction.next,
+                          onTextFieldValueChanged: (String textFieldValue) {
+                            editProfileDetails['firstName'] = textFieldValue;
+                          },
+                          hintText: StringConstants.kFirstName),
                       const SizedBox(height: midTinySpacing),
                       Text(StringConstants.kLastName,
                           style: Theme.of(context).textTheme.medium),
                       const SizedBox(height: midTinySpacing),
                       TextFieldWidget(
-                        textInputAction: TextInputAction.next,
-                        onTextFieldValueChanged: (String textFieldValue) {
-                          editProfileDetails['lastName'] = textFieldValue;
-                        },
-                      ),
+                          textInputAction: TextInputAction.next,
+                          onTextFieldValueChanged: (String textFieldValue) {
+                            editProfileDetails['lastName'] = textFieldValue;
+                          },
+                          hintText: StringConstants.kLastName),
                       const SizedBox(height: midTinySpacing),
                       Text(StringConstants.kContact,
                           style: Theme.of(context).textTheme.medium),
                       const SizedBox(height: midTinySpacing),
                       TextFieldWidget(
-                        textInputAction: TextInputAction.done,
-                        onTextFieldValueChanged: (String textFieldValue) {
-                          editProfileDetails['contact'] = textFieldValue;
-                        },
-                      ),
+                          textInputAction: TextInputAction.done,
+                          onTextFieldValueChanged: (String textFieldValue) {
+                            editProfileDetails['contact'] = textFieldValue;
+                          },
+                          hintText: StringConstants.kContact),
                       const SizedBox(height: midTinySpacing),
                       Text(StringConstants.kBloodGroup,
                           style: Theme.of(context).textTheme.medium),
                       const SizedBox(height: midTinySpacing),
-                      const BloodGroupExpansionTile(),
-                      const SizedBox(height: midTinySpacing)
+                      const BloodGroupExpansionTile()
                     ]))));
   }
 }

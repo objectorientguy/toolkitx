@@ -6,6 +6,7 @@ import 'app_spacing.dart';
 ThemeData appTheme = ThemeData(
     colorScheme: colorScheme,
     appBarTheme: appBarTheme,
+    listTileTheme: listTileTheme,
     cardTheme: appCardTheme,
     bottomAppBarTheme: bottomAppBarTheme,
     bottomNavigationBarTheme: bottomNavigationBarTheme,
@@ -34,6 +35,7 @@ BottomAppBarTheme? bottomAppBarTheme = const BottomAppBarTheme(
     elevation: 0,
     padding: EdgeInsets.all(leftRightMargin));
 
+ListTileThemeData listTileTheme = const ListTileThemeData(dense: true);
 AppBarTheme appBarTheme = AppBarTheme(
     elevation: 0,
     backgroundColor: AppColor.blueGrey,

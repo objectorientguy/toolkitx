@@ -39,7 +39,6 @@ class SelectTimeZoneScreen extends StatelessWidget {
                                 borderRadius:
                                     BorderRadius.circular(kCardRadius)),
                             child: ListTile(
-                                dense: true,
                                 onTap: () {
                                   Navigator.pushNamed(context,
                                       SelectDateFormatScreen.routeName);

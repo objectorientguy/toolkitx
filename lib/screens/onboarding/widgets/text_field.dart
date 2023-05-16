@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:toolkit/configs/app_theme.dart';
 import '../../../configs/app_color.dart';
 import '../../../configs/app_spacing.dart';
 
@@ -12,6 +13,7 @@ class TextFieldWidget extends StatelessWidget {
   final TextEditingController? textFieldController;
   final String? value;
   final TextFieldCallBack onTextFieldValueChanged;
+  final String? hintText;
 
   const TextFieldWidget(
       {Key? key,
@@ -21,7 +23,8 @@ class TextFieldWidget extends StatelessWidget {
       this.textInputType,
       this.textFieldController,
       this.value,
-      required this.onTextFieldValueChanged})
+      required this.onTextFieldValueChanged,
+      this.hintText})
       : super(key: key);
 
   @override
@@ -36,11 +39,16 @@ class TextFieldWidget extends StatelessWidget {
         maxLines: maxLines,
         maxLength: maxLength,
         cursorColor: AppColor.black,
-        decoration: const InputDecoration(
-            contentPadding: EdgeInsets.all(midTiniestSpacing),
-            enabledBorder: OutlineInputBorder(
+        decoration: InputDecoration(
+            hintStyle: Theme.of(context)
+                .textTheme
+                .xSmall
+                .copyWith(color: AppColor.grey),
+            hintText: hintText,
+            contentPadding: const EdgeInsets.all(midTiniestSpacing),
+            enabledBorder: const OutlineInputBorder(
                 borderSide: BorderSide(color: AppColor.lightGrey)),
-            focusedBorder: OutlineInputBorder(
+            focusedBorder: const OutlineInputBorder(
               borderSide: BorderSide(color: AppColor.lightGrey),
             ),
             filled: true,
