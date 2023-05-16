@@ -1,5 +1,3 @@
-// ignore_for_file: unused_local_variable
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../utils/constants/string_constants.dart';
@@ -32,7 +30,7 @@ class EditProfileBloc extends Bloc<EditProfileEvents, EditProfileStates> {
           event.editProfileDetails['contact'].toString().isEmpty) {
         add(ValidateEditProfile(message: StringConstants.kContactValidate));
       } else {
-        emit(EditProfileLoaded());
+        emit(EditProfileLoaded(editProfileDetailsMap: editProfileDetailsMap));
       }
     } catch (e) {
       emit(EditProfileError(message: e.toString()));

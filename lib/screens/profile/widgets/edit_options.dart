@@ -17,7 +17,7 @@ class EditOptions extends StatelessWidget {
         child: Padding(
             padding: const EdgeInsets.all(tinySpacing),
             child: Column(children: [
-              const CircleAvatarWidget(imagePath: 'avatar-icon.png'),
+              const CircleAvatarWidget(imagePath: 'mechanic_person.png'),
               const SizedBox(height: mediumSpacing),
               Text("Aditya Rana", style: Theme.of(context).textTheme.large),
               const SizedBox(height: tiniestSpacing),
