@@ -11,7 +11,7 @@ import '../../../../widgets/generic_app_bar.dart';
 import '../../widgets/text_field.dart';
 
 class LoginScreen extends StatelessWidget {
-  static const routeName = 'LoginEmailScreen';
+  static const routeName = 'LoginScreen';
 
   const LoginScreen({Key? key}) : super(key: key);
 
@@ -30,45 +30,35 @@ class LoginScreen extends StatelessWidget {
                 child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      CircleAvatarWidget(
-                          borderRadius: kCircleAvatarRadius,
-                          child: Icon(Icons.message,
-                              size: MediaQuery.of(context).size.width * 0.1)),
+                      const CircleAvatarWidget(imagePath: 'email.png'),
                       const SizedBox(height: largeSpacing),
-                      SizedBox(
-                          height: MediaQuery.of(context).size.width * 0.48,
-                          width: double.infinity,
-                          child: CustomCard(
-                              shape: RoundedRectangleBorder(
-                                borderRadius:
-                                    BorderRadius.circular(kCardRadius),
-                              ),
-                              child: Padding(
-                                  padding: EdgeInsets.all(
-                                      MediaQuery.of(context).size.width *
-                                          0.042),
-                                  child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(StringConstants.kEmailAddress,
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .medium),
-                                        const SizedBox(height: tinySpacing),
-                                        const TextFieldWidget(
-                                            textInputType:
-                                                TextInputType.emailAddress,
-                                            maxLines: 1),
-                                        const SizedBox(height: mediumSpacing),
-                                        PrimaryButton(
-                                          onPressed: () {
-                                            Navigator.pushNamed(context,
-                                                PasswordScreen.routeName);
-                                          },
-                                          textValue: StringConstants.kNext,
-                                        )
-                                      ]))))
+                      CustomCard(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(kCardRadius),
+                          ),
+                          child: Padding(
+                              padding: const EdgeInsets.all(cardPadding),
+                              child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(StringConstants.kEmailAddress,
+                                        style:
+                                            Theme.of(context).textTheme.medium),
+                                    const SizedBox(height: tinySpacing),
+                                    TextFieldWidget(
+                                        textInputType:
+                                            TextInputType.emailAddress,
+                                        maxLines: 1,
+                                        onTextFieldValueChanged:
+                                            (String textFieldValue) {}),
+                                    const SizedBox(height: mediumSpacing),
+                                    PrimaryButton(
+                                        onPressed: () {
+                                          Navigator.pushNamed(context,
+                                              PasswordScreen.routeName);
+                                        },
+                                        textValue: StringConstants.kNext)
+                                  ])))
                     ]))));
   }
 }

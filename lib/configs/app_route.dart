@@ -26,7 +26,7 @@ class AppRoutes {
       case RootScreen.routeName:
         return _materialRoute(const RootScreen());
       case EditScreen.routeName:
-        return _materialRoute(const EditScreen());
+        return _materialRoute(EditScreen());
       default:
         return _materialRoute(const WelcomeScreen());
     }

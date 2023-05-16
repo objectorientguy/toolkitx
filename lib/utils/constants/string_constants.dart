@@ -15,7 +15,7 @@ abstract class StringConstants {
   static const String kLogin = 'LOGIN';
   static const String kWelcome = 'Welcome';
   static const String kGenerateOtp = 'GENERATE OTP';
-  static const String kSelectDateFormat = 'Select Your DateFormat';
+  static const String kSelectDateFormat = 'Select Your Date Format';
   static const String kSave = 'SAVE';
   static const String kSelectYourLanguage = 'Select Your Language';
   static const String kPleaseConfirm = 'Please Confirm';
@@ -45,4 +45,13 @@ abstract class StringConstants {
   static const String kLastName = 'Last Name';
   static const String kContact = 'Contact';
   static const String kBloodGroup = 'Blood Group';
+  static const String kSelectBloodGroup = 'Select Blood Group';
+  static const String kSignature = 'Signature';
+  static const String kUploadSignature = 'Upload Signature';
+  static const String kUpload = 'Upload';
+  static const String kFirstNameValidate = 'Please add first name!';
+  static const String kLastNameValidate = 'Please add last name!';
+  static const String kContactValidate = 'Please add contact number!';
+  static const String kLogoutDialogContent =
+      'Are you sure you want to log out?';
 }

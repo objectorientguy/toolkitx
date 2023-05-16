@@ -1,5 +1,7 @@
 import 'package:toolkit/utils/constants/string_constants.dart';
-import '../data/models/options_class.dart';
+
+import '../data/models/profile/edit_options_model.dart';
+import '../data/models/profile/profile_options_model.dart';
 
 abstract class ProfileUtil {
   static List<EditOptions> editOptionsList() {

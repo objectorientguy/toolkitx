@@ -3,29 +3,22 @@ import 'package:toolkit/configs/app_dimensions.dart';
 import '../configs/app_color.dart';
 
 class CircleAvatarWidget extends StatelessWidget {
-  final ImageProvider<Object>? backgroundImage;
-  final Widget? child;
   final double? radius;
-  final double borderRadius;
+  final String imagePath;
+  final String path = 'assets/icons/';
 
-  const CircleAvatarWidget(
-      {Key? key,
-      this.backgroundImage,
-      this.child,
-      this.radius,
-      required this.borderRadius})
+  const CircleAvatarWidget({Key? key, this.radius, required this.imagePath})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Material(
-      elevation: kElevation,
-      borderRadius: BorderRadius.circular(borderRadius),
-      child: CircleAvatar(
-          backgroundColor: AppColor.blueGrey,
-          backgroundImage: backgroundImage,
-          radius: kCircleAvatarRadius,
-          child: child),
-    );
+        elevation: kElevation,
+        borderRadius: BorderRadius.circular(kCircleAvatarRadius),
+        child: CircleAvatar(
+            backgroundColor: AppColor.blueGrey,
+            radius: kCircleAvatarRadius,
+            child: Image.asset("$path$imagePath",
+                height: kCircleAvatarImgHeight, width: kCircleAvatarImgWidth)));
   }
 }

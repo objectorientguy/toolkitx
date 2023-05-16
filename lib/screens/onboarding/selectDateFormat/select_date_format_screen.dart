@@ -58,6 +58,7 @@ class _SelectDateFormatScreenState extends State<SelectDateFormatScreen> {
                                   height:
                                       MediaQuery.of(context).size.width * 0.1,
                                   child: RadioListTile(
+                                      dense: true,
                                       activeColor: AppColor.deepBlue,
                                       title: Text(CustomDateFormat.values
                                           .elementAt(index)

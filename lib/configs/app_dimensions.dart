@@ -1,7 +1,7 @@
 const double kDividerThickness = 2.0;
 const double kCardRadius = 5.0;
 const double kElevation = 5.0;
-const double kCircleAvatarRadius = 62.0;
+const double kCircleAvatarRadius = 58.0;
 const double kCardElevation = 0.0;
 const double kImageHeight = 20.0;
 const double kImageWidth = 20.0;
@@ -9,4 +9,6 @@ const double kBodyMargin = 18.0;
 const double kProfileImageHeight = 22.0;
 const double kProfileImageWidth = 22.0;
 const double kIconSize = 22.0;
+const double kCircleAvatarImgHeight = 50.0;
+const double kCircleAvatarImgWidth = 50.0;
 const double kAppBarHeight = 56.0;

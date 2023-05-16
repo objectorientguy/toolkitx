@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 import 'app_color.dart';
 import 'app_dimensions.dart';
+import 'app_spacing.dart';
 
 ThemeData appTheme = ThemeData(
     colorScheme: colorScheme,
     appBarTheme: appBarTheme,
     cardTheme: appCardTheme,
+    bottomAppBarTheme: bottomAppBarTheme,
+    bottomNavigationBarTheme: bottomNavigationBarTheme,
+    textButtonTheme: textButtonTheme,
     scaffoldBackgroundColor: AppColor.ghostWhite,
     elevatedButtonTheme: elevatedButtonThemeData);
 
@@ -17,7 +21,18 @@ ElevatedButtonThemeData elevatedButtonThemeData = ElevatedButtonThemeData(
           borderRadius: BorderRadius.circular(kCardRadius),
         )));
 
+TextButtonThemeData textButtonTheme =
+    TextButtonThemeData(style: TextButton.styleFrom(padding: EdgeInsets.zero));
 const ColorScheme colorScheme = ColorScheme.light(primary: AppColor.deepBlue);
+
+BottomNavigationBarThemeData bottomNavigationBarTheme =
+    const BottomNavigationBarThemeData(
+        backgroundColor: AppColor.white, elevation: 0);
+
+BottomAppBarTheme? bottomAppBarTheme = const BottomAppBarTheme(
+    color: AppColor.white,
+    elevation: 0,
+    padding: EdgeInsets.all(leftRightMargin));
 
 AppBarTheme appBarTheme = AppBarTheme(
     elevation: 0,
@@ -33,7 +48,7 @@ CardTheme appCardTheme = const CardTheme(elevation: 1, margin: EdgeInsets.zero);
 extension AppTextTheme on TextTheme {
   TextStyle get medium {
     return const TextStyle(
-        fontSize: 17, fontWeight: FontWeight.bold, color: AppColor.black);
+        fontSize: 16, fontWeight: FontWeight.w500, color: AppColor.black);
   }
 
   TextStyle get xLarge {

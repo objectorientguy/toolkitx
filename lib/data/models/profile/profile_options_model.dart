@@ -4,10 +4,3 @@ class ProfileOptions {
 
   ProfileOptions({required this.title, required this.image});
 }
-
-class EditOptions {
-  final String title;
-  final String image;
-
-  EditOptions({required this.title, required this.image});
-}

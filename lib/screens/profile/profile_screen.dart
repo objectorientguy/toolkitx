@@ -4,6 +4,8 @@ import 'widgets/edit_options.dart';
 import 'widgets/profile_options.dart';
 
 class ProfileScreen extends StatelessWidget {
+  static const routeName = 'ProfileScreen';
+
   const ProfileScreen({Key? key}) : super(key: key);
 
   @override
@@ -17,7 +19,7 @@ class ProfileScreen extends StatelessWidget {
             child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: const [
-                  SizedBox(height: largeSpacing),
+                  SizedBox(height: mediumSpacing),
                   EditOptions(),
                   SizedBox(height: tinySpacing),
                   ProfileOptions()

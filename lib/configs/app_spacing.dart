@@ -1,6 +1,9 @@
 const double tiniestSpacing = 5.0;
-const double midTinySpacing = 10.0;
+const double expansionTileMargin = 3.0;
+const double midTiniestSpacing = 10.0;
+const double midTinySpacing = 12.0;
 const double tinySpacing = 15.0;
+const double cardPadding = 15.0;
 const double smallSpacing = 18.0;
 const double leftRightMargin = 22.0;
 const double mediumSpacing = 26.0;
