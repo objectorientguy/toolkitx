@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:toolkit/screens/logBook/log_book_screen.dart';
 import 'package:toolkit/screens/onboarding/login/emailAddress/login_email_screen.dart';
 import 'package:toolkit/screens/onboarding/login/password/password_screen.dart';
 import 'package:toolkit/screens/onboarding/welcome_screen.dart';
@@ -24,6 +25,8 @@ class AppRoutes {
         return _materialRoute(const PasswordScreen());
       case RootScreen.routeName:
         return _materialRoute(const RootScreen());
+      case LogBookScreen.routeName:
+        return _materialRoute(const LogBookScreen());
       default:
         return _materialRoute(const WelcomeScreen());
     }
