@@ -11,13 +11,13 @@ class EditProfileLoaded extends EditProfileStates {
 }
 
 class EditProfileError extends EditProfileStates {
-  final String message;
+  final String errorMessage;
 
-  EditProfileError({required this.message});
+  EditProfileError({required this.errorMessage});
 }
 
 class EditProfileValidation extends EditProfileStates {
-  final String message;
+  final String validationMessage;
 
-  EditProfileValidation({required this.message});
+  EditProfileValidation({required this.validationMessage});
 }

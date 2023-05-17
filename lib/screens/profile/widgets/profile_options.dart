@@ -55,6 +55,7 @@ class ProfileOptions extends StatelessWidget {
                   itemCount: ProfileUtil.profileOptionsList().length,
                   itemBuilder: (context, index) {
                     return ListTile(
+                        contentPadding: EdgeInsets.zero,
                         horizontalTitleGap: 0.0,
                         leading: Image.asset(
                             ProfileUtil.profileOptionsList()

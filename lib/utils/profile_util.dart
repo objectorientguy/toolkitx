@@ -1,22 +1,8 @@
 import 'package:toolkit/utils/constants/string_constants.dart';
 
-import '../data/models/profile/edit_options_model.dart';
 import '../data/models/profile/profile_options_model.dart';
 
 abstract class ProfileUtil {
-  static List<EditOptions> editOptionsList() {
-    String imagePath = 'assets/icons/';
-    return [
-      EditOptions(
-          title: StringConstants.kEditProfile, image: "${imagePath}pen.png"),
-      EditOptions(
-          title: StringConstants.kChangeClient,
-          image: "${imagePath}exchange.png"),
-      EditOptions(
-          title: StringConstants.kLogout, image: "${imagePath}logout.png")
-    ];
-  }
-
   static List<ProfileOptions> profileOptionsList() {
     const String imagePath = 'assets/icons/';
     return [

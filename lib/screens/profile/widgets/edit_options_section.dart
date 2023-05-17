@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:toolkit/configs/app_theme.dart';
 import 'package:toolkit/screens/profile/edit/edit_screen.dart';
+import 'package:toolkit/utils/constants/string_constants.dart';
 import '../../../configs/app_dimensions.dart';
 import '../../../configs/app_spacing.dart';
-import '../../../utils/profile_util.dart';
 import 'logout.dart';
 
 class EditOptionsSection extends StatelessWidget {
+  final String imagePath = 'assets/icons/';
+
   const EditOptionsSection({Key? key}) : super(key: key);
 
   @override
@@ -17,19 +19,19 @@ class EditOptionsSection extends StatelessWidget {
           Navigator.pushNamed(context, EditScreen.routeName);
         },
         child: Column(children: [
-          Image.asset(ProfileUtil.editOptionsList().elementAt(0).image,
+          Image.asset('$imagePath' 'pen.png',
               height: kProfileImageHeight, width: kProfileImageWidth),
           const SizedBox(height: tiniestSpacing),
-          Text(ProfileUtil.editOptionsList().elementAt(0).title,
+          Text(StringConstants.kEditProfile,
               textAlign: TextAlign.center,
               style: Theme.of(context).textTheme.xxSmall)
         ]),
       ),
       Column(children: [
-        Image.asset(ProfileUtil.editOptionsList().elementAt(1).image,
+        Image.asset('$imagePath' 'exchange.png',
             height: kProfileImageHeight, width: kProfileImageWidth),
         const SizedBox(height: tiniestSpacing),
-        Text(ProfileUtil.editOptionsList().elementAt(1).title,
+        Text(StringConstants.kChangeClient,
             textAlign: TextAlign.center,
             style: Theme.of(context).textTheme.xxSmall)
       ]),
@@ -42,10 +44,10 @@ class EditOptionsSection extends StatelessWidget {
               });
         },
         child: Column(children: [
-          Image.asset(ProfileUtil.editOptionsList().elementAt(2).image,
+          Image.asset('$imagePath' 'logout.png',
               height: kProfileImageHeight, width: kProfileImageWidth),
           const SizedBox(height: tiniestSpacing),
-          Text(ProfileUtil.editOptionsList().elementAt(2).title,
+          Text(StringConstants.kLogout,
               textAlign: TextAlign.center,
               style: Theme.of(context).textTheme.xxSmall)
         ]),

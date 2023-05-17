@@ -7,7 +7,7 @@ class EditProfile extends EditProfileEvents {
 }
 
 class ValidateEditProfile extends EditProfileEvents {
-  final String message;
+  final String errorMessage;
 
-  ValidateEditProfile({required this.message});
+  ValidateEditProfile({required this.errorMessage});
 }

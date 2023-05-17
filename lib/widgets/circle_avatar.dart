@@ -18,7 +18,7 @@ class CircleAvatarWidget extends StatelessWidget {
         child: CircleAvatar(
             backgroundColor: AppColor.blueGrey,
             radius: kCircleAvatarRadius,
-            child: Image.asset("$path$imagePath",
+            child: Image.asset('$path$imagePath',
                 height: kCircleAvatarImgHeight, width: kCircleAvatarImgWidth)));
   }
 }

@@ -20,25 +20,28 @@ class EditProfileBloc extends Bloc<EditProfileEvents, EditProfileStates> {
       };
       if (event.editProfileDetails['firstName'].toString().trim() == "null" ||
           event.editProfileDetails['firstName'].toString().isEmpty) {
-        add(ValidateEditProfile(message: StringConstants.kFirstNameValidate));
+        add(ValidateEditProfile(
+            errorMessage: StringConstants.kFirstNameValidate));
       } else if (event.editProfileDetails['lastName'].toString().trim() ==
               "null" ||
           event.editProfileDetails['lastName'].toString().isEmpty) {
-        add(ValidateEditProfile(message: StringConstants.kLastNameValidate));
+        add(ValidateEditProfile(
+            errorMessage: StringConstants.kLastNameValidate));
       } else if (event.editProfileDetails['contact'].toString().trim() ==
               "null" ||
           event.editProfileDetails['contact'].toString().isEmpty) {
-        add(ValidateEditProfile(message: StringConstants.kContactValidate));
+        add(ValidateEditProfile(
+            errorMessage: StringConstants.kContactValidate));
       } else {
         emit(EditProfileLoaded(editProfileDetailsMap: editProfileDetailsMap));
       }
     } catch (e) {
-      emit(EditProfileError(message: e.toString()));
+      emit(EditProfileError(errorMessage: e.toString()));
     }
   }
 
   _validateEditProfile(
       ValidateEditProfile event, Emitter<EditProfileStates> emit) {
-    emit(EditProfileValidation(message: event.message));
+    emit(EditProfileValidation(validationMessage: event.errorMessage));
   }
 }

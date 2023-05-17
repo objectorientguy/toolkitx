@@ -35,7 +35,7 @@ class EditScreen extends StatelessWidget {
                   Navigator.pop(context);
                 } else if (state is EditProfileValidation) {
                   showCustomSnackBar(
-                      context, state.message, StringConstants.kOk);
+                      context, state.validationMessage, StringConstants.kOk);
                 }
               },
               child: PrimaryButton(
