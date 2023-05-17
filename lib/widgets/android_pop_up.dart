@@ -29,7 +29,7 @@ class AndroidPopUp extends StatelessWidget {
             .textTheme
             .large
             .copyWith(fontWeight: FontWeight.w500),
-        actions: <Widget>[
+        actions: [
           TextButton(
               child: const Text(StringConstants.kNo),
               onPressed: () {

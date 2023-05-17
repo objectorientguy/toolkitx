@@ -21,7 +21,7 @@ class IosPopUp extends StatelessWidget {
     return CupertinoAlertDialog(
         title: const Text(StringConstants.kLogout),
         content: const Text(StringConstants.kLogoutDialogContent),
-        actions: <CupertinoDialogAction>[
+        actions: [
           CupertinoDialogAction(
             textStyle: Theme.of(context).textTheme.xSmall.copyWith(
                 color: AppColor.deepBlue, fontWeight: FontWeight.w500),
