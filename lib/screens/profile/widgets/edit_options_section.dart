@@ -5,11 +5,10 @@ import 'package:toolkit/utils/constants/string_constants.dart';
 import 'package:toolkit/widgets/android_pop_up.dart';
 import '../../../configs/app_dimensions.dart';
 import '../../../configs/app_spacing.dart';
+import '../../../utils/profile_util.dart';
 import '../../onboarding/welcome_screen.dart';
 
 class EditOptionsSection extends StatelessWidget {
-  final String imagePath = 'assets/icons/';
-
   const EditOptionsSection({Key? key}) : super(key: key);
 
   @override
@@ -20,7 +19,7 @@ class EditOptionsSection extends StatelessWidget {
           Navigator.pushNamed(context, EditScreen.routeName);
         },
         child: Column(children: [
-          Image.asset('$imagePath' 'pen.png',
+          Image.asset('${ProfileUtil.imageIconPath}' 'pen.png',
               height: kProfileImageHeight, width: kProfileImageWidth),
           const SizedBox(height: tiniestSpacing),
           Text(StringConstants.kEditProfile,
@@ -29,7 +28,7 @@ class EditOptionsSection extends StatelessWidget {
         ]),
       ),
       Column(children: [
-        Image.asset('$imagePath' 'exchange.png',
+        Image.asset('${ProfileUtil.imageIconPath}' 'exchange.png',
             height: kProfileImageHeight, width: kProfileImageWidth),
         const SizedBox(height: tiniestSpacing),
         Text(StringConstants.kChangeClient,
@@ -50,7 +49,7 @@ class EditOptionsSection extends StatelessWidget {
                 });
           },
           child: Column(children: [
-            Image.asset('$imagePath' 'logout.png',
+            Image.asset('${ProfileUtil.imageIconPath}' 'logout.png',
                 height: kProfileImageHeight, width: kProfileImageWidth),
             const SizedBox(height: tiniestSpacing),
             Text(StringConstants.kLogout,
