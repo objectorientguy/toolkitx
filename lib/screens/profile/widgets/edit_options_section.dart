@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:toolkit/configs/app_theme.dart';
 import 'package:toolkit/screens/profile/edit/edit_screen.dart';
 import 'package:toolkit/utils/constants/string_constants.dart';
+import 'package:toolkit/widgets/android_pop_up.dart';
 import '../../../configs/app_dimensions.dart';
 import '../../../configs/app_spacing.dart';
-import 'logout.dart';
+import '../../onboarding/welcome_screen.dart';
 
 class EditOptionsSection extends StatelessWidget {
   final String imagePath = 'assets/icons/';
@@ -36,22 +37,26 @@ class EditOptionsSection extends StatelessWidget {
             style: Theme.of(context).textTheme.xxSmall)
       ]),
       GestureDetector(
-        onTap: () {
-          showDialog(
-              context: context,
-              builder: (context) {
-                return const Logout();
-              });
-        },
-        child: Column(children: [
-          Image.asset('$imagePath' 'logout.png',
-              height: kProfileImageHeight, width: kProfileImageWidth),
-          const SizedBox(height: tiniestSpacing),
-          Text(StringConstants.kLogout,
-              textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.xxSmall)
-        ]),
-      )
+          onTap: () {
+            showDialog(
+                context: context,
+                builder: (context) {
+                  return AndroidPopUp(
+                      titleValue: StringConstants.kLogout,
+                      contentValue: StringConstants.kLogoutDialogContent,
+                      onPressed: () => Navigator.of(context)
+                          .pushNamedAndRemoveUntil(WelcomeScreen.routeName,
+                              (Route<dynamic> route) => false));
+                });
+          },
+          child: Column(children: [
+            Image.asset('$imagePath' 'logout.png',
+                height: kProfileImageHeight, width: kProfileImageWidth),
+            const SizedBox(height: tiniestSpacing),
+            Text(StringConstants.kLogout,
+                textAlign: TextAlign.center,
+                style: Theme.of(context).textTheme.xxSmall)
+          ]))
     ]);
   }
 }

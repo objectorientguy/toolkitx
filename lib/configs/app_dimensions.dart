@@ -1,3 +1,4 @@
+const double kZeroElevation = 0.0;
 const double kDividerThickness = 2.0;
 const double kCardRadius = 5.0;
 const double kElevation = 5.0;

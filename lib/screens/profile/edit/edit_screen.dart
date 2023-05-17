@@ -8,6 +8,7 @@ import '../../../blocs/editProfile/edit_profile_bloc.dart';
 import '../../../blocs/editProfile/edit_profile_events.dart';
 import '../../../blocs/editProfile/edit_profile_states.dart';
 import '../../../configs/app_color.dart';
+import '../../../configs/app_dimensions.dart';
 import '../../../widgets/custom_snackbar.dart';
 import '../../../widgets/generic_app_bar.dart';
 import '../../onboarding/widgets/text_field.dart';
@@ -25,7 +26,7 @@ class EditScreen extends StatelessWidget {
         appBar: const GenericAppBar(),
         bottomNavigationBar: BottomAppBar(
             color: AppColor.white,
-            elevation: 0,
+            elevation: kZeroElevation,
             padding: const EdgeInsets.all(leftRightMargin),
             child: BlocListener<EditProfileBloc, EditProfileStates>(
               listener: (context, state) {
