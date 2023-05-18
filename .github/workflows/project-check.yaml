@@ -17,9 +17,26 @@ jobs:
       - run: flutter pub get
       - run: flutter build apk --debug --split-per-abi
       - name: Create a Release APK
-        uses: ncipollo/release-action
+
+  publish_to_firebase:
+    name: Upload APK to App Tester
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2.4.0
+      - name: Setup JDK
+        uses: actions/setup-java@v2.5.0
         with:
-          artifacts: "build/app/outputs/apk/debug/*.apk"
+          distribution: temurin
+          java-version: '11'
+      - name: build release
+        run: bash ./gradlew assembleDebug
+      - name: upload artifact to Firebase App Distribution
+        uses: wzieba/Firebase-Distribution-Github-Action@v1.2.2
+        with:
+          appId: '1:830847963226:android:089b4bc82421ccb7a30863'
+          token: '1//0gfVYv67lLEmBCgYIARAAGBASNwF-L9IrThYeXBpUiIO8E9FRE4ubtFgbqzjFObh2kMnCUZSEqWacvg2gMkNtkfSU8TBDDx_BPlA'
+          groups: internal-testers
+          file: app/build/outputs/apk/debug/app-debug.apk
 
 
 
