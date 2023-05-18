@@ -4,6 +4,8 @@ on:
   pull_request:
     branches:
       - dev
+    tags:
+      - 'v*.*.*'
   workflow_dispatch:
 
 jobs:
