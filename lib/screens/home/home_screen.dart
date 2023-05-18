@@ -4,7 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:toolkit/blocs/home/home_bloc.dart';
 import 'package:toolkit/blocs/home/home_events.dart';
 import 'package:toolkit/screens/home/widgets/date_time_section.dart';
-import 'package:toolkit/screens/home/widgets/modules_grid_view.dart';
+import 'package:toolkit/screens/home/widgets/modules_grid_layout.dart';
 
 import '../../configs/app_dimensions.dart';
 import '../../configs/app_spacing.dart';
@@ -29,7 +29,7 @@ class HomeScreen extends StatelessWidget {
           Expanded(
               child: ScrollConfiguration(
             behavior: const ScrollBehavior().copyWith(overscroll: false),
-            child: const SingleChildScrollView(child: ModulesGridView()),
+            child: const SingleChildScrollView(child: ModulesGridLayout()),
           ))
         ],
       ),

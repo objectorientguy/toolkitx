@@ -13,7 +13,9 @@ abstract class ModulesUtil {
     ModulesModel(
         moduleName: 'Hazard', moduleImage: '${kBaseImagePath}hazard.png'),
     ModulesModel(
-        moduleName: 'Permit', moduleImage: '${kBaseImagePath}permit.png'),
+        moduleName: 'Permit',
+        moduleImage: '${kBaseImagePath}permit.png',
+        offLineSupport: true),
     ModulesModel(
         moduleName: 'Time & Vacation',
         moduleImage: '${kBaseImagePath}holiday.png'),

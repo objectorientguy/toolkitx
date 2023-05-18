@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:toolkit/configs/app_spacing.dart';
 import 'package:toolkit/configs/app_theme.dart';
-import 'package:toolkit/screens/onboarding/widgets/circle_avatar.dart';
+import 'package:toolkit/widgets/circle_avatar.dart';
 import 'package:toolkit/utils/constants/string_constants.dart';
 import '../../configs/app_color.dart';
 import '../../widgets/primary_button.dart';
@@ -23,9 +23,7 @@ class WelcomeScreen extends StatelessWidget {
             child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  const CircleAvatarWidget(
-                    backgroundImage: AssetImage("assets/icons/avatar-icon.png"),
-                  ),
+                  const CircleAvatarWidget(imagePath: 'mechanic_person.png'),
                   const SizedBox(height: largeSpacing),
                   Text(StringConstants.kWelcomeToToolkitX,
                       style: Theme.of(context)
@@ -36,7 +34,7 @@ class WelcomeScreen extends StatelessWidget {
                   Text(StringConstants.kAppIntroductionNoSpacing,
                       style: Theme.of(context)
                           .textTheme
-                          .largeTitle
+                          .medium
                           .copyWith(fontWeight: FontWeight.normal),
                       textAlign: TextAlign.center),
                   const SizedBox(height: extraLargeSpacing),
