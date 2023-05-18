@@ -4,7 +4,6 @@ import '../../../configs/app_color.dart';
 import '../../../configs/app_spacing.dart';
 
 class TextFieldWidget extends StatelessWidget {
-  final int? maxLines;
   final TextInputAction? textInputAction;
   final int? maxLength;
   final TextInputType? textInputType;
@@ -14,7 +13,6 @@ class TextFieldWidget extends StatelessWidget {
 
   const TextFieldWidget(
       {Key? key,
-      this.maxLines,
       this.textInputAction,
       this.maxLength,
       this.textInputType,
@@ -30,7 +28,7 @@ class TextFieldWidget extends StatelessWidget {
         onChanged: (value) {},
         keyboardType: textInputType,
         textInputAction: textInputAction,
-        maxLines: maxLines,
+        maxLines: 1,
         maxLength: maxLength,
         cursorColor: AppColor.black,
         decoration: InputDecoration(

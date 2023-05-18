@@ -19,7 +19,7 @@ class EditOptionsSection extends StatelessWidget {
           Navigator.pushNamed(context, EditScreen.routeName);
         },
         child: Column(children: [
-          Image.asset('${ProfileUtil.imageIconPath}' 'pen.png',
+          Image.asset('${ProfileUtil.iconPath}' 'pen.png',
               height: kProfileImageHeight, width: kProfileImageWidth),
           const SizedBox(height: tiniestSpacing),
           Text(StringConstants.kEditProfile,
@@ -28,7 +28,7 @@ class EditOptionsSection extends StatelessWidget {
         ]),
       ),
       Column(children: [
-        Image.asset('${ProfileUtil.imageIconPath}' 'exchange.png',
+        Image.asset('${ProfileUtil.iconPath}' 'exchange.png',
             height: kProfileImageHeight, width: kProfileImageWidth),
         const SizedBox(height: tiniestSpacing),
         Text(StringConstants.kChangeClient,
@@ -49,7 +49,7 @@ class EditOptionsSection extends StatelessWidget {
                 });
           },
           child: Column(children: [
-            Image.asset('${ProfileUtil.imageIconPath}' 'logout.png',
+            Image.asset('${ProfileUtil.iconPath}' 'logout.png',
                 height: kProfileImageHeight, width: kProfileImageWidth),
             const SizedBox(height: tiniestSpacing),
             Text(StringConstants.kLogout,

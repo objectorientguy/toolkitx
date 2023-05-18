@@ -3,31 +3,30 @@ import 'package:toolkit/utils/constants/string_constants.dart';
 import '../data/models/profile/profile_options_model.dart';
 
 abstract class ProfileUtil {
-  static const String imageIconPath = 'assets/icons/';
+  static const String iconPath = 'assets/icons/';
+  static const String imagePath = 'assets/images/';
 
   static List<ProfileOptions> profileOptionsList() {
     return [
       ProfileOptions(
           title: StringConstants.kChangePassword,
-          image: "${imageIconPath}reset-password.png"),
+          image: "${iconPath}reset-password.png"),
       ProfileOptions(
           title: StringConstants.kChangeLanguage,
-          image: "${imageIconPath}languages.png"),
+          image: "${iconPath}languages.png"),
       ProfileOptions(
           title: StringConstants.kChangeTimezone,
-          image: "${imageIconPath}time_zone.png"),
+          image: "${iconPath}time_zone.png"),
       ProfileOptions(
           title: StringConstants.kChangeDateFormat,
-          image: "${imageIconPath}calendar.png"),
+          image: "${iconPath}calendar.png"),
       ProfileOptions(
-          title: StringConstants.kToolKitEmail,
-          image: "${imageIconPath}email.png"),
+          title: StringConstants.kToolKitEmail, image: "${iconPath}email.png"),
       ProfileOptions(
           title: StringConstants.kPrivacyPolicy,
-          image: "${imageIconPath}compliant.png"),
+          image: "${iconPath}compliant.png"),
       ProfileOptions(
-          title: StringConstants.kMaturityModel,
-          image: "${imageIconPath}shield.png")
+          title: StringConstants.kMaturityModel, image: "${iconPath}shield.png")
     ];
   }
 }
