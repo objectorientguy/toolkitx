@@ -6,6 +6,7 @@ import '../../../configs/app_spacing.dart';
 class TextFieldWidget extends StatelessWidget {
   final TextInputAction? textInputAction;
   final int? maxLength;
+  final int? maxLines;
   final TextInputType? textInputType;
   final TextEditingController? textFieldController;
   final String? value;
@@ -18,7 +19,8 @@ class TextFieldWidget extends StatelessWidget {
       this.textInputType,
       this.textFieldController,
       this.value,
-      this.hintText})
+      this.hintText,
+      this.maxLines = 1})
       : super(key: key);
 
   @override
@@ -28,7 +30,7 @@ class TextFieldWidget extends StatelessWidget {
         onChanged: (value) {},
         keyboardType: textInputType,
         textInputAction: textInputAction,
-        maxLines: 1,
+        maxLines: maxLines,
         maxLength: maxLength,
         cursorColor: AppColor.black,
         decoration: InputDecoration(
