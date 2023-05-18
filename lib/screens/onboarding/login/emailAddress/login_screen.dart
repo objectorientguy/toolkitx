@@ -39,23 +39,24 @@ class LoginScreen extends StatelessWidget {
                           child: Padding(
                               padding: const EdgeInsets.all(cardPadding),
                               child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(StringConstants.kEmailAddress,
-                                        style:
-                                            Theme.of(context).textTheme.medium),
-                                    const SizedBox(height: tinySpacing),
-                                    const TextFieldWidget(
-                                        textInputType:
-                                            TextInputType.emailAddress),
-                                    const SizedBox(height: mediumSpacing),
-                                    PrimaryButton(
-                                        onPressed: () {
-                                          Navigator.pushNamed(context,
-                                              PasswordScreen.routeName);
-                                        },
-                                        textValue: StringConstants.kNext)
-                                  ])))
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(StringConstants.kEmailAddress,
+                                      style:
+                                          Theme.of(context).textTheme.medium),
+                                  const SizedBox(height: tinySpacing),
+                                  const TextFieldWidget(
+                                      textInputType:
+                                          TextInputType.emailAddress),
+                                  const SizedBox(height: mediumSpacing),
+                                  PrimaryButton(
+                                      onPressed: () {
+                                        Navigator.pushNamed(
+                                            context, PasswordScreen.routeName);
+                                      },
+                                      textValue: StringConstants.kNext)
+                                ],
+                              )))
                     ]))));
   }
 }
