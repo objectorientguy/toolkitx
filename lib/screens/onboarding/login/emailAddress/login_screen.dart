@@ -45,12 +45,10 @@ class LoginScreen extends StatelessWidget {
                                         style:
                                             Theme.of(context).textTheme.medium),
                                     const SizedBox(height: tinySpacing),
-                                    TextFieldWidget(
+                                    const TextFieldWidget(
                                         textInputType:
                                             TextInputType.emailAddress,
-                                        maxLines: 1,
-                                        onTextFieldValueChanged:
-                                            (String textFieldValue) {}),
+                                        maxLines: 1),
                                     const SizedBox(height: mediumSpacing),
                                     PrimaryButton(
                                         onPressed: () {

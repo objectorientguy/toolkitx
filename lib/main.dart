@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:toolkit/blocs/editProfile/edit_profile_bloc.dart';
 import 'package:toolkit/blocs/selectDateFormat/select_date_format_bloc.dart';
 import 'package:toolkit/configs/app_theme.dart';
 import 'package:toolkit/screens/onboarding/welcome_screen.dart';
@@ -36,8 +35,7 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider(lazy: false, create: (context) => LanguageBloc()),
         BlocProvider(lazy: false, create: (context) => DateFormatBloc()),
-        BlocProvider(lazy: false, create: (context) => HomeBloc()),
-        BlocProvider(lazy: false, create: (context) => EditProfileBloc()),
+        BlocProvider(lazy: false, create: (context) => HomeBloc())
       ],
       child: GestureDetector(
         onTap: () {

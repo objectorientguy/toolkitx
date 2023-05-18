@@ -3,8 +3,6 @@ import 'package:toolkit/configs/app_theme.dart';
 import '../../../configs/app_color.dart';
 import '../../../configs/app_spacing.dart';
 
-typedef TextFieldCallBack = Function(String textFieldValue);
-
 class TextFieldWidget extends StatelessWidget {
   final int? maxLines;
   final TextInputAction? textInputAction;
@@ -12,7 +10,6 @@ class TextFieldWidget extends StatelessWidget {
   final TextInputType? textInputType;
   final TextEditingController? textFieldController;
   final String? value;
-  final TextFieldCallBack onTextFieldValueChanged;
   final String? hintText;
 
   const TextFieldWidget(
@@ -23,7 +20,6 @@ class TextFieldWidget extends StatelessWidget {
       this.textInputType,
       this.textFieldController,
       this.value,
-      required this.onTextFieldValueChanged,
       this.hintText})
       : super(key: key);
 
@@ -31,9 +27,7 @@ class TextFieldWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextField(
         controller: textFieldController,
-        onChanged: (value) {
-          onTextFieldValueChanged(value);
-        },
+        onChanged: (value) {},
         keyboardType: textInputType,
         textInputAction: textInputAction,
         maxLines: maxLines,

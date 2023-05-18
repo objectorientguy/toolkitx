@@ -49,10 +49,7 @@ class PasswordScreen extends StatelessWidget {
                                         style:
                                             Theme.of(context).textTheme.medium),
                                     const SizedBox(height: smallSpacing),
-                                    TextFieldWidget(
-                                        maxLines: 1,
-                                        onTextFieldValueChanged:
-                                            (String textFieldValue) {}),
+                                    const TextFieldWidget(maxLines: 1),
                                     const SizedBox(height: mediumSpacing),
                                     PrimaryButton(
                                         onPressed: () {
