@@ -15,7 +15,7 @@ abstract class StringConstants {
   static const String kLogin = 'LOGIN';
   static const String kWelcome = 'Welcome';
   static const String kGenerateOtp = 'GENERATE OTP';
-  static const String kSelectDateFormat = 'Select Your DateFormat';
+  static const String kSelectDateFormat = 'Select Your Date Format';
   static const String kSave = 'SAVE';
   static const String kSelectYourLanguage = 'Select Your Language';
   static const String kPleaseConfirm = 'Please Confirm';
@@ -26,4 +26,32 @@ abstract class StringConstants {
   static const String kReload = 'RELOAD';
   static const String kOk = 'Ok';
   static const String kDateFormatValidate = 'Please select a Date Format!';
+  static const String kEditProfile = 'Edit Profile';
+  static const String kChangeClient = 'Change Client';
+  static const String kLogout = 'Logout';
+  static const String kChangePassword = 'Change Password';
+  static const String kChangeLanguage = 'Change Language';
+  static const String kChangeTimezone = 'Change Timezone';
+  static const String kChangeDateFormat = 'Change DateFormat';
+  static const String kToolKitEmail = 'Mail us at info@toolkit.com';
+  static const String kPrivacyPolicy = 'Privacy Policy';
+  static const String kMaturityModel = 'PTW Maturity Model';
+  static const String kPrivacyPolicyUrl =
+      'https://www.toolkitx.com/privacypolicy.html';
+  static const String kMaturityModelUrl =
+      'https://www.toolkitx.com/campaign/permit-to-work/';
+  static const String kToolkitXEmail = 'info@toolkit.com';
+  static const String kFirstName = 'First Name';
+  static const String kLastName = 'Last Name';
+  static const String kContact = 'Contact';
+  static const String kBloodGroup = 'Blood Group';
+  static const String kSelectBloodGroup = 'Select Blood Group';
+  static const String kSignature = 'Signature';
+  static const String kUploadSignature = 'Upload Signature';
+  static const String kUpload = 'Upload';
+  static const String kFirstNameValidate = 'Please add first name!';
+  static const String kLastNameValidate = 'Please add last name!';
+  static const String kContactValidate = 'Please add contact number!';
+  static const String kLogoutDialogContent =
+      'Are you sure you want to log out?';
 }

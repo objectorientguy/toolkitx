@@ -20,8 +20,8 @@ class ModulesGridView extends StatelessWidget {
           shrinkWrap: true,
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 3,
-              crossAxisSpacing: midTinySpacing,
-              mainAxisSpacing: midTinySpacing),
+              crossAxisSpacing: midTiniestSpacing,
+              mainAxisSpacing: midTiniestSpacing),
           itemBuilder: (BuildContext context, int index) {
             return Card(
               shape: RoundedRectangleBorder(
