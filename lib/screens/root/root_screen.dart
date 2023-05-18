@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:toolkit/screens/home/home_screen.dart';
+
+import '../../blocs/wifiConnectivity/wifi_connectivity_bloc.dart';
+import '../../blocs/wifiConnectivity/wifi_connectivity_states.dart';
+import '../../configs/app_spacing.dart';
 
 class RootScreen extends StatefulWidget {
   static const routeName = 'RootScreen';
@@ -42,51 +47,64 @@ class _RootScreenState extends State<RootScreen> {
       body: Center(
         child: _widgetOptions.elementAt(_selectedIndex),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        enableFeedback: true,
-        type: BottomNavigationBarType.fixed,
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Padding(
-              padding: EdgeInsets.only(top: 8.0),
-              child: Icon(Icons.home),
-            ),
-            label: '',
-          ),
-          BottomNavigationBarItem(
-            icon: Padding(
-              padding: EdgeInsets.only(top: 8.0),
-              child: Icon(Icons.location_on),
-            ),
-            label: '',
-          ),
-          BottomNavigationBarItem(
-            icon: Padding(
-              padding: EdgeInsets.only(top: 8.0),
-              child: Icon(Icons.notifications_sharp),
-            ),
-            label: '',
-          ),
-          BottomNavigationBarItem(
-            icon: Padding(
-              padding: EdgeInsets.only(top: 8.0),
-              child: Icon(Icons.message),
-            ),
-            label: '',
-          ),
-          BottomNavigationBarItem(
-            icon: Padding(
-              padding: EdgeInsets.only(top: 8.0),
-              child: Icon(Icons.person),
-            ),
-            label: '',
-          ),
-        ],
-        currentIndex: _selectedIndex,
-        selectedItemColor: Colors.blue,
-        unselectedItemColor: Colors.black38,
-        onTap: _onItemTapped,
+      bottomNavigationBar:
+          BlocBuilder<WifiConnectivityBloc, WifiConnectivityState>(
+        builder: (context, state) {
+          if (state is NoNetwork) {
+            return _bottomNavigationBar(true);
+          } else {
+            return _bottomNavigationBar(false);
+          }
+        },
       ),
+    );
+  }
+
+  BottomNavigationBar _bottomNavigationBar(bool isDisabled) {
+    return BottomNavigationBar(
+      enableFeedback: true,
+      type: BottomNavigationBarType.fixed,
+      items: const <BottomNavigationBarItem>[
+        BottomNavigationBarItem(
+          icon: Padding(
+            padding: EdgeInsets.only(top: tiniestSpacing),
+            child: Icon(Icons.home),
+          ),
+          label: '',
+        ),
+        BottomNavigationBarItem(
+          icon: Padding(
+            padding: EdgeInsets.only(top: tiniestSpacing),
+            child: Icon(Icons.location_on),
+          ),
+          label: '',
+        ),
+        BottomNavigationBarItem(
+          icon: Padding(
+            padding: EdgeInsets.only(top: tiniestSpacing),
+            child: Icon(Icons.notifications_sharp),
+          ),
+          label: '',
+        ),
+        BottomNavigationBarItem(
+          icon: Padding(
+            padding: EdgeInsets.only(top: tiniestSpacing),
+            child: Icon(Icons.message),
+          ),
+          label: '',
+        ),
+        BottomNavigationBarItem(
+          icon: Padding(
+            padding: EdgeInsets.only(top: tiniestSpacing),
+            child: Icon(Icons.person),
+          ),
+          label: '',
+        ),
+      ],
+      currentIndex: _selectedIndex,
+      selectedItemColor: Colors.blue,
+      unselectedItemColor: Colors.black38,
+      onTap: (isDisabled) ? null : _onItemTapped,
     );
   }
 }
