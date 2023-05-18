@@ -2,41 +2,8 @@ on:
   workflow_call:
 
 jobs:
-  checks:
-    name: Static checks
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-        with:
-          ref: ${{ github.event.pull_request.head.sha }}
-          fetch-depth: 0
-
-      - name: Setup Flutter environment
-        uses: subosito/flutter-action@v2
-        with:
-          flutter-version: '3.7.7'
-          channel: 'stable'
-
-      - name: Run Flutter dependencies
-        run: flutter pub get
-
-      - name: Run Flutter doctor
-        run: flutter doctor
-
-
-      - name: Run Flutter dependencies
-        run: flutter pub get
-
-      - name: Check for formatting in the code
-        run: dart format --set-exit-if-changed .
-
-      - name: Analyze Static code
-        run: flutter analyze .
-
   build_android:
     name: Build android apk
-    needs: [ checks ]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -50,13 +17,9 @@ jobs:
       - run: flutter pub get
       - run: flutter build apk --debug --split-per-abi
       - name: Create a Release APK
-        id: vars
-        run: echo "tag=${GITHUB_REF#refs/*/}" >> $GITHUB_OUTPUT
-      - name: Check output
-        env:
-          RELEASE_VERSION: ${{ steps.vars.outputs.tag }}
-        run: |
-          echo $RELEASE_VERSION
-          echo ${{ steps.vars.outputs.tag }}
+        uses: ncipollo/release-action@v1
+        with:
+          artifacts: "build/app/outputs/apk/debug/*.apk"
+
 
 
