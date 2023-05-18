@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:toolkit/screens/home/home_screen.dart';
+import 'package:toolkit/screens/profile/profile_screen.dart';
 
 class RootScreen extends StatefulWidget {
   static const routeName = 'RootScreen';
@@ -12,6 +13,7 @@ class RootScreen extends StatefulWidget {
 
 class _RootScreenState extends State<RootScreen> {
   final HomeScreen homeScreen = const HomeScreen();
+  final ProfileScreen profileScreen = const ProfileScreen();
   static int _selectedIndex = 0;
 
   void _onItemTapped(int index) {
@@ -31,9 +33,7 @@ class _RootScreenState extends State<RootScreen> {
     const Text(
       'Index 3: Chat',
     ),
-    const Text(
-      'Index 4: Profile',
-    ),
+    const ProfileScreen(),
   ];
 
   @override
