@@ -24,8 +24,7 @@ class WelcomeScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   const CircleAvatarWidget(
-                    backgroundImage:
-                        AssetImage("assets/icons/avatar-icon.png"),
+                    backgroundImage: AssetImage("assets/icons/avatar-icon.png"),
                   ),
                   const SizedBox(height: largeSpacing),
                   Text(StringConstants.kWelcomeToToolkitX,
