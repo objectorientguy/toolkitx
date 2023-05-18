@@ -5,6 +5,7 @@ import 'package:toolkit/screens/profile/profile_screen.dart';
 
 import '../../blocs/wifiConnectivity/wifi_connectivity_bloc.dart';
 import '../../blocs/wifiConnectivity/wifi_connectivity_states.dart';
+import '../../configs/app_color.dart';
 import '../../configs/app_spacing.dart';
 
 class RootScreen extends StatefulWidget {
@@ -103,7 +104,7 @@ class _RootScreenState extends State<RootScreen> {
       ],
       currentIndex: _selectedIndex,
       selectedItemColor: Colors.blue,
-      unselectedItemColor: Colors.black38,
+      unselectedItemColor: (isDisabled) ? AppColor.lightestGrey : AppColor.grey,
       onTap: (isDisabled) ? null : _onItemTapped,
     );
   }
