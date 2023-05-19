@@ -41,11 +41,11 @@ jobs:
         id: increment-version
         run: echo "version=$(( ${GITHUB_REF##*/} + 1 ))" >> $GITHUB_OUTPUT
 
-      - name: Build APK
-        run: flutter build apk --release --build-number=${{ steps.increment-version.outputs.version }}
-
       - name: Update build number
         run: echo ${{ steps.increment-version.outputs.version }} > version.txt
+
+      - name: Build APK
+        run: flutter build apk --release --build-number=${{ steps.increment-version.outputs.version }}
 
       - name: Rename APK with build number
         run: |
