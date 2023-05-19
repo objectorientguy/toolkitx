@@ -6,6 +6,8 @@ import 'package:toolkit/screens/onboarding/login/emailAddress/login_screen.dart'
 import 'package:toolkit/screens/onboarding/login/password/password_screen.dart';
 import 'package:toolkit/screens/onboarding/welcome_screen.dart';
 import 'package:toolkit/screens/profile/edit/edit_screen.dart';
+import 'package:toolkit/screens/qualityManagement/new_qa_reporting_screen.dart';
+import 'package:toolkit/screens/qualityManagement/reporting_screen.dart';
 import '../screens/checklist/change_role_screen.dart';
 import '../screens/onboarding/selectDateFormat/select_date_format_screen.dart';
 import '../screens/onboarding/selectLanguage/select_language_screen.dart';
@@ -42,6 +44,10 @@ class AppRoutes {
         return _materialRoute(const FiltersScreen());
       case QMDetailsScreen.routeName:
         return _materialRoute(const QMDetailsScreen());
+      case NewQAReportingScreen.routeName:
+        return _materialRoute(const NewQAReportingScreen());
+      case ReportingScreen.routeName:
+        return _materialRoute(const ReportingScreen());
       default:
         return _materialRoute(const WelcomeScreen());
     }

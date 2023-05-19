@@ -9,7 +9,9 @@ ThemeData appTheme = ThemeData(
     listTileTheme: listTileTheme,
     cardTheme: appCardTheme,
     bottomAppBarTheme: bottomAppBarTheme,
+    outlinedButtonTheme: outlinedButtonThemeData,
     bottomNavigationBarTheme: bottomNavigationBarTheme,
+    expansionTileTheme: expansionTileTheme,
     textButtonTheme: textButtonTheme,
     scaffoldBackgroundColor: AppColor.ghostWhite,
     elevatedButtonTheme: elevatedButtonThemeData);
@@ -21,7 +23,18 @@ ElevatedButtonThemeData elevatedButtonThemeData = ElevatedButtonThemeData(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(kCardRadius),
         )));
-
+ExpansionTileThemeData expansionTileTheme = const ExpansionTileThemeData(
+    tilePadding:
+        EdgeInsets.only(left: expansionTileMargin, right: expansionTileMargin),
+    collapsedBackgroundColor: AppColor.white,
+    iconColor: AppColor.deepBlue,
+    textColor: AppColor.black);
+OutlinedButtonThemeData outlinedButtonThemeData = OutlinedButtonThemeData(
+    style: OutlinedButton.styleFrom(
+  padding: const EdgeInsets.only(
+      right: tiniestSpacing, top: tiniestSpacing, bottom: tiniestSpacing),
+  minimumSize: const Size(midTiniestSpacing, midTiniestSpacing),
+));
 TextButtonThemeData textButtonTheme =
     TextButtonThemeData(style: TextButton.styleFrom(padding: EdgeInsets.zero));
 const ColorScheme colorScheme = ColorScheme.light(primary: AppColor.deepBlue);
