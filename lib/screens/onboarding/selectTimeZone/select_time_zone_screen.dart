@@ -16,46 +16,42 @@ class SelectTimeZoneScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: const GenericAppBar(),
+        appBar: GenericAppBar(
+          title: Text(StringConstants.kSelectTimeZone,
+              style: Theme.of(context).textTheme.medium),
+        ),
         body: Padding(
             padding: const EdgeInsets.only(
                 left: leftRightMargin,
                 right: leftRightMargin,
                 top: topBottomSpacing),
-            child:
-                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              Text(StringConstants.kSelectTimeZone,
-                  style: Theme.of(context).textTheme.medium),
-              const SizedBox(height: tinySpacing),
-              Expanded(
-                  child: ListView.separated(
-                      padding: EdgeInsets.zero,
-                      physics: const BouncingScrollPhysics(),
-                      shrinkWrap: true,
-                      itemCount: 15,
-                      itemBuilder: (context, index) {
-                        return CustomCard(
-                            shape: RoundedRectangleBorder(
-                                borderRadius:
-                                    BorderRadius.circular(kCardRadius)),
-                            child: ListTile(
-                                onTap: () {
-                                  Navigator.pushNamed(context,
-                                      SelectDateFormatScreen.routeName);
-                                },
-                                leading:
-                                    const Icon(Icons.public, size: kIconSize),
-                                title: const Padding(
-                                  padding:
-                                      EdgeInsets.only(bottom: tiniestSpacing),
-                                  child: Text(StringConstants.kTime),
-                                ),
-                                subtitle:
-                                    const Text(StringConstants.kTimeLocation)));
-                      },
-                      separatorBuilder: (BuildContext context, int index) {
-                        return const SizedBox(height: tinySpacing);
-                      }))
-            ])));
+            child: Expanded(
+                child: ListView.separated(
+                    padding: EdgeInsets.zero,
+                    physics: const BouncingScrollPhysics(),
+                    shrinkWrap: true,
+                    itemCount: 15,
+                    itemBuilder: (context, index) {
+                      return CustomCard(
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(kCardRadius)),
+                          child: ListTile(
+                              onTap: () {
+                                Navigator.pushNamed(
+                                    context, SelectDateFormatScreen.routeName);
+                              },
+                              leading:
+                                  const Icon(Icons.public, size: kIconSize),
+                              title: const Padding(
+                                padding:
+                                    EdgeInsets.only(bottom: tiniestSpacing),
+                                child: Text(StringConstants.kTime),
+                              ),
+                              subtitle:
+                                  const Text(StringConstants.kTimeLocation)));
+                    },
+                    separatorBuilder: (BuildContext context, int index) {
+                      return const SizedBox(height: tinySpacing);
+                    }))));
   }
 }
