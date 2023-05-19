@@ -60,4 +60,6 @@ abstract class StringConstants {
   static const String kContactValidate = 'Please add contact number!';
   static const String kLogoutDialogContent =
       'Are you sure you want to log out?';
+  static const String kNoInternetMessage =
+      'Oops! Please ensure your device is connected to the internet to access rest of the module';
 }
