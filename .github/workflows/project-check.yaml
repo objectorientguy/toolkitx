@@ -41,15 +41,15 @@ jobs:
         id: increment-version
         run: echo "::set-output name=version::$(( ${GITHUB_REF##*/} + 1 ))"
 
+      - name: Build APK
+        run: flutter build apk --split-per-abi --build-number=${{ steps.increment-version.outputs.version }}
+
       - name: Update build number
         run: echo ${{ steps.increment-version.outputs.version }} > version.txt
 
       - name: Rename APK with build number
         run: |
           mv build/app/outputs/flutter-apk/app-armeabi-v7a-release.apk build/app/outputs/flutter-apk/${{ steps.increment-version.outputs.version }}.apk
-
-      - name: Build APK
-        run: flutter build apk --split-per-abi --build-number=${{ steps.increment-version.outputs.version }}
 
       - name: Upload APK as artifact
         uses: actions/upload-artifact@v2
