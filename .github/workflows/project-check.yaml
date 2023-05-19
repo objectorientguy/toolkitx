@@ -37,7 +37,7 @@ jobs:
         id: read-version
         run: |
           echo "Reading build number from version.txt"
-          echo "version=$(cat version.txt))" >> $GITHUB_OUTPUT
+          echo "::set-output name=version::$(cat version.txt)"
 
       - name: Increment build number
         id: increment-version
