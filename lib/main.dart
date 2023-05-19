@@ -35,27 +35,27 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
-      providers: [
-        BlocProvider(
-            lazy: false,
-            create: (context) => WifiConnectivityBloc()..add(ObserveNetwork())),
-        BlocProvider(lazy: false, create: (context) => LanguageBloc()),
-        BlocProvider(lazy: false, create: (context) => DateFormatBloc()),
-        BlocProvider(lazy: false, create: (context) => HomeBloc())
-      ],
-      child: GestureDetector(
-        onTap: () {
-          FocusManager.instance.primaryFocus?.unfocus();
-        },
-        child: MaterialApp(
-            debugShowCheckedModeBanner: false,
-            onGenerateRoute: AppRoutes.onGenerateRoutes,
-            theme: appTheme,
-            home: BlocBuilder<WifiConnectivityBloc, WifiConnectivityState>(
-                builder: (context, state) {
-              return const WelcomeScreen();
-            })),
-      ),
-    );
+        providers: [
+          BlocProvider(
+              lazy: false,
+              create: (context) =>
+                  WifiConnectivityBloc()..add(ObserveNetwork())),
+          BlocProvider(lazy: false, create: (context) => LanguageBloc()),
+          BlocProvider(lazy: false, create: (context) => DateFormatBloc()),
+          BlocProvider(lazy: false, create: (context) => HomeBloc())
+        ],
+        child: GestureDetector(
+          onTap: () {
+            FocusManager.instance.primaryFocus?.unfocus();
+          },
+          child: MaterialApp(
+              debugShowCheckedModeBanner: false,
+              onGenerateRoute: AppRoutes.onGenerateRoutes,
+              theme: appTheme,
+              home: BlocBuilder<WifiConnectivityBloc, WifiConnectivityState>(
+                  builder: (context, state) {
+                return const WelcomeScreen();
+              })),
+        ));
   }
 }
