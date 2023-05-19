@@ -41,7 +41,7 @@ class MyApp extends StatelessWidget {
               create: (context) =>
                   WifiConnectivityBloc()..add(ObserveNetwork())),
           BlocProvider(lazy: false, create: (context) => LanguageBloc()),
-          BlocProvider(lazy: false, create: (context) => DateFormatBloc()),
+          BlocProvider(lazy: true, create: (context) => DateFormatBloc()),
           BlocProvider(lazy: false, create: (context) => HomeBloc())
         ],
         child: GestureDetector(
