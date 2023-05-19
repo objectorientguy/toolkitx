@@ -19,6 +19,8 @@ jobs:
         uses: ncipollo/release-action@v1
         with:
           artifacts: "build/app/outputs/apk/debug/*.apk"
+          commit: master
+          tag: v1.0.${{ github.run_number }}
 
 
 
