@@ -1,0 +1,89 @@
+import 'package:flutter/material.dart';
+import 'package:toolkit/configs/app_theme.dart';
+import 'package:toolkit/screens/qualityManagement/details_screen.dart';
+
+import '../../configs/app_color.dart';
+import '../../configs/app_spacing.dart';
+import '../../utils/constants/string_constants.dart';
+import '../../widgets/generic_app_bar.dart';
+import '../onboarding/widgets/custom_card.dart';
+
+class QMListScreen extends StatelessWidget {
+  const QMListScreen({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: GenericAppBar(
+          title: Text(StringConstants.kQAReporting,
+              style: Theme.of(context).textTheme.medium)),
+      floatingActionButton:
+          FloatingActionButton(onPressed: () {}, child: const Icon(Icons.add)),
+      body: Padding(
+        padding: const EdgeInsets.only(
+            left: leftRightMargin,
+            right: leftRightMargin,
+            top: midTiniestSpacing),
+        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          const SizedBox(height: midTiniestSpacing),
+          Expanded(
+              child: ListView.separated(
+                  physics: const BouncingScrollPhysics(),
+                  shrinkWrap: true,
+                  itemCount: 15,
+                  itemBuilder: (context, index) {
+                    return CustomCard(
+                        child: ListTile(
+                      contentPadding: const EdgeInsets.all(midTiniestSpacing),
+                      title: Padding(
+                          padding:
+                              const EdgeInsets.only(bottom: midTiniestSpacing),
+                          child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text('#RI0148',
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .small
+                                        .copyWith(
+                                            color: AppColor.black,
+                                            fontWeight: FontWeight.w600)),
+                                Text('CREATED',
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .xxSmall
+                                        .copyWith(color: AppColor.deepBlue))
+                              ])),
+                      subtitle: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text('Test',
+                                style: Theme.of(context).textTheme.xSmall),
+                            const SizedBox(height: midTiniestSpacing),
+                            Text('11.05.2023 17.190',
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .xSmall
+                                    .copyWith(color: AppColor.grey)),
+                            const SizedBox(height: midTiniestSpacing),
+                            Text('Berlin Office-Belgium - WTG2',
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .xSmall
+                                    .copyWith(color: AppColor.grey))
+                          ]),
+                      onTap: () {
+                        Navigator.pushNamed(context, QMDetailsScreen.routeName);
+                      },
+                    ));
+                  },
+                  separatorBuilder: (context, index) {
+                    return const SizedBox(height: tinySpacing);
+                  })),
+          const SizedBox(height: tinySpacing)
+        ]),
+      ),
+    );
+  }
+}

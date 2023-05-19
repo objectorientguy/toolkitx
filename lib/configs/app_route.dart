@@ -6,6 +6,7 @@ import 'package:toolkit/screens/profile/edit/edit_screen.dart';
 import '../screens/onboarding/selectDateFormat/select_date_format_screen.dart';
 import '../screens/onboarding/selectLanguage/select_language_screen.dart';
 import '../screens/onboarding/selectTimeZone/select_time_zone_screen.dart';
+import '../screens/qualityManagement/details_screen.dart';
 import '../screens/root/root_screen.dart';
 
 class AppRoutes {
@@ -27,6 +28,8 @@ class AppRoutes {
         return _materialRoute(const RootScreen());
       case EditScreen.routeName:
         return _materialRoute(const EditScreen());
+      case QMDetailsScreen.routeName:
+        return _materialRoute(const QMDetailsScreen());
       default:
         return _materialRoute(const WelcomeScreen());
     }

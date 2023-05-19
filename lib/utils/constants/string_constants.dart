@@ -19,6 +19,7 @@ abstract class StringConstants {
   static const String kSave = 'SAVE';
   static const String kSelectYourLanguage = 'Select Your Language';
   static const String kPleaseConfirm = 'Please Confirm';
+  static const String kQAReporting = 'QA Reporting';
   static const String kDialogContent =
       "The language file doesn't exist or an old version.Please download the latest language file.";
   static const String kNo = 'NO';
@@ -52,6 +53,7 @@ abstract class StringConstants {
   static const String kFirstNameValidate = 'Please add first name!';
   static const String kLastNameValidate = 'Please add last name!';
   static const String kContactValidate = 'Please add contact number!';
+  static const String kReportedBy = 'Reported By:';
   static const String kLogoutDialogContent =
       'Are you sure you want to log out?';
   static const String kNoInternetMessage =
