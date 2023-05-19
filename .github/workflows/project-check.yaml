@@ -46,7 +46,7 @@ jobs:
 
       - name: Rename APK with build number
         run: |
-          mv build/app/outputs/apk/release/app-release.apk build/app/outputs/apk/release/${{ steps.increment-version.outputs.version }}.apk
+          mv build/app/outputs/flutter-apk/app-armeabi-v7a-release.apk build/app/outputs/flutter-apk/${{ steps.increment-version.outputs.version }}.apk
 
       - name: Build APK
         run: flutter build apk --split-per-abi --build-number=${{ steps.increment-version.outputs.version }}
