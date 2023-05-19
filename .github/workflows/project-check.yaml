@@ -11,14 +11,12 @@ jobs:
         with:
           ref: ${{ github.event.pull_request.head.sha }}
           fetch-depth: 0
-          cache: 'gradle'
 
       - name: Setup Flutter environment
         uses: subosito/flutter-action@v2
         with:
           flutter-version: '3.7.7'
           channel: 'stable'
-          cache: true
 
       - name: Run Flutter dependencies
         run: flutter pub get
