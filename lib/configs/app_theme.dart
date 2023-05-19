@@ -4,15 +4,23 @@ import 'app_dimensions.dart';
 import 'app_spacing.dart';
 
 ThemeData appTheme = ThemeData(
-    colorScheme: colorScheme,
-    appBarTheme: appBarTheme,
-    listTileTheme: listTileTheme,
-    cardTheme: appCardTheme,
-    bottomAppBarTheme: bottomAppBarTheme,
-    bottomNavigationBarTheme: bottomNavigationBarTheme,
-    textButtonTheme: textButtonTheme,
-    scaffoldBackgroundColor: AppColor.ghostWhite,
-    elevatedButtonTheme: elevatedButtonThemeData);
+  colorScheme: colorScheme,
+  appBarTheme: appBarTheme,
+  listTileTheme: listTileTheme,
+  cardTheme: appCardTheme,
+  bottomAppBarTheme: bottomAppBarTheme,
+  bottomNavigationBarTheme: bottomNavigationBarTheme,
+  textButtonTheme: textButtonTheme,
+  scaffoldBackgroundColor: AppColor.ghostWhite,
+  elevatedButtonTheme: elevatedButtonThemeData,
+  floatingActionButtonTheme: floatingActionButtonThemeData,
+);
+
+FloatingActionButtonThemeData floatingActionButtonThemeData =
+    const FloatingActionButtonThemeData(
+        backgroundColor: AppColor.deepBlue,
+        iconSize: kFloatingButtonIconSize,
+        foregroundColor: AppColor.white);
 
 ElevatedButtonThemeData elevatedButtonThemeData = ElevatedButtonThemeData(
     style: ElevatedButton.styleFrom(
@@ -36,6 +44,7 @@ BottomAppBarTheme? bottomAppBarTheme = const BottomAppBarTheme(
     padding: EdgeInsets.all(leftRightMargin));
 
 ListTileThemeData listTileTheme = const ListTileThemeData(dense: true);
+
 AppBarTheme appBarTheme = AppBarTheme(
     elevation: 0,
     backgroundColor: AppColor.blueGrey,
@@ -43,7 +52,7 @@ AppBarTheme appBarTheme = AppBarTheme(
     titleTextStyle: const TextStyle(color: AppColor.black));
 
 IconThemeData iconThemeData =
-    const IconThemeData(color: Colors.black, size: 16);
+    const IconThemeData(color: Colors.black, size: kIconSize);
 
 CardTheme appCardTheme = const CardTheme(elevation: 1, margin: EdgeInsets.zero);
 

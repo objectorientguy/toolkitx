@@ -54,4 +54,15 @@ abstract class StringConstants {
   static const String kContactValidate = 'Please add contact number!';
   static const String kLogoutDialogContent =
       'Are you sure you want to log out?';
+  static const String kReportAnIncident = 'Report an Incident';
+  static const String kFilter = 'Filter';
+  static const String kDateRange = 'Date Range';
+  static const String kSelectDate = 'Select Date';
+  static const String kBis = 'bis';
+  static const String kApply = 'Apply';
+  static const String kStatus = 'Status';
+  static const String kSelectStatus = 'Select Status';
+  static const String kDone = 'Done';
+  static const String kCategory = 'Category';
+  static const String kSelectCategoryIncident = 'Select Category of Incident';
 }
