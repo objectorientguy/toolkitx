@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:toolkit/configs/app_dimensions.dart';
 import 'package:toolkit/configs/app_spacing.dart';
 import 'package:toolkit/configs/app_theme.dart';
-import 'package:toolkit/screens/checklist/widgets/change_role_screen.dart';
-import 'package:toolkit/screens/checklist/widgets/details_screen.dart';
-import 'package:toolkit/screens/checklist/widgets/filters_screen.dart';
+import 'package:toolkit/screens/checklist/change_role_screen.dart';
+import 'package:toolkit/screens/checklist/details_screen.dart';
+import 'package:toolkit/screens/checklist/filters_screen.dart';
 import 'package:toolkit/screens/onboarding/widgets/custom_card.dart';
 import 'package:toolkit/utils/constants/string_constants.dart';
 import 'package:toolkit/widgets/generic_app_bar.dart';
@@ -23,25 +23,31 @@ class ChecklistScreen extends StatelessWidget {
                 style: Theme.of(context).textTheme.medium)),
         body: Padding(
             padding: const EdgeInsets.only(
-                left: leftRightMargin, right: leftRightMargin),
+                left: leftRightMargin,
+                right: leftRightMargin,
+                top: midTiniestSpacing),
             child:
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              // The row will be changed with Custom widget.
               Row(mainAxisAlignment: MainAxisAlignment.end, children: [
                 IconButton(
                     constraints: const BoxConstraints(),
                     iconSize: kIconSize,
+                    color: AppColor.grey,
                     onPressed: () {
                       Navigator.pushNamed(context, FiltersScreen.routeName);
                     },
                     icon: const Icon(Icons.filter_alt_outlined)),
                 IconButton(
                     constraints: const BoxConstraints(),
+                    color: AppColor.grey,
                     iconSize: kIconSize,
                     onPressed: () {
                       Navigator.pushNamed(context, ChangeRoleScreen.routeName);
                     },
                     icon: const Icon(Icons.settings_outlined))
               ]),
+              const SizedBox(height: tiniestSpacing),
               Expanded(
                   child: ListView.separated(
                       physics: const BouncingScrollPhysics(),
@@ -54,7 +60,7 @@ class ChecklistScreen extends StatelessWidget {
                                     const EdgeInsets.all(midTinySpacing),
                                 title: Padding(
                                   padding: const EdgeInsets.only(
-                                      bottom: tiniestSpacing),
+                                      bottom: midTiniestSpacing),
                                   child: Text('Tank Maintenance',
                                       style: Theme.of(context)
                                           .textTheme
@@ -70,7 +76,7 @@ class ChecklistScreen extends StatelessWidget {
                                               .textTheme
                                               .xSmall
                                               .copyWith(color: AppColor.grey)),
-                                      const SizedBox(height: tiniestSpacing),
+                                      const SizedBox(height: tinySpacing),
                                       const DetailsLabelSection()
                                     ]),
                                 onTap: () {

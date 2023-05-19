@@ -5,20 +5,23 @@ import 'package:toolkit/configs/app_theme.dart';
 import 'package:toolkit/screens/onboarding/widgets/custom_card.dart';
 import 'package:toolkit/widgets/generic_app_bar.dart';
 
-import '../../../configs/app_color.dart';
-import 'pop_up_menu.dart';
+import '../../configs/app_color.dart';
+import 'widgets/pop_up_menu.dart';
 
-class DetailsStatusScreen extends StatelessWidget {
-  static const routeName = 'DetailsStatusScreen';
+class ChecklistStatusScreen extends StatelessWidget {
+  static const routeName = 'ChecklistStatusScreen';
 
-  const DetailsStatusScreen({Key? key}) : super(key: key);
+  const ChecklistStatusScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: const GenericAppBar(actions: [
-          PopUpMenu(),
-        ]),
+        appBar: GenericAppBar(
+            title: Text('Tank Maintenance',
+                style: Theme.of(context).textTheme.medium),
+            actions: const [
+              PopUpMenu(),
+            ]),
         body: Padding(
             padding: const EdgeInsets.only(
                 left: leftRightMargin,
@@ -26,9 +29,6 @@ class DetailsStatusScreen extends StatelessWidget {
                 top: topBottomSpacing),
             child:
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              Text('Tank Maintenance',
-                  style: Theme.of(context).textTheme.medium),
-              const SizedBox(height: tiniestSpacing),
               Text('08.03.2023 - 11.03.2023',
                   style: Theme.of(context).textTheme.xSmall),
               const SizedBox(height: tinySpacing),

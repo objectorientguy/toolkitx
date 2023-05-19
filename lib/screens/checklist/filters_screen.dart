@@ -6,7 +6,7 @@ import 'package:toolkit/utils/constants/string_constants.dart';
 import 'package:toolkit/widgets/generic_app_bar.dart';
 import 'package:toolkit/widgets/primary_button.dart';
 
-import 'category_expansion_tile.dart';
+import 'widgets/category_expansion_tile.dart';
 
 class FiltersScreen extends StatelessWidget {
   static const routeName = 'FiltersScreen';

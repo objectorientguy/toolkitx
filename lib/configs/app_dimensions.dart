@@ -14,3 +14,4 @@ const double kCircleAvatarImgHeight = 50.0;
 const double kCircleAvatarImgWidth = 50.0;
 const double kAppBarHeight = 56.0;
 const double kModuleIconSize = 30;
+const double kLabelHeight = 25;

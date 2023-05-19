@@ -16,7 +16,7 @@ class DetailsLabelSection extends StatelessWidget {
           decoration: BoxDecoration(
               color: AppColor.lightGreen,
               borderRadius: BorderRadius.circular(kCardRadius)),
-          height: MediaQuery.of(context).size.width * 0.07,
+          height: kLabelHeight,
           child: Text('Responded',
               textAlign: TextAlign.center,
               style: Theme.of(context)
@@ -24,14 +24,8 @@ class DetailsLabelSection extends StatelessWidget {
                   .xSmall
                   .copyWith(color: AppColor.white))),
       const SizedBox(width: tiniestSpacing),
-      Container(
-          decoration: BoxDecoration(
-              color: AppColor.yellow,
-              borderRadius: BorderRadius.circular(kCardRadius)),
-          height: MediaQuery.of(context).size.width * 0.07,
-          child: Icon(Icons.question_mark_outlined,
-              color: AppColor.white,
-              size: MediaQuery.of(context).size.width * 0.043))
+      const Icon(Icons.question_mark_outlined,
+          color: AppColor.errorRed, size: kIconSize)
     ]);
   }
 }
