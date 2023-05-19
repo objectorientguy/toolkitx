@@ -10,9 +10,7 @@ jobs:
   project-checks:
     uses: ./.github/workflows/project-check.yaml
 
-  upload-artifacts:
-    uses: ./.github/workflows/upload-artifacts.yaml
-    needs: [ project-checks ]
+
 
 
 
