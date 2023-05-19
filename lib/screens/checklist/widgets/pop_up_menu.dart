@@ -63,8 +63,7 @@ class _PopUpMenuState extends State<PopUpMenu> {
           _onMenuItemSelected(value as int);
         },
         position: PopupMenuPosition.under,
-        itemBuilder: (BuildContext context) =>
-        [
+        itemBuilder: (BuildContext context) => [
               _buildPopupMenuItem(context, popUpMenuItems[0], 0),
               _buildPopupMenuItem(context, popUpMenuItems[1], 1),
               _buildPopupMenuItem(context, popUpMenuItems[2], 2),

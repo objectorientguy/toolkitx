@@ -27,7 +27,7 @@ class ChecklistScreen extends StatelessWidget {
                 right: leftRightMargin,
                 top: midTiniestSpacing),
             child:
-            Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               // The row will be changed with Custom widget.
               Row(mainAxisAlignment: MainAxisAlignment.end, children: [
                 IconButton(
@@ -57,7 +57,7 @@ class ChecklistScreen extends StatelessWidget {
                         return CustomCard(
                             child: ListTile(
                                 contentPadding:
-                                const EdgeInsets.all(midTinySpacing),
+                                    const EdgeInsets.all(midTinySpacing),
                                 title: Padding(
                                   padding: const EdgeInsets.only(
                                       bottom: midTiniestSpacing),
@@ -69,7 +69,7 @@ class ChecklistScreen extends StatelessWidget {
                                 ),
                                 subtitle: Column(
                                     crossAxisAlignment:
-                                    CrossAxisAlignment.start,
+                                        CrossAxisAlignment.start,
                                     children: [
                                       Text('Testing-Dummy',
                                           style: Theme.of(context)

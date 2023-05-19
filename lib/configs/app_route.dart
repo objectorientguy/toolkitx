@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:toolkit/screens/checklist/checklist_list_screen.dart';
 import 'package:toolkit/screens/checklist/details_screen.dart';
-import 'package:toolkit/screens/checklist/status_screen.dart';
 import 'package:toolkit/screens/checklist/filters_screen.dart';
 import 'package:toolkit/screens/onboarding/login/emailAddress/login_screen.dart';
 import 'package:toolkit/screens/onboarding/login/password/password_screen.dart';
@@ -33,8 +33,8 @@ class AppRoutes {
         return _materialRoute(const EditScreen());
       case DetailsScreen.routeName:
         return _materialRoute(const DetailsScreen());
-      case ChecklistStatusScreen.routeName:
-        return _materialRoute(const ChecklistStatusScreen());
+      case ChecklistScreen.routeName:
+        return _materialRoute(const ChecklistScreen());
       case ChangeRoleScreen.routeName:
         return _materialRoute(const ChangeRoleScreen());
       case FiltersScreen.routeName:

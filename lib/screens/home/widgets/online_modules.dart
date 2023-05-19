@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:toolkit/screens/checklist/checklist_list_screen.dart';
 
 import '../../../configs/app_color.dart';
 import '../../../configs/app_dimensions.dart';
@@ -21,7 +22,7 @@ class OnLineModules extends StatelessWidget {
             mainAxisSpacing: midTinySpacing),
         itemBuilder: (BuildContext context, int index) {
           return InkWell(
-            onTap: () => navigateToModule(index),
+            onTap: () => navigateToModule(index, context),
             child: Card(
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(kCardRadius),
@@ -55,9 +56,10 @@ class OnLineModules extends StatelessWidget {
         });
   }
 
-  navigateToModule(index) {
+  navigateToModule(index, context) {
     switch (index) {
-      case 0:
+      case 13:
+        Navigator.pushNamed(context, ChecklistScreen.routeName);
         break;
     }
   }
