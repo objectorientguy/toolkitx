@@ -15,42 +15,36 @@ class DetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: GenericAppBar(
-          title: Text('Tank Maintenance',
-              style: Theme.of(context).textTheme.medium),
-        ),
+        appBar: const GenericAppBar(title: Text('Tank Maintenance')),
         body: Padding(
-            padding: const EdgeInsets.only(
-                left: leftRightMargin,
-                right: leftRightMargin,
-                top: topBottomSpacing),
-            child:
-                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              Expanded(
-                  child: ListView.separated(
-                      physics: const BouncingScrollPhysics(),
-                      shrinkWrap: true,
-                      itemCount: 15,
-                      itemBuilder: (context, index) {
-                        return CustomCard(
-                            child: ListTile(
-                          title: Text('08.03.2023 - 11.03.2023',
-                              style: Theme.of(context).textTheme.xSmall),
-                          subtitle: Text('1 response out of 2',
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .xxSmall
-                                  .copyWith(color: AppColor.grey)),
-                          onTap: () {
-                            Navigator.pushNamed(
-                                context, ChecklistStatusScreen.routeName);
-                          },
-                        ));
-                      },
-                      separatorBuilder: (context, index) {
-                        return const SizedBox(height: tinySpacing);
-                      })),
-              const SizedBox(height: tinySpacing)
-            ])));
+          padding: const EdgeInsets.only(
+              left: leftRightMargin,
+              right: leftRightMargin,
+              top: topBottomSpacing,
+              bottom: topBottomSpacing),
+          child: ListView.separated(
+              physics: const BouncingScrollPhysics(),
+              shrinkWrap: true,
+              itemCount: 15,
+              itemBuilder: (context, index) {
+                return CustomCard(
+                    child: ListTile(
+                  title: Text('08.03.2023 - 11.03.2023',
+                      style: Theme.of(context).textTheme.xSmall),
+                  subtitle: Text('1 response out of 2',
+                      style: Theme.of(context)
+                          .textTheme
+                          .xxSmall
+                          .copyWith(color: AppColor.grey)),
+                  onTap: () {
+                    Navigator.pushNamed(
+                        context, ChecklistStatusScreen.routeName);
+                  },
+                ));
+              },
+              separatorBuilder: (context, index) {
+                return const SizedBox(height: tinySpacing);
+              }),
+        ));
   }
 }

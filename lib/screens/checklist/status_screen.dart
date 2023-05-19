@@ -16,12 +16,9 @@ class ChecklistStatusScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: GenericAppBar(
-            title: Text('Tank Maintenance',
-                style: Theme.of(context).textTheme.medium),
-            actions: const [
-              PopUpMenu(),
-            ]),
+        appBar: const GenericAppBar(title: Text('Tank Maintenance'), actions: [
+          PopUpMenu(),
+        ]),
         body: Padding(
             padding: const EdgeInsets.only(
                 left: leftRightMargin,
@@ -74,8 +71,11 @@ class ChecklistStatusScreen extends StatelessWidget {
                                     ]),
                                 trailing: IconButton(
                                     padding: EdgeInsets.zero,
+                                    // This code will get removed when the changes will be pushed to dev
                                     constraints: const BoxConstraints(),
+                                    // This code will get removed when the changes will be pushed to dev.
                                     iconSize: kIconSize,
+                                    // This code will get removed when the changes will be pushed to dev
                                     onPressed: () {},
                                     icon: const Icon(
                                         Icons.attach_file_outlined))));

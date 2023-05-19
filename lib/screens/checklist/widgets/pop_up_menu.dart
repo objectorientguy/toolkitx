@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:toolkit/configs/app_dimensions.dart';
 import 'package:toolkit/configs/app_theme.dart';
 import 'package:toolkit/utils/constants/string_constants.dart';
+import '../../../configs/app_spacing.dart';
 import '../../../data/enums/checklist_popup_menu_enum.dart';
 import 'comments_popup.dart';
 
@@ -50,7 +51,7 @@ class _PopUpMenuState extends State<PopUpMenu> {
         ),
         iconSize: kIconSize,
         icon: const Icon(Icons.more_vert_outlined),
-        offset: Offset(0.0, MediaQuery.of(context).size.width * 0.025),
+        offset: const Offset(0, midTiniestSpacing),
         onSelected: (value) {
           _onMenuItemSelected(value as int);
         },
