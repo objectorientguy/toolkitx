@@ -59,6 +59,7 @@ abstract class StringConstants {
   static const String kCategory = 'Category';
   static const String kRemove = 'Remove';
   static const String kApprove = 'Approve';
+  static const String kChangeRole = 'Change Role';
   static const String kFirstNameValidate = 'Please add first name!';
   static const String kLastNameValidate = 'Please add last name!';
   static const String kContactValidate = 'Please add contact number!';

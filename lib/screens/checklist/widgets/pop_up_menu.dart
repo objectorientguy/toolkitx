@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:toolkit/configs/app_dimensions.dart';
 import 'package:toolkit/configs/app_theme.dart';
-import 'package:toolkit/utils/constants/string_constants.dart';
 import '../../../configs/app_spacing.dart';
-import '../../../data/enums/checklist_popup_menu_enum.dart';
+import '../../../utils/constants/string_constants.dart';
 import 'comments_popup.dart';
 
 class PopUpMenu extends StatefulWidget {
@@ -15,6 +14,14 @@ class PopUpMenu extends StatefulWidget {
 
 class _PopUpMenuState extends State<PopUpMenu> {
   int popupMenuItemIndex = 0;
+
+  // This entire file will get refactored after API integration.
+  List popUpMenuItems = [
+    'Approve',
+    'Reject',
+    'Third Party Approve',
+    'Edit Header'
+  ];
 
   PopupMenuItem _buildPopupMenuItem(context, String title, int position) {
     return PopupMenuItem(
@@ -28,13 +35,13 @@ class _PopUpMenuState extends State<PopUpMenu> {
       popupMenuItemIndex = value;
     });
 
-    if (value == ChecklistPopUpMenuItems.approve.index) {
+    if (value == 0) {
       showDialog(
           context: context,
           builder: (context) {
             return const CommentsPopUp(textValue: StringConstants.kApprove);
           });
-    } else if (value == ChecklistPopUpMenuItems.reject.index) {
+    } else if (value == 1) {
       showDialog(
           context: context,
           builder: (context) {
@@ -56,24 +63,12 @@ class _PopUpMenuState extends State<PopUpMenu> {
           _onMenuItemSelected(value as int);
         },
         position: PopupMenuPosition.under,
-        itemBuilder: (BuildContext context) => [
-              _buildPopupMenuItem(
-                  context,
-                  ChecklistPopUpMenuItems.approve.popupItems.toString(),
-                  ChecklistPopUpMenuItems.approve.index),
-              _buildPopupMenuItem(
-                  context,
-                  ChecklistPopUpMenuItems.reject.popupItems.toString(),
-                  ChecklistPopUpMenuItems.reject.index),
-              _buildPopupMenuItem(
-                  context,
-                  ChecklistPopUpMenuItems.thirdPartyApprove.popupItems
-                      .toString(),
-                  ChecklistPopUpMenuItems.thirdPartyApprove.index),
-              _buildPopupMenuItem(
-                  context,
-                  ChecklistPopUpMenuItems.editHeader.popupItems.toString(),
-                  ChecklistPopUpMenuItems.editHeader.index)
+        itemBuilder: (BuildContext context) =>
+        [
+              _buildPopupMenuItem(context, popUpMenuItems[0], 0),
+              _buildPopupMenuItem(context, popUpMenuItems[1], 1),
+              _buildPopupMenuItem(context, popUpMenuItems[2], 2),
+              _buildPopupMenuItem(context, popUpMenuItems[3], 3)
             ]);
   }
 }

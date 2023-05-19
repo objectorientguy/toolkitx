@@ -16,7 +16,7 @@ class DetailsLabelSection extends StatelessWidget {
           decoration: BoxDecoration(
               color: AppColor.lightGreen,
               borderRadius: BorderRadius.circular(kCardRadius)),
-          height: kLabelHeight,
+          height: kTagsHeight,
           child: Text('Responded',
               textAlign: TextAlign.center,
               style: Theme.of(context)

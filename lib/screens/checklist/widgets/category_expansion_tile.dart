@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:toolkit/configs/app_theme.dart';
-import 'package:toolkit/data/enums/checklist_category_enum.dart';
 
 import '../../../configs/app_color.dart';
 import '../../../configs/app_spacing.dart';
@@ -15,7 +14,13 @@ class CategoryExpansionTile extends StatefulWidget {
 
 class _CategoryExpansionTileState extends State<CategoryExpansionTile> {
   String? category;
-
+  final List changeRoleList = [
+    'Electric Safety',
+    'Production',
+    'Pune',
+    'Steel Inspect',
+    'Testing'
+  ]; // This code will be changed after API integration.
   @override
   Widget build(BuildContext context) {
     return Theme(
@@ -35,23 +40,19 @@ class _CategoryExpansionTileState extends State<CategoryExpansionTile> {
               ListView.builder(
                   physics: const BouncingScrollPhysics(),
                   shrinkWrap: true,
-                  itemCount: ChecklistCategory.values.length,
+                  itemCount: changeRoleList.length,
                   itemBuilder: (BuildContext context, int index) {
                     return RadioListTile(
                         contentPadding: EdgeInsets.zero,
                         activeColor: AppColor.deepBlue,
-                        title: Text(
-                            ChecklistCategory.values.elementAt(index).category,
+                        title: Text(changeRoleList[index],
                             style: Theme.of(context).textTheme.xSmall),
                         controlAffinity: ListTileControlAffinity.trailing,
-                        value:
-                            ChecklistCategory.values.elementAt(index).category,
+                        value: changeRoleList[index],
                         groupValue: category,
                         onChanged: (value) {
                           setState(() {
-                            value = ChecklistCategory.values
-                                .elementAt(index)
-                                .category;
+                            value = changeRoleList[index];
                             category = value;
                           });
                         });

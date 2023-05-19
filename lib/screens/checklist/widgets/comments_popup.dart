@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:toolkit/configs/app_theme.dart';
+import 'package:toolkit/widgets/text_button.dart';
 
 import '../../../configs/app_color.dart';
 import '../../../configs/app_spacing.dart';
@@ -32,12 +33,12 @@ class CommentsPopUp extends StatelessWidget {
             .large
             .copyWith(fontWeight: FontWeight.w500),
         actions: [
-          TextButton(
-              child: const Text(StringConstants.kRemove),
+          CustomTextButton(
               onPressed: () {
                 Navigator.of(context).pop();
-              }),
-          TextButton(onPressed: () {}, child: Text(textValue))
+              },
+              textValue: StringConstants.kRemove),
+          CustomTextButton(onPressed: () {}, textValue: textValue)
         ]);
   }
 }

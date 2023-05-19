@@ -43,15 +43,20 @@ AppBarTheme appBarTheme = AppBarTheme(
     titleTextStyle: const TextStyle(
         fontSize: 18, fontWeight: FontWeight.w500, color: AppColor.black));
 
-IconThemeData iconThemeData =
-    const IconThemeData(color: Colors.black, size: 14);
+IconThemeData iconThemeData = const IconThemeData(color: AppColor.black);
 
-CardTheme appCardTheme = const CardTheme(elevation: 1, margin: EdgeInsets.zero);
+CardTheme appCardTheme =
+    const CardTheme(elevation: kCardElevation, margin: EdgeInsets.zero);
 
 extension AppTextTheme on TextTheme {
   TextStyle get medium {
     return const TextStyle(
         fontSize: 16, fontWeight: FontWeight.w500, color: AppColor.black);
+  }
+
+  TextStyle get mediumLarge {
+    return const TextStyle(
+        fontSize: 18, fontWeight: FontWeight.w500, color: AppColor.black);
   }
 
   TextStyle get xLarge {

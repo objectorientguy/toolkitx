@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:toolkit/utils/constants/string_constants.dart';
 
 import '../../configs/app_color.dart';
 import '../../configs/app_dimensions.dart';
@@ -29,7 +30,7 @@ class _ChangeRoleScreenState extends State<ChangeRoleScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: const GenericAppBar(
-          title: Text('Change Role'),
+          title: Text(StringConstants.kChangeRole),
         ),
         body: SingleChildScrollView(
           physics: const BouncingScrollPhysics(),
@@ -58,9 +59,8 @@ class _ChangeRoleScreenState extends State<ChangeRoleScreen> {
                                     activeColor: AppColor.deepBlue,
                                     controlAffinity:
                                         ListTileControlAffinity.trailing,
-                                    title:
-                                        Text(changeRoleList[index].toString()),
-                                    value: changeRoleList[index].toString(),
+                                    title: Text(changeRoleList[index]),
+                                    value: changeRoleList[index],
                                     groupValue: changeRole,
                                     onChanged: (value) {
                                       setState(() {
@@ -70,10 +70,9 @@ class _ChangeRoleScreenState extends State<ChangeRoleScreen> {
                                   ));
                             },
                             separatorBuilder: (context, index) {
-                              return Divider(
+                              return const Divider(
                                   thickness: kDividerThickness,
-                                  height: MediaQuery.of(context).size.width *
-                                      0.062);
+                                  height: kDividerHeight);
                             })),
                     const SizedBox(height: mediumSpacing)
                   ])),
