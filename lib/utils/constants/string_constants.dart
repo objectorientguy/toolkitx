@@ -19,6 +19,7 @@ abstract class StringConstants {
   static const String kSave = 'SAVE';
   static const String kSelectYourLanguage = 'Select Your Language';
   static const String kPleaseConfirm = 'Please Confirm';
+  static const String kReject = 'Reject';
   static const String kDialogContent =
       "The language file doesn't exist or an old version.Please download the latest language file.";
   static const String kNo = 'NO';
@@ -46,9 +47,19 @@ abstract class StringConstants {
   static const String kContact = 'Contact';
   static const String kBloodGroup = 'Blood Group';
   static const String kSelectBloodGroup = 'Select Blood Group';
+  static const String kSelectCategory = 'Select Category';
   static const String kSignature = 'Signature';
   static const String kUploadSignature = 'Upload Signature';
   static const String kUpload = 'Upload';
+  static const String kChecklist = 'Checklist';
+  static const String kFilters = 'Filters';
+  static const String kChecklistName = 'Checklist Name';
+  static const String kApply = 'Apply';
+  static const String kComments = 'Comments';
+  static const String kCategory = 'Category';
+  static const String kRemove = 'Remove';
+  static const String kApprove = 'Approve';
+  static const String kChangeRole = 'Change Role';
   static const String kFirstNameValidate = 'Please add first name!';
   static const String kLastNameValidate = 'Please add last name!';
   static const String kContactValidate = 'Please add contact number!';
