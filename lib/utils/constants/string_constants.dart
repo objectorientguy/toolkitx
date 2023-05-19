@@ -46,9 +46,15 @@ abstract class StringConstants {
   static const String kContact = 'Contact';
   static const String kBloodGroup = 'Blood Group';
   static const String kSelectBloodGroup = 'Select Blood Group';
+  static const String kSelectCategory = 'Select Category';
   static const String kSignature = 'Signature';
   static const String kUploadSignature = 'Upload Signature';
   static const String kUpload = 'Upload';
+  static const String kChecklist = 'Checklist';
+  static const String kFilters = 'Filters';
+  static const String kChecklistName = 'Checklist Name';
+  static const String kApply = 'Apply';
+  static const String kCategory = 'Category';
   static const String kFirstNameValidate = 'Please add first name!';
   static const String kLastNameValidate = 'Please add last name!';
   static const String kContactValidate = 'Please add contact number!';

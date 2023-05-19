@@ -40,10 +40,11 @@ AppBarTheme appBarTheme = AppBarTheme(
     elevation: 0,
     backgroundColor: AppColor.blueGrey,
     iconTheme: iconThemeData,
-    titleTextStyle: const TextStyle(color: AppColor.black));
+    titleTextStyle: const TextStyle(
+        fontSize: 18, fontWeight: FontWeight.w500, color: AppColor.black));
 
 IconThemeData iconThemeData =
-    const IconThemeData(color: Colors.black, size: 16);
+    const IconThemeData(color: Colors.black, size: 14);
 
 CardTheme appCardTheme = const CardTheme(elevation: 1, margin: EdgeInsets.zero);
 

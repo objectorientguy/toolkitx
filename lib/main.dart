@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:toolkit/blocs/selectDateFormat/select_date_format_bloc.dart';
 import 'package:toolkit/configs/app_theme.dart';
-import 'package:toolkit/screens/checklist/checklist_screen.dart';
+import 'package:toolkit/screens/checklist/checklist_list_screen.dart';
 import 'blocs/home/home_bloc.dart';
 import 'blocs/selectLanguage/select_language_bloc.dart';
 import 'di/app_module.dart';
