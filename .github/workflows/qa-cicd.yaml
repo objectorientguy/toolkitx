@@ -12,7 +12,7 @@ jobs:
 
   upload-artifacts:
     uses: ./.github/workflows/upload-artifacts.yaml
-    requires: [ project-checks ]
+    needs: [ project-checks ]
 
 
 
