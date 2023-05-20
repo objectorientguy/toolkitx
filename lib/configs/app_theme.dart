@@ -4,15 +4,23 @@ import 'app_dimensions.dart';
 import 'app_spacing.dart';
 
 ThemeData appTheme = ThemeData(
-    colorScheme: colorScheme,
-    appBarTheme: appBarTheme,
-    listTileTheme: listTileTheme,
-    cardTheme: appCardTheme,
-    bottomAppBarTheme: bottomAppBarTheme,
-    bottomNavigationBarTheme: bottomNavigationBarTheme,
-    textButtonTheme: textButtonTheme,
-    scaffoldBackgroundColor: AppColor.ghostWhite,
-    elevatedButtonTheme: elevatedButtonThemeData);
+  colorScheme: colorScheme,
+  appBarTheme: appBarTheme,
+  listTileTheme: listTileTheme,
+  cardTheme: appCardTheme,
+  bottomAppBarTheme: bottomAppBarTheme,
+  bottomNavigationBarTheme: bottomNavigationBarTheme,
+  textButtonTheme: textButtonTheme,
+  scaffoldBackgroundColor: AppColor.ghostWhite,
+  elevatedButtonTheme: elevatedButtonThemeData,
+  floatingActionButtonTheme: floatingActionButtonThemeData,
+);
+
+FloatingActionButtonThemeData floatingActionButtonThemeData =
+    const FloatingActionButtonThemeData(
+        backgroundColor: AppColor.deepBlue,
+        iconSize: kFloatingButtonIconSize,
+        foregroundColor: AppColor.white);
 
 ElevatedButtonThemeData elevatedButtonThemeData = ElevatedButtonThemeData(
     style: ElevatedButton.styleFrom(
@@ -36,21 +44,24 @@ BottomAppBarTheme? bottomAppBarTheme = const BottomAppBarTheme(
     padding: EdgeInsets.all(leftRightMargin));
 
 ListTileThemeData listTileTheme = const ListTileThemeData(dense: true);
+
 AppBarTheme appBarTheme = AppBarTheme(
-    elevation: 0,
-    backgroundColor: AppColor.blueGrey,
-    iconTheme: iconThemeData,
-    titleTextStyle: const TextStyle(color: AppColor.black));
+    elevation: 0, backgroundColor: AppColor.blueGrey, iconTheme: iconThemeData);
 
-IconThemeData iconThemeData =
-    const IconThemeData(color: Colors.black, size: 16);
+IconThemeData iconThemeData = const IconThemeData(color: AppColor.black);
 
-CardTheme appCardTheme = const CardTheme(elevation: 1, margin: EdgeInsets.zero);
+CardTheme appCardTheme =
+    const CardTheme(elevation: kCardElevation, margin: EdgeInsets.zero);
 
 extension AppTextTheme on TextTheme {
   TextStyle get medium {
     return const TextStyle(
         fontSize: 16, fontWeight: FontWeight.w500, color: AppColor.black);
+  }
+
+  TextStyle get mediumLarge {
+    return const TextStyle(
+        fontSize: 18, fontWeight: FontWeight.w500, color: AppColor.black);
   }
 
   TextStyle get xLarge {
