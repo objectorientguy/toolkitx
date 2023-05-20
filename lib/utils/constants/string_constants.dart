@@ -105,17 +105,8 @@ abstract class StringConstants {
   static const String kDone = 'Done';
   static const String kSelectCategoryIncident = 'Select category of incident';
   static const String kReportNewIncident = 'Report new incident';
-  static const String kReportAnonymously = 'Report Anonymously';
-  static const String kContractor = 'Contractor';
   static const String kDateOfIncident = 'Date of incident';
-  static const String kTime = 'Time';
   static const String kSelectTime = 'Select Time';
-  static const String kDetailedDescription = 'Detailed description of facts';
   static const String kPhoto = 'Photo';
-  static const String kSelectContractor = 'Select Contractor';
-  static const String kSite = 'Site';
-  static const String kLocation = 'Location';
   static const String kReportToAuthorities = 'Report to authorities';
-  static const String kSelectSite = 'Select Site';
-  static const String kSelectLocation = 'Select Location';
 }

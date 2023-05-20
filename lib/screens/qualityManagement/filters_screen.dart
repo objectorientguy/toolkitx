@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:toolkit/configs/app_spacing.dart';
 import 'package:toolkit/configs/app_theme.dart';
-import 'package:toolkit/utils/constants/string_constants.dart';
-import 'package:toolkit/widgets/generic_app_bar.dart';
-import 'package:toolkit/widgets/primary_button.dart';
 
-import 'widgets/date_picker.dart';
-import 'widgets/filter_status_expansion_tile.dart';
+import '../../configs/app_spacing.dart';
+import '../../utils/constants/string_constants.dart';
+import '../../widgets/generic_app_bar.dart';
+import '../../widgets/primary_button.dart';
+import '../incident/widgets/date_picker.dart';
+import '../incident/widgets/filter_status_expansion_tile.dart';
 
-class FilterScreen extends StatelessWidget {
-  static const routeName = 'FilterScreen';
+class QMFiltersScreen extends StatelessWidget {
+  static const routeName = 'QMFiltersScreen';
 
-  const FilterScreen({Key? key}) : super(key: key);
+  const QMFiltersScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

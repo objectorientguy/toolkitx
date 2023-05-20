@@ -30,9 +30,7 @@ class _IncidentChangeRoleScreenState extends State<IncidentChangeRoleScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: const GenericAppBar(
-          title: Text(StringConstants.kChangeRole),
-        ),
+        appBar: const GenericAppBar(title: StringConstants.kChangeRole),
         body: SingleChildScrollView(
           physics: const BouncingScrollPhysics(),
           child: Padding(

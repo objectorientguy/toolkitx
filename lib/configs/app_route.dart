@@ -6,6 +6,7 @@ import 'package:toolkit/screens/onboarding/login/emailAddress/login_screen.dart'
 import 'package:toolkit/screens/onboarding/login/password/password_screen.dart';
 import 'package:toolkit/screens/onboarding/welcome_screen.dart';
 import 'package:toolkit/screens/profile/edit/edit_screen.dart';
+import 'package:toolkit/screens/qualityManagement/filters_screen.dart';
 import 'package:toolkit/screens/qualityManagement/new_qa_reporting_screen.dart';
 import 'package:toolkit/screens/qualityManagement/reporting_screen.dart';
 import '../screens/checklist/change_role_screen.dart';
@@ -60,6 +61,8 @@ class AppRoutes {
         return _materialRoute(const ReportingScreen());
       case CommentsScreen.routeName:
         return _materialRoute(const CommentsScreen());
+      case QMFiltersScreen.routeName:
+        return _materialRoute(const QMFiltersScreen());
       default:
         return _materialRoute(const WelcomeScreen());
     }

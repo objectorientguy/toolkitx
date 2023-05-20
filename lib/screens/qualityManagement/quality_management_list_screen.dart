@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:toolkit/configs/app_theme.dart';
 import 'package:toolkit/screens/qualityManagement/details_screen.dart';
+import 'package:toolkit/screens/qualityManagement/filters_screen.dart';
 import 'package:toolkit/screens/qualityManagement/new_qa_reporting_screen.dart';
+import 'package:toolkit/widgets/custom_icon_button_row.dart';
 
 import '../../configs/app_color.dart';
-import '../../configs/app_dimensions.dart';
 import '../../configs/app_spacing.dart';
 import '../../utils/constants/string_constants.dart';
 import '../../widgets/generic_app_bar.dart';
 import '../checklist/change_role_screen.dart';
-import '../checklist/filters_screen.dart';
 import '../onboarding/widgets/custom_card.dart';
 
 class QMListScreen extends StatelessWidget {
@@ -31,24 +31,14 @@ class QMListScreen extends StatelessWidget {
                 top: midTiniestSpacing),
             child:
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              Row(mainAxisAlignment: MainAxisAlignment.end, children: [
-                IconButton(
-                    constraints: const BoxConstraints(),
-                    iconSize: kIconSize,
-                    color: AppColor.grey,
-                    onPressed: () {
-                      Navigator.pushNamed(context, FiltersScreen.routeName);
-                    },
-                    icon: const Icon(Icons.filter_alt_outlined)),
-                IconButton(
-                    constraints: const BoxConstraints(),
-                    color: AppColor.grey,
-                    iconSize: kIconSize,
-                    onPressed: () {
-                      Navigator.pushNamed(context, ChangeRoleScreen.routeName);
-                    },
-                    icon: const Icon(Icons.settings_outlined))
-              ]),
+              CustomIconButtonRow(
+                  primaryOnPress: () {
+                    Navigator.pushNamed(context, QMFiltersScreen.routeName);
+                  },
+                  secondaryOnPress: () {
+                    Navigator.pushNamed(context, ChangeRoleScreen.routeName);
+                  },
+                  clearOnPress: () {}),
               const SizedBox(height: midTiniestSpacing),
               Expanded(
                   child: ListView.separated(

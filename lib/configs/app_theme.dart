@@ -16,8 +16,6 @@ ThemeData appTheme = ThemeData(
     popupMenuTheme: popupMenuThemeData,
     scaffoldBackgroundColor: AppColor.ghostWhite,
     elevatedButtonTheme: elevatedButtonThemeData);
-    floatingActionButtonTheme: floatingActionButtonThemeData,
-);
 
 FloatingActionButtonThemeData floatingActionButtonThemeData =
     const FloatingActionButtonThemeData(
