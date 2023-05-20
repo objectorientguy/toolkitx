@@ -16,6 +16,14 @@ ThemeData appTheme = ThemeData(
     popupMenuTheme: popupMenuThemeData,
     scaffoldBackgroundColor: AppColor.ghostWhite,
     elevatedButtonTheme: elevatedButtonThemeData);
+    floatingActionButtonTheme: floatingActionButtonThemeData,
+);
+
+FloatingActionButtonThemeData floatingActionButtonThemeData =
+    const FloatingActionButtonThemeData(
+        backgroundColor: AppColor.deepBlue,
+        iconSize: kFloatingButtonIconSize,
+        foregroundColor: AppColor.white);
 
 ElevatedButtonThemeData elevatedButtonThemeData = ElevatedButtonThemeData(
     style: ElevatedButton.styleFrom(
@@ -55,6 +63,7 @@ BottomAppBarTheme? bottomAppBarTheme = const BottomAppBarTheme(
     padding: EdgeInsets.all(leftRightMargin));
 
 ListTileThemeData listTileTheme = const ListTileThemeData(dense: true);
+
 AppBarTheme appBarTheme = AppBarTheme(
     elevation: 0, backgroundColor: AppColor.blueGrey, iconTheme: iconThemeData);
 

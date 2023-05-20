@@ -7,7 +7,7 @@ abstract class StringConstants {
   static const String kWelcomeToToolkitX = 'Welcome to ToolKitX';
   static const String kStartNow = 'START NOW';
   static const String kSelectTimeZone = 'Select Your TimeZone';
-  static const String kUtcTime = 'UTC+00:00';
+  static const String kTimeZone = 'UTC+00:00';
   static const String kTimeLocation = 'Azores Standard Time';
   static const String kEmailAddress = 'Email Address';
   static const String kPassword = 'Password';
@@ -95,4 +95,27 @@ abstract class StringConstants {
       'Are you sure you want to log out?';
   static const String kNoInternetMessage =
       'Oops! Please ensure your device is connected to the internet to access rest of the module';
+  static const String kReportAnIncident = 'Report an Incident';
+  static const String kFilter = 'Filter';
+  static const String kDateRange = 'Date Range';
+  static const String kSelectDate = 'Select Date';
+  static const String kBis = 'bis';
+  static const String kStatus = 'Status';
+  static const String kSelectStatus = 'Select Status';
+  static const String kDone = 'Done';
+  static const String kSelectCategoryIncident = 'Select category of incident';
+  static const String kReportNewIncident = 'Report new incident';
+  static const String kReportAnonymously = 'Report Anonymously';
+  static const String kContractor = 'Contractor';
+  static const String kDateOfIncident = 'Date of incident';
+  static const String kTime = 'Time';
+  static const String kSelectTime = 'Select Time';
+  static const String kDetailedDescription = 'Detailed description of facts';
+  static const String kPhoto = 'Photo';
+  static const String kSelectContractor = 'Select Contractor';
+  static const String kSite = 'Site';
+  static const String kLocation = 'Location';
+  static const String kReportToAuthorities = 'Report to authorities';
+  static const String kSelectSite = 'Select Site';
+  static const String kSelectLocation = 'Select Location';
 }
