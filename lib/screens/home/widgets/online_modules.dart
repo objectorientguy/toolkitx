@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:toolkit/screens/checklist/checklist_list_screen.dart';
+import 'package:toolkit/screens/incident/incident_list_screen.dart';
 
 import '../../../configs/app_color.dart';
 import '../../../configs/app_dimensions.dart';
@@ -58,6 +59,9 @@ class OnLineModules extends StatelessWidget {
 
   navigateToModule(index, context) {
     switch (index) {
+      case 6:
+        Navigator.pushNamed(context, IncidentListScreen.routeName);
+        break;
       case 13:
         Navigator.pushNamed(context, ChecklistScreen.routeName);
         break;
