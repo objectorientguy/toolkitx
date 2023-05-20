@@ -14,7 +14,7 @@ class FilterStatusExpansionTile extends StatefulWidget {
 }
 
 class _FilterStatusExpansionTileState extends State<FilterStatusExpansionTile> {
-  String status = '';
+  String status = StringConstants.kSelectStatus;
   List selectedStatus = [];
 
   // List will be removed while implementing API.
@@ -47,8 +47,7 @@ class _FilterStatusExpansionTileState extends State<FilterStatusExpansionTile> {
             maintainState: true,
             iconColor: AppColor.deepBlue,
             textColor: AppColor.black,
-            title: Text((status == '') ? StringConstants.kSelectStatus : status,
-                style: Theme.of(context).textTheme.xSmall),
+            title: Text(status, style: Theme.of(context).textTheme.xSmall),
             children: [
               ListView.builder(
                   physics: const BouncingScrollPhysics(),

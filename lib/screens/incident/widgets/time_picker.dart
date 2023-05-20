@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:toolkit/configs/app_dimensions.dart';
 import 'package:toolkit/configs/app_theme.dart';
 import '../../../configs/app_color.dart';
 import '../../../configs/app_spacing.dart';
@@ -29,13 +30,13 @@ class TimePickerTextField extends StatelessWidget {
         context: context,
         builder: (BuildContext builder) {
           return Container(
-              height: MediaQuery.of(context).size.width * 0.6,
+              height: kDateTimePickerContainerHeight,
               color: Colors.white,
               child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     SizedBox(
-                        height: MediaQuery.of(context).size.width * 0.42,
+                        height: kDateTimePickerHeight,
                         child: CupertinoDatePicker(
                             mode: CupertinoDatePickerMode.time,
                             use24hFormat: true,

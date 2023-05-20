@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:toolkit/configs/app_dimensions.dart';
 import 'package:toolkit/configs/app_theme.dart';
 import 'package:toolkit/utils/constants/string_constants.dart';
 import '../../../../configs/app_color.dart';
@@ -31,13 +32,13 @@ class DatePickerTextField extends StatelessWidget {
         context: context,
         builder: (BuildContext builder) {
           return Container(
-              height: MediaQuery.of(context).size.width * 0.6,
+              height: kDateTimePickerContainerHeight,
               color: Colors.white,
               child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     SizedBox(
-                        height: MediaQuery.of(context).size.width * 0.42,
+                        height: kDateTimePickerHeight,
                         child: CupertinoDatePicker(
                             mode: CupertinoDatePickerMode.date,
                             initialDateTime: (isFirstTime != false)
@@ -52,20 +53,21 @@ class DatePickerTextField extends StatelessWidget {
                             },
                             maximumDate: maxDate)),
                     CustomTextButton(
-                      onPressed: () {
-                        if (isFirstTime != false) {
-                          if (initialDate == null) {
-                            dateInputController.text = DateFormat('dd MMM yyyy')
-                                .format(DateTime.now());
-                          } else {
-                            dateInputController.text =
-                                DateFormat('dd MMM yyyy').format(initialDate!);
+                        onPressed: () {
+                          if (isFirstTime != false) {
+                            if (initialDate == null) {
+                              dateInputController.text =
+                                  DateFormat('dd MMM yyyy')
+                                      .format(DateTime.now());
+                            } else {
+                              dateInputController.text =
+                                  DateFormat('dd MMM yyyy')
+                                      .format(initialDate!);
+                            }
                           }
-                        }
-                        Navigator.pop(context);
-                      },
-                      textValue: StringConstants.kDone,
-                    )
+                          Navigator.pop(context);
+                        },
+                        textValue: StringConstants.kDone)
                   ]));
         });
   }

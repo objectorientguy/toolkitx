@@ -17,3 +17,5 @@ const double kAppBarHeight = 56.0;
 const double kFloatingButtonIconSize = 30.0;
 const double kModuleIconSize = 30;
 const double kTagsHeight = 25;
+const double kDateTimePickerContainerHeight = 220;
+const double kDateTimePickerHeight = 170;

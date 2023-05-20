@@ -36,17 +36,19 @@ class FilterScreen extends StatelessWidget {
                     .copyWith(fontWeight: FontWeight.w600)),
             const SizedBox(height: tinySpacing),
             Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-              SizedBox(
-                  width: MediaQuery.of(context).size.width * 0.4,
-                  child: DatePickerTextField(
-                    hintText: StringConstants.kSelectDate,
-                  )),
+              Expanded(
+                child: DatePickerTextField(
+                  hintText: StringConstants.kSelectDate,
+                ),
+              ),
+              const SizedBox(width: midTiniestSpacing),
               const Text(StringConstants.kBis),
-              SizedBox(
-                  width: MediaQuery.of(context).size.width * 0.4,
-                  child: DatePickerTextField(
-                    hintText: StringConstants.kSelectDate,
-                  ))
+              const SizedBox(width: midTiniestSpacing),
+              Expanded(
+                child: DatePickerTextField(
+                  hintText: StringConstants.kSelectDate,
+                ),
+              )
             ]),
             const SizedBox(height: tinySpacing),
             Text(StringConstants.kStatus,
