@@ -10,19 +10,23 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        body: Padding(
-            padding: const EdgeInsets.only(
-                left: leftRightMargin,
-                right: leftRightMargin,
-                top: topBottomSpacing),
-            child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: const [
-                  SizedBox(height: mediumSpacing),
-                  EditOptions(),
-                  SizedBox(height: tinySpacing),
-                  ProfileOptions()
-                ])));
+    return WillPopScope(
+        onWillPop: () async {
+          return false;
+        },
+        child: Scaffold(
+            body: Padding(
+                padding: const EdgeInsets.only(
+                    left: leftRightMargin,
+                    right: leftRightMargin,
+                    top: topBottomSpacing),
+                child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: const [
+                      SizedBox(height: mediumSpacing),
+                      EditOptions(),
+                      SizedBox(height: tinySpacing),
+                      ProfileOptions()
+                    ]))));
   }
 }

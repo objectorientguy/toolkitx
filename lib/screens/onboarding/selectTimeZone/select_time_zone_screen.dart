@@ -16,7 +16,9 @@ class SelectTimeZoneScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: const GenericAppBar(),
+        appBar: GenericAppBar(
+            title: Text(StringConstants.kSelectTimeZone,
+                style: Theme.of(context).textTheme.medium)),
         body: Padding(
             padding: const EdgeInsets.only(
                 left: leftRightMargin,
@@ -24,9 +26,6 @@ class SelectTimeZoneScreen extends StatelessWidget {
                 top: topBottomSpacing),
             child:
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              Text(StringConstants.kSelectTimeZone,
-                  style: Theme.of(context).textTheme.medium),
-              const SizedBox(height: tinySpacing),
               Expanded(
                   child: ListView.separated(
                       padding: EdgeInsets.zero,

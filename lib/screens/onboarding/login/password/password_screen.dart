@@ -10,6 +10,7 @@ import '../../widgets/custom_card.dart';
 import '../../../../widgets/circle_avatar.dart';
 import '../../../../widgets/generic_app_bar.dart';
 import '../../widgets/text_field.dart';
+import '../../widgets/type_expansion_tile.dart';
 
 class PasswordScreen extends StatelessWidget {
   static const routeName = 'PasswordScreen';
@@ -50,6 +51,12 @@ class PasswordScreen extends StatelessWidget {
                                             Theme.of(context).textTheme.medium),
                                     const SizedBox(height: smallSpacing),
                                     const TextFieldWidget(),
+                                    const SizedBox(height: smallSpacing),
+                                    Text('Type',
+                                        style:
+                                            Theme.of(context).textTheme.medium),
+                                    const SizedBox(height: smallSpacing),
+                                    const UserTypeExpansionTile(),
                                     const SizedBox(height: mediumSpacing),
                                     PrimaryButton(
                                         onPressed: () {
