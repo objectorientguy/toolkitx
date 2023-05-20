@@ -2,27 +2,25 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:toolkit/configs/app_theme.dart';
-import 'package:toolkit/utils/constants/string_constants.dart';
-import '../../../../configs/app_color.dart';
+import '../../../configs/app_color.dart';
 import '../../../configs/app_spacing.dart';
+import '../../../utils/constants/string_constants.dart';
 import '../../../widgets/text_button.dart';
 
-class DatePickerTextField extends StatelessWidget {
-  final DateTime? initialDate;
-  final DateTime? maxDate;
-  final String editDate;
+class TimePickerTextField extends StatelessWidget {
+  final DateTime? initialDateTime;
+  final String editTime;
   final String? hintText;
-  final DateTime? minimumDate;
-  final TextEditingController dateInputController = TextEditingController();
+  final DateTime? minimumTime;
+  final TextEditingController timeInputController = TextEditingController();
   late final bool? isFirstTime;
 
-  DatePickerTextField({
+  TimePickerTextField({
     Key? key,
-    this.initialDate,
-    this.maxDate,
-    this.editDate = '',
+    this.initialDateTime,
+    this.editTime = '',
     this.hintText,
-    this.minimumDate,
+    this.minimumTime,
     this.isFirstTime = true,
   }) : super(key: key);
 
@@ -39,33 +37,33 @@ class DatePickerTextField extends StatelessWidget {
                     SizedBox(
                         height: MediaQuery.of(context).size.width * 0.42,
                         child: CupertinoDatePicker(
-                            mode: CupertinoDatePickerMode.date,
+                            mode: CupertinoDatePickerMode.time,
+                            use24hFormat: true,
                             initialDateTime: (isFirstTime != false)
-                                ? initialDate
-                                : DateFormat("dd MMM yyyy")
-                                    .parse(dateInputController.text),
+                                ? initialDateTime
+                                : DateFormat("HH:mm")
+                                    .parse(timeInputController.text),
                             onDateTimeChanged: (value) {
                               String formattedDate =
-                                  DateFormat('dd MMM yyyy').format(value);
-                              dateInputController.text = formattedDate;
+                                  DateFormat("HH:mm").format(value);
+                              timeInputController.text = formattedDate;
                               isFirstTime = false;
                             },
-                            maximumDate: maxDate)),
+                            minuteInterval: 1)),
                     CustomTextButton(
-                      onPressed: () {
-                        if (isFirstTime != false) {
-                          if (initialDate == null) {
-                            dateInputController.text = DateFormat('dd MMM yyyy')
-                                .format(DateTime.now());
-                          } else {
-                            dateInputController.text =
-                                DateFormat('dd MMM yyyy').format(initialDate!);
+                        onPressed: () {
+                          if (isFirstTime != false) {
+                            if (initialDateTime == null) {
+                              timeInputController.text =
+                                  DateFormat('HH.mm').format(DateTime.now());
+                            } else {
+                              timeInputController.text =
+                                  DateFormat('HH.mm').format(initialDateTime!);
+                            }
                           }
-                        }
-                        Navigator.pop(context);
-                      },
-                      textValue: StringConstants.kDone,
-                    )
+                          Navigator.pop(context);
+                        },
+                        textValue: StringConstants.kDone)
                   ]));
         });
   }
@@ -74,7 +72,7 @@ class DatePickerTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextField(
         readOnly: true,
-        controller: dateInputController,
+        controller: timeInputController,
         onChanged: (value) {},
         onTap: () async {
           showDatePicker(context);

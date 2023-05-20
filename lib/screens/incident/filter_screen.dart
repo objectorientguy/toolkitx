@@ -39,16 +39,14 @@ class FilterScreen extends StatelessWidget {
               SizedBox(
                   width: MediaQuery.of(context).size.width * 0.4,
                   child: DatePickerTextField(
-                      hintText: StringConstants.kSelectDate,
-                      onDateOfBirth: (String dateOfBirth) {},
-                      editDate: '')),
+                    hintText: StringConstants.kSelectDate,
+                  )),
               const Text(StringConstants.kBis),
               SizedBox(
                   width: MediaQuery.of(context).size.width * 0.4,
                   child: DatePickerTextField(
-                      hintText: StringConstants.kSelectDate,
-                      onDateOfBirth: (String dateOfBirth) {},
-                      editDate: ''))
+                    hintText: StringConstants.kSelectDate,
+                  ))
             ]),
             const SizedBox(height: tinySpacing),
             Text(StringConstants.kStatus,

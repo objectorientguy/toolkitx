@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:toolkit/screens/incident/incident_list_screen.dart';
 import 'package:toolkit/screens/checklist/checklist_list_screen.dart';
 import 'package:toolkit/screens/checklist/details_screen.dart';
 import 'package:toolkit/screens/checklist/filters_screen.dart';
@@ -10,6 +9,7 @@ import 'package:toolkit/screens/profile/edit/edit_screen.dart';
 import '../screens/checklist/change_role_screen.dart';
 import '../screens/incident/category_screen.dart';
 import '../screens/incident/filter_screen.dart';
+import '../screens/incident/incident_list_screen.dart';
 import '../screens/onboarding/selectDateFormat/select_date_format_screen.dart';
 import '../screens/onboarding/selectLanguage/select_language_screen.dart';
 import '../screens/onboarding/selectTimeZone/select_time_zone_screen.dart';

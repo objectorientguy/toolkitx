@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:toolkit/configs/app_color.dart';
-import 'package:toolkit/configs/app_spacing.dart';
 import 'package:toolkit/configs/app_theme.dart';
-import 'package:toolkit/widgets/generic_app_bar.dart';
 
+import '../../configs/app_color.dart';
+import '../../configs/app_spacing.dart';
 import '../../utils/constants/string_constants.dart';
+import '../../widgets/generic_app_bar.dart';
+import '../../widgets/primary_button.dart';
 
 class CategoryScreen extends StatefulWidget {
   static const routeName = 'CategoryScreen';
@@ -69,11 +70,12 @@ class _CategoryScreenState extends State<CategoryScreen> {
           Text(StringConstants.kSelectCategoryIncident,
               style: Theme.of(context)
                   .textTheme
-                  .small
-                  .copyWith(color: AppColor.black)),
+                  .mediumLarge
+                  .copyWith(fontWeight: FontWeight.w400)),
           const SizedBox(height: tinySpacing),
           Expanded(
               child: ListView.builder(
+                  physics: const BouncingScrollPhysics(),
                   shrinkWrap: true,
                   itemCount: categoryList.length,
                   itemBuilder: (context, index) {
@@ -81,9 +83,13 @@ class _CategoryScreenState extends State<CategoryScreen> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(categoryList[index]['title'],
-                              style: Theme.of(context).textTheme.small.copyWith(
-                                  fontWeight: FontWeight.w600,
-                                  color: const Color(0xFF6A6D70))),
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .mediumLarge
+                                  .copyWith(
+                                      fontWeight: FontWeight.w600,
+                                      color: AppColor.greyBlack)),
+                          const SizedBox(height: tiniestSpacing),
                           ListView.builder(
                               physics: const BouncingScrollPhysics(),
                               shrinkWrap: true,
@@ -99,17 +105,25 @@ class _CategoryScreenState extends State<CategoryScreen> {
                                             [itemIndex]),
                                     title: Text(
                                         categoryList[index]['items'][itemIndex],
-                                        style:
-                                            Theme.of(context).textTheme.small),
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .mediumLarge
+                                            .copyWith(
+                                                fontWeight: FontWeight.w400,
+                                                color: AppColor.grey)),
                                     controlAffinity:
                                         ListTileControlAffinity.trailing,
                                     onChanged: (isChecked) {
                                       checkBoxChange(
                                           isChecked!, index, itemIndex);
                                     });
-                              })
+                              }),
+                          const SizedBox(height: tiniestSpacing)
                         ]);
-                  }))
+                  })),
+          const SizedBox(height: mediumSpacing),
+          PrimaryButton(onPressed: () {}, textValue: StringConstants.kNext),
+          const SizedBox(height: tinySpacing)
         ]),
       ),
     );

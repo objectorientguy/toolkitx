@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../configs/app_color.dart';
 import '../../configs/app_dimensions.dart';
 import '../../configs/app_spacing.dart';
+import '../../utils/constants/string_constants.dart';
 import '../../widgets/generic_app_bar.dart';
 import '../onboarding/widgets/custom_card.dart';
 
@@ -30,7 +31,7 @@ class _IncidentChangeRoleScreenState extends State<IncidentChangeRoleScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: const GenericAppBar(
-          title: Text("Change Role"),
+          title: Text(StringConstants.kChangeRole),
         ),
         body: SingleChildScrollView(
           physics: const BouncingScrollPhysics(),
@@ -71,7 +72,8 @@ class _IncidentChangeRoleScreenState extends State<IncidentChangeRoleScreen> {
                             },
                             separatorBuilder: (context, index) {
                               return const Divider(
-                                  thickness: kDividerThickness, height: 20);
+                                  thickness: kDividerThickness,
+                                  height: kDividerHeight);
                             })),
                     const SizedBox(height: mediumSpacing)
                   ])),
