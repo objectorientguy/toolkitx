@@ -1,26 +1,28 @@
 import 'package:flutter/material.dart';
-import 'package:toolkit/configs/app_dimensions.dart';
 import 'package:toolkit/configs/app_theme.dart';
-import '../../../configs/app_spacing.dart';
-import '../../../utils/constants/string_constants.dart';
-import 'comments_popup.dart';
+import 'package:toolkit/screens/qualityManagement/comments_screen.dart';
 
-class PopUpMenu extends StatefulWidget {
-  const PopUpMenu({Key? key}) : super(key: key);
+import '../../../configs/app_dimensions.dart';
+import '../../../configs/app_spacing.dart';
+
+class QAPopupMenu extends StatefulWidget {
+  const QAPopupMenu({Key? key}) : super(key: key);
 
   @override
-  State<PopUpMenu> createState() => _PopUpMenuState();
+  State<QAPopupMenu> createState() => _QAPopupMenuState();
 }
 
-class _PopUpMenuState extends State<PopUpMenu> {
+class _QAPopupMenuState extends State<QAPopupMenu> {
   int popupMenuItemIndex = 0;
 
   // This entire file will get refactored after API integration.
   List popUpMenuItems = [
-    'Approve',
-    'Reject',
-    'Third Party Approve',
-    'Edit Header'
+    'Add Comments',
+    'Edit',
+    'View Logs',
+    'Report',
+    'Mark as resolved',
+    'Generate PDF'
   ];
 
   PopupMenuItem _buildPopupMenuItem(context, String title, int position) {
@@ -36,17 +38,11 @@ class _PopUpMenuState extends State<PopUpMenu> {
     });
 
     if (value == 0) {
-      showDialog(
-          context: context,
-          builder: (context) {
-            return const CommentsPopUp(textValue: StringConstants.kApprove);
-          });
-    } else if (value == 1) {
-      showDialog(
-          context: context,
-          builder: (context) {
-            return const CommentsPopUp(textValue: StringConstants.kReject);
-          });
+      Navigator.pushNamed(context, CommentsScreen.routeName);
+    } else if (value == 3) {
+      Navigator.pushNamed(context, CommentsScreen.routeName);
+    } else if (value == 4) {
+      Navigator.pushNamed(context, CommentsScreen.routeName);
     }
   }
 
@@ -64,7 +60,9 @@ class _PopUpMenuState extends State<PopUpMenu> {
               _buildPopupMenuItem(context, popUpMenuItems[0], 0),
               _buildPopupMenuItem(context, popUpMenuItems[1], 1),
               _buildPopupMenuItem(context, popUpMenuItems[2], 2),
-              _buildPopupMenuItem(context, popUpMenuItems[3], 3)
+              _buildPopupMenuItem(context, popUpMenuItems[3], 3),
+              _buildPopupMenuItem(context, popUpMenuItems[4], 4),
+              _buildPopupMenuItem(context, popUpMenuItems[5], 5)
             ]);
   }
 }

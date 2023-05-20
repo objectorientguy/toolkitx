@@ -13,6 +13,7 @@ ThemeData appTheme = ThemeData(
     bottomNavigationBarTheme: bottomNavigationBarTheme,
     expansionTileTheme: expansionTileTheme,
     textButtonTheme: textButtonTheme,
+    popupMenuTheme: popupMenuThemeData,
     scaffoldBackgroundColor: AppColor.ghostWhite,
     elevatedButtonTheme: elevatedButtonThemeData);
 
@@ -23,6 +24,11 @@ ElevatedButtonThemeData elevatedButtonThemeData = ElevatedButtonThemeData(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(kCardRadius),
         )));
+
+PopupMenuThemeData popupMenuThemeData = PopupMenuThemeData(
+    shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(kCardRadius)));
+
 ExpansionTileThemeData expansionTileTheme = const ExpansionTileThemeData(
     tilePadding:
         EdgeInsets.only(left: expansionTileMargin, right: expansionTileMargin),

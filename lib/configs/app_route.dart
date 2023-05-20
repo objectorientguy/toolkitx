@@ -12,6 +12,7 @@ import '../screens/checklist/change_role_screen.dart';
 import '../screens/onboarding/selectDateFormat/select_date_format_screen.dart';
 import '../screens/onboarding/selectLanguage/select_language_screen.dart';
 import '../screens/onboarding/selectTimeZone/select_time_zone_screen.dart';
+import '../screens/qualityManagement/comments_screen.dart';
 import '../screens/qualityManagement/details_screen.dart';
 import '../screens/root/root_screen.dart';
 
@@ -48,6 +49,8 @@ class AppRoutes {
         return _materialRoute(const NewQAReportingScreen());
       case ReportingScreen.routeName:
         return _materialRoute(const ReportingScreen());
+      case CommentsScreen.routeName:
+        return _materialRoute(const CommentsScreen());
       default:
         return _materialRoute(const WelcomeScreen());
     }

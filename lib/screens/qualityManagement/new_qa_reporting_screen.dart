@@ -10,6 +10,7 @@ import '../../widgets/generic_app_bar.dart';
 import '../../widgets/primary_button.dart';
 import '../onboarding/widgets/text_field.dart';
 import 'widgets/contractor_expansion_tile.dart';
+import 'widgets/custom_outlined_button.dart';
 import 'widgets/report_anonymously_expansion_tile.dart';
 
 class NewQAReportingScreen extends StatelessWidget {
@@ -74,6 +75,7 @@ class NewQAReportingScreen extends StatelessWidget {
                       Text(StringConstants.kUploadPhotos,
                           style: Theme.of(context).textTheme.medium),
                       const SizedBox(height: midTinySpacing),
+                      CustomOutlinedButton(onPressed: () {})
                     ]))));
   }
 }

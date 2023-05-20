@@ -89,6 +89,8 @@ abstract class StringConstants {
   static const String kImpact = 'Impact';
   static const String kSelectSite = 'Select Site';
   static const String kSelectLocation = 'Select Location';
+  static const String kAddComments = 'Add Comments';
+  static const String kSubmit = 'Submit';
   static const String kLogoutDialogContent =
       'Are you sure you want to log out?';
   static const String kNoInternetMessage =
