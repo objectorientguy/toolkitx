@@ -10,6 +10,12 @@ jobs:
   project-checks:
     uses: ./.github/workflows/project-check.yaml
 
+  read-version:
+    uses: ./.github/workflows/read-version.yaml
+
+  build-apk:
+    uses: ./.github/workflows/build-apk.yaml
+
 
 
 
