@@ -55,6 +55,12 @@ jobs:
           echo "Renaming APK with build number"
           mv build/app/outputs/apk/release/app-release.apk build/app/outputs/apk/release/${{ steps.increment-version.outputs.version }}.apk
 
+      - name: Distribute APK to Firebase App Distribution
+        run: |
+          firebase use --token ${{ secrets.FIREBASE_TOKEN }}
+          firebase appdistribution:distribute ./build/app/outputs/apk/release/${{ steps.increment-version.outputs.version }}.apk --app <your-firebase-app-id> --groups internal-testers
+
+
       - name: Upload APK as artifact
         uses: actions/upload-artifact@v2
         with:
