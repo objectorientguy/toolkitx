@@ -39,9 +39,12 @@ jobs:
         run: flutter analyze .
 
       - name: Generate Build Number
-      - run: |
-          build_number=$(date +'%d.%m.%y.%H.%M')
-          echo "##vso[task.setvariable variable=BUILD_NUMBER]$build_number"
+        id: increment-version
+        run: |
+          echo "Generating build number"
+          build_number=$(date +'%d%m%y%H%M')
+          echo "::set-output name=version::$build_number"
+        displayName: 'Generate Build Number'
 
       - name: Build APK
         run: |
@@ -57,7 +60,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: ${{ steps.increment-version.outputs.version }}.apk
-          path: build/app/outputs/apk/release/$BUILD_NUMBER.apk
+          path: build/app/outputs/apk/release/${{ steps.increment-version.outputs.version }}.apk
 
 
 
