@@ -38,24 +38,11 @@ jobs:
       - name: Analyze Static code
         run: flutter analyze .
 
-      - name: Read current build number
-        id: read-version
-        run: |
-          echo "Reading build number from version.txt"
-          echo "::set-output name=version::$(cat version.txt)"
-
-      - name: Increment build number
-        id: increment-version
-        run: |
-          echo "Incrementing build number"
-          current_version=$(echo "${{ steps.read-version.outputs.version }}")
-          incremented_version=$((current_version + 1))
-          echo "::set-output name=version::$incremented_version"
-
-      - name: Update build number
-        run: |
-          echo "Updating version.txt with new build number"
-          echo ${{ steps.increment-version.outputs.version }} > version.txt
+      - script: |
+          #!/bin/bash
+          build_number=$(date +'%d.%m.%y.%H.%M')
+          echo "##vso[task.setvariable variable=BUILD_NUMBER]$build_number"
+          displayName: 'Generate Build Number'
 
       - name: Build APK
         run: |
@@ -71,7 +58,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: ${{ steps.increment-version.outputs.version }}.apk
-          path: build/app/outputs/apk/release/${{ steps.increment-version.outputs.version }}.apk
+          path: build/app/outputs/apk/release/$BUILD_NUMBER.apk
 
 
 
