@@ -44,7 +44,6 @@ jobs:
           echo "Generating build number"
           build_number=$(date +'%d%m%y%H%M')
           echo "::set-output name=version::$build_number"
-        displayName: 'Generate Build Number'
 
       - name: Build APK
         run: |
