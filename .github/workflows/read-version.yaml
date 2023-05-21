@@ -24,19 +24,3 @@ jobs:
         run: |
           echo "Updating version.txt with new build number"
           echo ${{ steps.increment-version.outputs.version }} > version.txt
-
-      - name: Build APK
-        run: |
-          echo "Building APK with build number: ${{ steps.increment-version.outputs.version }}"
-          flutter build apk --release --build-number=${{ steps.increment-version.outputs.version }}
-
-      - name: Rename APK with build number
-        run: |
-          echo "Renaming APK with build number"
-          mv build/app/outputs/apk/release/app-release.apk build/app/outputs/apk/release/${{ steps.increment-version.outputs.version }}.apk
-
-      - name: Upload APK as artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: ${{ steps.increment-version.outputs.version }}.apk
-          path: build/app/outputs/apk/release/${{ steps.increment-version.outputs.version }}.apk
