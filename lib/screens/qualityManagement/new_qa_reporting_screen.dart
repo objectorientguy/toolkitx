@@ -14,6 +14,7 @@ import '../onboarding/widgets/text_field.dart';
 import 'widgets/contractor_expansion_tile.dart';
 import 'widgets/custom_outlined_button.dart';
 import 'widgets/report_anonymously_expansion_tile.dart';
+import 'widgets/upload_alert_dialog.dart';
 
 class NewQAReportingScreen extends StatelessWidget {
   static const routeName = 'NewQAReportingScreen';
@@ -72,7 +73,12 @@ class NewQAReportingScreen extends StatelessWidget {
                       Text(StringConstants.kUploadPhotos,
                           style: Theme.of(context).textTheme.medium),
                       const SizedBox(height: midTinySpacing),
-                      CustomOutlinedButton(onPressed: () {})
+                      CustomOutlinedButton(onPressed: () {
+                        showDialog(
+                            context: context,
+                            builder: (context) => UploadAlertDialog(
+                                onCamera: () {}, onDevice: () {}));
+                      })
                     ]))));
   }
 }
