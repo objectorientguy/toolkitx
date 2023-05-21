@@ -42,7 +42,7 @@ jobs:
         id: increment-version
         run: |
           echo "Generating build number"
-          build_number=$(date +'%d%m%y')
+          build_number=$(date +'%d%m%y%h')
           echo "::set-output name=version::$build_number"
 
       - name: Build Android app
@@ -58,7 +58,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '16.x' # or '18.x'
+          node-version: '16.x'
 
       - name: Firebase App Distribution
         uses: wzieba/Firebase-Distribution-Github-Action@v1.2.1
