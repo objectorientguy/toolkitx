@@ -39,10 +39,9 @@ jobs:
         run: flutter analyze .
 
       - name: Generate Build Number
-      - steps:
-          - bash: |
-              build_number=$(date +'%d.%m.%y.%H.%M')
-              echo "##vso[task.setvariable variable=BUILD_NUMBER]$build_number"
+      - run: |
+          build_number=$(date +'%d.%m.%y.%H.%M')
+          echo "##vso[task.setvariable variable=BUILD_NUMBER]$build_number"
 
       - name: Build APK
         run: |
