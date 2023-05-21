@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:toolkit/configs/app_theme.dart';
+import 'package:toolkit/screens/incident/widgets/time_picker.dart';
 import 'package:toolkit/screens/qualityManagement/reporting_screen.dart';
 
 import '../../configs/app_color.dart';
@@ -8,6 +9,7 @@ import '../../configs/app_spacing.dart';
 import '../../utils/constants/string_constants.dart';
 import '../../widgets/generic_app_bar.dart';
 import '../../widgets/primary_button.dart';
+import '../incident/widgets/date_picker.dart';
 import '../onboarding/widgets/text_field.dart';
 import 'widgets/contractor_expansion_tile.dart';
 import 'widgets/custom_outlined_button.dart';
@@ -53,16 +55,11 @@ class NewQAReportingScreen extends StatelessWidget {
                       Text(StringConstants.kDate,
                           style: Theme.of(context).textTheme.medium),
                       const SizedBox(height: midTinySpacing),
-                      const TextFieldWidget(
-                          textInputAction: TextInputAction.done,
-                          hintText: StringConstants.kDate),
-                      const SizedBox(height: midTinySpacing),
+                      DatePickerTextField(),
                       Text(StringConstants.kTime,
                           style: Theme.of(context).textTheme.medium),
                       const SizedBox(height: midTinySpacing),
-                      const TextFieldWidget(
-                          textInputAction: TextInputAction.done,
-                          hintText: StringConstants.kTime),
+                      TimePickerTextField(),
                       const SizedBox(height: midTinySpacing),
                       Text(StringConstants.kDetailedDescription,
                           style: Theme.of(context).textTheme.medium),
