@@ -26,7 +26,7 @@ class SelectDateFormatScreen extends StatefulWidget {
 
 class _SelectDateFormatScreenState extends State<SelectDateFormatScreen> {
   String? dateFormatValues;
-  int? dateFormat;
+  String? values;
 
   @override
   Widget build(BuildContext context) {
@@ -73,9 +73,9 @@ class _SelectDateFormatScreenState extends State<SelectDateFormatScreen> {
                                                 .elementAt(index)
                                                 .dateFormat;
                                             dateFormatValues = value;
-                                            dateFormat = CustomDateFormat.values
+                                            values = CustomDateFormat.values
                                                 .elementAt(index)
-                                                .index;
+                                                .value;
                                           });
                                         }));
                               },
@@ -101,7 +101,7 @@ class _SelectDateFormatScreenState extends State<SelectDateFormatScreen> {
                               onPressed: () {
                                 context.read<DateFormatBloc>().add(
                                     SelectDateFormat(
-                                        dateFormat: dateFormat.toString()));
+                                        dateFormat: values.toString()));
                               },
                               textValue: StringConstants.kSave))
                     ]))));
