@@ -9,13 +9,8 @@ on:
 jobs:
   checks:
     name: QA Workflow
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
     steps:
-      - name: Set up Java 11
-        uses: actions/setup-java@v2
-        with:
-          java-version: '11'
-            
       - name: Checkout code
         uses: actions/checkout@v3
         with:
