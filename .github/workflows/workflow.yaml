@@ -36,6 +36,7 @@ jobs:
         run: flutter analyze .
 
   build-android:
+    needs: checks
     uses: ./.github/workflows/build-android.yaml
 
 
