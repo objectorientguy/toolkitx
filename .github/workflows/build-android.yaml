@@ -1,7 +1,10 @@
 name: Build Android
 
 on:
-  workflow_dispatch:
+  workflow_call:
+    inputs:
+      version:
+        description: 'Version number'
 
 jobs:
   build-android:

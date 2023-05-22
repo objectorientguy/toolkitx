@@ -1,10 +1,7 @@
 name: QA Checks
 
 on:
-  pull_request:
-    branches:
-      - dev
-  workflow_dispatch:
+  workflow_call:
 
 jobs:
   checks:
@@ -34,3 +31,8 @@ jobs:
 
       - name: Analyze Static code
         run: flutter analyze .
+
+      - name: Trigger Build Android workflow
+        uses: ./.github/workflows/build-android.yaml
+        with:
+          version: ${{ steps.increment-version.outputs.version }}
