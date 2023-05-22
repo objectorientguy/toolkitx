@@ -42,12 +42,12 @@ jobs:
         id: increment-version
         run: |
           echo "Generating build number"
-          build_number=$(date +'%d%m.%H%M%S')
+          build_number=$(date +'%d%m%y')
           echo "::set-output name=version::$build_number"
 
       - name: Build Android app
         run: |
-          echo "Building APK with build number: ${{ steps.increment-version.outputs.version }}"
+          echo "Building APK with build number: ${{ steps.increment-version.outputs.version }.{(date +'%d%m%y')}}"
           flutter build apk --release --build-number=${{ steps.increment-version.outputs.version }}
 
       - name: Rename build number
