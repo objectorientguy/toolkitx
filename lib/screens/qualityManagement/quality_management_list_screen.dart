@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:toolkit/configs/app_theme.dart';
 import 'package:toolkit/screens/qualityManagement/details_screen.dart';
 import 'package:toolkit/screens/qualityManagement/filters_screen.dart';
 import 'package:toolkit/screens/qualityManagement/add_quality_management_reporting_screen.dart';
 import 'package:toolkit/widgets/custom_icon_button_row.dart';
 
+import '../../blocs/qualityManagement/quality_management_events.dart';
+import '../../blocs/qualityManagement/quality_management_bloc.dart';
 import '../../configs/app_color.dart';
 import '../../configs/app_spacing.dart';
 import '../../utils/constants/string_constants.dart';
@@ -23,6 +26,8 @@ class QualityManagementListScreen extends StatelessWidget {
         appBar: const GenericAppBar(title: StringConstants.kQAReporting),
         floatingActionButton: FloatingActionButton(
             onPressed: () {
+              context.read<QualityManagementBloc>().add(ReportQADropDown(
+                  reportValue: "null", contractorValue: 'null'));
               Navigator.pushNamed(
                   context, AddQualityManagementReportingScreen.routeName);
             },

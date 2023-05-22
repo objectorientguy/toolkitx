@@ -1,25 +1,34 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:toolkit/configs/app_theme.dart';
 
+import '../../../blocs/qualityManagement/quality_management_bloc.dart';
+import '../../../blocs/qualityManagement/quality_management_events.dart';
 import '../../../configs/app_color.dart';
 import '../../../utils/constants/string_constants.dart';
 
-class LocationExpansionTile extends StatefulWidget {
-  const LocationExpansionTile({Key? key}) : super(key: key);
+class LocationExpansionTile extends StatelessWidget {
+  final String siteValue;
+  final String locationValue;
+  final String severityValue;
+  final String impactValue;
 
-  @override
-  State<LocationExpansionTile> createState() => _LocationExpansionTileState();
-}
+  LocationExpansionTile(
+      {Key? key,
+      required this.siteValue,
+      required this.locationValue,
+      required this.severityValue,
+      required this.impactValue})
+      : super(key: key);
 
-class _LocationExpansionTileState extends State<LocationExpansionTile> {
-  String locationValue = StringConstants.kSelectLocation;
-  List locationValuesList = [
+  final List locationValuesList = [
     'Other',
     'First Address',
     'Second Address',
     'Third Address'
-  ]; //This will change after API integration.
+  ];
 
+  //This will change after API integration.
   @override
   Widget build(BuildContext context) {
     return Theme(
@@ -27,7 +36,11 @@ class _LocationExpansionTileState extends State<LocationExpansionTile> {
       child: ExpansionTile(
           maintainState: true,
           key: GlobalKey(),
-          title: Text(locationValue, style: Theme.of(context).textTheme.xSmall),
+          title: Text(
+              locationValue == "null"
+                  ? StringConstants.kSelectLocation
+                  : locationValue,
+              style: Theme.of(context).textTheme.xSmall),
           children: [
             ListView.builder(
                 physics: const BouncingScrollPhysics(),
@@ -43,10 +56,13 @@ class _LocationExpansionTileState extends State<LocationExpansionTile> {
                       value: locationValuesList[index],
                       groupValue: locationValue,
                       onChanged: (value) {
-                        setState(() {
-                          value = locationValuesList[index];
-                          locationValue = value;
-                        });
+                        value = locationValuesList[index];
+                        context.read<QualityManagementBloc>().add(
+                            ReportingQADropDown(
+                                siteValue: siteValue,
+                                locationValue: value,
+                                severityValue: severityValue,
+                                impactValue: impactValue));
                       });
                 })
           ]),

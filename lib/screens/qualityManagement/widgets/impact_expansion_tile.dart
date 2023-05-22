@@ -1,24 +1,31 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:toolkit/configs/app_theme.dart';
 
+import '../../../blocs/qualityManagement/quality_management_bloc.dart';
+import '../../../blocs/qualityManagement/quality_management_events.dart';
 import '../../../configs/app_color.dart';
 import '../../../utils/constants/string_constants.dart';
 
-class ImpactExpansionTile extends StatefulWidget {
-  const ImpactExpansionTile({Key? key}) : super(key: key);
+class ImpactExpansionTile extends StatelessWidget {
+  final String siteValue;
+  final String locationValue;
+  final String severityValue;
+  final String impactValue;
 
-  @override
-  State<ImpactExpansionTile> createState() => _ImpactExpansionTileState();
-}
+  ImpactExpansionTile(
+      {Key? key,
+      required this.siteValue,
+      required this.locationValue,
+      required this.severityValue,
+      required this.impactValue})
+      : super(key: key);
 
-class _ImpactExpansionTileState extends State<ImpactExpansionTile> {
-  String impactValue = StringConstants.kSelect;
-  List impactValuesList = [
+  final List impactValuesList = [
     'Low',
     'High',
     'Medium'
   ]; //This will change after API integration.
-
   @override
   Widget build(BuildContext context) {
     return Theme(
@@ -26,7 +33,9 @@ class _ImpactExpansionTileState extends State<ImpactExpansionTile> {
       child: ExpansionTile(
           maintainState: true,
           key: GlobalKey(),
-          title: Text(impactValue, style: Theme.of(context).textTheme.xSmall),
+          title: Text(
+              impactValue == "null" ? StringConstants.kSelect : impactValue,
+              style: Theme.of(context).textTheme.xSmall),
           children: [
             ListView.builder(
                 physics: const BouncingScrollPhysics(),
@@ -42,10 +51,13 @@ class _ImpactExpansionTileState extends State<ImpactExpansionTile> {
                       value: impactValuesList[index],
                       groupValue: impactValue,
                       onChanged: (value) {
-                        setState(() {
-                          value = impactValuesList[index];
-                          impactValue = value;
-                        });
+                        value = impactValuesList[index];
+                        context.read<QualityManagementBloc>().add(
+                            ReportingQADropDown(
+                                siteValue: siteValue,
+                                locationValue: locationValue,
+                                severityValue: severityValue,
+                                impactValue: value));
                       });
                 })
           ]),

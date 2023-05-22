@@ -1,25 +1,31 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:toolkit/blocs/qualityManagement/quality_management_events.dart';
 import 'package:toolkit/configs/app_theme.dart';
 import 'package:toolkit/utils/constants/string_constants.dart';
 
+import '../../../blocs/qualityManagement/quality_management_bloc.dart';
 import '../../../configs/app_color.dart';
 
-class SiteExpansionTile extends StatefulWidget {
-  const SiteExpansionTile({Key? key}) : super(key: key);
+class SiteExpansionTile extends StatelessWidget {
+  final String siteValue;
+  final String locationValue;
+  final String severityValue;
+  final String impactValue;
 
-  @override
-  State<SiteExpansionTile> createState() => _SiteExpansionTileState();
-}
-
-class _SiteExpansionTileState extends State<SiteExpansionTile> {
-  String siteValue = StringConstants.kSelectSite;
-  List siteValuesList = [
+  SiteExpansionTile(
+      {Key? key,
+      required this.siteValue,
+      required this.locationValue,
+      required this.severityValue,
+      required this.impactValue})
+      : super(key: key);
+  final List siteValuesList = [
     'Other',
     'Berlin Office',
     'hamburg Control center',
     'Hamburg Office'
   ]; //This will change after API integration.
-
   @override
   Widget build(BuildContext context) {
     return Theme(
@@ -27,7 +33,9 @@ class _SiteExpansionTileState extends State<SiteExpansionTile> {
       child: ExpansionTile(
           maintainState: true,
           key: GlobalKey(),
-          title: Text(siteValue, style: Theme.of(context).textTheme.xSmall),
+          title: Text(
+              siteValue == 'null' ? StringConstants.kSelectSite : siteValue,
+              style: Theme.of(context).textTheme.xSmall),
           children: [
             ListView.builder(
                 physics: const BouncingScrollPhysics(),
@@ -43,10 +51,13 @@ class _SiteExpansionTileState extends State<SiteExpansionTile> {
                       value: siteValuesList[index],
                       groupValue: siteValue,
                       onChanged: (value) {
-                        setState(() {
-                          value = siteValuesList[index];
-                          siteValue = value;
-                        });
+                        value = siteValuesList[index];
+                        context.read<QualityManagementBloc>().add(
+                            ReportingQADropDown(
+                                siteValue: value,
+                                locationValue: locationValue,
+                                severityValue: severityValue,
+                                impactValue: impactValue));
                       });
                 })
           ]),

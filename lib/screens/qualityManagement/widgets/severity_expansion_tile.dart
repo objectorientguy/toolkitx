@@ -1,23 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:toolkit/configs/app_theme.dart';
 
+import '../../../blocs/qualityManagement/quality_management_events.dart';
+import '../../../blocs/qualityManagement/quality_management_bloc.dart';
 import '../../../configs/app_color.dart';
 import '../../../utils/constants/string_constants.dart';
 
-class SeverityExpansionTile extends StatefulWidget {
-  const SeverityExpansionTile({Key? key}) : super(key: key);
+class SeverityExpansionTile extends StatelessWidget {
+  final String siteValue;
+  final String locationValue;
+  final String severityValue;
+  final String impactValue;
 
-  @override
-  State<SeverityExpansionTile> createState() => _SeverityExpansionTileState();
-}
+  SeverityExpansionTile(
+      {Key? key,
+      required this.siteValue,
+      required this.locationValue,
+      required this.severityValue,
+      required this.impactValue})
+      : super(key: key);
 
-class _SeverityExpansionTileState extends State<SeverityExpansionTile> {
-  String severityValue = StringConstants.kSelect;
-  List severityValuesList = [
-    'Not Severe',
-    'Severe'
-  ]; //This will change after API integration.
+  final List severityValuesList = ['Not Severe', 'Severe'];
 
+  //This will change after API integration.
   @override
   Widget build(BuildContext context) {
     return Theme(
@@ -25,7 +31,9 @@ class _SeverityExpansionTileState extends State<SeverityExpansionTile> {
       child: ExpansionTile(
           maintainState: true,
           key: GlobalKey(),
-          title: Text(severityValue, style: Theme.of(context).textTheme.xSmall),
+          title: Text(
+              severityValue == "null" ? StringConstants.kSelect : severityValue,
+              style: Theme.of(context).textTheme.xSmall),
           children: [
             ListView.builder(
                 physics: const BouncingScrollPhysics(),
@@ -41,10 +49,13 @@ class _SeverityExpansionTileState extends State<SeverityExpansionTile> {
                       value: severityValuesList[index],
                       groupValue: severityValue,
                       onChanged: (value) {
-                        setState(() {
-                          value = severityValuesList[index];
-                          severityValue = value;
-                        });
+                        value = severityValuesList[index];
+                        context.read<QualityManagementBloc>().add(
+                            ReportingQADropDown(
+                                siteValue: siteValue,
+                                locationValue: locationValue,
+                                severityValue: value,
+                                impactValue: impactValue));
                       });
                 })
           ]),
