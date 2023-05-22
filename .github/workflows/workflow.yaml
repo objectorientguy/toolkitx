@@ -37,7 +37,7 @@ jobs:
 
   build-android:
     needs: checks
-    uses: ./.github/workflows/build.android.yaml
+    uses: ./.github/workflows/build-android.yaml
 
 
 
