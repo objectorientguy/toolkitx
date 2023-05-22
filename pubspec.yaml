@@ -11,6 +11,7 @@ dependencies:
   dio:
   intl:
   get_it:
+  encrypt:
   equatable:
   open_filex:
   flutter_svg:
