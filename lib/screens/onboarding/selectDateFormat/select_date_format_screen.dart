@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:toolkit/blocs/selectDateFormat/select_date_format_bloc.dart';
-import 'package:toolkit/blocs/selectDateFormat/select_date_format_states.dart';
+import 'package:toolkit/blocs/dateFormat/save_date_format_bloc.dart';
+import 'package:toolkit/blocs/dateFormat/save_date_format_event.dart';
+import 'package:toolkit/blocs/dateFormat/save_date_format_state.dart';
 import 'package:toolkit/configs/app_color.dart';
 import 'package:toolkit/configs/app_theme.dart';
+import 'package:toolkit/screens/onboarding/login/emailAddress/login_screen.dart';
 import 'package:toolkit/screens/onboarding/widgets/custom_card.dart';
-import 'package:toolkit/widgets/custom_snackbar.dart';
 import 'package:toolkit/widgets/primary_button.dart';
-import '../../../blocs/selectDateFormat/select_date_format_events.dart';
 import '../../../configs/app_dimensions.dart';
 import '../../../configs/app_spacing.dart';
 import '../../../data/enums/date_enum.dart';
 import '../../../utils/constants/string_constants.dart';
-import '../login/emailAddress/login_screen.dart';
 import '../../../widgets/generic_app_bar.dart';
 
 class SelectDateFormatScreen extends StatefulWidget {
@@ -25,8 +24,8 @@ class SelectDateFormatScreen extends StatefulWidget {
 }
 
 class _SelectDateFormatScreenState extends State<SelectDateFormatScreen> {
-  String? dateFormatValues;
-  String? values;
+  String dateFormatValues = CustomDateFormat.values.elementAt(0).dateFormat;
+  String values = CustomDateFormat.values.elementAt(0).value;
 
   @override
   Widget build(BuildContext context) {
@@ -34,6 +33,7 @@ class _SelectDateFormatScreenState extends State<SelectDateFormatScreen> {
         appBar: GenericAppBar(
             title: Text(StringConstants.kSelectDateFormat,
                 style: Theme.of(context).textTheme.medium)),
+        // This will be changed after QM gets merged into dev.
         body: SingleChildScrollView(
             physics: const BouncingScrollPhysics(),
             child: Padding(
@@ -72,7 +72,7 @@ class _SelectDateFormatScreenState extends State<SelectDateFormatScreen> {
                                             value = CustomDateFormat.values
                                                 .elementAt(index)
                                                 .dateFormat;
-                                            dateFormatValues = value;
+                                            dateFormatValues = value!;
                                             values = CustomDateFormat.values
                                                 .elementAt(index)
                                                 .value;
@@ -85,23 +85,15 @@ class _SelectDateFormatScreenState extends State<SelectDateFormatScreen> {
                                     height: kDividerHeight);
                               })),
                       const SizedBox(height: mediumSpacing),
-                      BlocListener<DateFormatBloc, DateFormatStates>(
+                      BlocListener<SaveDateFormatBloc, DateFormatSaved>(
                           listener: (context, state) {
-                            if (state is DateFormatLoading) {
-                              const CircularProgressIndicator();
-                            } else if (state is DateFormatLoaded) {
-                              Navigator.pushNamed(
-                                  context, LoginScreen.routeName);
-                            } else if (state is DateFormatValidation) {
-                              showCustomSnackBar(
-                                  context, state.message, StringConstants.kOk);
-                            }
+                            Navigator.pushNamed(context, LoginScreen.routeName);
                           },
                           child: PrimaryButton(
                               onPressed: () {
-                                context.read<DateFormatBloc>().add(
-                                    SelectDateFormat(
-                                        dateFormat: values.toString()));
+                                context.read<SaveDateFormatBloc>().add(
+                                    SaveDateFormatEvent(
+                                        saveDateFormatValue: values));
                               },
                               textValue: StringConstants.kSave))
                     ]))));

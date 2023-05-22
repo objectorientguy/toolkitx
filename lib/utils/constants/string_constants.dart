@@ -87,6 +87,8 @@ abstract class StringConstants {
   static const String kSelectContractor = 'Select Contractor';
   static const String kSite = 'Site';
   static const String kLocation = 'Location';
+  static const String kWorkforce = 'Workforce';
+  static const String kSystemUser = 'System User';
   static const String kReportToAuthorities = 'Report to authorities';
   static const String kSelectSite = 'Select Site';
   static const String kSelectLocation = 'Select Location';

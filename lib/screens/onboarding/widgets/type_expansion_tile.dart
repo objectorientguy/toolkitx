@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:toolkit/configs/app_theme.dart';
+import 'package:toolkit/utils/constants/string_constants.dart';
 
 import '../../../configs/app_color.dart';
 import '../../../configs/app_spacing.dart';
@@ -12,11 +13,13 @@ class UserTypeExpansionTile extends StatefulWidget {
 }
 
 class _UserTypeExpansionTileState extends State<UserTypeExpansionTile> {
-  String typeValue = 'Select';
+  String typeValue =
+      'Select'; // This will be changed after QM gets merged into dev.
   final List userTypeList = [
-    'Workforce',
-    'System User'
-  ]; // This code will be changed after API integration.
+    StringConstants.kWorkforce,
+    StringConstants.kSystemUser
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Theme(

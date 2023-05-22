@@ -56,18 +56,16 @@ class PasswordScreen extends StatelessWidget {
                                         style:
                                             Theme.of(context).textTheme.medium),
                                     const SizedBox(height: smallSpacing),
-                                    const UserTypeExpansionTile(),
-                                    const SizedBox(height: mediumSpacing),
-                                    PrimaryButton(
-                                        onPressed: () {
-                                          Navigator.pushNamed(
-                                              context, RootScreen.routeName);
-                                        },
-                                        textValue: StringConstants.kLogin)
+                                    const UserTypeExpansionTile()
                                   ]))),
                       CustomTextButton(
                           onPressed: () {},
-                          textValue: StringConstants.kGenerateOtp)
+                          textValue: StringConstants.kGenerateOtp),
+                      PrimaryButton(
+                          onPressed: () {
+                            Navigator.pushNamed(context, RootScreen.routeName);
+                          },
+                          textValue: StringConstants.kLogin)
                     ]))));
   }
 }
