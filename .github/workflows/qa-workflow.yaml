@@ -8,7 +8,7 @@ on:
 
 jobs:
   checks:
-    uses: ./.github/workflows/toolkitx-qa-checks.yaml
+    uses: ./.github/workflows/checks.yaml
 
   build-android:
-    uses: ./.github/workflows/toolkitx-qa-build-android.yaml
+    uses: ./.github/workflows/build-android.yaml
