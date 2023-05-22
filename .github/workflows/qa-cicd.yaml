@@ -55,10 +55,6 @@ jobs:
           echo "Rename build number"
           mv build/app/outputs/apk/release/app-release.apk build/app/outputs/apk/release/${{ steps.increment-version.outputs.version }}.apk
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: '16.x'
 
       - name: Firebase App Distribution
         uses: wzieba/Firebase-Distribution-Github-Action@v1
