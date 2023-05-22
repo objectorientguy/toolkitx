@@ -39,21 +39,21 @@ jobs:
     needs: checks
     runs-on: ubuntu-latest
     steps:
-      - uses: ./.github/actions/checkout-code
-      - uses: ./.github/actions/generate-build-number
-      - uses: ./.github/actions/build-android-app
-      - uses: ./.github/actions/rename-build-number
+      - uses: ./.github/workflows/checkout-code
+      - uses: ./.github/workflows/generate-build-number
+      - uses: ./.github/workflows/build-android-app
+      - uses: ./.github/workflows/rename-build-number
 
   distribution:
     needs: build
     runs-on: ubuntu-latest
     steps:
-      - uses: ./.github/actions/checkout-code
-      - uses: ./.github/actions/firebase-app-distribution
+      - uses: ./.github/workflows/checkout-code
+      - uses: ./.github/workflows/firebase-app-distribution
 
   artifact:
     needs: build
     runs-on: ubuntu-latest
     steps:
-      - uses: ./.github/actions/checkout-code
-      - uses: ./.github/actions/upload-apk-artifact
+      - uses: ./.github/workflows/checkout-code
+      - uses: ./.github/workflows/upload-apk-artifact
