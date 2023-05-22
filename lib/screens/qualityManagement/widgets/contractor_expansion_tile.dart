@@ -10,6 +10,7 @@ import '../../../configs/app_color.dart';
 class ContractorExpansionTile extends StatelessWidget {
   final String contractorValue;
   final String reportValue;
+
   ContractorExpansionTile({
     Key? key,
     required this.contractorValue,
@@ -23,6 +24,7 @@ class ContractorExpansionTile extends StatelessWidget {
     'Angles Ltd 1',
     'Beurer GmbH'
   ];
+
   //This will change after API integration.
   @override
   Widget build(BuildContext context) {
