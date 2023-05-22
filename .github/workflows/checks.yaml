@@ -1,4 +1,4 @@
-name: ToolKitX QA Workflow
+name: Checks
 
 on:
   pull_request:
@@ -34,7 +34,3 @@ jobs:
 
       - name: Analyze Static code
         run: flutter analyze .
-
-  build-android:
-    needs: checks
-    uses: ./.github/workflows/build-android.yaml

@@ -1,0 +1,14 @@
+name: ToolKitX QA Workflow
+
+on:
+  pull_request:
+    branches:
+      - dev
+  workflow_dispatch:
+
+jobs:
+  checks:
+    uses: ./.github/workflows/toolkitx-qa-checks.yaml
+
+  build-android:
+    uses: ./.github/workflows/toolkitx-qa-build-android.yaml
