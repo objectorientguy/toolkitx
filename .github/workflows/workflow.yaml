@@ -69,45 +69,6 @@ jobs:
           path: build/app/outputs/apk/release/${{ steps.increment-version.outputs.version }}.apk
 
 
-  build_ios:
-    needs: checks
-    runs-on: macos-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Generate Build Number
-        id: increment-version
-        run: |
-          echo "Generating build number"
-          build_number=$(TZ="IST" date +'%m%d%y%H%M')
-          echo "::set-output name=version::$build_number"
-
-      - name: Build iOS app
-        uses: ./.github/actions/build-ios-app.yaml
-
-      - name: Rename build number (iOS)
-        run: |
-          echo "Rename build number"
-          mv build/ios/archive/Runner.ipa build/ios/archive/${{ steps.increment-version.outputs.version }}.ipa
-
-
-      - name: Upload IPA as artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: ${{ steps.increment-version.outputs.version }}.ipa
-          path: build/ios/archive/Runner.ipa
-
-      - name: Firebase IPA Distribution
-        uses: wzieba/Firebase-Distribution-Github-Action@v1
-        with:
-          appId: ${{ secrets.FIREBASE_APP_ID }}
-          token: ${{ secrets.FIREBASE_TOKEN }}
-          groups: internal-testers
-          file: build/ios/archive/Runner.ipa
-
-
-
 
 
 
