@@ -37,7 +37,8 @@ class CommentsScreen extends StatelessWidget {
                       Text(StringConstants.kUploadPhotos,
                           style: Theme.of(context).textTheme.medium),
                       const SizedBox(height: midTinySpacing),
-                      CustomOutlinedButton(onPressed: () {}),
+                      CustomOutlinedButton(
+                          onPressed: () {}, label: StringConstants.kUpload),
                       const SizedBox(height: largeSpacing),
                       PrimaryButton(
                           onPressed: () {}, textValue: StringConstants.kSubmit)

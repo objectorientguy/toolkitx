@@ -13,7 +13,11 @@ class ImpactExpansionTile extends StatefulWidget {
 
 class _ImpactExpansionTileState extends State<ImpactExpansionTile> {
   String impactValue = StringConstants.kSelect;
-  List impactValuesList = ['Low', 'High', 'Medium'];
+  List impactValuesList = [
+    'Low',
+    'High',
+    'Medium'
+  ]; //This will change after API integration.
 
   @override
   Widget build(BuildContext context) {

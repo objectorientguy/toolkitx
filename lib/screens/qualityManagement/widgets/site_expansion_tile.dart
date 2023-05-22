@@ -18,7 +18,7 @@ class _SiteExpansionTileState extends State<SiteExpansionTile> {
     'Berlin Office',
     'hamburg Control center',
     'Hamburg Office'
-  ];
+  ]; //This will change after API integration.
 
   @override
   Widget build(BuildContext context) {

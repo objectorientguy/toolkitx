@@ -67,18 +67,19 @@ class NewQAReportingScreen extends StatelessWidget {
                       const SizedBox(height: midTinySpacing),
                       const TextFieldWidget(
                           textInputAction: TextInputAction.done,
-                          hintText: StringConstants.kDescription,
-                          maxLength: 6),
+                          hintText: StringConstants.kDescription),
                       const SizedBox(height: midTinySpacing),
                       Text(StringConstants.kUploadPhotos,
                           style: Theme.of(context).textTheme.medium),
                       const SizedBox(height: midTinySpacing),
-                      CustomOutlinedButton(onPressed: () {
-                        showDialog(
-                            context: context,
-                            builder: (context) => UploadAlertDialog(
-                                onCamera: () {}, onDevice: () {}));
-                      })
+                      CustomOutlinedButton(
+                          onPressed: () {
+                            showDialog(
+                                context: context,
+                                builder: (context) => UploadAlertDialog(
+                                    onCamera: () {}, onDevice: () {}));
+                          },
+                          label: StringConstants.kUpload)
                     ]))));
   }
 }

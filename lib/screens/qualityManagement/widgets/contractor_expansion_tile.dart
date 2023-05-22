@@ -20,7 +20,7 @@ class _ContractorExpansionTileState extends State<ContractorExpansionTile> {
     'Acta Marine',
     'Angles Ltd 1',
     'Beurer GmbH'
-  ];
+  ]; //This will change after API integration.
 
   @override
   Widget build(BuildContext context) {

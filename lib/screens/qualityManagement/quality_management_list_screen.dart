@@ -12,8 +12,10 @@ import '../../widgets/generic_app_bar.dart';
 import '../checklist/change_role_screen.dart';
 import '../onboarding/widgets/custom_card.dart';
 
-class QMListScreen extends StatelessWidget {
-  const QMListScreen({Key? key}) : super(key: key);
+class QualityManagementListScreen extends StatelessWidget {
+  static const routeName = 'QualityManagementListScreen';
+
+  const QualityManagementListScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -48,52 +50,57 @@ class QMListScreen extends StatelessWidget {
                       itemBuilder: (context, index) {
                         return CustomCard(
                             child: ListTile(
-                          contentPadding:
-                              const EdgeInsets.all(midTiniestSpacing),
-                          title: Padding(
-                              padding: const EdgeInsets.only(
-                                  bottom: midTiniestSpacing),
-                              child: Row(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text('#RI0148',
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .small
-                                            .copyWith(
-                                                color: AppColor.black,
-                                                fontWeight: FontWeight.w600)),
-                                    Text('CREATED',
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .xxSmall
-                                            .copyWith(color: AppColor.deepBlue))
-                                  ])),
-                          subtitle: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text('Test',
-                                    style: Theme.of(context).textTheme.xSmall),
-                                const SizedBox(height: midTiniestSpacing),
-                                Text('11.05.2023 17.190',
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .xSmall
-                                        .copyWith(color: AppColor.grey)),
-                                const SizedBox(height: midTiniestSpacing),
-                                Text('Berlin Office-Belgium - WTG2',
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .xSmall
-                                        .copyWith(color: AppColor.grey))
-                              ]),
-                          onTap: () {
-                            Navigator.pushNamed(
-                                context, QMDetailsScreen.routeName);
-                          },
-                        ));
+                                contentPadding:
+                                    const EdgeInsets.all(midTiniestSpacing),
+                                title: Padding(
+                                    padding: const EdgeInsets.only(
+                                        bottom: midTiniestSpacing),
+                                    child: Row(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text('#RI0148',
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .small
+                                                  .copyWith(
+                                                      color: AppColor.black,
+                                                      fontWeight:
+                                                          FontWeight.w600)),
+                                          Text('CREATED',
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .xxSmall
+                                                  .copyWith(
+                                                      color: AppColor.deepBlue))
+                                        ])),
+                                subtitle: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text('Test',
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .xSmall),
+                                      const SizedBox(height: midTiniestSpacing),
+                                      Text('11.05.2023 17.190',
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .xSmall
+                                              .copyWith(color: AppColor.grey)),
+                                      const SizedBox(height: midTiniestSpacing),
+                                      Text('Berlin Office-Belgium - WTG2',
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .xSmall
+                                              .copyWith(color: AppColor.grey))
+                                    ]),
+                                onTap: () {
+                                  Navigator.pushNamed(
+                                      context, QMDetailsScreen.routeName);
+                                }));
                       },
                       separatorBuilder: (context, index) {
                         return const SizedBox(height: tinySpacing);

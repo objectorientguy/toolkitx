@@ -42,10 +42,8 @@ class QMFiltersScreen extends StatelessWidget {
               const Text(StringConstants.kBis),
               const SizedBox(width: midTiniestSpacing),
               Expanded(
-                child: DatePickerTextField(
-                  hintText: StringConstants.kSelectDate,
-                ),
-              )
+                  child: DatePickerTextField(
+                      hintText: StringConstants.kSelectDate))
             ]),
             const SizedBox(height: tinySpacing),
             Text(StringConstants.kStatus,

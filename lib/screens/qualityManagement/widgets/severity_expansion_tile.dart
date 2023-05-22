@@ -13,7 +13,10 @@ class SeverityExpansionTile extends StatefulWidget {
 
 class _SeverityExpansionTileState extends State<SeverityExpansionTile> {
   String severityValue = StringConstants.kSelect;
-  List severityValuesList = ['Not Severe', 'Severe'];
+  List severityValuesList = [
+    'Not Severe',
+    'Severe'
+  ]; //This will change after API integration.
 
   @override
   Widget build(BuildContext context) {

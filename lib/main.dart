@@ -6,12 +6,12 @@ import 'package:toolkit/blocs/selectDateFormat/select_date_format_bloc.dart';
 import 'package:toolkit/blocs/wifiConnectivity/wifi_connectivity_bloc.dart';
 import 'package:toolkit/blocs/wifiConnectivity/wifi_connectivity_events.dart';
 import 'package:toolkit/configs/app_theme.dart';
+import 'package:toolkit/screens/onboarding/welcome_screen.dart';
 import 'blocs/home/home_bloc.dart';
 import 'blocs/selectLanguage/select_language_bloc.dart';
 import 'blocs/wifiConnectivity/wifi_connectivity_states.dart';
 import 'di/app_module.dart';
 import 'configs/app_route.dart';
-import 'screens/qualityManagement/quality_management_list_screen.dart';
 
 void main() async {
   await _initApp();
@@ -54,7 +54,7 @@ class MyApp extends StatelessWidget {
               theme: appTheme,
               home: BlocBuilder<WifiConnectivityBloc, WifiConnectivityState>(
                   builder: (context, state) {
-                return const QMListScreen();
+                    return const WelcomeScreen();
               })),
         ));
   }

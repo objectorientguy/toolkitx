@@ -71,12 +71,14 @@ class QMDetailsScreen extends StatelessWidget {
                       const SizedBox(height: tinySpacing),
                       Text(StringConstants.kAttachment,
                           style: Theme.of(context).textTheme.medium),
-                      CustomOutlinedButton(onPressed: () {
-                        showDialog(
-                            context: context,
-                            builder: (context) => UploadAlertDialog(
-                                onCamera: () {}, onDevice: () {}));
-                      }),
+                      CustomOutlinedButton(
+                          onPressed: () {
+                            showDialog(
+                                context: context,
+                                builder: (context) => UploadAlertDialog(
+                                    onCamera: () {}, onDevice: () {}));
+                          },
+                          label: StringConstants.kUpload),
                       Text(StringConstants.kIncidentDetails,
                           style: Theme.of(context).textTheme.medium),
                       const SizedBox(height: tinySpacing),
@@ -85,12 +87,14 @@ class QMDetailsScreen extends StatelessWidget {
                       const SizedBox(height: tinySpacing),
                       Text(StringConstants.kAttachment,
                           style: Theme.of(context).textTheme.medium),
-                      CustomOutlinedButton(onPressed: () {
-                        showDialog(
-                            context: context,
-                            builder: (context) => UploadAlertDialog(
-                                onCamera: () {}, onDevice: () {}));
-                      })
+                      CustomOutlinedButton(
+                          onPressed: () {
+                            showDialog(
+                                context: context,
+                                builder: (context) => UploadAlertDialog(
+                                    onCamera: () {}, onDevice: () {}));
+                          },
+                          label: StringConstants.kUpload)
                     ]))));
   }
 }

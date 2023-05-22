@@ -7,7 +7,10 @@ import 'package:toolkit/screens/onboarding/login/password/password_screen.dart';
 import 'package:toolkit/screens/onboarding/welcome_screen.dart';
 import 'package:toolkit/screens/profile/edit/edit_screen.dart';
 import 'package:toolkit/screens/qualityManagement/filters_screen.dart';
+import 'package:toolkit/screens/qualityManagement/mark_as_resolved_screen.dart';
 import 'package:toolkit/screens/qualityManagement/new_qa_reporting_screen.dart';
+import 'package:toolkit/screens/qualityManagement/quality_management_list_screen.dart';
+import 'package:toolkit/screens/qualityManagement/report_screen.dart';
 import 'package:toolkit/screens/qualityManagement/reporting_screen.dart';
 import '../screens/checklist/change_role_screen.dart';
 import '../screens/incident/category_screen.dart';
@@ -16,7 +19,7 @@ import '../screens/incident/incident_list_screen.dart';
 import '../screens/onboarding/selectDateFormat/select_date_format_screen.dart';
 import '../screens/onboarding/selectLanguage/select_language_screen.dart';
 import '../screens/onboarding/selectTimeZone/select_time_zone_screen.dart';
-import '../screens/qualityManagement/comments_screen.dart';
+import '../screens/qualityManagement/add_comments_screen.dart';
 import '../screens/qualityManagement/details_screen.dart';
 import '../screens/root/root_screen.dart';
 
@@ -63,6 +66,12 @@ class AppRoutes {
         return _materialRoute(const CommentsScreen());
       case QMFiltersScreen.routeName:
         return _materialRoute(const QMFiltersScreen());
+      case QualityManagementListScreen.routeName:
+        return _materialRoute(const QualityManagementListScreen());
+      case ReportScreen.routeName:
+        return _materialRoute(const ReportScreen());
+      case MarkAsResolvedScreen.routeName:
+        return _materialRoute(const MarkAsResolvedScreen());
       default:
         return _materialRoute(const WelcomeScreen());
     }

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:toolkit/configs/app_theme.dart';
-import 'package:toolkit/screens/qualityManagement/comments_screen.dart';
+import 'package:toolkit/screens/qualityManagement/add_comments_screen.dart';
+import 'package:toolkit/screens/qualityManagement/mark_as_resolved_screen.dart';
+import 'package:toolkit/screens/qualityManagement/reporting_screen.dart';
 
 import '../../../configs/app_dimensions.dart';
 import '../../../configs/app_spacing.dart';
@@ -40,9 +42,9 @@ class _QAPopupMenuState extends State<QAPopupMenu> {
     if (value == 0) {
       Navigator.pushNamed(context, CommentsScreen.routeName);
     } else if (value == 3) {
-      Navigator.pushNamed(context, CommentsScreen.routeName);
+      Navigator.pushNamed(context, ReportingScreen.routeName);
     } else if (value == 4) {
-      Navigator.pushNamed(context, CommentsScreen.routeName);
+      Navigator.pushNamed(context, MarkAsResolvedScreen.routeName);
     }
   }
 

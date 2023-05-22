@@ -15,7 +15,7 @@ class ReportAnonymouslyExpansionTile extends StatefulWidget {
 class _ReportAnonymouslyExpansionTileState
     extends State<ReportAnonymouslyExpansionTile> {
   String options = StringConstants.kSelect;
-  List reportList = ['Yes', 'No'];
+  List reportList = ['Yes', 'No']; //This will change after API integration.
 
   @override
   Widget build(BuildContext context) {
