@@ -1,20 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:toolkit/blocs/password/password_bloc.dart';
 import 'package:toolkit/configs/app_theme.dart';
 import 'package:toolkit/utils/constants/string_constants.dart';
 
+import '../../../blocs/password/password_events.dart';
 import '../../../configs/app_color.dart';
 import '../../../configs/app_spacing.dart';
 
-class UserTypeExpansionTile extends StatefulWidget {
-  const UserTypeExpansionTile({Key? key}) : super(key: key);
+class UserTypeExpansionTile extends StatelessWidget {
+  final String typeValue;
 
-  @override
-  State<UserTypeExpansionTile> createState() => _UserTypeExpansionTileState();
-}
-
-class _UserTypeExpansionTileState extends State<UserTypeExpansionTile> {
-  String typeValue =
-      'Select'; // This will be changed after QM gets merged into dev.
+  UserTypeExpansionTile({Key? key, required this.typeValue}) : super(key: key);
   final List userTypeList = [
     StringConstants.kWorkforce,
     StringConstants.kSystemUser
@@ -32,7 +29,8 @@ class _UserTypeExpansionTileState extends State<UserTypeExpansionTile> {
             iconColor: AppColor.deepBlue,
             textColor: AppColor.black,
             key: GlobalKey(),
-            title: Text(typeValue, style: Theme.of(context).textTheme.xSmall),
+            title: Text(typeValue == 'null' ? 'Select' : typeValue,
+                style: Theme.of(context).textTheme.xSmall),
             children: [
               ListView.builder(
                   physics: const BouncingScrollPhysics(),
@@ -48,10 +46,10 @@ class _UserTypeExpansionTileState extends State<UserTypeExpansionTile> {
                         value: userTypeList[index],
                         groupValue: typeValue,
                         onChanged: (value) {
-                          setState(() {
-                            value = userTypeList[index];
-                            typeValue = value;
-                          });
+                          value = userTypeList[index];
+                          context
+                              .read<PasswordBloc>()
+                              .add(UserTypeDropDown(typeValue: value));
                         });
                   })
             ]));

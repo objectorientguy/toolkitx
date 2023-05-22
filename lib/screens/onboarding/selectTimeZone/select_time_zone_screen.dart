@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:toolkit/configs/app_spacing.dart';
 import 'package:toolkit/configs/app_theme.dart';
 import 'package:toolkit/screens/onboarding/widgets/custom_card.dart';
 import 'package:toolkit/utils/constants/string_constants.dart';
 
+import '../../../blocs/dateFormat/date_format_bloc.dart';
+import '../../../blocs/dateFormat/date_format_events.dart';
 import '../../../configs/app_dimensions.dart';
+import '../../../data/enums/date_enum.dart';
 import '../selectDateFormat/select_date_format_screen.dart';
 import '../../../widgets/generic_app_bar.dart';
 
@@ -39,6 +43,16 @@ class SelectTimeZoneScreen extends StatelessWidget {
                                     BorderRadius.circular(kCardRadius)),
                             child: ListTile(
                                 onTap: () {
+                                  context.read<DateFormatBloc>().add(
+                                      DateFormatEvent(
+                                          saveDateFormatValue: CustomDateFormat
+                                              .values
+                                              .elementAt(0)
+                                              .value,
+                                          saveDateFormatString: CustomDateFormat
+                                              .values
+                                              .elementAt(0)
+                                              .dateFormat));
                                   Navigator.pushNamed(context,
                                       SelectDateFormatScreen.routeName);
                                 },
