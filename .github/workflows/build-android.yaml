@@ -3,7 +3,8 @@ on:
 
 jobs:
   build-android:
-    name: QA pipeline
+    name: Build Android
+    needs: checks
     runs-on: ubuntu-latest
     steps:
       - name: Generate Build Number
