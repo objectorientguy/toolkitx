@@ -1,5 +1,10 @@
+name: QA Checks
+
 on:
-  workflow_call:
+  pull_request:
+    branches:
+      - dev
+  workflow_dispatch:
 
 jobs:
   checks:

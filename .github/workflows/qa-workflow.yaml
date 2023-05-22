@@ -1,4 +1,4 @@
-name: QA Workflow
+name: ToolKitX QA Workflow
 
 on:
   pull_request:
@@ -8,7 +8,7 @@ on:
 
 jobs:
   checks:
-    uses: ./.github/workflows/checks.yaml
+    uses: ./.github/workflows/qa-checks.yaml
 
   build-android:
     needs: checks
