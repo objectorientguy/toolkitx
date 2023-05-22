@@ -53,14 +53,8 @@ jobs:
       - name: Rename build number
         run: |
           build_number=${{ steps.increment-version.outputs.version }}
-          version_name=$(date +'%d%m$%y-%H%M%S')
           echo "Rename build number"
-          mv build/app/outputs/apk/release/app-release.apk build/app/outputs/apk/release/$version_name.apk
-
-      - name: Authenticate with Firebase
-        run: |
-          echo "Authenticating with Firebase"
-          firebase login
+          mv build/app/outputs/apk/release/app-release.apk build/app/outputs/apk/release/${{ steps.increment-version.outputs.version }}.apk
 
 
       - name: Firebase App Distribution
@@ -69,14 +63,15 @@ jobs:
           appId: ${{secrets.FIREBASE_APP_ID}}
           serviceCredentialsFileContent: ${{secrets.FIREBASE_TOKEN}}
           groups: internal-testers
-          file: build/app/outputs/apk/release/$version_name.apk
+          file: build/app/outputs/apk/release/${{ steps.increment-version.outputs.version }}.apk
 
 
       - name: Upload APK as artifact
         uses: actions/upload-artifact@v2
         with:
           name: ${{ steps.increment-version.outputs.version }}.apk
-          path: build/app/outputs/apk/release/$version_name.apk
+          path: build/app/outputs/apk/release/${{ steps.increment-version.outputs.version }}.apk
+
 
 
 
