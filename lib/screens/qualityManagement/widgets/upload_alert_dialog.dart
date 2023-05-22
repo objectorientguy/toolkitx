@@ -37,8 +37,8 @@ class UploadAlertDialog extends StatelessWidget {
                           borderRadius:
                               BorderRadius.circular(kAlertDialogRadius),
                           child: Container(
-                              width: kAlertDialogHeight,
-                              height: kAlertDialogHeight,
+                              width: kAlertDialogTogether,
+                              height: kAlertDialogTogether,
                               decoration: BoxDecoration(
                                   color: Colors.grey.shade300,
                                   borderRadius: BorderRadius.circular(
@@ -63,10 +63,10 @@ class UploadAlertDialog extends StatelessWidget {
                       InkWell(
                         onTap: onDevice,
                         child: Container(
-                          width: kAlertDialogWidth,
-                          height: kAlertDialogHeight,
+                          width: kAlertDialogTogether,
+                          height: kAlertDialogTogether,
                           decoration: BoxDecoration(
-                              color: Colors.grey.shade300,
+                              color: AppColor.ghostWhite,
                               borderRadius:
                                   BorderRadius.circular(kAlertDialogRadius)),
                           child: const Center(

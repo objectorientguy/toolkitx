@@ -20,7 +20,7 @@ class EditOptionsSection extends StatelessWidget {
         },
         child: Column(children: [
           Image.asset('${ProfileUtil.iconPath}' 'pen.png',
-              height: kProfileImageHeight, width: kProfileImageWidth),
+              height: kProfileImageTogether, width: kProfileImageTogether),
           const SizedBox(height: tiniestSpacing),
           Text(StringConstants.kEditProfile,
               textAlign: TextAlign.center,
@@ -29,7 +29,7 @@ class EditOptionsSection extends StatelessWidget {
       ),
       Column(children: [
         Image.asset('${ProfileUtil.iconPath}' 'exchange.png',
-            height: kProfileImageHeight, width: kProfileImageWidth),
+            height: kProfileImageTogether, width: kProfileImageTogether),
         const SizedBox(height: tiniestSpacing),
         Text(StringConstants.kChangeClient,
             textAlign: TextAlign.center,
@@ -50,7 +50,7 @@ class EditOptionsSection extends StatelessWidget {
           },
           child: Column(children: [
             Image.asset('${ProfileUtil.iconPath}' 'logout.png',
-                height: kProfileImageHeight, width: kProfileImageWidth),
+                height: kProfileImageTogether, width: kProfileImageTogether),
             const SizedBox(height: tiniestSpacing),
             Text(StringConstants.kLogout,
                 textAlign: TextAlign.center,

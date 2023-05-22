@@ -15,7 +15,7 @@ class TextFieldWidget extends StatelessWidget {
   const TextFieldWidget(
       {Key? key,
       this.textInputAction,
-      this.maxLength = 6,
+      this.maxLength,
       this.textInputType,
       this.textFieldController,
       this.value,

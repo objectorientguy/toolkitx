@@ -61,8 +61,8 @@ class ProfileOptions extends StatelessWidget {
                             ProfileUtil.profileOptionsList()
                                 .elementAt(index)
                                 .image,
-                            height: kProfileImageHeight,
-                            width: kProfileImageWidth),
+                            height: kProfileImageTogether,
+                            width: kProfileImageTogether),
                         title: Text(
                             ProfileUtil.profileOptionsList()
                                 .elementAt(index)

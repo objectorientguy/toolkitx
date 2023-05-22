@@ -8,10 +8,10 @@ import 'package:toolkit/widgets/primary_button.dart';
 import '../../configs/app_spacing.dart';
 import '../onboarding/widgets/text_field.dart';
 
-class CommentsScreen extends StatelessWidget {
+class AddCommentsScreen extends StatelessWidget {
   static const routeName = 'CommentsScreen';
 
-  const CommentsScreen({Key? key}) : super(key: key);
+  const AddCommentsScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

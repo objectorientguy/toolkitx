@@ -8,10 +8,10 @@ import 'widgets/custom_outlined_button.dart';
 import 'widgets/pop_up_menu.dart';
 import 'widgets/upload_alert_dialog.dart';
 
-class QMDetailsScreen extends StatelessWidget {
+class QualityManagementDetailsScreen extends StatelessWidget {
   static const routeName = 'QMDetailsScreen';
 
-  const QMDetailsScreen({Key? key}) : super(key: key);
+  const QualityManagementDetailsScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

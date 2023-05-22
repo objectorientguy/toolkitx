@@ -3,8 +3,6 @@ import 'package:toolkit/configs/app_spacing.dart';
 import 'package:toolkit/configs/app_theme.dart';
 import 'package:toolkit/utils/constants/string_constants.dart';
 import 'package:toolkit/widgets/primary_button.dart';
-import '../../../configs/app_color.dart';
-import '../../../configs/app_dimensions.dart';
 import '../../../widgets/generic_app_bar.dart';
 import '../../onboarding/widgets/text_field.dart';
 import '../widgets/blood_group_expansion_tile.dart';
@@ -19,8 +17,6 @@ class EditScreen extends StatelessWidget {
     return Scaffold(
         appBar: const GenericAppBar(),
         bottomNavigationBar: BottomAppBar(
-            color: AppColor.white,
-            elevation: kZeroElevation,
             padding: const EdgeInsets.all(leftRightMargin),
             child: PrimaryButton(
                 onPressed: () {}, textValue: StringConstants.kSave)),

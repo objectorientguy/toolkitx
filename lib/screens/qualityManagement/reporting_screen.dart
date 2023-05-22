@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:toolkit/configs/app_theme.dart';
 import 'package:toolkit/screens/qualityManagement/widgets/site_expansion_tile.dart';
-
-import '../../configs/app_color.dart';
-import '../../configs/app_dimensions.dart';
 import '../../configs/app_spacing.dart';
 import '../../utils/constants/string_constants.dart';
 import '../../widgets/generic_app_bar.dart';
@@ -22,8 +19,6 @@ class ReportingScreen extends StatelessWidget {
     return Scaffold(
         appBar: const GenericAppBar(title: StringConstants.kNewQAReporting),
         bottomNavigationBar: BottomAppBar(
-            color: AppColor.white,
-            elevation: kZeroElevation,
             padding: const EdgeInsets.all(leftRightMargin),
             child: PrimaryButton(
                 onPressed: () {}, textValue: StringConstants.kSave)),

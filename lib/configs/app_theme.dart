@@ -26,7 +26,7 @@ FloatingActionButtonThemeData floatingActionButtonThemeData =
 ElevatedButtonThemeData elevatedButtonThemeData = ElevatedButtonThemeData(
     style: ElevatedButton.styleFrom(
         backgroundColor: AppColor.deepBlue,
-        minimumSize: const Size(double.maxFinite, 45.0),
+        minimumSize: const Size(double.maxFinite, kElevatedButtonHeight),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(kCardRadius),
         )));
@@ -49,21 +49,24 @@ OutlinedButtonThemeData outlinedButtonThemeData = OutlinedButtonThemeData(
 ));
 TextButtonThemeData textButtonTheme =
     TextButtonThemeData(style: TextButton.styleFrom(padding: EdgeInsets.zero));
-const ColorScheme colorScheme = ColorScheme.light(primary: AppColor.deepBlue);
+const ColorScheme colorScheme =
+    ColorScheme.light(primary: AppColor.deepBlue, background: AppColor.white);
 
 BottomNavigationBarThemeData bottomNavigationBarTheme =
-    const BottomNavigationBarThemeData(
-        backgroundColor: AppColor.white, elevation: 0);
+    BottomNavigationBarThemeData(
+        backgroundColor: colorScheme.background, elevation: kZeroElevation);
 
 BottomAppBarTheme? bottomAppBarTheme = const BottomAppBarTheme(
     color: AppColor.white,
-    elevation: 0,
+    elevation: kZeroElevation,
     padding: EdgeInsets.all(leftRightMargin));
 
 ListTileThemeData listTileTheme = const ListTileThemeData(dense: true);
 
 AppBarTheme appBarTheme = AppBarTheme(
-    elevation: 0, backgroundColor: AppColor.blueGrey, iconTheme: iconThemeData);
+    elevation: kZeroElevation,
+    backgroundColor: AppColor.blueGrey,
+    iconTheme: iconThemeData);
 
 IconThemeData iconThemeData = const IconThemeData(color: AppColor.black);
 

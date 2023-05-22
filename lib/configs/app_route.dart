@@ -8,7 +8,7 @@ import 'package:toolkit/screens/onboarding/welcome_screen.dart';
 import 'package:toolkit/screens/profile/edit/edit_screen.dart';
 import 'package:toolkit/screens/qualityManagement/filters_screen.dart';
 import 'package:toolkit/screens/qualityManagement/mark_as_resolved_screen.dart';
-import 'package:toolkit/screens/qualityManagement/new_qa_reporting_screen.dart';
+import 'package:toolkit/screens/qualityManagement/add_quality_management_reporting_screen.dart';
 import 'package:toolkit/screens/qualityManagement/quality_management_list_screen.dart';
 import 'package:toolkit/screens/qualityManagement/report_screen.dart';
 import 'package:toolkit/screens/qualityManagement/reporting_screen.dart';
@@ -56,16 +56,16 @@ class AppRoutes {
         return _materialRoute(const FilterScreen());
       case CategoryScreen.routeName:
         return _materialRoute(const CategoryScreen());
-      case QMDetailsScreen.routeName:
-        return _materialRoute(const QMDetailsScreen());
-      case NewQAReportingScreen.routeName:
-        return _materialRoute(const NewQAReportingScreen());
+      case QualityManagementDetailsScreen.routeName:
+        return _materialRoute(const QualityManagementDetailsScreen());
+      case AddQualityManagementReportingScreen.routeName:
+        return _materialRoute(const AddQualityManagementReportingScreen());
       case ReportingScreen.routeName:
         return _materialRoute(const ReportingScreen());
-      case CommentsScreen.routeName:
-        return _materialRoute(const CommentsScreen());
-      case QMFiltersScreen.routeName:
-        return _materialRoute(const QMFiltersScreen());
+      case AddCommentsScreen.routeName:
+        return _materialRoute(const AddCommentsScreen());
+      case QualityManagementFiltersScreen.routeName:
+        return _materialRoute(const QualityManagementFiltersScreen());
       case QualityManagementListScreen.routeName:
         return _materialRoute(const QualityManagementListScreen());
       case ReportScreen.routeName:

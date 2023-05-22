@@ -2,9 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:toolkit/configs/app_theme.dart';
 import 'package:toolkit/screens/incident/widgets/time_picker.dart';
 import 'package:toolkit/screens/qualityManagement/reporting_screen.dart';
-
-import '../../configs/app_color.dart';
-import '../../configs/app_dimensions.dart';
 import '../../configs/app_spacing.dart';
 import '../../utils/constants/string_constants.dart';
 import '../../widgets/generic_app_bar.dart';
@@ -16,18 +13,16 @@ import 'widgets/custom_outlined_button.dart';
 import 'widgets/report_anonymously_expansion_tile.dart';
 import 'widgets/upload_alert_dialog.dart';
 
-class NewQAReportingScreen extends StatelessWidget {
-  static const routeName = 'NewQAReportingScreen';
+class AddQualityManagementReportingScreen extends StatelessWidget {
+  static const routeName = 'AddQualityManagementReportingScreen';
 
-  const NewQAReportingScreen({Key? key}) : super(key: key);
+  const AddQualityManagementReportingScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: const GenericAppBar(title: StringConstants.kNewQAReporting),
         bottomNavigationBar: BottomAppBar(
-            color: AppColor.white,
-            elevation: kZeroElevation,
             padding: const EdgeInsets.all(leftRightMargin),
             child: PrimaryButton(
                 onPressed: () {
@@ -67,7 +62,8 @@ class NewQAReportingScreen extends StatelessWidget {
                       const SizedBox(height: midTinySpacing),
                       const TextFieldWidget(
                           textInputAction: TextInputAction.done,
-                          hintText: StringConstants.kDescription),
+                          hintText: StringConstants.kDescription,
+                          maxLength: 6),
                       const SizedBox(height: midTinySpacing),
                       Text(StringConstants.kUploadPhotos,
                           style: Theme.of(context).textTheme.medium),

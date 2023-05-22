@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:toolkit/configs/app_dimensions.dart';
 
 class CustomOutlinedButton extends StatelessWidget {
+  // This file will get removed after merging dev.
   final void Function() onPressed;
   final String label;
 

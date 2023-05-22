@@ -40,7 +40,7 @@ class _QAPopupMenuState extends State<QAPopupMenu> {
     });
 
     if (value == 0) {
-      Navigator.pushNamed(context, CommentsScreen.routeName);
+      Navigator.pushNamed(context, AddCommentsScreen.routeName);
     } else if (value == 3) {
       Navigator.pushNamed(context, ReportingScreen.routeName);
     } else if (value == 4) {

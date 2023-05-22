@@ -54,7 +54,7 @@ class MyApp extends StatelessWidget {
               theme: appTheme,
               home: BlocBuilder<WifiConnectivityBloc, WifiConnectivityState>(
                   builder: (context, state) {
-                    return const WelcomeScreen();
+                return const WelcomeScreen();
               })),
         ));
   }

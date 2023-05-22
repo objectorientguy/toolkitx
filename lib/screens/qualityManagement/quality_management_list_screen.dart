@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:toolkit/configs/app_theme.dart';
 import 'package:toolkit/screens/qualityManagement/details_screen.dart';
 import 'package:toolkit/screens/qualityManagement/filters_screen.dart';
-import 'package:toolkit/screens/qualityManagement/new_qa_reporting_screen.dart';
+import 'package:toolkit/screens/qualityManagement/add_quality_management_reporting_screen.dart';
 import 'package:toolkit/widgets/custom_icon_button_row.dart';
 
 import '../../configs/app_color.dart';
@@ -23,7 +23,8 @@ class QualityManagementListScreen extends StatelessWidget {
         appBar: const GenericAppBar(title: StringConstants.kQAReporting),
         floatingActionButton: FloatingActionButton(
             onPressed: () {
-              Navigator.pushNamed(context, NewQAReportingScreen.routeName);
+              Navigator.pushNamed(
+                  context, AddQualityManagementReportingScreen.routeName);
             },
             child: const Icon(Icons.add)),
         body: Padding(
@@ -35,7 +36,8 @@ class QualityManagementListScreen extends StatelessWidget {
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               CustomIconButtonRow(
                   primaryOnPress: () {
-                    Navigator.pushNamed(context, QMFiltersScreen.routeName);
+                    Navigator.pushNamed(
+                        context, QualityManagementFiltersScreen.routeName);
                   },
                   secondaryOnPress: () {
                     Navigator.pushNamed(context, ChangeRoleScreen.routeName);
@@ -98,8 +100,8 @@ class QualityManagementListScreen extends StatelessWidget {
                                               .copyWith(color: AppColor.grey))
                                     ]),
                                 onTap: () {
-                                  Navigator.pushNamed(
-                                      context, QMDetailsScreen.routeName);
+                                  Navigator.pushNamed(context,
+                                      QualityManagementDetailsScreen.routeName);
                                 }));
                       },
                       separatorBuilder: (context, index) {
