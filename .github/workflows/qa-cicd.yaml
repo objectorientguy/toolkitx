@@ -57,6 +57,11 @@ jobs:
           echo "Rename build number"
           mv build/app/outputs/apk/release/app-release.apk build/app/outputs/apk/release/$version_name.apk
 
+      - name: Authenticate with Firebase
+        run: |
+          echo "Authenticating with Firebase"
+          firebase login
+
 
       - name: Firebase App Distribution
         uses: wzieba/Firebase-Distribution-Github-Action@v1
