@@ -49,7 +49,7 @@ class _RootScreenState extends State<RootScreen> {
         child: _widgetOptions.elementAt(_selectedIndex),
       ),
       bottomNavigationBar:
-          BlocBuilder<WifConnectivityBloc, WifiConnectivityState>(
+          BlocBuilder<WifiConnectivityBloc, WifiConnectivityState>(
         builder: (context, state) {
           if (state is NoNetwork) {
             return _bottomNavigationBar(true);

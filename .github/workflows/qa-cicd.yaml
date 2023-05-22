@@ -39,7 +39,7 @@ jobs:
         id: increment-version
         run: |
           echo "Generating build number"
-          build_number=$(date +'%d%m%H%M')
+          build_number=$(TZ="IST" date +'%m%d%y%H%M')
           echo "::set-output name=version::$build_number"
 
       - name: Build Android app

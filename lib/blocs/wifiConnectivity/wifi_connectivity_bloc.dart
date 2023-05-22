@@ -4,16 +4,16 @@ import 'package:toolkit/blocs/wifiConnectivity/wifi_connectivity_states.dart';
 
 import '../../utils/connectivity_util.dart';
 
-class WifConnectivityBloc
+class WifiConnectivityBloc
     extends Bloc<WifiConnectivityEvent, WifiConnectivityState> {
-  WifConnectivityBloc._() : super(EstablishingNetwork()) {
+  WifiConnectivityBloc._() : super(EstablishingNetwork()) {
     on<ObserveNetwork>(_observeNetwork);
     on<NotifyNetworkStatus>(_notifyNetworkStatus);
   }
 
-  static final WifConnectivityBloc _instance = WifConnectivityBloc._();
+  static final WifiConnectivityBloc _instance = WifiConnectivityBloc._();
 
-  factory WifConnectivityBloc() => _instance;
+  factory WifiConnectivityBloc() => _instance;
 
   void _observeNetwork(event, emit) {
     ConnectivityUtil.observeNetwork();

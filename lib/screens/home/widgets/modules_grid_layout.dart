@@ -14,7 +14,7 @@ class ModulesGridLayout extends StatelessWidget {
     return MediaQuery.removePadding(
       context: context,
       removeTop: true,
-      child: BlocBuilder<WifConnectivityBloc, WifiConnectivityState>(
+      child: BlocBuilder<WifiConnectivityBloc, WifiConnectivityState>(
           builder: (context, state) {
         if (state is NoNetwork) {
           return const OffLineModules();

@@ -7,9 +7,9 @@ class ConnectivityUtil {
   static void observeNetwork() {
     Connectivity().onConnectivityChanged.listen((ConnectivityResult result) {
       if (result == ConnectivityResult.none) {
-        WifConnectivityBloc().add(NotifyNetworkStatus());
+        WifiConnectivityBloc().add(NotifyNetworkStatus());
       } else {
-        WifConnectivityBloc().add(NotifyNetworkStatus(isConnected: true));
+        WifiConnectivityBloc().add(NotifyNetworkStatus(isConnected: true));
       }
     });
   }
