@@ -1,0 +1,5 @@
+name: Checkout code
+uses: actions/checkout@v2
+with:
+  ref: ${{ github.event.pull_request.head.sha }}
+  fetch-depth: 0
