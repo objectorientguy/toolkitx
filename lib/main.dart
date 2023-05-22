@@ -39,7 +39,7 @@ class MyApp extends StatelessWidget {
           BlocProvider(
               lazy: false,
               create: (context) =>
-                  WifiConnectivityBloc()..add(ObserveNetwork())),
+                  WifConnectivityBloc()..add(ObserveNetwork())),
           BlocProvider(lazy: false, create: (context) => LanguageBloc()),
           BlocProvider(lazy: true, create: (context) => DateFormatBloc()),
           BlocProvider(lazy: false, create: (context) => HomeBloc())
@@ -52,7 +52,7 @@ class MyApp extends StatelessWidget {
               debugShowCheckedModeBanner: false,
               onGenerateRoute: AppRoutes.onGenerateRoutes,
               theme: appTheme,
-              home: BlocBuilder<WifiConnectivityBloc, WifiConnectivityState>(
+              home: BlocBuilder<WifConnectivityBloc, WifiConnectivityState>(
                   builder: (context, state) {
                 return const WelcomeScreen();
               })),
