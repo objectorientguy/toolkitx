@@ -39,7 +39,7 @@ jobs:
         id: increment-version
         run: |
           echo "Generating build number"
-          build_number=$(TZ="IST" date +'%m%d%y%H%M')
+          build_number=$(date +'%m%d%y%H%M')-$GITHUB_RUN_NUMBER
           echo "::set-output name=version::$build_number"
 
       - name: Build Android app
