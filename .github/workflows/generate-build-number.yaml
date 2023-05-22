@@ -1,6 +1,0 @@
-name: Generate Build Number
-id: increment-version
-run: |
-  echo "Generating build number"
-  build_number=$(TZ="IST" date +'%m%d%y%H%M')
-  echo "::set-output name=version::$build_number"
