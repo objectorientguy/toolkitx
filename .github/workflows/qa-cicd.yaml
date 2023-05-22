@@ -42,7 +42,7 @@ jobs:
         id: increment-version
         run: |
           echo "Generating build number"
-          build_number="$(date +{{ '%d%m' }}.${{ '%H%M%S' }})"
+          build_number=$(date +'%d%m.%H%M%S')
           echo "::set-output name=version::$build_number"
 
       - name: Build Android app
