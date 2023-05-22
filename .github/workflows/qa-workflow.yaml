@@ -1,4 +1,4 @@
-name: ToolKitX QA Workflow
+name: QA Workflow
 
 on:
   pull_request:
