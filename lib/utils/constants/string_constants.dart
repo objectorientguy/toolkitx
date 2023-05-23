@@ -90,4 +90,23 @@ abstract class StringConstants {
   static const String kReportToAuthorities = 'Report to authorities';
   static const String kSelectSite = 'Select Site';
   static const String kSelectLocation = 'Select Location';
+  static const String kOtherSite = 'Other Site';
+  static const String kOtherLocation = 'Other Location';
+  static const String kAuthorityReportedTo =
+      'Which Authority was it reported to?';
+  static const String kAuthorityName = 'Authority Name';
+  static const String kReportedWhen = 'When was it reported?';
+  static const String kSelectHealthAndSafety =
+      'Select Health and safety essential most relevant to the H...';
+  static const String kImmediateActionTaken =
+      'What immediate action did you take?';
+  static const String kAddInjuredPerson = 'Add Injured Person';
+  static const String kAddInjuredPersonDetails = 'Add Injured Person Details';
+  static const String kInjuries = 'Injuries';
+  static const String kNameOfInjuredPerson = 'Name of injured person';
+  static const String kName = 'Name';
+  static const String kCompanyName = 'Company Name';
+  static const String kCompanyOfInjuredPerson = 'Company of injured person';
+  static const String kNatureOfInjury = 'Nature of injury';
+  static const String kSelect = 'Select';
 }

@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:toolkit/blocs/incident/incident_bloc.dart';
+import 'package:toolkit/blocs/incident/incident_events.dart';
 import 'package:toolkit/configs/app_spacing.dart';
 import 'package:toolkit/configs/app_theme.dart';
 
@@ -7,7 +10,7 @@ import '../../utils/constants/string_constants.dart';
 import '../../widgets/custom_icon_button_row.dart';
 import '../../widgets/generic_app_bar.dart';
 import '../onboarding/widgets/custom_card.dart';
-import 'category_screen.dart';
+import 'report_incident/category_screen.dart';
 import 'filter_screen.dart';
 
 class IncidentListScreen extends StatelessWidget {
@@ -34,6 +37,8 @@ class IncidentListScreen extends StatelessWidget {
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           CustomIconButtonRow(
               primaryOnPress: () {
+                context.read<IncidentBloc>().add(FilterStatusChanged(
+                    selectedStatus: const [], listIndex: null));
                 Navigator.pushNamed(context, FilterScreen.routeName);
               },
               secondaryOnPress: () {},
@@ -47,6 +52,7 @@ class IncidentListScreen extends StatelessWidget {
                   itemBuilder: (context, index) {
                     return CustomCard(
                         child: ListTile(
+                            onTap: () {},
                             contentPadding:
                                 const EdgeInsets.all(midTiniestSpacing),
                             title: Padding(

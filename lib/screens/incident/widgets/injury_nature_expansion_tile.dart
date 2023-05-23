@@ -1,19 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:toolkit/blocs/incident/incident_bloc.dart';
-import 'package:toolkit/blocs/incident/incident_events.dart';
 import 'package:toolkit/configs/app_theme.dart';
 import 'package:toolkit/utils/constants/string_constants.dart';
 
+import '../../../blocs/report_new_incident/report_new_incident_bloc.dart';
+import '../../../blocs/report_new_incident/report_new_incident_events.dart';
 import '../../../configs/app_color.dart';
 import '../../../configs/app_spacing.dart';
 
-class FilterStatusExpansionTile extends StatelessWidget {
-  final List selectedStatus;
-  final List status;
-
-  const FilterStatusExpansionTile(
-      {Key? key, required this.selectedStatus, required this.status})
+class InjuryNatureExpansionTile extends StatelessWidget {
+  final List injuryNatureSelected;
+  final List selectedInjuredArea;
+  final List injuryNature;
+  const InjuryNatureExpansionTile(
+      {Key? key,
+      required this.injuryNatureSelected,
+      required this.selectedInjuredArea,
+      required this.injuryNature})
       : super(key: key);
 
   @override
@@ -28,9 +31,9 @@ class FilterStatusExpansionTile extends StatelessWidget {
             iconColor: AppColor.deepBlue,
             textColor: AppColor.black,
             title: Text(
-                (selectedStatus.isEmpty)
-                    ? StringConstants.kSelectStatus
-                    : selectedStatus
+                (injuryNatureSelected.isEmpty)
+                    ? StringConstants.kSelect
+                    : injuryNatureSelected
                         .toString()
                         .replaceAll('[', '')
                         .replaceAll(']', ''),
@@ -39,19 +42,23 @@ class FilterStatusExpansionTile extends StatelessWidget {
               ListView.builder(
                   physics: const BouncingScrollPhysics(),
                   shrinkWrap: true,
-                  itemCount: status.length,
+                  itemCount: injuryNature.length,
                   itemBuilder: (BuildContext context, int index) {
                     return CheckboxListTile(
                         checkColor: AppColor.white,
                         activeColor: AppColor.deepBlue,
                         contentPadding: EdgeInsets.zero,
-                        value: selectedStatus.contains(status[index]),
-                        title: Text(status[index]),
+                        value:
+                            injuryNatureSelected.contains(injuryNature[index]),
+                        title: Text(injuryNature[index]),
                         controlAffinity: ListTileControlAffinity.trailing,
                         onChanged: (isChecked) {
-                          context.read<IncidentBloc>().add(FilterStatusChanged(
-                              selectedStatus: selectedStatus,
-                              listIndex: index));
+                          context.read<ReportIncidentBloc>().add(
+                              SelectInjuryMultiSelect(
+                                  selectedInjuryNature: injuryNatureSelected,
+                                  natureIndex: index,
+                                  selectedInjuredArea: selectedInjuredArea,
+                                  areaIndex: null));
                         });
                   })
             ]));
