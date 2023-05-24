@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:toolkit/configs/app_spacing.dart';
 import 'package:toolkit/configs/app_theme.dart';
-import 'package:toolkit/screens/checklist/status_screen.dart';
+import 'package:toolkit/screens/checklist/systemUser/status_screen.dart';
 import 'package:toolkit/screens/onboarding/widgets/custom_card.dart';
 import 'package:toolkit/widgets/generic_app_bar.dart';
 
-import '../../configs/app_color.dart';
+import '../../../configs/app_color.dart';
 
 class DetailsScreen extends StatelessWidget {
   static const routeName = 'DetailsScreen';

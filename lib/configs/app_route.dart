@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:toolkit/screens/checklist/checklist_list_screen.dart';
-import 'package:toolkit/screens/checklist/details_screen.dart';
-import 'package:toolkit/screens/checklist/filters_screen.dart';
+import 'package:toolkit/screens/checklist/systemUser/checklist_list_screen.dart';
+import 'package:toolkit/screens/checklist/systemUser/details_screen.dart';
+import 'package:toolkit/screens/checklist/systemUser/filters_screen.dart';
 import 'package:toolkit/screens/onboarding/login/emailAddress/login_screen.dart';
 import 'package:toolkit/screens/onboarding/login/password/password_screen.dart';
 import 'package:toolkit/screens/onboarding/welcome_screen.dart';

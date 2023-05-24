@@ -3,14 +3,14 @@ import 'package:toolkit/configs/app_dimensions.dart';
 import 'package:toolkit/configs/app_spacing.dart';
 import 'package:toolkit/configs/app_theme.dart';
 import 'package:toolkit/screens/checklist/change_role_screen.dart';
-import 'package:toolkit/screens/checklist/details_screen.dart';
-import 'package:toolkit/screens/checklist/filters_screen.dart';
+import 'package:toolkit/screens/checklist/systemUser/details_screen.dart';
+import 'package:toolkit/screens/checklist/systemUser/filters_screen.dart';
 import 'package:toolkit/screens/onboarding/widgets/custom_card.dart';
 import 'package:toolkit/utils/constants/string_constants.dart';
 import 'package:toolkit/widgets/generic_app_bar.dart';
 
-import '../../configs/app_color.dart';
-import 'widgets/details_label_section.dart';
+import '../../../configs/app_color.dart';
+import '../widgets/details_label_section.dart';
 
 class ChecklistScreen extends StatelessWidget {
   static const routeName = 'ChecklistScreen';
