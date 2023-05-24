@@ -7,12 +7,12 @@ import 'package:toolkit/blocs/selectDateFormat/select_date_format_bloc.dart';
 import 'package:toolkit/blocs/wifiConnectivity/wifi_connectivity_bloc.dart';
 import 'package:toolkit/blocs/wifiConnectivity/wifi_connectivity_events.dart';
 import 'package:toolkit/configs/app_theme.dart';
-import 'package:toolkit/screens/onboarding/welcome_screen.dart';
 import 'blocs/home/home_bloc.dart';
 import 'blocs/selectLanguage/select_language_bloc.dart';
 import 'blocs/wifiConnectivity/wifi_connectivity_states.dart';
 import 'di/app_module.dart';
 import 'configs/app_route.dart';
+import 'screens/onboarding/welcome_screen.dart';
 
 void main() async {
   await _initApp();
@@ -48,17 +48,16 @@ class MyApp extends StatelessWidget {
               lazy: false, create: (context) => QualityManagementBloc()),
         ],
         child: GestureDetector(
-          onTap: () {
-            FocusManager.instance.primaryFocus?.unfocus();
-          },
-          child: MaterialApp(
-              debugShowCheckedModeBanner: false,
-              onGenerateRoute: AppRoutes.onGenerateRoutes,
-              theme: appTheme,
-              home: BlocBuilder<WifiConnectivityBloc, WifiConnectivityState>(
-                  builder: (context, state) {
-                return const WelcomeScreen();
-              })),
-        ));
+            onTap: () {
+              FocusManager.instance.primaryFocus?.unfocus();
+            },
+            child: MaterialApp(
+                debugShowCheckedModeBanner: false,
+                onGenerateRoute: AppRoutes.onGenerateRoutes,
+                theme: appTheme,
+                home: BlocBuilder<WifiConnectivityBloc, WifiConnectivityState>(
+                    builder: (context, state) {
+                  return const WelcomeScreen();
+                }))));
   }
 }

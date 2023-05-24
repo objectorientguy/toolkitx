@@ -40,7 +40,7 @@ class AddQualityManagementReportingScreen extends StatelessWidget {
                 textValue: StringConstants.kNext)),
         body: BlocBuilder<QualityManagementBloc, QualityManagementSates>(
             builder: (context, state) {
-          if (state is ChangeReportDropDownData) {
+          if (state is ChangeReportDropDownLoaded) {
             return SingleChildScrollView(
                 physics: const BouncingScrollPhysics(),
                 child: Padding(

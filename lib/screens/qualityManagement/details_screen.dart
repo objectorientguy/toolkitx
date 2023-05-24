@@ -3,8 +3,8 @@ import 'package:toolkit/configs/app_spacing.dart';
 import 'package:toolkit/configs/app_theme.dart';
 import 'package:toolkit/utils/constants/string_constants.dart';
 import 'package:toolkit/widgets/generic_app_bar.dart';
+import 'package:toolkit/widgets/secondary_button.dart';
 import '../../configs/app_color.dart';
-import 'widgets/custom_outlined_button.dart';
 import 'widgets/pop_up_menu.dart';
 import 'widgets/upload_alert_dialog.dart';
 
@@ -17,7 +17,8 @@ class QualityManagementDetailsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: const GenericAppBar(
-            title: StringConstants.kDetails, actions: [QAPopupMenu()]),
+            title: StringConstants.kDetails,
+            actions: [CustomPopUpMenuButton()]),
         body: Padding(
             padding: const EdgeInsets.only(
                 left: leftRightMargin,
@@ -71,14 +72,14 @@ class QualityManagementDetailsScreen extends StatelessWidget {
                       const SizedBox(height: tinySpacing),
                       Text(StringConstants.kAttachment,
                           style: Theme.of(context).textTheme.medium),
-                      CustomOutlinedButton(
+                      SecondaryButton(
                           onPressed: () {
                             showDialog(
                                 context: context,
                                 builder: (context) => UploadAlertDialog(
                                     onCamera: () {}, onDevice: () {}));
                           },
-                          label: StringConstants.kUpload),
+                          textValue: StringConstants.kUpload),
                       Text(StringConstants.kIncidentDetails,
                           style: Theme.of(context).textTheme.medium),
                       const SizedBox(height: tinySpacing),
@@ -87,14 +88,14 @@ class QualityManagementDetailsScreen extends StatelessWidget {
                       const SizedBox(height: tinySpacing),
                       Text(StringConstants.kAttachment,
                           style: Theme.of(context).textTheme.medium),
-                      CustomOutlinedButton(
+                      SecondaryButton(
                           onPressed: () {
                             showDialog(
                                 context: context,
                                 builder: (context) => UploadAlertDialog(
                                     onCamera: () {}, onDevice: () {}));
                           },
-                          label: StringConstants.kUpload)
+                          textValue: StringConstants.kUpload)
                     ]))));
   }
 }

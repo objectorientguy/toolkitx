@@ -3,21 +3,19 @@ import 'package:toolkit/configs/app_theme.dart';
 import 'package:toolkit/screens/qualityManagement/add_comments_screen.dart';
 import 'package:toolkit/screens/qualityManagement/mark_as_resolved_screen.dart';
 import 'package:toolkit/screens/qualityManagement/reporting_screen.dart';
-
 import '../../../configs/app_dimensions.dart';
 import '../../../configs/app_spacing.dart';
 
-class QAPopupMenu extends StatefulWidget {
-  const QAPopupMenu({Key? key}) : super(key: key);
+class CustomPopUpMenuButton extends StatefulWidget {
+  const CustomPopUpMenuButton({Key? key}) : super(key: key);
 
   @override
-  State<QAPopupMenu> createState() => _QAPopupMenuState();
+  State<CustomPopUpMenuButton> createState() => _CustomPopUpMenuButtonState();
 }
 
-class _QAPopupMenuState extends State<QAPopupMenu> {
-  int popupMenuItemIndex = 0;
-
-  // This entire file will get refactored after API integration.
+class _CustomPopUpMenuButtonState extends State<CustomPopUpMenuButton> {
+  int popupMenuItemIndex =
+      0; // This entire file will get refactored after API integration.
   List popUpMenuItems = [
     'Add Comments',
     'Edit',
@@ -29,9 +27,8 @@ class _QAPopupMenuState extends State<QAPopupMenu> {
 
   PopupMenuItem _buildPopupMenuItem(context, String title, int position) {
     return PopupMenuItem(
-      value: position,
-      child: Text(title, style: Theme.of(context).textTheme.xSmall),
-    );
+        value: position,
+        child: Text(title, style: Theme.of(context).textTheme.xSmall));
   }
 
   _onMenuItemSelected(int value) {

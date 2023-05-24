@@ -41,6 +41,9 @@ class QualityManagementListScreen extends StatelessWidget {
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               CustomIconButtonRow(
                   primaryOnPress: () {
+                    context.read<QualityManagementBloc>().add(
+                        FilterStatusDropDown(
+                            selectedStatus: [], itemIndex: null));
                     Navigator.pushNamed(
                         context, QualityManagementFiltersScreen.routeName);
                   },

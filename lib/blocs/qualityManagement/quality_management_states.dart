@@ -7,24 +7,24 @@ class QualityManagementInitial extends QualityManagementSates {
   List<Object?> get props => throw UnimplementedError();
 }
 
-class ChangeReportDropDownData extends QualityManagementSates {
+class ChangeReportDropDownLoaded extends QualityManagementSates {
   final String reportValue;
   final String contractorValue;
 
-  ChangeReportDropDownData(
+  ChangeReportDropDownLoaded(
       {required this.reportValue, required this.contractorValue});
 
   @override
   List<Object?> get props => [reportValue, contractorValue];
 }
 
-class ChangeReportingDropDownData extends QualityManagementSates {
+class ChangeReportingDropDownLoaded extends QualityManagementSates {
   final String siteValue;
   final String locationValue;
   final String severityValue;
   final String impactValue;
 
-  ChangeReportingDropDownData(
+  ChangeReportingDropDownLoaded(
       {required this.siteValue,
       required this.locationValue,
       required this.severityValue,
@@ -33,4 +33,18 @@ class ChangeReportingDropDownData extends QualityManagementSates {
   @override
   List<Object?> get props =>
       [siteValue, locationValue, severityValue, impactValue];
+}
+
+class FilterStatusDropDownLoaded extends QualityManagementSates {
+  final List selectedStatus;
+  final List filterStatus;
+  final int? itemIndex;
+
+  FilterStatusDropDownLoaded(
+      {required this.selectedStatus,
+      required this.filterStatus,
+      this.itemIndex});
+
+  @override
+  List<Object?> get props => [selectedStatus, itemIndex];
 }

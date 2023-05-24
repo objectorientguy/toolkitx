@@ -14,7 +14,7 @@ ThemeData appTheme = ThemeData(
     expansionTileTheme: expansionTileTheme,
     textButtonTheme: textButtonTheme,
     popupMenuTheme: popupMenuThemeData,
-    scaffoldBackgroundColor: AppColor.ghostWhite,
+    scaffoldBackgroundColor: colorScheme.background,
     elevatedButtonTheme: elevatedButtonThemeData);
 
 FloatingActionButtonThemeData floatingActionButtonThemeData =
@@ -25,32 +25,33 @@ FloatingActionButtonThemeData floatingActionButtonThemeData =
 
 ElevatedButtonThemeData elevatedButtonThemeData = ElevatedButtonThemeData(
     style: ElevatedButton.styleFrom(
-        backgroundColor: AppColor.deepBlue,
         minimumSize: const Size(double.maxFinite, kElevatedButtonHeight),
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(kCardRadius),
-        )));
+            borderRadius: BorderRadius.circular(kCardRadius))));
 
 PopupMenuThemeData popupMenuThemeData = PopupMenuThemeData(
     shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(kCardRadius)));
 
-ExpansionTileThemeData expansionTileTheme = const ExpansionTileThemeData(
-    tilePadding:
-        EdgeInsets.only(left: expansionTileMargin, right: expansionTileMargin),
+ExpansionTileThemeData expansionTileTheme = ExpansionTileThemeData(
+    tilePadding: const EdgeInsets.only(
+        left: expansionTileMargin, right: expansionTileMargin),
     collapsedBackgroundColor: AppColor.white,
-    iconColor: AppColor.deepBlue,
+    iconColor: colorScheme.primary,
     textColor: AppColor.black);
+
 OutlinedButtonThemeData outlinedButtonThemeData = OutlinedButtonThemeData(
     style: OutlinedButton.styleFrom(
-  padding: const EdgeInsets.only(
-      right: tiniestSpacing, top: tiniestSpacing, bottom: tiniestSpacing),
-  minimumSize: const Size(midTiniestSpacing, midTiniestSpacing),
-));
+        side: BorderSide(color: colorScheme.primary),
+        minimumSize: const Size(double.maxFinite, kOutlinedButtonHeight)));
+
 TextButtonThemeData textButtonTheme =
     TextButtonThemeData(style: TextButton.styleFrom(padding: EdgeInsets.zero));
-const ColorScheme colorScheme =
-    ColorScheme.light(primary: AppColor.deepBlue, background: AppColor.white);
+ColorScheme colorScheme = const ColorScheme.light(
+    primary: AppColor.deepBlue,
+    background: AppColor.lightestBlue,
+    secondary: AppColor.deepBlue,
+    error: AppColor.errorRed);
 
 BottomNavigationBarThemeData bottomNavigationBarTheme =
     BottomNavigationBarThemeData(

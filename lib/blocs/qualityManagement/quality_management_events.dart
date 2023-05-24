@@ -19,3 +19,10 @@ class ReportingQADropDown extends QualityManagementEvents {
       required this.severityValue,
       required this.impactValue});
 }
+
+class FilterStatusDropDown extends QualityManagementEvents {
+  final List selectedStatus;
+  final int? itemIndex;
+
+  FilterStatusDropDown({required this.selectedStatus, this.itemIndex});
+}

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:toolkit/blocs/qualityManagement/quality_management_states.dart';
 import 'package:toolkit/blocs/qualityManagement/quality_management_bloc.dart';
+import 'package:toolkit/configs/app_dimensions.dart';
 import 'package:toolkit/configs/app_theme.dart';
 import 'package:toolkit/screens/qualityManagement/widgets/site_expansion_tile.dart';
 import '../../configs/app_spacing.dart';
@@ -22,12 +23,13 @@ class ReportingScreen extends StatelessWidget {
     return Scaffold(
         appBar: const GenericAppBar(title: StringConstants.kNewQAReporting),
         bottomNavigationBar: BottomAppBar(
+            elevation: kZeroElevation,
             padding: const EdgeInsets.all(leftRightMargin),
             child: PrimaryButton(
                 onPressed: () {}, textValue: StringConstants.kSave)),
         body: BlocBuilder<QualityManagementBloc, QualityManagementSates>(
             builder: (context, state) {
-          if (state is ChangeReportingDropDownData) {
+              if (state is ChangeReportingDropDownLoaded) {
             return SingleChildScrollView(
                 physics: const BouncingScrollPhysics(),
                 child: Padding(

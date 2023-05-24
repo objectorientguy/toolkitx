@@ -7,6 +7,7 @@ const double kDividerHeight = 10.0;
 const double kDividerEndIndent = 15.0;
 const double kAlertDialogRadius = 15.0;
 const double kAlertDialogIconSize = 35.0;
+const double kOutlinedButtonHeight = 35.0;
 const double kElevatedButtonHeight = 45.0;
 const double kCircleAvatarRadius = 58.0;
 const double kAlertDialogTogether = 65.0;
