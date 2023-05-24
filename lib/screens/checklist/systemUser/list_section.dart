@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:toolkit/configs/app_theme.dart';
-
 import '../../../configs/app_color.dart';
 import '../../../configs/app_spacing.dart';
 import '../../../data/models/systemUser/checklist/list_model.dart';
