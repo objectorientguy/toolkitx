@@ -77,7 +77,11 @@ class SelectLanguageScreen extends StatelessWidget {
                                   return const SizedBox(height: tinySpacing);
                                 }));
                       } else if (state is LanguagesError) {
-                        return const ShowError();
+                        return ShowError(onPressed: () {
+                          context
+                              .read<LanguageBloc>()
+                              .add(FetchLanguageEvent());
+                        });
                       } else {
                         return const SizedBox();
                       }

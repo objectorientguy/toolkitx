@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:toolkit/blocs/selectDateFormat/select_date_format_bloc.dart';
+import 'package:toolkit/blocs/systemUser/checklist/checklist_bloc.dart';
 import 'package:toolkit/blocs/wifiConnectivity/wifi_connectivity_bloc.dart';
 import 'package:toolkit/blocs/wifiConnectivity/wifi_connectivity_events.dart';
 import 'package:toolkit/configs/app_theme.dart';
@@ -42,7 +43,8 @@ class MyApp extends StatelessWidget {
                   WifiConnectivityBloc()..add(ObserveNetwork())),
           BlocProvider(lazy: false, create: (context) => LanguageBloc()),
           BlocProvider(lazy: true, create: (context) => DateFormatBloc()),
-          BlocProvider(lazy: false, create: (context) => HomeBloc())
+          BlocProvider(lazy: false, create: (context) => HomeBloc()),
+          BlocProvider(lazy: false, create: (context) => ChecklistBloc()),
         ],
         child: GestureDetector(
           onTap: () {

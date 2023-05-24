@@ -19,7 +19,7 @@ dependencies:
   url_launcher:
   image_picker:
   path_provider:
-  json_annotation:
+  json_annotation: ^4.8.1
   cupertino_icons: ^1.0.2
   connectivity_plus:
   shared_preferences:
@@ -36,6 +36,5 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
-  generate: true
   assets:
     - assets/icons/
