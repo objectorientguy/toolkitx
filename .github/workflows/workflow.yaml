@@ -8,7 +8,7 @@ on:
 
 jobs:
   checks:
-    name: QA pipeline
+    name: ToolKitX QA pipeline
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -54,7 +54,7 @@ jobs:
           mv build/app/outputs/apk/release/app-release.apk build/app/outputs/apk/release/${{ steps.increment-version.outputs.version }}.apk
 
 
-      - name: Firebase App Distribution
+      - name: Firebase APK Distribution
         uses: wzieba/Firebase-Distribution-Github-Action@v1
         with:
           appId: ${{secrets.FIREBASE_APP_ID}}
@@ -62,13 +62,11 @@ jobs:
           groups: internal-testers
           file: build/app/outputs/apk/release/${{ steps.increment-version.outputs.version }}.apk
 
-
       - name: Upload APK as artifact
         uses: actions/upload-artifact@v2
         with:
           name: ${{ steps.increment-version.outputs.version }}.apk
           path: build/app/outputs/apk/release/${{ steps.increment-version.outputs.version }}.apk
-
 
 
 
