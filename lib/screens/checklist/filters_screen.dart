@@ -17,7 +17,7 @@ class FiltersScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const GenericAppBar(
-        title: Text(StringConstants.kFilters),
+        textValue: StringConstants.kFilters,
       ),
       body: Padding(
         padding: const EdgeInsets.only(

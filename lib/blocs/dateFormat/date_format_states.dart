@@ -1,6 +1,6 @@
 abstract class DateFormatStates {}
 
-class DateFormatInitial extends DateFormatStates {}
+class DateFormatLoading extends DateFormatStates {}
 
 class DateFormatSelected extends DateFormatStates {
   final String dateFormatValue;

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:toolkit/configs/app_theme.dart';
 import 'package:toolkit/screens/onboarding/widgets/show_error.dart';
 import '../../../blocs/selectLanguage/select_language_bloc.dart';
 import '../../../blocs/selectLanguage/select_language_events.dart';
@@ -21,10 +20,8 @@ class SelectLanguageScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     context.read<LanguageBloc>().add(FetchLanguageEvent());
     return Scaffold(
-      appBar: GenericAppBar(
-        title: Text(StringConstants.kSelectYourLanguage,
-            style: Theme.of(context).textTheme.medium),
-      ),
+      appBar:
+          const GenericAppBar(textValue: StringConstants.kSelectYourLanguage),
       body: Padding(
         padding: const EdgeInsets.only(
             left: leftRightMargin,

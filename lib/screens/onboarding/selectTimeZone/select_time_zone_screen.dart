@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:toolkit/configs/app_spacing.dart';
-import 'package:toolkit/configs/app_theme.dart';
 import 'package:toolkit/screens/onboarding/widgets/custom_card.dart';
 import 'package:toolkit/utils/constants/string_constants.dart';
 
@@ -20,9 +19,7 @@ class SelectTimeZoneScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: GenericAppBar(
-            title: Text(StringConstants.kSelectTimeZone,
-                style: Theme.of(context).textTheme.medium)),
+        appBar: const GenericAppBar(textValue: StringConstants.kSelectTimeZone),
         body: Padding(
             padding: const EdgeInsets.only(
                 left: leftRightMargin,

@@ -20,7 +20,7 @@ class ChecklistScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: const GenericAppBar(title: Text(StringConstants.kChecklist)),
+        appBar: const GenericAppBar(textValue: StringConstants.kChecklist),
         body: Padding(
             padding: const EdgeInsets.only(
                 left: leftRightMargin,

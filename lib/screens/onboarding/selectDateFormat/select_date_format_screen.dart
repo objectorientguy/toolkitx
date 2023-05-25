@@ -4,7 +4,6 @@ import 'package:toolkit/blocs/dateFormat/date_format_bloc.dart';
 import 'package:toolkit/blocs/dateFormat/date_format_events.dart';
 import 'package:toolkit/blocs/dateFormat/date_format_states.dart';
 import 'package:toolkit/configs/app_color.dart';
-import 'package:toolkit/configs/app_theme.dart';
 import 'package:toolkit/screens/onboarding/login/emailAddress/login_screen.dart';
 import 'package:toolkit/screens/onboarding/widgets/custom_card.dart';
 import 'package:toolkit/widgets/primary_button.dart';
@@ -22,9 +21,8 @@ class SelectDateFormatScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: GenericAppBar(
-            title: Text(StringConstants.kSelectDateFormat,
-                style: Theme.of(context).textTheme.medium)),
+        appBar:
+            const GenericAppBar(textValue: StringConstants.kSelectDateFormat),
         // This will be changed after QM gets merged into dev.
         body: BlocBuilder<DateFormatBloc, DateFormatStates>(
           builder: (context, state) {
