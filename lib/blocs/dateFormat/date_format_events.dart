@@ -1,7 +1,7 @@
-class DateFormatEvent {
+class SetDateFormat {
   final String saveDateFormatValue;
   final String saveDateFormatString;
 
-  DateFormatEvent(
+  SetDateFormat(
       {required this.saveDateFormatValue, required this.saveDateFormatString});
 }

@@ -8,15 +8,15 @@ import 'package:toolkit/data/cache/customer_cache.dart';
 import '../../data/cache/cache_keys.dart';
 import '../../di/app_module.dart';
 
-class DateFormatBloc extends Bloc<DateFormatEvent, DateFormatStates> {
+class DateFormatBloc extends Bloc<SetDateFormat, DateFormatStates> {
   final CustomerCache _customerCache = getIt<CustomerCache>();
 
   DateFormatBloc() : super(DateFormatLoading()) {
-    on<DateFormatEvent>(_saveDateFormatValue);
+    on<SetDateFormat>(_saveDateFormat);
   }
 
-  FutureOr<void> _saveDateFormatValue(
-      DateFormatEvent event, Emitter<DateFormatStates> emit) async {
+  FutureOr<void> _saveDateFormat(
+      SetDateFormat event, Emitter<DateFormatStates> emit) async {
     _customerCache.setCustomerDateFormatString(
         CacheKeys.dateFormatKey, event.saveDateFormatValue);
     emit(DateFormatSelected(

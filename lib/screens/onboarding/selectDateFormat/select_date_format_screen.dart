@@ -70,7 +70,7 @@ class SelectDateFormatScreen extends StatelessWidget {
                                                     .dateFormat;
                                                 context
                                                     .read<DateFormatBloc>()
-                                                    .add(DateFormatEvent(
+                                                    .add(SetDateFormat(
                                                         saveDateFormatValue:
                                                             CustomDateFormat
                                                                 .values

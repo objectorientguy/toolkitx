@@ -41,7 +41,7 @@ class SelectTimeZoneScreen extends StatelessWidget {
                             child: ListTile(
                                 onTap: () {
                                   context.read<DateFormatBloc>().add(
-                                      DateFormatEvent(
+                                      SetDateFormat(
                                           saveDateFormatValue: CustomDateFormat
                                               .values
                                               .elementAt(0)
