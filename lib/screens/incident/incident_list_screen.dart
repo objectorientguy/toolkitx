@@ -18,9 +18,7 @@ class IncidentListScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: GenericAppBar(
-          title: Text(StringConstants.kReportAnIncident,
-              style: Theme.of(context).textTheme.medium)),
+      appBar: const GenericAppBar(title: StringConstants.kReportAnIncident),
       floatingActionButton: FloatingActionButton(
           onPressed: () {
             Navigator.pushNamed(context, CategoryScreen.routeName);

@@ -4,17 +4,18 @@ import 'app_dimensions.dart';
 import 'app_spacing.dart';
 
 ThemeData appTheme = ThemeData(
-  colorScheme: colorScheme,
-  appBarTheme: appBarTheme,
-  listTileTheme: listTileTheme,
-  cardTheme: appCardTheme,
-  bottomAppBarTheme: bottomAppBarTheme,
-  bottomNavigationBarTheme: bottomNavigationBarTheme,
-  textButtonTheme: textButtonTheme,
-  scaffoldBackgroundColor: AppColor.ghostWhite,
-  elevatedButtonTheme: elevatedButtonThemeData,
-  floatingActionButtonTheme: floatingActionButtonThemeData,
-);
+    colorScheme: colorScheme,
+    appBarTheme: appBarTheme,
+    listTileTheme: listTileTheme,
+    cardTheme: appCardTheme,
+    bottomAppBarTheme: bottomAppBarTheme,
+    outlinedButtonTheme: outlinedButtonThemeData,
+    bottomNavigationBarTheme: bottomNavigationBarTheme,
+    expansionTileTheme: expansionTileTheme,
+    textButtonTheme: textButtonTheme,
+    popupMenuTheme: popupMenuThemeData,
+    scaffoldBackgroundColor: colorScheme.background,
+    elevatedButtonTheme: elevatedButtonThemeData);
 
 FloatingActionButtonThemeData floatingActionButtonThemeData =
     const FloatingActionButtonThemeData(
@@ -24,29 +25,49 @@ FloatingActionButtonThemeData floatingActionButtonThemeData =
 
 ElevatedButtonThemeData elevatedButtonThemeData = ElevatedButtonThemeData(
     style: ElevatedButton.styleFrom(
-        backgroundColor: AppColor.deepBlue,
-        minimumSize: const Size(double.maxFinite, 45.0),
+        minimumSize: const Size(double.maxFinite, kElevatedButtonHeight),
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(kCardRadius),
-        )));
+            borderRadius: BorderRadius.circular(kCardRadius))));
+
+PopupMenuThemeData popupMenuThemeData = PopupMenuThemeData(
+    shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(kCardRadius)));
+
+ExpansionTileThemeData expansionTileTheme = ExpansionTileThemeData(
+    tilePadding: const EdgeInsets.only(
+        left: expansionTileMargin, right: expansionTileMargin),
+    collapsedBackgroundColor: AppColor.white,
+    iconColor: colorScheme.primary,
+    textColor: AppColor.black);
+
+OutlinedButtonThemeData outlinedButtonThemeData = OutlinedButtonThemeData(
+    style: OutlinedButton.styleFrom(
+        side: BorderSide(color: colorScheme.primary),
+        minimumSize: const Size(double.maxFinite, kOutlinedButtonHeight)));
 
 TextButtonThemeData textButtonTheme =
     TextButtonThemeData(style: TextButton.styleFrom(padding: EdgeInsets.zero));
-const ColorScheme colorScheme = ColorScheme.light(primary: AppColor.deepBlue);
+ColorScheme colorScheme = const ColorScheme.light(
+    primary: AppColor.deepBlue,
+    background: AppColor.lightestBlue,
+    secondary: AppColor.deepBlue,
+    error: AppColor.errorRed);
 
 BottomNavigationBarThemeData bottomNavigationBarTheme =
-    const BottomNavigationBarThemeData(
-        backgroundColor: AppColor.white, elevation: 0);
+    BottomNavigationBarThemeData(
+        backgroundColor: colorScheme.background, elevation: kZeroElevation);
 
 BottomAppBarTheme? bottomAppBarTheme = const BottomAppBarTheme(
     color: AppColor.white,
-    elevation: 0,
+    elevation: kZeroElevation,
     padding: EdgeInsets.all(leftRightMargin));
 
 ListTileThemeData listTileTheme = const ListTileThemeData(dense: true);
 
 AppBarTheme appBarTheme = AppBarTheme(
-    elevation: 0, backgroundColor: AppColor.blueGrey, iconTheme: iconThemeData);
+    elevation: kZeroElevation,
+    backgroundColor: AppColor.blueGrey,
+    iconTheme: iconThemeData);
 
 IconThemeData iconThemeData = const IconThemeData(color: AppColor.black);
 

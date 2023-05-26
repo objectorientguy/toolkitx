@@ -20,6 +20,9 @@ abstract class StringConstants {
   static const String kSelectYourLanguage = 'Select Your Language';
   static const String kPleaseConfirm = 'Please Confirm';
   static const String kReject = 'Reject';
+  static const String kQAReporting = 'QA Reporting';
+  static const String kLocation = 'Location:';
+  static const String kSeverityImpact = 'Severity & Impact:';
   static const String kDialogContent =
       "The language file doesn't exist or an old version.Please download the latest language file.";
   static const String kNo = 'NO';
@@ -63,6 +66,31 @@ abstract class StringConstants {
   static const String kFirstNameValidate = 'Please add first name!';
   static const String kLastNameValidate = 'Please add last name!';
   static const String kContactValidate = 'Please add contact number!';
+  static const String kReportedBy = 'Reported By:';
+  static const String kReportedDate = 'Reported Date:';
+  static const String kAttachment = 'Attachment:';
+  static const String kIncidentDetails = 'Incident Details:';
+  static const String kUploadFrom = 'Upload From';
+  static const String kDetails = 'Details';
+  static const String kCamera = 'Camera';
+  static const String kDevice = 'Device';
+  static const String kNewQAReporting = 'New QA Reporting';
+  static const String kReportAnonymously = 'Report Anonymously';
+  static const String kContractor = 'Contractor';
+  static const String kDate = 'Date';
+  static const String kTime = 'Time';
+  static const String kSelect = 'Select';
+  static const String kSelectContractor = 'Select Contractor';
+  static const String kDetailedDescription = 'Detailed Description of facts';
+  static const String kDescription = 'Description';
+  static const String kUploadPhotos = 'Upload Photos';
+  static const String kSite = 'Site';
+  static const String kSeverity = 'Severity';
+  static const String kImpact = 'Impact';
+  static const String kSelectSite = 'Select Site';
+  static const String kSelectLocation = 'Select Location';
+  static const String kAddComments = 'Add Comments';
+  static const String kSubmit = 'Submit';
   static const String kLogoutDialogContent =
       'Are you sure you want to log out?';
   static const String kNoInternetMessage =
@@ -77,17 +105,8 @@ abstract class StringConstants {
   static const String kDone = 'Done';
   static const String kSelectCategoryIncident = 'Select category of incident';
   static const String kReportNewIncident = 'Report new incident';
-  static const String kReportAnonymously = 'Report Anonymously';
-  static const String kContractor = 'Contractor';
   static const String kDateOfIncident = 'Date of incident';
-  static const String kTime = 'Time';
   static const String kSelectTime = 'Select Time';
-  static const String kDetailedDescription = 'Detailed description of facts';
   static const String kPhoto = 'Photo';
-  static const String kSelectContractor = 'Select Contractor';
-  static const String kSite = 'Site';
-  static const String kLocation = 'Location';
   static const String kReportToAuthorities = 'Report to authorities';
-  static const String kSelectSite = 'Select Site';
-  static const String kSelectLocation = 'Select Location';
 }

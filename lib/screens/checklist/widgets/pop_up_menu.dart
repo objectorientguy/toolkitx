@@ -53,9 +53,6 @@ class _PopUpMenuState extends State<PopUpMenu> {
   @override
   Widget build(BuildContext context) {
     return PopupMenuButton(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(kCardRadius),
-        ),
         iconSize: kIconSize,
         icon: const Icon(Icons.more_vert_outlined),
         offset: const Offset(0, midTiniestSpacing),

@@ -16,9 +16,8 @@ class ChecklistStatusScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: const GenericAppBar(title: Text('Tank Maintenance'), actions: [
-          PopUpMenu(),
-        ]),
+        appBar: const GenericAppBar(
+            title: 'Tank Maintenance', actions: [PopUpMenu()]),
         body: Padding(
             padding: const EdgeInsets.only(
                 left: leftRightMargin,

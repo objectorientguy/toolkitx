@@ -16,10 +16,7 @@ class FilterScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const GenericAppBar(
-          title: Text(
-        StringConstants.kFilter,
-      )),
+      appBar: const GenericAppBar(title: StringConstants.kFilter),
       body: Padding(
         padding: const EdgeInsets.only(
             left: leftRightMargin,

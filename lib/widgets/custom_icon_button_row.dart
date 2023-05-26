@@ -43,7 +43,7 @@ class CustomIconButtonRow extends StatelessWidget {
           visible: secondaryVisible,
           child: IconButton(
               constraints: const BoxConstraints(),
-              onPressed: () {},
+              onPressed: secondaryOnPress,
               icon: Icon(secondaryIcon, color: AppColor.grey)))
     ]);
   }
