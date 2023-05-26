@@ -2,6 +2,7 @@ import 'package:toolkit/data/models/systemUser/checklist/status_model.dart';
 
 import '../../../data/models/systemUser/checklist/details_model.dart';
 import '../../../data/models/systemUser/checklist/list_model.dart';
+import '../../../data/models/systemUser/checklist/pdf_model.dart';
 
 abstract class ChecklistStates {}
 
@@ -38,3 +39,13 @@ class ChecklistStatusFetched extends ChecklistStates {
 }
 
 class ChecklistStatusError extends ChecklistStates {}
+
+class FetchingPdf extends ChecklistStates {}
+
+class PdfFetched extends ChecklistStates {
+  final GetPdfModel getPdfModel;
+
+  PdfFetched({required this.getPdfModel});
+}
+
+class FetchPdfError extends ChecklistStates {}

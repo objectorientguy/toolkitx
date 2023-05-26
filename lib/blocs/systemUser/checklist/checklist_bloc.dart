@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:toolkit/data/models/systemUser/checklist/pdf_model.dart';
 import '../../../data/models/systemUser/checklist/details_model.dart';
 import '../../../data/models/systemUser/checklist/list_model.dart';
 import '../../../data/models/systemUser/checklist/status_model.dart';
@@ -18,6 +19,7 @@ class ChecklistBloc extends Bloc<ChecklistEvents, ChecklistStates> {
     on<FetchChecklistDetails>(_fetchChecklistDetails);
     on<CheckResponse>(_checkResponse);
     on<FetchChecklistStatus>(_fetchChecklistStatus);
+    on<FetchPdf>(_fetchPdf);
   }
 
   FutureOr<void> _fetchChecklist(
@@ -61,6 +63,18 @@ class ChecklistBloc extends Bloc<ChecklistEvents, ChecklistStates> {
           getChecklistStatusModel: getChecklistStatusModel));
     } catch (e) {
       emit(ChecklistStatusError());
+    }
+  }
+
+  FutureOr<void> _fetchPdf(
+      FetchPdf event, Emitter<ChecklistStates> emit) async {
+    emit(FetchingPdf());
+    try {
+      GetPdfModel getPdfModel =
+          await _checklistRepository.fetchPdf(event.responseId);
+      emit(PdfFetched(getPdfModel: getPdfModel));
+    } catch (e) {
+      emit(FetchPdfError());
     }
   }
 }

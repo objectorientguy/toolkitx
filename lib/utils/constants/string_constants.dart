@@ -17,6 +17,7 @@ abstract class StringConstants {
   static const String kResponded = 'Responded';
   static const String kGenerateOtp = 'GENERATE OTP';
   static const String kNoResponse = 'No response found!';
+  static const String kSomethingWentWrong = 'Oops, something went wrong!';
   static const String kSelectDateFormat = 'Select Your Date Format';
   static const String kSave = 'SAVE';
   static const String kSelectYourLanguage = 'Select Your Language';

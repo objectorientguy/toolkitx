@@ -24,3 +24,9 @@ class FetchChecklistStatus extends ChecklistEvents {
 
   FetchChecklistStatus({required this.scheduleId});
 }
+
+class FetchPdf extends ChecklistEvents {
+  final String responseId;
+
+  FetchPdf({required this.responseId});
+}
