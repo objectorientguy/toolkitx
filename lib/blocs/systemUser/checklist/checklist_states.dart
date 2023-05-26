@@ -15,33 +15,19 @@ class ChecklistFetched extends ChecklistStates {
   ChecklistFetched({required this.getChecklistModel});
 }
 
-class ChecklistError extends ChecklistStates {
-  final String errorMessage;
-
-  ChecklistError({required this.errorMessage});
-}
+class ChecklistError extends ChecklistStates {}
 
 class ChecklistDetailsFetching extends ChecklistStates {}
 
 class ChecklistDetailsFetched extends ChecklistStates {
   final GetChecklistDetailsModel getChecklistDetailsModel;
-  final bool? isResponded;
 
-  ChecklistDetailsFetched(
-      {required this.getChecklistDetailsModel, this.isResponded = false});
+  ChecklistDetailsFetched({required this.getChecklistDetailsModel});
 }
 
-class ChecklistDetailsError extends ChecklistStates {
-  final String checklistId;
+class ChecklistDetailsError extends ChecklistStates {}
 
-  ChecklistDetailsError({required this.checklistId});
-}
-
-class NavigatedToStatusScreen extends ChecklistStates {
-  final GetChecklistDetailsData getChecklistDetailsData;
-
-  NavigatedToStatusScreen({required this.getChecklistDetailsData});
-}
+class ResponseChecked extends ChecklistStates {}
 
 class ChecklistStatusFetching extends ChecklistStates {}
 
@@ -51,8 +37,4 @@ class ChecklistStatusFetched extends ChecklistStates {
   ChecklistStatusFetched({required this.getChecklistStatusModel});
 }
 
-class ChecklistStatusError extends ChecklistStates {
-  final String statusMessage;
-
-  ChecklistStatusError({required this.statusMessage});
-}
+class ChecklistStatusError extends ChecklistStates {}

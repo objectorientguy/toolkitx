@@ -16,7 +16,7 @@ class ChecklistBloc extends Bloc<ChecklistEvents, ChecklistStates> {
   ChecklistBloc() : super(ChecklistInitial()) {
     on<FetchChecklist>(_fetchChecklist);
     on<FetchChecklistDetails>(_fetchChecklistDetails);
-    on<NavigateToStatusScreen>(_navigateToStatusScreen);
+    on<CheckResponse>(_checkResponse);
     on<FetchChecklistStatus>(_fetchChecklistStatus);
   }
 
@@ -28,7 +28,7 @@ class ChecklistBloc extends Bloc<ChecklistEvents, ChecklistStates> {
           await _checklistRepository.fetchChecklist();
       emit(ChecklistFetched(getChecklistModel: getChecklistModel));
     } catch (e) {
-      emit(ChecklistError(errorMessage: e.toString()));
+      emit(ChecklistError());
     }
   }
 
@@ -41,17 +41,14 @@ class ChecklistBloc extends Bloc<ChecklistEvents, ChecklistStates> {
       emit(ChecklistDetailsFetched(
           getChecklistDetailsModel: getChecklistDetailsModel));
     } catch (e) {
-      emit(ChecklistDetailsError(checklistId: event.checklistId));
+      emit(ChecklistDetailsError());
     }
   }
 
-  _navigateToStatusScreen(
-      NavigateToStatusScreen event, Emitter<ChecklistStates> emit) async {
+  _checkResponse(CheckResponse event, Emitter<ChecklistStates> emit) {
     event.getChecklistDetailsData.responsecount != 0
         ? add(FetchChecklistStatus(scheduleId: event.scheduleId))
-        : emit(ChecklistDetailsFetched(
-            getChecklistDetailsModel: event.getChecklistDetailsModel,
-            isResponded: true));
+        : emit(ResponseChecked());
   }
 
   FutureOr<void> _fetchChecklistStatus(
@@ -63,7 +60,7 @@ class ChecklistBloc extends Bloc<ChecklistEvents, ChecklistStates> {
       emit(ChecklistStatusFetched(
           getChecklistStatusModel: getChecklistStatusModel));
     } catch (e) {
-      emit(ChecklistStatusError(statusMessage: e.toString()));
+      emit(ChecklistStatusError());
     }
   }
 }

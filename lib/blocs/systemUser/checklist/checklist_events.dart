@@ -10,15 +10,13 @@ class FetchChecklistDetails extends ChecklistEvents {
   FetchChecklistDetails({required this.checklistId});
 }
 
-class NavigateToStatusScreen extends ChecklistEvents {
+class CheckResponse extends ChecklistEvents {
   final GetChecklistDetailsData getChecklistDetailsData;
-  final GetChecklistDetailsModel getChecklistDetailsModel;
+
   final String scheduleId;
 
-  NavigateToStatusScreen(
-      {required this.getChecklistDetailsData,
-      required this.getChecklistDetailsModel,
-      required this.scheduleId});
+  CheckResponse(
+      {required this.getChecklistDetailsData, required this.scheduleId});
 }
 
 class FetchChecklistStatus extends ChecklistEvents {

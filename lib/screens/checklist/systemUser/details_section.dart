@@ -31,10 +31,9 @@ class DetailsSection extends StatelessWidget {
                     .xxSmall
                     .copyWith(color: AppColor.grey)),
             onTap: () {
-              context.read<ChecklistBloc>().add(NavigateToStatusScreen(
+              context.read<ChecklistBloc>().add(CheckResponse(
                   scheduleId: getChecklistDetailsData.id,
-                  getChecklistDetailsData: getChecklistDetailsData,
-                  getChecklistDetailsModel: getChecklistDetailsModel));
+                  getChecklistDetailsData: getChecklistDetailsData));
             }));
   }
 }

@@ -26,7 +26,8 @@ class SystemUserListSection extends StatelessWidget {
                   ProgressBar.show(context);
                 } else if (state is ChecklistDetailsFetched) {
                   ProgressBar.dismiss(context);
-                  Navigator.pushNamed(context, DetailsScreen.routeName);
+                  Navigator.pushNamed(
+                      context, SystemUserDetailsScreen.routeName);
                 }
               },
               builder: (context, state) {

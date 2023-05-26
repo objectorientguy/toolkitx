@@ -35,8 +35,8 @@ class AppRoutes {
         return _materialRoute(const RootScreen());
       case EditScreen.routeName:
         return _materialRoute(const EditScreen());
-      case DetailsScreen.routeName:
-        return _materialRoute(const DetailsScreen());
+      case SystemUserDetailsScreen.routeName:
+        return _materialRoute(const SystemUserDetailsScreen());
       case SystemUserCheckListScreen.routeName:
         return _materialRoute(const SystemUserCheckListScreen());
       case ChangeRoleScreen.routeName:

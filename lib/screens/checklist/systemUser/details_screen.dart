@@ -15,10 +15,10 @@ import '../../../widgets/custom_snackbar.dart';
 
 import '../../onboarding/widgets/custom_card.dart';
 
-class DetailsScreen extends StatelessWidget {
-  static const routeName = 'DetailsScreen';
+class SystemUserDetailsScreen extends StatelessWidget {
+  static const routeName = 'SystemUserDetailsScreen';
 
-  const DetailsScreen({Key? key}) : super(key: key);
+  const SystemUserDetailsScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -26,11 +26,9 @@ class DetailsScreen extends StatelessWidget {
         buildWhen: (previousState, currentState) =>
             currentState is ChecklistDetailsFetched,
         listener: (context, state) {
-          if (state is ChecklistDetailsFetched) {
-            if (state.isResponded == true) {
-              showCustomSnackBar(
-                  context, StringConstants.kNoResponse, StringConstants.kOk);
-            }
+          if (state is ResponseChecked) {
+            showCustomSnackBar(
+                context, StringConstants.kNoResponse, StringConstants.kOk);
           } else if (state is ChecklistStatusFetching) {
             ProgressBar.show(context);
           } else if (state is ChecklistStatusFetched) {
@@ -79,16 +77,13 @@ class DetailsScreen extends StatelessWidget {
                                           .copyWith(color: AppColor.grey)),
                                   onTap: () {
                                     context.read<ChecklistBloc>().add(
-                                        NavigateToStatusScreen(
-                                            scheduleId: state
-                                                .getChecklistDetailsModel
-                                                .data[index]
-                                                .id,
+                                        CheckResponse(
+                                            scheduleId:
+                                                state.getChecklistDetailsModel
+                                                    .data[index].id,
                                             getChecklistDetailsData: state
                                                 .getChecklistDetailsModel
-                                                .data[index],
-                                            getChecklistDetailsModel: state
-                                                .getChecklistDetailsModel));
+                                                .data[index]));
                                   }));
                         },
                         separatorBuilder: (context, index) {
