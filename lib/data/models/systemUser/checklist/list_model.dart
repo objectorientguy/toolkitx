@@ -15,9 +15,9 @@ class GetChecklistModel {
   });
 
   factory GetChecklistModel.fromJson(Map<String, dynamic> json) =>
-      _$GetChecklistListModelFromJson(json);
+      _$GetChecklistModelFromJson(json);
 
-  Map<String, dynamic> toJson() => _$GetChecklistListModelToJson(this);
+  Map<String, dynamic> toJson() => _$GetChecklistModelToJson(this);
 }
 
 @JsonSerializable()
@@ -41,7 +41,7 @@ class GetChecklistData {
   });
 
   factory GetChecklistData.fromJson(Map<String, dynamic> json) =>
-      _$GetChecklistListDataFromJson(json);
+      _$GetChecklistDataFromJson(json);
 
-  Map<String, dynamic> toJson() => _$GetChecklistListDataToJson(this);
+  Map<String, dynamic> toJson() => _$GetChecklistDataToJson(this);
 }

@@ -7,6 +7,7 @@ import 'package:toolkit/screens/onboarding/login/password/password_screen.dart';
 import 'package:toolkit/screens/onboarding/welcome_screen.dart';
 import 'package:toolkit/screens/profile/edit/edit_screen.dart';
 import '../screens/checklist/change_role_screen.dart';
+import '../screens/checklist/systemUser/status_screen.dart';
 import '../screens/incident/category_screen.dart';
 import '../screens/incident/filter_screen.dart';
 import '../screens/incident/incident_list_screen.dart';
@@ -48,6 +49,8 @@ class AppRoutes {
         return _materialRoute(const FilterScreen());
       case CategoryScreen.routeName:
         return _materialRoute(const CategoryScreen());
+      case ChecklistStatusScreen.routeName:
+        return _materialRoute(const ChecklistStatusScreen());
       default:
         return _materialRoute(const WelcomeScreen());
     }

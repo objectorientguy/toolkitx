@@ -6,33 +6,34 @@ part of 'list_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-GetChecklistModel _$GetChecklistListModelFromJson(Map<String, dynamic> json) =>
+GetChecklistModel _$GetChecklistModelFromJson(Map<String, dynamic> json) =>
     GetChecklistModel(
-        status: json["Status"],
-        message: json["Message"],
-        data: List<GetChecklistData>.from(
-            json["Data"].map((x) => GetChecklistData.fromJson(x))));
+      status: json['Status'] as int?,
+      message: json['Message'] as String?,
+      data: (json['Data'] as List<dynamic>?)
+          ?.map((e) => GetChecklistData.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
 
-Map<String, dynamic> _$GetChecklistListModelToJson(
-        GetChecklistModel instance) =>
+Map<String, dynamic> _$GetChecklistModelToJson(GetChecklistModel instance) =>
     <String, dynamic>{
       'Status': instance.status,
       'Message': instance.message,
       'Data': instance.data,
     };
 
-GetChecklistData _$GetChecklistListDataFromJson(Map<String, dynamic> json) =>
+GetChecklistData _$GetChecklistDataFromJson(Map<String, dynamic> json) =>
     GetChecklistData(
-      id: json['id'],
-      name: json['name'],
-      responsecount: json['responsecount'],
-      categoryname: json['categoryname'],
-      subcategoryname: json['subcategoryname'],
-      overduecount: json['overduecount'],
-      approvalpendingcount: json['approvalpendingcount'],
+      id: json['id'] as String,
+      name: json['name'] as String,
+      responsecount: json['responsecount'] as int,
+      categoryname: json['categoryname'] as String?,
+      subcategoryname: json['subcategoryname'] as String?,
+      overduecount: json['overduecount'] as int,
+      approvalpendingcount: json['approvalpendingcount'] as int,
     );
 
-Map<String, dynamic> _$GetChecklistListDataToJson(GetChecklistData instance) =>
+Map<String, dynamic> _$GetChecklistDataToJson(GetChecklistData instance) =>
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,

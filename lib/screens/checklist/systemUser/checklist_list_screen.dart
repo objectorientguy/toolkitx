@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:toolkit/blocs/systemUser/checklist/checklist_bloc.dart';
@@ -10,6 +12,8 @@ import 'package:toolkit/screens/onboarding/widgets/show_error.dart';
 import 'package:toolkit/utils/constants/string_constants.dart';
 import 'package:toolkit/widgets/custom_icon_button_row.dart';
 import 'package:toolkit/widgets/generic_app_bar.dart';
+import '../../../widgets/progree_bar.dart';
+import 'details_screen.dart';
 import 'list_section.dart';
 
 class ChecklistScreen extends StatelessWidget {
@@ -42,24 +46,31 @@ class ChecklistScreen extends StatelessWidget {
                   child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                    BlocBuilder<ChecklistBloc, ChecklistStates>(
-                        builder: (context, state) {
+                    BlocConsumer<ChecklistBloc, ChecklistStates>(
+                        listener: (context, state) {
+                      if (state is ChecklistDetailsFetching) {
+                        log("list loading");
+                        ProgressBar.show(context);
+                      } else if (state is ChecklistDetailsFetched) {
+                        log("list loaded");
+                        ProgressBar.dismiss(context);
+                        Navigator.pushNamed(context, DetailsScreen.routeName);
+                      }
+                    }, builder: (context, state) {
                       if (state is ChecklistFetching) {
                         return const CircularProgressIndicator();
                       } else if (state is ChecklistFetched) {
-                        return Expanded(
-                            child: ChecklistListSection(
-                                getChecklistData:
-                                    state.getChecklistModel.data!));
+                        return ChecklistListSection(
+                            getChecklistModel: state.getChecklistModel);
                       } else if (state is ChecklistError) {
                         return ShowError(onPressed: () {
                           context.read<ChecklistBloc>().add(FetchChecklist());
                         });
                       } else {
                         return const SizedBox();
-                      }
-                    })
-                  ])),
+                          }
+                        })
+                      ])),
               const SizedBox(height: tinySpacing)
             ])));
   }
