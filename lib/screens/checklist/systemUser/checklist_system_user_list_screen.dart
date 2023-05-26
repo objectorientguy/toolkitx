@@ -10,10 +10,10 @@ import 'package:toolkit/widgets/custom_icon_button_row.dart';
 import 'package:toolkit/widgets/generic_app_bar.dart';
 import 'list_section.dart';
 
-class ChecklistScreen extends StatelessWidget {
-  static const routeName = 'ChecklistScreen';
+class SystemUserCheckListScreen extends StatelessWidget {
+  static const routeName = 'SystemUserCheckListScreen';
 
-  const ChecklistScreen({Key? key}) : super(key: key);
+  const SystemUserCheckListScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +36,7 @@ class ChecklistScreen extends StatelessWidget {
                   clearVisible: false,
                   clearOnPress: () {}),
               const SizedBox(height: tiniestSpacing),
-              const ChecklistListSection(),
+              const SystemUserListSection(),
               const SizedBox(height: tinySpacing)
             ])));
   }
