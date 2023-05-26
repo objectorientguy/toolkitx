@@ -20,24 +20,24 @@ class ChecklistBloc extends Bloc<ChecklistEvents, ChecklistStates> {
     on<FetchChecklistStatus>(_fetchChecklistStatus);
   }
 
-  FutureOr<void> _fetchChecklist(FetchChecklist event,
-      Emitter<ChecklistStates> emit) async {
+  FutureOr<void> _fetchChecklist(
+      FetchChecklist event, Emitter<ChecklistStates> emit) async {
     emit(ChecklistFetching());
     try {
       GetChecklistModel getChecklistModel =
-      await _checklistRepository.fetchChecklist();
+          await _checklistRepository.fetchChecklist();
       emit(ChecklistFetched(getChecklistModel: getChecklistModel));
     } catch (e) {
       emit(ChecklistError(errorMessage: e.toString()));
     }
   }
 
-  FutureOr<void> _fetchChecklistDetails(FetchChecklistDetails event,
-      Emitter<ChecklistStates> emit) async {
+  FutureOr<void> _fetchChecklistDetails(
+      FetchChecklistDetails event, Emitter<ChecklistStates> emit) async {
     emit(ChecklistDetailsFetching());
     try {
       GetChecklistDetailsModel getChecklistDetailsModel =
-      await _checklistRepository.fetchChecklistDetails(event.checklistId);
+          await _checklistRepository.fetchChecklistDetails(event.checklistId);
       emit(ChecklistDetailsFetched(
           getChecklistDetailsModel: getChecklistDetailsModel));
     } catch (e) {
@@ -45,21 +45,21 @@ class ChecklistBloc extends Bloc<ChecklistEvents, ChecklistStates> {
     }
   }
 
-  _navigateToStatusScreen(NavigateToStatusScreen event,
-      Emitter<ChecklistStates> emit) async {
+  _navigateToStatusScreen(
+      NavigateToStatusScreen event, Emitter<ChecklistStates> emit) async {
     event.getChecklistDetailsData.responsecount != 0
         ? add(FetchChecklistStatus(scheduleId: event.scheduleId))
         : emit(ChecklistDetailsFetched(
-        getChecklistDetailsModel: event.getChecklistDetailsModel,
-        isResponded: true));
+            getChecklistDetailsModel: event.getChecklistDetailsModel,
+            isResponded: true));
   }
 
-  FutureOr<void> _fetchChecklistStatus(FetchChecklistStatus event,
-      Emitter<ChecklistStates> emit) async {
+  FutureOr<void> _fetchChecklistStatus(
+      FetchChecklistStatus event, Emitter<ChecklistStates> emit) async {
     emit(ChecklistStatusFetching());
     try {
       GetChecklistStatusModel getChecklistStatusModel =
-      await _checklistRepository.fetchChecklistStatus(event.scheduleId);
+          await _checklistRepository.fetchChecklistStatus(event.scheduleId);
       emit(ChecklistStatusFetched(
           getChecklistStatusModel: getChecklistStatusModel));
     } catch (e) {
