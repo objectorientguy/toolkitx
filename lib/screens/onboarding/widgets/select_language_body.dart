@@ -6,7 +6,7 @@ import '../../../blocs/language/language_bloc.dart';
 import '../../../blocs/language/language_events.dart';
 import '../../../configs/app_dimensions.dart';
 import '../../../configs/app_spacing.dart';
-import '../../../data/models/language/get_languages_model.dart';
+import '../../../data/models/language/languages_model.dart';
 import '../../../utils/constants/api_constants.dart';
 import 'custom_card.dart';
 

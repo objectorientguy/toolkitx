@@ -1,13 +1,13 @@
-import '../../data/models/language/dowanload_language.dart';
-import '../../data/models/language/get_language_keys.dart';
-import '../../data/models/language/get_languages_model.dart';
+import '../../data/models/language/check_new_language_keys.dart';
+import '../../data/models/language/language_keys.dart';
+import '../../data/models/language/languages_model.dart';
 
 abstract class LanguageRepository {
-  Future<GetLanguagesModel> fetchLanguages();
+  Future<LanguagesModel> fetchLanguages();
 
-  Future<GetLanguageKeysModel> fetchLanguageKeys(
+  Future<LanguageKeysModel> fetchLanguageKeys(
       int languageId, String syncDate, int pageNo);
 
-  Future<DownloadLanguageModel> isDownloadLanguage(
+  Future<CheckNewLanguageKeysModel> isDownloadLanguage(
       int languageId, String syncDate);
 }

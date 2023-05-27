@@ -60,10 +60,10 @@ class LoginScreen extends StatelessWidget {
                       const SizedBox(height: mediumSpacing),
                       BlocListener<LoginBloc, LoginStates>(
                           listener: (context, state) {
-                            if (state is ValidateEmailLoading) {
+                            if (state is ValidatingEmail) {
                               ProgressBar.show(context);
                             }
-                            if (state is ValidateEmailLoaded) {
+                            if (state is EmailValidated) {
                               ProgressBar.dismiss(context);
                               Navigator.pushNamed(
                                   context, PasswordScreen.routeName);

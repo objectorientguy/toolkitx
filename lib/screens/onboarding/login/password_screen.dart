@@ -43,10 +43,10 @@ class PasswordScreen extends StatelessWidget {
                         ProgressBar.dismiss(context);
                         showCustomSnackBar(context, state.message, '');
                       }
-                      if (state is GenerateOtpLoginLoading) {
+                      if (state is GeneratingOtpLogin) {
                         ProgressBar.show(context);
                       }
-                      if (state is GenerateOtpLoginLoaded) {
+                      if (state is LoginOtpGenerated) {
                         if (state.generateOtpLoginModel.message != '1') {
                           showCustomSnackBar(
                               context, 'Try again in some time', '');

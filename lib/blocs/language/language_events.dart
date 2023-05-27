@@ -8,8 +8,8 @@ class FetchLanguageKeys extends LanguageEvent {
   FetchLanguageKeys({required this.languageId});
 }
 
-class DownloadLanguage extends LanguageEvent {
+class CheckNewLanguageKeys extends LanguageEvent {
   final int languageId;
 
-  DownloadLanguage({required this.languageId});
+  CheckNewLanguageKeys({required this.languageId});
 }

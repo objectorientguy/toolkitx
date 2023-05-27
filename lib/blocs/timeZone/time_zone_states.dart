@@ -4,18 +4,18 @@ abstract class TimeZoneStates {}
 
 class TimeZoneInitial extends TimeZoneStates {}
 
-class TimeZoneLoading extends TimeZoneStates {}
+class TimeZoneFetching extends TimeZoneStates {}
 
-class TimeZoneLoaded extends TimeZoneStates {
+class TimeZoneFetched extends TimeZoneStates {
   final GetTimeZoneModel getTimeZoneModel;
 
-  TimeZoneLoaded({required this.getTimeZoneModel});
+  TimeZoneFetched({required this.getTimeZoneModel});
 }
 
-class TimeZoneError extends TimeZoneStates {
+class FetchTimeZoneError extends TimeZoneStates {
   final String message;
 
-  TimeZoneError({required this.message});
+  FetchTimeZoneError({required this.message});
 }
 
-class SelectTimeZoneLoaded extends TimeZoneStates {}
+class TimeZoneSelected extends TimeZoneStates {}

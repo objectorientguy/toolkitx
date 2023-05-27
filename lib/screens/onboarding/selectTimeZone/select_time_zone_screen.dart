@@ -28,18 +28,18 @@ class SelectTimeZoneScreen extends StatelessWidget {
               top: topBottomSpacing),
           child: BlocConsumer<TimeZoneBloc, TimeZoneStates>(
               buildWhen: (previousState, currentState) =>
-                  currentState is TimeZoneLoading ||
-                  currentState is TimeZoneLoaded,
+                  currentState is TimeZoneFetching ||
+                  currentState is TimeZoneFetched,
               listener: (context, state) {
-                if (state is SelectTimeZoneLoaded) {
+                if (state is TimeZoneSelected) {
                   Navigator.pushNamed(
                       context, SelectDateFormatScreen.routeName);
                 }
               },
               builder: (context, state) {
-                if (state is TimeZoneLoading) {
+                if (state is TimeZoneFetching) {
                   return const Center(child: CircularProgressIndicator());
-                } else if (state is TimeZoneLoaded) {
+                } else if (state is TimeZoneFetched) {
                   return ListView.separated(
                       padding: EdgeInsets.zero,
                       physics: const BouncingScrollPhysics(),
@@ -70,7 +70,7 @@ class SelectTimeZoneScreen extends StatelessWidget {
                       separatorBuilder: (BuildContext context, int index) {
                         return const SizedBox(height: midTiniestSpacing);
                       });
-                } else if (state is TimeZoneError) {
+                } else if (state is FetchTimeZoneError) {
                   return Center(
                       child: GenericReloadButton(
                           onPressed: () {

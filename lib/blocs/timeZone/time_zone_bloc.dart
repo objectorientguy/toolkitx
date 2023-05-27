@@ -22,18 +22,18 @@ class TimeZoneBloc extends Bloc<TimeZoneEvents, TimeZoneStates> {
 
   FutureOr<void> _fetchTimeZone(
       FetchTimeZone event, Emitter<TimeZoneStates> emit) async {
-    emit(TimeZoneLoading());
+    emit(TimeZoneFetching());
     try {
       GetTimeZoneModel getTimeZoneModel =
           await _timeZoneRepository.fetchTimeZone();
-      emit(TimeZoneLoaded(getTimeZoneModel: getTimeZoneModel));
+      emit(TimeZoneFetched(getTimeZoneModel: getTimeZoneModel));
     } catch (e) {
-      emit(TimeZoneError(message: e.toString()));
+      emit(FetchTimeZoneError(message: e.toString()));
     }
   }
 
   _selectTimeZone(SelectTimeZone event, Emitter<TimeZoneStates> emit) {
     _customerCache.setTimeZoneCode(CacheKeys.timeZoneCode, event.timeZoneCode);
-    emit(SelectTimeZoneLoaded());
+    emit(TimeZoneSelected());
   }
 }

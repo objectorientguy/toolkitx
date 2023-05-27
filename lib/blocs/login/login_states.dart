@@ -11,25 +11,25 @@ class LoginInitial extends LoginStates {
   List<Object?> get props => throw UnimplementedError();
 }
 
-class UserTypeDropDownLoaded extends LoginStates {
+class UserTypeChanged extends LoginStates {
   final String typeUser;
   final String typeValue;
 
-  UserTypeDropDownLoaded({required this.typeUser, required this.typeValue});
+  UserTypeChanged({required this.typeUser, required this.typeValue});
 
   @override
   List<Object?> get props => [typeUser];
 }
 
-class ValidateEmailLoading extends LoginStates {
+class ValidatingEmail extends LoginStates {
   @override
   List<Object?> get props => throw UnimplementedError();
 }
 
-class ValidateEmailLoaded extends LoginStates {
+class EmailValidated extends LoginStates {
   final ValidateEmailModel validateEmailModel;
 
-  ValidateEmailLoaded({required this.validateEmailModel});
+  EmailValidated({required this.validateEmailModel});
 
   @override
   List<Object?> get props => throw UnimplementedError();
@@ -44,15 +44,15 @@ class ValidateEmailError extends LoginStates {
   List<Object?> get props => throw UnimplementedError();
 }
 
-class GenerateOtpLoginLoading extends LoginStates {
+class GeneratingOtpLogin extends LoginStates {
   @override
   List<Object?> get props => throw UnimplementedError();
 }
 
-class GenerateOtpLoginLoaded extends LoginStates {
+class LoginOtpGenerated extends LoginStates {
   final GenerateOtpLoginModel generateOtpLoginModel;
 
-  GenerateOtpLoginLoaded({required this.generateOtpLoginModel});
+  LoginOtpGenerated({required this.generateOtpLoginModel});
 
   @override
   List<Object?> get props => throw UnimplementedError();

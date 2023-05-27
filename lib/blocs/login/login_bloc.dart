@@ -19,22 +19,22 @@ class LoginBloc extends Bloc<LoginEvents, LoginStates> {
   LoginStates get initialState => LoginInitial();
 
   LoginBloc() : super(LoginInitial()) {
-    on<UserTypeDropDown>(_userTypeValueChanged);
+    on<ChangeUserType>(_changeUserType);
     on<ValidateEmail>(_validateEmail);
     on<GenerateOtpLogin>(_generateOtpLogin);
     on<LoginEvent>(_loginEvent);
   }
 
-  FutureOr<void> _userTypeValueChanged(
-      UserTypeDropDown event, Emitter<LoginStates> emit) async {
+  FutureOr<void> _changeUserType(
+      ChangeUserType event, Emitter<LoginStates> emit) async {
     _customerCache.setUserType(CacheKeys.userType, event.typeValue);
-    emit(UserTypeDropDownLoaded(
+    emit(UserTypeChanged(
         typeUser: event.typeUser, typeValue: event.typeValue));
   }
 
   FutureOr<void> _validateEmail(
       ValidateEmail event, Emitter<LoginStates> emit) async {
-    emit(ValidateEmailLoading());
+    emit(ValidatingEmail());
     try {
       String encryptedEmail = await EncryptData.encryptAES(event.email);
       _customerCache.setEncryptedEmail(
@@ -43,12 +43,12 @@ class LoginBloc extends Bloc<LoginEvents, LoginStates> {
       ValidateEmailModel validateEmailModel =
           await _loginRepository.validateEmail(validateEmailMap);
       if (validateEmailModel.message == '1,2') {
-        add(UserTypeDropDown(typeUser: 'null', typeValue: ''));
+        add(ChangeUserType(typeUser: 'null', typeValue: ''));
       } else {
         _customerCache.setUserType(
             CacheKeys.userType, validateEmailModel.message);
       }
-      emit(ValidateEmailLoaded(validateEmailModel: validateEmailModel));
+      emit(EmailValidated(validateEmailModel: validateEmailModel));
     } catch (e) {
       emit(ValidateEmailError(message: e.toString()));
     }
@@ -56,7 +56,7 @@ class LoginBloc extends Bloc<LoginEvents, LoginStates> {
 
   FutureOr<void> _generateOtpLogin(
       GenerateOtpLogin event, Emitter<LoginStates> emit) async {
-    emit(GenerateOtpLoginLoading());
+    emit(GeneratingOtpLogin());
     try {
       String? email =
           await _customerCache.getEncryptedEmail(CacheKeys.encryptedEmail);
@@ -64,7 +64,7 @@ class LoginBloc extends Bloc<LoginEvents, LoginStates> {
       GenerateOtpLoginModel generateOtpLoginModel =
           await _loginRepository.getOptLogin(generateOtpMap);
       emit(
-          GenerateOtpLoginLoaded(generateOtpLoginModel: generateOtpLoginModel));
+          LoginOtpGenerated(generateOtpLoginModel: generateOtpLoginModel));
     } catch (e) {
       emit(GenerateOtpLoginError(message: e.toString()));
     }

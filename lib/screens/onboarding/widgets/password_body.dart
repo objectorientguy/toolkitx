@@ -44,9 +44,9 @@ class PasswordBody extends StatelessWidget {
                     const SizedBox(height: smallSpacing),
                     BlocBuilder<LoginBloc, LoginStates>(
                         buildWhen: (previousState, currentState) =>
-                            currentState is UserTypeDropDownLoaded,
+                            currentState is UserTypeChanged,
                         builder: (context, state) {
-                          if (state is UserTypeDropDownLoaded) {
+                          if (state is UserTypeChanged) {
                             return Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [

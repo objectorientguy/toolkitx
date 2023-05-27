@@ -1,32 +1,32 @@
-import 'package:toolkit/data/models/language/dowanload_language.dart';
+import 'package:toolkit/data/models/language/check_new_language_keys.dart';
 
-import '../../data/models/language/get_language_keys.dart';
-import '../../data/models/language/get_languages_model.dart';
+import '../../data/models/language/language_keys.dart';
+import '../../data/models/language/languages_model.dart';
 import '../../utils/constants/api_constants.dart';
 import '../../utils/dio_client.dart';
 import 'language_repository.dart';
 
 class LanguageRepositoryImpl extends LanguageRepository {
   @override
-  Future<GetLanguagesModel> fetchLanguages() async {
+  Future<LanguagesModel> fetchLanguages() async {
     final response = await DioClient()
         .get("${ApiConstants.baseUrl}/api/common/GetLanguages");
-    return GetLanguagesModel.fromJson(response);
+    return LanguagesModel.fromJson(response);
   }
 
   @override
-  Future<GetLanguageKeysModel> fetchLanguageKeys(
+  Future<LanguageKeysModel> fetchLanguageKeys(
       int languageId, String syncDate, int pageNo) async {
     final response = await DioClient().get(
         "${ApiConstants.baseUrl}/api/common/getlanguagekeys?languageid=$languageId&syncdate=$syncDate&pageno=$pageNo");
-    return GetLanguageKeysModel.fromJson(response);
+    return LanguageKeysModel.fromJson(response);
   }
 
   @override
-  Future<DownloadLanguageModel> isDownloadLanguage(
+  Future<CheckNewLanguageKeysModel> isDownloadLanguage(
       int languageId, String syncDate) async {
     final response = await DioClient().get(
         "${ApiConstants.baseUrl}/api/common/IsDownloadLanguage?languageid=$languageId&syncdate=$syncDate");
-    return DownloadLanguageModel.fromJson(response);
+    return CheckNewLanguageKeysModel.fromJson(response);
   }
 }

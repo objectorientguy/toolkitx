@@ -46,7 +46,7 @@ class UserTypeExpansionTile extends StatelessWidget {
                         groupValue: typeUser,
                         onChanged: (value) {
                           value = UserType.values.elementAt(index).type;
-                          context.read<LoginBloc>().add(UserTypeDropDown(
+                          context.read<LoginBloc>().add(ChangeUserType(
                               typeUser: value,
                               typeValue:
                                   UserType.values.elementAt(index).value));

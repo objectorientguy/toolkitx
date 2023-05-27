@@ -1,18 +1,16 @@
-import 'package:toolkit/data/models/language/dowanload_language.dart';
-import 'package:toolkit/data/models/language/get_language_keys.dart';
-
-import '../../data/models/language/get_languages_model.dart';
+import '../../data/models/language/language_keys.dart';
+import '../../data/models/language/languages_model.dart';
 
 abstract class LanguageStates {}
 
 class LanguageInitial extends LanguageStates {}
 
-class LanguagesLoading extends LanguageStates {}
+class LanguagesFetching extends LanguageStates {}
 
-class LanguagesLoaded extends LanguageStates {
-  final GetLanguagesModel getLanguagesModel;
+class LanguagesFetched extends LanguageStates {
+  final LanguagesModel languagesModel;
 
-  LanguagesLoaded({required this.getLanguagesModel});
+  LanguagesFetched({required this.languagesModel});
 }
 
 class LanguagesError extends LanguageStates {
@@ -21,26 +19,24 @@ class LanguagesError extends LanguageStates {
   LanguagesError({required this.message});
 }
 
-class DownLoadLanguageLoading extends LanguageStates {}
+class CheckingNewLanguageKeys extends LanguageStates {}
 
-class DownLoadLanguageLoaded extends LanguageStates {
-  final DownloadLanguageModel downloadLanguageModel;
+class NewLanguageKeysUnavailable extends LanguageStates {}
 
-  DownLoadLanguageLoaded({required this.downloadLanguageModel});
-}
+class NewKeysLanguageAvailable extends LanguageStates {}
 
-class DownLoadLanguageError extends LanguageStates {
+class CheckNewLanguageKeysError extends LanguageStates {
   final String message;
 
-  DownLoadLanguageError({required this.message});
+  CheckNewLanguageKeysError({required this.message});
 }
 
-class LanguageKeysLoading extends LanguageStates {}
+class LanguageKeysFetching extends LanguageStates {}
 
-class LanguageKeysLoaded extends LanguageStates {
-  final GetLanguageKeysModel getLanguageKeysModel;
+class LanguageKeysFetched extends LanguageStates {
+  final LanguageKeysModel languageKeysModel;
 
-  LanguageKeysLoaded({required this.getLanguageKeysModel});
+  LanguageKeysFetched({required this.languageKeysModel});
 }
 
 class LanguageKeysError extends LanguageStates {

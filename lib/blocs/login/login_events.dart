@@ -1,10 +1,10 @@
 abstract class LoginEvents {}
 
-class UserTypeDropDown extends LoginEvents {
+class ChangeUserType extends LoginEvents {
   final String typeUser;
   final String typeValue;
 
-  UserTypeDropDown({required this.typeValue, required this.typeUser});
+  ChangeUserType({required this.typeValue, required this.typeUser});
 }
 
 class ValidateEmail extends LoginEvents {

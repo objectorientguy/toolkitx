@@ -29,13 +29,13 @@ class SelectLanguageScreen extends StatelessWidget {
             top: topBottomSpacing),
         child: BlocConsumer<LanguageBloc, LanguageStates>(
             buildWhen: (previousState, currentState) =>
-                currentState is LanguagesLoading ||
-                currentState is LanguagesLoaded,
+                currentState is LanguagesFetching ||
+                currentState is LanguagesFetched,
             listener: (context, state) {
-              if (state is LanguageKeysLoading) {
+              if (state is LanguageKeysFetching) {
                 LanguageInitializing.show(context);
               }
-              if (state is LanguageKeysLoaded) {
+              if (state is LanguageKeysFetched) {
                 LanguageInitializing.dismiss(context);
                 Navigator.pushNamed(context, SelectTimeZoneScreen.routeName);
               }
@@ -45,11 +45,11 @@ class SelectLanguageScreen extends StatelessWidget {
               }
             },
             builder: (context, state) {
-              if (state is LanguagesLoading) {
+              if (state is LanguagesFetching) {
                 return const Center(child: CircularProgressIndicator());
-              } else if (state is LanguagesLoaded) {
+              } else if (state is LanguagesFetched) {
                 return SelectLanguageBody(
-                    getLanguagesData: state.getLanguagesModel.data!);
+                    getLanguagesData: state.languagesModel.data!);
               } else if (state is LanguagesError) {
                 return Center(
                     child: GenericReloadButton(

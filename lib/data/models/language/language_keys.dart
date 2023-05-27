@@ -1,20 +1,20 @@
 import 'dart:convert';
 
-GetLanguageKeysModel getLanguageKeysModelFromJson(String str) =>
-    GetLanguageKeysModel.fromJson(json.decode(str));
+LanguageKeysModel getLanguageKeysModelFromJson(String str) =>
+    LanguageKeysModel.fromJson(json.decode(str));
 
-String getLanguageKeysModelToJson(GetLanguageKeysModel data) =>
+String getLanguageKeysModelToJson(LanguageKeysModel data) =>
     json.encode(data.toJson());
 
-class GetLanguageKeysModel {
+class LanguageKeysModel {
   final int status;
   final String? message;
   final Data? data;
 
-  GetLanguageKeysModel({required this.status, this.message, this.data});
+  LanguageKeysModel({required this.status, this.message, this.data});
 
-  factory GetLanguageKeysModel.fromJson(Map<String, dynamic> json) =>
-      GetLanguageKeysModel(
+  factory LanguageKeysModel.fromJson(Map<String, dynamic> json) =>
+      LanguageKeysModel(
           status: json["Status"],
           message: json["Message"],
           data: Data.fromJson(json["Data"]));

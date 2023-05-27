@@ -1,10 +1,10 @@
 import 'dart:async';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:toolkit/data/cache/cache_keys.dart';
-import 'package:toolkit/data/models/language/dowanload_language.dart';
-import 'package:toolkit/data/models/language/get_language_keys.dart';
+import 'package:toolkit/data/models/language/check_new_language_keys.dart';
+import 'package:toolkit/data/models/language/language_keys.dart';
 import 'package:toolkit/di/app_module.dart';
-import 'package:toolkit/data/models/language/get_languages_model.dart';
+import 'package:toolkit/data/models/language/languages_model.dart';
 import 'package:toolkit/utils/database_utils.dart';
 
 import '../../data/cache/customer_cache.dart';
@@ -21,16 +21,16 @@ class LanguageBloc extends Bloc<LanguageEvent, LanguageStates> {
   LanguageBloc() : super(LanguageInitial()) {
     on<FetchLanguages>(_fetchLanguages);
     on<FetchLanguageKeys>(_fetchLanguageKeys);
-    on<DownloadLanguage>(_downloadLanguage);
+    on<CheckNewLanguageKeys>(_downloadLanguage);
   }
 
   FutureOr<void> _fetchLanguages(
       FetchLanguages event, Emitter<LanguageStates> emit) async {
-    emit(LanguagesLoading());
+    emit(LanguagesFetching());
     try {
-      GetLanguagesModel getLanguagesModel =
+      LanguagesModel languagesModel =
           await _languageRepository.fetchLanguages();
-      emit(LanguagesLoaded(getLanguagesModel: getLanguagesModel));
+      emit(LanguagesFetched(languagesModel: languagesModel));
     } catch (e) {
       emit(LanguagesError(message: e.toString()));
     }
@@ -38,7 +38,7 @@ class LanguageBloc extends Bloc<LanguageEvent, LanguageStates> {
 
   FutureOr<void> _fetchLanguageKeys(
       FetchLanguageKeys event, Emitter<LanguageStates> emit) async {
-    emit(LanguageKeysLoading());
+    emit(LanguageKeysFetching());
     try {
       String syncDate;
       try {
@@ -47,7 +47,7 @@ class LanguageBloc extends Bloc<LanguageEvent, LanguageStates> {
       } catch (e) {
         syncDate = '';
       }
-      GetLanguageKeysModel getLanguageKeysModel = await _languageRepository
+      LanguageKeysModel getLanguageKeysModel = await _languageRepository
           .fetchLanguageKeys(event.languageId, syncDate, -1);
 
       if (getLanguageKeysModel.status == 200) {
@@ -55,15 +55,15 @@ class LanguageBloc extends Bloc<LanguageEvent, LanguageStates> {
           DatabaseUtil.box.put(element.key, element.value);
         }
       }
-      emit(LanguageKeysLoaded(getLanguageKeysModel: getLanguageKeysModel));
+      emit(LanguageKeysFetched(languageKeysModel: getLanguageKeysModel));
     } catch (e) {
       emit(LanguageKeysError(message: e.toString()));
     }
   }
 
   FutureOr<void> _downloadLanguage(
-      DownloadLanguage event, Emitter<LanguageStates> emit) async {
-    emit(DownLoadLanguageLoading());
+      CheckNewLanguageKeys event, Emitter<LanguageStates> emit) async {
+    emit(CheckingNewLanguageKeys());
     try {
       String syncDate;
       try {
@@ -72,12 +72,16 @@ class LanguageBloc extends Bloc<LanguageEvent, LanguageStates> {
       } catch (e) {
         syncDate = '';
       }
-      DownloadLanguageModel downloadLanguageModel = await _languageRepository
-          .isDownloadLanguage(event.languageId, syncDate);
-      emit(
-          DownLoadLanguageLoaded(downloadLanguageModel: downloadLanguageModel));
+      CheckNewLanguageKeysModel checkNewLanguageKeysModel =
+          await _languageRepository.isDownloadLanguage(
+              event.languageId, syncDate);
+      if (checkNewLanguageKeysModel.data.download == '1') {
+        emit(NewKeysLanguageAvailable());
+      } else {
+        emit(NewLanguageKeysUnavailable());
+      }
     } catch (e) {
-      emit(DownLoadLanguageError(message: e.toString()));
+      emit(CheckNewLanguageKeysError(message: e.toString()));
     }
   }
 }

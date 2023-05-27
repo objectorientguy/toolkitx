@@ -1,21 +1,21 @@
 import 'dart:convert';
 
-DownloadLanguageModel downloadLanguageModelFromJson(String str) =>
-    DownloadLanguageModel.fromJson(json.decode(str));
+CheckNewLanguageKeysModel downloadLanguageModelFromJson(String str) =>
+    CheckNewLanguageKeysModel.fromJson(json.decode(str));
 
-String downloadLanguageModelToJson(DownloadLanguageModel data) =>
+String downloadLanguageModelToJson(CheckNewLanguageKeysModel data) =>
     json.encode(data.toJson());
 
-class DownloadLanguageModel {
+class CheckNewLanguageKeysModel {
   final int status;
   final String message;
   final Data data;
 
-  DownloadLanguageModel(
+  CheckNewLanguageKeysModel(
       {required this.status, required this.message, required this.data});
 
-  factory DownloadLanguageModel.fromJson(Map<String, dynamic> json) =>
-      DownloadLanguageModel(
+  factory CheckNewLanguageKeysModel.fromJson(Map<String, dynamic> json) =>
+      CheckNewLanguageKeysModel(
           status: json["Status"],
           message: json["Message"],
           data: Data.fromJson(json["Data"]));
