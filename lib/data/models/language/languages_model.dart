@@ -1,7 +1,3 @@
-// To parse this JSON data, do
-//
-//     final getLanguagesModel = getLanguagesModelFromJson(jsonString);
-
 import 'dart:convert';
 
 LanguagesModel getLanguagesModelFromJson(String str) =>
@@ -21,8 +17,7 @@ class LanguagesModel {
     this.data,
   });
 
-  factory LanguagesModel.fromJson(Map<String, dynamic> json) =>
-      LanguagesModel(
+  factory LanguagesModel.fromJson(Map<String, dynamic> json) => LanguagesModel(
         status: json["Status"],
         message: json["Message"],
         data: List<GetLanguagesData>.from(

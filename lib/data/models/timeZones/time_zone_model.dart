@@ -1,7 +1,3 @@
-// To parse this JSON data, do
-//
-//     final getTimeZoneModel = getTimeZoneModelFromJson(jsonString);
-
 import 'dart:convert';
 
 GetTimeZoneModel getTimeZoneModelFromJson(String str) =>
