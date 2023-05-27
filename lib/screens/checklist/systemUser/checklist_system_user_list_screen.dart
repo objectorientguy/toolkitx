@@ -31,6 +31,9 @@ class SystemUserCheckListScreen extends StatelessWidget {
                     Navigator.pushNamed(context, FiltersScreen.routeName);
                   },
                   secondaryOnPress: () {
+                    context
+                        .read<ChecklistBloc>()
+                        .add(FetchRoles(userId: '2ATY8mLx8MjkcnrmiRLvrA=='));
                     Navigator.pushNamed(context, ChangeRoleScreen.routeName);
                   },
                   clearVisible: false,

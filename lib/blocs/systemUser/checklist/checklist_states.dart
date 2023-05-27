@@ -1,5 +1,6 @@
 import 'package:toolkit/data/models/systemUser/checklist/status_model.dart';
 
+import '../../../data/models/systemUser/checklist/change_role_model.dart';
 import '../../../data/models/systemUser/checklist/details_model.dart';
 import '../../../data/models/systemUser/checklist/list_model.dart';
 import '../../../data/models/systemUser/checklist/pdf_model.dart';
@@ -49,3 +50,20 @@ class PdfFetched extends ChecklistStates {
 }
 
 class FetchPdfError extends ChecklistStates {}
+
+class FetchingRoles extends ChecklistStates {}
+
+class RolesFetched extends ChecklistStates {
+  final GetCheckListRolesModel getCheckListRolesModel;
+
+  RolesFetched({required this.getCheckListRolesModel});
+}
+
+class FetchRolesError extends ChecklistStates {}
+
+class RolesChanged extends ChecklistStates {
+  final String rolesValue;
+  final String rolesString;
+
+  RolesChanged({required this.rolesValue, required this.rolesString});
+}

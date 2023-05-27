@@ -30,3 +30,16 @@ class FetchPdf extends ChecklistEvents {
 
   FetchPdf({required this.responseId});
 }
+
+class FetchRoles extends ChecklistEvents {
+  final String userId;
+
+  FetchRoles({required this.userId});
+}
+
+class ChangeRoles extends ChecklistEvents {
+  final String rolesValue;
+  final String rolesString;
+
+  ChangeRoles({required this.rolesValue, required this.rolesString});
+}
