@@ -11,8 +11,8 @@ class LanguageInitializing {
       builder: (context) {
         return Center(
             child: Container(
-                height: 50,
-                width: 220,
+                height: kLanguagePopUpHeight,
+                width: kLanguagePopUpWidth,
                 decoration: BoxDecoration(
                     color: AppColor.white,
                     borderRadius: BorderRadius.circular(kCardRadius)),

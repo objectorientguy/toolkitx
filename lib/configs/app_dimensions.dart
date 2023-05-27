@@ -14,6 +14,7 @@ const double kIconSize = 22.0;
 const double kCircleAvatarImgHeight = 50.0;
 const double kCircleAvatarImgWidth = 50.0;
 const double kErrorButtonHeight = 40.0;
+const double kProgressBarSize = 40.0;
 const double kErrorButtonWidth = 50.0;
 const double kAppBarHeight = 56.0;
 const double kFloatingButtonIconSize = 30.0;
@@ -22,3 +23,7 @@ const double kLanguageFlagHeight = 35;
 const double kTagsHeight = 25;
 const double kDateTimePickerContainerHeight = 220;
 const double kDateTimePickerHeight = 170;
+const double kLanguagePopUpHeight = 50;
+const double kLanguagePopUpWidth = 220;
+const double kLanguageFlagPadding = 8;
+

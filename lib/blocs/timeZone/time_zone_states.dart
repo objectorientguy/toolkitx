@@ -12,10 +12,6 @@ class TimeZoneFetched extends TimeZoneStates {
   TimeZoneFetched({required this.getTimeZoneModel});
 }
 
-class FetchTimeZoneError extends TimeZoneStates {
-  final String message;
-
-  FetchTimeZoneError({required this.message});
-}
+class FetchTimeZoneError extends TimeZoneStates {}
 
 class TimeZoneSelected extends TimeZoneStates {}

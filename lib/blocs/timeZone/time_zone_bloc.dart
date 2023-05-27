@@ -28,7 +28,7 @@ class TimeZoneBloc extends Bloc<TimeZoneEvents, TimeZoneStates> {
           await _timeZoneRepository.fetchTimeZone();
       emit(TimeZoneFetched(getTimeZoneModel: getTimeZoneModel));
     } catch (e) {
-      emit(FetchTimeZoneError(message: e.toString()));
+      emit(FetchTimeZoneError());
     }
   }
 

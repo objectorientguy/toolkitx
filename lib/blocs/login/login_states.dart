@@ -1,8 +1,8 @@
 import 'package:equatable/equatable.dart';
-import 'package:toolkit/data/models/login/generate_opt_login.dart';
+import 'package:toolkit/data/models/login/generate_login_opt_model.dart';
 import 'package:toolkit/data/models/login/login_model.dart';
 
-import '../../data/models/login/validate_email.dart';
+import '../../data/models/login/validate_email_model.dart';
 
 abstract class LoginStates extends Equatable {}
 
@@ -12,13 +12,13 @@ class LoginInitial extends LoginStates {
 }
 
 class UserTypeChanged extends LoginStates {
-  final String typeUser;
+  final String userType;
   final String typeValue;
 
-  UserTypeChanged({required this.typeUser, required this.typeValue});
+  UserTypeChanged({required this.userType, required this.typeValue});
 
   @override
-  List<Object?> get props => [typeUser];
+  List<Object?> get props => [userType];
 }
 
 class ValidatingEmail extends LoginStates {
@@ -50,7 +50,7 @@ class GeneratingOtpLogin extends LoginStates {
 }
 
 class LoginOtpGenerated extends LoginStates {
-  final GenerateOtpLoginModel generateOtpLoginModel;
+  final GenerateLoginOtpModel generateOtpLoginModel;
 
   LoginOtpGenerated({required this.generateOtpLoginModel});
 

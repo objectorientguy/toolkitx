@@ -1,6 +1,6 @@
-import 'package:toolkit/data/models/language/check_new_language_keys.dart';
+import 'package:toolkit/data/models/language/check_new_language_keys_model.dart';
 
-import '../../data/models/language/language_keys.dart';
+import '../../data/models/language/language_keys_model.dart';
 import '../../data/models/language/languages_model.dart';
 import '../../utils/constants/api_constants.dart';
 import '../../utils/dio_client.dart';

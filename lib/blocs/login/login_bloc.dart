@@ -3,10 +3,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:toolkit/data/cache/cache_keys.dart';
 import 'package:toolkit/data/models/encrypt_class.dart';
 import 'package:toolkit/data/models/login/login_model.dart';
-import 'package:toolkit/data/models/login/validate_email.dart';
+import 'package:toolkit/data/models/login/validate_email_model.dart';
 
 import '../../data/cache/customer_cache.dart';
-import '../../data/models/login/generate_opt_login.dart';
+import '../../data/models/login/generate_login_opt_model.dart';
 import '../../di/app_module.dart';
 import '../../repositories/login/login_repository.dart';
 import 'login_events.dart';
@@ -21,7 +21,7 @@ class LoginBloc extends Bloc<LoginEvents, LoginStates> {
   LoginBloc() : super(LoginInitial()) {
     on<ChangeUserType>(_changeUserType);
     on<ValidateEmail>(_validateEmail);
-    on<GenerateOtpLogin>(_generateOtpLogin);
+    on<GenerateLoginOtp>(_generateLoginOtp);
     on<LoginEvent>(_loginEvent);
   }
 
@@ -29,7 +29,7 @@ class LoginBloc extends Bloc<LoginEvents, LoginStates> {
       ChangeUserType event, Emitter<LoginStates> emit) async {
     _customerCache.setUserType(CacheKeys.userType, event.typeValue);
     emit(UserTypeChanged(
-        typeUser: event.typeUser, typeValue: event.typeValue));
+        userType: event.userType, typeValue: event.typeValue));
   }
 
   FutureOr<void> _validateEmail(
@@ -43,7 +43,7 @@ class LoginBloc extends Bloc<LoginEvents, LoginStates> {
       ValidateEmailModel validateEmailModel =
           await _loginRepository.validateEmail(validateEmailMap);
       if (validateEmailModel.message == '1,2') {
-        add(ChangeUserType(typeUser: 'null', typeValue: ''));
+        add(ChangeUserType(userType: 'null', typeValue: ''));
       } else {
         _customerCache.setUserType(
             CacheKeys.userType, validateEmailModel.message);
@@ -54,14 +54,14 @@ class LoginBloc extends Bloc<LoginEvents, LoginStates> {
     }
   }
 
-  FutureOr<void> _generateOtpLogin(
-      GenerateOtpLogin event, Emitter<LoginStates> emit) async {
+  FutureOr<void> _generateLoginOtp(
+      GenerateLoginOtp event, Emitter<LoginStates> emit) async {
     emit(GeneratingOtpLogin());
     try {
       String? email =
           await _customerCache.getEncryptedEmail(CacheKeys.encryptedEmail);
       Map generateOtpMap = {'emailaddress': email};
-      GenerateOtpLoginModel generateOtpLoginModel =
+      GenerateLoginOtpModel generateOtpLoginModel =
           await _loginRepository.getOptLogin(generateOtpMap);
       emit(
           LoginOtpGenerated(generateOtpLoginModel: generateOtpLoginModel));

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:toolkit/screens/onboarding/widgets/password_body.dart';
 import 'package:toolkit/screens/root/root_screen.dart';
+import 'package:toolkit/utils/constants/string_constants.dart';
 import 'package:toolkit/widgets/custom_snackbar.dart';
 import 'package:toolkit/widgets/progress_bar.dart';
 import '../../../blocs/login/login_bloc.dart';
@@ -49,14 +50,14 @@ class PasswordScreen extends StatelessWidget {
                       if (state is LoginOtpGenerated) {
                         if (state.generateOtpLoginModel.message != '1') {
                           showCustomSnackBar(
-                              context, 'Try again in some time', '');
+                              context, StringConstants.kTryAgainInSomeTime, StringConstants.kOk);
                         }
                         ProgressBar.dismiss(context);
                       }
                       if (state is GenerateOtpLoginError) {
                         ProgressBar.dismiss(context);
                         showCustomSnackBar(
-                            context, 'OTP generation Unsuccessful!', '');
+                            context, StringConstants.kOtpUnsuccessful, StringConstants.kOk);
                       }
                     },
                     child: PasswordBody()))));

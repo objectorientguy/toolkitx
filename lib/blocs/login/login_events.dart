@@ -1,10 +1,10 @@
 abstract class LoginEvents {}
 
 class ChangeUserType extends LoginEvents {
-  final String typeUser;
+  final String userType;
   final String typeValue;
 
-  ChangeUserType({required this.typeValue, required this.typeUser});
+  ChangeUserType({required this.typeValue, required this.userType});
 }
 
 class ValidateEmail extends LoginEvents {
@@ -13,7 +13,7 @@ class ValidateEmail extends LoginEvents {
   ValidateEmail({required this.email});
 }
 
-class GenerateOtpLogin extends LoginEvents {}
+class GenerateLoginOtp extends LoginEvents {}
 
 class LoginEvent extends LoginEvents {
   final Map loginMap;

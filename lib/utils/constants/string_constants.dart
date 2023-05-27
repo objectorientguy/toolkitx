@@ -93,4 +93,7 @@ abstract class StringConstants {
   static const String kReportToAuthorities = 'Report to authorities';
   static const String kSelectSite = 'Select Site';
   static const String kSelectLocation = 'Select Location';
+  static const String kSelectLanguageAgain = 'Please select language again';
+  static const String kTryAgainInSomeTime = 'Try again in some time';
+  static const String kOtpUnsuccessful = 'OTP generation was Unsuccessful!';
 }

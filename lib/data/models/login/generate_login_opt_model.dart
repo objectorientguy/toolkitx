@@ -1,24 +1,24 @@
 import 'dart:convert';
 
-GenerateOtpLoginModel generateOtpLoginModelFromJson(String str) =>
-    GenerateOtpLoginModel.fromJson(json.decode(str));
+GenerateLoginOtpModel generateOtpLoginModelFromJson(String str) =>
+    GenerateLoginOtpModel.fromJson(json.decode(str));
 
-String generateOtpLoginModelToJson(GenerateOtpLoginModel data) =>
+String generateOtpLoginModelToJson(GenerateLoginOtpModel data) =>
     json.encode(data.toJson());
 
-class GenerateOtpLoginModel {
+class GenerateLoginOtpModel {
   final int status;
   final String message;
   final Data data;
 
-  GenerateOtpLoginModel({
+  GenerateLoginOtpModel({
     required this.status,
     required this.message,
     required this.data,
   });
 
-  factory GenerateOtpLoginModel.fromJson(Map<String, dynamic> json) =>
-      GenerateOtpLoginModel(
+  factory GenerateLoginOtpModel.fromJson(Map<String, dynamic> json) =>
+      GenerateLoginOtpModel(
         status: json["Status"],
         message: json["Message"],
         data: Data.fromJson(json["Data"]),

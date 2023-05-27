@@ -56,7 +56,7 @@ class PasswordBody extends StatelessWidget {
                                   const SizedBox(height: smallSpacing),
                                   UserTypeExpansionTile(
                                       typeValue: state.typeValue,
-                                      typeUser: state.typeUser)
+                                      usertype: state.userType)
                                 ]);
                           } else {
                             return const SizedBox();
@@ -65,7 +65,7 @@ class PasswordBody extends StatelessWidget {
                   ]))),
       CustomTextButton(
           onPressed: () {
-            context.read<LoginBloc>().add(GenerateOtpLogin());
+            context.read<LoginBloc>().add(GenerateLoginOtp());
           },
           textValue: StringConstants.kGenerateOtp),
       PrimaryButton(

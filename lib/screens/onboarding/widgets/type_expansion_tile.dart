@@ -10,10 +10,10 @@ import '../../../data/enums/user_type_emun.dart';
 
 class UserTypeExpansionTile extends StatelessWidget {
   final String typeValue;
-  final String typeUser;
+  final String usertype;
 
   const UserTypeExpansionTile(
-      {Key? key, required this.typeValue, required this.typeUser})
+      {Key? key, required this.typeValue, required this.usertype})
       : super(key: key);
 
   @override
@@ -28,7 +28,7 @@ class UserTypeExpansionTile extends StatelessWidget {
             iconColor: AppColor.deepBlue,
             textColor: AppColor.black,
             key: GlobalKey(),
-            title: Text(typeUser == 'null' ? 'Select' : typeUser,
+            title: Text(usertype == 'null' ? 'Select' : usertype,
                 style: Theme.of(context).textTheme.xSmall),
             children: [
               ListView.builder(
@@ -43,11 +43,11 @@ class UserTypeExpansionTile extends StatelessWidget {
                             style: Theme.of(context).textTheme.xSmall),
                         controlAffinity: ListTileControlAffinity.trailing,
                         value: UserType.values.elementAt(index).type,
-                        groupValue: typeUser,
+                        groupValue: usertype,
                         onChanged: (value) {
                           value = UserType.values.elementAt(index).type;
                           context.read<LoginBloc>().add(ChangeUserType(
-                              typeUser: value,
+                              userType: value,
                               typeValue:
                                   UserType.values.elementAt(index).value));
                         });

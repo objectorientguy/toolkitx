@@ -1,8 +1,8 @@
 import 'dart:async';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:toolkit/data/cache/cache_keys.dart';
-import 'package:toolkit/data/models/language/check_new_language_keys.dart';
-import 'package:toolkit/data/models/language/language_keys.dart';
+import 'package:toolkit/data/models/language/check_new_language_keys_model.dart';
+import 'package:toolkit/data/models/language/language_keys_model.dart';
 import 'package:toolkit/di/app_module.dart';
 import 'package:toolkit/data/models/language/languages_model.dart';
 import 'package:toolkit/utils/database_utils.dart';

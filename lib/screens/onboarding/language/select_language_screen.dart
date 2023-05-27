@@ -41,7 +41,7 @@ class SelectLanguageScreen extends StatelessWidget {
               }
               if (state is LanguageKeysError) {
                 LanguageInitializing.dismiss(context);
-                showCustomSnackBar(context, "Please select language again", '');
+                showCustomSnackBar(context, StringConstants.kSelectLanguageAgain, '');
               }
             },
             builder: (context, state) {
