@@ -34,7 +34,9 @@ class SelectLanguageBody extends StatelessWidget {
                         ));
                   },
                   leading: Padding(
-                      padding: const EdgeInsets.only(top: kLanguageFlagPadding, bottom: kLanguageFlagPadding),
+                      padding: const EdgeInsets.only(
+                          top: kLanguageFlagPadding,
+                          bottom: kLanguageFlagPadding),
                       child: CachedNetworkImage(
                           height: kLanguageFlagHeight,
                           imageUrl:

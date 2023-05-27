@@ -26,4 +26,3 @@ const double kDateTimePickerHeight = 170;
 const double kLanguagePopUpHeight = 50;
 const double kLanguagePopUpWidth = 220;
 const double kLanguageFlagPadding = 8;
-

@@ -28,8 +28,7 @@ class LoginBloc extends Bloc<LoginEvents, LoginStates> {
   FutureOr<void> _changeUserType(
       ChangeUserType event, Emitter<LoginStates> emit) async {
     _customerCache.setUserType(CacheKeys.userType, event.typeValue);
-    emit(UserTypeChanged(
-        userType: event.userType, typeValue: event.typeValue));
+    emit(UserTypeChanged(userType: event.userType, typeValue: event.typeValue));
   }
 
   FutureOr<void> _validateEmail(
@@ -63,8 +62,7 @@ class LoginBloc extends Bloc<LoginEvents, LoginStates> {
       Map generateOtpMap = {'emailaddress': email};
       GenerateLoginOtpModel generateOtpLoginModel =
           await _loginRepository.getOptLogin(generateOtpMap);
-      emit(
-          LoginOtpGenerated(generateOtpLoginModel: generateOtpLoginModel));
+      emit(LoginOtpGenerated(generateOtpLoginModel: generateOtpLoginModel));
     } catch (e) {
       emit(GenerateOtpLoginError(message: e.toString()));
     }
