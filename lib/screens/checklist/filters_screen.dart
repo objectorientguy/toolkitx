@@ -30,7 +30,9 @@ class FiltersScreen extends StatelessWidget {
             Text(StringConstants.kChecklistName,
                 style: Theme.of(context).textTheme.medium),
             const SizedBox(height: midTinySpacing),
-            const TextFieldWidget(),
+            TextFieldWidget(
+              onTextFieldChanged: (String textField) {},
+            ),
             const SizedBox(height: midTinySpacing),
             Text(StringConstants.kCategory,
                 style: Theme.of(context).textTheme.medium),

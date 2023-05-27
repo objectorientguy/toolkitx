@@ -1,18 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hive_flutter/adapters.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:toolkit/blocs/dateFormat/date_format_bloc.dart';
-import 'package:toolkit/blocs/password/password_bloc.dart';
-import 'package:toolkit/blocs/wifiConnectivity/wifi_connectivity_bloc.dart';
-import 'package:toolkit/blocs/wifiConnectivity/wifi_connectivity_events.dart';
-import 'package:toolkit/configs/app_theme.dart';
-import 'package:toolkit/screens/onboarding/welcome_screen.dart';
+import 'package:toolkit/utils/database_utils.dart';
+import 'blocs/dateFormat/date_format_bloc.dart';
 import 'blocs/home/home_bloc.dart';
-import 'blocs/selectLanguage/select_language_bloc.dart';
+import 'blocs/language/language_bloc.dart';
+import 'blocs/login/login_bloc.dart';
+import 'blocs/timeZone/time_zone_bloc.dart';
+import 'blocs/wifiConnectivity/wifi_connectivity_bloc.dart';
+import 'blocs/wifiConnectivity/wifi_connectivity_events.dart';
 import 'blocs/wifiConnectivity/wifi_connectivity_states.dart';
+import 'configs/app_theme.dart';
 import 'di/app_module.dart';
 import 'configs/app_route.dart';
+import 'screens/onboarding/welcome_screen.dart';
 
 void main() async {
   await _initApp();
@@ -23,6 +26,8 @@ void main() async {
 _initApp() async {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+  await Hive.initFlutter();
+  DatabaseUtil.box = await Hive.openBox('languages_box');
 }
 
 _initDependencies() async {
@@ -44,7 +49,9 @@ class MyApp extends StatelessWidget {
           BlocProvider(lazy: false, create: (context) => LanguageBloc()),
           BlocProvider(lazy: false, create: (context) => DateFormatBloc()),
           BlocProvider(lazy: false, create: (context) => HomeBloc()),
-          BlocProvider(lazy: false, create: (context) => PasswordBloc()),
+          BlocProvider(lazy: false, create: (context) => LoginBloc()),
+          BlocProvider(lazy: false, create: (context) => TimeZoneBloc()),
+          BlocProvider(lazy: false, create: (context) => LoginBloc())
         ],
         child: GestureDetector(
             onTap: () {

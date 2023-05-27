@@ -4,7 +4,7 @@ import 'package:toolkit/blocs/dateFormat/date_format_bloc.dart';
 import 'package:toolkit/blocs/dateFormat/date_format_events.dart';
 import 'package:toolkit/blocs/dateFormat/date_format_states.dart';
 import 'package:toolkit/configs/app_color.dart';
-import 'package:toolkit/screens/onboarding/login/emailAddress/login_screen.dart';
+import 'package:toolkit/screens/onboarding/login/login_screen.dart';
 import 'package:toolkit/screens/onboarding/widgets/custom_card.dart';
 import 'package:toolkit/widgets/primary_button.dart';
 import '../../../configs/app_dimensions.dart';
@@ -20,10 +20,14 @@ class SelectDateFormatScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    context.read<DateFormatBloc>().add(SetDateFormat(
+        saveDateFormatValue: CustomDateFormat.values.elementAt(0).value,
+        saveDateFormatString: CustomDateFormat.values.elementAt(0).dateFormat));
     return Scaffold(
-        appBar: const GenericAppBar(title: StringConstants.kSelectDateFormat),
-        // This will be changed after QM gets merged into dev.
-        body: BlocBuilder<DateFormatBloc, DateFormatStates>(
+      appBar: const GenericAppBar(title: StringConstants.kSelectDateFormat),
+      body: BlocBuilder<DateFormatBloc, DateFormatStates>(
+          buildWhen: (previousState, currentState) =>
+              currentState is DateFormatSelected,
           builder: (context, state) {
             if (state is DateFormatSelected) {
               return SingleChildScrollView(
@@ -96,7 +100,7 @@ class SelectDateFormatScreen extends StatelessWidget {
             } else {
               return const SizedBox();
             }
-          },
-        ));
+          }),
+    );
   }
 }

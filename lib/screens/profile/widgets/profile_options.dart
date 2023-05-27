@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:toolkit/configs/app_theme.dart';
-import 'package:toolkit/screens/onboarding/selectLanguage/select_language_screen.dart';
 import 'package:toolkit/screens/onboarding/selectTimeZone/select_time_zone_screen.dart';
 import 'package:toolkit/utils/constants/string_constants.dart';
 import '../../../configs/app_color.dart';
 import '../../../configs/app_dimensions.dart';
 import '../../../configs/app_spacing.dart';
 import '../../../utils/profile_util.dart';
+import '../../onboarding/language/select_language_screen.dart';
 import '../../onboarding/selectDateFormat/select_date_format_screen.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 import 'package:url_launcher/url_launcher.dart';

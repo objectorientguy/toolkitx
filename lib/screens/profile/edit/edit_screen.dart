@@ -36,23 +36,29 @@ class EditScreen extends StatelessWidget {
                       Text(StringConstants.kFirstName,
                           style: Theme.of(context).textTheme.medium),
                       const SizedBox(height: midTinySpacing),
-                      const TextFieldWidget(
-                          textInputAction: TextInputAction.next,
-                          hintText: StringConstants.kFirstName),
+                      TextFieldWidget(
+                        textInputAction: TextInputAction.next,
+                        hintText: StringConstants.kFirstName,
+                        onTextFieldChanged: (String textField) {},
+                      ),
                       const SizedBox(height: midTinySpacing),
                       Text(StringConstants.kLastName,
                           style: Theme.of(context).textTheme.medium),
                       const SizedBox(height: midTinySpacing),
-                      const TextFieldWidget(
-                          textInputAction: TextInputAction.next,
-                          hintText: StringConstants.kLastName),
+                      TextFieldWidget(
+                        textInputAction: TextInputAction.next,
+                        hintText: StringConstants.kLastName,
+                        onTextFieldChanged: (String textField) {},
+                      ),
                       const SizedBox(height: midTinySpacing),
                       Text(StringConstants.kContact,
                           style: Theme.of(context).textTheme.medium),
                       const SizedBox(height: midTinySpacing),
-                      const TextFieldWidget(
-                          textInputAction: TextInputAction.done,
-                          hintText: StringConstants.kContact),
+                      TextFieldWidget(
+                        textInputAction: TextInputAction.done,
+                        hintText: StringConstants.kContact,
+                        onTextFieldChanged: (String textField) {},
+                      ),
                       const SizedBox(height: midTinySpacing),
                       Text(StringConstants.kBloodGroup,
                           style: Theme.of(context).textTheme.medium),
