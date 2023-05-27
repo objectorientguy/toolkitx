@@ -60,7 +60,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const GenericAppBar(title: Text(StringConstants.kCategory)),
+      appBar: const GenericAppBar(title: StringConstants.kCategory),
       body: Padding(
         padding: const EdgeInsets.only(
             left: leftRightMargin,

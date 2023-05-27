@@ -14,6 +14,7 @@ abstract class StringConstants {
   static const String kNext = 'NEXT';
   static const String kLogin = 'LOGIN';
   static const String kWelcome = 'Welcome';
+  static const String kType = 'Type';
   static const String kGenerateOtp = 'GENERATE OTP';
   static const String kSelectDateFormat = 'Select Your Date Format';
   static const String kSave = 'SAVE';
@@ -87,6 +88,8 @@ abstract class StringConstants {
   static const String kSelectContractor = 'Select Contractor';
   static const String kSite = 'Site';
   static const String kLocation = 'Location';
+  static const String kWorkforce = 'Workforce';
+  static const String kSystemUser = 'System User';
   static const String kReportToAuthorities = 'Report to authorities';
   static const String kSelectSite = 'Select Site';
   static const String kSelectLocation = 'Select Location';
