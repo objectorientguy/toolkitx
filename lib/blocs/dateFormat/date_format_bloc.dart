@@ -11,7 +11,7 @@ import '../../di/app_module.dart';
 class DateFormatBloc extends Bloc<SetDateFormat, DateFormatStates> {
   final CustomerCache _customerCache = getIt<CustomerCache>();
 
-  DateFormatBloc() : super(DateFormatLoading()) {
+  DateFormatBloc() : super(DateFormatSelected()) {
     on<SetDateFormat>(_saveDateFormat);
   }
 

@@ -21,8 +21,7 @@ class SelectDateFormatScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar:
-            const GenericAppBar(textValue: StringConstants.kSelectDateFormat),
+        appBar: const GenericAppBar(title: StringConstants.kSelectDateFormat),
         // This will be changed after QM gets merged into dev.
         body: BlocBuilder<DateFormatBloc, DateFormatStates>(
           builder: (context, state) {

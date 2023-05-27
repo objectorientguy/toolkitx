@@ -19,7 +19,7 @@ class SelectTimeZoneScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: const GenericAppBar(textValue: StringConstants.kSelectTimeZone),
+        appBar: const GenericAppBar(title: StringConstants.kSelectTimeZone),
         body: Padding(
             padding: const EdgeInsets.only(
                 left: leftRightMargin,

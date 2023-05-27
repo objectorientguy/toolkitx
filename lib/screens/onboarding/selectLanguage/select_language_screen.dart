@@ -20,8 +20,7 @@ class SelectLanguageScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     context.read<LanguageBloc>().add(FetchLanguageEvent());
     return Scaffold(
-      appBar:
-          const GenericAppBar(textValue: StringConstants.kSelectYourLanguage),
+      appBar: const GenericAppBar(title: StringConstants.kSelectYourLanguage),
       body: Padding(
         padding: const EdgeInsets.only(
             left: leftRightMargin,

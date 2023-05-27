@@ -15,7 +15,7 @@ class DetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: const GenericAppBar(textValue: 'Tank Maintenance'),
+        appBar: const GenericAppBar(title: 'Tank Maintenance'),
         body: Padding(
           padding: const EdgeInsets.only(
               left: leftRightMargin,
