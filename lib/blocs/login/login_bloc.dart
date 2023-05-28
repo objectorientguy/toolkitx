@@ -89,7 +89,7 @@ class LoginBloc extends Bloc<LoginEvents, LoginStates> {
       } else {
         String password =
             await EncryptData.encryptAES(event.loginMap['password']);
-        Map loginMap = {"username": email, "password": password, "type": type};
+        Map loginMap = {'username': email, 'password': password, 'type': type};
         LoginModel loginModel = await _loginRepository.postLogin(loginMap);
         if (loginModel.status == 200) {
           emit(LoginLoaded(loginModel: loginModel));
