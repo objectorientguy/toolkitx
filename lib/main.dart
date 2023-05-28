@@ -7,7 +7,6 @@ import 'package:toolkit/blocs/wifiConnectivity/wifi_connectivity_bloc.dart';
 import 'package:toolkit/blocs/wifiConnectivity/wifi_connectivity_events.dart';
 import 'package:toolkit/configs/app_theme.dart';
 import 'package:toolkit/screens/onboarding/welcome_screen.dart';
-import 'package:toolkit/widgets/no_internet_screen.dart';
 import 'blocs/home/home_bloc.dart';
 import 'blocs/selectLanguage/select_language_bloc.dart';
 import 'blocs/wifiConnectivity/wifi_connectivity_states.dart';
@@ -55,11 +54,7 @@ class MyApp extends StatelessWidget {
               theme: appTheme,
               home: BlocBuilder<WifiConnectivityBloc, WifiConnectivityState>(
                   builder: (context, state) {
-                if (state is EstablishedNetwork) {
-                  return const WelcomeScreen();
-                } else {
-                  return const NoInternetScreen();
-                }
+                return const WelcomeScreen();
               })),
         ));
   }
