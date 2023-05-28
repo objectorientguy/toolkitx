@@ -30,22 +30,18 @@ class SelectLanguageBody extends StatelessWidget {
               child: ListTile(
                   onTap: () {
                     context.read<LanguageBloc>().add(FetchLanguageKeys(
-                          languageId: getLanguagesData[index].id,
-                        ));
+                        languageId: getLanguagesData[index].id));
                   },
-                  leading: Padding(
-                      padding: const EdgeInsets.only(
-                          top: kLanguageFlagPadding,
-                          bottom: kLanguageFlagPadding),
-                      child: CachedNetworkImage(
-                          height: kLanguageFlagHeight,
-                          imageUrl:
-                              '${ApiConstants.baseUrlFlag}${getLanguagesData[index].flagName}',
-                          placeholder: (context, url) =>
-                              const CircularProgressIndicator(strokeWidth: 2),
-                          errorWidget: (context, url, error) => const Icon(
-                              Icons.error_outline_sharp,
-                              size: kIconSize))),
+                  minVerticalPadding: kLanguagesTileHeight,
+                  leading: CachedNetworkImage(
+                      height: kLanguageFlagHeight,
+                      imageUrl:
+                          '${ApiConstants.baseUrlFlag}${getLanguagesData[index].flagName}',
+                      placeholder: (context, url) =>
+                          const CircularProgressIndicator(strokeWidth: 2),
+                      errorWidget: (context, url, error) => const Icon(
+                          Icons.error_outline_sharp,
+                          size: kIconSize)),
                   title: Text(getLanguagesData[index].langName)));
         },
         separatorBuilder: (BuildContext context, int index) {

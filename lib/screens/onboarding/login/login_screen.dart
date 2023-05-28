@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:toolkit/blocs/login/login_states.dart';
 import 'package:toolkit/configs/app_dimensions.dart';
 import 'package:toolkit/configs/app_theme.dart';
+import 'package:toolkit/widgets/custom_snackbar.dart';
 import 'package:toolkit/widgets/progress_bar.dart';
 import '../../../blocs/login/login_bloc.dart';
 import '../../../blocs/login/login_events.dart';
@@ -70,6 +71,8 @@ class LoginScreen extends StatelessWidget {
                             }
                             if (state is ValidateEmailError) {
                               ProgressBar.dismiss(context);
+                              showCustomSnackBar(
+                                  context, state.message, StringConstants.kOk);
                             }
                           },
                           child: PrimaryButton(

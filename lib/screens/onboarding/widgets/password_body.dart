@@ -41,7 +41,6 @@ class PasswordBody extends StatelessWidget {
                     TextFieldWidget(onTextFieldChanged: (String textField) {
                       loginMap['password'] = textField;
                     }),
-                    const SizedBox(height: smallSpacing),
                     BlocBuilder<LoginBloc, LoginStates>(
                         buildWhen: (previousState, currentState) =>
                             currentState is UserTypeChanged,
@@ -50,6 +49,7 @@ class PasswordBody extends StatelessWidget {
                             return Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
+                                  const SizedBox(height: smallSpacing),
                                   Text(StringConstants.kType,
                                       style:
                                           Theme.of(context).textTheme.medium),

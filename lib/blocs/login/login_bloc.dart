@@ -4,6 +4,7 @@ import 'package:toolkit/data/cache/cache_keys.dart';
 import 'package:toolkit/data/models/encrypt_class.dart';
 import 'package:toolkit/data/models/login/login_model.dart';
 import 'package:toolkit/data/models/login/validate_email_model.dart';
+import 'package:toolkit/utils/constants/string_constants.dart';
 
 import '../../data/cache/customer_cache.dart';
 import '../../data/models/login/generate_login_opt_model.dart';
@@ -35,19 +36,24 @@ class LoginBloc extends Bloc<LoginEvents, LoginStates> {
       ValidateEmail event, Emitter<LoginStates> emit) async {
     emit(ValidatingEmail());
     try {
-      String encryptedEmail = await EncryptData.encryptAES(event.email);
-      _customerCache.setEncryptedEmail(
-          CacheKeys.encryptedEmail, encryptedEmail);
-      Map validateEmailMap = {'emailaddress': encryptedEmail};
-      ValidateEmailModel validateEmailModel =
-          await _loginRepository.validateEmail(validateEmailMap);
-      if (validateEmailModel.message == '1,2') {
-        add(ChangeUserType(userType: 'null', typeValue: ''));
+      if (event.email == null || event.email!.trim() == '') {
+        emit(ValidateEmailError(message: StringConstants.kValidateEmptyEmail));
       } else {
-        _customerCache.setUserType(
-            CacheKeys.userType, validateEmailModel.message);
+        String encryptedEmail =
+            await EncryptData.encryptAES(event.email!.trim());
+        _customerCache.setEncryptedEmail(
+            CacheKeys.encryptedEmail, encryptedEmail);
+        Map validateEmailMap = {'emailaddress': encryptedEmail};
+        ValidateEmailModel validateEmailModel =
+            await _loginRepository.validateEmail(validateEmailMap);
+        if (validateEmailModel.message == '1,2') {
+          add(ChangeUserType(userType: 'null', typeValue: ''));
+        } else {
+          _customerCache.setUserType(
+              CacheKeys.userType, validateEmailModel.message);
+        }
+        emit(EmailValidated(validateEmailModel: validateEmailModel));
       }
-      emit(EmailValidated(validateEmailModel: validateEmailModel));
     } catch (e) {
       emit(ValidateEmailError(message: e.toString()));
     }
@@ -75,14 +81,21 @@ class LoginBloc extends Bloc<LoginEvents, LoginStates> {
       String? email =
           await _customerCache.getEncryptedEmail(CacheKeys.encryptedEmail);
       String? type = await _customerCache.getUserType(CacheKeys.userType);
-      String password =
-          await EncryptData.encryptAES(event.loginMap['password']);
-      Map loginMap = {"username": email, "password": password, "type": type};
-      LoginModel loginModel = await _loginRepository.postLogin(loginMap);
-      if (loginModel.status == 200) {
-        emit(LoginLoaded(loginModel: loginModel));
+      if (event.loginMap['password'] == null ||
+          event.loginMap['password'].trim() == '') {
+        emit(LoginError(message: StringConstants.kValidateEmptyPassword));
+      } else if (type!.isEmpty) {
+        emit(LoginError(message: StringConstants.kSelectUserTypeValidation));
       } else {
-        emit(LoginError(message: loginModel.message!));
+        String password =
+            await EncryptData.encryptAES(event.loginMap['password']);
+        Map loginMap = {"username": email, "password": password, "type": type};
+        LoginModel loginModel = await _loginRepository.postLogin(loginMap);
+        if (loginModel.status == 200) {
+          emit(LoginLoaded(loginModel: loginModel));
+        } else {
+          emit(LoginError(message: loginModel.message!));
+        }
       }
     } catch (e) {
       emit(LoginError(message: e.toString()));

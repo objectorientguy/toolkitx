@@ -96,4 +96,8 @@ abstract class StringConstants {
   static const String kSelectLanguageAgain = 'Please select language again';
   static const String kTryAgainInSomeTime = 'Try again in some time';
   static const String kOtpUnsuccessful = 'OTP generation was Unsuccessful!';
+  static const String kInitializingLanguage = 'Initializing Language...';
+  static const String kValidateEmptyEmail = 'Please enter email';
+  static const String kValidateEmptyPassword = 'Please enter password';
+  static const String kSelectUserTypeValidation = 'Please select a type';
 }
