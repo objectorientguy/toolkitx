@@ -26,7 +26,7 @@ class CustomTabBarView extends StatelessWidget {
                 tabs: tabBarViewIcons),
             Expanded(
               child: Padding(
-                padding: const EdgeInsets.only(top: midTiniestSpacing),
+                padding: const EdgeInsets.all(midTiniestSpacing),
                 child: TabBarView(children: tabBarViewWidgets),
               ),
             ),

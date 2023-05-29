@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:toolkit/configs/app_color.dart';
 import 'package:toolkit/configs/app_dimensions.dart';
+import 'package:toolkit/screens/permit/widgets/tags.dart';
 import 'package:toolkit/widgets/custom_tabbar_view.dart';
 import 'package:toolkit/widgets/generic_app_bar.dart';
 import 'package:toolkit/screens/permit/widgets/permit_additional_info.dart';
@@ -57,62 +58,9 @@ class PermitDetailsScreen extends StatelessWidget {
                     ],
                   ),
                 ),
-                subtitle: Padding(
-                  padding: const EdgeInsets.only(top: midTiniestSpacing),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Container(
-                        decoration: BoxDecoration(
-                          color: Colors.redAccent,
-                          borderRadius: BorderRadius.circular(5),
-                        ),
-                        margin: const EdgeInsets.only(right: 5, bottom: 5),
-                        alignment: Alignment.center,
-                        child: const Padding(
-                          padding: EdgeInsets.all(8.0),
-                          child: Text(
-                            'Expired',
-                            style: TextStyle(color: Colors.white),
-                            textAlign: TextAlign.center,
-                          ),
-                        ),
-                      ),
-                      Container(
-                        decoration: BoxDecoration(
-                          color: Colors.amberAccent,
-                          borderRadius: BorderRadius.circular(5),
-                        ),
-                        alignment: Alignment.center,
-                        margin: const EdgeInsets.only(right: 5, bottom: 5),
-                        child: const Padding(
-                          padding: EdgeInsets.all(8.0),
-                          child: Text(
-                            'NPI',
-                            style: TextStyle(color: Colors.white),
-                            textAlign: TextAlign.center,
-                          ),
-                        ),
-                      ),
-                      Container(
-                        decoration: BoxDecoration(
-                          color: Colors.amberAccent,
-                          borderRadius: BorderRadius.circular(5),
-                        ),
-                        alignment: Alignment.center,
-                        margin: const EdgeInsets.only(right: 5, bottom: 5),
-                        child: const Padding(
-                          padding: EdgeInsets.all(8.0),
-                          child: Text(
-                            'NPW',
-                            style: TextStyle(color: Colors.white),
-                            textAlign: TextAlign.center,
-                          ),
-                        ),
-                      )
-                    ],
-                  ),
+                subtitle: const Padding(
+                  padding: EdgeInsets.only(top: midTiniestSpacing),
+                  child: Tags(),
                 ),
               ),
             ),

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:toolkit/screens/onboarding/widgets/custom_card.dart';
 import 'package:toolkit/screens/permit/permit_details_screen.dart';
+import 'package:toolkit/screens/permit/widgets/date_time.dart';
+import 'package:toolkit/screens/permit/widgets/tags.dart';
 import 'package:toolkit/widgets/generic_app_bar.dart';
-import '../../configs/app_dimensions.dart';
 import '../../configs/app_spacing.dart';
 import '../../widgets/custom_icon_button_row.dart';
 
@@ -69,108 +70,19 @@ class PermitScreen extends StatelessWidget {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                const Text(
+                              children: const [
+                                Text(
                                   'This is just a dummy permit This is just a dummy permit ',
                                   maxLines: 2,
                                 ),
-                                const SizedBox(height: midTinySpacing),
-                                const Text('Andrew oil field'),
-                                const SizedBox(height: midTinySpacing),
-                                const Text(
-                                    'George M Mueller - Pandora-ICT GmbH'),
-                                const SizedBox(height: midTinySpacing),
-                                Row(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Row(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      children: [
-                                        Image.asset('assets/icons/calendar.png',
-                                            height: kImageHeight,
-                                            width: kImageWidth),
-                                        const SizedBox(width: tiniestSpacing),
-                                        const Text('24.05.2023 - 30.05.2023 ')
-                                      ],
-                                    ),
-                                    Row(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      children: [
-                                        Image.asset('assets/icons/clock.png',
-                                            height: kImageHeight,
-                                            width: kImageWidth),
-                                        const SizedBox(width: tiniestSpacing),
-                                        const Text('03:30 - 03:39')
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                                const SizedBox(height: midTinySpacing),
-                                Row(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  children: [
-                                    Container(
-                                      decoration: BoxDecoration(
-                                        color: Colors.redAccent,
-                                        borderRadius: BorderRadius.circular(5),
-                                      ),
-                                      margin: const EdgeInsets.only(
-                                          right: 5, bottom: 5),
-                                      alignment: Alignment.center,
-                                      child: const Padding(
-                                        padding: EdgeInsets.all(8.0),
-                                        child: Text(
-                                          'Expired',
-                                          style: TextStyle(color: Colors.white),
-                                          textAlign: TextAlign.center,
-                                        ),
-                                      ),
-                                    ),
-                                    Container(
-                                      decoration: BoxDecoration(
-                                        color: Colors.amberAccent,
-                                        borderRadius: BorderRadius.circular(5),
-                                      ),
-                                      alignment: Alignment.center,
-                                      margin: const EdgeInsets.only(
-                                          right: 5, bottom: 5),
-                                      child: const Padding(
-                                        padding: EdgeInsets.all(8.0),
-                                        child: Text(
-                                          'NPI',
-                                          style: TextStyle(color: Colors.white),
-                                          textAlign: TextAlign.center,
-                                        ),
-                                      ),
-                                    ),
-                                    Container(
-                                      decoration: BoxDecoration(
-                                        color: Colors.amberAccent,
-                                        borderRadius: BorderRadius.circular(5),
-                                      ),
-                                      alignment: Alignment.center,
-                                      margin: const EdgeInsets.only(
-                                          right: 5, bottom: 5),
-                                      child: const Padding(
-                                        padding: EdgeInsets.all(8.0),
-                                        child: Text(
-                                          'NPW',
-                                          style: TextStyle(color: Colors.white),
-                                          textAlign: TextAlign.center,
-                                        ),
-                                      ),
-                                    )
-                                  ],
-                                )
+                                SizedBox(height: midTinySpacing),
+                                Text('Andrew oil field'),
+                                SizedBox(height: midTinySpacing),
+                                Text('George M Mueller - Pandora-ICT GmbH'),
+                                SizedBox(height: midTinySpacing),
+                                DateTimeRow(),
+                                SizedBox(height: midTinySpacing),
+                                Tags()
                               ],
                             ),
                           ),
