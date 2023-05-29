@@ -13,6 +13,8 @@ import '../screens/incident/incident_list_screen.dart';
 import '../screens/onboarding/selectDateFormat/select_date_format_screen.dart';
 import '../screens/onboarding/selectLanguage/select_language_screen.dart';
 import '../screens/onboarding/selectTimeZone/select_time_zone_screen.dart';
+import '../screens/permit/permit_details_screen.dart';
+import '../screens/permit/permit_screen.dart';
 import '../screens/root/root_screen.dart';
 
 class AppRoutes {
@@ -44,10 +46,14 @@ class AppRoutes {
         return _materialRoute(const FiltersScreen());
       case IncidentListScreen.routeName:
         return _materialRoute(const IncidentListScreen());
-      case FilterScreen.routeName:
-        return _materialRoute(const FilterScreen());
+      case IncidentFilterScreen.routeName:
+        return _materialRoute(const IncidentFilterScreen());
       case CategoryScreen.routeName:
         return _materialRoute(const CategoryScreen());
+      case PermitScreen.routeName:
+        return _materialRoute(const PermitScreen());
+      case PermitDetailsScreen.routeName:
+        return _materialRoute(PermitDetailsScreen());
       default:
         return _materialRoute(const WelcomeScreen());
     }

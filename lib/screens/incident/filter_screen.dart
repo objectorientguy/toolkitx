@@ -8,10 +8,10 @@ import 'package:toolkit/widgets/primary_button.dart';
 import 'widgets/date_picker.dart';
 import 'widgets/filter_status_expansion_tile.dart';
 
-class FilterScreen extends StatelessWidget {
-  static const routeName = 'FilterScreen';
+class IncidentFilterScreen extends StatelessWidget {
+  static const routeName = 'IncidentFilterScreen';
 
-  const FilterScreen({Key? key}) : super(key: key);
+  const IncidentFilterScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

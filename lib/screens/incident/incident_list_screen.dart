@@ -32,7 +32,7 @@ class IncidentListScreen extends StatelessWidget {
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           CustomIconButtonRow(
               primaryOnPress: () {
-                Navigator.pushNamed(context, FilterScreen.routeName);
+                Navigator.pushNamed(context, IncidentFilterScreen.routeName);
               },
               secondaryOnPress: () {},
               clearOnPress: () {}),
