@@ -45,15 +45,15 @@ class AppRoutes {
       case FiltersScreen.routeName:
         return _createRoute(const FiltersScreen());
       case IncidentListScreen.routeName:
-        return _materialRoute(const IncidentListScreen());
+        return _createRoute(const IncidentListScreen());
       case IncidentFilterScreen.routeName:
-        return _materialRoute(const IncidentFilterScreen());
+        return _createRoute(const IncidentFilterScreen());
       case CategoryScreen.routeName:
-        return _materialRoute(const CategoryScreen());
+        return _createRoute(const CategoryScreen());
       case PermitScreen.routeName:
-        return _materialRoute(const PermitScreen());
+        return _createRoute(const PermitScreen());
       case PermitDetailsScreen.routeName:
-        return _materialRoute(const PermitDetailsScreen());
+        return _createRoute(const PermitDetailsScreen());
       default:
         return _createRoute(const WelcomeScreen());
     }
