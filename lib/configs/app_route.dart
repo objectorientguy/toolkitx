@@ -53,7 +53,7 @@ class AppRoutes {
       case PermitScreen.routeName:
         return _materialRoute(const PermitScreen());
       case PermitDetailsScreen.routeName:
-        return _materialRoute(PermitDetailsScreen());
+        return _materialRoute(const PermitDetailsScreen());
       default:
         return _materialRoute(const WelcomeScreen());
     }
