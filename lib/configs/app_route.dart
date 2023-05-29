@@ -19,41 +19,56 @@ class AppRoutes {
   static Route onGenerateRoutes(RouteSettings settings) {
     switch (settings.name) {
       case WelcomeScreen.routeName:
-        return _materialRoute(const WelcomeScreen());
+        return _createRoute(const WelcomeScreen());
       case SelectLanguageScreen.routeName:
-        return _materialRoute(const SelectLanguageScreen());
+        return _createRoute(const SelectLanguageScreen());
       case SelectTimeZoneScreen.routeName:
-        return _materialRoute(const SelectTimeZoneScreen());
+        return _createRoute(const SelectTimeZoneScreen());
       case SelectDateFormatScreen.routeName:
-        return _materialRoute(const SelectDateFormatScreen());
+        return _createRoute(const SelectDateFormatScreen());
       case LoginScreen.routeName:
-        return _materialRoute(const LoginScreen());
+        return _createRoute(const LoginScreen());
       case PasswordScreen.routeName:
-        return _materialRoute(const PasswordScreen());
+        return _createRoute(const PasswordScreen());
       case RootScreen.routeName:
-        return _materialRoute(const RootScreen());
+        return _createRoute(const RootScreen());
       case EditScreen.routeName:
-        return _materialRoute(const EditScreen());
+        return _createRoute(const EditScreen());
       case DetailsScreen.routeName:
-        return _materialRoute(const DetailsScreen());
+        return _createRoute(const DetailsScreen());
       case ChecklistScreen.routeName:
-        return _materialRoute(const ChecklistScreen());
+        return _createRoute(const ChecklistScreen());
       case ChangeRoleScreen.routeName:
-        return _materialRoute(const ChangeRoleScreen());
+        return _createRoute(const ChangeRoleScreen());
       case FiltersScreen.routeName:
-        return _materialRoute(const FiltersScreen());
+        return _createRoute(const FiltersScreen());
       case IncidentListScreen.routeName:
-        return _materialRoute(const IncidentListScreen());
+        return _createRoute(const IncidentListScreen());
       case FilterScreen.routeName:
-        return _materialRoute(const FilterScreen());
+        return _createRoute(const FilterScreen());
       case CategoryScreen.routeName:
-        return _materialRoute(const CategoryScreen());
+        return _createRoute(const CategoryScreen());
       default:
-        return _materialRoute(const WelcomeScreen());
+        return _createRoute(const WelcomeScreen());
     }
   }
 
-  static Route<dynamic> _materialRoute(Widget view) {
-    return MaterialPageRoute(builder: (_) => view);
+  static Route<dynamic> _createRoute(Widget view) {
+    return PageRouteBuilder(
+      pageBuilder: (context, animation, secondaryAnimation) => view,
+      transitionsBuilder: (context, animation, secondaryAnimation, child) {
+        const begin = Offset(1.0, 0.0);
+        const end = Offset.zero;
+        const curve = Curves.ease;
+
+        var tween =
+            Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+
+        return SlideTransition(
+          position: animation.drive(tween),
+          child: child,
+        );
+      },
+    );
   }
 }
