@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:toolkit/blocs/dateFormat/date_format_bloc.dart';
 import 'package:toolkit/blocs/password/password_bloc.dart';
+import 'package:toolkit/blocs/permit/permit_bloc.dart';
 import 'package:toolkit/blocs/wifiConnectivity/wifi_connectivity_bloc.dart';
 import 'package:toolkit/blocs/wifiConnectivity/wifi_connectivity_events.dart';
 import 'package:toolkit/configs/app_theme.dart';
@@ -45,6 +46,7 @@ class MyApp extends StatelessWidget {
           BlocProvider(lazy: false, create: (context) => DateFormatBloc()),
           BlocProvider(lazy: false, create: (context) => HomeBloc()),
           BlocProvider(lazy: false, create: (context) => PasswordBloc()),
+          BlocProvider(lazy: false, create: (context) => PermitBloc()),
         ],
         child: GestureDetector(
             onTap: () {

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:toolkit/configs/app_color.dart';
 import 'package:toolkit/configs/app_dimensions.dart';
-import 'package:toolkit/screens/permit/widgets/tags.dart';
 import 'package:toolkit/utils/permit_util.dart';
 import 'package:toolkit/widgets/custom_tabbar_view.dart';
 import 'package:toolkit/widgets/generic_app_bar.dart';
@@ -61,10 +60,10 @@ class PermitDetailsScreen extends StatelessWidget {
                     ],
                   ),
                 ),
-                subtitle: const Padding(
-                  padding: EdgeInsets.only(top: midTiniestSpacing),
-                  child: Tags(),
-                ),
+                // subtitle: const Padding(
+                //   padding: EdgeInsets.only(top: midTiniestSpacing),
+                //   child: Tags(),
+                // ),
               ),
             ),
             const SizedBox(height: midTiniestSpacing),

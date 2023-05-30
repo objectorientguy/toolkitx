@@ -3,7 +3,6 @@ import 'package:toolkit/configs/app_color.dart';
 import 'package:toolkit/configs/app_theme.dart';
 
 import '../../../configs/app_spacing.dart';
-import 'date_time.dart';
 
 class PermitDetails extends StatelessWidget {
   const PermitDetails({Key? key}) : super(key: key);
@@ -22,7 +21,7 @@ class PermitDetails extends StatelessWidget {
               .copyWith(color: AppColor.black, fontWeight: FontWeight.bold),
         ),
         const SizedBox(height: midTiniestSpacing),
-        const DateTimeRow(),
+        // const DateTimeRow(),
         const SizedBox(height: smallSpacing),
         Text(
           'NPI',

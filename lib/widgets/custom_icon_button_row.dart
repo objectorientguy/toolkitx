@@ -7,6 +7,7 @@ class CustomIconButtonRow extends StatelessWidget {
   final bool primaryVisible;
   final bool clearVisible;
   final bool secondaryVisible;
+  final bool isEnabled;
   final void Function() primaryOnPress;
   final void Function() clearOnPress;
   final void Function() secondaryOnPress;
@@ -17,6 +18,7 @@ class CustomIconButtonRow extends StatelessWidget {
       this.secondaryIcon = Icons.settings_outlined,
       required this.primaryOnPress,
       required this.secondaryOnPress,
+      this.isEnabled = false,
       this.primaryVisible = true,
       this.secondaryVisible = true,
       this.clearVisible = false,
@@ -37,13 +39,13 @@ class CustomIconButtonRow extends StatelessWidget {
           visible: primaryVisible,
           child: IconButton(
               constraints: const BoxConstraints(),
-              onPressed: primaryOnPress,
+              onPressed: isEnabled ? primaryOnPress : null,
               icon: Icon(primaryIcon, color: AppColor.grey))),
       Visibility(
           visible: secondaryVisible,
           child: IconButton(
               constraints: const BoxConstraints(),
-              onPressed: () {},
+              onPressed: isEnabled ? secondaryOnPress : null,
               icon: Icon(secondaryIcon, color: AppColor.grey)))
     ]);
   }
