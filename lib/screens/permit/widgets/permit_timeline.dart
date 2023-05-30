@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:toolkit/configs/app_color.dart';
 import 'package:toolkit/configs/app_theme.dart';
+import '../../../configs/app_dimensions.dart';
 import '../../../configs/app_spacing.dart';
 
 class CustomTimeline extends StatelessWidget {
@@ -62,7 +63,8 @@ class CustomTimeline extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Image.asset('assets/icons/calendar.png', height: 15, width: 15),
+            Image.asset('assets/icons/calendar.png',
+                height: kImageMediumHeight, width: kImageMediumWidth),
             const SizedBox(width: tiniestSpacing),
             const Text('24.05.2023')
           ],
@@ -72,7 +74,8 @@ class CustomTimeline extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Image.asset('assets/icons/clock.png', height: 15, width: 15),
+            Image.asset('assets/icons/clock.png',
+                height: kImageMediumHeight, width: kImageMediumWidth),
             const SizedBox(width: tiniestSpacing),
             const Text('03:30')
           ],
