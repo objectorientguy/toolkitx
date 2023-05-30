@@ -6,7 +6,7 @@ import '../../../configs/app_color.dart';
 import '../../../configs/app_dimensions.dart';
 import '../../../configs/app_spacing.dart';
 import '../../../utils/modules_util.dart';
-import '../../permit/permit_screen.dart';
+import '../../permit/permit_list_screen.dart';
 
 class OffLineModules extends StatelessWidget {
   const OffLineModules({Key? key}) : super(key: key);
@@ -80,7 +80,7 @@ class OffLineModules extends StatelessWidget {
   navigateToModule(index, context) {
     switch (index) {
       case 0:
-        Navigator.pushNamed(context, PermitScreen.routeName);
+        Navigator.pushNamed(context, PermitListScreen.routeName);
         break;
     }
   }

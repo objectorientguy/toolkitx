@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:toolkit/configs/app_color.dart';
+import 'package:toolkit/configs/app_dimensions.dart';
 import 'package:toolkit/screens/onboarding/widgets/custom_card.dart';
 import 'package:toolkit/screens/permit/permit_details_screen.dart';
 import 'package:toolkit/screens/permit/widgets/date_time.dart';
@@ -7,10 +9,10 @@ import 'package:toolkit/widgets/generic_app_bar.dart';
 import '../../configs/app_spacing.dart';
 import '../../widgets/custom_icon_button_row.dart';
 
-class PermitScreen extends StatelessWidget {
-  static const routeName = 'PermitScreen';
+class PermitListScreen extends StatelessWidget {
+  static const routeName = 'PermitListScreen';
 
-  const PermitScreen({Key? key}) : super(key: key);
+  const PermitListScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -53,13 +55,14 @@ class PermitScreen extends StatelessWidget {
                                 height:
                                     MediaQuery.of(context).size.width * 0.050,
                                 decoration: BoxDecoration(
-                                  color: Colors.lightBlue,
-                                  borderRadius: BorderRadius.circular(5),
+                                  color: AppColor.deepBlue,
+                                  borderRadius:
+                                      BorderRadius.circular(kCardRadius),
                                 ),
                                 alignment: Alignment.center,
                                 child: const Text(
                                   'REQUESTED',
-                                  style: TextStyle(color: Colors.white),
+                                  style: TextStyle(color: AppColor.white),
                                   textAlign: TextAlign.center,
                                 ),
                               )
