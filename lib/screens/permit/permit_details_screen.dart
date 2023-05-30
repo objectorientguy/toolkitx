@@ -2,12 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:toolkit/configs/app_color.dart';
 import 'package:toolkit/configs/app_dimensions.dart';
 import 'package:toolkit/screens/permit/widgets/tags.dart';
+import 'package:toolkit/utils/permit_util.dart';
 import 'package:toolkit/widgets/custom_tabbar_view.dart';
 import 'package:toolkit/widgets/generic_app_bar.dart';
 import 'package:toolkit/screens/permit/widgets/permit_additional_info.dart';
 import 'package:toolkit/screens/permit/widgets/permit_details.dart';
 import 'package:toolkit/screens/permit/widgets/permit_group.dart';
 import 'package:toolkit/screens/permit/widgets/permit_attachments.dart';
+import 'package:toolkit/screens/permit/widgets/permit_timeline.dart';
+
 import '../../configs/app_spacing.dart';
 
 class PermitDetailsScreen extends StatelessWidget {
@@ -32,7 +35,7 @@ class PermitDetailsScreen extends StatelessWidget {
           children: [
             Card(
               color: AppColor.white,
-              elevation: 1,
+              elevation: kCardElevation,
               child: ListTile(
                 title: Padding(
                   padding: const EdgeInsets.only(top: midTiniestSpacing),
@@ -45,13 +48,13 @@ class PermitDetailsScreen extends StatelessWidget {
                         width: MediaQuery.of(context).size.width * 0.25,
                         height: MediaQuery.of(context).size.width * 0.050,
                         decoration: BoxDecoration(
-                          color: Colors.lightBlue,
-                          borderRadius: BorderRadius.circular(5),
+                          color: AppColor.deepBlue,
+                          borderRadius: BorderRadius.circular(kCardRadius),
                         ),
                         alignment: Alignment.center,
                         child: const Text(
                           'REQUESTED',
-                          style: TextStyle(color: Colors.white),
+                          style: TextStyle(color: AppColor.white),
                           textAlign: TextAlign.center,
                         ),
                       )
@@ -67,48 +70,17 @@ class PermitDetailsScreen extends StatelessWidget {
             const SizedBox(height: midTiniestSpacing),
             const Divider(
               height: kDividerHeight,
-              thickness: 1,
+              thickness: kDividerWidth,
             ),
             const SizedBox(height: midTiniestSpacing),
-            const CustomTabBarView(
+            CustomTabBarView(
               lengthOfTabs: 6,
-              tabBarViewIcons: [
-                Tab(
-                    icon: Icon(
-                  Icons.shelves,
-                  color: AppColor.grey,
-                )),
-                Tab(
-                    icon: Icon(
-                  Icons.info,
-                  color: AppColor.grey,
-                )),
-                Tab(
-                    icon: Icon(
-                  Icons.group,
-                  color: AppColor.grey,
-                )),
-                Tab(
-                    icon: Icon(
-                  Icons.timeline,
-                  color: AppColor.grey,
-                )),
-                Tab(
-                    icon: Icon(
-                  Icons.file_copy_sharp,
-                  color: AppColor.grey,
-                )),
-                Tab(
-                    icon: Icon(
-                  Icons.chat,
-                  color: AppColor.grey,
-                )),
-              ],
-              tabBarViewWidgets: [
+              tabBarViewIcons: PermitUtil().tabBarViewIcons,
+              tabBarViewWidgets: const [
                 PermitDetails(),
                 PermitAdditionalInfo(),
                 PermitGroup(),
-                SizedBox(),
+                CustomTimeline(),
                 PermitAttachments(),
                 SizedBox(),
               ],

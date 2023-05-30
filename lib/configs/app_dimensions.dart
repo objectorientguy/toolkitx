@@ -3,6 +3,7 @@ const double kDividerThickness = 2.0;
 const double kCardRadius = 5.0;
 const double kElevation = 5.0;
 const double kDividerHeight = 10.0;
+const double kDividerWidth = 1.0;
 const double kCircleAvatarRadius = 58.0;
 const double kCardElevation = 1.0;
 const double kImageHeight = 20.0;
