@@ -1,13 +1,9 @@
-// To parse this JSON data, do
-//
-//     final processClientModel = processClientModelFromJson(jsonString);
-
 import 'dart:convert';
 
-HomeScreenModel processClientModelFromJson(String str) =>
+HomeScreenModel homeScreenModelFromJson(String str) =>
     HomeScreenModel.fromJson(json.decode(str));
 
-String processClientModelToJson(HomeScreenModel data) =>
+String homeScreenModelToJson(HomeScreenModel data) =>
     json.encode(data.toJson());
 
 class HomeScreenModel {
@@ -15,47 +11,57 @@ class HomeScreenModel {
   final String? message;
   final Data? data;
 
-  HomeScreenModel({this.status, this.message, this.data});
+  HomeScreenModel({
+    this.status,
+    this.message,
+    this.data,
+  });
 
   factory HomeScreenModel.fromJson(Map<String, dynamic> json) =>
       HomeScreenModel(
-          status: json["Status"],
-          message: json["Message"],
-          data: Data.fromJson(json["Data"]));
+        status: json["Status"],
+        message: json["Message"],
+        data: Data.fromJson(json["Data"]),
+      );
 
-  Map<String, dynamic> toJson() =>
-      {"Status": status, "Message": message, "Data": data!.toJson()};
+  Map<String, dynamic> toJson() => {
+        "Status": status,
+        "Message": message,
+        "Data": data?.toJson(),
+      };
 }
 
 class Data {
   final String userid;
   final String userid2;
-  final String? permission;
+  final String permission;
   final String? alerts;
   final String? datetimecode;
   final String? tracklocation;
   final String? timezoneoffset;
-  final List<dynamic>? badges;
+  final List<Badge>? badges;
 
-  Data(
-      {required this.userid,
-      required this.userid2,
-      this.permission,
-      this.alerts,
-      this.datetimecode,
-      this.tracklocation,
-      this.timezoneoffset,
-      this.badges});
+  Data({
+    required this.userid,
+    required this.userid2,
+    required this.permission,
+    this.alerts,
+    this.datetimecode,
+    this.tracklocation,
+    this.timezoneoffset,
+    this.badges,
+  });
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
-      userid: json["userid"],
-      userid2: json["userid2"],
-      permission: json["permission"],
-      alerts: json["alerts"],
-      datetimecode: json["datetimecode"],
-      tracklocation: json["tracklocation"],
-      timezoneoffset: json["timezoneoffset"],
-      badges: List<dynamic>.from(json["badges"].map((x) => x)));
+        userid: json["userid"],
+        userid2: json["userid2"],
+        permission: json["permission"],
+        alerts: json["alerts"],
+        datetimecode: json["datetimecode"],
+        tracklocation: json["tracklocation"],
+        timezoneoffset: json["timezoneoffset"],
+        badges: List<Badge>.from(json["badges"].map((x) => Badge.fromJson(x))),
+      );
 
   Map<String, dynamic> toJson() => {
         "userid": userid,
@@ -65,6 +71,26 @@ class Data {
         "datetimecode": datetimecode,
         "tracklocation": tracklocation,
         "timezoneoffset": timezoneoffset,
-        "badges": List<dynamic>.from(badges!.map((x) => x))
+        "badges": List<dynamic>.from(badges!.map((x) => x.toJson())),
+      };
+}
+
+class Badge {
+  final String type;
+  final int count;
+
+  Badge({
+    required this.type,
+    required this.count,
+  });
+
+  factory Badge.fromJson(Map<String, dynamic> json) => Badge(
+        type: json["type"],
+        count: json["count"],
+      );
+
+  Map<String, dynamic> toJson() => {
+        "type": type,
+        "count": count,
       };
 }
