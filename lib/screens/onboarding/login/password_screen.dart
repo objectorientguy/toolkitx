@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:toolkit/screens/onboarding/client_list_screen.dart';
 import 'package:toolkit/screens/onboarding/widgets/password_body.dart';
-import 'package:toolkit/screens/root/root_screen.dart';
 import 'package:toolkit/utils/constants/string_constants.dart';
 import 'package:toolkit/widgets/custom_snackbar.dart';
 import 'package:toolkit/widgets/progress_bar.dart';
@@ -37,7 +37,7 @@ class PasswordScreen extends StatelessWidget {
                         ProgressBar.dismiss(context);
                         Navigator.pushNamedAndRemoveUntil(
                             context,
-                            RootScreen.routeName,
+                            ClientListScreen.routeName,
                             (Route<dynamic> route) => false);
                       }
                       if (state is LoginError) {
@@ -48,7 +48,7 @@ class PasswordScreen extends StatelessWidget {
                         ProgressBar.show(context);
                       }
                       if (state is LoginOtpGenerated) {
-                        if (state.generateOtpLoginModel.message != '1') {
+                        if (state.generateOtpLoginModel.message != '0') {
                           showCustomSnackBar(
                               context,
                               StringConstants.kTryAgainInSomeTime,

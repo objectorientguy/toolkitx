@@ -2,7 +2,7 @@ abstract class DateFormatStates {}
 
 class DateFormatSelected extends DateFormatStates {
   final String? dateFormatValue;
-  final String? dateFormatString;
+  final String dateFormatString;
 
-  DateFormatSelected({this.dateFormatValue, this.dateFormatString});
+  DateFormatSelected({this.dateFormatValue, required this.dateFormatString});
 }

@@ -7,7 +7,10 @@ import '../../../blocs/wifiConnectivity/wifi_connectivity_states.dart';
 import 'online_modules.dart';
 
 class ModulesGridLayout extends StatelessWidget {
-  const ModulesGridLayout({Key? key}) : super(key: key);
+  final List availableModules;
+
+  const ModulesGridLayout({Key? key, required this.availableModules})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +22,7 @@ class ModulesGridLayout extends StatelessWidget {
         if (state is NoNetwork) {
           return const OffLineModules();
         } else {
-          return const OnLineModules();
+          return OnLineModules(availableModules: availableModules);
         }
       }),
     );

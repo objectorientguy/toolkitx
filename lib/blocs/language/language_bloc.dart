@@ -48,14 +48,18 @@ class LanguageBloc extends Bloc<LanguageEvent, LanguageStates> {
         syncDate = '';
       }
       LanguageKeysModel getLanguageKeysModel = await _languageRepository
-          .fetchLanguageKeys(event.languageId, syncDate, -1);
+          .fetchLanguageKeys(event.languageId, syncDate);
 
       if (getLanguageKeysModel.status == 200) {
         for (var element in getLanguageKeysModel.data!.keys) {
           DatabaseUtil.box.put(element.key, element.value);
         }
+        _customerCache.setIsLanguageSelected(
+            CacheKeys.isLanguageSelected, true);
+        emit(LanguageKeysFetched(languageKeysModel: getLanguageKeysModel));
+      } else {
+        emit(LanguageKeysError(message: 'Something went wrong try again'));
       }
-      emit(LanguageKeysFetched(languageKeysModel: getLanguageKeysModel));
     } catch (e) {
       emit(LanguageKeysError(message: e.toString()));
     }

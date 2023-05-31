@@ -6,9 +6,9 @@ import '../../utils/dio_client.dart';
 
 class TimeZoneRepositoryImpl extends TimeZoneRepository {
   @override
-  Future<GetTimeZoneModel> fetchTimeZone() async {
+  Future<TimeZoneModel> fetchTimeZone() async {
     final response = await DioClient()
         .get("${ApiConstants.baseUrl}/api/common/GetSystemTimeZones");
-    return GetTimeZoneModel.fromJson(response);
+    return TimeZoneModel.fromJson(response);
   }
 }

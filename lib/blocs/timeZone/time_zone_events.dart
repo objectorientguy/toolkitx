@@ -4,5 +4,11 @@ class FetchTimeZone extends TimeZoneEvents {}
 
 class SelectTimeZone extends TimeZoneEvents {
   final String timeZoneCode;
-  SelectTimeZone({required this.timeZoneCode});
+  final String timeZoneName;
+  final bool isFromProfile;
+
+  SelectTimeZone(
+      {required this.timeZoneCode,
+      required this.timeZoneName,
+      this.isFromProfile = false});
 }

@@ -1,27 +1,26 @@
 import 'dart:convert';
 
-GetTimeZoneModel getTimeZoneModelFromJson(String str) =>
-    GetTimeZoneModel.fromJson(json.decode(str));
+TimeZoneModel getTimeZoneModelFromJson(String str) =>
+    TimeZoneModel.fromJson(json.decode(str));
 
-String getTimeZoneModelToJson(GetTimeZoneModel data) =>
-    json.encode(data.toJson());
+String getTimeZoneModelToJson(TimeZoneModel data) => json.encode(data.toJson());
 
-class GetTimeZoneModel {
+class TimeZoneModel {
   final int status;
   final String? message;
-  final List<Datum>? data;
+  final List<TimeZoneData>? data;
 
-  GetTimeZoneModel({
+  TimeZoneModel({
     required this.status,
     this.message,
     this.data,
   });
 
-  factory GetTimeZoneModel.fromJson(Map<String, dynamic> json) =>
-      GetTimeZoneModel(
+  factory TimeZoneModel.fromJson(Map<String, dynamic> json) => TimeZoneModel(
         status: json["Status"],
         message: json["Message"],
-        data: List<Datum>.from(json["Data"].map((x) => Datum.fromJson(x))),
+        data: List<TimeZoneData>.from(
+            json["Data"].map((x) => TimeZoneData.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
@@ -31,18 +30,18 @@ class GetTimeZoneModel {
       };
 }
 
-class Datum {
+class TimeZoneData {
   final String name;
   final String offset;
   final String code;
 
-  Datum({
+  TimeZoneData({
     required this.name,
     required this.offset,
     required this.code,
   });
 
-  factory Datum.fromJson(Map<String, dynamic> json) => Datum(
+  factory TimeZoneData.fromJson(Map<String, dynamic> json) => TimeZoneData(
         name: json["name"],
         offset: json["offset"],
         code: json["code"],

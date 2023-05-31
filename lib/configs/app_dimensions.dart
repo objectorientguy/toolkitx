@@ -26,3 +26,4 @@ const double kDateTimePickerHeight = 170;
 const double kLoadingPopUpHeight = 50;
 const double kLoadingPopUpWidth = 240;
 const double kLanguagesTileHeight = 20;
+const double kHomeScreenImageHeight = 80;

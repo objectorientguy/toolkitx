@@ -11,24 +11,26 @@ class TextFieldWidget extends StatelessWidget {
   final int? maxLength;
   final int? maxLines;
   final TextInputType? textInputType;
-  final TextEditingController? textFieldController;
-  final String? value;
+  final TextEditingController textFieldController = TextEditingController();
+  final String value;
   final String? hintText;
+  final bool obscureText;
 
-  const TextFieldWidget(
+  TextFieldWidget(
       {Key? key,
       this.textInputAction,
       this.maxLength,
       this.textInputType,
-      this.textFieldController,
-      this.value,
+      this.value = '',
       this.hintText,
       this.maxLines = 1,
-      required this.onTextFieldChanged})
+      required this.onTextFieldChanged,
+      this.obscureText = false})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    textFieldController.text = value;
     return TextField(
         controller: textFieldController,
         onChanged: (value) {
@@ -39,6 +41,7 @@ class TextFieldWidget extends StatelessWidget {
         maxLines: maxLines,
         maxLength: maxLength,
         cursorColor: AppColor.black,
+        obscureText: obscureText,
         decoration: InputDecoration(
             hintStyle: Theme.of(context)
                 .textTheme

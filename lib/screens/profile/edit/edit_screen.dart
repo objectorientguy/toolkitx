@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:toolkit/blocs/profile/profile_bloc.dart';
+import 'package:toolkit/blocs/profile/profile_events.dart';
+import 'package:toolkit/blocs/profile/profile_states.dart';
 import 'package:toolkit/configs/app_spacing.dart';
 import 'package:toolkit/configs/app_theme.dart';
 import 'package:toolkit/utils/constants/string_constants.dart';
+import 'package:toolkit/widgets/custom_snackbar.dart';
 import 'package:toolkit/widgets/primary_button.dart';
-import '../../../configs/app_color.dart';
-import '../../../configs/app_dimensions.dart';
+import 'package:toolkit/widgets/progress_bar.dart';
 import '../../../widgets/generic_app_bar.dart';
 import '../../onboarding/widgets/text_field.dart';
 import '../widgets/blood_group_expansion_tile.dart';
@@ -18,52 +22,88 @@ class EditScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: const GenericAppBar(),
-        bottomNavigationBar: BottomAppBar(
-            color: AppColor.white,
-            elevation: kZeroElevation,
-            padding: const EdgeInsets.all(leftRightMargin),
-            child: PrimaryButton(
-                onPressed: () {}, textValue: StringConstants.kSave)),
         body: SingleChildScrollView(
             physics: const BouncingScrollPhysics(),
             child: Padding(
                 padding: const EdgeInsets.only(
                     left: leftRightMargin, right: leftRightMargin),
-                child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const SizedBox(height: mediumSpacing),
-                      Text(StringConstants.kFirstName,
-                          style: Theme.of(context).textTheme.medium),
-                      const SizedBox(height: midTinySpacing),
-                      TextFieldWidget(
-                        textInputAction: TextInputAction.next,
-                        hintText: StringConstants.kFirstName,
-                        onTextFieldChanged: (String textField) {},
-                      ),
-                      const SizedBox(height: midTinySpacing),
-                      Text(StringConstants.kLastName,
-                          style: Theme.of(context).textTheme.medium),
-                      const SizedBox(height: midTinySpacing),
-                      TextFieldWidget(
-                        textInputAction: TextInputAction.next,
-                        hintText: StringConstants.kLastName,
-                        onTextFieldChanged: (String textField) {},
-                      ),
-                      const SizedBox(height: midTinySpacing),
-                      Text(StringConstants.kContact,
-                          style: Theme.of(context).textTheme.medium),
-                      const SizedBox(height: midTinySpacing),
-                      TextFieldWidget(
-                        textInputAction: TextInputAction.done,
-                        hintText: StringConstants.kContact,
-                        onTextFieldChanged: (String textField) {},
-                      ),
-                      const SizedBox(height: midTinySpacing),
-                      Text(StringConstants.kBloodGroup,
-                          style: Theme.of(context).textTheme.medium),
-                      const SizedBox(height: midTinySpacing),
-                      const BloodGroupExpansionTile()
-                    ]))));
+                child: BlocConsumer<ProfileBloc, ProfileStates>(
+                    buildWhen: (previousState, currentState) =>
+                        currentState is EditProfileInitialized,
+                    listener: (BuildContext context, state) {
+                      if (state is UserProfileUpdating) {
+                        ProgressBar.show(context);
+                      }
+                      if (state is UserProfileUpdated) {
+                        ProgressBar.show(context);
+                        // Navigator.pushReplacementNamed(context, ProfileScreen.routeName);
+                      }
+                      if (state is UserProfileUpdateError) {
+                        ProgressBar.show(context);
+                        showCustomSnackBar(
+                            context, state.message, StringConstants.kOk);
+                      }
+                    },
+                    builder: (context, state) {
+                      if (state is EditProfileInitialized) {
+                        return Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const SizedBox(height: mediumSpacing),
+                              Text(StringConstants.kFirstName,
+                                  style: Theme.of(context).textTheme.medium),
+                              const SizedBox(height: midTinySpacing),
+                              TextFieldWidget(
+                                  value: state.profileDetailsMap['fname'],
+                                  textInputAction: TextInputAction.next,
+                                  hintText: StringConstants.kFirstName,
+                                  onTextFieldChanged: (String textField) {
+                                    state.profileDetailsMap['fname'] =
+                                        textField;
+                                  }),
+                              const SizedBox(height: midTinySpacing),
+                              Text(StringConstants.kLastName,
+                                  style: Theme.of(context).textTheme.medium),
+                              const SizedBox(height: midTinySpacing),
+                              TextFieldWidget(
+                                  value: state.profileDetailsMap['lname'],
+                                  textInputAction: TextInputAction.next,
+                                  hintText: StringConstants.kLastName,
+                                  onTextFieldChanged: (String textField) {
+                                    state.profileDetailsMap['lname'] =
+                                        textField;
+                                  }),
+                              const SizedBox(height: midTinySpacing),
+                              Text(StringConstants.kContact,
+                                  style: Theme.of(context).textTheme.medium),
+                              const SizedBox(height: midTinySpacing),
+                              TextFieldWidget(
+                                  value: state.profileDetailsMap['contact'],
+                                  textInputAction: TextInputAction.done,
+                                  hintText: StringConstants.kContact,
+                                  onTextFieldChanged: (String textField) {
+                                    state.profileDetailsMap['contact'] =
+                                        textField;
+                                  }),
+                              const SizedBox(height: midTinySpacing),
+                              Text(StringConstants.kBloodGroup,
+                                  style: Theme.of(context).textTheme.medium),
+                              const SizedBox(height: midTinySpacing),
+                              BloodGroupExpansionTile(
+                                  profileDetailsMap: state.profileDetailsMap),
+                              const SizedBox(height: mediumSpacing),
+                              PrimaryButton(
+                                  onPressed: () {
+                                    context.read<ProfileBloc>().add(
+                                        UpdateProfile(
+                                            updateProfileMap:
+                                                state.profileDetailsMap));
+                                  },
+                                  textValue: StringConstants.kSave)
+                            ]);
+                      } else {
+                        return const SizedBox();
+                      }
+                    }))));
   }
 }

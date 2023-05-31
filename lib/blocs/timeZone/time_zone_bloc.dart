@@ -24,7 +24,7 @@ class TimeZoneBloc extends Bloc<TimeZoneEvents, TimeZoneStates> {
       FetchTimeZone event, Emitter<TimeZoneStates> emit) async {
     emit(TimeZoneFetching());
     try {
-      GetTimeZoneModel getTimeZoneModel =
+      TimeZoneModel getTimeZoneModel =
           await _timeZoneRepository.fetchTimeZone();
       emit(TimeZoneFetched(getTimeZoneModel: getTimeZoneModel));
     } catch (e) {
@@ -32,8 +32,23 @@ class TimeZoneBloc extends Bloc<TimeZoneEvents, TimeZoneStates> {
     }
   }
 
-  _selectTimeZone(SelectTimeZone event, Emitter<TimeZoneStates> emit) {
+  FutureOr<void> _selectTimeZone(
+      SelectTimeZone event, Emitter<TimeZoneStates> emit) async {
+    if (event.isFromProfile == true) {
+      String timeZoneCode =
+          (await _customerCache.getTimeZoneCode(CacheKeys.timeZoneCode))!;
+      String userType = (await _customerCache.getUserType(CacheKeys.userType))!;
+      String apiKey = (await _customerCache.getApiKey(CacheKeys.apiKey))!;
+      String hashKey = (await _customerCache.getClientId(CacheKeys.clientId))!;
+      String dateTimeValue = (await _customerCache
+          .getCustomerDateFormat(CacheKeys.dateFormatKey))!;
+      String hashCode =
+          '$apiKey|$hashKey|$userType|$dateTimeValue|$timeZoneCode';
+      _customerCache.setHashCode(CacheKeys.hashcode, hashCode);
+    }
     _customerCache.setTimeZoneCode(CacheKeys.timeZoneCode, event.timeZoneCode);
+    _customerCache.setTimeZoneName(CacheKeys.timeZoneName, event.timeZoneName);
+    _customerCache.setIsTimeZoneSelected(CacheKeys.isTimeZoneSelected, true);
     emit(TimeZoneSelected());
   }
 }

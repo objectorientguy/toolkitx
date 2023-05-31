@@ -1,5 +1,4 @@
-import 'package:toolkit/data/models/language/check_new_language_keys_model.dart';
-
+import '../../data/models/language/check_new_language_keys_model.dart';
 import '../../data/models/language/language_keys_model.dart';
 import '../../data/models/language/languages_model.dart';
 import '../../utils/constants/api_constants.dart';
@@ -16,9 +15,9 @@ class LanguageRepositoryImpl extends LanguageRepository {
 
   @override
   Future<LanguageKeysModel> fetchLanguageKeys(
-      int languageId, String syncDate, int pageNo) async {
+      int languageId, String syncDate) async {
     final response = await DioClient().get(
-        "${ApiConstants.baseUrl}/api/common/getlanguagekeys?languageid=$languageId&syncdate=$syncDate&pageno=$pageNo");
+        "${ApiConstants.baseUrl}/api/common/getlanguagekeys?languageid=$languageId&syncdate=&pageno=-1");
     return LanguageKeysModel.fromJson(response);
   }
 

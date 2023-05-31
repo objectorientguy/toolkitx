@@ -16,8 +16,13 @@ abstract class StringConstants {
   static const String kWelcome = 'Welcome';
   static const String kType = 'Type';
   static const String kGenerateOtp = 'GENERATE OTP';
+  static const String kEnterNewPassword = 'Enter New Password';
+  static const String kConfirmPassword = 'Confirm Password';
+  static const String kOtpGenerated = 'OTP generated';
   static const String kSelectDateFormat = 'Select Your Date Format';
   static const String kSave = 'SAVE';
+  static const String kOldPassword = 'Old Password';
+  static const String kEnterOtp = 'Enter OTP';
   static const String kSelectYourLanguage = 'Select Your Language';
   static const String kPleaseConfirm = 'Please Confirm';
   static const String kReject = 'Reject';

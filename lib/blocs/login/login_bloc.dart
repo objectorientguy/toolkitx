@@ -88,10 +88,13 @@ class LoginBloc extends Bloc<LoginEvents, LoginStates> {
         emit(LoginError(message: StringConstants.kSelectUserTypeValidation));
       } else {
         String password =
-            await EncryptData.encryptAES(event.loginMap['password']);
+            await EncryptData.encryptAES(event.loginMap['password'].trim());
         Map loginMap = {'username': email, 'password': password, 'type': type};
         LoginModel loginModel = await _loginRepository.postLogin(loginMap);
         if (loginModel.status == 200) {
+          _customerCache.setClientDataKey(
+              CacheKeys.clientDataKey, loginModel.message!);
+          _customerCache.setIsLoggedIn(CacheKeys.isLoggedIn, true);
           emit(LoginLoaded(loginModel: loginModel));
         } else {
           emit(LoginError(message: loginModel.message!));

@@ -7,7 +7,7 @@ class TimeZoneInitial extends TimeZoneStates {}
 class TimeZoneFetching extends TimeZoneStates {}
 
 class TimeZoneFetched extends TimeZoneStates {
-  final GetTimeZoneModel getTimeZoneModel;
+  final TimeZoneModel getTimeZoneModel;
 
   TimeZoneFetched({required this.getTimeZoneModel});
 }

@@ -14,4 +14,20 @@ class EncryptData {
     final decrypted = encryptValue.decrypt64(text, iv: iv);
     return decrypted;
   }
+
+  static encryptAESPrivateKey(text, aipKey) {
+    final decryptedApiKey = encryptValue.decrypt64(aipKey, iv: iv);
+    final priKey = Key.fromUtf8(decryptedApiKey.replaceAll('-', ''));
+    final encryptPriKeyValue = Encrypter(AES(priKey, mode: AESMode.cbc));
+    final encrypted = encryptPriKeyValue.encrypt(text, iv: iv).base64;
+    return encrypted;
+  }
+
+  static decryptAESPrivateKey(text, aipKey) {
+    final decryptedApiKey = encryptValue.decrypt64(aipKey, iv: iv);
+    final priKey = Key.fromUtf8(decryptedApiKey.replaceAll('-', ''));
+    final decryptPriKeyValue = Encrypter(AES(priKey, mode: AESMode.cbc));
+    final decrypted = decryptPriKeyValue.decrypt64(text, iv: iv);
+    return decrypted;
+  }
 }
