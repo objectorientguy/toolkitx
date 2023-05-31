@@ -1,5 +1,5 @@
 import '../../data/models/client/client_list_model.dart';
-import '../../data/models/client/process_client_model.dart';
+import '../../data/models/client/home_screen_model.dart';
 
 abstract class ClientStates {}
 

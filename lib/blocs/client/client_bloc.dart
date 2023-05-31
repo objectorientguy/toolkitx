@@ -5,7 +5,7 @@ import 'package:toolkit/blocs/client/client_events.dart';
 import 'package:toolkit/blocs/client/client_states.dart';
 import 'package:toolkit/data/cache/cache_keys.dart';
 import 'package:toolkit/data/models/client/client_list_model.dart';
-import 'package:toolkit/data/models/client/process_client_model.dart';
+import 'package:toolkit/data/models/client/home_screen_model.dart';
 import 'package:toolkit/repositories/client/client_repository.dart';
 
 import '../../data/cache/customer_cache.dart';
@@ -74,7 +74,7 @@ class ClientBloc extends Bloc<ClientEvents, ClientStates> {
         _customerCache.setUserId2(
             CacheKeys.userId2, homeScreenModel.data!.userid2);
         permissionsList =
-            homeScreenModel.data!.permission!.replaceAll(' ', '').split(',');
+            homeScreenModel.data!.permission.replaceAll(' ', '').split(',');
         List availableModules = [];
         for (int i = 0; i < permissionsList.length; i++) {
           if (permissionsList.contains(ModulesUtil.listModulesMode[i].key) ==

@@ -1,7 +1,7 @@
 import 'package:toolkit/repositories/client/client_repository.dart';
 
 import '../../data/models/client/client_list_model.dart';
-import '../../data/models/client/process_client_model.dart';
+import '../../data/models/client/home_screen_model.dart';
 import '../../utils/constants/api_constants.dart';
 import '../../utils/dio_client.dart';
 
