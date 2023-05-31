@@ -29,8 +29,13 @@ class HomeScreen extends StatelessWidget {
                   CachedNetworkImage(
                       height: kHomeScreenImageHeight,
                       imageUrl: state.image,
-                      placeholder: (context, url) =>
-                          const CircularProgressIndicator(strokeWidth: 2),
+                      placeholder: (context, url) => const Center(
+                            child: SizedBox(
+                              height: kImageCircularProgressIndicatorSize,
+                              width: kImageCircularProgressIndicatorSize,
+                              child: CircularProgressIndicator(strokeWidth: 2),
+                            ),
+                          ),
                       errorWidget: (context, url, error) => const Icon(
                           Icons.error_outline_sharp,
                           size: kIconSize)),

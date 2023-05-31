@@ -40,22 +40,15 @@ class LanguageBloc extends Bloc<LanguageEvent, LanguageStates> {
       FetchLanguageKeys event, Emitter<LanguageStates> emit) async {
     emit(LanguageKeysFetching());
     try {
-      String syncDate;
-      try {
-        syncDate = (await _customerCache
-            .getLanguageSyncDate(CacheKeys.languageSyncDate))!;
-      } catch (e) {
-        syncDate = '';
-      }
-      LanguageKeysModel getLanguageKeysModel = await _languageRepository
-          .fetchLanguageKeys(event.languageId, syncDate);
+      LanguageKeysModel getLanguageKeysModel =
+          await _languageRepository.fetchLanguageKeys(event.languageId);
 
       if (getLanguageKeysModel.status == 200) {
+        _customerCache.setLanguageId(
+            CacheKeys.languageId, event.languageId.toString());
         for (var element in getLanguageKeysModel.data!.keys) {
           DatabaseUtil.box.put(element.key, element.value);
         }
-        _customerCache.setIsLanguageSelected(
-            CacheKeys.isLanguageSelected, true);
         emit(LanguageKeysFetched(languageKeysModel: getLanguageKeysModel));
       } else {
         emit(LanguageKeysError(message: 'Something went wrong try again'));
@@ -69,16 +62,8 @@ class LanguageBloc extends Bloc<LanguageEvent, LanguageStates> {
       CheckNewLanguageKeys event, Emitter<LanguageStates> emit) async {
     emit(CheckingNewLanguageKeys());
     try {
-      String syncDate;
-      try {
-        syncDate = (await _customerCache
-            .getLanguageSyncDate(CacheKeys.languageSyncDate))!;
-      } catch (e) {
-        syncDate = '';
-      }
       CheckNewLanguageKeysModel checkNewLanguageKeysModel =
-          await _languageRepository.isDownloadLanguage(
-              event.languageId, syncDate);
+          await _languageRepository.isDownloadLanguage(event.languageId);
       if (checkNewLanguageKeysModel.data.download == '1') {
         emit(NewKeysLanguageAvailable());
       } else {

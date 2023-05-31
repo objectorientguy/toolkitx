@@ -19,8 +19,6 @@ class DateFormatBloc extends Bloc<SetDateFormat, DateFormatStates> {
       SetDateFormat event, Emitter<DateFormatStates> emit) async {
     _customerCache.setCustomerDateFormatString(
         CacheKeys.dateFormatKey, event.saveDateFormatValue);
-    _customerCache.setIsDateFormatSelected(
-        CacheKeys.isDateFormatSelected, true);
     if (event.isFromProfile == true) {
       String timeZoneCode =
           (await _customerCache.getTimeZoneCode(CacheKeys.timeZoneCode))!;

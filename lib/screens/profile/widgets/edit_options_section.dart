@@ -59,7 +59,7 @@ class EditOptionsSection extends StatelessWidget {
                 context: context,
                 builder: (context) {
                   return AndroidPopUp(
-                      titleValue: DatabaseUtil.box.get('Logout '),
+                      titleValue: DatabaseUtil.box.get('Logout'),
                       contentValue: DatabaseUtil.box.get('LogoutMessage'),
                       onPressed: () {
                         Navigator.of(context);

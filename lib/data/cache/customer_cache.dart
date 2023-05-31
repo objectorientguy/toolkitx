@@ -10,16 +10,12 @@ class CustomerCache {
     await sharedPreferences.setString(CacheKeys.dateFormatKey, string);
   }
 
-  void setLanguageSyncDate(String key, String string) async {
-    await sharedPreferences.setString(CacheKeys.languageSyncDate, string);
+  void setLanguageId(String key, String string) async {
+    await sharedPreferences.setString(CacheKeys.languageId, string);
   }
 
   void setTimeZoneCode(String key, String string) async {
     await sharedPreferences.setString(CacheKeys.timeZoneCode, string);
-  }
-
-  void setEncryptedEmail(String key, String string) async {
-    await sharedPreferences.setString(CacheKeys.encryptedEmail, string);
   }
 
   void setUserType(String key, String string) async {
@@ -58,18 +54,6 @@ class CustomerCache {
     await sharedPreferences.setBool(CacheKeys.isLoggedIn, boolValue);
   }
 
-  void setIsLanguageSelected(String key, bool boolValue) async {
-    await sharedPreferences.setBool(CacheKeys.isLanguageSelected, boolValue);
-  }
-
-  void setIsTimeZoneSelected(String key, bool boolValue) async {
-    await sharedPreferences.setBool(CacheKeys.isTimeZoneSelected, boolValue);
-  }
-
-  void setIsDateFormatSelected(String key, bool boolValue) async {
-    await sharedPreferences.setBool(CacheKeys.isDateFormatSelected, boolValue);
-  }
-
   void setClientImage(String key, String string) async {
     await sharedPreferences.setString(CacheKeys.clientImage, string);
   }
@@ -82,16 +66,12 @@ class CustomerCache {
     return sharedPreferences.getString(CacheKeys.clientDataKey);
   }
 
-  Future<String?> getLanguageSyncDate(String key) async {
-    return sharedPreferences.getString(CacheKeys.languageSyncDate);
+  Future<String?> getLanguageId(String key) async {
+    return sharedPreferences.getString(CacheKeys.languageId);
   }
 
   Future<String?> getTimeZoneCode(String key) async {
     return sharedPreferences.getString(CacheKeys.timeZoneCode);
-  }
-
-  Future<String?> getEncryptedEmail(String key) async {
-    return sharedPreferences.getString(CacheKeys.encryptedEmail);
   }
 
   Future<String?> getUserType(String key) async {
@@ -110,20 +90,8 @@ class CustomerCache {
     return sharedPreferences.getBool(CacheKeys.isLoggedIn);
   }
 
-  Future<bool?> getIsLanguageSelected(String key) async {
-    return sharedPreferences.getBool(CacheKeys.isLanguageSelected);
-  }
-
-  Future<bool?> getIsTimeZoneSelected(String key) async {
-    return sharedPreferences.getBool(CacheKeys.isTimeZoneSelected);
-  }
-
-  Future<bool?> getIsDateFormatSelected(String key) async {
-    return sharedPreferences.getBool(CacheKeys.isDateFormatSelected);
-  }
-
   Future<String?> getClientImage(String key) async {
-    return sharedPreferences.getString(CacheKeys.isLoggedIn);
+    return sharedPreferences.getString(CacheKeys.clientImage);
   }
 
   Future<String?> getHashCode(String key) async {

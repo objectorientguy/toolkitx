@@ -65,7 +65,7 @@ class MyApp extends StatelessWidget {
           BlocProvider(lazy: false, create: (context) => ProfileBloc()),
           BlocProvider(
               lazy: false,
-              create: (context) => OnBoardingBloc()..add(OnBoardingEvent()))
+              create: (context) => OnBoardingBloc()..add(CheckLoggedIn()))
         ],
         child: GestureDetector(
             onTap: () {

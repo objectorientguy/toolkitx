@@ -23,8 +23,13 @@ class HomeBloc extends Bloc<HomeEvents, HomeStates> {
 
   FutureOr<void> _setDateAndTime(
       SetDateAndTime event, Emitter<HomeStates> emit) async {
-    String timeZoneName =
-        (await _customerCache.getTimeZoneName(CacheKeys.timeZoneName))!;
+    String timeZoneName = '';
+    try {
+      timeZoneName =
+          (await _customerCache.getTimeZoneName(CacheKeys.timeZoneName))!;
+    } catch (e) {
+      timeZoneName = DateTime.now().timeZoneName;
+    }
     emit(DateAndTimeLoaded(
         dateTime: DateTime.now(), timeZoneName: timeZoneName));
   }

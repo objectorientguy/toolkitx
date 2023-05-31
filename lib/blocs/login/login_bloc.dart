@@ -16,6 +16,7 @@ import 'login_states.dart';
 class LoginBloc extends Bloc<LoginEvents, LoginStates> {
   final LoginRepository _loginRepository = getIt<LoginRepository>();
   final CustomerCache _customerCache = getIt<CustomerCache>();
+  String encryptedEmail = '';
 
   LoginStates get initialState => LoginInitial();
 
@@ -39,10 +40,7 @@ class LoginBloc extends Bloc<LoginEvents, LoginStates> {
       if (event.email == null || event.email!.trim() == '') {
         emit(ValidateEmailError(message: StringConstants.kValidateEmptyEmail));
       } else {
-        String encryptedEmail =
-            await EncryptData.encryptAES(event.email!.trim());
-        _customerCache.setEncryptedEmail(
-            CacheKeys.encryptedEmail, encryptedEmail);
+        encryptedEmail = await EncryptData.encryptAES(event.email!.trim());
         Map validateEmailMap = {'emailaddress': encryptedEmail};
         ValidateEmailModel validateEmailModel =
             await _loginRepository.validateEmail(validateEmailMap);
@@ -63,9 +61,7 @@ class LoginBloc extends Bloc<LoginEvents, LoginStates> {
       GenerateLoginOtp event, Emitter<LoginStates> emit) async {
     emit(GeneratingOtpLogin());
     try {
-      String? email =
-          await _customerCache.getEncryptedEmail(CacheKeys.encryptedEmail);
-      Map generateOtpMap = {'emailaddress': email};
+      Map generateOtpMap = {'emailaddress': encryptedEmail};
       GenerateLoginOtpModel generateOtpLoginModel =
           await _loginRepository.getOptLogin(generateOtpMap);
       emit(LoginOtpGenerated(generateOtpLoginModel: generateOtpLoginModel));
@@ -78,8 +74,6 @@ class LoginBloc extends Bloc<LoginEvents, LoginStates> {
       LoginEvent event, Emitter<LoginStates> emit) async {
     emit(LoginLoading());
     try {
-      String? email =
-          await _customerCache.getEncryptedEmail(CacheKeys.encryptedEmail);
       String? type = await _customerCache.getUserType(CacheKeys.userType);
       if (event.loginMap['password'] == null ||
           event.loginMap['password'].trim() == '') {
@@ -89,7 +83,11 @@ class LoginBloc extends Bloc<LoginEvents, LoginStates> {
       } else {
         String password =
             await EncryptData.encryptAES(event.loginMap['password'].trim());
-        Map loginMap = {'username': email, 'password': password, 'type': type};
+        Map loginMap = {
+          'username': encryptedEmail,
+          'password': password,
+          'type': type
+        };
         LoginModel loginModel = await _loginRepository.postLogin(loginMap);
         if (loginModel.status == 200) {
           _customerCache.setClientDataKey(

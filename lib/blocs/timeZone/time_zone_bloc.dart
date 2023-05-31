@@ -48,7 +48,6 @@ class TimeZoneBloc extends Bloc<TimeZoneEvents, TimeZoneStates> {
     }
     _customerCache.setTimeZoneCode(CacheKeys.timeZoneCode, event.timeZoneCode);
     _customerCache.setTimeZoneName(CacheKeys.timeZoneName, event.timeZoneName);
-    _customerCache.setIsTimeZoneSelected(CacheKeys.isTimeZoneSelected, true);
     emit(TimeZoneSelected());
   }
 }

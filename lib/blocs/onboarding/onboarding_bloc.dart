@@ -1,40 +1,83 @@
 import 'dart:async';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:toolkit/blocs/onboarding/onboarding_events.dart';
-import 'package:toolkit/blocs/onboarding/onboarding_states.dart';
-import 'package:toolkit/data/cache/cache_keys.dart';
 
+import '../../data/cache/cache_keys.dart';
 import '../../data/cache/customer_cache.dart';
 import '../../di/app_module.dart';
+import 'onboarding_events.dart';
+import 'onboarding_states.dart';
 
-class OnBoardingBloc extends Bloc<OnBoardingEvent, OnBoardingStates> {
+class OnBoardingBloc extends Bloc<OnBoardingEvents, OnBoardingStates> {
   final CustomerCache _customerCache = getIt<CustomerCache>();
 
   OnBoardingStates get initialState => OnBoardingInitial();
 
   OnBoardingBloc() : super(OnBoardingInitial()) {
-    on<OnBoardingEvent>(_onBoardingEvent);
+    on<CheckLanguageSelected>(_isLanguageSelected);
+    on<CheckTimeZoneSelected>(_isTimeZoneSelected);
+    on<CheckDateFormatSelected>(_isDateFormatSelected);
+    on<CheckLoggedIn>(_isLoggedIn);
   }
 
-  FutureOr<void> _onBoardingEvent(
-      OnBoardingEvent event, Emitter<OnBoardingStates> emit) async {
-    bool isLoggedIn =
-        (await _customerCache.getIsLoggedIn(CacheKeys.isLoggedIn))!;
-    bool isLanguageSelected =
-        (await _customerCache.getIsLoggedIn(CacheKeys.isLanguageSelected))!;
-    bool isTimeZoneSelected =
-        (await _customerCache.getIsLoggedIn(CacheKeys.isTimeZoneSelected))!;
-    bool isDateFormatSelected =
-        (await _customerCache.getIsLoggedIn(CacheKeys.isDateFormatSelected))!;
-    if (isLoggedIn == true) {
-      emit(LoggedIn());
-    } else if (isLanguageSelected == true) {
-      emit(LanguageSelected());
-    } else if (isTimeZoneSelected == true) {
-      emit(TimeZoneSelected());
-    } else if (isDateFormatSelected == true) {
-      emit(DateFormatSelected());
+  Future<FutureOr<void>> _isLoggedIn(
+      CheckLoggedIn event, Emitter<OnBoardingStates> emit) async {
+    try {
+      bool isLoggedIn =
+          (await _customerCache.getIsLoggedIn(CacheKeys.isLoggedIn))!;
+      if (isLoggedIn == true) {
+        emit(LoggedIn());
+      } else {
+        add(CheckDateFormatSelected());
+      }
+    } catch (e) {
+      add(CheckDateFormatSelected());
+    }
+  }
+
+  Future<FutureOr<void>> _isDateFormatSelected(
+      CheckDateFormatSelected event, Emitter<OnBoardingStates> emit) async {
+    try {
+      String? isDateFormatSelected;
+      isDateFormatSelected =
+          await _customerCache.getCustomerDateFormat(CacheKeys.dateFormatKey);
+      if (isDateFormatSelected != null) {
+        emit(DateFormatSelected());
+      } else {
+        add(CheckTimeZoneSelected());
+      }
+    } catch (e) {
+      add(CheckTimeZoneSelected());
+    }
+  }
+
+  Future<FutureOr<void>> _isTimeZoneSelected(
+      CheckTimeZoneSelected event, Emitter<OnBoardingStates> emit) async {
+    try {
+      String? isTimeZoneSelected;
+      isTimeZoneSelected =
+          await _customerCache.getTimeZoneCode(CacheKeys.timeZoneCode);
+      if (isTimeZoneSelected != null) {
+        emit(TimeZoneSelected());
+      } else {
+        add(CheckLanguageSelected());
+      }
+    } catch (e) {
+      add(CheckLanguageSelected());
+    }
+  }
+
+  FutureOr<void> _isLanguageSelected(
+      CheckLanguageSelected event, Emitter<OnBoardingStates> emit) async {
+    try {
+      String? isLanguageSelected;
+      isLanguageSelected =
+          await _customerCache.getLanguageId(CacheKeys.languageId);
+      if (isLanguageSelected != null) {
+        emit(LanguageSelected());
+      }
+    } catch (e) {
+      return;
     }
   }
 }
