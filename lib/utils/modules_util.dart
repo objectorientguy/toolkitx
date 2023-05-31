@@ -1,114 +1,110 @@
-import 'package:toolkit/utils/database_utils.dart';
-
 import '../data/models/modules_model.dart';
 
 abstract class ModulesUtil {
   static String kBaseImagePath = 'assets/icons/';
   static List<ModulesModel> listModulesMode = [
     ModulesModel(
-        moduleName: DatabaseUtil.box.get('LogBook'),
+        moduleName: 'LogBook',
         moduleImage: '${kBaseImagePath}logbook.png',
         key: 'sl'),
     ModulesModel(
-        moduleName: DatabaseUtil.box.get('Calendar'),
+        moduleName: 'Calendar',
         moduleImage: '${kBaseImagePath}calendar.png',
         key: 'wf_calendar'),
     ModulesModel(
-        moduleName: DatabaseUtil.box.get('Calendar'),
+        moduleName: 'Calendar',
         moduleImage: '${kBaseImagePath}calendar.png',
         key: 'calendar'),
     ModulesModel(
-        moduleName: DatabaseUtil.box.get('QualityManagement'),
+        moduleName: 'QualityManagement',
         moduleImage: '${kBaseImagePath}quality_service.png',
         key: 'qareport'),
     ModulesModel(
-        moduleName: DatabaseUtil.box.get('Permit'),
+        moduleName: 'Permit',
         moduleImage: '${kBaseImagePath}permit.png',
         offLineSupport: true,
         key: 'ptw'),
     ModulesModel(
-        moduleName: DatabaseUtil.box.get('Accounting'),
+        moduleName: 'Accounting',
         moduleImage: '${kBaseImagePath}permit.png',
         offLineSupport: true,
         key: 'accounting'),
     ModulesModel(
-        moduleName: DatabaseUtil.box.get('TimeVacation'),
+        moduleName: 'TimeVacation',
         moduleImage: '${kBaseImagePath}holiday.png',
         key: 'timesheet'),
     ModulesModel(
-        moduleName: DatabaseUtil.box.get('TimeVacation'),
+        moduleName: 'TimeVacation',
         moduleImage: '${kBaseImagePath}holiday.png',
         key: 'wf_timesheet'),
     ModulesModel(
-        moduleName: DatabaseUtil.box.get('Incident'),
+        moduleName: 'Incident',
         moduleImage: '${kBaseImagePath}logbook.png',
         key: 'hse'),
     ModulesModel(
-        moduleName: DatabaseUtil.box.get('ToDo'),
+        moduleName: 'ToDo',
         moduleImage: '${kBaseImagePath}to_do.png',
         key: 'todo'),
     ModulesModel(
-        moduleName: DatabaseUtil.box.get('SafetyNotice'),
+        moduleName: 'SafetyNotice',
         moduleImage: '${kBaseImagePath}shield.png',
         key: ''),
     ModulesModel(
-        moduleName: DatabaseUtil.box.get('WorkOrder'),
+        moduleName: 'WorkOrder',
         moduleImage: '${kBaseImagePath}logbook.png',
         key: 'workorder'),
     ModulesModel(
-        moduleName: DatabaseUtil.box.get('meetingRoom'),
+        moduleName: 'meetingRoom',
         moduleImage: '${kBaseImagePath}briefing.png',
         key: 'meeting'),
     ModulesModel(
-        moduleName: DatabaseUtil.box.get('Certificates'),
+        moduleName: 'Certificates',
         moduleImage: '${kBaseImagePath}certificate.png',
         key: 'certificates'),
     ModulesModel(
-        moduleName: DatabaseUtil.box.get('Expense'),
+        moduleName: 'Expense',
         moduleImage: '${kBaseImagePath}expenses.png',
         key: 'timesheet'),
     ModulesModel(
-        moduleName: DatabaseUtil.box.get('Expense'),
+        moduleName: 'Expense',
         moduleImage: '${kBaseImagePath}expenses.png',
         key: 'wf_timesheet'),
     ModulesModel(
-        moduleName: DatabaseUtil.box.get('Checklist'),
+        moduleName: 'Checklist',
         moduleImage: '${kBaseImagePath}checklist.png',
         key: 'checklist'),
     ModulesModel(
-        moduleName: DatabaseUtil.box.get('Checklist'),
+        moduleName: 'Checklist',
         moduleImage: '${kBaseImagePath}checklist.png',
         key: 'wf_checklist'),
     ModulesModel(
-        moduleName: DatabaseUtil.box.get('Documents'),
+        moduleName: 'Documents',
         moduleImage: '${kBaseImagePath}documents.png',
         key: 'dms'),
     ModulesModel(
-        moduleName: DatabaseUtil.box.get('EquipmentTraceability'),
+        moduleName: 'EquipmentTraceability',
         moduleImage: '${kBaseImagePath}mechanic.png',
         key: 'trace'),
     ModulesModel(
-        moduleName: DatabaseUtil.box.get('LOTO'),
+        moduleName: 'LOTO',
         moduleImage: '${kBaseImagePath}lottery.png',
         key: 'loto'),
     ModulesModel(
-        moduleName: DatabaseUtil.box.get('Ticket'),
+        moduleName: 'Ticket',
         moduleImage: '${kBaseImagePath}t.png',
         key: 'tickets'),
     ModulesModel(
-        moduleName: DatabaseUtil.box.get('Assets'),
+        moduleName: 'Assets',
         moduleImage: '${kBaseImagePath}t.png',
         key: 'eam'),
     ModulesModel(
-        moduleName: DatabaseUtil.box.get('Location'),
+        moduleName: 'Location',
         moduleImage: '${kBaseImagePath}t.png',
         key: 'eam'),
     ModulesModel(
-        moduleName: DatabaseUtil.box.get('Trips'),
-        moduleImage: '${kBaseImagePath}t.png',
-        key: 'hf'),
+        moduleName: 'Trips', moduleImage: '${kBaseImagePath}t.png', key: 'hf'),
     ModulesModel(
-        moduleName: DatabaseUtil.box.get('Trips'),
+        moduleName: 'Trips',
         moduleImage: '${kBaseImagePath}t.png',
         key: 'wf_trips'),
   ];

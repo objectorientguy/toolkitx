@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:toolkit/screens/checklist/checklist_list_screen.dart';
 import 'package:toolkit/screens/incident/incident_list_screen.dart';
+import 'package:toolkit/widgets/db_text_widget.dart';
 
 import '../../../configs/app_color.dart';
 import '../../../configs/app_dimensions.dart';
 import '../../../configs/app_spacing.dart';
-import '../../../utils/modules_util.dart';
+import '../../permit/permit_list_screen.dart';
 
 class OnLineModules extends StatelessWidget {
   final List availableModules;
@@ -27,7 +28,7 @@ class OnLineModules extends StatelessWidget {
         itemBuilder: (BuildContext context, int index) {
           return InkWell(
               onTap: () =>
-                  navigateToModule(availableModules[index].key, context),
+                  navigateToModule(availableModules[index].moduleName, context),
               child: Card(
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(kCardRadius)),
@@ -47,21 +48,22 @@ class OnLineModules extends StatelessWidget {
                         Padding(
                             padding: const EdgeInsets.only(
                                 left: tiniestSpacing, right: tiniestSpacing),
-                            child: Text(availableModules[index].moduleName,
+                            child: DatabaseText(
+                                textValue: availableModules[index].moduleName,
                                 textAlign: TextAlign.center))
                       ])));
         });
   }
 
-  navigateToModule(index, context) {
-    switch (index) {
-      case 4:
+  navigateToModule(moduleName, context) {
+    switch (moduleName) {
+      case 'Permit':
         Navigator.pushNamed(context, PermitListScreen.routeName);
         break;
-      case 6:
+      case 'Incident':
         Navigator.pushNamed(context, IncidentListScreen.routeName);
         break;
-      case 13:
+      case 'Checklist':
         Navigator.pushNamed(context, ChecklistScreen.routeName);
         break;
     }
