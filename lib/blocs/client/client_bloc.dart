@@ -49,44 +49,6 @@ class ClientBloc extends Bloc<ClientEvents, ClientStates> {
     emit(HomeScreenFetching());
     try {
       List permissionsList = [];
-      if (event.hashKey == '') {
-        String timeZoneCode =
-            (await _customerCache.getTimeZoneCode(CacheKeys.timeZoneCode))!;
-        String userType =
-            (await _customerCache.getUserType(CacheKeys.userType))!;
-        String apiKey = (await _customerCache.getApiKey(CacheKeys.apiKey))!;
-        String clientId =
-            (await _customerCache.getClientId(CacheKeys.clientId))!;
-        Map fetchHomeScreenMap = {
-          "hashkey": clientId,
-          "apikey": apiKey,
-          "type": userType,
-          "timezonecode": timeZoneCode
-        };
-        HomeScreenModel homeScreenModel =
-            await _clientRepository.fetchHomeScreen(fetchHomeScreenMap);
-        if (homeScreenModel.status == 200) {
-          _customerCache.setUserId(
-              CacheKeys.userId, homeScreenModel.data!.userid);
-          _customerCache.setUserId2(
-              CacheKeys.userId2, homeScreenModel.data!.userid2);
-          permissionsList =
-              homeScreenModel.data!.permission!.replaceAll(' ', '').split(',');
-          List availableModules = [];
-          for (int i = 0; i < permissionsList.length; i++) {
-            if (permissionsList.contains(ModulesUtil.listModulesMode[i].key) ==
-                true) {
-              availableModules.add(ModulesUtil.listModulesMode[i]);
-            }
-          }
-          emit(HomeScreenFetched(
-              processClientModel: homeScreenModel,
-              image: event.image,
-              availableModules: availableModules));
-        } else {
-          emit(FetchHomeScreenError());
-        }
-      }
       String timeZoneCode =
           (await _customerCache.getTimeZoneCode(CacheKeys.timeZoneCode))!;
       String userType = (await _customerCache.getUserType(CacheKeys.userType))!;
