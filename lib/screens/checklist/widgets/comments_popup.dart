@@ -5,7 +5,7 @@ import 'package:toolkit/widgets/text_button.dart';
 import '../../../configs/app_color.dart';
 import '../../../configs/app_spacing.dart';
 import '../../../utils/constants/string_constants.dart';
-import '../../onboarding/widgets/text_field.dart';
+import '../../../widgets/generic_text_field.dart';
 
 class CommentsPopUp extends StatelessWidget {
   final String textValue;

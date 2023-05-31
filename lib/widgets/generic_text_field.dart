@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:toolkit/configs/app_theme.dart';
-import '../../../configs/app_color.dart';
-import '../../../configs/app_spacing.dart';
+import '../configs/app_color.dart';
+import '../configs/app_spacing.dart';
 
 class TextFieldWidget extends StatelessWidget {
   final TextInputAction? textInputAction;

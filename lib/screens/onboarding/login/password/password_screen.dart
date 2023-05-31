@@ -12,7 +12,7 @@ import '../../../../utils/constants/string_constants.dart';
 import '../../widgets/custom_card.dart';
 import '../../../../widgets/circle_avatar.dart';
 import '../../../../widgets/generic_app_bar.dart';
-import '../../widgets/text_field.dart';
+import '../../../../widgets/generic_text_field.dart';
 import '../../widgets/type_expansion_tile.dart';
 
 class PasswordScreen extends StatelessWidget {

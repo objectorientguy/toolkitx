@@ -3,7 +3,6 @@ import 'package:toolkit/configs/app_theme.dart';
 
 import '../../../configs/app_color.dart';
 import '../../../configs/app_spacing.dart';
-import '../../../utils/constants/string_constants.dart';
 
 class CategoryExpansionTile extends StatefulWidget {
   const CategoryExpansionTile({Key? key}) : super(key: key);
@@ -32,9 +31,10 @@ class _CategoryExpansionTileState extends State<CategoryExpansionTile> {
             maintainState: true,
             iconColor: AppColor.deepBlue,
             textColor: AppColor.black,
+            shape:Border.all(color: AppColor.lightGrey),
             key: GlobalKey(),
             title: Text(
-                category == null ? StringConstants.kSelectCategory : category!,
+                category == null ? 'selectCategory' : category!,
                 style: Theme.of(context).textTheme.xSmall),
             children: [
               ListView.builder(

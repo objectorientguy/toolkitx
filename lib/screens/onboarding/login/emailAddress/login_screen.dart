@@ -11,7 +11,7 @@ import '../../../../blocs/password/password_events.dart';
 import '../../../../configs/app_spacing.dart';
 import '../../../../utils/constants/string_constants.dart';
 import '../../../../widgets/generic_app_bar.dart';
-import '../../widgets/text_field.dart';
+import '../../../../widgets/generic_text_field.dart';
 
 class LoginScreen extends StatelessWidget {
   static const routeName = 'LoginScreen';
