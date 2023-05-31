@@ -5,6 +5,7 @@ import 'package:toolkit/screens/incident/incident_list_screen.dart';
 import '../../../configs/app_color.dart';
 import '../../../configs/app_dimensions.dart';
 import '../../../configs/app_spacing.dart';
+import '../../../utils/modules_util.dart';
 
 class OnLineModules extends StatelessWidget {
   final List availableModules;
@@ -52,12 +53,15 @@ class OnLineModules extends StatelessWidget {
         });
   }
 
-  navigateToModule(moduleName, context) {
-    switch (moduleName) {
-      case 'hse':
+  navigateToModule(index, context) {
+    switch (index) {
+      case 4:
+        Navigator.pushNamed(context, PermitListScreen.routeName);
+        break;
+      case 6:
         Navigator.pushNamed(context, IncidentListScreen.routeName);
         break;
-      case 'checklist':
+      case 13:
         Navigator.pushNamed(context, ChecklistScreen.routeName);
         break;
     }

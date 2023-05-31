@@ -6,8 +6,13 @@ class CircleAvatarWidget extends StatelessWidget {
   final double? radius;
   final String imagePath;
   final String path = 'assets/icons/';
+  final Color? backgroundColor;
 
-  const CircleAvatarWidget({Key? key, this.radius, required this.imagePath})
+  const CircleAvatarWidget(
+      {Key? key,
+      this.radius,
+      required this.imagePath,
+      this.backgroundColor = AppColor.blueGrey})
       : super(key: key);
 
   @override
@@ -16,7 +21,7 @@ class CircleAvatarWidget extends StatelessWidget {
         elevation: kElevation,
         borderRadius: BorderRadius.circular(kCircleAvatarRadius),
         child: CircleAvatar(
-            backgroundColor: AppColor.blueGrey,
+            backgroundColor: backgroundColor,
             radius: kCircleAvatarRadius,
             child: Image.asset('$path$imagePath',
                 height: kCircleAvatarImgHeight, width: kCircleAvatarImgWidth)));

@@ -19,59 +19,80 @@ import '../screens/profile/change_date_format.dart';
 import '../screens/profile/change_language_screen.dart';
 import '../screens/profile/change_time_zone_screen.dart';
 import '../screens/profile/edit/edit_screen.dart';
+import '../screens/permit/permit_details_screen.dart';
+import '../screens/permit/permit_list_screen.dart';
 import '../screens/root/root_screen.dart';
 
 class AppRoutes {
   static Route onGenerateRoutes(RouteSettings settings) {
     switch (settings.name) {
       case WelcomeScreen.routeName:
-        return _materialRoute(const WelcomeScreen());
+        return _createRoute(const WelcomeScreen());
       case SelectLanguageScreen.routeName:
-        return _materialRoute(const SelectLanguageScreen());
+        return _createRoute(const SelectLanguageScreen());
       case SelectTimeZoneScreen.routeName:
-        return _materialRoute(const SelectTimeZoneScreen());
+        return _createRoute(const SelectTimeZoneScreen());
       case SelectDateFormatScreen.routeName:
-        return _materialRoute(const SelectDateFormatScreen());
+        return _createRoute(const SelectDateFormatScreen());
       case LoginScreen.routeName:
-        return _materialRoute(LoginScreen());
+        return _createRoute(LoginScreen());
       case PasswordScreen.routeName:
-        return _materialRoute(PasswordScreen());
+        return _createRoute(PasswordScreen());
       case RootScreen.routeName:
-        return _materialRoute(const RootScreen());
+        return _createRoute(const RootScreen());
       case EditScreen.routeName:
-        return _materialRoute(const EditScreen());
+        return _createRoute(const EditScreen());
       case DetailsScreen.routeName:
-        return _materialRoute(const DetailsScreen());
+        return _createRoute(const DetailsScreen());
       case ChecklistScreen.routeName:
-        return _materialRoute(const ChecklistScreen());
+        return _createRoute(const ChecklistScreen());
       case ChangeRoleScreen.routeName:
-        return _materialRoute(const ChangeRoleScreen());
+        return _createRoute(const ChangeRoleScreen());
       case FiltersScreen.routeName:
-        return _materialRoute(const FiltersScreen());
+        return _createRoute(const FiltersScreen());
       case IncidentListScreen.routeName:
-        return _materialRoute(const IncidentListScreen());
-      case FilterScreen.routeName:
-        return _materialRoute(const FilterScreen());
+        return _createRoute(const IncidentListScreen());
+      case IncidentFilterScreen.routeName:
+        return _createRoute(const IncidentFilterScreen());
       case CategoryScreen.routeName:
-        return _materialRoute(const CategoryScreen());
+        return _createRoute(const CategoryScreen());
+      case PermitListScreen.routeName:
+        return _createRoute(const PermitListScreen());
+      case PermitDetailsScreen.routeName:
+        return _createRoute(const PermitDetailsScreen());
       case ClientListScreen.routeName:
-        return _materialRoute(const ClientListScreen());
+        return _createRoute(const ClientListScreen());
       case ChangeDateFormatScreen.routeName:
-        return _materialRoute(const ChangeDateFormatScreen());
+        return _createRoute(const ChangeDateFormatScreen());
       case ChangeTimeZoneScreen.routeName:
-        return _materialRoute(const ChangeTimeZoneScreen());
+        return _createRoute(const ChangeTimeZoneScreen());
       case ChangeLanguageScreen.routeName:
-        return _materialRoute(const ChangeLanguageScreen());
+        return _createRoute(const ChangeLanguageScreen());
       case SelectChangePasswordTypeScreen.routeName:
-        return _materialRoute(const SelectChangePasswordTypeScreen());
+        return _createRoute(const SelectChangePasswordTypeScreen());
       case ChangePasswordScreen.routeName:
-        return _materialRoute(ChangePasswordScreen());
+        return _createRoute(ChangePasswordScreen());
       default:
-        return _materialRoute(const WelcomeScreen());
+        return _createRoute(const WelcomeScreen());
     }
   }
 
-  static Route<dynamic> _materialRoute(Widget view) {
-    return MaterialPageRoute(builder: (_) => view);
+  static Route<dynamic> _createRoute(Widget view) {
+    return PageRouteBuilder(
+      pageBuilder: (context, animation, secondaryAnimation) => view,
+      transitionsBuilder: (context, animation, secondaryAnimation, child) {
+        const begin = Offset(1.0, 0.0);
+        const end = Offset.zero;
+        const curve = Curves.ease;
+
+        var tween =
+            Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+
+        return SlideTransition(
+          position: animation.drive(tween),
+          child: child,
+        );
+      },
+    );
   }
 }
