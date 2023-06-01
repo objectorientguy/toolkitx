@@ -27,8 +27,7 @@ ElevatedButtonThemeData elevatedButtonThemeData = ElevatedButtonThemeData(
         backgroundColor: AppColor.deepBlue,
         minimumSize: const Size(double.maxFinite, 45.0),
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(kCardRadius),
-        )));
+            borderRadius: BorderRadius.circular(kCardRadius))));
 
 TextButtonThemeData textButtonTheme =
     TextButtonThemeData(style: TextButton.styleFrom(padding: EdgeInsets.zero));

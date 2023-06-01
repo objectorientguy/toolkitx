@@ -1,18 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:toolkit/screens/checklist/checklist_list_screen.dart';
-import 'package:toolkit/screens/checklist/details_screen.dart';
-import 'package:toolkit/screens/checklist/filters_screen.dart';
-import 'package:toolkit/screens/onboarding/login/emailAddress/login_screen.dart';
-import 'package:toolkit/screens/onboarding/login/password/password_screen.dart';
-import 'package:toolkit/screens/onboarding/welcome_screen.dart';
-import 'package:toolkit/screens/profile/edit/edit_screen.dart';
 import '../screens/checklist/change_role_screen.dart';
+import '../screens/checklist/checklist_list_screen.dart';
+import '../screens/checklist/details_screen.dart';
+import '../screens/checklist/filters_screen.dart';
 import '../screens/incident/category_screen.dart';
 import '../screens/incident/filter_screen.dart';
 import '../screens/incident/incident_list_screen.dart';
+import '../screens/onboarding/client_list_screen.dart';
+import '../screens/onboarding/language/select_language_screen.dart';
+import '../screens/onboarding/login/login_screen.dart';
+import '../screens/onboarding/login/password_screen.dart';
 import '../screens/onboarding/selectDateFormat/select_date_format_screen.dart';
-import '../screens/onboarding/selectLanguage/select_language_screen.dart';
 import '../screens/onboarding/selectTimeZone/select_time_zone_screen.dart';
+import '../screens/onboarding/welcome_screen.dart';
+import '../screens/profile/changePassword/change_password_screen.dart';
+import '../screens/profile/changePassword/select_change_password_screen.dart';
+import '../screens/profile/edit/edit_screen.dart';
 import '../screens/permit/permit_details_screen.dart';
 import '../screens/permit/permit_list_screen.dart';
 import '../screens/permit/get_permit_roles_screen.dart';
@@ -24,15 +27,18 @@ class AppRoutes {
       case WelcomeScreen.routeName:
         return _createRoute(const WelcomeScreen());
       case SelectLanguageScreen.routeName:
-        return _createRoute(const SelectLanguageScreen());
+        return _createRoute(
+            SelectLanguageScreen(isFromProfile: settings.arguments as bool));
       case SelectTimeZoneScreen.routeName:
-        return _createRoute(const SelectTimeZoneScreen());
+        return _createRoute(
+            SelectTimeZoneScreen(isFromProfile: settings.arguments as bool));
       case SelectDateFormatScreen.routeName:
-        return _createRoute(const SelectDateFormatScreen());
+        return _createRoute(
+            SelectDateFormatScreen(isFromProfile: settings.arguments as bool));
       case LoginScreen.routeName:
-        return _createRoute(const LoginScreen());
+        return _createRoute(LoginScreen());
       case PasswordScreen.routeName:
-        return _createRoute(const PasswordScreen());
+        return _createRoute(PasswordScreen());
       case RootScreen.routeName:
         return _createRoute(const RootScreen());
       case EditScreen.routeName:
@@ -57,6 +63,12 @@ class AppRoutes {
         return _createRoute(const PermitDetailsScreen());
       case GetPermitRolesScreen.routeName:
         return _createRoute(const GetPermitRolesScreen());
+      case ClientListScreen.routeName:
+        return _createRoute(const ClientListScreen());
+      case SelectChangePasswordTypeScreen.routeName:
+        return _createRoute(const SelectChangePasswordTypeScreen());
+      case ChangePasswordScreen.routeName:
+        return _createRoute(ChangePasswordScreen());
       default:
         return _createRoute(const WelcomeScreen());
     }
