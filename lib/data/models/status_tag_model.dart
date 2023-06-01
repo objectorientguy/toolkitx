@@ -4,5 +4,5 @@ class StatusTagModel {
   final String? title;
   final Color? bgColor;
 
-  StatusTagModel({required this.title, this.bgColor = Colors.grey});
+  StatusTagModel({this.title, this.bgColor = Colors.grey});
 }

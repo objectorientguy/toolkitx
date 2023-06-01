@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:toolkit/configs/app_color.dart';
 import 'package:toolkit/configs/app_theme.dart';
-
 import '../../../configs/app_spacing.dart';
+import '../../../data/models/permit/permit_details_model.dart';
 
 class PermitAdditionalInfo extends StatelessWidget {
-  const PermitAdditionalInfo({Key? key}) : super(key: key);
+  final PermitDetailsModel permitDetailsModel;
+
+  const PermitAdditionalInfo({Key? key, required this.permitDetailsModel})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +33,7 @@ class PermitAdditionalInfo extends StatelessWidget {
               .copyWith(color: AppColor.black, fontWeight: FontWeight.bold),
         ),
         const SizedBox(height: midTiniestSpacing),
-        Text('Add method statement here',
+        Text(permitDetailsModel.data!.tab2!.methodStatement!,
             style: Theme.of(context).textTheme.small),
         const SizedBox(height: smallSpacing),
         Text(
@@ -41,7 +44,8 @@ class PermitAdditionalInfo extends StatelessWidget {
               .copyWith(color: AppColor.black, fontWeight: FontWeight.bold),
         ),
         const SizedBox(height: midTiniestSpacing),
-        Text('Tobias Drew', style: Theme.of(context).textTheme.small),
+        Text(permitDetailsModel.data!.tab2!.generalMessage,
+            style: Theme.of(context).textTheme.small),
         const SizedBox(height: smallSpacing),
         Text(
           'Special Work',
@@ -51,7 +55,7 @@ class PermitAdditionalInfo extends StatelessWidget {
               .copyWith(color: AppColor.black, fontWeight: FontWeight.bold),
         ),
         const SizedBox(height: midTiniestSpacing),
-        Text('Putting / adding work description here.',
+        Text(permitDetailsModel.data!.tab2!.specialWork!,
             style: Theme.of(context).textTheme.small),
         const SizedBox(height: smallSpacing),
         Text(
@@ -62,7 +66,7 @@ class PermitAdditionalInfo extends StatelessWidget {
               .copyWith(color: AppColor.black, fontWeight: FontWeight.bold),
         ),
         const SizedBox(height: midTiniestSpacing),
-        Text('Protective glasses, boots, caps',
+        Text(permitDetailsModel.data!.tab2!.specialppe!,
             style: Theme.of(context).textTheme.small),
         const SizedBox(height: smallSpacing),
         Text(
@@ -73,7 +77,7 @@ class PermitAdditionalInfo extends StatelessWidget {
               .copyWith(color: AppColor.black, fontWeight: FontWeight.bold),
         ),
         const SizedBox(height: midTiniestSpacing),
-        Text('Extra lights, Fire extinguisher, Fire prevention',
+        Text(permitDetailsModel.data!.tab2!.protectivemeasures!,
             style: Theme.of(context).textTheme.small),
         const SizedBox(height: smallSpacing),
         Text(
@@ -84,7 +88,8 @@ class PermitAdditionalInfo extends StatelessWidget {
               .copyWith(color: AppColor.black, fontWeight: FontWeight.bold),
         ),
         const SizedBox(height: midTiniestSpacing),
-        Text('Layout first', style: Theme.of(context).textTheme.small),
+        Text(permitDetailsModel.data!.tab2!.layout!,
+            style: Theme.of(context).textTheme.small),
       ],
     );
   }

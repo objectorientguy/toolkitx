@@ -3,11 +3,15 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import '../../../configs/app_color.dart';
 import '../../../configs/app_spacing.dart';
+import '../../../data/models/permit/permit_details_model.dart';
 import '../../../utils/permit_util.dart';
 import '../../onboarding/widgets/custom_card.dart';
 
 class PermitGroup extends StatelessWidget {
-  const PermitGroup({Key? key}) : super(key: key);
+  final PermitDetailsModel permitDetailsModel;
+
+  const PermitGroup({Key? key, required this.permitDetailsModel})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
