@@ -25,7 +25,7 @@ class PermitDetails extends StatelessWidget {
               .copyWith(color: AppColor.black, fontWeight: FontWeight.bold),
         ),
         const SizedBox(height: midTiniestSpacing),
-        Text(permitDetailsModel.data!.tab1!.schedule!,
+        Text(permitDetailsModel.data.tab1.schedule,
             style: Theme.of(context).textTheme.small),
         const SizedBox(height: smallSpacing),
         Text(
@@ -36,7 +36,7 @@ class PermitDetails extends StatelessWidget {
               .copyWith(color: AppColor.black, fontWeight: FontWeight.bold),
         ),
         const SizedBox(height: midTiniestSpacing),
-        Text(permitDetailsModel.data!.tab1!.pnameNpi!,
+        Text(permitDetailsModel.data.tab1.pnameNpi,
             style: Theme.of(context).textTheme.small),
         const SizedBox(height: smallSpacing),
         Text(
@@ -47,7 +47,7 @@ class PermitDetails extends StatelessWidget {
               .copyWith(color: AppColor.black, fontWeight: FontWeight.bold),
         ),
         const SizedBox(height: midTiniestSpacing),
-        Text(permitDetailsModel.data!.tab1!.pname!,
+        Text(permitDetailsModel.data.tab1.pname,
             style: Theme.of(context).textTheme.small),
         const SizedBox(height: smallSpacing),
         Text(
@@ -58,7 +58,7 @@ class PermitDetails extends StatelessWidget {
               .copyWith(color: AppColor.black, fontWeight: FontWeight.bold),
         ),
         const SizedBox(height: midTiniestSpacing),
-        Text(permitDetailsModel.data!.tab1!.details!,
+        Text(permitDetailsModel.data.tab1.details,
             style: Theme.of(context).textTheme.small),
         const SizedBox(height: smallSpacing),
         Text(
@@ -69,7 +69,7 @@ class PermitDetails extends StatelessWidget {
               .copyWith(color: AppColor.black, fontWeight: FontWeight.bold),
         ),
         const SizedBox(height: midTiniestSpacing),
-        Text(permitDetailsModel.data!.tab1!.location!,
+        Text(permitDetailsModel.data.tab1.location,
             style: Theme.of(context).textTheme.small),
         const SizedBox(height: smallSpacing),
         Text(
@@ -80,7 +80,7 @@ class PermitDetails extends StatelessWidget {
               .copyWith(color: AppColor.black, fontWeight: FontWeight.bold),
         ),
         const SizedBox(height: midTiniestSpacing),
-        Text(permitDetailsModel.data!.tab1!.pcompany!,
+        Text(permitDetailsModel.data.tab1.pcompany,
             style: Theme.of(context).textTheme.small),
       ],
     );

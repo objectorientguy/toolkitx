@@ -51,7 +51,7 @@ class PermitDetailsScreen extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(state.permitDetailsModel.data!.tab1!.permit!),
+                          Text(state.permitDetailsModel.data.tab1.permit),
                           Container(
                             width: MediaQuery.of(context).size.width * 0.25,
                             height: MediaQuery.of(context).size.width * 0.050,
@@ -61,7 +61,7 @@ class PermitDetailsScreen extends StatelessWidget {
                             ),
                             alignment: Alignment.center,
                             child: Text(
-                              state.permitDetailsModel.data!.tab1!.status!,
+                              state.permitDetailsModel.data.tab1.status,
                               style: const TextStyle(color: AppColor.white),
                               textAlign: TextAlign.center,
                             ),
