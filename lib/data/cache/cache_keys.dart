@@ -3,6 +3,7 @@ class CacheKeys {
 
   static const dateFormatKey = "dateFormatKey";
   static const languageId = "languageId";
+  static const languageSyncDate = "languageSyncDate";
   static const timeZoneCode = "timeZoneCode";
   static const clientDataKey = "clientDataKey";
   static const userType = "userType";

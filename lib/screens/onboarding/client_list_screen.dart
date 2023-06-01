@@ -8,10 +8,8 @@ import 'package:toolkit/screens/onboarding/widgets/custom_card.dart';
 import 'package:toolkit/screens/root/root_screen.dart';
 import 'package:toolkit/utils/constants/string_constants.dart';
 import 'package:toolkit/utils/database_utils.dart';
-import 'package:toolkit/widgets/custom_snackbar.dart';
 import 'package:toolkit/widgets/error_section.dart';
 import 'package:toolkit/widgets/generic_app_bar.dart';
-import 'package:toolkit/widgets/progress_bar.dart';
 
 import '../../blocs/client/client_events.dart';
 import '../../configs/app_dimensions.dart';
@@ -36,17 +34,10 @@ class ClientListScreen extends StatelessWidget {
                 currentState is ClientListFetching ||
                 currentState is ClientListFetched,
             listener: (context, state) {
-              if (state is HomeScreenFetching) {
-                ProgressBar.show(context);
-              }
-              if (state is HomeScreenFetched) {
-                ProgressBar.dismiss(context);
-                Navigator.pushReplacementNamed(context, RootScreen.routeName);
-              }
-              if (state is FetchHomeScreenError) {
-                ProgressBar.dismiss(context);
-                showCustomSnackBar(
-                    context, DatabaseUtil.box.get('UnknownErrorMessage'), '');
+              if (state is ClientListFetched) {
+                if (state.clientListModel.data!.length == 1) {
+                  Navigator.pushNamed(context, RootScreen.routeName);
+                }
               }
             },
             builder: (context, state) {
@@ -65,7 +56,7 @@ class ClientListScreen extends StatelessWidget {
                                 child: GestureDetector(
                                     onTap: () {
                                       context.read<ClientBloc>().add(
-                                          FetchHomeScreenData(
+                                          SelectClient(
                                               hashKey: state.clientListModel
                                                   .data![index].hashkey
                                                   .toString(),

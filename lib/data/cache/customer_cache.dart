@@ -6,8 +6,12 @@ class CustomerCache {
 
   CustomerCache({required this.sharedPreferences});
 
-  void setCustomerDateFormatString(String key, String string) async {
+  void setDateFormatValue(String key, String string) async {
     await sharedPreferences.setString(CacheKeys.dateFormatKey, string);
+  }
+
+  void setLanguageSyncDate(String key, String string) async {
+    await sharedPreferences.setString(CacheKeys.languageSyncDate, string);
   }
 
   void setLanguageId(String key, String string) async {
@@ -58,12 +62,16 @@ class CustomerCache {
     await sharedPreferences.setString(CacheKeys.clientImage, string);
   }
 
-  Future<String?> getCustomerDateFormat(String key) async {
+  Future<String?> getDateFormat(String key) async {
     return sharedPreferences.getString(CacheKeys.dateFormatKey);
   }
 
   Future<String?> getClientDataKey(String key) async {
     return sharedPreferences.getString(CacheKeys.clientDataKey);
+  }
+
+  Future<String?> getLanguageSyncDate(String key) async {
+    return sharedPreferences.getString(CacheKeys.languageSyncDate);
   }
 
   Future<String?> getLanguageId(String key) async {

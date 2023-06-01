@@ -14,16 +14,18 @@ class LanguageRepositoryImpl extends LanguageRepository {
   }
 
   @override
-  Future<LanguageKeysModel> fetchLanguageKeys(int languageId) async {
+  Future<LanguageKeysModel> fetchLanguageKeys(
+      String languageId, String languageSyncDate) async {
     final response = await DioClient().get(
-        "${ApiConstants.baseUrl}/api/common/getlanguagekeys?languageid=$languageId&syncdate=&pageno=-1");
+        "${ApiConstants.baseUrl}/api/common/getlanguagekeys?languageid=$languageId&syncdate=$languageSyncDate&pageno=-1");
     return LanguageKeysModel.fromJson(response);
   }
 
   @override
-  Future<CheckNewLanguageKeysModel> isDownloadLanguage(int languageId) async {
+  Future<CheckNewLanguageKeysModel> isDownloadLanguage(
+      String languageId, String languageSyncDate) async {
     final response = await DioClient().get(
-        "${ApiConstants.baseUrl}/api/common/IsDownloadLanguage?languageid=$languageId&syncdate=");
+        "${ApiConstants.baseUrl}/api/common/IsDownloadLanguage?languageid=$languageId&syncdate=$languageSyncDate");
     return CheckNewLanguageKeysModel.fromJson(response);
   }
 }

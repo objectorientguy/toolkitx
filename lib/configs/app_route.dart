@@ -15,9 +15,6 @@ import '../screens/onboarding/selectTimeZone/select_time_zone_screen.dart';
 import '../screens/onboarding/welcome_screen.dart';
 import '../screens/profile/changePassword/change_password_screen.dart';
 import '../screens/profile/changePassword/select_change_password_screen.dart';
-import '../screens/profile/change_date_format.dart';
-import '../screens/profile/change_language_screen.dart';
-import '../screens/profile/change_time_zone_screen.dart';
 import '../screens/profile/edit/edit_screen.dart';
 import '../screens/permit/permit_details_screen.dart';
 import '../screens/permit/permit_list_screen.dart';
@@ -29,11 +26,14 @@ class AppRoutes {
       case WelcomeScreen.routeName:
         return _createRoute(const WelcomeScreen());
       case SelectLanguageScreen.routeName:
-        return _createRoute(const SelectLanguageScreen());
+        return _createRoute(
+            SelectLanguageScreen(isFromProfile: settings.arguments as bool));
       case SelectTimeZoneScreen.routeName:
-        return _createRoute(const SelectTimeZoneScreen());
+        return _createRoute(
+            SelectTimeZoneScreen(isFromProfile: settings.arguments as bool));
       case SelectDateFormatScreen.routeName:
-        return _createRoute(const SelectDateFormatScreen());
+        return _createRoute(
+            SelectDateFormatScreen(isFromProfile: settings.arguments as bool));
       case LoginScreen.routeName:
         return _createRoute(LoginScreen());
       case PasswordScreen.routeName:
@@ -62,12 +62,6 @@ class AppRoutes {
         return _createRoute(const PermitDetailsScreen());
       case ClientListScreen.routeName:
         return _createRoute(const ClientListScreen());
-      case ChangeDateFormatScreen.routeName:
-        return _createRoute(const ChangeDateFormatScreen());
-      case ChangeTimeZoneScreen.routeName:
-        return _createRoute(const ChangeTimeZoneScreen());
-      case ChangeLanguageScreen.routeName:
-        return _createRoute(const ChangeLanguageScreen());
       case SelectChangePasswordTypeScreen.routeName:
         return _createRoute(const SelectChangePasswordTypeScreen());
       case ChangePasswordScreen.routeName:

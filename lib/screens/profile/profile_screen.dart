@@ -76,7 +76,7 @@ class ProfileScreen extends StatelessWidget {
                                                 state.userProfileModel.data!)
                                       ]))),
                               const SizedBox(height: tinySpacing),
-                              ProfileOptions(dateTimeValue: state.dateTimeValue)
+                              const ProfileOptions()
                             ]);
                       }
                       if (state is UserProfileFetchError) {

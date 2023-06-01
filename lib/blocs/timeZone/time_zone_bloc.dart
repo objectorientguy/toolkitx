@@ -35,19 +35,16 @@ class TimeZoneBloc extends Bloc<TimeZoneEvents, TimeZoneStates> {
   FutureOr<void> _selectTimeZone(
       SelectTimeZone event, Emitter<TimeZoneStates> emit) async {
     if (event.isFromProfile == true) {
-      String timeZoneCode =
-          (await _customerCache.getTimeZoneCode(CacheKeys.timeZoneCode))!;
       String userType = (await _customerCache.getUserType(CacheKeys.userType))!;
       String apiKey = (await _customerCache.getApiKey(CacheKeys.apiKey))!;
       String hashKey = (await _customerCache.getClientId(CacheKeys.clientId))!;
-      String dateTimeValue = (await _customerCache
-          .getCustomerDateFormat(CacheKeys.dateFormatKey))!;
+      String dateTimeValue =
+          (await _customerCache.getDateFormat(CacheKeys.dateFormatKey))!;
       String hashCode =
-          '$apiKey|$hashKey|$userType|$dateTimeValue|$timeZoneCode';
+          '$apiKey|$hashKey|$userType|$dateTimeValue|${event.timeZoneCode}';
       _customerCache.setHashCode(CacheKeys.hashcode, hashCode);
     }
     _customerCache.setTimeZoneCode(CacheKeys.timeZoneCode, event.timeZoneCode);
     _customerCache.setTimeZoneName(CacheKeys.timeZoneName, event.timeZoneName);
-    emit(TimeZoneSelected());
   }
 }

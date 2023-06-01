@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:toolkit/blocs/client/client_bloc.dart';
+import 'package:toolkit/blocs/client/client_events.dart';
 import 'package:toolkit/blocs/client/client_states.dart';
 import 'package:toolkit/blocs/home/home_bloc.dart';
 import 'package:toolkit/blocs/home/home_events.dart';
@@ -18,11 +19,15 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     context.read<HomeBloc>().add(const SetDateAndTime());
     context.read<HomeBloc>().add(const StartTimer());
+    context.read<ClientBloc>().add(FetchHomeScreenData());
     return Scaffold(
         body: Padding(
             padding: const EdgeInsets.all(kBodyMargin),
             child: BlocBuilder<ClientBloc, ClientStates>(
                 builder: (context, state) {
+              if (state is HomeScreenFetching) {
+                return const Center(child: CircularProgressIndicator());
+              }
               if (state is HomeScreenFetched) {
                 return Column(children: [
                   const SizedBox(height: mediumSpacing),

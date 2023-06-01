@@ -6,6 +6,7 @@ import '../../../blocs/timeZone/time_zone_events.dart';
 import '../../../configs/app_dimensions.dart';
 import '../../../configs/app_spacing.dart';
 import '../../../data/models/timeZones/time_zone_model.dart';
+import '../selectDateFormat/select_date_format_screen.dart';
 import 'custom_card.dart';
 
 class TimeZoneBody extends StatelessWidget {
@@ -33,6 +34,13 @@ class TimeZoneBody extends StatelessWidget {
                         timeZoneCode: timeZoneData[index].code,
                         isFromProfile: isFromProfile,
                         timeZoneName: timeZoneData[index].name));
+                    if (isFromProfile == true) {
+                      Navigator.pop(context);
+                    } else {
+                      Navigator.pushNamed(
+                          context, SelectDateFormatScreen.routeName,
+                          arguments: false);
+                    }
                   },
                   leading: const Icon(Icons.public, size: kIconSize),
                   title: Padding(

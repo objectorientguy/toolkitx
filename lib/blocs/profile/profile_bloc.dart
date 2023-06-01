@@ -40,8 +40,7 @@ class ProfileBloc extends Bloc<ProfileEvents, ProfileStates> {
       String typeValue =
           (await _customerCache.getUserType(CacheKeys.userType))!;
       String hashCode = (await _customerCache.getHashCode(CacheKeys.hashcode))!;
-      String dateTimeValue = (await _customerCache
-          .getCustomerDateFormat(CacheKeys.dateFormatKey))!;
+
       String userType = UserType.values
           .elementAt(UserType.values
               .indexWhere((element) => element.value == typeValue))
@@ -49,9 +48,9 @@ class ProfileBloc extends Bloc<ProfileEvents, ProfileStates> {
       UserProfileModel userProfileModel =
           await _profileRepository.fetchUserProfile(hashCode);
       emit(UserProfileFetched(
-          userProfileModel: userProfileModel,
-          userType: userType,
-          dateTimeValue: dateTimeValue));
+        userProfileModel: userProfileModel,
+        userType: userType,
+      ));
     } catch (e) {
       emit(UserProfileFetchError());
     }

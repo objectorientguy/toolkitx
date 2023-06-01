@@ -20,6 +20,7 @@ class ClientBloc extends Bloc<ClientEvents, ClientStates> {
 
   ClientBloc() : super(ClientInitial()) {
     on<FetchClientList>(_fetchClientList);
+    on<SelectClient>(_selectClient);
     on<FetchHomeScreenData>(_fetchHomeScreenData);
   }
 
@@ -33,7 +34,7 @@ class ClientBloc extends Bloc<ClientEvents, ClientStates> {
       ClientListModel clientListModel =
           await _clientRepository.fetchClientList(clientDataKey, userType);
       if (clientListModel.data!.length == 1) {
-        add(FetchHomeScreenData(
+        add(SelectClient(
             hashKey: clientListModel.data![0].hashkey.toString(),
             apiKey: clientListModel.data![0].apikey,
             image: clientListModel.data![0].hashimg));
@@ -44,6 +45,21 @@ class ClientBloc extends Bloc<ClientEvents, ClientStates> {
     }
   }
 
+  FutureOr<void> _selectClient(
+      SelectClient event, Emitter<ClientStates> emit) async {
+    _customerCache.setApiKey(CacheKeys.apiKey, event.apiKey);
+    _customerCache.setClientId(CacheKeys.clientId, event.hashKey);
+    String timeZoneCode =
+        (await _customerCache.getTimeZoneCode(CacheKeys.timeZoneCode))!;
+    String userType = (await _customerCache.getUserType(CacheKeys.userType))!;
+    String dateTimeValue =
+        (await _customerCache.getDateFormat(CacheKeys.dateFormatKey))!;
+    String hashCode =
+        '${event.apiKey}|${event.hashKey}|$userType|$dateTimeValue|$timeZoneCode';
+    _customerCache.setHashCode(CacheKeys.hashcode, hashCode);
+    _customerCache.setClientImage(CacheKeys.clientImage, event.image);
+  }
+
   FutureOr<void> _fetchHomeScreenData(
       FetchHomeScreenData event, Emitter<ClientStates> emit) async {
     emit(HomeScreenFetching());
@@ -52,17 +68,13 @@ class ClientBloc extends Bloc<ClientEvents, ClientStates> {
       String timeZoneCode =
           (await _customerCache.getTimeZoneCode(CacheKeys.timeZoneCode))!;
       String userType = (await _customerCache.getUserType(CacheKeys.userType))!;
-      String dateTimeValue = (await _customerCache
-          .getCustomerDateFormat(CacheKeys.dateFormatKey))!;
-      String hashCode =
-          '${event.apiKey}|${event.hashKey}|$userType|$dateTimeValue|$timeZoneCode';
-      _customerCache.setApiKey(CacheKeys.apiKey, event.apiKey);
-      _customerCache.setClientId(CacheKeys.clientId, event.hashKey);
-      _customerCache.setHashCode(CacheKeys.hashcode, hashCode);
-      _customerCache.setClientImage(CacheKeys.clientImage, event.image);
+      String hashKey = (await _customerCache.getClientId(CacheKeys.clientId))!;
+      String apiKey = (await _customerCache.getApiKey(CacheKeys.apiKey))!;
+      String clientImage =
+          (await _customerCache.getClientImage(CacheKeys.clientImage))!;
       Map fetchHomeScreenMap = {
-        "hashkey": event.hashKey,
-        "apikey": event.apiKey,
+        "hashkey": hashKey,
+        "apikey": apiKey,
         "type": userType,
         "timezonecode": timeZoneCode
       };
@@ -84,7 +96,7 @@ class ClientBloc extends Bloc<ClientEvents, ClientStates> {
         }
         emit(HomeScreenFetched(
             processClientModel: homeScreenModel,
-            image: event.image,
+            image: clientImage,
             availableModules: availableModules));
       } else {
         emit(FetchHomeScreenError());

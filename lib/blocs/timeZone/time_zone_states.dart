@@ -13,5 +13,3 @@ class TimeZoneFetched extends TimeZoneStates {
 }
 
 class FetchTimeZoneError extends TimeZoneStates {}
-
-class TimeZoneSelected extends TimeZoneStates {}

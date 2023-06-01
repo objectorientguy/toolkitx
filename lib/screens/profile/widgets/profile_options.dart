@@ -1,26 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:toolkit/configs/app_theme.dart';
-import 'package:toolkit/screens/profile/change_time_zone_screen.dart';
-import 'package:toolkit/utils/constants/string_constants.dart';
-import '../../../blocs/dateFormat/date_format_bloc.dart';
-import '../../../blocs/dateFormat/date_format_events.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:url_launcher/url_launcher_string.dart';
+
 import '../../../configs/app_color.dart';
 import '../../../configs/app_dimensions.dart';
 import '../../../configs/app_spacing.dart';
-import '../../../data/enums/date_enum.dart';
+import '../../../utils/constants/string_constants.dart';
 import '../../../utils/profile_util.dart';
+import '../../onboarding/language/select_language_screen.dart';
 import '../../onboarding/selectDateFormat/select_date_format_screen.dart';
-import 'package:url_launcher/url_launcher_string.dart';
-import 'package:url_launcher/url_launcher.dart';
-
+import '../../onboarding/selectTimeZone/select_time_zone_screen.dart';
 import '../changePassword/select_change_password_screen.dart';
-import '../change_language_screen.dart';
 
 class ProfileOptions extends StatelessWidget {
-  final String dateTimeValue;
-
-  const ProfileOptions({Key? key, required this.dateTimeValue})
-      : super(key: key);
+  const ProfileOptions({Key? key}) : super(key: key);
 
   void profileOptionsSwitchCase(context, index) async {
     switch (index) {
@@ -28,22 +22,16 @@ class ProfileOptions extends StatelessWidget {
         Navigator.pushNamed(context, SelectChangePasswordTypeScreen.routeName);
         break;
       case 1:
-        Navigator.pushNamed(context, ChangeLanguageScreen.routeName);
+        Navigator.pushNamed(context, SelectLanguageScreen.routeName,
+            arguments: true);
         break;
       case 2:
-        Navigator.pushNamed(context, ChangeTimeZoneScreen.routeName);
+        Navigator.pushNamed(context, SelectTimeZoneScreen.routeName,
+            arguments: true);
         break;
       case 3:
-        context.read<DateFormatBloc>().add(
-              SetDateFormat(
-                  saveDateFormatValue: dateTimeValue,
-                  saveDateFormatString: CustomDateFormat.values
-                      .elementAt(CustomDateFormat.values.indexWhere(
-                          (element) => element.value == dateTimeValue))
-                      .dateFormat,
-                  isFromProfile: true),
-            );
-        Navigator.pushNamed(context, SelectDateFormatScreen.routeName);
+        Navigator.pushNamed(context, SelectDateFormatScreen.routeName,
+            arguments: true);
         break;
       case 4:
         await launchUrl(Uri.parse("mailto:${StringConstants.kToolkitXEmail}"));

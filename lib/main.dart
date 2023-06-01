@@ -6,10 +6,10 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:toolkit/blocs/onboarding/onboarding_bloc.dart';
 import 'package:toolkit/blocs/onboarding/onboarding_states.dart';
 import 'package:toolkit/blocs/profile/profile_bloc.dart';
-import 'package:toolkit/screens/onboarding/client_list_screen.dart';
 import 'package:toolkit/screens/onboarding/login/login_screen.dart';
 import 'package:toolkit/screens/onboarding/selectDateFormat/select_date_format_screen.dart';
 import 'package:toolkit/screens/onboarding/selectTimeZone/select_time_zone_screen.dart';
+import 'package:toolkit/screens/root/root_screen.dart';
 import 'package:toolkit/utils/database_utils.dart';
 import 'blocs/client/client_bloc.dart';
 import 'blocs/dateFormat/date_format_bloc.dart';
@@ -80,7 +80,7 @@ class MyApp extends StatelessWidget {
                   return BlocBuilder<OnBoardingBloc, OnBoardingStates>(
                       builder: (context, state) {
                     if (state is LoggedIn) {
-                      return const ClientListScreen();
+                      return const RootScreen();
                     } else if (state is LanguageSelected) {
                       return const SelectTimeZoneScreen();
                     } else if (state is TimeZoneSelected) {

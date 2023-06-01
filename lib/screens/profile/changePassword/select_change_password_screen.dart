@@ -15,7 +15,7 @@ import '../../onboarding/widgets/custom_card.dart';
 import 'change_password_screen.dart';
 
 class SelectChangePasswordTypeScreen extends StatelessWidget {
-  static const routeName = 'ChangePasswordScreen';
+  static const routeName = 'SelectChangePasswordTypeScreen';
 
   const SelectChangePasswordTypeScreen({Key? key}) : super(key: key);
 

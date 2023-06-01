@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:toolkit/blocs/login/login_states.dart';
 import 'package:toolkit/configs/app_dimensions.dart';
 import 'package:toolkit/configs/app_theme.dart';
-import 'package:toolkit/screens/onboarding/selectDateFormat/select_date_format_screen.dart';
 import 'package:toolkit/widgets/custom_snackbar.dart';
 import 'package:toolkit/widgets/progress_bar.dart';
 import '../../../blocs/login/login_bloc.dart';
@@ -26,9 +25,7 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: GenericAppBar(
-            onPressed: () =>
-                Navigator.pushNamed(context, SelectDateFormatScreen.routeName)),
+        appBar: const GenericAppBar(),
         body: SingleChildScrollView(
             physics: const BouncingScrollPhysics(),
             child: Padding(

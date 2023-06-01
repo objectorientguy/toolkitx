@@ -40,7 +40,7 @@ class OnBoardingBloc extends Bloc<OnBoardingEvents, OnBoardingStates> {
     try {
       String? isDateFormatSelected;
       isDateFormatSelected =
-          await _customerCache.getCustomerDateFormat(CacheKeys.dateFormatKey);
+          await _customerCache.getDateFormat(CacheKeys.dateFormatKey);
       if (isDateFormatSelected != null) {
         emit(DateFormatSelected());
       } else {

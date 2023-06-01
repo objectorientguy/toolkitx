@@ -41,7 +41,8 @@ class WelcomeScreen extends StatelessWidget {
                   PrimaryButton(
                       onPressed: () {
                         Navigator.pushNamed(
-                            context, SelectLanguageScreen.routeName);
+                            context, SelectLanguageScreen.routeName,
+                            arguments: false);
                       },
                       textValue: StringConstants.kStartNow)
                 ])));

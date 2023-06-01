@@ -5,7 +5,9 @@ import '../../data/models/language/languages_model.dart';
 abstract class LanguageRepository {
   Future<LanguagesModel> fetchLanguages();
 
-  Future<LanguageKeysModel> fetchLanguageKeys(int languageId);
+  Future<LanguageKeysModel> fetchLanguageKeys(
+      String languageId, String languageSyncDate);
 
-  Future<CheckNewLanguageKeysModel> isDownloadLanguage(int languageId);
+  Future<CheckNewLanguageKeysModel> isDownloadLanguage(
+      String languageId, String languageSyncDate);
 }

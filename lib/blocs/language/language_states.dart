@@ -23,7 +23,11 @@ class CheckingNewLanguageKeys extends LanguageStates {}
 
 class NewLanguageKeysUnavailable extends LanguageStates {}
 
-class NewKeysLanguageAvailable extends LanguageStates {}
+class NewKeysLanguageAvailable extends LanguageStates {
+  final String languageId;
+  final String syncDate;
+  NewKeysLanguageAvailable({required this.syncDate, required this.languageId});
+}
 
 class CheckNewLanguageKeysError extends LanguageStates {
   final String message;
@@ -34,9 +38,11 @@ class CheckNewLanguageKeysError extends LanguageStates {
 class LanguageKeysFetching extends LanguageStates {}
 
 class LanguageKeysFetched extends LanguageStates {
+  final bool isFromProfile;
   final LanguageKeysModel languageKeysModel;
 
-  LanguageKeysFetched({required this.languageKeysModel});
+  LanguageKeysFetched(
+      {required this.isFromProfile, required this.languageKeysModel});
 }
 
 class LanguageKeysError extends LanguageStates {

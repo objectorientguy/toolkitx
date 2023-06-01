@@ -12,8 +12,9 @@ import 'custom_card.dart';
 
 class SelectLanguageBody extends StatelessWidget {
   final List<GetLanguagesData> getLanguagesData;
-
-  const SelectLanguageBody({Key? key, required this.getLanguagesData})
+  final bool isFromProfile;
+  const SelectLanguageBody(
+      {Key? key, required this.getLanguagesData, required this.isFromProfile})
       : super(key: key);
 
   @override
@@ -30,7 +31,8 @@ class SelectLanguageBody extends StatelessWidget {
               child: ListTile(
                   onTap: () {
                     context.read<LanguageBloc>().add(FetchLanguageKeys(
-                        languageId: getLanguagesData[index].id));
+                        languageId: getLanguagesData[index].id.toString(),
+                        isFromProfile: isFromProfile));
                   },
                   minVerticalPadding: kLanguagesTileHeight,
                   leading: CachedNetworkImage(

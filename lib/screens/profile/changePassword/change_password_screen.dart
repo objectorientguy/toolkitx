@@ -16,7 +16,7 @@ import '../../../configs/app_spacing.dart';
 import '../../onboarding/widgets/text_field.dart';
 
 class ChangePasswordScreen extends StatelessWidget {
-  static const routeName = 'ChangePasswordOtpScreen';
+  static const routeName = 'ChangePasswordScreen';
   final Map changePasswordMap = {};
 
   ChangePasswordScreen({Key? key}) : super(key: key);
