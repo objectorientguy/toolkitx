@@ -5,7 +5,7 @@ import 'package:toolkit/widgets/circle_avatar.dart';
 import 'package:toolkit/utils/constants/string_constants.dart';
 import '../../configs/app_color.dart';
 import '../../widgets/primary_button.dart';
-import 'selectLanguage/select_language_screen.dart';
+import 'language/select_language_screen.dart';
 
 class WelcomeScreen extends StatelessWidget {
   static const routeName = 'WelcomeScreen';
@@ -41,7 +41,8 @@ class WelcomeScreen extends StatelessWidget {
                   PrimaryButton(
                       onPressed: () {
                         Navigator.pushNamed(
-                            context, SelectLanguageScreen.routeName);
+                            context, SelectLanguageScreen.routeName,
+                            arguments: false);
                       },
                       textValue: StringConstants.kStartNow)
                 ])));

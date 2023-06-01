@@ -8,32 +8,41 @@ import '../../../configs/app_dimensions.dart';
 import '../../../utils/date_util.dart';
 
 class DateAndTimeSection extends StatelessWidget {
-  const DateAndTimeSection({Key? key}) : super(key: key);
+  final String dateTimeOffset;
+  const DateAndTimeSection({Key? key, required this.dateTimeOffset})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<HomeBloc, HomeStates>(builder: (context, state) {
       if (state is DateAndTimeLoaded) {
-        return Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Image.asset('assets/icons/calendar.png',
-                height: kImageHeight, width: kImageWidth),
-            const SizedBox(width: xxTiniestSpacing),
-            Text(DateUtil.formatDate(state.dateTime)),
-            const SizedBox(width: tinySpacing),
-            Image.asset('assets/icons/clock.png',
-                height: kImageHeight, width: kImageWidth),
-            const SizedBox(width: xxTiniestSpacing),
-            Text(DateUtil.formatTime(state.dateTime)),
-            const SizedBox(width: tinySpacing),
-            Image.asset('assets/icons/time_zone.png',
-                height: kImageHeight, width: kImageWidth),
-            const SizedBox(width: xxTiniestSpacing),
-            Text(state.dateTime.timeZoneName),
-          ],
-        );
+        return Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
+          Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Image.asset('assets/icons/calendar.png',
+                    height: kImageHeight, width: kImageWidth),
+                const SizedBox(width: tiniestSpacing),
+                Text(DateUtil.formatDate(state.dateTime)),
+                const SizedBox(width: smallSpacing),
+                Image.asset('assets/icons/clock.png',
+                    height: kImageHeight, width: kImageWidth),
+                const SizedBox(width: tiniestSpacing),
+                Text(DateUtil.formatTime(state.dateTime))
+              ]),
+          const SizedBox(height: smallSpacing),
+          Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const SizedBox(height: smallSpacing),
+                Image.asset('assets/icons/time_zone.png',
+                    height: kImageHeight, width: kImageWidth),
+                const SizedBox(width: tiniestSpacing),
+                Text(state.timeZoneName)
+              ])
+        ]);
       } else {
         return const SizedBox();
       }

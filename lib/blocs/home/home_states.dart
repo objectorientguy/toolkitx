@@ -12,6 +12,6 @@ class ModulesLoaded extends HomeStates {
 
 class DateAndTimeLoaded extends HomeStates {
   final DateTime dateTime;
-
-  const DateAndTimeLoaded({required this.dateTime});
+  final String timeZoneName;
+  const DateAndTimeLoaded({required this.dateTime, required this.timeZoneName});
 }

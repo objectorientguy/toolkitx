@@ -4,45 +4,108 @@ abstract class ModulesUtil {
   static String kBaseImagePath = 'assets/icons/';
   static List<ModulesModel> listModulesMode = [
     ModulesModel(
-        moduleName: 'Log Book', moduleImage: '${kBaseImagePath}logbook.png'),
+        moduleName: 'LogBook',
+        moduleImage: '${kBaseImagePath}logbook.png',
+        key: 'sl'),
     ModulesModel(
-        moduleName: 'Calendar', moduleImage: '${kBaseImagePath}calendar.png'),
+        moduleName: 'Calendar',
+        moduleImage: '${kBaseImagePath}calendar.png',
+        key: 'wf_calendar'),
     ModulesModel(
-        moduleName: 'Quality Management',
-        moduleImage: '${kBaseImagePath}quality_service.png'),
+        moduleName: 'Calendar',
+        moduleImage: '${kBaseImagePath}calendar.png',
+        key: 'calendar'),
     ModulesModel(
-        moduleName: 'Hazard', moduleImage: '${kBaseImagePath}hazard.png'),
+        moduleName: 'QualityManagement',
+        moduleImage: '${kBaseImagePath}quality_service.png',
+        key: 'qareport'),
     ModulesModel(
         moduleName: 'Permit',
         moduleImage: '${kBaseImagePath}permit.png',
-        offLineSupport: true),
+        offLineSupport: true,
+        key: 'ptw'),
     ModulesModel(
-        moduleName: 'Time & Vacation',
-        moduleImage: '${kBaseImagePath}holiday.png'),
+        moduleName: 'Accounting',
+        moduleImage: '${kBaseImagePath}permit.png',
+        offLineSupport: true,
+        key: 'accounting'),
     ModulesModel(
-        moduleName: 'Incident', moduleImage: '${kBaseImagePath}logbook.png'),
-    ModulesModel(moduleName: 'ToDo', moduleImage: '${kBaseImagePath}to_do.png'),
+        moduleName: 'TimeVacation',
+        moduleImage: '${kBaseImagePath}holiday.png',
+        key: 'timesheet'),
     ModulesModel(
-        moduleName: 'Safety Notice',
-        moduleImage: '${kBaseImagePath}shield.png'),
+        moduleName: 'TimeVacation',
+        moduleImage: '${kBaseImagePath}holiday.png',
+        key: 'wf_timesheet'),
     ModulesModel(
-        moduleName: 'Work Order', moduleImage: '${kBaseImagePath}logbook.png'),
+        moduleName: 'Incident',
+        moduleImage: '${kBaseImagePath}logbook.png',
+        key: 'hse'),
     ModulesModel(
-        moduleName: 'Meeting Room',
-        moduleImage: '${kBaseImagePath}briefing.png'),
+        moduleName: 'ToDo',
+        moduleImage: '${kBaseImagePath}to_do.png',
+        key: 'todo'),
+    ModulesModel(
+        moduleName: 'SafetyNotice',
+        moduleImage: '${kBaseImagePath}shield.png',
+        key: ''),
+    ModulesModel(
+        moduleName: 'WorkOrder',
+        moduleImage: '${kBaseImagePath}logbook.png',
+        key: 'workorder'),
+    ModulesModel(
+        moduleName: 'meetingRoom',
+        moduleImage: '${kBaseImagePath}briefing.png',
+        key: 'meeting'),
     ModulesModel(
         moduleName: 'Certificates',
-        moduleImage: '${kBaseImagePath}certificate.png'),
+        moduleImage: '${kBaseImagePath}certificate.png',
+        key: 'certificates'),
     ModulesModel(
-        moduleName: 'Expense', moduleImage: '${kBaseImagePath}expenses.png'),
+        moduleName: 'Expense',
+        moduleImage: '${kBaseImagePath}expenses.png',
+        key: 'timesheet'),
     ModulesModel(
-        moduleName: 'Checklist', moduleImage: '${kBaseImagePath}checklist.png'),
+        moduleName: 'Expense',
+        moduleImage: '${kBaseImagePath}expenses.png',
+        key: 'wf_timesheet'),
     ModulesModel(
-        moduleName: 'Documents', moduleImage: '${kBaseImagePath}documents.png'),
+        moduleName: 'Checklist',
+        moduleImage: '${kBaseImagePath}checklist.png',
+        key: 'checklist'),
     ModulesModel(
-        moduleName: 'Equipment Traceability',
-        moduleImage: '${kBaseImagePath}mechanic.png'),
+        moduleName: 'Checklist',
+        moduleImage: '${kBaseImagePath}checklist.png',
+        key: 'wf_checklist'),
     ModulesModel(
-        moduleName: 'LOTO', moduleImage: '${kBaseImagePath}lottery.png'),
+        moduleName: 'Documents',
+        moduleImage: '${kBaseImagePath}documents.png',
+        key: 'dms'),
+    ModulesModel(
+        moduleName: 'EquipmentTraceability',
+        moduleImage: '${kBaseImagePath}mechanic.png',
+        key: 'trace'),
+    ModulesModel(
+        moduleName: 'LOTO',
+        moduleImage: '${kBaseImagePath}lottery.png',
+        key: 'loto'),
+    ModulesModel(
+        moduleName: 'Ticket',
+        moduleImage: '${kBaseImagePath}t.png',
+        key: 'tickets'),
+    ModulesModel(
+        moduleName: 'Assets',
+        moduleImage: '${kBaseImagePath}t.png',
+        key: 'eam'),
+    ModulesModel(
+        moduleName: 'Location',
+        moduleImage: '${kBaseImagePath}t.png',
+        key: 'eam'),
+    ModulesModel(
+        moduleName: 'Trips', moduleImage: '${kBaseImagePath}t.png', key: 'hf'),
+    ModulesModel(
+        moduleName: 'Trips',
+        moduleImage: '${kBaseImagePath}t.png',
+        key: 'wf_trips'),
   ];
 }
