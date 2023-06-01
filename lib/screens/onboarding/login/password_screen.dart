@@ -42,7 +42,8 @@ class PasswordScreen extends StatelessWidget {
                       }
                       if (state is LoginError) {
                         ProgressBar.dismiss(context);
-                        showCustomSnackBar(context, state.message, '');
+                        showCustomSnackBar(
+                            context, state.message, StringConstants.kOk);
                       }
                       if (state is GeneratingOtpLogin) {
                         ProgressBar.show(context);

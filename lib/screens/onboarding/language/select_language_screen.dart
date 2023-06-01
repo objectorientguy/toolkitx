@@ -65,7 +65,8 @@ class SelectLanguageScreen extends StatelessWidget {
                   }
                   if (state is NewLanguageKeysUnavailable) {
                     ProgressBar.dismiss(context);
-                    showCustomSnackBar(context, 'No new keys available', 'ok');
+                    showCustomSnackBar(
+                        context, 'No new keys available', StringConstants.kOk);
                   }
                   if (state is NewKeysLanguageAvailable) {
                     ProgressBar.dismiss(context);

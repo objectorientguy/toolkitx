@@ -67,7 +67,8 @@ class ProfileBloc extends Bloc<ProfileEvents, ProfileStates> {
       if (event.updateProfileMap['bloodgrp'] != '') {
         bloodGroupEncrypt = EncryptData.encryptAESPrivateKey(
             event.updateProfileMap['bloodgrp'], privateKey);
-      } else if (event.updateProfileMap['contact'] != '') {
+      }
+      if (event.updateProfileMap['contact'] != '') {
         contactEncrypt = await EncryptData.encryptAESPrivateKey(
             event.updateProfileMap['contact'].trim(), privateKey);
       }

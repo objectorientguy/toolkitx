@@ -40,7 +40,8 @@ class SelectLanguageBody extends StatelessWidget {
                       imageUrl:
                           '${ApiConstants.baseUrlFlag}${getLanguagesData[index].flagName}',
                       placeholder: (context, url) =>
-                          const CircularProgressIndicator(strokeWidth: 2),
+                          const CircularProgressIndicator(
+                              strokeWidth: kCircularIndicatorStrokeWidth),
                       errorWidget: (context, url, error) => const Icon(
                           Icons.error_outline_sharp,
                           size: kIconSize)),

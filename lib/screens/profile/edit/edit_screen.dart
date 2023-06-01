@@ -5,6 +5,7 @@ import 'package:toolkit/blocs/profile/profile_events.dart';
 import 'package:toolkit/blocs/profile/profile_states.dart';
 import 'package:toolkit/configs/app_spacing.dart';
 import 'package:toolkit/configs/app_theme.dart';
+import 'package:toolkit/screens/root/root_screen.dart';
 import 'package:toolkit/utils/constants/string_constants.dart';
 import 'package:toolkit/widgets/custom_snackbar.dart';
 import 'package:toolkit/widgets/primary_button.dart';
@@ -35,11 +36,11 @@ class EditScreen extends StatelessWidget {
                         ProgressBar.show(context);
                       }
                       if (state is UserProfileUpdated) {
-                        ProgressBar.show(context);
-                        // Navigator.pushReplacementNamed(context, ProfileScreen.routeName);
+                        ProgressBar.dismiss(context);
+                        Navigator.pushNamed(context, RootScreen.routeName);
                       }
                       if (state is UserProfileUpdateError) {
-                        ProgressBar.show(context);
+                        ProgressBar.dismiss(context);
                         showCustomSnackBar(
                             context, state.message, StringConstants.kOk);
                       }
