@@ -18,7 +18,7 @@ class PermitGroup extends StatelessWidget {
     return ListView.separated(
         physics: const BouncingScrollPhysics(),
         shrinkWrap: true,
-        itemCount: 15,
+        itemCount: permitDetailsModel.data.tab3.length,
         itemBuilder: (context, index) {
           final random = Random();
           final leadingAvatarIcon = PermitUtil().leadingAvatarList[
@@ -34,7 +34,7 @@ class PermitGroup extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Text('Martin Smith'),
+                    Text(permitDetailsModel.data.tab3[index].name),
                     Container(
                       width: MediaQuery.of(context).size.width * 0.15,
                       height: MediaQuery.of(context).size.width * 0.050,
@@ -56,13 +56,13 @@ class PermitGroup extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.start,
-                    children: const [
+                    children: [
                       Text(
-                        'Crane Supervisor',
+                        permitDetailsModel.data.tab3[index].jobTitle,
                       ),
-                      SizedBox(height: midTiniestSpacing),
-                      Text('ToolkitX Test Workforce'),
-                      SizedBox(height: midTiniestSpacing),
+                      const SizedBox(height: midTiniestSpacing),
+                      Text(permitDetailsModel.data.tab3[index].company),
+                      const SizedBox(height: midTiniestSpacing),
                     ],
                   ),
                 ),
