@@ -32,31 +32,31 @@ class EditScreen extends StatelessWidget {
                 child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const SizedBox(height: mediumSpacing),
+                      const SizedBox(height: xxxSmallerSpacing),
                       Text(StringConstants.kFirstName,
                           style: Theme.of(context).textTheme.medium),
-                      const SizedBox(height: midTinySpacing),
+                      const SizedBox(height: tinierSpacing),
                       const TextFieldWidget(
                           textInputAction: TextInputAction.next,
                           hintText: StringConstants.kFirstName),
-                      const SizedBox(height: midTinySpacing),
+                      const SizedBox(height: tinierSpacing),
                       Text(StringConstants.kLastName,
                           style: Theme.of(context).textTheme.medium),
-                      const SizedBox(height: midTinySpacing),
+                      const SizedBox(height: tinierSpacing),
                       const TextFieldWidget(
                           textInputAction: TextInputAction.next,
                           hintText: StringConstants.kLastName),
-                      const SizedBox(height: midTinySpacing),
+                      const SizedBox(height: tinierSpacing),
                       Text(StringConstants.kContact,
                           style: Theme.of(context).textTheme.medium),
-                      const SizedBox(height: midTinySpacing),
+                      const SizedBox(height: tinierSpacing),
                       const TextFieldWidget(
                           textInputAction: TextInputAction.done,
                           hintText: StringConstants.kContact),
-                      const SizedBox(height: midTinySpacing),
+                      const SizedBox(height: tinierSpacing),
                       Text(StringConstants.kBloodGroup,
                           style: Theme.of(context).textTheme.medium),
-                      const SizedBox(height: midTinySpacing),
+                      const SizedBox(height: tinierSpacing),
                       const BloodGroupExpansionTile()
                     ]))));
   }

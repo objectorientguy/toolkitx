@@ -21,11 +21,11 @@ class HomeScreen extends StatelessWidget {
       padding: const EdgeInsets.all(kBodyMargin),
       child: Column(
         children: [
-          const SizedBox(height: mediumSpacing),
+          const SizedBox(height: xxxSmallerSpacing),
           SvgPicture.asset('assets/icons/toolkitx_logo.svg'),
-          const SizedBox(height: mediumSpacing),
+          const SizedBox(height: xxxSmallerSpacing),
           const DateAndTimeSection(),
-          const SizedBox(height: largeSpacing),
+          const SizedBox(height: xxxMediumSpacing),
           Expanded(
               child: ScrollConfiguration(
             behavior: const ScrollBehavior().copyWith(overscroll: false),

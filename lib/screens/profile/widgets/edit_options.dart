@@ -15,14 +15,14 @@ class EditOptions extends StatelessWidget {
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(kCardRadius)),
         child: Padding(
-            padding: const EdgeInsets.all(tinySpacing),
+            padding: const EdgeInsets.all(xxTinySpacing),
             child: Column(children: [
               const CircleAvatarWidget(imagePath: 'mechanic_person.png'),
-              const SizedBox(height: mediumSpacing),
+              const SizedBox(height: xxxSmallerSpacing),
               Text("Aditya Rana", style: Theme.of(context).textTheme.large),
-              const SizedBox(height: tiniestSpacing),
+              const SizedBox(height: xxTiniestSpacing),
               Text("System User", style: Theme.of(context).textTheme.xSmall),
-              const SizedBox(height: mediumSpacing),
+              const SizedBox(height: xxxSmallerSpacing),
               const EditOptionsSection()
             ])));
   }

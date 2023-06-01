@@ -6,7 +6,7 @@ import 'package:toolkit/utils/constants/string_constants.dart';
 
 import '../../../blocs/password/password_events.dart';
 import '../../../configs/app_color.dart';
-import '../../../configs/app_spacing.dart';
+import '../../../configs/app_dimensions.dart';
 
 class UserTypeExpansionTile extends StatelessWidget {
   final String typeValue;
@@ -23,7 +23,7 @@ class UserTypeExpansionTile extends StatelessWidget {
         data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
         child: ExpansionTile(
             tilePadding: const EdgeInsets.only(
-                left: expansionTileMargin, right: expansionTileMargin),
+                left: kExpansionTileMargin, right: kExpansionTileMargin),
             collapsedBackgroundColor: AppColor.offWhite,
             maintainState: true,
             iconColor: AppColor.deepBlue,

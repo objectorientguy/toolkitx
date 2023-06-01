@@ -24,20 +24,20 @@ class WelcomeScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   const CircleAvatarWidget(imagePath: 'mechanic_person.png'),
-                  const SizedBox(height: largeSpacing),
+                  const SizedBox(height: xxxMediumSpacing),
                   Text(StringConstants.kWelcomeToToolkitX,
                       style: Theme.of(context)
                           .textTheme
                           .xxLarge
                           .copyWith(color: AppColor.mediumBlack)),
-                  const SizedBox(height: tinySpacing),
+                  const SizedBox(height: xxTinySpacing),
                   Text(StringConstants.kAppIntroductionNoSpacing,
                       style: Theme.of(context)
                           .textTheme
                           .medium
                           .copyWith(fontWeight: FontWeight.normal),
                       textAlign: TextAlign.center),
-                  const SizedBox(height: extraLargeSpacing),
+                  const SizedBox(height: xxLargerSpacing),
                   PrimaryButton(
                       onPressed: () {
                         Navigator.pushNamed(

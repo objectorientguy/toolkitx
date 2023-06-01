@@ -16,12 +16,12 @@ class CommentsPopUp extends StatelessWidget {
   Widget build(BuildContext context) {
     return AlertDialog(
         titlePadding:
-            const EdgeInsets.only(left: smallSpacing, top: smallSpacing),
-        buttonPadding: const EdgeInsets.all(tiniestSpacing),
+            const EdgeInsets.only(left: tinySpacing, top: tinySpacing),
+        buttonPadding: const EdgeInsets.all(xxTiniestSpacing),
         contentPadding: const EdgeInsets.only(
-            left: tinySpacing, right: tinySpacing, top: tinySpacing, bottom: 0),
+            left: xxTinySpacing, right: xxTinySpacing, top: xxTinySpacing, bottom: 0),
         actionsPadding:
-            const EdgeInsets.only(right: tinySpacing, bottom: tiniestSpacing),
+            const EdgeInsets.only(right: xxTinySpacing, bottom: xxTiniestSpacing),
         title: Text(StringConstants.kComments,
             style: Theme.of(context)
                 .textTheme

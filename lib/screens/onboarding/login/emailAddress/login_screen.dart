@@ -28,31 +28,31 @@ class LoginScreen extends StatelessWidget {
                 padding: const EdgeInsets.only(
                     left: leftRightMargin,
                     right: leftRightMargin,
-                    top: topBottomSpacing,
-                    bottom: topBottomSpacing),
+                    top: topBottomPadding,
+                    bottom: topBottomPadding),
                 child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       const CircleAvatarWidget(imagePath: 'email.png'),
-                      const SizedBox(height: largeSpacing),
+                      const SizedBox(height: xxxMediumSpacing),
                       CustomCard(
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(kCardRadius),
                           ),
                           child: Padding(
-                              padding: const EdgeInsets.all(cardPadding),
+                              padding: const EdgeInsets.all(kCardPadding),
                               child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(StringConstants.kEmailAddress,
                                         style:
                                             Theme.of(context).textTheme.medium),
-                                    const SizedBox(height: tinySpacing),
+                                    const SizedBox(height: xxTinySpacing),
                                     const TextFieldWidget(
                                         textInputType:
                                             TextInputType.emailAddress),
                                   ]))),
-                      const SizedBox(height: mediumSpacing),
+                      const SizedBox(height: xxxSmallerSpacing),
                       PrimaryButton(
                           onPressed: () {
                             context

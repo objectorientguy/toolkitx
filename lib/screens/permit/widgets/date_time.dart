@@ -18,7 +18,7 @@ class DateTimeRow extends StatelessWidget {
           children: [
             Image.asset('assets/icons/calendar.png',
                 height: kImageHeight, width: kImageWidth),
-            const SizedBox(width: tiniestSpacing),
+            const SizedBox(width: xxTiniestSpacing),
             const Text('24.05.2023 - 30.05.2023 ')
           ],
         ),
@@ -28,7 +28,7 @@ class DateTimeRow extends StatelessWidget {
           children: [
             Image.asset('assets/icons/clock.png',
                 height: kImageHeight, width: kImageWidth),
-            const SizedBox(width: tiniestSpacing),
+            const SizedBox(width: xxTiniestSpacing),
             const Text('03:30 - 03:39')
           ],
         ),

@@ -38,22 +38,22 @@ class _ChangeRoleScreenState extends State<ChangeRoleScreen> {
               padding: const EdgeInsets.only(
                   left: leftRightMargin,
                   right: leftRightMargin,
-                  top: topBottomSpacing),
+                  top: topBottomPadding),
               child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const SizedBox(height: tiniestSpacing),
+                    const SizedBox(height: xxTiniestSpacing),
                     CustomCard(
                         elevation: kZeroElevation,
                         child: ListView.separated(
                             physics: const NeverScrollableScrollPhysics(),
                             padding:
-                                const EdgeInsets.only(bottom: tiniestSpacing),
+                                const EdgeInsets.only(bottom: xxTiniestSpacing),
                             shrinkWrap: true,
                             itemCount: changeRoleList.length,
                             itemBuilder: (context, index) {
                               return SizedBox(
-                                  height: largeSpacing,
+                                  height: xxxMediumSpacing,
                                   child: RadioListTile(
                                     dense: true,
                                     activeColor: AppColor.deepBlue,
@@ -74,7 +74,7 @@ class _ChangeRoleScreenState extends State<ChangeRoleScreen> {
                                   thickness: kDividerThickness,
                                   height: kDividerHeight);
                             })),
-                    const SizedBox(height: mediumSpacing)
+                    const SizedBox(height: xxxSmallerSpacing)
                   ])),
         ));
   }

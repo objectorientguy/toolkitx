@@ -23,20 +23,20 @@ class FiltersScreen extends StatelessWidget {
         padding: const EdgeInsets.only(
             left: leftRightMargin,
             right: leftRightMargin,
-            top: topBottomSpacing),
+            top: topBottomPadding),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(StringConstants.kChecklistName,
                 style: Theme.of(context).textTheme.medium),
-            const SizedBox(height: midTinySpacing),
+            const SizedBox(height: tinierSpacing),
             const TextFieldWidget(),
-            const SizedBox(height: midTinySpacing),
+            const SizedBox(height: tinierSpacing),
             Text(StringConstants.kCategory,
                 style: Theme.of(context).textTheme.medium),
-            const SizedBox(height: midTinySpacing),
+            const SizedBox(height: tinierSpacing),
             const CategoryExpansionTile(),
-            const SizedBox(height: mediumSpacing),
+            const SizedBox(height: xxxSmallerSpacing),
             PrimaryButton(onPressed: () {}, textValue: StringConstants.kApply)
           ],
         ),

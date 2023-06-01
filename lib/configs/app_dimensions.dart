@@ -23,3 +23,6 @@ const double kModuleIconSize = 30;
 const double kTagsHeight = 25;
 const double kDateTimePickerContainerHeight = 220;
 const double kDateTimePickerHeight = 170;
+const double kExpansionTileMargin = 3;
+const double kCardPadding = 15.0;
+

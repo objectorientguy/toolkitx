@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:toolkit/configs/app_theme.dart';
 
 import '../../../configs/app_color.dart';
-import '../../../configs/app_spacing.dart';
+import '../../../configs/app_dimensions.dart';
 import '../../../data/enums/blood_group_enum.dart';
 import '../../../utils/constants/string_constants.dart';
 
@@ -23,7 +23,7 @@ class _BloodGroupExpansionTileState extends State<BloodGroupExpansionTile> {
         data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
         child: ExpansionTile(
             tilePadding: const EdgeInsets.only(
-                left: expansionTileMargin, right: expansionTileMargin),
+                left: kExpansionTileMargin, right: kExpansionTileMargin),
             collapsedBackgroundColor: AppColor.white,
             maintainState: true,
             iconColor: AppColor.deepBlue,

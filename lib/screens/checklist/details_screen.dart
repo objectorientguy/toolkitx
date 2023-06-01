@@ -20,8 +20,8 @@ class DetailsScreen extends StatelessWidget {
           padding: const EdgeInsets.only(
               left: leftRightMargin,
               right: leftRightMargin,
-              top: topBottomSpacing,
-              bottom: topBottomSpacing),
+              top: topBottomPadding,
+              bottom: topBottomPadding),
           child: ListView.separated(
               physics: const BouncingScrollPhysics(),
               shrinkWrap: true,
@@ -43,7 +43,7 @@ class DetailsScreen extends StatelessWidget {
                 ));
               },
               separatorBuilder: (context, index) {
-                return const SizedBox(height: tinySpacing);
+                return const SizedBox(height: xxTinySpacing);
               }),
         ));
   }

@@ -24,7 +24,7 @@ class SelectTimeZoneScreen extends StatelessWidget {
             padding: const EdgeInsets.only(
                 left: leftRightMargin,
                 right: leftRightMargin,
-                top: topBottomSpacing),
+                top: topBottomPadding),
             child:
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               Expanded(
@@ -57,14 +57,14 @@ class SelectTimeZoneScreen extends StatelessWidget {
                                     const Icon(Icons.public, size: kIconSize),
                                 title: const Padding(
                                   padding:
-                                      EdgeInsets.only(bottom: tiniestSpacing),
+                                      EdgeInsets.only(bottom: xxTiniestSpacing),
                                   child: Text(StringConstants.kTimeZone),
                                 ),
                                 subtitle:
                                     const Text(StringConstants.kTimeLocation)));
                       },
                       separatorBuilder: (BuildContext context, int index) {
-                        return const SizedBox(height: tinySpacing);
+                        return const SizedBox(height: xxTinySpacing);
                       }))
             ])));
   }

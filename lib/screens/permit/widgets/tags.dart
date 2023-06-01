@@ -19,10 +19,10 @@ class Tags extends StatelessWidget {
             borderRadius: BorderRadius.circular(kCardRadius),
           ),
           margin: const EdgeInsets.only(
-              right: tiniestSpacing, bottom: tiniestSpacing),
+              right: xxTiniestSpacing, bottom: xxTiniestSpacing),
           alignment: Alignment.center,
           child: const Padding(
-            padding: EdgeInsets.all(tiniestSpacing),
+            padding: EdgeInsets.all(xxTiniestSpacing),
             child: Text(
               'Expired',
               style: TextStyle(color: AppColor.white),
@@ -37,9 +37,9 @@ class Tags extends StatelessWidget {
           ),
           alignment: Alignment.center,
           margin: const EdgeInsets.only(
-              right: tiniestSpacing, bottom: tiniestSpacing),
+              right: xxTiniestSpacing, bottom: xxTiniestSpacing),
           child: const Padding(
-            padding: EdgeInsets.all(tiniestSpacing),
+            padding: EdgeInsets.all(xxTiniestSpacing),
             child: Text(
               'NPI',
               style: TextStyle(color: AppColor.white),
@@ -54,9 +54,9 @@ class Tags extends StatelessWidget {
           ),
           alignment: Alignment.center,
           margin: const EdgeInsets.only(
-              right: tiniestSpacing, bottom: tiniestSpacing),
+              right: xxTiniestSpacing, bottom: xxTiniestSpacing),
           child: const Padding(
-            padding: EdgeInsets.all(tiniestSpacing),
+            padding: EdgeInsets.all(xxTiniestSpacing),
             child: Text(
               'NPW',
               style: TextStyle(color: AppColor.white),

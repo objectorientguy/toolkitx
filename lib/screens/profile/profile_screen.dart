@@ -19,13 +19,13 @@ class ProfileScreen extends StatelessWidget {
                 padding: const EdgeInsets.only(
                     left: leftRightMargin,
                     right: leftRightMargin,
-                    top: topBottomSpacing),
+                    top: topBottomPadding),
                 child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: const [
-                      SizedBox(height: mediumSpacing),
+                      SizedBox(height: xxxSmallerSpacing),
                       EditOptions(),
-                      SizedBox(height: tinySpacing),
+                      SizedBox(height: xxTinySpacing),
                       ProfileOptions()
                     ]))));
   }

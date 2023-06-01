@@ -24,13 +24,13 @@ class PermitListScreen extends StatelessWidget {
         padding: const EdgeInsets.only(
             left: leftRightMargin,
             right: leftRightMargin,
-            top: midTiniestSpacing),
+            top: xxTinierSpacing),
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           CustomIconButtonRow(
               primaryOnPress: () {},
               secondaryOnPress: () {},
               clearOnPress: () {}),
-          const SizedBox(height: midTiniestSpacing),
+          const SizedBox(height: xxTinierSpacing),
           Expanded(
               child: ListView.separated(
                   physics: const BouncingScrollPhysics(),
@@ -39,7 +39,7 @@ class PermitListScreen extends StatelessWidget {
                   itemBuilder: (context, index) {
                     return CustomCard(
                       child: Padding(
-                        padding: const EdgeInsets.only(top: midTinySpacing),
+                        padding: const EdgeInsets.only(top: tinierSpacing),
                         child: ListTile(
                           onTap: () {
                             Navigator.pushNamed(
@@ -69,7 +69,7 @@ class PermitListScreen extends StatelessWidget {
                             ],
                           ),
                           subtitle: Padding(
-                            padding: const EdgeInsets.only(top: midTinySpacing),
+                            padding: const EdgeInsets.only(top: tinierSpacing),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               mainAxisAlignment: MainAxisAlignment.start,
@@ -78,13 +78,13 @@ class PermitListScreen extends StatelessWidget {
                                   'This is just a dummy permit This is just a dummy permit ',
                                   maxLines: 2,
                                 ),
-                                SizedBox(height: midTinySpacing),
+                                SizedBox(height: tinierSpacing),
                                 Text('Andrew oil field'),
-                                SizedBox(height: midTinySpacing),
+                                SizedBox(height: tinierSpacing),
                                 Text('George M Mueller - Pandora-ICT GmbH'),
-                                SizedBox(height: midTinySpacing),
+                                SizedBox(height: tinierSpacing),
                                 DateTimeRow(),
-                                SizedBox(height: midTinySpacing),
+                                SizedBox(height: tinierSpacing),
                                 Tags()
                               ],
                             ),
@@ -94,9 +94,9 @@ class PermitListScreen extends StatelessWidget {
                     );
                   },
                   separatorBuilder: (context, index) {
-                    return const SizedBox(height: tinySpacing);
+                    return const SizedBox(height: xxTinySpacing);
                   })),
-          const SizedBox(height: tinySpacing)
+          const SizedBox(height: xxTinySpacing)
         ]),
       ),
     );

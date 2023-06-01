@@ -23,12 +23,12 @@ class ChecklistStatusScreen extends StatelessWidget {
             padding: const EdgeInsets.only(
                 left: leftRightMargin,
                 right: leftRightMargin,
-                top: topBottomSpacing),
+                top: topBottomPadding),
             child:
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               Text('08.03.2023 - 11.03.2023',
                   style: Theme.of(context).textTheme.xSmall),
-              const SizedBox(height: tinySpacing),
+              const SizedBox(height: xxTinySpacing),
               Expanded(
                   child: ListView.separated(
                       physics: const BouncingScrollPhysics(),
@@ -38,10 +38,10 @@ class ChecklistStatusScreen extends StatelessWidget {
                         return CustomCard(
                             child: ListTile(
                                 contentPadding:
-                                    const EdgeInsets.all(midTinySpacing),
+                                    const EdgeInsets.all(tinierSpacing),
                                 title: Padding(
                                     padding: const EdgeInsets.only(
-                                        bottom: tiniestSpacing),
+                                        bottom: xxTiniestSpacing),
                                     child: Text('Sumit Workforce',
                                         style: Theme.of(context)
                                             .textTheme
@@ -56,13 +56,13 @@ class ChecklistStatusScreen extends StatelessWidget {
                                               .textTheme
                                               .xSmall
                                               .copyWith(color: AppColor.grey)),
-                                      const SizedBox(height: tiniestSpacing),
+                                      const SizedBox(height: xxTiniestSpacing),
                                       Text('Response Date: 08.04.2023',
                                           style: Theme.of(context)
                                               .textTheme
                                               .xSmall
                                               .copyWith(color: AppColor.grey)),
-                                      const SizedBox(height: tiniestSpacing),
+                                      const SizedBox(height: xxTiniestSpacing),
                                       Text('Approved',
                                           style: Theme.of(context)
                                               .textTheme
@@ -81,7 +81,7 @@ class ChecklistStatusScreen extends StatelessWidget {
                                         Icons.attach_file_outlined))));
                       },
                       separatorBuilder: (context, index) {
-                        return const SizedBox(height: tinySpacing);
+                        return const SizedBox(height: xxTinySpacing);
                       }))
             ])));
   }

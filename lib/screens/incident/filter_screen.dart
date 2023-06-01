@@ -23,7 +23,7 @@ class IncidentFilterScreen extends StatelessWidget {
         padding: const EdgeInsets.only(
             left: leftRightMargin,
             right: leftRightMargin,
-            top: topBottomSpacing),
+            top: topBottomPadding),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
@@ -33,31 +33,31 @@ class IncidentFilterScreen extends StatelessWidget {
                     .textTheme
                     .xSmall
                     .copyWith(fontWeight: FontWeight.w600)),
-            const SizedBox(height: tinySpacing),
+            const SizedBox(height: xxTinySpacing),
             Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
               Expanded(
                 child: DatePickerTextField(
                   hintText: StringConstants.kSelectDate,
                 ),
               ),
-              const SizedBox(width: midTiniestSpacing),
+              const SizedBox(width: xxTinierSpacing),
               const Text(StringConstants.kBis),
-              const SizedBox(width: midTiniestSpacing),
+              const SizedBox(width: xxTinierSpacing),
               Expanded(
                 child: DatePickerTextField(
                   hintText: StringConstants.kSelectDate,
                 ),
               )
             ]),
-            const SizedBox(height: tinySpacing),
+            const SizedBox(height: xxTinySpacing),
             Text(StringConstants.kStatus,
                 style: Theme.of(context)
                     .textTheme
                     .xSmall
                     .copyWith(fontWeight: FontWeight.w600)),
-            const SizedBox(height: tinySpacing),
+            const SizedBox(height: xxTinySpacing),
             const FilterStatusExpansionTile(),
-            const SizedBox(height: mediumSpacing),
+            const SizedBox(height: xxxSmallerSpacing),
             PrimaryButton(onPressed: () {}, textValue: StringConstants.kApply)
           ],
         ),

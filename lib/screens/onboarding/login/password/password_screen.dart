@@ -33,24 +33,24 @@ class PasswordScreen extends StatelessWidget {
                     padding: const EdgeInsets.only(
                         left: leftRightMargin,
                         right: leftRightMargin,
-                        top: topBottomSpacing,
-                        bottom: topBottomSpacing),
+                        top: topBottomPadding,
+                        bottom: topBottomPadding),
                     child: Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           const CircleAvatarWidget(
                               imagePath: 'reset-password.png'),
-                          const SizedBox(height: largeSpacing),
+                          const SizedBox(height: xxxMediumSpacing),
                           Text(StringConstants.kWelcome,
                               style: Theme.of(context).textTheme.xLarge),
-                          const SizedBox(height: smallSpacing),
+                          const SizedBox(height: tinySpacing),
                           CustomCard(
                               shape: RoundedRectangleBorder(
                                 borderRadius:
                                     BorderRadius.circular(kCardRadius),
                               ),
                               child: Padding(
-                                  padding: const EdgeInsets.all(cardPadding),
+                                  padding: const EdgeInsets.all(kCardPadding),
                                   child: Column(
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
@@ -59,14 +59,14 @@ class PasswordScreen extends StatelessWidget {
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .medium),
-                                        const SizedBox(height: smallSpacing),
+                                        const SizedBox(height: tinySpacing),
                                         const TextFieldWidget(),
-                                        const SizedBox(height: smallSpacing),
+                                        const SizedBox(height: tinySpacing),
                                         Text(StringConstants.kType,
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .medium),
-                                        const SizedBox(height: smallSpacing),
+                                        const SizedBox(height: tinySpacing),
                                         UserTypeExpansionTile(
                                             typeValue: state.typeValue)
                                       ]))),

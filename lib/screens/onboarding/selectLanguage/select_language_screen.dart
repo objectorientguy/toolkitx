@@ -25,7 +25,7 @@ class SelectLanguageScreen extends StatelessWidget {
         padding: const EdgeInsets.only(
             left: leftRightMargin,
             right: leftRightMargin,
-            top: topBottomSpacing),
+            top: topBottomPadding),
         child: BlocConsumer<LanguageBloc, LanguageStates>(
             listener: (context, state) {},
             builder: (context, state) {
@@ -52,12 +52,12 @@ class SelectLanguageScreen extends StatelessWidget {
                                       MediaQuery.of(context).size.width * 0.08),
                               title: Padding(
                                   padding: const EdgeInsets.only(
-                                      bottom: tiniestSpacing),
+                                      bottom: xxTiniestSpacing),
                                   child: Text(state
                                       .languageModel.data![index].langName))));
                     },
                     separatorBuilder: (BuildContext context, int index) {
-                      return const SizedBox(height: tinySpacing);
+                      return const SizedBox(height: xxTinySpacing);
                     });
               } else if (state is LanguagesError) {
                 return const ShowError();

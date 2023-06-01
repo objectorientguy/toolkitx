@@ -32,7 +32,7 @@ class SelectDateFormatScreen extends StatelessWidget {
                       padding: const EdgeInsets.only(
                           left: leftRightMargin,
                           right: leftRightMargin,
-                          top: topBottomSpacing),
+                          top: topBottomPadding),
                       child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -42,12 +42,12 @@ class SelectDateFormatScreen extends StatelessWidget {
                                     physics:
                                         const NeverScrollableScrollPhysics(),
                                     padding: const EdgeInsets.only(
-                                        bottom: midTiniestSpacing),
+                                        bottom: xxTinierSpacing),
                                     shrinkWrap: true,
                                     itemCount: CustomDateFormat.values.length,
                                     itemBuilder: (context, index) {
                                       return SizedBox(
-                                          height: largeSpacing,
+                                          height: xxxMediumSpacing,
                                           child: RadioListTile(
                                               dense: true,
                                               activeColor: AppColor.deepBlue,
@@ -85,7 +85,7 @@ class SelectDateFormatScreen extends StatelessWidget {
                                           thickness: kDividerThickness,
                                           height: kDividerHeight);
                                     })),
-                            const SizedBox(height: mediumSpacing),
+                            const SizedBox(height: xxxSmallerSpacing),
                             PrimaryButton(
                                 onPressed: () {
                                   Navigator.pushNamed(
