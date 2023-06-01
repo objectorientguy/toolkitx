@@ -27,7 +27,10 @@ class CommentsPopUp extends StatelessWidget {
                 .textTheme
                 .small
                 .copyWith(color: AppColor.black)),
-        content: const TextFieldWidget(maxLines: 7),
+        content: TextFieldWidget(
+          maxLines: 7,
+          onTextFieldChanged: (String textField) {},
+        ),
         titleTextStyle: Theme.of(context)
             .textTheme
             .large
