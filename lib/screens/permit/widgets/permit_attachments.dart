@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:toolkit/configs/app_dimensions.dart';
 import '../../../configs/app_spacing.dart';
+import '../../../data/models/permit/permit_details_model.dart';
 import '../../onboarding/widgets/custom_card.dart';
 
 class PermitAttachments extends StatelessWidget {
-  const PermitAttachments({Key? key}) : super(key: key);
+  final PermitDetailsModel permitDetailsModel;
+
+  const PermitAttachments({Key? key, required this.permitDetailsModel})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {

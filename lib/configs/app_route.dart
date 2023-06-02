@@ -18,6 +18,7 @@ import '../screens/profile/changePassword/select_change_password_screen.dart';
 import '../screens/profile/edit/edit_screen.dart';
 import '../screens/permit/permit_details_screen.dart';
 import '../screens/permit/permit_list_screen.dart';
+import '../screens/permit/get_permit_roles_screen.dart';
 import '../screens/root/root_screen.dart';
 
 class AppRoutes {
@@ -60,6 +61,8 @@ class AppRoutes {
         return _createRoute(const PermitListScreen());
       case PermitDetailsScreen.routeName:
         return _createRoute(const PermitDetailsScreen());
+      case GetPermitRolesScreen.routeName:
+        return _createRoute(const GetPermitRolesScreen());
       case ClientListScreen.routeName:
         return _createRoute(const ClientListScreen());
       case SelectChangePasswordTypeScreen.routeName:

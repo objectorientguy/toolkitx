@@ -3,9 +3,13 @@ import 'package:toolkit/configs/app_color.dart';
 import 'package:toolkit/configs/app_theme.dart';
 import '../../../configs/app_dimensions.dart';
 import '../../../configs/app_spacing.dart';
+import '../../../data/models/permit/permit_details_model.dart';
 
 class CustomTimeline extends StatelessWidget {
-  const CustomTimeline({super.key});
+  final PermitDetailsModel permitDetailsModel;
+
+  const CustomTimeline({Key? key, required this.permitDetailsModel})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {

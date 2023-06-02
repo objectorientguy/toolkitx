@@ -3,10 +3,13 @@ import 'package:toolkit/configs/app_color.dart';
 import 'package:toolkit/configs/app_theme.dart';
 
 import '../../../configs/app_spacing.dart';
-import 'date_time.dart';
+import '../../../data/models/permit/permit_details_model.dart';
 
 class PermitDetails extends StatelessWidget {
-  const PermitDetails({Key? key}) : super(key: key);
+  final PermitDetailsModel permitDetailsModel;
+
+  const PermitDetails({Key? key, required this.permitDetailsModel})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +25,8 @@ class PermitDetails extends StatelessWidget {
               .copyWith(color: AppColor.black, fontWeight: FontWeight.bold),
         ),
         const SizedBox(height: midTiniestSpacing),
-        const DateTimeRow(),
+        Text(permitDetailsModel.data!.tab1!.schedule!,
+            style: Theme.of(context).textTheme.small),
         const SizedBox(height: smallSpacing),
         Text(
           'NPI',
@@ -32,7 +36,8 @@ class PermitDetails extends StatelessWidget {
               .copyWith(color: AppColor.black, fontWeight: FontWeight.bold),
         ),
         const SizedBox(height: midTiniestSpacing),
-        Text('Tim Service', style: Theme.of(context).textTheme.small),
+        Text(permitDetailsModel.data!.tab1!.pnameNpi!,
+            style: Theme.of(context).textTheme.small),
         const SizedBox(height: smallSpacing),
         Text(
           'NPW',
@@ -42,7 +47,8 @@ class PermitDetails extends StatelessWidget {
               .copyWith(color: AppColor.black, fontWeight: FontWeight.bold),
         ),
         const SizedBox(height: midTiniestSpacing),
-        Text('Tobias Drew', style: Theme.of(context).textTheme.small),
+        Text(permitDetailsModel.data!.tab1!.pname!,
+            style: Theme.of(context).textTheme.small),
         const SizedBox(height: smallSpacing),
         Text(
           'Description',
@@ -52,7 +58,7 @@ class PermitDetails extends StatelessWidget {
               .copyWith(color: AppColor.black, fontWeight: FontWeight.bold),
         ),
         const SizedBox(height: midTiniestSpacing),
-        Text('Putting / adding work description here.',
+        Text(permitDetailsModel.data!.tab1!.details!,
             style: Theme.of(context).textTheme.small),
         const SizedBox(height: smallSpacing),
         Text(
@@ -63,7 +69,8 @@ class PermitDetails extends StatelessWidget {
               .copyWith(color: AppColor.black, fontWeight: FontWeight.bold),
         ),
         const SizedBox(height: midTiniestSpacing),
-        Text('Tim Service', style: Theme.of(context).textTheme.small),
+        Text(permitDetailsModel.data!.tab1!.location!,
+            style: Theme.of(context).textTheme.small),
         const SizedBox(height: smallSpacing),
         Text(
           'Company',
@@ -73,7 +80,7 @@ class PermitDetails extends StatelessWidget {
               .copyWith(color: AppColor.black, fontWeight: FontWeight.bold),
         ),
         const SizedBox(height: midTiniestSpacing),
-        Text('ToolkitX Test Workforce',
+        Text(permitDetailsModel.data!.tab1!.pcompany!,
             style: Theme.of(context).textTheme.small),
       ],
     );
