@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:developer';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:toolkit/blocs/profile/profile_events.dart';
@@ -87,7 +86,6 @@ class ProfileBloc extends Bloc<ProfileEvents, ProfileStates> {
           'bloodgrp': bloodGroupEncrypt,
           'sign': event.updateProfileMap['sign'].trim()
         };
-        log('message-------->$contactEncrypt');
         UpdateUserProfileModel updateUserProfileModel =
             await _profileRepository.updateUserProfile(updateUserProfileMap);
         if (updateUserProfileModel.status == 200) {

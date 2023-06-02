@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:dio/dio.dart';
 
 class DioClient {
@@ -10,7 +8,6 @@ class DioClient {
     try {
       final response = await dio.get(requestUrl, options: Options());
       jsonResponse = (response.data);
-      log("response==========>$jsonResponse");
     } on DioError catch (e) {
       if (e.response != null) {
         e.response!.statusCode;
@@ -28,7 +25,6 @@ class DioClient {
       final response =
           await dio.post(requestUrl, data: body, options: Options());
       jsonResponse = (response.data);
-      log("response==========>$jsonResponse");
     } on DioError catch (e) {
       if (e.response != null) {
         e.response!.statusCode;

@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:developer';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:toolkit/blocs/client/client_events.dart';
@@ -95,7 +94,6 @@ class ClientBloc extends Bloc<ClientEvents, ClientStates> {
             availableModules.add(ModulesUtil.listModulesMode[i]);
           }
         }
-        log("availableModules======>${availableModules[3].moduleName}");
         emit(HomeScreenFetched(
             processClientModel: homeScreenModel,
             image: clientImage,
