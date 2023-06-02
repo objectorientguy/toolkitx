@@ -10,14 +10,14 @@ class ClientRepositoryImpl extends ClientRepository {
   Future<ClientListModel> fetchClientList(
       String clientDataKey, String userType) async {
     final response = await DioClient().get(
-        "${ApiConstants.baseUrl}/api/common/gethashkeys?data=$clientDataKey&type=$userType");
+        "${ApiConstants.baseUrl}common/gethashkeys?data=$clientDataKey&type=$userType");
     return ClientListModel.fromJson(response);
   }
 
   @override
   Future<HomeScreenModel> fetchHomeScreen(Map processClientMap) async {
-    final response = await DioClient().post(
-        "${ApiConstants.baseUrl}/api/common/processclient", processClientMap);
+    final response = await DioClient()
+        .post("${ApiConstants.baseUrl}common/processclient", processClientMap);
     return HomeScreenModel.fromJson(response);
   }
 }

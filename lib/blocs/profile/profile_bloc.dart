@@ -72,18 +72,30 @@ class ProfileBloc extends Bloc<ProfileEvents, ProfileStates> {
         contactEncrypt = await EncryptData.encryptAESPrivateKey(
             event.updateProfileMap['contact'].trim(), privateKey);
       }
-      Map updateUserProfileMap = {
-        'hashcode': hashCode,
-        'fname': event.updateProfileMap['fname'].trim(),
-        'lname': event.updateProfileMap['lname'].trim(),
-        'contact': contactEncrypt,
-        'contact2': event.updateProfileMap['contact2'].trim(),
-        'bloodgrp': bloodGroupEncrypt,
-        'sign': event.updateProfileMap['sign'].trim()
-      };
-      UpdateUserProfileModel updateUserProfileModel =
-          await _profileRepository.updateUserProfile(updateUserProfileMap);
-      emit(UserProfileUpdated(updateUserProfileModel: updateUserProfileModel));
+      if (event.updateProfileMap['fname'].trim() == '') {
+        emit(UserProfileUpdateError(message: 'Please enter first name'));
+      } else if (event.updateProfileMap['lname'].trim() == '') {
+        emit(UserProfileUpdateError(message: 'Please enter last name'));
+      } else {
+        Map updateUserProfileMap = {
+          'hashcode': hashCode,
+          'fname': event.updateProfileMap['fname'].trim(),
+          'lname': event.updateProfileMap['lname'].trim(),
+          'contact': contactEncrypt,
+          'contact2': event.updateProfileMap['contact2'].trim(),
+          'bloodgrp': bloodGroupEncrypt,
+          'sign': event.updateProfileMap['sign'].trim()
+        };
+        UpdateUserProfileModel updateUserProfileModel =
+            await _profileRepository.updateUserProfile(updateUserProfileMap);
+        if (updateUserProfileModel.status == 200) {
+          emit(UserProfileUpdated(
+              updateUserProfileModel: updateUserProfileModel));
+        } else {
+          emit(UserProfileUpdateError(
+              message: 'Something went wrong please try again'));
+        }
+      }
     } catch (e) {
       emit(UserProfileUpdateError());
     }
@@ -98,7 +110,8 @@ class ProfileBloc extends Bloc<ProfileEvents, ProfileStates> {
     if (event.userprofileDetails['bloodgrp'].toString() != '') {
       bloodGroupDecrypt = await EncryptData.decryptAESPrivateKey(
           event.userprofileDetails['bloodgrp'], privateKey);
-    } else if (event.userprofileDetails['contact'].toString() != '') {
+    }
+    if (event.userprofileDetails['contact'].toString() != '') {
       contactDecrypt = await EncryptData.decryptAESPrivateKey(
           event.userprofileDetails['contact'], privateKey);
     }

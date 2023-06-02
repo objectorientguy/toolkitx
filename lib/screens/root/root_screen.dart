@@ -68,35 +68,35 @@ class _RootScreenState extends State<RootScreen> {
       items: const <BottomNavigationBarItem>[
         BottomNavigationBarItem(
           icon: Padding(
-            padding: EdgeInsets.only(top: tiniestSpacing),
+            padding: EdgeInsets.only(top: xxTiniestSpacing),
             child: Icon(Icons.home),
           ),
           label: '',
         ),
         BottomNavigationBarItem(
           icon: Padding(
-            padding: EdgeInsets.only(top: tiniestSpacing),
+            padding: EdgeInsets.only(top: xxTiniestSpacing),
             child: Icon(Icons.location_on),
           ),
           label: '',
         ),
         BottomNavigationBarItem(
           icon: Padding(
-            padding: EdgeInsets.only(top: tiniestSpacing),
+            padding: EdgeInsets.only(top: xxTiniestSpacing),
             child: Icon(Icons.notifications_sharp),
           ),
           label: '',
         ),
         BottomNavigationBarItem(
           icon: Padding(
-            padding: EdgeInsets.only(top: tiniestSpacing),
+            padding: EdgeInsets.only(top: xxTiniestSpacing),
             child: Icon(Icons.message),
           ),
           label: '',
         ),
         BottomNavigationBarItem(
           icon: Padding(
-            padding: EdgeInsets.only(top: tiniestSpacing),
+            padding: EdgeInsets.only(top: xxTiniestSpacing),
             child: Icon(Icons.person),
           ),
           label: '',

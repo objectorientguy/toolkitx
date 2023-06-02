@@ -23,23 +23,23 @@ class DateAndTimeSection extends StatelessWidget {
               children: [
                 Image.asset('assets/icons/calendar.png',
                     height: kImageHeight, width: kImageWidth),
-                const SizedBox(width: tiniestSpacing),
+                const SizedBox(width: xxTiniestSpacing),
                 Text(DateUtil.formatDate(state.dateTime)),
-                const SizedBox(width: smallSpacing),
+                const SizedBox(width: xxxTinierSpacing),
                 Image.asset('assets/icons/clock.png',
                     height: kImageHeight, width: kImageWidth),
-                const SizedBox(width: tiniestSpacing),
+                const SizedBox(width: xxTiniestSpacing),
                 Text(DateUtil.formatTime(state.dateTime))
               ]),
-          const SizedBox(height: smallSpacing),
+          const SizedBox(height: xxxTinierSpacing),
           Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const SizedBox(height: smallSpacing),
+                const SizedBox(height: xxxTinierSpacing),
                 Image.asset('assets/icons/time_zone.png',
                     height: kImageHeight, width: kImageWidth),
-                const SizedBox(width: tiniestSpacing),
+                const SizedBox(width: xxTiniestSpacing),
                 Text(state.timeZoneName)
               ])
         ]);

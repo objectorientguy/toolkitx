@@ -8,8 +8,8 @@ import 'language_repository.dart';
 class LanguageRepositoryImpl extends LanguageRepository {
   @override
   Future<LanguagesModel> fetchLanguages() async {
-    final response = await DioClient()
-        .get("${ApiConstants.baseUrl}/api/common/GetLanguages");
+    final response =
+        await DioClient().get("${ApiConstants.baseUrl}common/GetLanguages");
     return LanguagesModel.fromJson(response);
   }
 
@@ -17,7 +17,7 @@ class LanguageRepositoryImpl extends LanguageRepository {
   Future<LanguageKeysModel> fetchLanguageKeys(
       String languageId, String languageSyncDate) async {
     final response = await DioClient().get(
-        "${ApiConstants.baseUrl}/api/common/getlanguagekeys?languageid=$languageId&syncdate=$languageSyncDate&pageno=-1");
+        "${ApiConstants.baseUrl}common/getlanguagekeys?languageid=$languageId&syncdate=$languageSyncDate&pageno=-1");
     return LanguageKeysModel.fromJson(response);
   }
 
@@ -25,7 +25,7 @@ class LanguageRepositoryImpl extends LanguageRepository {
   Future<CheckNewLanguageKeysModel> isDownloadLanguage(
       String languageId, String languageSyncDate) async {
     final response = await DioClient().get(
-        "${ApiConstants.baseUrl}/api/common/IsDownloadLanguage?languageid=$languageId&syncdate=$languageSyncDate");
+        "${ApiConstants.baseUrl}common/IsDownloadLanguage?languageid=$languageId&syncdate=$languageSyncDate");
     return CheckNewLanguageKeysModel.fromJson(response);
   }
 }

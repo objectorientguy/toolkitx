@@ -53,7 +53,7 @@ class ProfileOptions extends StatelessWidget {
         child: SingleChildScrollView(
             physics: const BouncingScrollPhysics(),
             child: Column(children: [
-              const SizedBox(height: tiniestSpacing),
+              const SizedBox(height: xxTiniestSpacing),
               ListView.builder(
                   physics: const BouncingScrollPhysics(),
                   padding: EdgeInsets.zero,
@@ -78,7 +78,7 @@ class ProfileOptions extends StatelessWidget {
                           profileOptionsSwitchCase(context, index);
                         });
                   }),
-              const SizedBox(height: largeSpacing),
+              const SizedBox(height: xxxMediumSpacing),
               Center(
                   child: Text("App version 1.0.9",
                       style: Theme.of(context)

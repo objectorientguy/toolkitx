@@ -28,7 +28,7 @@ class SelectChangePasswordTypeScreen extends StatelessWidget {
           padding: const EdgeInsets.only(
               left: leftRightMargin,
               right: leftRightMargin,
-              top: topBottomSpacing),
+              top: topBottomPadding),
           child: BlocConsumer<ProfileBloc, ProfileStates>(
               buildWhen: (previousState, currentState) =>
                   currentState is ChangePasswordTypeLoaded,
@@ -42,18 +42,18 @@ class SelectChangePasswordTypeScreen extends StatelessWidget {
                   return Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const SizedBox(height: tiniestSpacing),
+                        const SizedBox(height: xxTiniestSpacing),
                         CustomCard(
                             elevation: kZeroElevation,
                             child: ListView.separated(
                                 physics: const NeverScrollableScrollPhysics(),
                                 padding: const EdgeInsets.only(
-                                    bottom: tiniestSpacing),
+                                    bottom: xxTiniestSpacing),
                                 shrinkWrap: true,
                                 itemCount: ChangePasswordTypeEnum.values.length,
                                 itemBuilder: (context, index) {
                                   return SizedBox(
-                                      height: largeSpacing,
+                                      height: xxxMediumSpacing,
                                       child: RadioListTile(
                                           dense: true,
                                           activeColor: AppColor.deepBlue,
@@ -77,7 +77,7 @@ class SelectChangePasswordTypeScreen extends StatelessWidget {
                                       thickness: kDividerThickness,
                                       height: kDividerHeight);
                                 })),
-                        const SizedBox(height: mediumSpacing),
+                        const SizedBox(height: xxxSmallerSpacing),
                         PrimaryButton(
                             onPressed: () {
                               context.read<ProfileBloc>().add(
@@ -87,7 +87,7 @@ class SelectChangePasswordTypeScreen extends StatelessWidget {
                                               'Change using OTP'));
                             },
                             textValue: StringConstants.kNext),
-                        const SizedBox(height: mediumSpacing)
+                        const SizedBox(height: xxxSmallerSpacing)
                       ]);
                 } else {
                   return const SizedBox();

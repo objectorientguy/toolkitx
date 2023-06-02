@@ -19,19 +19,19 @@ class PermitAttachments extends StatelessWidget {
         itemBuilder: (context, index) {
           return CustomCard(
             child: Padding(
-              padding: const EdgeInsets.only(top: midTiniestSpacing),
+              padding: const EdgeInsets.only(top: xxTinierSpacing),
               child: ListTile(
                 title: const Text('RAMS-13'),
                 subtitle: Padding(
-                  padding: const EdgeInsets.only(top: midTiniestSpacing),
+                  padding: const EdgeInsets.only(top: xxTinierSpacing),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: const [
                       Text('Company documents'),
-                      SizedBox(height: midTiniestSpacing),
+                      SizedBox(height: xxTinierSpacing),
                       Text('Dummy.pdf'),
-                      SizedBox(height: tiniestSpacing),
+                      SizedBox(height: xxTiniestSpacing),
                     ],
                   ),
                 ),
@@ -44,7 +44,7 @@ class PermitAttachments extends StatelessWidget {
           );
         },
         separatorBuilder: (context, index) {
-          return const SizedBox(height: midTiniestSpacing);
+          return const SizedBox(height: xxTinierSpacing);
         });
   }
 }

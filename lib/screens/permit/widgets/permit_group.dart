@@ -25,7 +25,7 @@ class PermitGroup extends StatelessWidget {
               random.nextInt(PermitUtil().leadingAvatarList.length)];
           return CustomCard(
             child: Padding(
-              padding: const EdgeInsets.only(top: midTiniestSpacing),
+              padding: const EdgeInsets.only(top: xxTinierSpacing),
               child: ListTile(
                 leading: Image.asset(
                   leadingAvatarIcon,
@@ -52,7 +52,7 @@ class PermitGroup extends StatelessWidget {
                   ],
                 ),
                 subtitle: Padding(
-                  padding: const EdgeInsets.only(top: midTiniestSpacing),
+                  padding: const EdgeInsets.only(top: xxTinierSpacing),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.start,
@@ -60,9 +60,9 @@ class PermitGroup extends StatelessWidget {
                       Text(
                         'Crane Supervisor',
                       ),
-                      SizedBox(height: midTiniestSpacing),
+                      SizedBox(height: xxTinierSpacing),
                       Text('ToolkitX Test Workforce'),
-                      SizedBox(height: midTiniestSpacing),
+                      SizedBox(height: xxTinierSpacing),
                     ],
                   ),
                 ),
@@ -71,7 +71,7 @@ class PermitGroup extends StatelessWidget {
           );
         },
         separatorBuilder: (context, index) {
-          return const SizedBox(height: midTiniestSpacing);
+          return const SizedBox(height: xxTinierSpacing);
         });
   }
 }

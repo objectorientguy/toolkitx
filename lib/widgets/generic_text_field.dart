@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:toolkit/configs/app_theme.dart';
-import '../../../configs/app_color.dart';
-import '../../../configs/app_spacing.dart';
+import '../configs/app_color.dart';
+import '../configs/app_spacing.dart';
 
 typedef StringCallBack = Function(String textField);
 
@@ -48,7 +48,7 @@ class TextFieldWidget extends StatelessWidget {
                 .xSmall
                 .copyWith(color: AppColor.grey),
             hintText: hintText,
-            contentPadding: const EdgeInsets.all(midTiniestSpacing),
+            contentPadding: const EdgeInsets.all(xxTinierSpacing),
             enabledBorder: const OutlineInputBorder(
                 borderSide: BorderSide(color: AppColor.lightGrey)),
             focusedBorder: const OutlineInputBorder(

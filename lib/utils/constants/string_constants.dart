@@ -6,9 +6,7 @@ abstract class StringConstants {
       'Workforce management designed to enhance efficiency, productivity and safety';
   static const String kWelcomeToToolkitX = 'Welcome to ToolKitX';
   static const String kStartNow = 'START NOW';
-  static const String kSelectTimeZone = 'Select Your TimeZone';
-  static const String kTimeZone = 'UTC+00:00';
-  static const String kTimeLocation = 'Azores Standard Time';
+  static const String kSelectTimeZone = 'Select Your TimeZone'; // not in db
   static const String kEmailAddress = 'Email Address';
   static const String kPassword = 'Password';
   static const String kNext = 'NEXT';

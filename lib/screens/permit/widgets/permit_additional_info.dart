@@ -15,7 +15,7 @@ class PermitAdditionalInfo extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const SizedBox(height: smallSpacing),
+        const SizedBox(height: tiny),
         Text(
           'Additional Information',
           style: Theme.of(context)
@@ -23,8 +23,8 @@ class PermitAdditionalInfo extends StatelessWidget {
               .medium
               .copyWith(color: AppColor.black, fontWeight: FontWeight.bold),
         ),
-        const SizedBox(height: midTiniestSpacing),
-        const SizedBox(height: smallSpacing),
+        const SizedBox(height: xxTinierSpacing),
+        const SizedBox(height: tiny),
         Text(
           'Method Statement',
           style: Theme.of(context)
@@ -32,10 +32,10 @@ class PermitAdditionalInfo extends StatelessWidget {
               .medium
               .copyWith(color: AppColor.black, fontWeight: FontWeight.bold),
         ),
-        const SizedBox(height: midTiniestSpacing),
+        const SizedBox(height: xxTinierSpacing),
         Text(permitDetailsModel.data!.tab2!.methodStatement!,
             style: Theme.of(context).textTheme.small),
-        const SizedBox(height: smallSpacing),
+        const SizedBox(height: tiny),
         Text(
           'Relevant Info',
           style: Theme.of(context)
@@ -43,10 +43,10 @@ class PermitAdditionalInfo extends StatelessWidget {
               .medium
               .copyWith(color: AppColor.black, fontWeight: FontWeight.bold),
         ),
-        const SizedBox(height: midTiniestSpacing),
+        const SizedBox(height: xxTinierSpacing),
         Text(permitDetailsModel.data!.tab2!.generalMessage,
             style: Theme.of(context).textTheme.small),
-        const SizedBox(height: smallSpacing),
+        const SizedBox(height: tiny),
         Text(
           'Special Work',
           style: Theme.of(context)
@@ -54,10 +54,10 @@ class PermitAdditionalInfo extends StatelessWidget {
               .medium
               .copyWith(color: AppColor.black, fontWeight: FontWeight.bold),
         ),
-        const SizedBox(height: midTiniestSpacing),
+        const SizedBox(height: xxTinierSpacing),
         Text(permitDetailsModel.data!.tab2!.specialWork!,
             style: Theme.of(context).textTheme.small),
-        const SizedBox(height: smallSpacing),
+        const SizedBox(height: tiny),
         Text(
           'Specific PPR',
           style: Theme.of(context)
@@ -65,10 +65,10 @@ class PermitAdditionalInfo extends StatelessWidget {
               .medium
               .copyWith(color: AppColor.black, fontWeight: FontWeight.bold),
         ),
-        const SizedBox(height: midTiniestSpacing),
+        const SizedBox(height: xxTinierSpacing),
         Text(permitDetailsModel.data!.tab2!.specialppe!,
             style: Theme.of(context).textTheme.small),
-        const SizedBox(height: smallSpacing),
+        const SizedBox(height: tiny),
         Text(
           'Protective Measures',
           style: Theme.of(context)
@@ -76,10 +76,10 @@ class PermitAdditionalInfo extends StatelessWidget {
               .medium
               .copyWith(color: AppColor.black, fontWeight: FontWeight.bold),
         ),
-        const SizedBox(height: midTiniestSpacing),
+        const SizedBox(height: xxTinierSpacing),
         Text(permitDetailsModel.data!.tab2!.protectivemeasures!,
             style: Theme.of(context).textTheme.small),
-        const SizedBox(height: smallSpacing),
+        const SizedBox(height: tiny),
         Text(
           'Layout',
           style: Theme.of(context)
@@ -87,7 +87,7 @@ class PermitAdditionalInfo extends StatelessWidget {
               .medium
               .copyWith(color: AppColor.black, fontWeight: FontWeight.bold),
         ),
-        const SizedBox(height: midTiniestSpacing),
+        const SizedBox(height: xxTinierSpacing),
         Text(permitDetailsModel.data!.tab2!.layout!,
             style: Theme.of(context).textTheme.small),
       ],

@@ -8,6 +8,8 @@ import 'package:toolkit/blocs/home/home_bloc.dart';
 import 'package:toolkit/blocs/home/home_events.dart';
 import 'package:toolkit/screens/home/widgets/date_time_section.dart';
 import 'package:toolkit/screens/home/widgets/modules_grid_layout.dart';
+import 'package:toolkit/utils/constants/string_constants.dart';
+import 'package:toolkit/widgets/error_section.dart';
 
 import '../../configs/app_dimensions.dart';
 import '../../configs/app_spacing.dart';
@@ -30,25 +32,24 @@ class HomeScreen extends StatelessWidget {
               }
               if (state is HomeScreenFetched) {
                 return Column(children: [
-                  const SizedBox(height: mediumSpacing),
+                  const SizedBox(height: xxxSmallerSpacing),
                   CachedNetworkImage(
                       height: kHomeScreenImageHeight,
                       imageUrl: state.image,
                       placeholder: (context, url) => const Center(
-                            child: SizedBox(
+                          child: SizedBox(
                               height: kImageCircularProgressIndicatorSize,
                               width: kImageCircularProgressIndicatorSize,
-                              child: CircularProgressIndicator(strokeWidth: 2),
-                            ),
-                          ),
+                              child: CircularProgressIndicator(
+                                  strokeWidth: kCircularIndicatorStrokeWidth))),
                       errorWidget: (context, url, error) => const Icon(
                           Icons.error_outline_sharp,
                           size: kIconSize)),
-                  const SizedBox(height: mediumSpacing),
+                  const SizedBox(height: xxxSmallerSpacing),
                   DateAndTimeSection(
                       dateTimeOffset:
                           state.processClientModel.data!.timezoneoffset!),
-                  const SizedBox(height: mediumSpacing),
+                  const SizedBox(height: xxxSmallerSpacing),
                   Expanded(
                       child: ScrollConfiguration(
                           behavior: const ScrollBehavior()
@@ -57,6 +58,15 @@ class HomeScreen extends StatelessWidget {
                               child: ModulesGridLayout(
                                   availableModules: state.availableModules)))),
                 ]);
+              } else if (state is FetchHomeScreenError) {
+                return Center(
+                    child: GenericReloadButton(
+                        onPressed: () {
+                          context.read<HomeBloc>().add(const SetDateAndTime());
+                          context.read<HomeBloc>().add(const StartTimer());
+                          context.read<ClientBloc>().add(FetchHomeScreenData());
+                        },
+                        textValue: StringConstants.kReload));
               } else {
                 return const SizedBox();
               }

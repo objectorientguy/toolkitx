@@ -23,12 +23,12 @@ class OnLineModules extends StatelessWidget {
         shrinkWrap: true,
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 3,
-            crossAxisSpacing: midTinySpacing,
-            mainAxisSpacing: midTinySpacing),
+            crossAxisSpacing: tinier,
+            mainAxisSpacing: tinier),
         itemBuilder: (BuildContext context, int index) {
           return InkWell(
               onTap: () =>
-                  navigateToModule(availableModules[index].moduleName, context),
+                  navigateToModule(availableModules[index].keys, context),
               child: Card(
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(kCardRadius)),
@@ -44,10 +44,11 @@ class OnLineModules extends StatelessWidget {
                                 availableModules[index].moduleImage,
                                 height: kModuleIconSize,
                                 width: kModuleIconSize)),
-                        const SizedBox(height: tinySpacing),
+                        const SizedBox(height: xxTinySpacing),
                         Padding(
                             padding: const EdgeInsets.only(
-                                left: tiniestSpacing, right: tiniestSpacing),
+                                left: xxTiniestSpacing,
+                                right: xxTiniestSpacing),
                             child: DatabaseText(
                                 textValue: availableModules[index].moduleName,
                                 textAlign: TextAlign.center))
@@ -55,15 +56,15 @@ class OnLineModules extends StatelessWidget {
         });
   }
 
-  navigateToModule(moduleName, context) {
-    switch (moduleName) {
-      case 'Permit':
+  navigateToModule(moduleKey, context) {
+    switch (moduleKey) {
+      case 'ptw':
         Navigator.pushNamed(context, PermitListScreen.routeName);
         break;
-      case 'Incident':
+      case 'hse':
         Navigator.pushNamed(context, IncidentListScreen.routeName);
         break;
-      case 'Checklist':
+      case 'checklist':
         Navigator.pushNamed(context, ChecklistScreen.routeName);
         break;
     }

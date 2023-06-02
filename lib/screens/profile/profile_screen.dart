@@ -31,11 +31,12 @@ class ProfileScreen extends StatelessWidget {
                 padding: const EdgeInsets.only(
                     left: leftRightMargin,
                     right: leftRightMargin,
-                    top: topBottomSpacing),
+                    top: topBottomPadding),
                 child: BlocConsumer<ProfileBloc, ProfileStates>(
                     buildWhen: (previousState, currentState) =>
                         currentState is UserProfileFetching ||
-                        currentState is UserProfileFetched,
+                        currentState is UserProfileFetched ||
+                        currentState is UserProfileFetchError,
                     listener: (context, state) {
                       if (state is LoggedOut) {
                         Navigator.pushNamedAndRemoveUntil(
@@ -49,33 +50,37 @@ class ProfileScreen extends StatelessWidget {
                         return Column(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
-                              const SizedBox(height: mediumSpacing),
+                              const SizedBox(height: xxxSmallerSpacing),
                               CustomCard(
                                   shape: RoundedRectangleBorder(
                                       borderRadius:
                                           BorderRadius.circular(kCardRadius)),
                                   child: Padding(
                                       padding:
-                                          const EdgeInsets.all(tinySpacing),
+                                          const EdgeInsets.all(xxTinySpacing),
                                       child: Column(children: [
                                         const CircleAvatarWidget(
                                             imagePath: 'mechanic_person.png'),
-                                        const SizedBox(height: mediumSpacing),
-                                        Text(state.userProfileModel.data!.fname,
+                                        const SizedBox(
+                                            height: xxxSmallerSpacing),
+                                        Text(
+                                            "${state.userProfileModel.data!.fname} ${state.userProfileModel.data!.lname} ",
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .large),
-                                        const SizedBox(height: tiniestSpacing),
+                                        const SizedBox(
+                                            height: xxTiniestSpacing),
                                         Text(state.userType,
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .xSmall),
-                                        const SizedBox(height: mediumSpacing),
+                                        const SizedBox(
+                                            height: xxxSmallerSpacing),
                                         EditOptionsSection(
                                             userprofileDetails:
                                                 state.userProfileModel.data!)
                                       ]))),
-                              const SizedBox(height: tinySpacing),
+                              const SizedBox(height: xxTinySpacing),
                               const ProfileOptions()
                             ]);
                       }

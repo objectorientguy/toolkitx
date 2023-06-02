@@ -6,7 +6,7 @@ import 'package:toolkit/blocs/profile/profile_bloc.dart';
 import 'package:toolkit/blocs/profile/profile_events.dart';
 import 'package:toolkit/configs/app_theme.dart';
 import 'package:toolkit/screens/onboarding/client_list_screen.dart';
-import 'package:toolkit/screens/profile/edit/edit_screen.dart';
+import 'package:toolkit/screens/profile/edit/profile_edit_screen.dart';
 import 'package:toolkit/utils/database_utils.dart';
 import 'package:toolkit/widgets/android_pop_up.dart';
 import '../../../configs/app_dimensions.dart';
@@ -26,14 +26,14 @@ class EditOptionsSection extends StatelessWidget {
     return Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
       GestureDetector(
           onTap: () {
-            Navigator.pushNamed(context, EditScreen.routeName);
+            Navigator.pushNamed(context, ProfileEditScreen.routeName);
             context.read<ProfileBloc>().add(DecryptUserProfileData(
                 userprofileDetails: userprofileDetails.toJson()));
           },
           child: Column(children: [
             Image.asset('${ProfileUtil.iconPath}' 'pen.png',
                 height: kProfileImageHeight, width: kProfileImageWidth),
-            const SizedBox(height: tiniestSpacing),
+            const SizedBox(height: xxTiniestSpacing),
             DatabaseText(
                 textValue: 'EditProfile',
                 textAlign: TextAlign.center,
@@ -47,7 +47,7 @@ class EditOptionsSection extends StatelessWidget {
           child: Column(children: [
             Image.asset('${ProfileUtil.iconPath}' 'exchange.png',
                 height: kProfileImageHeight, width: kProfileImageWidth),
-            const SizedBox(height: tiniestSpacing),
+            const SizedBox(height: xxTiniestSpacing),
             DatabaseText(
                 textValue: 'ChangeClient',
                 textAlign: TextAlign.center,
@@ -70,7 +70,7 @@ class EditOptionsSection extends StatelessWidget {
           child: Column(children: [
             Image.asset('${ProfileUtil.iconPath}' 'logout.png',
                 height: kProfileImageHeight, width: kProfileImageWidth),
-            const SizedBox(height: tiniestSpacing),
+            const SizedBox(height: xxTiniestSpacing),
             DatabaseText(
                 textValue: 'Logout',
                 textAlign: TextAlign.center,

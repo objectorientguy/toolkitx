@@ -44,12 +44,12 @@ class TimeZoneBody extends StatelessWidget {
                   },
                   leading: const Icon(Icons.public, size: kIconSize),
                   title: Padding(
-                      padding: const EdgeInsets.only(bottom: tiniestSpacing),
+                      padding: const EdgeInsets.only(bottom: xxTiniestSpacing),
                       child: Text(timeZoneData[index].offset)),
                   subtitle: Text(timeZoneData[index].name)));
         },
         separatorBuilder: (BuildContext context, int index) {
-          return const SizedBox(height: midTiniestSpacing);
+          return const SizedBox(height: xxTinierSpacing);
         });
   }
 }

@@ -48,7 +48,7 @@ class SelectLanguageBody extends StatelessWidget {
                   title: Text(getLanguagesData[index].langName)));
         },
         separatorBuilder: (BuildContext context, int index) {
-          return const SizedBox(height: midTiniestSpacing);
+          return const SizedBox(height: xxTinierSpacing);
         });
   }
 }

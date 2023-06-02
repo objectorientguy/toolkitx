@@ -91,21 +91,21 @@ abstract class ModulesUtil {
         key: 'loto'),
     ModulesModel(
         moduleName: 'Ticket',
-        moduleImage: '${kBaseImagePath}t.png',
+        moduleImage: '${kBaseImagePath}lottery.png',
         key: 'tickets'),
     ModulesModel(
         moduleName: 'Assets',
-        moduleImage: '${kBaseImagePath}t.png',
+        moduleImage: '${kBaseImagePath}lottery.png',
         key: 'eam'),
     ModulesModel(
         moduleName: 'Location',
-        moduleImage: '${kBaseImagePath}t.png',
+        moduleImage: '${kBaseImagePath}lottery.png',
         key: 'eam'),
     ModulesModel(
         moduleName: 'Trips', moduleImage: '${kBaseImagePath}t.png', key: 'hf'),
     ModulesModel(
         moduleName: 'Trips',
-        moduleImage: '${kBaseImagePath}t.png',
+        moduleImage: '${kBaseImagePath}lottery.png',
         key: 'wf_trips'),
   ];
 }

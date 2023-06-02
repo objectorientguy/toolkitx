@@ -23,7 +23,7 @@ class PermitListScreen extends StatelessWidget {
           padding: const EdgeInsets.only(
               left: leftRightMargin,
               right: leftRightMargin,
-              top: midTiniestSpacing),
+              top: xxTinierSpacing),
           child:
               Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             CustomIconButtonRow(
@@ -33,7 +33,7 @@ class PermitListScreen extends StatelessWidget {
                   Navigator.pushNamed(context, GetPermitRolesScreen.routeName);
                 },
                 clearOnPress: () {}),
-            const SizedBox(height: midTiniestSpacing),
+            const SizedBox(height: xxTinierSpacing),
             const PermitListTile(),
           ]),
         ));

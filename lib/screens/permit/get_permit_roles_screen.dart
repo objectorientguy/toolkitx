@@ -22,8 +22,8 @@ class GetPermitRolesScreen extends StatelessWidget {
         padding: const EdgeInsets.only(
             left: leftRightMargin,
             right: leftRightMargin,
-            top: midTiniestSpacing,
-            bottom: midTiniestSpacing),
+            top: xxTinierSpacing,
+            bottom: xxTinierSpacing),
         child: BlocBuilder<PermitRoleBloc, PermitRoleStates>(
             builder: (context, state) {
           if (state is FetchingPermitRoles) {

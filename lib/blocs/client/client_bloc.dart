@@ -88,7 +88,7 @@ class ClientBloc extends Bloc<ClientEvents, ClientStates> {
         permissionsList =
             homeScreenModel.data!.permission.replaceAll(' ', '').split(',');
         List availableModules = [];
-        for (int i = 0; i < permissionsList.length; i++) {
+        for (int i = 0; i < ModulesUtil.listModulesMode.length; i++) {
           if (permissionsList.contains(ModulesUtil.listModulesMode[i].key) ==
               true) {
             availableModules.add(ModulesUtil.listModulesMode[i]);

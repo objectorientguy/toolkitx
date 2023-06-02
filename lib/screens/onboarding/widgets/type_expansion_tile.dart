@@ -5,7 +5,6 @@ import 'package:toolkit/configs/app_theme.dart';
 import '../../../blocs/login/login_bloc.dart';
 import '../../../blocs/login/login_events.dart';
 import '../../../configs/app_color.dart';
-import '../../../configs/app_spacing.dart';
 import '../../../data/enums/user_type_emun.dart';
 
 class UserTypeExpansionTile extends StatelessWidget {
@@ -21,12 +20,7 @@ class UserTypeExpansionTile extends StatelessWidget {
     return Theme(
         data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
         child: ExpansionTile(
-            tilePadding: const EdgeInsets.only(
-                left: expansionTileMargin, right: expansionTileMargin),
-            collapsedBackgroundColor: AppColor.offWhite,
             maintainState: true,
-            iconColor: AppColor.deepBlue,
-            textColor: AppColor.black,
             key: GlobalKey(),
             title: Text(usertype == 'null' ? 'Select' : usertype,
                 style: Theme.of(context).textTheme.xSmall),

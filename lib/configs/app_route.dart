@@ -15,7 +15,7 @@ import '../screens/onboarding/selectTimeZone/select_time_zone_screen.dart';
 import '../screens/onboarding/welcome_screen.dart';
 import '../screens/profile/changePassword/change_password_screen.dart';
 import '../screens/profile/changePassword/select_change_password_screen.dart';
-import '../screens/profile/edit/edit_screen.dart';
+import '../screens/profile/edit/profile_edit_screen.dart';
 import '../screens/permit/permit_details_screen.dart';
 import '../screens/permit/permit_list_screen.dart';
 import '../screens/permit/get_permit_roles_screen.dart';
@@ -41,8 +41,8 @@ class AppRoutes {
         return _createRoute(PasswordScreen());
       case RootScreen.routeName:
         return _createRoute(const RootScreen());
-      case EditScreen.routeName:
-        return _createRoute(const EditScreen());
+      case ProfileEditScreen.routeName:
+        return _createRoute(const ProfileEditScreen());
       case DetailsScreen.routeName:
         return _createRoute(const DetailsScreen());
       case ChecklistScreen.routeName:

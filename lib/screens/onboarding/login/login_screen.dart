@@ -11,9 +11,9 @@ import '../../../configs/app_spacing.dart';
 import '../../../utils/constants/string_constants.dart';
 import '../../../widgets/circle_avatar.dart';
 import '../../../widgets/generic_app_bar.dart';
+import '../../../widgets/generic_text_field.dart';
 import '../../../widgets/primary_button.dart';
 import '../widgets/custom_card.dart';
-import '../widgets/text_field.dart';
 import 'password_screen.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -32,25 +32,25 @@ class LoginScreen extends StatelessWidget {
                 padding: const EdgeInsets.only(
                     left: leftRightMargin,
                     right: leftRightMargin,
-                    top: topBottomSpacing,
-                    bottom: topBottomSpacing),
+                    top: topBottomPadding,
+                    bottom: topBottomPadding),
                 child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       const CircleAvatarWidget(imagePath: 'email.png'),
-                      const SizedBox(height: largeSpacing),
+                      const SizedBox(height: xxxMediumSpacing),
                       CustomCard(
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(kCardRadius)),
                           child: Padding(
-                              padding: const EdgeInsets.all(cardPadding),
+                              padding: const EdgeInsets.all(kCardPadding),
                               child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(StringConstants.kEmailAddress,
                                         style:
                                             Theme.of(context).textTheme.medium),
-                                    const SizedBox(height: tinySpacing),
+                                    const SizedBox(height: xxTinySpacing),
                                     TextFieldWidget(
                                         textInputType:
                                             TextInputType.emailAddress,
@@ -58,7 +58,7 @@ class LoginScreen extends StatelessWidget {
                                           emailMap['email'] = textField;
                                         })
                                   ]))),
-                      const SizedBox(height: mediumSpacing),
+                      const SizedBox(height: xxxSmallerSpacing),
                       BlocListener<LoginBloc, LoginStates>(
                           listener: (context, state) {
                             if (state is ValidatingEmail) {

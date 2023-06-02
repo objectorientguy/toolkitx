@@ -11,13 +11,13 @@ import 'package:toolkit/widgets/custom_snackbar.dart';
 import 'package:toolkit/widgets/primary_button.dart';
 import 'package:toolkit/widgets/progress_bar.dart';
 import '../../../widgets/generic_app_bar.dart';
-import '../../onboarding/widgets/text_field.dart';
+import '../../../widgets/generic_text_field.dart';
 import '../widgets/blood_group_expansion_tile.dart';
 
-class EditScreen extends StatelessWidget {
-  static const routeName = 'EditScreen';
+class ProfileEditScreen extends StatelessWidget {
+  static const routeName = 'ProfileEditScreen';
 
-  const EditScreen({Key? key}) : super(key: key);
+  const ProfileEditScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -50,10 +50,10 @@ class EditScreen extends StatelessWidget {
                         return Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              const SizedBox(height: mediumSpacing),
+                              const SizedBox(height: xxxSmallerSpacing),
                               Text(StringConstants.kFirstName,
                                   style: Theme.of(context).textTheme.medium),
-                              const SizedBox(height: midTinySpacing),
+                              const SizedBox(height: tinier),
                               TextFieldWidget(
                                   value: state.profileDetailsMap['fname'],
                                   textInputAction: TextInputAction.next,
@@ -62,10 +62,10 @@ class EditScreen extends StatelessWidget {
                                     state.profileDetailsMap['fname'] =
                                         textField;
                                   }),
-                              const SizedBox(height: midTinySpacing),
+                              const SizedBox(height: tinier),
                               Text(StringConstants.kLastName,
                                   style: Theme.of(context).textTheme.medium),
-                              const SizedBox(height: midTinySpacing),
+                              const SizedBox(height: tinier),
                               TextFieldWidget(
                                   value: state.profileDetailsMap['lname'],
                                   textInputAction: TextInputAction.next,
@@ -74,10 +74,10 @@ class EditScreen extends StatelessWidget {
                                     state.profileDetailsMap['lname'] =
                                         textField;
                                   }),
-                              const SizedBox(height: midTinySpacing),
+                              const SizedBox(height: tinier),
                               Text(StringConstants.kContact,
                                   style: Theme.of(context).textTheme.medium),
-                              const SizedBox(height: midTinySpacing),
+                              const SizedBox(height: tinier),
                               TextFieldWidget(
                                   value: state.profileDetailsMap['contact'],
                                   textInputAction: TextInputAction.done,
@@ -86,13 +86,13 @@ class EditScreen extends StatelessWidget {
                                     state.profileDetailsMap['contact'] =
                                         textField;
                                   }),
-                              const SizedBox(height: midTinySpacing),
+                              const SizedBox(height: tinier),
                               Text(StringConstants.kBloodGroup,
                                   style: Theme.of(context).textTheme.medium),
-                              const SizedBox(height: midTinySpacing),
+                              const SizedBox(height: tinier),
                               BloodGroupExpansionTile(
                                   profileDetailsMap: state.profileDetailsMap),
-                              const SizedBox(height: mediumSpacing),
+                              const SizedBox(height: xxxSmallerSpacing),
                               PrimaryButton(
                                   onPressed: () {
                                     context.read<ProfileBloc>().add(

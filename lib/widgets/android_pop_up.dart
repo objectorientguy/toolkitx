@@ -19,10 +19,10 @@ class AndroidPopUp extends StatelessWidget {
   Widget build(BuildContext context) {
     return AlertDialog(
         titlePadding:
-            const EdgeInsets.only(left: tinySpacing, top: tinySpacing),
-        buttonPadding: const EdgeInsets.all(tiniestSpacing),
-        contentPadding: const EdgeInsets.all(tinySpacing),
-        actionsPadding: const EdgeInsets.only(right: tinySpacing),
+            const EdgeInsets.only(left: xxTinySpacing, top: xxTinySpacing),
+        buttonPadding: const EdgeInsets.all(xxTiniestSpacing),
+        contentPadding: const EdgeInsets.all(xxTinySpacing),
+        actionsPadding: const EdgeInsets.only(right: xxTinySpacing),
         title: Text(titleValue),
         content: Text(contentValue),
         titleTextStyle: Theme.of(context)

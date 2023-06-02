@@ -5,7 +5,6 @@ import 'package:toolkit/blocs/profile/profile_events.dart';
 import 'package:toolkit/configs/app_theme.dart';
 
 import '../../../configs/app_color.dart';
-import '../../../configs/app_spacing.dart';
 import '../../../data/enums/blood_group_enum.dart';
 import '../../../utils/constants/string_constants.dart';
 
@@ -20,12 +19,7 @@ class BloodGroupExpansionTile extends StatelessWidget {
     return Theme(
         data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
         child: ExpansionTile(
-            tilePadding: const EdgeInsets.only(
-                left: expansionTileMargin, right: expansionTileMargin),
-            collapsedBackgroundColor: AppColor.white,
             maintainState: true,
-            iconColor: AppColor.deepBlue,
-            textColor: AppColor.black,
             key: GlobalKey(),
             title: Text(
                 (profileDetailsMap['bloodgrp'] == '')

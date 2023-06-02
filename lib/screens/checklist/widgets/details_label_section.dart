@@ -12,7 +12,7 @@ class DetailsLabelSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(mainAxisAlignment: MainAxisAlignment.start, children: [
       Container(
-          padding: const EdgeInsets.all(tiniestSpacing),
+          padding: const EdgeInsets.all(xxTiniestSpacing),
           decoration: BoxDecoration(
               color: AppColor.lightGreen,
               borderRadius: BorderRadius.circular(kCardRadius)),
@@ -23,7 +23,7 @@ class DetailsLabelSection extends StatelessWidget {
                   .textTheme
                   .xSmall
                   .copyWith(color: AppColor.white))),
-      const SizedBox(width: tiniestSpacing),
+      const SizedBox(width: xxTiniestSpacing),
       const Icon(Icons.question_mark_outlined,
           color: AppColor.errorRed, size: kIconSize)
     ]);

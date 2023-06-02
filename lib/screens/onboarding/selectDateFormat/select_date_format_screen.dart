@@ -25,40 +25,38 @@ class SelectDateFormatScreen extends StatelessWidget {
     return Scaffold(
       appBar: const GenericAppBar(title: StringConstants.kSelectDateFormat),
       body: BlocBuilder<DateFormatBloc, DateFormatStates>(
-          buildWhen: (previousState, currentState) =>
-              currentState is DateFormatSelected,
           builder: (context, state) {
-            if (state is DateFormatSelected) {
-              return SingleChildScrollView(
-                  physics: const BouncingScrollPhysics(),
-                  child: Padding(
-                      padding: const EdgeInsets.only(
-                          left: leftRightMargin,
-                          right: leftRightMargin,
-                          top: topBottomSpacing),
-                      child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            SelectDateFormatBody(
-                              dateFormatString: state.dateFormatString,
-                              isFromProfile: isFromProfile,
-                            ),
-                            const SizedBox(height: mediumSpacing),
-                            PrimaryButton(
-                                onPressed: () {
-                                  if (isFromProfile == true) {
-                                    Navigator.pop(context);
-                                  } else {
-                                    Navigator.pushNamed(
-                                        context, LoginScreen.routeName);
-                                  }
-                                },
-                                textValue: StringConstants.kSave)
-                          ])));
-            } else {
-              return const SizedBox();
-            }
-          }),
+        if (state is DateFormatSelected) {
+          return SingleChildScrollView(
+              physics: const BouncingScrollPhysics(),
+              child: Padding(
+                  padding: const EdgeInsets.only(
+                      left: leftRightMargin,
+                      right: leftRightMargin,
+                      top: topBottomPadding),
+                  child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SelectDateFormatBody(
+                          dateFormatString: state.dateFormatString,
+                          isFromProfile: isFromProfile,
+                        ),
+                        const SizedBox(height: xxxSmallerSpacing),
+                        PrimaryButton(
+                            onPressed: () {
+                              if (isFromProfile == true) {
+                                Navigator.pop(context);
+                              } else {
+                                Navigator.pushNamed(
+                                    context, LoginScreen.routeName);
+                              }
+                            },
+                            textValue: StringConstants.kSave)
+                      ])));
+        } else {
+          return const SizedBox();
+        }
+      }),
     );
   }
 }
