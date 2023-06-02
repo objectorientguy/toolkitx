@@ -4,7 +4,13 @@ import 'package:toolkit/blocs/home/home_events.dart';
 import 'package:toolkit/blocs/home/home_states.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../data/cache/cache_keys.dart';
+import '../../data/cache/customer_cache.dart';
+import '../../di/app_module.dart';
+
 class HomeBloc extends Bloc<HomeEvents, HomeStates> {
+  final CustomerCache _customerCache = getIt<CustomerCache>();
+
   HomeBloc() : super(const HomeInitial()) {
     on<SetDateAndTime>(_setDateAndTime);
     on<StartTimer>(_startTimer);
@@ -16,7 +22,15 @@ class HomeBloc extends Bloc<HomeEvents, HomeStates> {
   }
 
   FutureOr<void> _setDateAndTime(
-      SetDateAndTime event, Emitter<HomeStates> emit) {
-    emit(DateAndTimeLoaded(dateTime: DateTime.now()));
+      SetDateAndTime event, Emitter<HomeStates> emit) async {
+    String timeZoneName = '';
+    try {
+      timeZoneName =
+          (await _customerCache.getTimeZoneName(CacheKeys.timeZoneName))!;
+    } catch (e) {
+      timeZoneName = DateTime.now().timeZoneName;
+    }
+    emit(DateAndTimeLoaded(
+        dateTime: DateTime.now(), timeZoneName: timeZoneName));
   }
 }

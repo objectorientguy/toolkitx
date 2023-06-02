@@ -3,21 +3,21 @@ import 'package:toolkit/configs/app_theme.dart';
 import '../configs/app_dimensions.dart';
 
 class GenericAppBar extends StatelessWidget implements PreferredSizeWidget {
-  const GenericAppBar({Key? key, this.title = '', this.leading, this.actions})
+  const GenericAppBar(
+      {Key? key, this.title = '', this.leading, this.actions, this.onPressed})
       : super(key: key);
   final String title;
   final Widget? leading;
   final List<Widget>? actions;
-
+  final void Function()? onPressed;
   @override
   Widget build(BuildContext context) {
     return AppBar(
         title: Text(title),
         titleTextStyle: Theme.of(context).textTheme.mediumLarge,
-        leading: IconButton(
-            icon: const Icon(Icons.arrow_back,
-                color: Colors.black, size: kIconSize),
-            onPressed: () => Navigator.of(context).pop()),
+        leading: BackButton(
+          onPressed: onPressed,
+        ),
         actions: actions);
   }
 
