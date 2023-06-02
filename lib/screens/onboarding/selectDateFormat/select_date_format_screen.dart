@@ -35,7 +35,7 @@ class SelectDateFormatScreen extends StatelessWidget {
                       padding: const EdgeInsets.only(
                           left: leftRightMargin,
                           right: leftRightMargin,
-                          top: topBottomSpacing),
+                          top: topBottomPadding),
                       child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -43,7 +43,7 @@ class SelectDateFormatScreen extends StatelessWidget {
                               dateFormatString: state.dateFormatString,
                               isFromProfile: isFromProfile,
                             ),
-                            const SizedBox(height: mediumSpacing),
+                            const SizedBox(height: xxxSmallerSpacing),
                             PrimaryButton(
                                 onPressed: () {
                                   if (isFromProfile == true) {

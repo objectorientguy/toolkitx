@@ -31,10 +31,9 @@ class _CategoryExpansionTileState extends State<CategoryExpansionTile> {
             maintainState: true,
             iconColor: AppColor.deepBlue,
             textColor: AppColor.black,
-            shape:Border.all(color: AppColor.lightGrey),
+            shape: Border.all(color: AppColor.lightGrey),
             key: GlobalKey(),
-            title: Text(
-                category == null ? 'selectCategory' : category!,
+            title: Text(category == null ? 'selectCategory' : category!,
                 style: Theme.of(context).textTheme.xSmall),
             children: [
               ListView.builder(

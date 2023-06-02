@@ -30,7 +30,7 @@ class HomeScreen extends StatelessWidget {
               }
               if (state is HomeScreenFetched) {
                 return Column(children: [
-                  const SizedBox(height: mediumSpacing),
+                  const SizedBox(height: xxxSmallerSpacing),
                   CachedNetworkImage(
                       height: kHomeScreenImageHeight,
                       imageUrl: state.image,
@@ -44,11 +44,11 @@ class HomeScreen extends StatelessWidget {
                       errorWidget: (context, url, error) => const Icon(
                           Icons.error_outline_sharp,
                           size: kIconSize)),
-                  const SizedBox(height: mediumSpacing),
+                  const SizedBox(height: xxxSmallerSpacing),
                   DateAndTimeSection(
                       dateTimeOffset:
                           state.processClientModel.data!.timezoneoffset!),
-                  const SizedBox(height: mediumSpacing),
+                  const SizedBox(height: xxxSmallerSpacing),
                   Expanded(
                       child: ScrollConfiguration(
                           behavior: const ScrollBehavior()

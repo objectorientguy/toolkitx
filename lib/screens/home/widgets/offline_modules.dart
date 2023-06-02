@@ -29,7 +29,7 @@ class OffLineModules extends StatelessWidget {
             ),
           ),
         ),
-        const SizedBox(height: tinierSpacing),
+        const SizedBox(height: tinier),
         GridView.builder(
             primary: false,
             itemCount: 1,
@@ -37,8 +37,8 @@ class OffLineModules extends StatelessWidget {
             shrinkWrap: true,
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 3,
-                crossAxisSpacing: tinierSpacing,
-                mainAxisSpacing: tinierSpacing),
+                crossAxisSpacing: tinier,
+                mainAxisSpacing: tinier),
             itemBuilder: (BuildContext context, int index) {
               return InkWell(
                 onTap: () => navigateToModule(index, context),

@@ -23,8 +23,8 @@ class OnLineModules extends StatelessWidget {
         shrinkWrap: true,
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 3,
-            crossAxisSpacing: midTinySpacing,
-            mainAxisSpacing: midTinySpacing),
+            crossAxisSpacing: tinier,
+            mainAxisSpacing: tinier),
         itemBuilder: (BuildContext context, int index) {
           return InkWell(
               onTap: () =>
@@ -44,10 +44,11 @@ class OnLineModules extends StatelessWidget {
                                 availableModules[index].moduleImage,
                                 height: kModuleIconSize,
                                 width: kModuleIconSize)),
-                        const SizedBox(height: tinySpacing),
+                        const SizedBox(height: xxTinySpacing),
                         Padding(
                             padding: const EdgeInsets.only(
-                                left: tiniestSpacing, right: tiniestSpacing),
+                                left: xxTiniestSpacing,
+                                right: xxTiniestSpacing),
                             child: DatabaseText(
                                 textValue: availableModules[index].moduleName,
                                 textAlign: TextAlign.center))

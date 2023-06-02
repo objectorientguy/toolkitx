@@ -13,7 +13,7 @@ class PermitDetails extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const SizedBox(height: tinySpacing),
+        const SizedBox(height: xxTinySpacing),
         Text(
           'Schedule',
           style: Theme.of(context)
@@ -23,7 +23,7 @@ class PermitDetails extends StatelessWidget {
         ),
         const SizedBox(height: xxTinierSpacing),
         const DateTimeRow(),
-        const SizedBox(height: tinySpacing),
+        const SizedBox(height: xxTinySpacing),
         Text(
           'NPI',
           style: Theme.of(context)
@@ -33,7 +33,7 @@ class PermitDetails extends StatelessWidget {
         ),
         const SizedBox(height: xxTinierSpacing),
         Text('Tim Service', style: Theme.of(context).textTheme.small),
-        const SizedBox(height: tinySpacing),
+        const SizedBox(height: xxTinySpacing),
         Text(
           'NPW',
           style: Theme.of(context)
@@ -43,7 +43,7 @@ class PermitDetails extends StatelessWidget {
         ),
         const SizedBox(height: xxTinierSpacing),
         Text('Tobias Drew', style: Theme.of(context).textTheme.small),
-        const SizedBox(height: tinySpacing),
+        const SizedBox(height: xxTinySpacing),
         Text(
           'Description',
           style: Theme.of(context)
@@ -54,7 +54,7 @@ class PermitDetails extends StatelessWidget {
         const SizedBox(height: xxTinierSpacing),
         Text('Putting / adding work description here.',
             style: Theme.of(context).textTheme.small),
-        const SizedBox(height: tinySpacing),
+        const SizedBox(height: xxTinySpacing),
         Text(
           'Location',
           style: Theme.of(context)
@@ -64,7 +64,7 @@ class PermitDetails extends StatelessWidget {
         ),
         const SizedBox(height: xxTinierSpacing),
         Text('Tim Service', style: Theme.of(context).textTheme.small),
-        const SizedBox(height: tinySpacing),
+        const SizedBox(height: xxTinySpacing),
         Text(
           'Company',
           style: Theme.of(context)

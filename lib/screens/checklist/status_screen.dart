@@ -37,8 +37,7 @@ class ChecklistStatusScreen extends StatelessWidget {
                       itemBuilder: (context, index) {
                         return CustomCard(
                             child: ListTile(
-                                contentPadding:
-                                    const EdgeInsets.all(tinierSpacing),
+                                contentPadding: const EdgeInsets.all(tinier),
                                 title: Padding(
                                     padding: const EdgeInsets.only(
                                         bottom: xxTiniestSpacing),

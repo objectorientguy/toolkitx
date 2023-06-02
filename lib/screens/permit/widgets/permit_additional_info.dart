@@ -12,7 +12,7 @@ class PermitAdditionalInfo extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const SizedBox(height: tinySpacing),
+        const SizedBox(height: xxTinySpacing),
         Text(
           'Additional Information',
           style: Theme.of(context)
@@ -21,7 +21,7 @@ class PermitAdditionalInfo extends StatelessWidget {
               .copyWith(color: AppColor.black, fontWeight: FontWeight.bold),
         ),
         const SizedBox(height: xxTinierSpacing),
-        const SizedBox(height: tinySpacing),
+        const SizedBox(height: xxTinySpacing),
         Text(
           'Method Statement',
           style: Theme.of(context)
@@ -32,7 +32,7 @@ class PermitAdditionalInfo extends StatelessWidget {
         const SizedBox(height: xxTinierSpacing),
         Text('Add method statement here',
             style: Theme.of(context).textTheme.small),
-        const SizedBox(height: tinySpacing),
+        const SizedBox(height: xxTinySpacing),
         Text(
           'Relevant Info',
           style: Theme.of(context)
@@ -42,7 +42,7 @@ class PermitAdditionalInfo extends StatelessWidget {
         ),
         const SizedBox(height: xxTinierSpacing),
         Text('Tobias Drew', style: Theme.of(context).textTheme.small),
-        const SizedBox(height: tinySpacing),
+        const SizedBox(height: xxTinySpacing),
         Text(
           'Special Work',
           style: Theme.of(context)
@@ -53,7 +53,7 @@ class PermitAdditionalInfo extends StatelessWidget {
         const SizedBox(height: xxTinierSpacing),
         Text('Putting / adding work description here.',
             style: Theme.of(context).textTheme.small),
-        const SizedBox(height: tinySpacing),
+        const SizedBox(height: xxTinySpacing),
         Text(
           'Specific PPR',
           style: Theme.of(context)
@@ -64,7 +64,7 @@ class PermitAdditionalInfo extends StatelessWidget {
         const SizedBox(height: xxTinierSpacing),
         Text('Protective glasses, boots, caps',
             style: Theme.of(context).textTheme.small),
-        const SizedBox(height: tinySpacing),
+        const SizedBox(height: xxTinySpacing),
         Text(
           'Protective Measures',
           style: Theme.of(context)
@@ -75,7 +75,7 @@ class PermitAdditionalInfo extends StatelessWidget {
         const SizedBox(height: xxTinierSpacing),
         Text('Extra lights, Fire extinguisher, Fire prevention',
             style: Theme.of(context).textTheme.small),
-        const SizedBox(height: tinySpacing),
+        const SizedBox(height: xxTinySpacing),
         Text(
           'Layout',
           style: Theme.of(context)

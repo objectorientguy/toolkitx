@@ -27,7 +27,7 @@ class SelectTimeZoneScreen extends StatelessWidget {
           padding: const EdgeInsets.only(
               left: leftRightMargin,
               right: leftRightMargin,
-              top: topBottomSpacing),
+              top: topBottomPadding),
           child: BlocBuilder<TimeZoneBloc, TimeZoneStates>(
               builder: (context, state) {
             if (state is TimeZoneFetching) {

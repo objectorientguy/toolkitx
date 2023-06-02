@@ -28,7 +28,7 @@ class ClientListScreen extends StatelessWidget {
         padding: const EdgeInsets.only(
             left: leftRightMargin,
             right: leftRightMargin,
-            top: topBottomSpacing),
+            top: topBottomPadding),
         child: BlocConsumer<ClientBloc, ClientStates>(
             buildWhen: (previousState, currentState) =>
                 currentState is ClientListFetching ||
@@ -87,9 +87,9 @@ class ClientListScreen extends StatelessWidget {
                                                 size: kIconSize))));
                           },
                           separatorBuilder: (BuildContext context, int index) {
-                            return const SizedBox(height: mediumSpacing);
+                            return const SizedBox(height: xxxSmallerSpacing);
                           }),
-                      const SizedBox(height: topBottomSpacing)
+                      const SizedBox(height: topBottomPadding)
                     ]));
               } else if (state is FetchClientListError) {
                 return GenericReloadButton(

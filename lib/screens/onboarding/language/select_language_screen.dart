@@ -33,7 +33,7 @@ class SelectLanguageScreen extends StatelessWidget {
             padding: const EdgeInsets.only(
                 left: leftRightMargin,
                 right: leftRightMargin,
-                top: topBottomSpacing),
+                top: topBottomPadding),
             child: BlocConsumer<LanguageBloc, LanguageStates>(
                 buildWhen: (previousState, currentState) =>
                     currentState is LanguagesFetching ||

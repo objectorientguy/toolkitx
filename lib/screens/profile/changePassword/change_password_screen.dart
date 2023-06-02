@@ -13,7 +13,7 @@ import 'package:toolkit/widgets/progress_bar.dart';
 import 'package:toolkit/widgets/text_button.dart';
 
 import '../../../configs/app_spacing.dart';
-import '../../onboarding/widgets/text_field.dart';
+import '../../../widgets/generic_text_field.dart';
 
 class ChangePasswordScreen extends StatelessWidget {
   static const routeName = 'ChangePasswordScreen';
@@ -29,7 +29,7 @@ class ChangePasswordScreen extends StatelessWidget {
           padding: const EdgeInsets.only(
               left: leftRightMargin,
               right: leftRightMargin,
-              top: topBottomSpacing),
+              top: topBottomPadding),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -73,7 +73,7 @@ class ChangePasswordScreen extends StatelessWidget {
                               children: [
                                 Text(StringConstants.kOldPassword,
                                     style: Theme.of(context).textTheme.medium),
-                                const SizedBox(height: midTinySpacing),
+                                const SizedBox(height: tinier),
                                 TextFieldWidget(
                                     obscureText: true,
                                     textInputAction: TextInputAction.next,
@@ -82,7 +82,7 @@ class ChangePasswordScreen extends StatelessWidget {
                                       changePasswordMap['oldPass_opt'] =
                                           textField;
                                     }),
-                                const SizedBox(height: midTinySpacing),
+                                const SizedBox(height: tinier),
                               ]),
                           child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -111,7 +111,7 @@ class ChangePasswordScreen extends StatelessWidget {
                                       changePasswordMap['oldPass_opt'] =
                                           textField;
                                     }),
-                                const SizedBox(height: midTinySpacing)
+                                const SizedBox(height: tinier)
                               ]));
                     } else {
                       return const SizedBox();
@@ -119,7 +119,7 @@ class ChangePasswordScreen extends StatelessWidget {
                   }),
               Text(StringConstants.kEnterNewPassword,
                   style: Theme.of(context).textTheme.medium),
-              const SizedBox(height: midTinySpacing),
+              const SizedBox(height: tinier),
               TextFieldWidget(
                   obscureText: true,
                   textInputAction: TextInputAction.next,
@@ -127,10 +127,10 @@ class ChangePasswordScreen extends StatelessWidget {
                   onTextFieldChanged: (String textField) {
                     changePasswordMap['newPassword'] = textField;
                   }),
-              const SizedBox(height: midTinySpacing),
+              const SizedBox(height: tinier),
               Text(StringConstants.kConfirmPassword,
                   style: Theme.of(context).textTheme.medium),
-              const SizedBox(height: midTinySpacing),
+              const SizedBox(height: tinier),
               TextFieldWidget(
                   obscureText: true,
                   textInputAction: TextInputAction.next,
@@ -138,7 +138,7 @@ class ChangePasswordScreen extends StatelessWidget {
                   onTextFieldChanged: (String textField) {
                     changePasswordMap['confirmPassword'] = textField;
                   }),
-              const SizedBox(height: mediumSpacing),
+              const SizedBox(height: xxxSmallerSpacing),
               PrimaryButton(
                   onPressed: () {
                     context.read<ProfileBloc>().add(

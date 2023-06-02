@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:toolkit/configs/app_theme.dart';
-import 'package:toolkit/screens/onboarding/widgets/text_field.dart';
 
 import '../../../blocs/login/login_bloc.dart';
 import '../../../blocs/login/login_events.dart';
@@ -10,6 +9,7 @@ import '../../../configs/app_dimensions.dart';
 import '../../../configs/app_spacing.dart';
 import '../../../utils/constants/string_constants.dart';
 import '../../../widgets/circle_avatar.dart';
+import '../../../widgets/generic_text_field.dart';
 import '../../../widgets/primary_button.dart';
 import '../../../widgets/text_button.dart';
 import 'custom_card.dart';
@@ -24,20 +24,20 @@ class PasswordBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
       const CircleAvatarWidget(imagePath: 'reset-password.png'),
-      const SizedBox(height: largeSpacing),
+      const SizedBox(height: xxxMediumSpacing),
       Text(StringConstants.kWelcome, style: Theme.of(context).textTheme.xLarge),
-      const SizedBox(height: smallSpacing),
+      const SizedBox(height: xxxTinierSpacing),
       CustomCard(
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(kCardRadius)),
           child: Padding(
-              padding: const EdgeInsets.all(cardPadding),
+              padding: const EdgeInsets.all(kCardPadding),
               child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(StringConstants.kPassword,
                         style: Theme.of(context).textTheme.medium),
-                    const SizedBox(height: smallSpacing),
+                    const SizedBox(height: xxxTinierSpacing),
                     TextFieldWidget(onTextFieldChanged: (String textField) {
                       loginMap['password'] = textField;
                     }),
@@ -49,11 +49,11 @@ class PasswordBody extends StatelessWidget {
                             return Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  const SizedBox(height: smallSpacing),
+                                  const SizedBox(height: xxxTinierSpacing),
                                   Text(StringConstants.kType,
                                       style:
                                           Theme.of(context).textTheme.medium),
-                                  const SizedBox(height: smallSpacing),
+                                  const SizedBox(height: xxxTinierSpacing),
                                   UserTypeExpansionTile(
                                       typeValue: state.typeValue,
                                       usertype: state.userType)

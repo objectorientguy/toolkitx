@@ -23,12 +23,12 @@ class SelectDateFormatBody extends StatelessWidget {
         elevation: kZeroElevation,
         child: ListView.separated(
             physics: const NeverScrollableScrollPhysics(),
-            padding: const EdgeInsets.only(bottom: midTiniestSpacing),
+            padding: const EdgeInsets.only(bottom: xxTinierSpacing),
             shrinkWrap: true,
             itemCount: CustomDateFormat.values.length,
             itemBuilder: (context, index) {
               return SizedBox(
-                  height: largeSpacing,
+                  height: xxxMediumSpacing,
                   child: RadioListTile(
                       dense: true,
                       activeColor: AppColor.deepBlue,

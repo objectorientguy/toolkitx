@@ -26,8 +26,8 @@ class PasswordScreen extends StatelessWidget {
                 padding: const EdgeInsets.only(
                     left: leftRightMargin,
                     right: leftRightMargin,
-                    top: topBottomSpacing,
-                    bottom: topBottomSpacing),
+                    top: topBottomPadding,
+                    bottom: topBottomPadding),
                 child: BlocListener<LoginBloc, LoginStates>(
                     listener: (BuildContext context, state) {
                       if (state is LoginLoading) {

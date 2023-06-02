@@ -5,6 +5,7 @@ import 'package:toolkit/screens/onboarding/widgets/custom_card.dart';
 import 'package:toolkit/screens/permit/permit_details_screen.dart';
 import 'package:toolkit/screens/permit/widgets/date_time.dart';
 import 'package:toolkit/screens/permit/widgets/tags.dart';
+import 'package:toolkit/utils/database_utils.dart';
 import 'package:toolkit/widgets/generic_app_bar.dart';
 import '../../configs/app_spacing.dart';
 import '../../widgets/custom_icon_button_row.dart';
@@ -17,9 +18,7 @@ class PermitListScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const GenericAppBar(
-        title: 'Permit To Work',
-      ),
+      appBar: GenericAppBar(title: DatabaseUtil.box.get('PermitToWork')),
       body: Padding(
         padding: const EdgeInsets.only(
             left: leftRightMargin,
@@ -38,60 +37,61 @@ class PermitListScreen extends StatelessWidget {
                   itemCount: 15,
                   itemBuilder: (context, index) {
                     return CustomCard(
-                      child: Padding(
-                        padding: const EdgeInsets.only(top: tinierSpacing),
-                        child: ListTile(
-                          onTap: () {
-                            Navigator.pushNamed(
-                                context, PermitDetailsScreen.routeName);
-                          },
-                          title: Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              const Text('WP - 00197 (!)'),
-                              Container(
-                                width: MediaQuery.of(context).size.width * 0.25,
-                                height:
-                                    MediaQuery.of(context).size.width * 0.050,
-                                decoration: BoxDecoration(
-                                  color: AppColor.deepBlue,
-                                  borderRadius:
-                                      BorderRadius.circular(kCardRadius),
-                                ),
-                                alignment: Alignment.center,
-                                child: const Text(
-                                  'REQUESTED',
-                                  style: TextStyle(color: AppColor.white),
-                                  textAlign: TextAlign.center,
-                                ),
-                              )
-                            ],
-                          ),
-                          subtitle: Padding(
-                            padding: const EdgeInsets.only(top: tinierSpacing),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: const [
-                                Text(
-                                  'This is just a dummy permit This is just a dummy permit ',
-                                  maxLines: 2,
-                                ),
-                                SizedBox(height: tinierSpacing),
-                                Text('Andrew oil field'),
-                                SizedBox(height: tinierSpacing),
-                                Text('George M Mueller - Pandora-ICT GmbH'),
-                                SizedBox(height: tinierSpacing),
-                                DateTimeRow(),
-                                SizedBox(height: tinierSpacing),
-                                Tags()
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                    );
+                        child: Padding(
+                            padding: const EdgeInsets.only(top: tinier),
+                            child: ListTile(
+                                onTap: () {
+                                  Navigator.pushNamed(
+                                      context, PermitDetailsScreen.routeName);
+                                },
+                                title: Row(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      const Text('WP - 00197 (!)'),
+                                      Container(
+                                          width: MediaQuery.of(context)
+                                                  .size
+                                                  .width *
+                                              0.25,
+                                          height: MediaQuery.of(context)
+                                                  .size
+                                                  .width *
+                                              0.050,
+                                          decoration: BoxDecoration(
+                                              color: AppColor.deepBlue,
+                                              borderRadius:
+                                                  BorderRadius.circular(
+                                                      kCardRadius)),
+                                          alignment: Alignment.center,
+                                          child: const Text('REQUESTED',
+                                              style: TextStyle(
+                                                  color: AppColor.white),
+                                              textAlign: TextAlign.center))
+                                    ]),
+                                subtitle: Padding(
+                                    padding: const EdgeInsets.only(top: tinier),
+                                    child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        children: const [
+                                          Text(
+                                              'This is just a dummy permit This is just a dummy permit ',
+                                              maxLines: 2),
+                                          SizedBox(height: tinier),
+                                          Text('Andrew oil field'),
+                                          SizedBox(height: tinier),
+                                          Text(
+                                              'George M Mueller - Pandora-ICT GmbH'),
+                                          SizedBox(height: tinier),
+                                          DateTimeRow(),
+                                          SizedBox(height: tinier),
+                                          Tags()
+                                        ])))));
                   },
                   separatorBuilder: (context, index) {
                     return const SizedBox(height: xxTinySpacing);
