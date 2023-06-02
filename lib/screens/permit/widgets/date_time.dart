@@ -2,9 +2,13 @@ import 'package:flutter/material.dart';
 
 import '../../../configs/app_dimensions.dart';
 import '../../../configs/app_spacing.dart';
+import '../../../data/models/permit/all_permits_model.dart';
+import '../../../utils/date_util.dart';
 
 class DateTimeRow extends StatelessWidget {
-  const DateTimeRow({Key? key}) : super(key: key);
+  final AllPermitDatum allPermitDatum;
+
+  const DateTimeRow({Key? key, required this.allPermitDatum}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -18,8 +22,9 @@ class DateTimeRow extends StatelessWidget {
           children: [
             Image.asset('assets/icons/calendar.png',
                 height: kImageHeight, width: kImageWidth),
-            const SizedBox(width: xxTiniestSpacing),
-            const Text('24.05.2023 - 30.05.2023 ')
+            const SizedBox(width: tiniestSpacing),
+            Text(
+                '${DateUtil.splitDate(allPermitDatum.schedule!)[0]} - ${DateUtil.splitDate(allPermitDatum.schedule!)[1]}')
           ],
         ),
         Row(
@@ -28,8 +33,9 @@ class DateTimeRow extends StatelessWidget {
           children: [
             Image.asset('assets/icons/clock.png',
                 height: kImageHeight, width: kImageWidth),
-            const SizedBox(width: xxTiniestSpacing),
-            const Text('03:30 - 03:39')
+            const SizedBox(width: tiniestSpacing),
+            Text(
+                '${DateUtil.splitDate(allPermitDatum.schedule!)[2]} - ${DateUtil.splitDate(allPermitDatum.schedule!)[3]}')
           ],
         ),
       ],

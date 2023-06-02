@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:toolkit/blocs/permit/permit_bloc.dart';
 import 'package:toolkit/blocs/onboarding/onboarding_bloc.dart';
 import 'package:toolkit/blocs/onboarding/onboarding_states.dart';
 import 'package:toolkit/blocs/profile/profile_bloc.dart';
@@ -58,6 +59,7 @@ class MyApp extends StatelessWidget {
           BlocProvider(lazy: false, create: (context) => LanguageBloc()),
           BlocProvider(lazy: false, create: (context) => DateFormatBloc()),
           BlocProvider(lazy: false, create: (context) => HomeBloc()),
+          BlocProvider(lazy: false, create: (context) => PermitBloc()),
           BlocProvider(lazy: false, create: (context) => LoginBloc()),
           BlocProvider(lazy: false, create: (context) => TimeZoneBloc()),
           BlocProvider(lazy: false, create: (context) => LoginBloc()),
