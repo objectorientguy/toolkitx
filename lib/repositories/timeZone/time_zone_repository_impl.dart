@@ -8,7 +8,7 @@ class TimeZoneRepositoryImpl extends TimeZoneRepository {
   @override
   Future<TimeZoneModel> fetchTimeZone() async {
     final response = await DioClient()
-        .get("${ApiConstants.baseUrl}/api/common/GetSystemTimeZones");
+        .get("${ApiConstants.baseUrl}common/GetSystemTimeZones");
     return TimeZoneModel.fromJson(response);
   }
 }

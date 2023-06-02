@@ -8,22 +8,22 @@ import 'login_repository.dart';
 class LoginRepositoryImpl extends LoginRepository {
   @override
   Future<ValidateEmailModel> validateEmail(Map validateEmailMap) async {
-    final response = await DioClient().post(
-        "${ApiConstants.baseUrl}/api/common/validateemail", validateEmailMap);
+    final response = await DioClient()
+        .post("${ApiConstants.baseUrl}common/validateemail", validateEmailMap);
     return ValidateEmailModel.fromJson(response);
   }
 
   @override
   Future<GenerateLoginOtpModel> getOptLogin(Map getOptLoginMap) async {
     final response = await DioClient()
-        .post("${ApiConstants.baseUrl}api/common/generateotp", getOptLoginMap);
+        .post("${ApiConstants.baseUrl}common/generateotp", getOptLoginMap);
     return GenerateLoginOtpModel.fromJson(response);
   }
 
   @override
   Future<LoginModel> postLogin(Map postLogin) async {
     final response = await DioClient()
-        .post("${ApiConstants.baseUrl}/api/common/login", postLogin);
+        .post("${ApiConstants.baseUrl}common/login", postLogin);
     return LoginModel.fromJson(response);
   }
 }

@@ -13,8 +13,6 @@ import 'package:toolkit/screens/root/root_screen.dart';
 import 'package:toolkit/utils/database_utils.dart';
 import 'blocs/client/client_bloc.dart';
 import 'blocs/dateFormat/date_format_bloc.dart';
-import 'package:toolkit/blocs/dateFormat/date_format_bloc.dart';
-import 'package:toolkit/blocs/password/password_bloc.dart';
 import 'package:toolkit/blocs/permit/permit_bloc.dart';
 import 'package:toolkit/blocs/wifiConnectivity/wifi_connectivity_bloc.dart';
 import 'package:toolkit/blocs/wifiConnectivity/wifi_connectivity_events.dart';
@@ -25,13 +23,9 @@ import 'blocs/language/language_bloc.dart';
 import 'blocs/login/login_bloc.dart';
 import 'blocs/onboarding/onboarding_events.dart';
 import 'blocs/timeZone/time_zone_bloc.dart';
-import 'blocs/wifiConnectivity/wifi_connectivity_bloc.dart';
-import 'blocs/wifiConnectivity/wifi_connectivity_events.dart';
 import 'blocs/wifiConnectivity/wifi_connectivity_states.dart';
-import 'configs/app_theme.dart';
 import 'di/app_module.dart';
 import 'configs/app_route.dart';
-import 'screens/onboarding/welcome_screen.dart';
 
 void main() async {
   await _initApp();
@@ -72,8 +66,7 @@ class MyApp extends StatelessWidget {
           BlocProvider(lazy: false, create: (context) => ProfileBloc()),
           BlocProvider(
               lazy: false,
-              create: (context) => OnBoardingBloc()..add(CheckLoggedIn()))
-          BlocProvider(lazy: false, create: (context) => PasswordBloc()),
+              create: (context) => OnBoardingBloc()..add(CheckLoggedIn())),
           BlocProvider(lazy: false, create: (context) => PermitBloc()),
         ],
         child: GestureDetector(
