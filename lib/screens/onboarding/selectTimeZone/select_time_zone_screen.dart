@@ -20,9 +20,7 @@ class SelectTimeZoneScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     context.read<TimeZoneBloc>().add(FetchTimeZone());
     return Scaffold(
-        appBar: const GenericAppBar(
-          title: StringConstants.kSelectTimeZone,
-        ),
+        appBar: const GenericAppBar(title: StringConstants.kSelectTimeZone),
         body: Padding(
           padding: const EdgeInsets.only(
               left: leftRightMargin,

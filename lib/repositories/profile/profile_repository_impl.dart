@@ -11,7 +11,7 @@ class ProfileRepositoryImpl extends ProfileRepository {
   @override
   Future<UserProfileModel> fetchUserProfile(String hashCode) async {
     final response = await DioClient().get(
-        "${ApiConstants.baseUrl}/api/common/getuserprofile?hashcode=$hashCode");
+        "${ApiConstants.baseUrl}/common/getuserprofile?hashcode=$hashCode");
     return UserProfileModel.fromJson(response);
   }
 
@@ -19,22 +19,21 @@ class ProfileRepositoryImpl extends ProfileRepository {
   Future<UpdateUserProfileModel> updateUserProfile(
       Map updateUserProfileMap) async {
     final response = await DioClient().post(
-        "${ApiConstants.baseUrl}/api/common/updateprofile",
-        updateUserProfileMap);
+        "${ApiConstants.baseUrl}common/updateprofile", updateUserProfileMap);
     return UpdateUserProfileModel.fromJson(response);
   }
 
   @override
   Future<GenerateChangePasswordOtpModel> generateOtp(Map generateOtpMap) async {
     final response = await DioClient().post(
-        "${ApiConstants.baseUrl}/api/common/generateotpbyuser", generateOtpMap);
+        "${ApiConstants.baseUrl}common/generateotpbyuser", generateOtpMap);
     return GenerateChangePasswordOtpModel.fromJson(response);
   }
 
   @override
   Future<ChangePasswordModel> changePassword(Map changePasswordMap) async {
     final response = await DioClient().post(
-        "${ApiConstants.baseUrl}/api/common/changepassword", changePasswordMap);
+        "${ApiConstants.baseUrl}common/changepassword", changePasswordMap);
     return ChangePasswordModel.fromJson(response);
   }
 }

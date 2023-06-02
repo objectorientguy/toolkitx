@@ -17,7 +17,12 @@ class DatabaseText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(DatabaseUtil.box.get(textValue),
-        style: textStyle, maxLines: maxLine, textAlign: textAlign);
+    return Text(
+        (DatabaseUtil.box.get(textValue) == null)
+            ? ''
+            : DatabaseUtil.box.get(textValue),
+        style: textStyle,
+        maxLines: maxLine,
+        textAlign: textAlign);
   }
 }

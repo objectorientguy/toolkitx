@@ -28,7 +28,7 @@ class OnLineModules extends StatelessWidget {
         itemBuilder: (BuildContext context, int index) {
           return InkWell(
               onTap: () =>
-                  navigateToModule(availableModules[index].moduleName, context),
+                  navigateToModule(availableModules[index].keys, context),
               child: Card(
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(kCardRadius)),
@@ -56,15 +56,15 @@ class OnLineModules extends StatelessWidget {
         });
   }
 
-  navigateToModule(moduleName, context) {
-    switch (moduleName) {
-      case 'Permit':
+  navigateToModule(moduleKey, context) {
+    switch (moduleKey) {
+      case 'ptw':
         Navigator.pushNamed(context, PermitListScreen.routeName);
         break;
-      case 'Incident':
+      case 'hse':
         Navigator.pushNamed(context, IncidentListScreen.routeName);
         break;
-      case 'Checklist':
+      case 'checklist':
         Navigator.pushNamed(context, ChecklistScreen.routeName);
         break;
     }

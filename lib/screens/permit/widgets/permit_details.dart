@@ -16,7 +16,7 @@ class PermitDetails extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const SizedBox(height: smallSpacing),
+        const SizedBox(height: tiny),
         Text(
           'Schedule',
           style: Theme.of(context)
@@ -24,10 +24,10 @@ class PermitDetails extends StatelessWidget {
               .medium
               .copyWith(color: AppColor.black, fontWeight: FontWeight.bold),
         ),
-        const SizedBox(height: midTiniestSpacing),
+        const SizedBox(height: xxTinierSpacing),
         Text(permitDetailsModel.data!.tab1!.schedule!,
             style: Theme.of(context).textTheme.small),
-        const SizedBox(height: smallSpacing),
+        const SizedBox(height: tiny),
         Text(
           'NPI',
           style: Theme.of(context)
@@ -35,10 +35,10 @@ class PermitDetails extends StatelessWidget {
               .medium
               .copyWith(color: AppColor.black, fontWeight: FontWeight.bold),
         ),
-        const SizedBox(height: midTiniestSpacing),
+        const SizedBox(height: xxTinierSpacing),
         Text(permitDetailsModel.data!.tab1!.pnameNpi!,
             style: Theme.of(context).textTheme.small),
-        const SizedBox(height: smallSpacing),
+        const SizedBox(height: tiny),
         Text(
           'NPW',
           style: Theme.of(context)
@@ -46,10 +46,10 @@ class PermitDetails extends StatelessWidget {
               .medium
               .copyWith(color: AppColor.black, fontWeight: FontWeight.bold),
         ),
-        const SizedBox(height: midTiniestSpacing),
+        const SizedBox(height: xxTinierSpacing),
         Text(permitDetailsModel.data!.tab1!.pname!,
             style: Theme.of(context).textTheme.small),
-        const SizedBox(height: smallSpacing),
+        const SizedBox(height: tiny),
         Text(
           'Description',
           style: Theme.of(context)
@@ -57,10 +57,10 @@ class PermitDetails extends StatelessWidget {
               .medium
               .copyWith(color: AppColor.black, fontWeight: FontWeight.bold),
         ),
-        const SizedBox(height: midTiniestSpacing),
+        const SizedBox(height: xxTinierSpacing),
         Text(permitDetailsModel.data!.tab1!.details!,
             style: Theme.of(context).textTheme.small),
-        const SizedBox(height: smallSpacing),
+        const SizedBox(height: tiny),
         Text(
           'Location',
           style: Theme.of(context)
@@ -68,10 +68,10 @@ class PermitDetails extends StatelessWidget {
               .medium
               .copyWith(color: AppColor.black, fontWeight: FontWeight.bold),
         ),
-        const SizedBox(height: midTiniestSpacing),
+        const SizedBox(height: xxTinierSpacing),
         Text(permitDetailsModel.data!.tab1!.location!,
             style: Theme.of(context).textTheme.small),
-        const SizedBox(height: smallSpacing),
+        const SizedBox(height: tiny),
         Text(
           'Company',
           style: Theme.of(context)
@@ -79,7 +79,7 @@ class PermitDetails extends StatelessWidget {
               .medium
               .copyWith(color: AppColor.black, fontWeight: FontWeight.bold),
         ),
-        const SizedBox(height: midTiniestSpacing),
+        const SizedBox(height: xxTinierSpacing),
         Text(permitDetailsModel.data!.tab1!.pcompany!,
             style: Theme.of(context).textTheme.small),
       ],

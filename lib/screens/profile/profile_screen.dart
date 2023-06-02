@@ -35,7 +35,8 @@ class ProfileScreen extends StatelessWidget {
                 child: BlocConsumer<ProfileBloc, ProfileStates>(
                     buildWhen: (previousState, currentState) =>
                         currentState is UserProfileFetching ||
-                        currentState is UserProfileFetched,
+                        currentState is UserProfileFetched ||
+                        currentState is UserProfileFetchError,
                     listener: (context, state) {
                       if (state is LoggedOut) {
                         Navigator.pushNamedAndRemoveUntil(
@@ -62,7 +63,8 @@ class ProfileScreen extends StatelessWidget {
                                             imagePath: 'mechanic_person.png'),
                                         const SizedBox(
                                             height: xxxSmallerSpacing),
-                                        Text(state.userProfileModel.data!.fname,
+                                        Text(
+                                            "${state.userProfileModel.data!.fname} ${state.userProfileModel.data!.lname} ",
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .large),

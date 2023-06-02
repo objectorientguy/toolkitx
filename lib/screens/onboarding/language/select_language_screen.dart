@@ -37,7 +37,8 @@ class SelectLanguageScreen extends StatelessWidget {
             child: BlocConsumer<LanguageBloc, LanguageStates>(
                 buildWhen: (previousState, currentState) =>
                     currentState is LanguagesFetching ||
-                    currentState is LanguagesFetched,
+                    currentState is LanguagesFetched ||
+                    currentState is LanguagesError,
                 listener: (context, state) {
                   if (state is LanguageKeysFetching) {
                     GenericLoadingPopUp.show(

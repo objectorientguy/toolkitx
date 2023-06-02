@@ -4,23 +4,30 @@ import 'app_dimensions.dart';
 import 'app_spacing.dart';
 
 ThemeData appTheme = ThemeData(
-  colorScheme: colorScheme,
-  appBarTheme: appBarTheme,
-  listTileTheme: listTileTheme,
-  cardTheme: appCardTheme,
-  bottomAppBarTheme: bottomAppBarTheme,
-  bottomNavigationBarTheme: bottomNavigationBarTheme,
-  textButtonTheme: textButtonTheme,
-  scaffoldBackgroundColor: AppColor.ghostWhite,
-  elevatedButtonTheme: elevatedButtonThemeData,
-  floatingActionButtonTheme: floatingActionButtonThemeData,
-);
+    colorScheme: colorScheme,
+    appBarTheme: appBarTheme,
+    listTileTheme: listTileTheme,
+    cardTheme: appCardTheme,
+    bottomAppBarTheme: bottomAppBarTheme,
+    bottomNavigationBarTheme: bottomNavigationBarTheme,
+    textButtonTheme: textButtonTheme,
+    scaffoldBackgroundColor: AppColor.ghostWhite,
+    elevatedButtonTheme: elevatedButtonThemeData,
+    floatingActionButtonTheme: floatingActionButtonThemeData,
+    expansionTileTheme: expansionTileThemeData);
 
 FloatingActionButtonThemeData floatingActionButtonThemeData =
     const FloatingActionButtonThemeData(
         backgroundColor: AppColor.deepBlue,
         iconSize: kFloatingButtonIconSize,
         foregroundColor: AppColor.white);
+
+ExpansionTileThemeData expansionTileThemeData = const ExpansionTileThemeData(
+    tilePadding: EdgeInsets.only(
+        left: kExpansionTileMargin, right: kExpansionTileMargin),
+    collapsedBackgroundColor: AppColor.offWhite,
+    iconColor: AppColor.deepBlue,
+    textColor: AppColor.black);
 
 ElevatedButtonThemeData elevatedButtonThemeData = ElevatedButtonThemeData(
     style: ElevatedButton.styleFrom(

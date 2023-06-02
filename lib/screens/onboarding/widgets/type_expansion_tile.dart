@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:toolkit/configs/app_dimensions.dart';
 import 'package:toolkit/configs/app_theme.dart';
 
 import '../../../blocs/login/login_bloc.dart';
@@ -21,12 +20,7 @@ class UserTypeExpansionTile extends StatelessWidget {
     return Theme(
         data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
         child: ExpansionTile(
-            tilePadding: const EdgeInsets.only(
-                left: kExpansionTileMargin, right: kExpansionTileMargin),
-            collapsedBackgroundColor: AppColor.offWhite,
             maintainState: true,
-            iconColor: AppColor.deepBlue,
-            textColor: AppColor.black,
             key: GlobalKey(),
             title: Text(usertype == 'null' ? 'Select' : usertype,
                 style: Theme.of(context).textTheme.xSmall),

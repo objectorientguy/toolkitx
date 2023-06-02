@@ -14,10 +14,10 @@ import '../../../widgets/generic_app_bar.dart';
 import '../../../widgets/generic_text_field.dart';
 import '../widgets/blood_group_expansion_tile.dart';
 
-class EditScreen extends StatelessWidget {
-  static const routeName = 'EditScreen';
+class ProfileEditScreen extends StatelessWidget {
+  static const routeName = 'ProfileEditScreen';
 
-  const EditScreen({Key? key}) : super(key: key);
+  const ProfileEditScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

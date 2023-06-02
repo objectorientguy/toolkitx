@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:toolkit/blocs/client/client_events.dart';
@@ -88,12 +89,13 @@ class ClientBloc extends Bloc<ClientEvents, ClientStates> {
         permissionsList =
             homeScreenModel.data!.permission.replaceAll(' ', '').split(',');
         List availableModules = [];
-        for (int i = 0; i < permissionsList.length; i++) {
+        for (int i = 0; i < ModulesUtil.listModulesMode.length; i++) {
           if (permissionsList.contains(ModulesUtil.listModulesMode[i].key) ==
               true) {
             availableModules.add(ModulesUtil.listModulesMode[i]);
           }
         }
+        log("availableModules======>${availableModules[3].moduleName}");
         emit(HomeScreenFetched(
             processClientModel: homeScreenModel,
             image: clientImage,
