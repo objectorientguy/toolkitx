@@ -45,7 +45,7 @@ class LoginScreen extends StatelessWidget {
                                       style:
                                           Theme.of(context).textTheme.medium),
                                   const SizedBox(height: tinySpacing),
-                                  const TextFieldWidget(
+                                   TextFieldWidget(
                                       textInputType:
                                           TextInputType.emailAddress),
                                   const SizedBox(height: mediumSpacing),

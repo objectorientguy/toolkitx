@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:toolkit/configs/app_theme.dart';
+import 'package:toolkit/screens/checklist/widgets/custom_visibility_tags_container.dart';
 import 'package:toolkit/utils/constants/string_constants.dart';
-import '../../../blocs/systemUser/checklist/checklist_bloc.dart';
-import '../../../blocs/systemUser/checklist/checklist_events.dart';
+import '../../../blocs/checklist/systemUser/checklist_bloc.dart';
+import '../../../blocs/checklist/systemUser/checklist_events.dart';
 import '../../../configs/app_color.dart';
 import '../../../configs/app_dimensions.dart';
 import '../../../configs/app_spacing.dart';
-import '../../../data/models/systemUser/checklist/list_model.dart';
+import '../../../data/models/checklist/systemUser/list_model.dart';
 import '../../onboarding/widgets/custom_card.dart';
 
 class SystemUserListLayout extends StatelessWidget {
@@ -39,46 +40,22 @@ class SystemUserListLayout extends StatelessWidget {
                       subtitle: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Row(children: [
-                              Text(
-                                  '${getChecklistModel.data![index].categoryname}  --',
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .xSmall
-                                      .copyWith(color: AppColor.grey)),
-                              const SizedBox(width: tiniestSpacing),
-                              Text(
-                                  getChecklistModel.data![index].subcategoryname
-                                      .toString(),
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .xSmall
-                                      .copyWith(color: AppColor.grey))
-                            ]),
+                            Text(
+                                '${getChecklistModel.data![index].categoryname} -- ${getChecklistModel.data![index].subcategoryname.toString()}',
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .xSmall
+                                    .copyWith(color: AppColor.grey)),
                             const SizedBox(height: tinySpacing),
                             Row(
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
-                                  Visibility(
-                                    visible: getChecklistModel
-                                            .data![index].responsecount !=
-                                        0,
-                                    child: Container(
-                                        padding: const EdgeInsets.all(
-                                            tiniestSpacing),
-                                        decoration: BoxDecoration(
-                                            color: AppColor.lightGreen,
-                                            borderRadius: BorderRadius.circular(
-                                                kCardRadius)),
-                                        height: kTagsHeight,
-                                        child: Text(StringConstants.kResponded,
-                                            textAlign: TextAlign.center,
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .xSmall
-                                                .copyWith(
-                                                    color: AppColor.white))),
-                                  ),
+                                  CustomVisibilityTagContainer(
+                                      visible: getChecklistModel
+                                              .data![index].responsecount !=
+                                          0,
+                                      color: AppColor.lightGreen,
+                                      textValue: StringConstants.kResponded),
                                   const SizedBox(width: tiniestSpacing),
                                   Visibility(
                                       visible: getChecklistModel.data![index]
@@ -91,8 +68,10 @@ class SystemUserListLayout extends StatelessWidget {
                                 ])
                           ]),
                       onTap: () {
-                        context.read<ChecklistBloc>().add(FetchChecklistDetails(
-                            checklistId: getChecklistModel.data![index].id));
+                        context.read<ChecklistBloc>().add(
+                            FetchChecklistScheduleDates(
+                                checklistId:
+                                    getChecklistModel.data![index].id));
                       }));
             },
             separatorBuilder: (BuildContext context, int index) {

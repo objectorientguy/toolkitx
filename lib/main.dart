@@ -2,12 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:toolkit/blocs/checklist/workforce/checklist_bloc.dart';
 import 'package:toolkit/blocs/selectDateFormat/select_date_format_bloc.dart';
-import 'package:toolkit/blocs/systemUser/checklist/checklist_bloc.dart';
 import 'package:toolkit/blocs/wifiConnectivity/wifi_connectivity_bloc.dart';
 import 'package:toolkit/blocs/wifiConnectivity/wifi_connectivity_events.dart';
 import 'package:toolkit/configs/app_theme.dart';
 import 'package:toolkit/screens/home/home_screen.dart';
+import 'blocs/checklist/systemUser/checklist_bloc.dart';
 import 'blocs/home/home_bloc.dart';
 import 'blocs/selectLanguage/select_language_bloc.dart';
 import 'blocs/wifiConnectivity/wifi_connectivity_states.dart';
@@ -45,6 +46,8 @@ class MyApp extends StatelessWidget {
           BlocProvider(lazy: true, create: (context) => DateFormatBloc()),
           BlocProvider(lazy: false, create: (context) => HomeBloc()),
           BlocProvider(lazy: false, create: (context) => ChecklistBloc()),
+          BlocProvider(
+              lazy: false, create: (context) => WorkforceChecklistBloc()),
         ],
         child: GestureDetector(
           onTap: () {

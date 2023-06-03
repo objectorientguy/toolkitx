@@ -36,21 +36,21 @@ class EditScreen extends StatelessWidget {
                       Text(StringConstants.kFirstName,
                           style: Theme.of(context).textTheme.medium),
                       const SizedBox(height: midTinySpacing),
-                      const TextFieldWidget(
+                      TextFieldWidget(
                           textInputAction: TextInputAction.next,
                           hintText: StringConstants.kFirstName),
                       const SizedBox(height: midTinySpacing),
                       Text(StringConstants.kLastName,
                           style: Theme.of(context).textTheme.medium),
                       const SizedBox(height: midTinySpacing),
-                      const TextFieldWidget(
+                      TextFieldWidget(
                           textInputAction: TextInputAction.next,
                           hintText: StringConstants.kLastName),
                       const SizedBox(height: midTinySpacing),
                       Text(StringConstants.kContact,
                           style: Theme.of(context).textTheme.medium),
                       const SizedBox(height: midTinySpacing),
-                      const TextFieldWidget(
+                      TextFieldWidget(
                           textInputAction: TextInputAction.done,
                           hintText: StringConstants.kContact),
                       const SizedBox(height: midTinySpacing),

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../blocs/systemUser/checklist/checklist_bloc.dart';
-import '../../../blocs/systemUser/checklist/checklist_events.dart';
-import '../../../blocs/systemUser/checklist/checklist_states.dart';
+import '../../../blocs/checklist/systemUser/checklist_bloc.dart';
+import '../../../blocs/checklist/systemUser/checklist_events.dart';
+import '../../../blocs/checklist/systemUser/checklist_states.dart';
 import '../../../widgets/progress_bar.dart';
 import '../../onboarding/widgets/show_error.dart';
 import '../widgets/list_layout.dart';
-import 'details_screen.dart';
+import 'schedule_dates_screen.dart';
 
 class SystemUserListSection extends StatelessWidget {
   const SystemUserListSection({Key? key}) : super(key: key);
@@ -22,12 +22,12 @@ class SystemUserListSection extends StatelessWidget {
                   currentState is ChecklistFetching ||
                   currentState is ChecklistFetched,
               listener: (context, state) {
-                if (state is ChecklistDetailsFetching) {
+                if (state is FetchingChecklistScheduleDates) {
                   ProgressBar.show(context);
-                } else if (state is ChecklistDetailsFetched) {
+                } else if (state is ChecklistDatesScheduled) {
                   ProgressBar.dismiss(context);
                   Navigator.pushNamed(
-                      context, SystemUserDetailsScreen.routeName);
+                      context, SystemUserScheduleDatesScreen.routeName);
                 }
               },
               builder: (context, state) {

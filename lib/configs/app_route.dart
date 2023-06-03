@@ -1,13 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:toolkit/screens/checklist/systemUser/checklist_system_user_list_screen.dart';
-import 'package:toolkit/screens/checklist/systemUser/details_screen.dart';
+import 'package:toolkit/screens/checklist/systemUser/system_user_list_screen.dart';
+import 'package:toolkit/screens/checklist/systemUser/schedule_dates_screen.dart';
 import 'package:toolkit/screens/checklist/systemUser/filters_screen.dart';
+import 'package:toolkit/screens/checklist/workforce/reject_reasons.dart';
 import 'package:toolkit/screens/onboarding/login/emailAddress/login_screen.dart';
 import 'package:toolkit/screens/onboarding/login/password/password_screen.dart';
 import 'package:toolkit/screens/onboarding/welcome_screen.dart';
 import 'package:toolkit/screens/profile/edit/edit_screen.dart';
-import '../screens/checklist/change_role_screen.dart';
-import '../screens/checklist/systemUser/status_screen.dart';
+import '../screens/checklist/systemUser/change_role_screen.dart';
+import '../screens/checklist/systemUser/edit_header_screen.dart';
+import '../screens/checklist/systemUser/workforce_list_screen.dart';
+import '../screens/checklist/workforce/add_image_and_comment_screen.dart';
+import '../screens/checklist/workforce/list_screen.dart';
+import '../screens/checklist/workforce/questions_list_screen.dart';
+import '../screens/checklist/workforce/edit_questions_screen.dart';
 import '../screens/incident/category_screen.dart';
 import '../screens/incident/filter_screen.dart';
 import '../screens/incident/incident_list_screen.dart';
@@ -35,8 +41,8 @@ class AppRoutes {
         return _materialRoute(const RootScreen());
       case EditScreen.routeName:
         return _materialRoute(const EditScreen());
-      case SystemUserDetailsScreen.routeName:
-        return _materialRoute(const SystemUserDetailsScreen());
+      case SystemUserScheduleDatesScreen.routeName:
+        return _materialRoute(SystemUserScheduleDatesScreen());
       case SystemUserCheckListScreen.routeName:
         return _materialRoute(const SystemUserCheckListScreen());
       case ChangeRoleScreen.routeName:
@@ -49,8 +55,23 @@ class AppRoutes {
         return _materialRoute(const FilterScreen());
       case CategoryScreen.routeName:
         return _materialRoute(const CategoryScreen());
-      case ChecklistStatusScreen.routeName:
-        return _materialRoute(const ChecklistStatusScreen());
+      case ChecklistWorkForceListScreen.routeName:
+        return _materialRoute(ChecklistWorkForceListScreen(
+            scheduleId: settings.arguments.toString()));
+      case WorkForceListScreen.routeName:
+        return _materialRoute(const WorkForceListScreen());
+      case RejectReasonsScreen.routeName:
+        return _materialRoute(
+            RejectReasonsScreen(scheduleId: settings.arguments.toString()));
+      case EditHeaderScreen.routeName:
+        return _materialRoute(
+            EditHeaderScreen(scheduleId: settings.arguments.toString()));
+      case WorkForceQuestionsList.routeName:
+        return _materialRoute(const WorkForceQuestionsList());
+      case AddImageAndCommentScreen.routeName:
+        return _materialRoute(AddImageAndCommentScreen());
+      case EditQuestionsScreen.routeName:
+        return _materialRoute(EditQuestionsScreen());
       default:
         return _materialRoute(const WelcomeScreen());
     }
