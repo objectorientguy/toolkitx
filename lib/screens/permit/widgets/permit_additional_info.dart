@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:toolkit/configs/app_color.dart';
 import 'package:toolkit/configs/app_theme.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 import '../../../configs/app_spacing.dart';
 import '../../../data/models/permit/permit_details_model.dart';
 
@@ -89,8 +90,17 @@ class PermitAdditionalInfo extends StatelessWidget {
                 .copyWith(color: AppColor.black, fontWeight: FontWeight.bold),
           ),
           const SizedBox(height: midTiniestSpacing),
-          Text(permitDetailsModel.data.tab2.layout,
-              style: Theme.of(context).textTheme.small),
+          InkWell(
+            onTap: () {
+              launchUrlString(permitDetailsModel.data.tab2.layoutLink,
+                  mode: LaunchMode.inAppWebView);
+            },
+            child: Text(permitDetailsModel.data.tab2.layout,
+                style: Theme.of(context)
+                    .textTheme
+                    .small
+                    .copyWith(color: AppColor.deepBlue)),
+          ),
           const SizedBox(height: smallSpacing),
           ListView.builder(
               shrinkWrap: true,

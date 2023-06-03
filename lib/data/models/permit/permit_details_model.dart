@@ -24,8 +24,7 @@ class PermitDetailsModel {
         data: Data.fromJson(json["Data"]),
       );
 
-  Map<String, dynamic> toJson() =>
-      {
+  Map<String, dynamic> toJson() => {
         "Status": status,
         "Message": message,
         "Data": data.toJson(),
@@ -58,8 +57,7 @@ class Data {
         tab6: List<dynamic>.from(json["tab6"].map((x) => x)),
       );
 
-  Map<String, dynamic> toJson() =>
-      {
+  Map<String, dynamic> toJson() => {
         "tab1": tab1.toJson(),
         "tab2": tab2.toJson(),
         "tab3": List<dynamic>.from(tab3.map((x) => x.toJson())),

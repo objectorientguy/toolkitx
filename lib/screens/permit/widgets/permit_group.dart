@@ -1,9 +1,11 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:toolkit/widgets/status_tag.dart';
 import '../../../configs/app_color.dart';
 import '../../../configs/app_spacing.dart';
 import '../../../data/models/permit/permit_details_model.dart';
+import '../../../data/models/status_tag_model.dart';
 import '../../../utils/permit_util.dart';
 import '../../onboarding/widgets/custom_card.dart';
 
@@ -25,49 +27,64 @@ class PermitGroup extends StatelessWidget {
               random.nextInt(PermitUtil().leadingAvatarList.length)];
           return CustomCard(
             child: Padding(
-              padding: const EdgeInsets.only(top: midTiniestSpacing),
-              child: ListTile(
-                leading: Image.asset(
-                  leadingAvatarIcon,
-                ),
-                title: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                padding: const EdgeInsets.only(top: midTiniestSpacing),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    Text(permitDetailsModel.data.tab3[index].name),
-                    Container(
-                      width: MediaQuery.of(context).size.width * 0.15,
-                      height: MediaQuery.of(context).size.width * 0.050,
-                      decoration: BoxDecoration(
-                        color: AppColor.lightGreen,
-                        borderRadius: BorderRadius.circular(5),
+                    ListTile(
+                      trailing: Image.asset(
+                        leadingAvatarIcon,
                       ),
-                      alignment: Alignment.center,
-                      child: const Text(
-                        'Valid',
-                        style: TextStyle(color: Colors.white),
-                        textAlign: TextAlign.center,
+                      title: Text(permitDetailsModel.data.tab3[index].name),
+                      subtitle: Padding(
+                        padding: const EdgeInsets.only(top: midTiniestSpacing),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Text(
+                              permitDetailsModel.data.tab3[index].jobTitle,
+                            ),
+                            const SizedBox(height: midTiniestSpacing),
+                            Text(permitDetailsModel.data.tab3[index].company),
+                            const SizedBox(height: midTiniestSpacing),
+                            StatusTag(tags: [
+                              StatusTagModel(
+                                  title: (permitDetailsModel.data.tab3[index]
+                                              .certificatecode ==
+                                          '0')
+                                      ? 'Not Ok'
+                                      : 'Valid',
+                                  bgColor: (permitDetailsModel.data.tab3[index]
+                                              .certificatecode ==
+                                          '0')
+                                      ? AppColor.errorRed
+                                      : (permitDetailsModel.data.tab3[index]
+                                                  .certificatecode ==
+                                              '1')
+                                          ? AppColor.orange
+                                          : AppColor.green),
+                              StatusTagModel(
+                                  title:
+                                      (permitDetailsModel.data.tab3[index].id ==
+                                              permitDetailsModel
+                                                  .data.tab3[index].npiId)
+                                          ? 'NPI'
+                                          : (permitDetailsModel
+                                                      .data.tab3[index].id ==
+                                                  permitDetailsModel
+                                                      .data.tab3[index].npwId)
+                                              ? 'NPW'
+                                              : '',
+                                  bgColor: AppColor.lightGrey),
+                            ])
+                          ],
+                        ),
                       ),
-                    )
+                    ),
                   ],
-                ),
-                subtitle: Padding(
-                  padding: const EdgeInsets.only(top: midTiniestSpacing),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Text(
-                        permitDetailsModel.data.tab3[index].jobTitle,
-                      ),
-                      const SizedBox(height: midTiniestSpacing),
-                      Text(permitDetailsModel.data.tab3[index].company),
-                      const SizedBox(height: midTiniestSpacing),
-                    ],
-                  ),
-                ),
-              ),
-            ),
+                )),
           );
         },
         separatorBuilder: (context, index) {

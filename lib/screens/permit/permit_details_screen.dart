@@ -15,6 +15,8 @@ import '../../blocs/permit/permit_bloc.dart';
 import '../../blocs/permit/permit_events.dart';
 import '../../blocs/permit/permit_states.dart';
 import '../../configs/app_spacing.dart';
+import '../../data/models/status_tag_model.dart';
+import '../../widgets/status_tag.dart';
 
 class PermitDetailsScreen extends StatelessWidget {
   static const routeName = 'PermitDetailsScreen';
@@ -52,23 +54,20 @@ class PermitDetailsScreen extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(state.permitDetailsModel.data.tab1.permit),
-                          Container(
-                            width: MediaQuery.of(context).size.width * 0.25,
-                            height: MediaQuery.of(context).size.width * 0.050,
-                            decoration: BoxDecoration(
-                              color: AppColor.deepBlue,
-                              borderRadius: BorderRadius.circular(kCardRadius),
-                            ),
-                            alignment: Alignment.center,
-                            child: Text(
-                              state.permitDetailsModel.data.tab1.status,
-                              style: const TextStyle(color: AppColor.white),
-                              textAlign: TextAlign.center,
-                            ),
-                          )
+                          StatusTag(tags: [
+                            StatusTagModel(
+                                title:
+                                    state.permitDetailsModel.data.tab1.status,
+                                bgColor: AppColor.deepBlue),
+                          ]),
                         ],
                       ),
                     ),
+                    subtitle: StatusTag(tags: [
+                      StatusTagModel(
+                          title: state.permitDetailsModel.data.tab1.expired,
+                          bgColor: AppColor.errorRed),
+                    ]),
                   ),
                 ),
                 const SizedBox(height: midTiniestSpacing),
