@@ -10,12 +10,14 @@ import 'package:toolkit/screens/permit/widgets/permit_details.dart';
 import 'package:toolkit/screens/permit/widgets/permit_group.dart';
 import 'package:toolkit/screens/permit/widgets/permit_attachments.dart';
 import 'package:toolkit/screens/permit/widgets/permit_timeline.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 import '../../blocs/permit/permit_bloc.dart';
 import '../../blocs/permit/permit_events.dart';
 import '../../blocs/permit/permit_states.dart';
 import '../../configs/app_spacing.dart';
 import '../../data/models/status_tag_model.dart';
+import 'widgets/ptw_action_menu.dart';
 import '../../widgets/status_tag.dart';
 
 class PermitDetailsScreen extends StatelessWidget {
@@ -27,13 +29,20 @@ class PermitDetailsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     context.read<PermitBloc>().add(const GetPermitDetails());
     return Scaffold(
-      appBar: GenericAppBar(
-        actions: [
-          IconButton(onPressed: () {}, icon: const Icon(Icons.more_vert))
-        ],
+      appBar: const GenericAppBar(
+        actions: [PTWActionMenu()],
       ),
-      body: BlocBuilder<PermitBloc, PermitStates>(builder: (context, state) {
-        if (state is FetchingPermitDetails) {
+      body: BlocConsumer<PermitBloc, PermitStates>(listener: (context, state) {
+        if (state is PDFGenerated) {
+          context.read<PermitBloc>().add(const GetPermitDetails());
+          launchUrlString(
+              'https://www.toolkitx.com/location360.aspx?q=Belgium+-+WTG2+%2f+EW',
+              mode: LaunchMode.inAppWebView);
+        } else if (state is PDFGenerationFailed) {
+          context.read<PermitBloc>().add(const GetPermitDetails());
+        }
+      }, builder: (context, state) {
+        if (state is FetchingPermitDetails || state is GeneratingPDF) {
           return const Center(child: CircularProgressIndicator());
         } else if (state is PermitDetailsFetched) {
           return Padding(
@@ -65,7 +74,10 @@ class PermitDetailsScreen extends StatelessWidget {
                     ),
                     subtitle: StatusTag(tags: [
                       StatusTagModel(
-                          title: state.permitDetailsModel.data.tab1.expired,
+                          title: (state.permitDetailsModel.data.tab1.expired ==
+                                  '2')
+                              ? 'Expired'
+                              : '',
                           bgColor: AppColor.errorRed),
                     ]),
                   ),
