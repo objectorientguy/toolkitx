@@ -33,7 +33,7 @@ class PermitListTile extends StatelessWidget {
                     itemBuilder: (context, index) {
                       return CustomCard(
                         child: Padding(
-                          padding: const EdgeInsets.only(top: midTinySpacing),
+                          padding: const EdgeInsets.only(top: tinier),
                           child: ListTile(
                             onTap: () {
                               Navigator.pushNamed(
@@ -54,7 +54,7 @@ class PermitListTile extends StatelessWidget {
                                             .copyWith(
                                                 fontWeight: FontWeight.bold,
                                                 color: AppColor.black)),
-                                    const SizedBox(width: tiniestSpacing),
+                                    const SizedBox(width: tinier),
                                     Image.asset('assets/icons/warning.png',
                                         height: kImageHeight,
                                         width: kImageWidth)
@@ -72,8 +72,7 @@ class PermitListTile extends StatelessWidget {
                               ],
                             ),
                             subtitle: Padding(
-                              padding:
-                                  const EdgeInsets.only(top: midTinySpacing),
+                              padding: const EdgeInsets.only(top: tinier),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 mainAxisAlignment: MainAxisAlignment.start,
@@ -83,12 +82,12 @@ class PermitListTile extends StatelessWidget {
                                         .description!,
                                     maxLines: 3,
                                   ),
-                                  const SizedBox(height: midTinySpacing),
+                                  const SizedBox(height: tinier),
                                   IconAndTextRow(
                                       title: state.allPermitModel.data![index]
                                           .location!,
                                       icon: 'location'),
-                                  const SizedBox(height: midTinySpacing),
+                                  const SizedBox(height: tinier),
                                   Row(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.center,
@@ -105,11 +104,11 @@ class PermitListTile extends StatelessWidget {
                                           icon: 'office'),
                                     ],
                                   ),
-                                  const SizedBox(height: midTinySpacing),
+                                  const SizedBox(height: tinier),
                                   DateTimeRow(
                                       allPermitDatum:
                                           state.allPermitModel.data![index]),
-                                  const SizedBox(height: midTinySpacing),
+                                  const SizedBox(height: tinier),
                                   StatusTag(tags: [
                                     StatusTagModel(
                                         title: (state.allPermitModel
@@ -141,7 +140,7 @@ class PermitListTile extends StatelessWidget {
                       );
                     },
                     separatorBuilder: (context, index) {
-                      return const SizedBox(height: tinySpacing);
+                      return const SizedBox(height: tinier);
                     }));
           } else if (state is FetchingAllPermits) {
             return const Center(child: CircularProgressIndicator());

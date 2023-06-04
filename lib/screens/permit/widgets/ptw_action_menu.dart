@@ -27,7 +27,7 @@ class PTWActionMenu extends StatelessWidget {
         ),
         iconSize: kIconSize,
         icon: const Icon(Icons.more_vert_outlined),
-        offset: const Offset(0, midTiniestSpacing),
+        offset: const Offset(0, xxTiniestSpacing),
         initialValue: 0,
         onSelected: (value) {
           context.read<PermitBloc>().add(const GeneratePDF());

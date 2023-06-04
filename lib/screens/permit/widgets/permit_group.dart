@@ -27,7 +27,7 @@ class PermitGroup extends StatelessWidget {
               random.nextInt(PermitUtil().leadingAvatarList.length)];
           return CustomCard(
             child: Padding(
-                padding: const EdgeInsets.only(top: midTiniestSpacing),
+                padding: const EdgeInsets.only(top: xxTinierSpacing),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -38,7 +38,7 @@ class PermitGroup extends StatelessWidget {
                       ),
                       title: Text(permitDetailsModel.data.tab3[index].name),
                       subtitle: Padding(
-                        padding: const EdgeInsets.only(top: midTiniestSpacing),
+                        padding: const EdgeInsets.only(top: xxTinierSpacing),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.start,
@@ -46,9 +46,9 @@ class PermitGroup extends StatelessWidget {
                             Text(
                               permitDetailsModel.data.tab3[index].jobTitle,
                             ),
-                            const SizedBox(height: midTiniestSpacing),
+                            const SizedBox(height: xxTinierSpacing),
                             Text(permitDetailsModel.data.tab3[index].company),
-                            const SizedBox(height: midTiniestSpacing),
+                            const SizedBox(height: xxTinierSpacing),
                             StatusTag(tags: [
                               StatusTagModel(
                                   title: (permitDetailsModel.data.tab3[index]
@@ -88,7 +88,7 @@ class PermitGroup extends StatelessWidget {
           );
         },
         separatorBuilder: (context, index) {
-          return const SizedBox(height: midTiniestSpacing);
+          return const SizedBox(height: xxTinierSpacing);
         });
   }
 }
