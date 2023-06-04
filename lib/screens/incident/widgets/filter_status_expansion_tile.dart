@@ -3,7 +3,6 @@ import 'package:toolkit/configs/app_theme.dart';
 import 'package:toolkit/utils/constants/string_constants.dart';
 
 import '../../../configs/app_color.dart';
-import '../../../configs/app_spacing.dart';
 
 class FilterStatusExpansionTile extends StatefulWidget {
   const FilterStatusExpansionTile({Key? key}) : super(key: key);
@@ -41,12 +40,7 @@ class _FilterStatusExpansionTileState extends State<FilterStatusExpansionTile> {
     return Theme(
         data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
         child: ExpansionTile(
-            tilePadding: const EdgeInsets.only(
-                left: expansionTileMargin, right: expansionTileMargin),
-            collapsedBackgroundColor: AppColor.white,
             maintainState: true,
-            iconColor: AppColor.deepBlue,
-            textColor: AppColor.black,
             title: Text((status == '') ? StringConstants.kSelectStatus : status,
                 style: Theme.of(context).textTheme.xSmall),
             children: [

@@ -15,7 +15,7 @@ class IconAndTextRow extends StatelessWidget {
       children: [
         Image.asset('assets/icons/$icon.png',
             height: kImageHeight, width: kImageWidth),
-        const SizedBox(width: tiniestSpacing),
+        const SizedBox(width: tiniest),
         Text(title!)
       ],
     );

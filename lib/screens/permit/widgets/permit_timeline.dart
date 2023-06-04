@@ -14,7 +14,7 @@ class CustomTimeline extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: mediumSpacing),
+      padding: const EdgeInsets.only(top: xxxSmallerSpacing),
       child: ListView.builder(
         itemCount: 23,
         itemBuilder: (context, index) {
@@ -23,9 +23,9 @@ class CustomTimeline extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               _buildDateAndTime(index),
-              const SizedBox(width: tinySpacing),
+              const SizedBox(width: xxTinySpacing),
               _buildVerticalTimelinePath(index, context),
-              const SizedBox(width: tinySpacing),
+              const SizedBox(width: xxTinySpacing),
               _buildContent(index, context)
             ],
           );
@@ -69,18 +69,18 @@ class CustomTimeline extends StatelessWidget {
           children: [
             Image.asset('assets/icons/calendar.png',
                 height: kImageMediumHeight, width: kImageMediumWidth),
-            const SizedBox(width: tiniestSpacing),
+            const SizedBox(width: xxTiniestSpacing),
             const Text('24.05.2023')
           ],
         ),
-        const SizedBox(height: midTiniestSpacing),
+        const SizedBox(height: xxTinierSpacing),
         Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Image.asset('assets/icons/clock.png',
                 height: kImageMediumHeight, width: kImageMediumWidth),
-            const SizedBox(width: tiniestSpacing),
+            const SizedBox(width: xxTiniestSpacing),
             const Text('03:30')
           ],
         )
@@ -97,7 +97,7 @@ class CustomTimeline extends StatelessWidget {
           style: Theme.of(context).textTheme.small.copyWith(
               fontWeight: FontWeight.w700, color: AppColor.mediumBlack),
         ),
-        const SizedBox(height: tiniestSpacing),
+        const SizedBox(height: xxTiniestSpacing),
         SizedBox(
             width: MediaQuery.of(context).size.width * 0.490,
             child: Text(

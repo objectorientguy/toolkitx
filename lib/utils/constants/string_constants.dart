@@ -6,9 +6,7 @@ abstract class StringConstants {
       'Workforce management designed to enhance efficiency, productivity and safety';
   static const String kWelcomeToToolkitX = 'Welcome to ToolKitX';
   static const String kStartNow = 'START NOW';
-  static const String kSelectTimeZone = 'Select Your TimeZone';
-  static const String kTimeZone = 'UTC+00:00';
-  static const String kTimeLocation = 'Azores Standard Time';
+  static const String kSelectTimeZone = 'Select Your TimeZone'; // not in db
   static const String kEmailAddress = 'Email Address';
   static const String kPassword = 'Password';
   static const String kNext = 'NEXT';
@@ -16,8 +14,13 @@ abstract class StringConstants {
   static const String kWelcome = 'Welcome';
   static const String kType = 'Type';
   static const String kGenerateOtp = 'GENERATE OTP';
+  static const String kEnterNewPassword = 'Enter New Password';
+  static const String kConfirmPassword = 'Confirm Password';
+  static const String kOtpGenerated = 'OTP generated';
   static const String kSelectDateFormat = 'Select Your Date Format';
   static const String kSave = 'SAVE';
+  static const String kOldPassword = 'Old Password';
+  static const String kEnterOtp = 'Enter OTP';
   static const String kSelectYourLanguage = 'Select Your Language';
   static const String kPleaseConfirm = 'Please Confirm';
   static const String kReject = 'Reject';
@@ -93,6 +96,13 @@ abstract class StringConstants {
   static const String kReportToAuthorities = 'Report to authorities';
   static const String kSelectSite = 'Select Site';
   static const String kSelectLocation = 'Select Location';
+  static const String kSelectLanguageAgain = 'Please select language again';
+  static const String kTryAgainInSomeTime = 'Try again in some time';
+  static const String kOtpUnsuccessful = 'OTP generation was Unsuccessful!';
+  static const String kInitializingLanguage = 'Initializing Language...';
+  static const String kValidateEmptyEmail = 'Please enter email';
+  static const String kValidateEmptyPassword = 'Please enter password';
+  static const String kSelectUserTypeValidation = 'Please select a type';
   static const String kRefresh = 'Refresh';
   static const String kSomethingWentWrong = 'Something went wrong';
   static const String kNoInternetError =

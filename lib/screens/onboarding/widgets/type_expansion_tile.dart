@@ -1,55 +1,49 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:toolkit/blocs/password/password_bloc.dart';
 import 'package:toolkit/configs/app_theme.dart';
-import 'package:toolkit/utils/constants/string_constants.dart';
 
-import '../../../blocs/password/password_events.dart';
+import '../../../blocs/login/login_bloc.dart';
+import '../../../blocs/login/login_events.dart';
 import '../../../configs/app_color.dart';
-import '../../../configs/app_spacing.dart';
+import '../../../data/enums/user_type_emun.dart';
 
 class UserTypeExpansionTile extends StatelessWidget {
   final String typeValue;
+  final String usertype;
 
-  UserTypeExpansionTile({Key? key, required this.typeValue}) : super(key: key);
-  final List userTypeList = [
-    StringConstants.kWorkforce,
-    StringConstants.kSystemUser
-  ];
+  const UserTypeExpansionTile(
+      {Key? key, required this.typeValue, required this.usertype})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Theme(
         data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
         child: ExpansionTile(
-            tilePadding: const EdgeInsets.only(
-                left: expansionTileMargin, right: expansionTileMargin),
-            collapsedBackgroundColor: AppColor.offWhite,
             maintainState: true,
-            iconColor: AppColor.deepBlue,
-            textColor: AppColor.black,
             key: GlobalKey(),
-            title: Text(typeValue == 'null' ? 'Select' : typeValue,
+            title: Text(usertype == 'null' ? 'Select' : usertype,
                 style: Theme.of(context).textTheme.xSmall),
             children: [
               ListView.builder(
                   physics: const BouncingScrollPhysics(),
                   shrinkWrap: true,
-                  itemCount: userTypeList.length,
+                  itemCount: UserType.values.length,
                   itemBuilder: (BuildContext context, int index) {
                     return RadioListTile(
                         contentPadding: EdgeInsets.zero,
                         activeColor: AppColor.deepBlue,
-                        title: Text(userTypeList[index],
+                        title: Text(UserType.values.elementAt(index).type,
                             style: Theme.of(context).textTheme.xSmall),
                         controlAffinity: ListTileControlAffinity.trailing,
-                        value: userTypeList[index],
-                        groupValue: typeValue,
+                        value: UserType.values.elementAt(index).type,
+                        groupValue: usertype,
                         onChanged: (value) {
-                          value = userTypeList[index];
-                          context
-                              .read<PasswordBloc>()
-                              .add(UserTypeDropDown(typeValue: value));
+                          value = UserType.values.elementAt(index).type;
+                          context.read<LoginBloc>().add(ChangeUserType(
+                              userType: value,
+                              typeValue:
+                                  UserType.values.elementAt(index).value));
                         });
                   })
             ]));

@@ -26,11 +26,11 @@ class StatusTag extends StatelessWidget {
                       color: tags![index].bgColor,
                       borderRadius: BorderRadius.circular(kCardRadius),
                     ),
-                    margin: const EdgeInsets.only(
-                        right: tiniestSpacing, bottom: tiniestSpacing),
+                    margin:
+                        const EdgeInsets.only(right: tiniest, bottom: tiniest),
                     alignment: Alignment.center,
                     child: Padding(
-                        padding: const EdgeInsets.all(tiniestSpacing),
+                        padding: const EdgeInsets.all(tiniest),
                         child: SizedBox(
                           height: MediaQuery.of(context).size.width * 0.040,
                           child: Text(
