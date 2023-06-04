@@ -13,7 +13,7 @@ import '../../../widgets/circle_avatar.dart';
 import '../../../widgets/generic_app_bar.dart';
 import '../../../widgets/generic_text_field.dart';
 import '../../../widgets/primary_button.dart';
-import '../widgets/custom_card.dart';
+import '../../../widgets/custom_card.dart';
 import 'password_screen.dart';
 
 class LoginScreen extends StatelessWidget {

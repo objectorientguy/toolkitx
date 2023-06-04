@@ -5,6 +5,7 @@ import 'package:toolkit/blocs/dateFormat/date_format_events.dart';
 import 'package:toolkit/blocs/dateFormat/date_format_states.dart';
 import 'package:toolkit/screens/onboarding/login/login_screen.dart';
 import 'package:toolkit/screens/onboarding/widgets/select_date_format_body.dart';
+import 'package:toolkit/utils/database_utils.dart';
 import 'package:toolkit/widgets/primary_button.dart';
 import '../../../configs/app_spacing.dart';
 import '../../../utils/constants/string_constants.dart';
@@ -23,7 +24,7 @@ class SelectDateFormatScreen extends StatelessWidget {
         .read<DateFormatBloc>()
         .add(SetDateFormat(isFromProfile: isFromProfile));
     return Scaffold(
-      appBar: const GenericAppBar(title: StringConstants.kSelectDateFormat),
+      appBar:  GenericAppBar(title: (isFromProfile==true)?DatabaseUtil.getText('changedateformat'):StringConstants.kSelectDateFormat),
       body: BlocBuilder<DateFormatBloc, DateFormatStates>(
           builder: (context, state) {
         if (state is DateFormatSelected) {

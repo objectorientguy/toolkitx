@@ -44,7 +44,7 @@ class LanguageBloc extends Bloc<LanguageEvent, LanguageStates> {
       String? syncDate =
           await _customerCache.getLanguageSyncDate(CacheKeys.languageSyncDate);
 
-      if ((event.isFromProfile == true && languageId != event.languageId) ||
+      if (languageId != event.languageId ||
           languageId == null) {
         emit(LanguageKeysFetching());
         LanguageKeysModel getLanguageKeysModel =

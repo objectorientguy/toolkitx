@@ -10,7 +10,7 @@ import '../../configs/app_dimensions.dart';
 import '../../utils/constants/string_constants.dart';
 import '../../widgets/circle_avatar.dart';
 import '../../widgets/error_section.dart';
-import '../onboarding/widgets/custom_card.dart';
+import '../../widgets/custom_card.dart';
 import 'widgets/edit_options_section.dart';
 import 'widgets/profile_options.dart';
 

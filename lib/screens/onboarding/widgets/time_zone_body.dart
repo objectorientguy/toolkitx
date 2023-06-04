@@ -7,7 +7,7 @@ import '../../../configs/app_dimensions.dart';
 import '../../../configs/app_spacing.dart';
 import '../../../data/models/timeZones/time_zone_model.dart';
 import '../selectDateFormat/select_date_format_screen.dart';
-import 'custom_card.dart';
+import '../../../widgets/custom_card.dart';
 
 class TimeZoneBody extends StatelessWidget {
   final List<TimeZoneData> timeZoneData;

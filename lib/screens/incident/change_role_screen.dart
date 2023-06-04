@@ -5,7 +5,7 @@ import '../../configs/app_dimensions.dart';
 import '../../configs/app_spacing.dart';
 import '../../utils/constants/string_constants.dart';
 import '../../widgets/generic_app_bar.dart';
-import '../onboarding/widgets/custom_card.dart';
+import '../../widgets/custom_card.dart';
 
 class IncidentChangeRoleScreen extends StatefulWidget {
   static const routeName = 'ChangeRoleScreen';

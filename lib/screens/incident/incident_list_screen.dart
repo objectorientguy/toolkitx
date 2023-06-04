@@ -6,7 +6,7 @@ import '../../configs/app_color.dart';
 import '../../utils/constants/string_constants.dart';
 import '../../widgets/custom_icon_button_row.dart';
 import '../../widgets/generic_app_bar.dart';
-import '../onboarding/widgets/custom_card.dart';
+import '../../widgets/custom_card.dart';
 import 'category_screen.dart';
 import 'filter_screen.dart';
 

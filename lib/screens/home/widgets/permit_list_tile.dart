@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:toolkit/configs/app_color.dart';
 import 'package:toolkit/configs/app_theme.dart';
 import 'package:toolkit/data/models/status_tag_model.dart';
-import 'package:toolkit/screens/onboarding/widgets/custom_card.dart';
+import 'package:toolkit/widgets/custom_card.dart';
 import 'package:toolkit/screens/permit/permit_details_screen.dart';
 import 'package:toolkit/screens/permit/widgets/date_time.dart';
 

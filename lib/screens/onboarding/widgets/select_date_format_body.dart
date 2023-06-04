@@ -7,7 +7,7 @@ import '../../../configs/app_color.dart';
 import '../../../configs/app_dimensions.dart';
 import '../../../configs/app_spacing.dart';
 import '../../../data/enums/date_enum.dart';
-import 'custom_card.dart';
+import '../../../widgets/custom_card.dart';
 
 class SelectDateFormatBody extends StatelessWidget {
   final String dateFormatString;

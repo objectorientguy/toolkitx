@@ -11,7 +11,7 @@ import '../../../configs/app_spacing.dart';
 import '../../../data/enums/change_password_type_enum.dart';
 import '../../../utils/constants/string_constants.dart';
 import '../../../widgets/primary_button.dart';
-import '../../onboarding/widgets/custom_card.dart';
+import '../../../widgets/custom_card.dart';
 import 'change_password_screen.dart';
 
 class SelectChangePasswordTypeScreen extends StatelessWidget {
