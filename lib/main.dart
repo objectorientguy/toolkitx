@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:toolkit/blocs/role/role_bloc.dart';
 import 'package:toolkit/utils/database_utils.dart';
 import 'blocs/client/client_bloc.dart';
 import 'blocs/dateFormat/date_format_bloc.dart';
@@ -65,6 +66,7 @@ class MyApp extends StatelessWidget {
           BlocProvider(lazy: false, create: (context) => LoginBloc()),
           BlocProvider(lazy: false, create: (context) => ClientBloc()),
           BlocProvider(lazy: false, create: (context) => ProfileBloc()),
+          BlocProvider(lazy: false, create: (context) => RoleBloc()),
           BlocProvider(
               lazy: false,
               create: (context) => OnBoardingBloc()..add(CheckLoggedIn()))

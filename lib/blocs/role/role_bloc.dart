@@ -8,11 +8,11 @@ import '../../../data/models/permit/permit_roles_model.dart';
 import '../../../di/app_module.dart';
 import '../../../repositories/permit/permit_repository.dart';
 
-class PermitRoleBloc extends Bloc<PermitRoleEvents, PermitRoleStates> {
+class RoleBloc extends Bloc<RoleEvents, PermitRoleStates> {
   final PermitRepository _permitRepository = getIt<PermitRepository>();
   ValueNotifier<bool> checkboxValue = ValueNotifier<bool>(false);
 
-  PermitRoleBloc() : super(const FetchingPermitRoles()) {
+  RoleBloc() : super(const FetchingPermitRoles()) {
     on<GetPermitRoles>(_fetchPermitRoles);
     on<SelectCheckBoxEvent>(_selectCheckBoxEvent);
   }

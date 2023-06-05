@@ -4,6 +4,7 @@ import 'package:toolkit/blocs/permit/permit_bloc.dart';
 import 'package:toolkit/blocs/permit/permit_events.dart';
 
 import 'package:toolkit/screens/permit/get_permit_roles_screen.dart';
+import 'package:toolkit/screens/permit/permit_filter_screen.dart';
 import 'package:toolkit/widgets/generic_app_bar.dart';
 import '../../configs/app_spacing.dart';
 import '../../widgets/custom_icon_button_row.dart';
@@ -28,7 +29,9 @@ class PermitListScreen extends StatelessWidget {
               Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             CustomIconButtonRow(
                 isEnabled: true,
-                primaryOnPress: () {},
+                primaryOnPress: () {
+                  Navigator.pushNamed(context, PermitFilterScreen.routeName);
+                },
                 secondaryOnPress: () {
                   Navigator.pushNamed(context, GetPermitRolesScreen.routeName);
                 },

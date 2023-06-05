@@ -13,6 +13,7 @@ import '../screens/onboarding/login/password_screen.dart';
 import '../screens/onboarding/selectDateFormat/select_date_format_screen.dart';
 import '../screens/onboarding/selectTimeZone/select_time_zone_screen.dart';
 import '../screens/onboarding/welcome_screen.dart';
+import '../screens/permit/permit_filter_screen.dart';
 import '../screens/profile/changePassword/change_password_screen.dart';
 import '../screens/profile/changePassword/select_change_password_screen.dart';
 import '../screens/profile/edit/profile_edit_screen.dart';
@@ -63,6 +64,8 @@ class AppRoutes {
         return _createRoute(const PermitDetailsScreen());
       case GetPermitRolesScreen.routeName:
         return _createRoute(const GetPermitRolesScreen());
+      case PermitFilterScreen.routeName:
+        return _createRoute(const PermitFilterScreen());
       case ClientListScreen.routeName:
         return _createRoute(const ClientListScreen());
       case SelectChangePasswordTypeScreen.routeName:

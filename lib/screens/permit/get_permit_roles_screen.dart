@@ -15,7 +15,7 @@ class GetPermitRolesScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    context.read<PermitRoleBloc>().add(const GetPermitRoles());
+    context.read<RoleBloc>().add(const GetPermitRoles());
     return Scaffold(
       appBar: const GenericAppBar(title: 'Get Roles'),
       body: Padding(
@@ -24,8 +24,8 @@ class GetPermitRolesScreen extends StatelessWidget {
             right: leftRightMargin,
             top: xxTinierSpacing,
             bottom: xxTinierSpacing),
-        child: BlocBuilder<PermitRoleBloc, PermitRoleStates>(
-            builder: (context, state) {
+        child:
+            BlocBuilder<RoleBloc, PermitRoleStates>(builder: (context, state) {
           if (state is FetchingPermitRoles) {
             return const Center(child: CircularProgressIndicator());
           } else if (state is PermitRolesFetched) {
@@ -43,7 +43,7 @@ class GetPermitRolesScreen extends StatelessWidget {
                     groupValue: state.permitRolesModel.data![index],
                     onChanged: (value) {
                       context
-                          .read<PermitRoleBloc>()
+                          .read<RoleBloc>()
                           .add(SelectCheckBoxEvent(value as Datum));
                     },
                   );

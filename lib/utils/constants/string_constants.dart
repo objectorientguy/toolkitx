@@ -107,4 +107,7 @@ abstract class StringConstants {
   static const String kSomethingWentWrong = 'Something went wrong';
   static const String kNoInternetError =
       'We could not load the information. Please\ncheck the internet connection and refresh\nthis screen so we can synchronize the data.';
+  static const String kPermitType = 'Permit Type';
+  static const String kEmergency = 'Emergency';
+  static const String kKeywords = 'Keywords';
 }
