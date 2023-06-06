@@ -8,7 +8,6 @@ import '../../../blocs/login/login_events.dart';
 import '../../../blocs/login/login_states.dart';
 import '../../../configs/app_dimensions.dart';
 import '../../../configs/app_spacing.dart';
-import '../../../utils/constants/string_constants.dart';
 import '../../../widgets/circle_avatar.dart';
 import '../../../widgets/generic_text_field.dart';
 import '../../../widgets/primary_button.dart';
@@ -26,7 +25,8 @@ class PasswordBody extends StatelessWidget {
     return Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
       const CircleAvatarWidget(imagePath: 'reset-password.png'),
       const SizedBox(height: xxxMediumSpacing),
-      Text(StringConstants.kWelcome, style: Theme.of(context).textTheme.xLarge),
+      Text(DatabaseUtil.getText('welcomeOtp'),
+          style: Theme.of(context).textTheme.xLarge),
       const SizedBox(height: xxxTinierSpacing),
       CustomCard(
           shape: RoundedRectangleBorder(
@@ -68,12 +68,12 @@ class PasswordBody extends StatelessWidget {
           onPressed: () {
             context.read<LoginBloc>().add(GenerateLoginOtp());
           },
-          textValue: StringConstants.kGenerateOtp),
+          textValue: DatabaseUtil.getText('generateotp')),
       PrimaryButton(
           onPressed: () {
             context.read<LoginBloc>().add(LoginEvent(loginMap: loginMap));
           },
-          textValue: StringConstants.kLogin),
+          textValue: DatabaseUtil.getText('Login')),
     ]);
   }
 }

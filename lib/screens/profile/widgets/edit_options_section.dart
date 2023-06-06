@@ -68,7 +68,7 @@ class EditOptionsSection extends StatelessWidget {
             Image.asset('${ProfileUtil.iconPath}' 'logout.png',
                 height: kProfileImageHeight, width: kProfileImageWidth),
             const SizedBox(height: xxTiniestSpacing),
-            Text(DatabaseUtil.getText('Logout') ,
+            Text(DatabaseUtil.getText('Logout'),
                 textAlign: TextAlign.center,
                 style: Theme.of(context).textTheme.xxSmall)
           ]))

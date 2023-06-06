@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:toolkit/blocs/profile/profile_bloc.dart';
 import 'package:toolkit/blocs/profile/profile_events.dart';
 import 'package:toolkit/blocs/profile/profile_states.dart';
+import 'package:toolkit/utils/database_utils.dart';
 import 'package:toolkit/widgets/generic_app_bar.dart';
 
 import '../../../configs/app_color.dart';
@@ -86,7 +87,7 @@ class SelectChangePasswordTypeScreen extends StatelessWidget {
                                           state.changePasswordType ==
                                               'Change using OTP'));
                             },
-                            textValue: StringConstants.kNext),
+                            textValue: DatabaseUtil.getText('Next')),
                         const SizedBox(height: xxxSmallerSpacing)
                       ]);
                 } else {

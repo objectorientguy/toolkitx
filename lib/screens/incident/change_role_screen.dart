@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:toolkit/utils/database_utils.dart';
 
 import '../../configs/app_color.dart';
 import '../../configs/app_dimensions.dart';
 import '../../configs/app_spacing.dart';
-import '../../utils/constants/string_constants.dart';
 import '../../widgets/generic_app_bar.dart';
 import '../../widgets/custom_card.dart';
 
@@ -30,8 +30,8 @@ class _IncidentChangeRoleScreenState extends State<IncidentChangeRoleScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: const GenericAppBar(
-          title: StringConstants.kChangeRole,
+        appBar: GenericAppBar(
+          title: DatabaseUtil.getText('ChangeRole'),
         ),
         body: SingleChildScrollView(
           physics: const BouncingScrollPhysics(),

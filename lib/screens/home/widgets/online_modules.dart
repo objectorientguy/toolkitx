@@ -50,8 +50,8 @@ class OnLineModules extends StatelessWidget {
                                 left: xxTiniestSpacing,
                                 right: xxTiniestSpacing),
                             child: Text(
-                                DatabaseUtil
-                                    .getText(availableModules[index].moduleName),
+                                DatabaseUtil.getText(
+                                    availableModules[index].moduleName),
                                 textAlign: TextAlign.center))
                       ])));
         });

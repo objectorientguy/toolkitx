@@ -24,7 +24,10 @@ class SelectDateFormatScreen extends StatelessWidget {
         .read<DateFormatBloc>()
         .add(SetDateFormat(isFromProfile: isFromProfile));
     return Scaffold(
-      appBar:  GenericAppBar(title: (isFromProfile==true)?DatabaseUtil.getText('changedateformat'):StringConstants.kSelectDateFormat),
+      appBar: GenericAppBar(
+          title: (isFromProfile == true)
+              ? DatabaseUtil.getText('changedateformat')
+              : StringConstants.kSelectDateFormat),
       body: BlocBuilder<DateFormatBloc, DateFormatStates>(
           builder: (context, state) {
         if (state is DateFormatSelected) {
@@ -52,7 +55,7 @@ class SelectDateFormatScreen extends StatelessWidget {
                                     context, LoginScreen.routeName);
                               }
                             },
-                            textValue: StringConstants.kSave)
+                            textValue: DatabaseUtil.getText('buttonSave'))
                       ])));
         } else {
           return const SizedBox();

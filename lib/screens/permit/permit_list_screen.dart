@@ -4,6 +4,7 @@ import 'package:toolkit/blocs/permit/permit_bloc.dart';
 import 'package:toolkit/blocs/permit/permit_events.dart';
 
 import 'package:toolkit/screens/permit/get_permit_roles_screen.dart';
+import 'package:toolkit/utils/database_utils.dart';
 import 'package:toolkit/widgets/generic_app_bar.dart';
 import '../../configs/app_spacing.dart';
 import '../../widgets/custom_icon_button_row.dart';
@@ -18,7 +19,7 @@ class PermitListScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     context.read<PermitBloc>().add(const GetAllPermits());
     return Scaffold(
-        appBar: const GenericAppBar(title: 'Permit To Work'),
+        appBar: GenericAppBar(title: DatabaseUtil.getText('PermitToWork')),
         body: Padding(
           padding: const EdgeInsets.only(
               left: leftRightMargin,

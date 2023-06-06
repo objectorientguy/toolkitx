@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:toolkit/configs/app_dimensions.dart';
 import 'package:toolkit/configs/app_theme.dart';
-import 'package:toolkit/utils/constants/string_constants.dart';
+import 'package:toolkit/utils/database_utils.dart';
 import '../../../../configs/app_color.dart';
 import '../../../configs/app_spacing.dart';
 import '../../../widgets/text_button.dart';
@@ -67,7 +67,7 @@ class DatePickerTextField extends StatelessWidget {
                           }
                           Navigator.pop(context);
                         },
-                        textValue: StringConstants.kDone)
+                        textValue: DatabaseUtil.getText('buttonDone'))
                   ]));
         });
   }
