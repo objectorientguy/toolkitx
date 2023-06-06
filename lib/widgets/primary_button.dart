@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:toolkit/configs/app_theme.dart';
+
+import '../configs/app_color.dart';
 
 class PrimaryButton extends StatelessWidget {
   const PrimaryButton(
@@ -11,7 +14,12 @@ class PrimaryButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
       onPressed: onPressed,
-      child: Text(textValue),
+      child: Text(textValue,
+          style: Theme.of(context)
+              .textTheme
+              .medium
+              .copyWith(fontWeight: FontWeight.w400, color: AppColor.white),
+          textAlign: TextAlign.center),
     );
   }
 }

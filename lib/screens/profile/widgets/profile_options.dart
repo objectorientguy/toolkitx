@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:toolkit/configs/app_theme.dart';
-import 'package:toolkit/screens/onboarding/selectLanguage/select_language_screen.dart';
-import 'package:toolkit/screens/onboarding/selectTimeZone/select_time_zone_screen.dart';
-import 'package:toolkit/utils/constants/string_constants.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:url_launcher/url_launcher_string.dart';
+
 import '../../../configs/app_color.dart';
 import '../../../configs/app_dimensions.dart';
 import '../../../configs/app_spacing.dart';
+import '../../../utils/constants/string_constants.dart';
 import '../../../utils/profile_util.dart';
+import '../../onboarding/language/select_language_screen.dart';
 import '../../onboarding/selectDateFormat/select_date_format_screen.dart';
-import 'package:url_launcher/url_launcher_string.dart';
-import 'package:url_launcher/url_launcher.dart';
+import '../../onboarding/selectTimeZone/select_time_zone_screen.dart';
+import '../changePassword/select_change_password_screen.dart';
 
 class ProfileOptions extends StatelessWidget {
   const ProfileOptions({Key? key}) : super(key: key);
@@ -17,15 +19,19 @@ class ProfileOptions extends StatelessWidget {
   void profileOptionsSwitchCase(context, index) async {
     switch (index) {
       case 0:
+        Navigator.pushNamed(context, SelectChangePasswordTypeScreen.routeName);
         break;
       case 1:
-        Navigator.pushNamed(context, SelectLanguageScreen.routeName);
+        Navigator.pushNamed(context, SelectLanguageScreen.routeName,
+            arguments: true);
         break;
       case 2:
-        Navigator.pushNamed(context, SelectTimeZoneScreen.routeName);
+        Navigator.pushNamed(context, SelectTimeZoneScreen.routeName,
+            arguments: true);
         break;
       case 3:
-        Navigator.pushNamed(context, SelectDateFormatScreen.routeName);
+        Navigator.pushNamed(context, SelectDateFormatScreen.routeName,
+            arguments: true);
         break;
       case 4:
         await launchUrl(Uri.parse("mailto:${StringConstants.kToolkitXEmail}"));
@@ -47,7 +53,7 @@ class ProfileOptions extends StatelessWidget {
         child: SingleChildScrollView(
             physics: const BouncingScrollPhysics(),
             child: Column(children: [
-              const SizedBox(height: tiniestSpacing),
+              const SizedBox(height: xxTiniestSpacing),
               ListView.builder(
                   physics: const BouncingScrollPhysics(),
                   padding: EdgeInsets.zero,
@@ -72,7 +78,7 @@ class ProfileOptions extends StatelessWidget {
                           profileOptionsSwitchCase(context, index);
                         });
                   }),
-              const SizedBox(height: largeSpacing),
+              const SizedBox(height: xxxMediumSpacing),
               Center(
                   child: Text("App version 1.0.9",
                       style: Theme.of(context)

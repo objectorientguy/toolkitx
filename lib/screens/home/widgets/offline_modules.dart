@@ -6,6 +6,7 @@ import '../../../configs/app_color.dart';
 import '../../../configs/app_dimensions.dart';
 import '../../../configs/app_spacing.dart';
 import '../../../utils/modules_util.dart';
+import '../../permit/permit_list_screen.dart';
 
 class OffLineModules extends StatelessWidget {
   const OffLineModules({Key? key}) : super(key: key);
@@ -15,7 +16,7 @@ class OffLineModules extends StatelessWidget {
     return Column(
       children: [
         Container(
-          height: extraLargeSpacing,
+          height: xxLargerSpacing,
           color: AppColor.errorRed,
           child: Center(
             child: Text(
@@ -28,7 +29,7 @@ class OffLineModules extends StatelessWidget {
             ),
           ),
         ),
-        const SizedBox(height: midTinySpacing),
+        const SizedBox(height: tinier),
         GridView.builder(
             primary: false,
             itemCount: 1,
@@ -36,40 +37,51 @@ class OffLineModules extends StatelessWidget {
             shrinkWrap: true,
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 3,
-                crossAxisSpacing: midTinySpacing,
-                mainAxisSpacing: midTinySpacing),
+                crossAxisSpacing: tinier,
+                mainAxisSpacing: tinier),
             itemBuilder: (BuildContext context, int index) {
-              return Card(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(kCardRadius),
-                ),
-                color: AppColor.lightestBlue,
-                shadowColor: AppColor.ghostWhite,
-                elevation: kCardElevation,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    SizedBox(
-                      child: Image.asset(
-                          ModulesUtil.listModulesMode[index].moduleImage,
-                          height: kModuleIconSize,
-                          width: kModuleIconSize),
-                    ),
-                    const SizedBox(height: tinySpacing),
-                    Padding(
-                      padding: const EdgeInsets.only(
-                          left: tiniestSpacing, right: tiniestSpacing),
-                      child: Text(
-                        ModulesUtil.listModulesMode[index].moduleName,
-                        textAlign: TextAlign.center,
+              return InkWell(
+                onTap: () => navigateToModule(index, context),
+                child: Card(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(kCardRadius),
+                  ),
+                  color: AppColor.lightestBlue,
+                  shadowColor: AppColor.ghostWhite,
+                  elevation: kCardElevation,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SizedBox(
+                        child: Image.asset(
+                            ModulesUtil.listModulesMode[index].moduleImage,
+                            height: kModuleIconSize,
+                            width: kModuleIconSize),
                       ),
-                    ),
-                  ],
+                      const SizedBox(height: xxTinySpacing),
+                      Padding(
+                        padding: const EdgeInsets.only(
+                            left: xxTiniestSpacing, right: xxTiniestSpacing),
+                        child: Text(
+                          ModulesUtil.listModulesMode[index].moduleName,
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               );
             }),
       ],
     );
+  }
+
+  navigateToModule(index, context) {
+    switch (index) {
+      case 0:
+        Navigator.pushNamed(context, PermitListScreen.routeName);
+        break;
+    }
   }
 }

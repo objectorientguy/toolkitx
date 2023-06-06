@@ -96,7 +96,7 @@ class DatePickerTextField extends StatelessWidget {
                 .xSmall
                 .copyWith(color: AppColor.grey),
             hintText: hintText,
-            contentPadding: const EdgeInsets.all(midTiniestSpacing),
+            contentPadding: const EdgeInsets.all(xxTinierSpacing),
             enabledBorder: const OutlineInputBorder(
                 borderSide: BorderSide(color: AppColor.lightGrey)),
             focusedBorder: const OutlineInputBorder(

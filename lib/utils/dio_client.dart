@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:dio/dio.dart';
 
 class DioClient {
@@ -23,7 +21,6 @@ class DioClient {
 
   Future<dynamic> post(String requestUrl, Map? body) async {
     dynamic jsonResponse;
-    log('request url=======>$requestUrl');
     try {
       final response =
           await dio.post(requestUrl, data: body, options: Options());

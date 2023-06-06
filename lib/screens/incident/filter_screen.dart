@@ -8,23 +8,22 @@ import 'package:toolkit/widgets/primary_button.dart';
 import 'widgets/date_picker.dart';
 import 'widgets/filter_status_expansion_tile.dart';
 
-class FilterScreen extends StatelessWidget {
-  static const routeName = 'FilterScreen';
+class IncidentFilterScreen extends StatelessWidget {
+  static const routeName = 'IncidentFilterScreen';
 
-  const FilterScreen({Key? key}) : super(key: key);
+  const IncidentFilterScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const GenericAppBar(
-          title: Text(
-        StringConstants.kFilter,
-      )),
+        title: StringConstants.kFilter,
+      ),
       body: Padding(
         padding: const EdgeInsets.only(
             left: leftRightMargin,
             right: leftRightMargin,
-            top: topBottomSpacing),
+            top: topBottomPadding),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
@@ -34,7 +33,7 @@ class FilterScreen extends StatelessWidget {
                     .textTheme
                     .xSmall
                     .copyWith(fontWeight: FontWeight.w600)),
-            const SizedBox(height: tinySpacing),
+            const SizedBox(height: xxTinySpacing),
             Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
               Expanded(
                 child: DatePickerTextField(
@@ -42,9 +41,9 @@ class FilterScreen extends StatelessWidget {
                   onDatePicked: (String pickDate) {},
                 ),
               ),
-              const SizedBox(width: midTiniestSpacing),
+              const SizedBox(width: xxTinierSpacing),
               const Text(StringConstants.kBis),
-              const SizedBox(width: midTiniestSpacing),
+              const SizedBox(width: xxTinierSpacing),
               Expanded(
                 child: DatePickerTextField(
                   hintText: StringConstants.kSelectDate,
@@ -52,15 +51,15 @@ class FilterScreen extends StatelessWidget {
                 ),
               )
             ]),
-            const SizedBox(height: tinySpacing),
+            const SizedBox(height: xxTinySpacing),
             Text(StringConstants.kStatus,
                 style: Theme.of(context)
                     .textTheme
                     .xSmall
                     .copyWith(fontWeight: FontWeight.w600)),
-            const SizedBox(height: tinySpacing),
+            const SizedBox(height: xxTinySpacing),
             const FilterStatusExpansionTile(),
-            const SizedBox(height: mediumSpacing),
+            const SizedBox(height: xxxSmallerSpacing),
             PrimaryButton(onPressed: () {}, textValue: StringConstants.kApply)
           ],
         ),

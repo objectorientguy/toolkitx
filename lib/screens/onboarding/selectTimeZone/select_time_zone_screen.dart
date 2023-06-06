@@ -1,61 +1,50 @@
 import 'package:flutter/material.dart';
-import 'package:toolkit/configs/app_spacing.dart';
-import 'package:toolkit/configs/app_theme.dart';
-import 'package:toolkit/screens/onboarding/widgets/custom_card.dart';
-import 'package:toolkit/utils/constants/string_constants.dart';
-
-import '../../../configs/app_dimensions.dart';
-import '../selectDateFormat/select_date_format_screen.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:toolkit/screens/onboarding/widgets/time_zone_body.dart';
+import '../../../blocs/timeZone/time_zone_bloc.dart';
+import '../../../blocs/timeZone/time_zone_events.dart';
+import '../../../blocs/timeZone/time_zone_states.dart';
+import '../../../configs/app_spacing.dart';
+import '../../../utils/constants/string_constants.dart';
 import '../../../widgets/generic_app_bar.dart';
+import '../../../widgets/error_section.dart';
 
 class SelectTimeZoneScreen extends StatelessWidget {
   static const routeName = 'SelectTimeZoneScreen';
+  final bool isFromProfile;
 
-  const SelectTimeZoneScreen({Key? key}) : super(key: key);
+  const SelectTimeZoneScreen({Key? key, this.isFromProfile = false})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    context.read<TimeZoneBloc>().add(FetchTimeZone());
     return Scaffold(
-        appBar: const GenericAppBar(),
+        appBar: const GenericAppBar(title: StringConstants.kSelectTimeZone),
         body: Padding(
-            padding: const EdgeInsets.only(
-                left: leftRightMargin,
-                right: leftRightMargin,
-                top: topBottomSpacing),
-            child:
-                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              Text(StringConstants.kSelectTimeZone,
-                  style: Theme.of(context).textTheme.medium),
-              const SizedBox(height: tinySpacing),
-              Expanded(
-                  child: ListView.separated(
-                      padding: EdgeInsets.zero,
-                      physics: const BouncingScrollPhysics(),
-                      shrinkWrap: true,
-                      itemCount: 15,
-                      itemBuilder: (context, index) {
-                        return CustomCard(
-                            shape: RoundedRectangleBorder(
-                                borderRadius:
-                                    BorderRadius.circular(kCardRadius)),
-                            child: ListTile(
-                                onTap: () {
-                                  Navigator.pushNamed(context,
-                                      SelectDateFormatScreen.routeName);
-                                },
-                                leading:
-                                    const Icon(Icons.public, size: kIconSize),
-                                title: const Padding(
-                                  padding:
-                                      EdgeInsets.only(bottom: tiniestSpacing),
-                                  child: Text(StringConstants.kTimeZone),
-                                ),
-                                subtitle:
-                                    const Text(StringConstants.kTimeLocation)));
+          padding: const EdgeInsets.only(
+              left: leftRightMargin,
+              right: leftRightMargin,
+              top: topBottomPadding),
+          child: BlocBuilder<TimeZoneBloc, TimeZoneStates>(
+              builder: (context, state) {
+            if (state is TimeZoneFetching) {
+              return const Center(child: CircularProgressIndicator());
+            } else if (state is TimeZoneFetched) {
+              return TimeZoneBody(
+                  timeZoneData: state.getTimeZoneModel.data!,
+                  isFromProfile: isFromProfile);
+            } else if (state is FetchTimeZoneError) {
+              return Center(
+                  child: GenericReloadButton(
+                      onPressed: () {
+                        context.read<TimeZoneBloc>().add(FetchTimeZone());
                       },
-                      separatorBuilder: (BuildContext context, int index) {
-                        return const SizedBox(height: tinySpacing);
-                      }))
-            ])));
+                      textValue: StringConstants.kReload));
+            } else {
+              return const SizedBox();
+            }
+          }),
+        ));
   }
 }
