@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:toolkit/configs/app_color.dart';
 import 'package:toolkit/configs/app_theme.dart';
 import 'package:toolkit/data/models/status_tag_model.dart';
-import 'package:toolkit/screens/onboarding/widgets/custom_card.dart';
 import 'package:toolkit/screens/permit/permit_details_screen.dart';
 import 'package:toolkit/screens/permit/widgets/date_time.dart';
 
@@ -11,6 +10,7 @@ import '../../../blocs/permit/permit_bloc.dart';
 import '../../../blocs/permit/permit_states.dart';
 import '../../../configs/app_dimensions.dart';
 import '../../../configs/app_spacing.dart';
+import '../../../widgets/custom_card.dart';
 import '../../../widgets/icon_and_text_row.dart';
 import '../../../widgets/status_tag.dart';
 

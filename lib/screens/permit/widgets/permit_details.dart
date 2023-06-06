@@ -31,7 +31,8 @@ class PermitDetails extends StatelessWidget {
           Text(permitDetailsModel.data.tab1.schedule,
               style: Theme.of(context).textTheme.small),
           const SizedBox(height: tiny),
-          Text(DatabaseUtil.getText('NPI'),
+          Text(
+            DatabaseUtil.getText('NPI'),
             style: Theme.of(context)
                 .textTheme
                 .medium
