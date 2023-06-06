@@ -8,7 +8,7 @@ import 'package:toolkit/utils/database_utils.dart';
 import 'package:toolkit/widgets/generic_app_bar.dart';
 import '../../configs/app_spacing.dart';
 import '../../widgets/custom_icon_button_row.dart';
-import '../home/widgets/permit_list_tile.dart';
+import 'widgets/permit_list_tile.dart';
 
 class PermitListScreen extends StatelessWidget {
   static const routeName = 'PermitListScreen';
