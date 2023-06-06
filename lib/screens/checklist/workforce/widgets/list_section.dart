@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:toolkit/configs/app_theme.dart';
 import 'package:toolkit/data/models/checklist/workforce/list_model.dart';
-import '../../../../blocs/checklist/workforce/checklist_bloc.dart';
-import '../../../../blocs/checklist/workforce/checklist_events.dart';
+import '../../../../blocs/checklist/workforce/workforce_checklist_bloc.dart';
+import '../../../../blocs/checklist/workforce/workforce_checklist_events.dart';
 import '../../../../configs/app_color.dart';
 import '../../../../configs/app_spacing.dart';
 import '../../../../utils/constants/string_constants.dart';
@@ -64,18 +64,22 @@ class ListSection extends StatelessWidget {
                                 .xSmall
                                 .copyWith(color: AppColor.grey)),
                         const SizedBox(height: midTiniestSpacing),
-                        CustomVisibilityTagContainer(
-                            visible: workforceGetCheckListModel
-                                    .data![index].isrejected !=
-                                '0',
-                            color: AppColor.errorRed,
-                            textValue: StringConstants.kNotAccepted),
-                        CustomVisibilityTagContainer(
-                            visible: workforceGetCheckListModel
-                                    .data![index].isoverdue !=
-                                '0',
-                            color: AppColor.yellow,
-                            textValue: StringConstants.kOverdue)
+                        Visibility(
+                          visible: workforceGetCheckListModel
+                                  .data![index].isrejected !=
+                              '0',
+                          child: const CustomTagContainer(
+                              color: AppColor.errorRed,
+                              textValue: StringConstants.kNotAccepted),
+                        ),
+                        Visibility(
+                          visible: workforceGetCheckListModel
+                                  .data![index].isoverdue !=
+                              '0',
+                          child: const CustomTagContainer(
+                              color: AppColor.yellow,
+                              textValue: StringConstants.kOverdue),
+                        )
                       ]),
                   onTap: () {
                     Map checklistDataMap = {

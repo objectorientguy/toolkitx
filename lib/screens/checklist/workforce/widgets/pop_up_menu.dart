@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:toolkit/blocs/checklist/workforce/checklist_bloc.dart';
-import 'package:toolkit/blocs/checklist/workforce/checklist_states.dart';
+import 'package:toolkit/blocs/checklist/workforce/workforce_checklist_bloc.dart';
+import 'package:toolkit/blocs/checklist/workforce/workforce_checklist_states.dart';
 import 'package:toolkit/configs/app_dimensions.dart';
 import 'package:toolkit/configs/app_theme.dart';
 import 'package:toolkit/screens/checklist/workforce/edit_questions_screen.dart';
-import '../../../../blocs/checklist/workforce/checklist_events.dart';
+import '../../../../blocs/checklist/workforce/workforce_checklist_events.dart';
 import '../../../../configs/app_spacing.dart';
 import '../reject_reasons.dart';
 

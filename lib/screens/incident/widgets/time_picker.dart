@@ -8,13 +8,16 @@ import '../../../configs/app_spacing.dart';
 import '../../../utils/constants/string_constants.dart';
 import '../../../widgets/text_button.dart';
 
+typedef TimeCallBack = Function(String timePicked);
+
 class TimePickerTextField extends StatelessWidget {
   final DateTime? initialDateTime;
   final String editTime;
   final String? hintText;
   final DateTime? minimumTime;
   final TextEditingController timeInputController = TextEditingController();
-  late final bool? isFirstTime;
+  bool? isFirstTime;
+  final TimeCallBack onTimePicked;
 
   TimePickerTextField({
     Key? key,
@@ -23,6 +26,7 @@ class TimePickerTextField extends StatelessWidget {
     this.hintText,
     this.minimumTime,
     this.isFirstTime = true,
+    required this.onTimePicked,
   }) : super(key: key);
 
   void showDatePicker(BuildContext context) {
@@ -49,6 +53,7 @@ class TimePickerTextField extends StatelessWidget {
                                   DateFormat("HH:mm").format(value);
                               timeInputController.text = formattedDate;
                               isFirstTime = false;
+                              onTimePicked(timeInputController.text);
                             },
                             minuteInterval: 1)),
                     CustomTextButton(
@@ -57,9 +62,11 @@ class TimePickerTextField extends StatelessWidget {
                             if (initialDateTime == null) {
                               timeInputController.text =
                                   DateFormat('HH.mm').format(DateTime.now());
+                              onTimePicked(timeInputController.text);
                             } else {
                               timeInputController.text =
                                   DateFormat('HH.mm').format(initialDateTime!);
+                              onTimePicked(timeInputController.text);
                             }
                           }
                           Navigator.pop(context);
@@ -77,6 +84,7 @@ class TimePickerTextField extends StatelessWidget {
         onChanged: (value) {},
         onTap: () async {
           showDatePicker(context);
+          onTimePicked(timeInputController.text);
         },
         cursorColor: AppColor.black,
         decoration: InputDecoration(

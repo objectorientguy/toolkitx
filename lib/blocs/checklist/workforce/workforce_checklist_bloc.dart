@@ -4,14 +4,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:toolkit/data/models/checklist/workforce/list_model.dart';
 import 'package:toolkit/data/models/checklist/workforce/reject_reasons_model.dart';
 import 'package:toolkit/data/models/checklist/workforce/submit_questions.dart';
-import 'package:toolkit/repositories/checklist/workforce/repository.dart';
+import 'package:toolkit/repositories/checklist/workforce/workforce_repository.dart';
 import '../../../../di/app_module.dart';
 import '../../../data/models/checklist/workforce/questions_comments_model.dart';
 import '../../../data/models/checklist/workforce/questions_list_model.dart';
 import '../../../data/models/checklist/workforce/save_questions_comments.dart';
 import '../../../data/models/checklist/workforce/save_reject_reasons.dart';
-import 'checklist_events.dart';
-import 'checklist_states.dart';
+import 'workforce_checklist_events.dart';
+import 'workforce_checklist_states.dart';
 
 class WorkforceChecklistBloc
     extends Bloc<WorkforceCheckListEvents, WorkforceChecklistStates> {
@@ -34,7 +34,7 @@ class WorkforceChecklistBloc
     on<FetchQuestionComment>(_fetchQuestionComments);
     on<SaveQuestionComment>(_saveQuestionComments);
     on<SubmitQuestions>(_submitQuestions);
-    on<PopulateQuestion>(_populateQuestions);
+    on<EditQuestionData>(_editQuestionsData);
     on<EditQuestions>(_editQuestions);
   }
 
@@ -98,20 +98,18 @@ class WorkforceChecklistBloc
             answerText = getQuestionListModel
                 .data!.questionlist![i].optioncomment
                 .toString();
+            log("answer text 1=======>$answerText");
           } else if (getQuestionListModel.data!.questionlist![i].optionid !=
               null) {
-            answerText =
-                getQuestionListModel.data!.questionlist![i].optionid.toString();
+            answerText = getQuestionListModel.data!.questionlist![i].optiontext
+                .toString();
+            log("answer text 2=======>$answerText");
           }
           answerList.add({
-            "id": getQuestionListModel.data!.questionlist![i].id,
-            "type": getQuestionListModel.data!.questionlist![i].type,
+            "questionid": getQuestionListModel.data!.questionlist![i].id,
             "answer": answerText
           });
-          log("bloc id==========>${answerList[i]["id"]}");
-          log("bloc answer==========>${answerList[i]["answer"]}");
         }
-        log("answer listt==========>$answerList");
         emit(QuestionsFetched(
             getQuestionListModel: getQuestionListModel,
             answerList: answerList,
@@ -134,18 +132,22 @@ class WorkforceChecklistBloc
       SaveRejectReasons event, Emitter<WorkforceChecklistStates> emit) async {
     emit(SavingRejectReasons());
     try {
-      Map saveRejectReasonMap = {
-        "scheduleid": allDataForChecklistMap["scheduleId"],
-        "workforceid": allDataForChecklistMap["userId"],
-        "reasontext": event.reason,
-        "hashcode":
-            '9i2CF+lFcvH59NOsOTI9b2POWg0nKle29CpuaapAGRJGICrBkG7OH4mA2ip4z1yY|3|2|1|ist_42'
-      };
-      PostRejectReasonsModel postRejectReasonsModel =
-          await _workforceChecklistRepository
-              .saveRejectReasons(saveRejectReasonMap);
-      log("ye hai map jo post ho gaya=====>$saveRejectReasonMap");
-      emit(RejectReasonsSaved(postRejectReasonsModel: postRejectReasonsModel));
+      if (event.reason == "null" || event.reason.trim().isEmpty) {
+        emit(RejectReasonsNotSaved(message: 'Please select a reason!'));
+      } else {
+        Map saveRejectReasonMap = {
+          "scheduleid": allDataForChecklistMap["scheduleId"],
+          "workforceid": allDataForChecklistMap["userId"],
+          "reasontext": event.reason,
+          "hashcode":
+              '9i2CF+lFcvH59NOsOTI9b2POWg0nKle29CpuaapAGRJGICrBkG7OH4mA2ip4z1yY|3|2|1|ist_42'
+        };
+        PostRejectReasonsModel postRejectReasonsModel =
+            await _workforceChecklistRepository
+                .saveRejectReasons(saveRejectReasonMap);
+        emit(
+            RejectReasonsSaved(postRejectReasonsModel: postRejectReasonsModel));
+      }
     } catch (e) {
       emit(RejectReasonsNotSaved(message: e.toString()));
     }
@@ -171,20 +173,24 @@ class WorkforceChecklistBloc
       SaveQuestionComment event, Emitter<WorkforceChecklistStates> emit) async {
     emit(SavingQuestionComments());
     try {
-      Map saveQuestionCommentMap = {
-        "id": allDataForChecklistMap["userId"],
-        "queresponseid": allDataForChecklistMap["questionResponseId"],
-        "comments": event.saveQuestionCommentMap["comments"],
-        "filenames": '',
-        "hashcode":
-            '9i2CF+lFcvH59NOsOTI9b2POWg0nKle29CpuaapAGRJGICrBkG7OH4mA2ip4z1yY|3|2|1|ist_42'
-      };
-      SaveQuestionCommentsModel saveQuestionCommentsModel =
-          await _workforceChecklistRepository
-              .saveQuestionsComments(saveQuestionCommentMap);
-      emit(QuestionCommentsSaved(
-          saveQuestionCommentsModel: saveQuestionCommentsModel));
-      log("mapp save comment=====>$saveQuestionCommentMap");
+      if (event.saveQuestionCommentMap["comments"] == null ||
+          event.saveQuestionCommentMap["comments"].toString().trim().isEmpty) {
+        emit(QuestionCommentsNotSaved(message: 'Please enter comment!'));
+      } else {
+        Map saveQuestionCommentMap = {
+          "id": allDataForChecklistMap["userId"],
+          "queresponseid": allDataForChecklistMap["questionResponseId"],
+          "comments": event.saveQuestionCommentMap["comments"],
+          "filenames": '',
+          "hashcode":
+              '9i2CF+lFcvH59NOsOTI9b2POWg0nKle29CpuaapAGRJGICrBkG7OH4mA2ip4z1yY|3|2|1|ist_42'
+        };
+        SaveQuestionCommentsModel saveQuestionCommentsModel =
+            await _workforceChecklistRepository
+                .saveQuestionsComments(saveQuestionCommentMap);
+        emit(QuestionCommentsSaved(
+            saveQuestionCommentsModel: saveQuestionCommentsModel));
+      }
     } catch (e) {
       emit(QuestionCommentsNotSaved(message: e.toString()));
     }
@@ -195,6 +201,7 @@ class WorkforceChecklistBloc
     emit(SubmittingQuestion());
     try {
       log("event edit questions list=====>${event.editQuestionsList}");
+      log("draftt=========>${event.isDraft}");
       submitList = [];
       String id = '';
       String answer = '';
@@ -209,7 +216,7 @@ class WorkforceChecklistBloc
       Map submitQuestionMap = {
         "checklistid": allDataForChecklistMap["checklistId"],
         "workforceid": allDataForChecklistMap["userId"],
-        "isdraft": allDataForChecklistMap["isDraft"],
+        "isdraft": (event.isDraft == true) ? "1" : "",
         "questions": submitList,
         "scheduleid": allDataForChecklistMap["scheduleId"],
         "hashcode":
@@ -224,38 +231,33 @@ class WorkforceChecklistBloc
     }
   }
 
-  _populateQuestions(
-      PopulateQuestion event, Emitter<WorkforceChecklistStates> emit) async {
-    List populateQuestions = List.from(answerList);
-    List updateAnswer = List.from(answerList);
-    log("populate questions========>$populateQuestions");
-    for (int i = 0; i < answerList.length; i++) {
-      if (answerList[i]["type"] == 3) {
-        int match = questionList!
-            .indexWhere((element) => element.id == answerList[i]["id"]);
-        int optionIndex = questionList![match].queoptions!.indexWhere(
-            (element) =>
-                element["queoptionid"].toString() ==
-                answerList[i]["answer"].toString());
-        log("match============>$match");
-        log("optionIndex============>$optionIndex");
-        populateQuestions[i]["answer"] =
-            questionList![match].queoptions![optionIndex]["queoptiontext"];
-      }
-    }
+  _editQuestionsData(
+      EditQuestionData event, Emitter<WorkforceChecklistStates> emit) async {
+    add(EditQuestions(
+        dropDownValue: '',
+        multiSelectList: [],
+        multiSelectItem: '',
+        multiSelectName: ''));
     emit(SavedQuestions(
       answerModelList: questionList!,
-      populateAnswerList: populateQuestions,
       allChecklistDataMap: allDataForChecklistMap,
-      updateAnswer: updateAnswer,
+      saveDraft: '',
+      answersList: answerList,
     ));
-    add(EditQuestions(editQuestionsList: []));
   }
 
-  _editQuestions(
-      EditQuestions event, Emitter<WorkforceChecklistStates> emit) async {
-    log("event edites question======>${event.editQuestionsList}");
-    log("submit list======>$submitList");
-    emit(QuestionsEdited(questionsEditedList: submitList));
+  _editQuestions(EditQuestions event, Emitter<WorkforceChecklistStates> emit) {
+    List multiSelectList = List.from(event.multiSelectList);
+    if (event.multiSelectItem.isNotEmpty && event.multiSelectList != []) {
+      if (event.multiSelectList.contains(event.multiSelectItem) != true) {
+        multiSelectList.add(event.multiSelectItem);
+      } else {
+        multiSelectList.remove(event.multiSelectItem);
+      }
+    }
+    emit(QuestionsEdited(
+        dropDownValue: event.dropDownValue,
+        multiSelect: multiSelectList,
+        radioValue: event.radioValue));
   }
 }

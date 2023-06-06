@@ -6,13 +6,13 @@ import 'package:toolkit/utils/constants/string_constants.dart';
 class AndroidPopUp extends StatelessWidget {
   final String titleValue;
   final String contentValue;
-  final void Function()? onPressed;
+  final void Function() onPressed;
 
   const AndroidPopUp(
       {Key? key,
       required this.titleValue,
       required this.contentValue,
-      this.onPressed})
+      required this.onPressed})
       : super(key: key);
 
   @override

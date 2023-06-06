@@ -1,22 +1,25 @@
+import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:toolkit/blocs/checklist/workforce/checklist_bloc.dart';
-import 'package:toolkit/blocs/checklist/workforce/checklist_events.dart';
+import 'package:toolkit/blocs/checklist/workforce/workforce_checklist_bloc.dart';
+import 'package:toolkit/blocs/checklist/workforce/workforce_checklist_events.dart';
 import 'package:toolkit/configs/app_theme.dart';
 import '../../../../configs/app_color.dart';
 import '../../../../configs/app_spacing.dart';
 import '../../../../data/models/checklist/workforce/questions_list_model.dart';
 
-typedef CheckBoxCallBack = Function(String checkbox);
+typedef CheckBoxCallBack = Function(String checkboxId, String checkboxValue);
 
 class MultiSelectExpansionTile extends StatelessWidget {
-  final CheckBoxCallBack onCheckBoxChecked;
   final List<Questionlist> answerModelList;
+  final int index;
+  final List selectedItems;
 
   const MultiSelectExpansionTile(
       {Key? key,
-      required this.onCheckBoxChecked,
-      required this.answerModelList})
+      required this.answerModelList,
+      required this.index,
+      required this.selectedItems})
       : super(key: key);
 
   @override
@@ -36,21 +39,30 @@ class MultiSelectExpansionTile extends StatelessWidget {
               ListView.builder(
                   physics: const BouncingScrollPhysics(),
                   shrinkWrap: true,
-                  itemCount: answerModelList[0].queoptions!.length,
-                  itemBuilder: (BuildContext context, int index) {
+                  itemCount: answerModelList[index].queoptions!.length,
+                  itemBuilder: (BuildContext context, int listIndex) {
                     return CheckboxListTile(
-                      value: false,
-                      title: const Text(''),
-                      controlAffinity: ListTileControlAffinity.leading,
-                      onChanged: (isChecked) {
-                        context.read<WorkforceChecklistBloc>().add(
-                            PopulateQuestion(
-                                multiSelect: '',
-                                questionList: answerModelList,
-                                populateQuestionsList: [],
-                                dropDownValue: null));
-                      },
-                    );
+                        value: selectedItems.contains(answerModelList[index]
+                            .queoptions![listIndex]["queoptionid"]
+                            .toString()),
+                        title: Text(answerModelList[index]
+                            .queoptions![listIndex]["queoptiontext"]),
+                        controlAffinity: ListTileControlAffinity.trailing,
+                        onChanged: (isChecked) {
+                          String selectedId = answerModelList[index]
+                              .queoptions![listIndex]["queoptionid"]
+                              .toString();
+                          context.read<WorkforceChecklistBloc>().add(
+                              EditQuestions(
+                                  multiSelectList: selectedItems,
+                                  multiSelectItem: answerModelList[index]
+                                      .queoptions![listIndex]["queoptionid"]
+                                      .toString(),
+                                  multiSelectName: answerModelList[index]
+                                          .queoptions![listIndex]
+                                      ["queoptiontext"]));
+                          log("replace all=====>$selectedId");
+                        });
                   })
             ]));
   }

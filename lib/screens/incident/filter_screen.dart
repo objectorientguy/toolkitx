@@ -39,6 +39,7 @@ class FilterScreen extends StatelessWidget {
               Expanded(
                 child: DatePickerTextField(
                   hintText: StringConstants.kSelectDate,
+                  onDatePicked: (String pickDate) {},
                 ),
               ),
               const SizedBox(width: midTiniestSpacing),
@@ -47,6 +48,7 @@ class FilterScreen extends StatelessWidget {
               Expanded(
                 child: DatePickerTextField(
                   hintText: StringConstants.kSelectDate,
+                  onDatePicked: (String pickDate) {},
                 ),
               )
             ]),

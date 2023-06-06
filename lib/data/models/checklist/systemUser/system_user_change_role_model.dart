@@ -1,7 +1,3 @@
-// To parse this JSON data, do
-//
-//     final checkListRolesModel = checkListRolesModelFromJson(jsonString);
-
 import 'dart:convert';
 
 CheckListRolesModel checkListRolesModelFromJson(String str) =>

@@ -3,24 +3,29 @@ import 'dart:developer';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:toolkit/utils/constants/string_constants.dart';
 import '../../../../di/app_module.dart';
-import '../../../data/models/checklist/systemUser/approve_model.dart';
-import '../../../data/models/checklist/systemUser/category_model.dart';
-import '../../../data/models/checklist/systemUser/change_role_model.dart';
-import '../../../data/models/checklist/systemUser/details_model.dart';
-import '../../../data/models/checklist/systemUser/get_edit_header_model.dart';
-import '../../../data/models/checklist/systemUser/list_model.dart';
-import '../../../data/models/checklist/systemUser/pdf_model.dart';
-import '../../../data/models/checklist/systemUser/reject_model.dart';
-import '../../../data/models/checklist/systemUser/status_model.dart';
-import '../../../data/models/checklist/systemUser/submit_header_model.dart';
-import '../../../repositories/checklist/systemUser/repository.dart';
-import 'checklist_events.dart';
-import 'checklist_states.dart';
+import '../../../data/models/checklist/systemUser/system_user_approve_model.dart';
+import '../../../data/models/checklist/systemUser/system_user_category_model.dart';
+import '../../../data/models/checklist/systemUser/system_user_change_role_model.dart';
+import '../../../data/models/checklist/systemUser/system_user_cheklist_by_dates_model.dart';
+import '../../../data/models/checklist/systemUser/system_user_edit_header_details_model.dart';
+import '../../../data/models/checklist/systemUser/system_user_list_model.dart';
+import '../../../data/models/checklist/systemUser/system_user_pdf_model.dart';
+import '../../../data/models/checklist/systemUser/system_user_reject_model.dart';
+import '../../../data/models/checklist/systemUser/sys_user_save_third_party_approval_model.dart';
+import '../../../data/models/checklist/systemUser/system_user_workfoce_list_model.dart';
+import '../../../data/models/checklist/systemUser/system_user_submit_header_model.dart';
+import '../../../repositories/checklist/systemUser/system_user_repository.dart';
+import 'system_user_checklist_events.dart';
+import 'system_user_checklist_states.dart';
 
 class ChecklistBloc extends Bloc<ChecklistEvents, ChecklistStates> {
   final ChecklistRepository _checklistRepository = getIt<ChecklistRepository>();
   String roleIdKey = '';
   String roleNameKey = '';
+  List responseIdList = [];
+  Map allChecklistDataMap = {};
+  int page = 0;
+  bool isFetching = false;
 
   ChecklistStates get initialState => ChecklistInitial();
 
@@ -40,17 +45,24 @@ class ChecklistBloc extends Bloc<ChecklistEvents, ChecklistStates> {
     on<ChecklistApprove>(_checklistApprove);
     on<ChecklistReject>(_checklistReject);
     on<SubmitHeader>(_submitHeader);
+    on<ThirdPartyApprove>(_thirdPartyApprove);
   }
 
   FutureOr<void> _fetchChecklist(
       FetchChecklist event, Emitter<ChecklistStates> emit) async {
     emit(ChecklistFetching());
     try {
-      GetChecklistModel getChecklistModel =
-          await _checklistRepository.fetchChecklist();
-      emit(ChecklistFetched(getChecklistModel: getChecklistModel));
+      ChecklistListModel getChecklistModel =
+          await _checklistRepository.fetchChecklist(page);
+      if (getChecklistModel.status == 200) {
+        emit(ChecklistFetched(getChecklistModel: getChecklistModel));
+        page++;
+        log("pageee=====>$page");
+      } else {
+        emit(ChecklistError(errorMessage: ''));
+      }
     } catch (e) {
-      emit(ChecklistError());
+      emit(ChecklistError(errorMessage: ''));
     }
   }
 
@@ -58,19 +70,21 @@ class ChecklistBloc extends Bloc<ChecklistEvents, ChecklistStates> {
       FetchChecklistScheduleDates event, Emitter<ChecklistStates> emit) async {
     emit(FetchingChecklistScheduleDates());
     try {
-      GetChecklistDetailsModel getChecklistDetailsModel =
+      ChecklistScheduledByDatesModel getChecklistDetailsModel =
           await _checklistRepository.fetchChecklistDetails(event.checklistId);
       emit(ChecklistDatesScheduled(
-          getChecklistDetailsModel: getChecklistDetailsModel));
+          getChecklistDetailsModel: getChecklistDetailsModel,
+          allChecklistDataMap: allChecklistDataMap));
     } catch (e) {
       emit(ChecklistScheduleDatesError());
     }
   }
 
   _checkResponse(CheckResponse event, Emitter<ChecklistStates> emit) {
+    allChecklistDataMap["scheduleId"] = event.scheduleId;
     event.getChecklistDetailsData.responsecount != 0
         ? add(FetchChecklistWorkforceList(
-            scheduleId: event.scheduleId, role: roleIdKey))
+            scheduleId: event.scheduleId, role: roleIdKey, responseIds: []))
         : emit(ResponseChecked());
   }
 
@@ -78,13 +92,13 @@ class ChecklistBloc extends Bloc<ChecklistEvents, ChecklistStates> {
       FetchChecklistWorkforceList event, Emitter<ChecklistStates> emit) async {
     emit(FetchingChecklistWorkforceList());
     try {
-      GetChecklistStatusModel getChecklistStatusModel =
+      ChecklistWorkforceListModel getChecklistStatusModel =
           await _checklistRepository.fetchChecklistStatus(
               event.scheduleId, event.role);
       add(StatusCheckBoxCheck(
-          statusId: '',
+          responseId: '',
           getChecklistStatusModel: getChecklistStatusModel,
-          selectedStatus: []));
+          selectedResponseIds: []));
     } catch (e) {
       emit(ChecklistWorkforceListError());
     }
@@ -163,10 +177,11 @@ class ChecklistBloc extends Bloc<ChecklistEvents, ChecklistStates> {
       FetchEditHeader event, Emitter<ChecklistStates> emit) async {
     emit(FetchingEditHeader(scheduleId: event.scheduleId));
     try {
-      GetCheckListEditHeaderModel getCheckListEditHeaderModel =
+      CheckListEditHeaderDetailsModel getCheckListEditHeaderModel =
           await _checklistRepository.fetchEditHeader(event.scheduleId);
       emit(EditHeaderFetched(
-          getCheckListEditHeaderModel: getCheckListEditHeaderModel));
+          getCheckListEditHeaderModel: getCheckListEditHeaderModel,
+          allChecklistDataMap: allChecklistDataMap));
     } catch (e) {
       emit(EditHeaderError());
     }
@@ -174,20 +189,22 @@ class ChecklistBloc extends Bloc<ChecklistEvents, ChecklistStates> {
 
   _statusCheckboxCheck(
       StatusCheckBoxCheck event, Emitter<ChecklistStates> emit) {
-    List listChanged = List.from(event.selectedStatus);
-    if (event.statusId != '') {
-      if (event.selectedStatus.contains(event.statusId) != true) {
-        listChanged.add(event.statusId);
+    List responseIdsList = List.from(event.selectedResponseIds);
+    if (event.responseId != '') {
+      if (event.selectedResponseIds.contains(event.responseId) != true) {
+        responseIdsList.add(event.responseId);
         event.popUpBuilder = true;
       } else {
-        listChanged.remove(event.statusId);
+        responseIdsList.remove(event.responseId);
         event.popUpBuilder = false;
       }
     }
+    responseIdList = List.from(responseIdsList);
     emit(ChecklistWorkforceListFetched(
         getChecklistStatusModel: event.getChecklistStatusModel,
-        selectedStatusList: listChanged,
-        popUpMenuBuilder: event.popUpBuilder));
+        selectedIdsList: responseIdsList,
+        popUpMenuBuilder: event.popUpBuilder,
+        allChecklistDataMap: allChecklistDataMap));
   }
 
   _fetchPopUpMenuItems(FetchPopUpMenu event, Emitter<ChecklistStates> emit) {
@@ -201,7 +218,6 @@ class ChecklistBloc extends Bloc<ChecklistEvents, ChecklistStates> {
       popUpMenuItems.removeAt(1);
       popUpMenuItems.removeAt(0);
     }
-    log("poop items========>$popUpMenuItems");
     emit(PopUpMenuItemsFetched(popUpMenuItems: popUpMenuItems));
   }
 
@@ -209,21 +225,21 @@ class ChecklistBloc extends Bloc<ChecklistEvents, ChecklistStates> {
       ChecklistApprove event, Emitter<ChecklistStates> emit) async {
     emit(ChecklistApprovingData());
     try {
-      if (event.approveMap["comment"] == null) {
+      if (event.approveMap["comment"] == null ||
+          event.approveMap["comment"].toString().trim().isEmpty) {
         emit(ChecklistApproveError(message: StringConstants.kAddComment));
       }
-      List scheduleId = [];
-      for (int i = 0; i < event.approveMap["id"].length; i++) {
-        scheduleId.add({"id": event.approveMap["id"][i]});
+      List responseId = [];
+      for (int i = 0; i < responseIdList.length; i++) {
+        responseId.add({"id": responseIdList[i]});
       }
       final Map postApproveDataMap = {
         "hashcode":
             "SvwH32gnWK1slqvskIsSg9duoVfgOQLWitcfZGr+n2KX1yltKm2T+EbsIhBm0E6B|3|1|1|azot_91",
-        "responseids": scheduleId,
+        "responseids": responseId,
         "comments": event.approveMap["comment"]
       };
-      log("postttt=====>$postApproveDataMap");
-      PostChecklistApproveModel postChecklistApproveModel =
+      ChecklistApproveModel postChecklistApproveModel =
           await _checklistRepository.checklistApprove(postApproveDataMap);
       emit(ChecklistDataApproved(
           postChecklistApproveModel: postChecklistApproveModel));
@@ -234,14 +250,15 @@ class ChecklistBloc extends Bloc<ChecklistEvents, ChecklistStates> {
 
   FutureOr<void> _checklistReject(
       ChecklistReject event, Emitter<ChecklistStates> emit) async {
-    emit(ChecklistRejectingData());
+    emit(RejectingChecklist());
     try {
-      if (event.rejectMap["comment"] == null) {
-        emit(ChecklistApproveError(message: StringConstants.kAddComment));
+      if (event.rejectMap["comment"] == null ||
+          event.rejectMap["comment"].toString().trim().isEmpty) {
+        emit(ChecklistNotRejected(message: StringConstants.kAddComment));
       }
       List scheduleId = [];
-      for (int i = 0; i < event.rejectMap["id"].length; i++) {
-        scheduleId.add({"id": event.rejectMap["id"][i]});
+      for (int i = 0; i < responseIdList.length; i++) {
+        scheduleId.add({"id": responseIdList[i]});
       }
       final Map postRejectDataMap = {
         "hashcode":
@@ -249,12 +266,12 @@ class ChecklistBloc extends Bloc<ChecklistEvents, ChecklistStates> {
         "responseids": scheduleId,
         "comments": event.rejectMap["comment"]
       };
-      PostChecklistRejectModel postChecklistRejectModel =
+      ChecklistRejectModel postChecklistRejectModel =
           await _checklistRepository.checklistReject(postRejectDataMap);
       emit(ChecklistRejected(
           postChecklistRejectModel: postChecklistRejectModel));
     } catch (e) {
-      emit(ChecklistRejectError(message: e.toString()));
+      emit(ChecklistNotRejected(message: e.toString()));
     }
   }
 
@@ -263,7 +280,7 @@ class ChecklistBloc extends Bloc<ChecklistEvents, ChecklistStates> {
     emit(SubmittingHeader());
     try {
       if (event.submitHeaderList[0]["value"].toString() == "null" ||
-          event.submitHeaderList[0]["value"].toString().trim() == '') {
+          event.submitHeaderList[0]["value"].toString().trim().isEmpty) {
         emit(SubmitHeaderError(
             message: StringConstants.kAnswerQuestionValidation));
       } else {
@@ -273,7 +290,7 @@ class ChecklistBloc extends Bloc<ChecklistEvents, ChecklistStates> {
           "answers": event.submitHeaderList,
           "scheduleid": event.submitHeaderMap["scheduleId"]
         };
-        PostChecklistSubmitHeaderModel postChecklistSubmitHeaderModel =
+        ChecklistSubmitHeaderModel postChecklistSubmitHeaderModel =
             await _checklistRepository.submitHeader(postEditHeaderMap);
         emit(HeaderSubmitted(
             postChecklistSubmitHeaderModel: postChecklistSubmitHeaderModel));
@@ -281,5 +298,37 @@ class ChecklistBloc extends Bloc<ChecklistEvents, ChecklistStates> {
     } catch (e) {
       emit(SubmitHeaderError(message: e.toString()));
     }
+  }
+
+  FutureOr<void> _thirdPartyApprove(
+      ThirdPartyApprove event, Emitter<ChecklistStates> emit) async {
+    emit(ApprovingThirdParty());
+    // try {
+    if (event.thirdPartyApprove["name"].toString() == "null" ||
+        event.thirdPartyApprove["name"].toString().trim().isEmpty) {
+      emit(ThirdPartyDisapprove(message: 'Please enter name'));
+    } else {
+      List responseId = [];
+      for (int i = 0; i < responseIdList.length; i++) {
+        responseId.add({"id": responseIdList[i]});
+      }
+      Map saveThirdPartyApprovalMap = {
+        "hashcode":
+            "SvwH32gnWK1slqvskIsSg9duoVfgOQLWitcfZGr+n2KX1yltKm2T+EbsIhBm0E6B|3|1|1|azot_91",
+        "responseids": responseId,
+        "name": event.thirdPartyApprove["name"],
+        "sign_text": event.thirdPartyApprove["sign_text"]
+      };
+      log("mappppp 1======>$saveThirdPartyApprovalMap");
+      SaveThirdPartyApproval saveThirdPartyApproval = await _checklistRepository
+          .saveThirdPartyApproval(saveThirdPartyApprovalMap);
+      emit(ThirdPartyApproved(
+          saveThirdPartyApproval: saveThirdPartyApproval,
+          thirdPartyApproveMap: event.thirdPartyApprove));
+      log("mappppp======>$saveThirdPartyApprovalMap");
+    }
+    // } catch (e) {
+    //   emit(ThirdPartyDisapprove(message: e.toString()));
+    // }
   }
 }

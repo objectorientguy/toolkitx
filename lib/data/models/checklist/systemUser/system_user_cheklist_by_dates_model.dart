@@ -1,24 +1,24 @@
 import 'dart:convert';
 
-GetChecklistDetailsModel getChecklistDetailsModelFromJson(String str) =>
-    GetChecklistDetailsModel.fromJson(json.decode(str));
+ChecklistScheduledByDatesModel getChecklistDetailsModelFromJson(String str) =>
+    ChecklistScheduledByDatesModel.fromJson(json.decode(str));
 
-String getChecklistDetailsModelToJson(GetChecklistDetailsModel data) =>
+String getChecklistDetailsModelToJson(ChecklistScheduledByDatesModel data) =>
     json.encode(data.toJson());
 
-class GetChecklistDetailsModel {
+class ChecklistScheduledByDatesModel {
   final int status;
   final String? message;
   final List<GetChecklistDetailsData>? data;
 
-  GetChecklistDetailsModel({
+  ChecklistScheduledByDatesModel({
     required this.status,
     this.message,
     this.data,
   });
 
-  factory GetChecklistDetailsModel.fromJson(Map<String, dynamic> json) =>
-      GetChecklistDetailsModel(
+  factory ChecklistScheduledByDatesModel.fromJson(Map<String, dynamic> json) =>
+      ChecklistScheduledByDatesModel(
         status: json["Status"],
         message: json["Message"],
         data: List<GetChecklistDetailsData>.from(

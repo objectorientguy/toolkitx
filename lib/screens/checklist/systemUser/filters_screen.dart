@@ -8,9 +8,9 @@ import 'package:toolkit/utils/constants/string_constants.dart';
 import 'package:toolkit/widgets/generic_app_bar.dart';
 import 'package:toolkit/widgets/primary_button.dart';
 
-import '../../../blocs/checklist/systemUser/checklist_bloc.dart';
-import '../../../blocs/checklist/systemUser/checklist_events.dart';
-import '../../../blocs/checklist/systemUser/checklist_states.dart';
+import '../../../blocs/checklist/systemUser/system_user_checklist_bloc.dart';
+import '../../../blocs/checklist/systemUser/system_user_checklist_events.dart';
+import '../../../blocs/checklist/systemUser/system_user_checklist_states.dart';
 import '../../../configs/app_color.dart';
 
 class FiltersScreen extends StatelessWidget {
@@ -42,7 +42,9 @@ class FiltersScreen extends StatelessWidget {
                         Text(StringConstants.kChecklistName,
                             style: Theme.of(context).textTheme.medium),
                         const SizedBox(height: midTinySpacing),
-                        TextFieldWidget(),
+                        TextFieldWidget(
+                          onTextFieldValueChanged: (String textValue) {},
+                        ),
                         const SizedBox(height: midTinySpacing),
                         Text(StringConstants.kCategory,
                             style: Theme.of(context).textTheme.medium),

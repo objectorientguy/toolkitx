@@ -2,16 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:toolkit/configs/app_theme.dart';
 import 'package:toolkit/utils/constants/string_constants.dart';
-import '../../../blocs/checklist/systemUser/checklist_bloc.dart';
-import '../../../blocs/checklist/systemUser/checklist_events.dart';
+import '../../../blocs/checklist/systemUser/system_user_checklist_bloc.dart';
+import '../../../blocs/checklist/systemUser/system_user_checklist_events.dart';
 import '../../../configs/app_color.dart';
 import '../../../configs/app_dimensions.dart';
 import '../../../configs/app_spacing.dart';
-import '../../../data/models/checklist/systemUser/status_model.dart';
+import '../../../data/models/checklist/systemUser/system_user_workfoce_list_model.dart';
 import '../../onboarding/widgets/custom_card.dart';
 
 class SystemUserWorkForceListSection extends StatelessWidget {
-  final GetChecklistStatusModel getChecklistStatusModel;
+  final ChecklistWorkforceListModel getChecklistStatusModel;
   final List selectedStatusList;
 
   const SystemUserWorkForceListSection(
@@ -99,11 +99,13 @@ class SystemUserWorkForceListSection extends StatelessWidget {
                               onChanged: (value) {
                                 context.read<ChecklistBloc>().add(
                                     StatusCheckBoxCheck(
-                                        statusId: getChecklistStatusModel
-                                            .data![index].responseid,
+                                        responseId:
+                                            getChecklistStatusModel
+                                                .data![index].responseid,
                                         getChecklistStatusModel:
                                             getChecklistStatusModel,
-                                        selectedStatus: selectedStatusList));
+                                        selectedResponseIds:
+                                            selectedStatusList));
                               }))));
             },
             separatorBuilder: (context, index) {

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:toolkit/blocs/checklist/workforce/checklist_bloc.dart';
-import 'package:toolkit/blocs/checklist/workforce/checklist_states.dart';
+import 'package:toolkit/blocs/checklist/workforce/workforce_checklist_bloc.dart';
+import 'package:toolkit/blocs/checklist/workforce/workforce_checklist_states.dart';
 import 'package:toolkit/widgets/progress_bar.dart';
-import '../../../blocs/checklist/workforce/checklist_events.dart';
+import '../../../blocs/checklist/workforce/workforce_checklist_events.dart';
 import '../../../configs/app_spacing.dart';
 import '../../../utils/constants/string_constants.dart';
 import '../../../widgets/generic_app_bar.dart';

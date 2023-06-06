@@ -1,7 +1,7 @@
-import '../../../data/models/checklist/systemUser/category_model.dart';
-import '../../../data/models/checklist/systemUser/change_role_model.dart';
-import '../../../data/models/checklist/systemUser/details_model.dart';
-import '../../../data/models/checklist/systemUser/status_model.dart';
+import '../../../data/models/checklist/systemUser/system_user_category_model.dart';
+import '../../../data/models/checklist/systemUser/system_user_change_role_model.dart';
+import '../../../data/models/checklist/systemUser/system_user_cheklist_by_dates_model.dart';
+import '../../../data/models/checklist/systemUser/system_user_workfoce_list_model.dart';
 
 abstract class ChecklistEvents {}
 
@@ -9,8 +9,10 @@ class FetchChecklist extends ChecklistEvents {}
 
 class FetchChecklistScheduleDates extends ChecklistEvents {
   final String checklistId;
+  final Map allChecklistDataMap;
 
-  FetchChecklistScheduleDates({required this.checklistId});
+  FetchChecklistScheduleDates(
+      {required this.allChecklistDataMap, required this.checklistId});
 }
 
 class CheckResponse extends ChecklistEvents {
@@ -24,8 +26,12 @@ class CheckResponse extends ChecklistEvents {
 class FetchChecklistWorkforceList extends ChecklistEvents {
   final String scheduleId;
   final String role;
+  final List responseIds;
 
-  FetchChecklistWorkforceList({required this.role, required this.scheduleId});
+  FetchChecklistWorkforceList(
+      {required this.responseIds,
+      required this.role,
+      required this.scheduleId});
 }
 
 class FetchPdf extends ChecklistEvents {
@@ -74,15 +80,15 @@ class FetchEditHeader extends ChecklistEvents {
 }
 
 class StatusCheckBoxCheck extends ChecklistEvents {
-  final String statusId;
-  final List selectedStatus;
-  final GetChecklistStatusModel getChecklistStatusModel;
+  final String responseId;
+  final List selectedResponseIds;
+  final ChecklistWorkforceListModel getChecklistStatusModel;
   bool popUpBuilder;
 
   StatusCheckBoxCheck(
       {this.popUpBuilder = false,
-      required this.selectedStatus,
-      required this.statusId,
+      required this.selectedResponseIds,
+      required this.responseId,
       required this.getChecklistStatusModel});
 }
 
@@ -111,4 +117,10 @@ class SubmitHeader extends ChecklistEvents {
   final List submitHeaderList;
 
   SubmitHeader({required this.submitHeaderList, required this.submitHeaderMap});
+}
+
+class ThirdPartyApprove extends ChecklistEvents {
+  final Map thirdPartyApprove;
+
+  ThirdPartyApprove({required this.thirdPartyApprove});
 }

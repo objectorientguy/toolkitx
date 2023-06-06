@@ -42,7 +42,7 @@ class AppRoutes {
       case EditScreen.routeName:
         return _materialRoute(const EditScreen());
       case SystemUserScheduleDatesScreen.routeName:
-        return _materialRoute(SystemUserScheduleDatesScreen());
+        return _materialRoute(const SystemUserScheduleDatesScreen());
       case SystemUserCheckListScreen.routeName:
         return _materialRoute(const SystemUserCheckListScreen());
       case ChangeRoleScreen.routeName:
@@ -56,22 +56,19 @@ class AppRoutes {
       case CategoryScreen.routeName:
         return _materialRoute(const CategoryScreen());
       case ChecklistWorkForceListScreen.routeName:
-        return _materialRoute(ChecklistWorkForceListScreen(
-            scheduleId: settings.arguments.toString()));
+        return _materialRoute(const ChecklistWorkForceListScreen());
       case WorkForceListScreen.routeName:
         return _materialRoute(const WorkForceListScreen());
       case RejectReasonsScreen.routeName:
-        return _materialRoute(
-            RejectReasonsScreen(scheduleId: settings.arguments.toString()));
+        return _materialRoute(const RejectReasonsScreen());
       case EditHeaderScreen.routeName:
-        return _materialRoute(
-            EditHeaderScreen(scheduleId: settings.arguments.toString()));
+        return _materialRoute(EditHeaderScreen());
       case WorkForceQuestionsList.routeName:
         return _materialRoute(const WorkForceQuestionsList());
       case AddImageAndCommentScreen.routeName:
         return _materialRoute(AddImageAndCommentScreen());
       case EditQuestionsScreen.routeName:
-        return _materialRoute(EditQuestionsScreen());
+        return _materialRoute(const EditQuestionsScreen());
       default:
         return _materialRoute(const WelcomeScreen());
     }

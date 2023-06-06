@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:toolkit/blocs/checklist/systemUser/checklist_bloc.dart';
-import 'package:toolkit/blocs/checklist/systemUser/checklist_states.dart';
+import 'package:toolkit/blocs/checklist/systemUser/system_user_checklist_bloc.dart';
+import 'package:toolkit/blocs/checklist/systemUser/system_user_checklist_states.dart';
 import 'package:toolkit/configs/app_color.dart';
 import 'package:toolkit/configs/app_spacing.dart';
 import 'package:toolkit/configs/app_theme.dart';
@@ -13,18 +13,16 @@ import 'package:toolkit/widgets/generic_app_bar.dart';
 import 'package:toolkit/widgets/primary_button.dart';
 import 'package:toolkit/widgets/progress_bar.dart';
 
-import '../../../blocs/checklist/systemUser/checklist_events.dart';
+import '../../../blocs/checklist/systemUser/system_user_checklist_events.dart';
 
 class EditHeaderScreen extends StatelessWidget {
   static const routeName = 'EditHeaderScreen';
-  final String scheduleId;
 
-  EditHeaderScreen({Key? key, required this.scheduleId}) : super(key: key);
-  final Map editHeaderMap = {};
+  EditHeaderScreen({Key? key}) : super(key: key);
+
   final List editHeader = [];
 
   Widget fetchEditHeaderSwitchCaseWidget(index, editHeaderData) {
-    editHeaderMap["scheduleId"] = scheduleId;
     editHeader.add({
       "id": editHeaderData.id,
       "value": editHeaderData.fieldvalue,
@@ -81,7 +79,7 @@ class EditHeaderScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    context.read<ChecklistBloc>().add(FetchEditHeader(scheduleId: scheduleId));
+    context.read<ChecklistBloc>().add(FetchEditHeader(scheduleId: ''));
     return Scaffold(
         appBar: GenericAppBar(
             title: BlocBuilder<ChecklistBloc, ChecklistStates>(
@@ -147,7 +145,8 @@ class EditHeaderScreen extends StatelessWidget {
                         PrimaryButton(
                             onPressed: () {
                               context.read<ChecklistBloc>().add(SubmitHeader(
-                                  submitHeaderMap: editHeaderMap,
+                                  submitHeaderMap:
+                                      state.allChecklistDataMap["scheduleId"],
                                   submitHeaderList: editHeader));
                             },
                             textValue: StringConstants.kSubmit)

@@ -1,24 +1,26 @@
 import 'dart:convert';
 
-GetCheckListEditHeaderModel getCheckListEditHeaderModelFromJson(String str) =>
-    GetCheckListEditHeaderModel.fromJson(json.decode(str));
+CheckListEditHeaderDetailsModel getCheckListEditHeaderModelFromJson(
+        String str) =>
+    CheckListEditHeaderDetailsModel.fromJson(json.decode(str));
 
-String getCheckListEditHeaderModelToJson(GetCheckListEditHeaderModel data) =>
+String getCheckListEditHeaderModelToJson(
+        CheckListEditHeaderDetailsModel data) =>
     json.encode(data.toJson());
 
-class GetCheckListEditHeaderModel {
+class CheckListEditHeaderDetailsModel {
   final int status;
   final String? message;
   final List<EditHeaderListData>? data;
 
-  GetCheckListEditHeaderModel({
+  CheckListEditHeaderDetailsModel({
     required this.status,
     this.message,
     this.data,
   });
 
-  factory GetCheckListEditHeaderModel.fromJson(Map<String, dynamic> json) =>
-      GetCheckListEditHeaderModel(
+  factory CheckListEditHeaderDetailsModel.fromJson(Map<String, dynamic> json) =>
+      CheckListEditHeaderDetailsModel(
         status: json["Status"],
         message: json["Message"],
         data: List<EditHeaderListData>.from(

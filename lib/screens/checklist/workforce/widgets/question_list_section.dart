@@ -1,10 +1,8 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:toolkit/configs/app_theme.dart';
-import '../../../../blocs/checklist/workforce/checklist_bloc.dart';
-import '../../../../blocs/checklist/workforce/checklist_events.dart';
+import '../../../../blocs/checklist/workforce/workforce_checklist_bloc.dart';
+import '../../../../blocs/checklist/workforce/workforce_checklist_events.dart';
 import '../../../../configs/app_color.dart';
 import '../../../../configs/app_spacing.dart';
 import '../../../../data/models/checklist/workforce/questions_list_model.dart';
@@ -36,11 +34,33 @@ class QuestionsListSection extends StatelessWidget {
             padding: const EdgeInsets.all(cardPadding),
             child:
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              Text('${getQuestionListModel.data!.questionlist![index].title}?',
-                  style: Theme.of(context).textTheme.small.copyWith(
-                      color: AppColor.black, fontWeight: FontWeight.w500)),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width * 0.5,
+                    child: Text(
+                        '${getQuestionListModel.data!.questionlist![index].title}?',
+                        style: Theme.of(context).textTheme.small.copyWith(
+                            color: AppColor.black, fontWeight: FontWeight.w500),
+                        maxLines: 3,
+                        overflow: TextOverflow.ellipsis),
+                  ),
+                  Visibility(
+                    visible: getQuestionListModel
+                            .data!.questionlist![index].moreinfo !=
+                        null,
+                    child: Text(
+                        'Hint: ${getQuestionListModel.data!.questionlist![index].moreinfo}'),
+                  )
+                ],
+              ),
               const SizedBox(height: tiniestSpacing),
-              Text(answerList[index]["answer"],
+              Text(
+                  (answerList[index]["answer"].toString() == 'null'
+                      ? ''
+                      : answerList[index]["answer"].toString()),
                   style: Theme.of(context)
                       .textTheme
                       .small

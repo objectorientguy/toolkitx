@@ -7,9 +7,9 @@ import 'package:toolkit/screens/onboarding/widgets/show_error.dart';
 import 'package:toolkit/utils/constants/string_constants.dart';
 import 'package:toolkit/widgets/generic_app_bar.dart';
 import 'package:toolkit/widgets/progress_bar.dart';
-import '../../../blocs/checklist/systemUser/checklist_bloc.dart';
-import '../../../blocs/checklist/systemUser/checklist_events.dart';
-import '../../../blocs/checklist/systemUser/checklist_states.dart';
+import '../../../blocs/checklist/systemUser/system_user_checklist_bloc.dart';
+import '../../../blocs/checklist/systemUser/system_user_checklist_events.dart';
+import '../../../blocs/checklist/systemUser/system_user_checklist_states.dart';
 import '../../../configs/app_color.dart';
 import '../../../configs/app_dimensions.dart';
 import '../../../widgets/custom_snackbar.dart';
@@ -18,9 +18,8 @@ import '../../onboarding/widgets/custom_card.dart';
 
 class SystemUserScheduleDatesScreen extends StatelessWidget {
   static const routeName = 'SystemUserScheduleDatesScreen';
-  String? scheduleId;
 
-  SystemUserScheduleDatesScreen({Key? key, this.scheduleId}) : super(key: key);
+  const SystemUserScheduleDatesScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -35,8 +34,8 @@ class SystemUserScheduleDatesScreen extends StatelessWidget {
             ProgressBar.show(context);
           } else if (state is ChecklistWorkforceListFetched) {
             ProgressBar.dismiss(context);
-            Navigator.pushNamed(context, ChecklistWorkForceListScreen.routeName,
-                arguments: scheduleId);
+            Navigator.pushNamed(
+                context, ChecklistWorkForceListScreen.routeName);
           }
         },
         builder: (context, state) {
@@ -119,8 +118,6 @@ class SystemUserScheduleDatesScreen extends StatelessWidget {
                                             getChecklistDetailsData: state
                                                 .getChecklistDetailsModel
                                                 .data![index]));
-                                    scheduleId = state.getChecklistDetailsModel
-                                        .data![index].id;
                                   }));
                         },
                         separatorBuilder: (context, index) {

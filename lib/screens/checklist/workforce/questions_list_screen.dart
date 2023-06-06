@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:toolkit/blocs/checklist/workforce/checklist_bloc.dart';
-import 'package:toolkit/blocs/checklist/workforce/checklist_states.dart';
+import 'package:toolkit/blocs/checklist/workforce/workforce_checklist_bloc.dart';
+import 'package:toolkit/blocs/checklist/workforce/workforce_checklist_states.dart';
 import 'package:toolkit/screens/onboarding/widgets/show_error.dart';
 import 'package:toolkit/widgets/generic_app_bar.dart';
-import '../../../blocs/checklist/workforce/checklist_events.dart';
+import '../../../blocs/checklist/workforce/workforce_checklist_events.dart';
 import '../../../widgets/progress_bar.dart';
 import 'add_image_and_comment_screen.dart';
 import 'widgets/pop_up_menu.dart';
@@ -22,7 +22,9 @@ class WorkForceQuestionsList extends StatelessWidget {
             title:
                 BlocBuilder<WorkforceChecklistBloc, WorkforceChecklistStates>(
                     buildWhen: (previousState, currentState) =>
-                        currentState is QuestionsFetched,
+                        currentState is FetchingQuestions ||
+                        currentState is QuestionsFetched ||
+                        currentState is QuestionsError,
                     builder: (context, state) {
                       if (state is QuestionsFetched) {
                         state.allChecklistDataMap["name"] =
@@ -41,7 +43,7 @@ class WorkForceQuestionsList extends StatelessWidget {
                     if (state is QuestionsFetched) {
                       return Visibility(
                           visible:
-                              state.allChecklistDataMap["isRejected"] != "0",
+                              state.allChecklistDataMap["isRejected"] == "0",
                           child: const WorkForcePopUpMenu());
                     } else {
                       return const SizedBox();

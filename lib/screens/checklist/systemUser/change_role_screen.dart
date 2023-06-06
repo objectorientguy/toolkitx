@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:toolkit/screens/onboarding/widgets/show_error.dart';
 import 'package:toolkit/utils/constants/string_constants.dart';
-import '../../../blocs/checklist/systemUser/checklist_bloc.dart';
-import '../../../blocs/checklist/systemUser/checklist_events.dart';
-import '../../../blocs/checklist/systemUser/checklist_states.dart';
+import '../../../blocs/checklist/systemUser/system_user_checklist_bloc.dart';
+import '../../../blocs/checklist/systemUser/system_user_checklist_events.dart';
+import '../../../blocs/checklist/systemUser/system_user_checklist_states.dart';
 import '../../../configs/app_color.dart';
 import '../../../configs/app_dimensions.dart';
 import '../../../configs/app_spacing.dart';
@@ -41,9 +41,7 @@ class ChangeRoleScreen extends StatelessWidget {
                   }
                 },
                 builder: (context, state) {
-                  if (state is FetchingRoles) {
-                    return const Center(child: CircularProgressIndicator());
-                  } else if (state is RolesFetched) {
+                  if (state is RolesFetched) {
                     return Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -72,7 +70,6 @@ class ChangeRoleScreen extends StatelessWidget {
                                         onChanged: (value) {
                                           value = state.checkListRolesModel
                                               .data![index].groupName;
-
                                           context.read<ChecklistBloc>().add(
                                               ChangeRoles(
                                                   roleId:

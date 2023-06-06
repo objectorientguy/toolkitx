@@ -1,24 +1,24 @@
 import 'dart:convert';
 
-PostChecklistApproveModel postChecklistApproveModelFromJson(String str) =>
-    PostChecklistApproveModel.fromJson(json.decode(str));
+ChecklistApproveModel postChecklistApproveModelFromJson(String str) =>
+    ChecklistApproveModel.fromJson(json.decode(str));
 
-String postChecklistApproveModelToJson(PostChecklistApproveModel data) =>
+String postChecklistApproveModelToJson(ChecklistApproveModel data) =>
     json.encode(data.toJson());
 
-class PostChecklistApproveModel {
+class ChecklistApproveModel {
   final int status;
   final String? message;
   final Data data;
 
-  PostChecklistApproveModel({
+  ChecklistApproveModel({
     required this.status,
     this.message,
     required this.data,
   });
 
-  factory PostChecklistApproveModel.fromJson(Map<String, dynamic> json) =>
-      PostChecklistApproveModel(
+  factory ChecklistApproveModel.fromJson(Map<String, dynamic> json) =>
+      ChecklistApproveModel(
         status: json["Status"],
         message: json["Message"],
         data: Data.fromJson(json["Data"]),

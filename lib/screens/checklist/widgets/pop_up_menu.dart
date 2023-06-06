@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:toolkit/blocs/checklist/systemUser/checklist_bloc.dart';
-import 'package:toolkit/blocs/checklist/systemUser/checklist_events.dart';
-import 'package:toolkit/blocs/checklist/systemUser/checklist_states.dart';
+import 'package:toolkit/blocs/checklist/systemUser/system_user_checklist_bloc.dart';
+import 'package:toolkit/blocs/checklist/systemUser/system_user_checklist_events.dart';
+import 'package:toolkit/blocs/checklist/systemUser/system_user_checklist_states.dart';
 import 'package:toolkit/configs/app_dimensions.dart';
 import 'package:toolkit/configs/app_theme.dart';
 import 'package:toolkit/screens/checklist/widgets/reject_popup.dart';
@@ -10,15 +10,16 @@ import '../../../configs/app_spacing.dart';
 import '../../../utils/constants/string_constants.dart';
 import '../systemUser/edit_header_screen.dart';
 import 'approve_popup.dart';
+import 'third_party_approve_popup.dart';
 
 class PopUpMenu extends StatelessWidget {
-  final List scheduleIdList;
+  final List responseIdList;
   final String scheduleId;
   final bool popUpMenuBuilder;
 
   const PopUpMenu(
       {Key? key,
-      required this.scheduleIdList,
+      required this.responseIdList,
       required this.scheduleId,
       required this.popUpMenuBuilder})
       : super(key: key);
@@ -53,7 +54,7 @@ class PopUpMenu extends StatelessWidget {
                         builder: (context) {
                           return ApprovePopUp(
                               textValue: StringConstants.kApprove,
-                              scheduleIdList: scheduleIdList);
+                              responseIdList: responseIdList);
                         });
                   }
                   if (value == 'Reject') {
@@ -62,16 +63,16 @@ class PopUpMenu extends StatelessWidget {
                         builder: (context) {
                           return RejectPopUp(
                               textValue: StringConstants.kReject,
-                              scheduleIdList: scheduleIdList);
+                              scheduleIdList: responseIdList);
                         });
                   }
                   if (value == 'Third Party Approve') {
                     showDialog(
+                        useRootNavigator: false,
                         context: context,
                         builder: (context) {
-                          return RejectPopUp(
-                              textValue: StringConstants.kReject,
-                              scheduleIdList: scheduleIdList);
+                          return ThirdPartyApprovePopUp(
+                              textValue: StringConstants.kApprove);
                         });
                   }
                   if (value == 'Edit Header') {

@@ -197,25 +197,28 @@ class QuestionNotSubmitted extends WorkforceChecklistStates {
 
 class SavedQuestions extends WorkforceChecklistStates {
   final List<Questionlist> answerModelList;
-  final List populateAnswerList;
   final Map allChecklistDataMap;
-  final List updateAnswer;
+  final String saveDraft;
+  final List answersList;
 
   SavedQuestions(
-      {required this.updateAnswer,
+      {required this.answersList,
+      required this.saveDraft,
       required this.allChecklistDataMap,
-      required this.populateAnswerList,
       required this.answerModelList});
 
   @override
-  List<Object?> get props => [populateAnswerList, answerModelList];
+  List<Object?> get props => [answerModelList];
 }
 
 class QuestionsEdited extends WorkforceChecklistStates {
-  final List questionsEditedList;
+  final String? dropDownValue;
+  final List multiSelect;
+  final String? radioValue;
 
-  QuestionsEdited({required this.questionsEditedList});
+  QuestionsEdited(
+      {this.radioValue, required this.multiSelect, this.dropDownValue});
 
   @override
-  List<Object?> get props => [questionsEditedList];
+  List<Object?> get props => [dropDownValue, multiSelect, radioValue];
 }

@@ -40,7 +40,7 @@ class UploadAlertDialog extends StatelessWidget {
                               width: kAlertDialogTogether,
                               height: kAlertDialogTogether,
                               decoration: BoxDecoration(
-                                  color: Colors.grey.shade300,
+                                  color: AppColor.blueGrey,
                                   borderRadius: BorderRadius.circular(
                                       kAlertDialogRadius)),
                               child: const Center(
@@ -66,7 +66,7 @@ class UploadAlertDialog extends StatelessWidget {
                           width: kAlertDialogTogether,
                           height: kAlertDialogTogether,
                           decoration: BoxDecoration(
-                              color: AppColor.ghostWhite,
+                              color: AppColor.blueGrey,
                               borderRadius:
                                   BorderRadius.circular(kAlertDialogRadius)),
                           child: const Center(

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:toolkit/blocs/checklist/workforce/checklist_bloc.dart';
-import 'package:toolkit/blocs/checklist/workforce/checklist_states.dart';
+import 'package:toolkit/blocs/checklist/workforce/workforce_checklist_bloc.dart';
+import 'package:toolkit/blocs/checklist/workforce/workforce_checklist_states.dart';
 import 'package:toolkit/configs/app_spacing.dart';
 import 'package:toolkit/configs/app_theme.dart';
 import 'package:toolkit/screens/checklist/workforce/questions_list_screen.dart';
@@ -12,7 +12,7 @@ import 'package:toolkit/widgets/custom_snackbar.dart';
 import 'package:toolkit/widgets/generic_app_bar.dart';
 import 'package:toolkit/widgets/primary_button.dart';
 import 'package:toolkit/widgets/secondary_button.dart';
-import '../../../blocs/checklist/workforce/checklist_events.dart';
+import '../../../blocs/checklist/workforce/workforce_checklist_events.dart';
 import '../../../configs/app_color.dart';
 import '../../../widgets/progress_bar.dart';
 import '../../../widgets/upload_alert_dialog.dart';
@@ -79,7 +79,12 @@ class AddImageAndCommentScreen extends StatelessWidget {
                     const SizedBox(height: midTiniestSpacing),
                     SecondaryButton(
                         onPressed: () {
-                          UploadAlertDialog(onCamera: () {}, onDevice: () {});
+                          showDialog(
+                              context: context,
+                              builder: (context) {
+                                return UploadAlertDialog(
+                                    onCamera: () {}, onDevice: () {});
+                              });
                         },
                         textValue: StringConstants.kUpload),
                     const SizedBox(height: tinySpacing),

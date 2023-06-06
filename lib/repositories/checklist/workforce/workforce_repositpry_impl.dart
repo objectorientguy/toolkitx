@@ -9,7 +9,7 @@ import 'package:toolkit/data/models/checklist/workforce/submit_questions.dart';
 
 import '../../../utils/constants/api_constants.dart';
 import '../../../utils/dio_client.dart';
-import 'repository.dart';
+import 'workforce_repository.dart';
 
 class WorkforceChecklistRepositoryImpl extends WorkforceChecklistRepository {
   @override

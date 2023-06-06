@@ -1,15 +1,16 @@
 import 'package:equatable/equatable.dart';
+import 'package:toolkit/data/models/checklist/systemUser/sys_user_save_third_party_approval_model.dart';
 
-import '../../../data/models/checklist/systemUser/approve_model.dart';
-import '../../../data/models/checklist/systemUser/category_model.dart';
-import '../../../data/models/checklist/systemUser/change_role_model.dart';
-import '../../../data/models/checklist/systemUser/details_model.dart';
-import '../../../data/models/checklist/systemUser/get_edit_header_model.dart';
-import '../../../data/models/checklist/systemUser/list_model.dart';
-import '../../../data/models/checklist/systemUser/pdf_model.dart';
-import '../../../data/models/checklist/systemUser/reject_model.dart';
-import '../../../data/models/checklist/systemUser/status_model.dart';
-import '../../../data/models/checklist/systemUser/submit_header_model.dart';
+import '../../../data/models/checklist/systemUser/system_user_approve_model.dart';
+import '../../../data/models/checklist/systemUser/system_user_category_model.dart';
+import '../../../data/models/checklist/systemUser/system_user_change_role_model.dart';
+import '../../../data/models/checklist/systemUser/system_user_cheklist_by_dates_model.dart';
+import '../../../data/models/checklist/systemUser/system_user_edit_header_details_model.dart';
+import '../../../data/models/checklist/systemUser/system_user_list_model.dart';
+import '../../../data/models/checklist/systemUser/system_user_pdf_model.dart';
+import '../../../data/models/checklist/systemUser/system_user_reject_model.dart';
+import '../../../data/models/checklist/systemUser/system_user_workfoce_list_model.dart';
+import '../../../data/models/checklist/systemUser/system_user_submit_header_model.dart';
 
 abstract class ChecklistStates extends Equatable {}
 
@@ -24,15 +25,19 @@ class ChecklistFetching extends ChecklistStates {
 }
 
 class ChecklistFetched extends ChecklistStates {
-  final GetChecklistModel getChecklistModel;
+  final ChecklistListModel getChecklistModel;
 
   ChecklistFetched({required this.getChecklistModel});
 
   @override
-  List<Object?> get props => throw UnimplementedError();
+  List<Object?> get props => [getChecklistModel];
 }
 
 class ChecklistError extends ChecklistStates {
+  final String errorMessage;
+
+  ChecklistError({required this.errorMessage});
+
   @override
   List<Object?> get props => throw UnimplementedError();
 }
@@ -43,9 +48,12 @@ class FetchingChecklistScheduleDates extends ChecklistStates {
 }
 
 class ChecklistDatesScheduled extends ChecklistStates {
-  final GetChecklistDetailsModel getChecklistDetailsModel;
+  final ChecklistScheduledByDatesModel getChecklistDetailsModel;
+  final Map allChecklistDataMap;
 
-  ChecklistDatesScheduled({required this.getChecklistDetailsModel});
+  ChecklistDatesScheduled(
+      {required this.allChecklistDataMap,
+      required this.getChecklistDetailsModel});
 
   @override
   List<Object?> get props => throw UnimplementedError();
@@ -67,17 +75,19 @@ class FetchingChecklistWorkforceList extends ChecklistStates {
 }
 
 class ChecklistWorkforceListFetched extends ChecklistStates {
-  final GetChecklistStatusModel getChecklistStatusModel;
-  final List selectedStatusList;
+  final ChecklistWorkforceListModel getChecklistStatusModel;
+  final List selectedIdsList;
   final bool popUpMenuBuilder;
+  final Map allChecklistDataMap;
 
   ChecklistWorkforceListFetched(
-      {this.popUpMenuBuilder = false,
+      {required this.allChecklistDataMap,
+      this.popUpMenuBuilder = false,
       required this.getChecklistStatusModel,
-      required this.selectedStatusList});
+      required this.selectedIdsList});
 
   @override
-  List<Object?> get props => [selectedStatusList];
+  List<Object?> get props => [selectedIdsList];
 }
 
 class ChecklistWorkforceListError extends ChecklistStates {
@@ -148,7 +158,7 @@ class CategoryFetched extends ChecklistStates {
       {required this.categoryName, required this.getFilterCategoryData});
 
   @override
-  List<Object?> get props => throw UnimplementedError();
+  List<Object?> get props => [getFilterCategoryData, categoryName];
 }
 
 class CategoryError extends ChecklistStates {
@@ -166,9 +176,12 @@ class FetchingEditHeader extends ChecklistStates {
 }
 
 class EditHeaderFetched extends ChecklistStates {
-  final GetCheckListEditHeaderModel getCheckListEditHeaderModel;
+  final CheckListEditHeaderDetailsModel getCheckListEditHeaderModel;
+  final Map allChecklistDataMap;
 
-  EditHeaderFetched({required this.getCheckListEditHeaderModel});
+  EditHeaderFetched(
+      {required this.allChecklistDataMap,
+      required this.getCheckListEditHeaderModel});
 
   @override
   List<Object?> get props => [getCheckListEditHeaderModel];
@@ -194,7 +207,7 @@ class ChecklistApprovingData extends ChecklistStates {
 }
 
 class ChecklistDataApproved extends ChecklistStates {
-  final PostChecklistApproveModel postChecklistApproveModel;
+  final ChecklistApproveModel postChecklistApproveModel;
 
   ChecklistDataApproved({required this.postChecklistApproveModel});
 
@@ -211,13 +224,13 @@ class ChecklistApproveError extends ChecklistStates {
   List<Object?> get props => throw UnimplementedError();
 }
 
-class ChecklistRejectingData extends ChecklistStates {
+class RejectingChecklist extends ChecklistStates {
   @override
   List<Object?> get props => throw UnimplementedError();
 }
 
 class ChecklistRejected extends ChecklistStates {
-  final PostChecklistRejectModel postChecklistRejectModel;
+  final ChecklistRejectModel postChecklistRejectModel;
 
   ChecklistRejected({required this.postChecklistRejectModel});
 
@@ -225,13 +238,13 @@ class ChecklistRejected extends ChecklistStates {
   List<Object?> get props => [postChecklistRejectModel];
 }
 
-class ChecklistRejectError extends ChecklistStates {
+class ChecklistNotRejected extends ChecklistStates {
   final String message;
 
-  ChecklistRejectError({required this.message});
+  ChecklistNotRejected({required this.message});
 
   @override
-  List<Object?> get props => throw UnimplementedError();
+  List<Object?> get props => [message];
 }
 
 class SubmittingHeader extends ChecklistStates {
@@ -240,7 +253,7 @@ class SubmittingHeader extends ChecklistStates {
 }
 
 class HeaderSubmitted extends ChecklistStates {
-  final PostChecklistSubmitHeaderModel postChecklistSubmitHeaderModel;
+  final ChecklistSubmitHeaderModel postChecklistSubmitHeaderModel;
 
   HeaderSubmitted({required this.postChecklistSubmitHeaderModel});
 
@@ -252,6 +265,32 @@ class SubmitHeaderError extends ChecklistStates {
   final String message;
 
   SubmitHeaderError({required this.message});
+
+  @override
+  List<Object?> get props => throw UnimplementedError();
+}
+
+class ApprovingThirdParty extends ChecklistStates {
+  @override
+  List<Object?> get props => throw UnimplementedError();
+}
+
+class ThirdPartyApproved extends ChecklistStates {
+  final SaveThirdPartyApproval saveThirdPartyApproval;
+  final Map thirdPartyApproveMap;
+
+  ThirdPartyApproved(
+      {required this.thirdPartyApproveMap,
+      required this.saveThirdPartyApproval});
+
+  @override
+  List<Object?> get props => [saveThirdPartyApproval];
+}
+
+class ThirdPartyDisapprove extends ChecklistStates {
+  final String message;
+
+  ThirdPartyDisapprove({required this.message});
 
   @override
   List<Object?> get props => throw UnimplementedError();

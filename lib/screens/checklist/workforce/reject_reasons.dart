@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:toolkit/blocs/checklist/workforce/checklist_bloc.dart';
-import 'package:toolkit/blocs/checklist/workforce/checklist_events.dart';
-import 'package:toolkit/blocs/checklist/workforce/checklist_states.dart';
+import 'package:toolkit/blocs/checklist/workforce/workforce_checklist_bloc.dart';
+import 'package:toolkit/blocs/checklist/workforce/workforce_checklist_events.dart';
+import 'package:toolkit/blocs/checklist/workforce/workforce_checklist_states.dart';
 import 'package:toolkit/screens/checklist/workforce/questions_list_screen.dart';
 import 'package:toolkit/screens/onboarding/widgets/custom_card.dart';
 import 'package:toolkit/screens/onboarding/widgets/show_error.dart';
@@ -19,14 +19,12 @@ import '../../../widgets/custom_snackbar.dart';
 
 class RejectReasonsScreen extends StatelessWidget {
   static const routeName = 'RejectReasonsScreen';
-  final String scheduleId;
 
-  const RejectReasonsScreen({Key? key, required this.scheduleId})
-      : super(key: key);
+  const RejectReasonsScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    // String? reason;
+    String reasonValue = '';
     context.read<WorkforceChecklistBloc>().add(FetchRejectReasons());
     return Scaffold(
         appBar: const GenericAppBar(title: Text('Checklist Reject')),
@@ -57,7 +55,6 @@ class RejectReasonsScreen extends StatelessWidget {
                   if (state is FetchingRejectReasons) {
                     return const Center(child: CircularProgressIndicator());
                   } else if (state is RejectReasonsFetched) {
-                    String reasonValue = '';
                     return Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -116,7 +113,10 @@ class RejectReasonsScreen extends StatelessWidget {
                           PrimaryButton(
                               onPressed: () {
                                 context.read<WorkforceChecklistBloc>().add(
-                                    SaveRejectReasons(reason: state.reason));
+                                    SaveRejectReasons(
+                                        reason: (state.reason == "null")
+                                            ? reasonValue
+                                            : state.reason));
                               },
                               textValue: StringConstants.kSave)
                         ]);

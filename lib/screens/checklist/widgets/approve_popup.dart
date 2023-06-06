@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:toolkit/blocs/checklist/systemUser/checklist_bloc.dart';
-import 'package:toolkit/blocs/checklist/systemUser/checklist_states.dart';
+import 'package:toolkit/blocs/checklist/systemUser/system_user_checklist_bloc.dart';
+import 'package:toolkit/blocs/checklist/systemUser/system_user_checklist_states.dart';
 import 'package:toolkit/configs/app_theme.dart';
 import 'package:toolkit/widgets/progress_bar.dart';
 import 'package:toolkit/widgets/text_button.dart';
 
-import '../../../blocs/checklist/systemUser/checklist_events.dart';
+import '../../../blocs/checklist/systemUser/system_user_checklist_events.dart';
 import '../../../configs/app_color.dart';
 import '../../../configs/app_spacing.dart';
 import '../../../utils/constants/string_constants.dart';
@@ -16,11 +16,11 @@ import '../systemUser/schedule_dates_screen.dart';
 
 class ApprovePopUp extends StatelessWidget {
   final String textValue;
-  final List scheduleIdList;
-  Map approveMap = {};
+  final List responseIdList;
+  final Map approveMap = {};
 
   ApprovePopUp(
-      {Key? key, required this.textValue, required this.scheduleIdList})
+      {Key? key, required this.textValue, required this.responseIdList})
       : super(key: key);
 
   @override
@@ -72,10 +72,6 @@ class ApprovePopUp extends StatelessWidget {
                   textValue: StringConstants.kRemove),
               CustomTextButton(
                   onPressed: () {
-                    approveMap = {
-                      "comment": approveMap["comment"],
-                      "id": scheduleIdList
-                    };
                     context
                         .read<ChecklistBloc>()
                         .add(ChecklistApprove(approveMap: approveMap));

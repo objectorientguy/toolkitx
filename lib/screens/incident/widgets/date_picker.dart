@@ -8,6 +8,8 @@ import '../../../../configs/app_color.dart';
 import '../../../configs/app_spacing.dart';
 import '../../../widgets/text_button.dart';
 
+typedef DatePickerCallBack = Function(String pickDate);
+
 class DatePickerTextField extends StatelessWidget {
   final DateTime? initialDate;
   final DateTime? maxDate;
@@ -15,7 +17,8 @@ class DatePickerTextField extends StatelessWidget {
   final String? hintText;
   final DateTime? minimumDate;
   final TextEditingController dateInputController = TextEditingController();
-  late final bool? isFirstTime;
+  bool? isFirstTime;
+  final DatePickerCallBack onDatePicked;
 
   DatePickerTextField({
     Key? key,
@@ -25,6 +28,7 @@ class DatePickerTextField extends StatelessWidget {
     this.hintText,
     this.minimumDate,
     this.isFirstTime = true,
+    required this.onDatePicked,
   }) : super(key: key);
 
   void showDatePicker(BuildContext context) {
@@ -50,6 +54,7 @@ class DatePickerTextField extends StatelessWidget {
                                   DateFormat('dd MMM yyyy').format(value);
                               dateInputController.text = formattedDate;
                               isFirstTime = false;
+                              onDatePicked(dateInputController.text);
                             },
                             maximumDate: maxDate)),
                     CustomTextButton(
@@ -59,10 +64,12 @@ class DatePickerTextField extends StatelessWidget {
                               dateInputController.text =
                                   DateFormat('dd MMM yyyy')
                                       .format(DateTime.now());
+                              onDatePicked(dateInputController.text);
                             } else {
                               dateInputController.text =
                                   DateFormat('dd MMM yyyy')
                                       .format(initialDate!);
+                              onDatePicked(dateInputController.text);
                             }
                           }
                           Navigator.pop(context);
@@ -80,6 +87,7 @@ class DatePickerTextField extends StatelessWidget {
         onChanged: (value) {},
         onTap: () async {
           showDatePicker(context);
+          onDatePicked(dateInputController.text);
         },
         cursorColor: AppColor.black,
         decoration: InputDecoration(

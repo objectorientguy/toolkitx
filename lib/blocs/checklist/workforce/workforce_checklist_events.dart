@@ -52,28 +52,38 @@ class SaveQuestionComment extends WorkforceCheckListEvents {
 }
 
 class SubmitQuestions extends WorkforceCheckListEvents {
-  final List submitQuestionsList;
   final List editQuestionsList;
+  final String draft;
+  final bool isDraft;
 
   SubmitQuestions(
-      {required this.editQuestionsList, required this.submitQuestionsList});
+      {required this.isDraft,
+      required this.draft,
+      required this.editQuestionsList});
 }
 
-class PopulateQuestion extends WorkforceCheckListEvents {
+class EditQuestionData extends WorkforceCheckListEvents {
   final List<Questionlist> questionList;
-  final List? populateQuestionsList;
   final String? multiSelect;
   final String? dropDownValue;
 
-  PopulateQuestion(
+  EditQuestionData(
       {required this.dropDownValue,
       required this.multiSelect,
-      required this.questionList,
-      required this.populateQuestionsList});
+      required this.questionList});
 }
 
 class EditQuestions extends WorkforceCheckListEvents {
-  final List editQuestionsList;
+  final String? dropDownValue;
+  final List multiSelectList;
+  final String multiSelectItem;
+  final String? radioValue;
+  final String multiSelectName;
 
-  EditQuestions({required this.editQuestionsList});
+  EditQuestions(
+      {required this.multiSelectName,
+      this.radioValue = '',
+      required this.multiSelectItem,
+      required this.multiSelectList,
+      this.dropDownValue = ''});
 }
