@@ -102,7 +102,9 @@ abstract class ModulesUtil {
         moduleImage: '${kBaseImagePath}lottery.png',
         key: 'eam'),
     ModulesModel(
-        moduleName: 'Trips', moduleImage: '${kBaseImagePath}t.png', key: 'hf'),
+        moduleName: 'Trips',
+        moduleImage: '${kBaseImagePath}lottery.png',
+        key: 'hf'),
     ModulesModel(
         moduleName: 'Trips',
         moduleImage: '${kBaseImagePath}lottery.png',

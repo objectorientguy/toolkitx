@@ -28,7 +28,7 @@ class OnLineModules extends StatelessWidget {
         itemBuilder: (BuildContext context, int index) {
           return InkWell(
               onTap: () =>
-                  navigateToModule(availableModules[index].keys, context),
+                  navigateToModule(availableModules[index].key, context),
               child: Card(
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(kCardRadius)),
