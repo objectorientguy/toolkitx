@@ -13,7 +13,6 @@ import '../../../configs/app_dimensions.dart';
 import '../../../configs/app_spacing.dart';
 import '../../../data/models/profile/user_profile_model.dart';
 import '../../../utils/profile_util.dart';
-import '../../../widgets/db_text_widget.dart';
 
 class EditOptionsSection extends StatelessWidget {
   final UserProfileData userprofileDetails;
@@ -34,10 +33,9 @@ class EditOptionsSection extends StatelessWidget {
             Image.asset('${ProfileUtil.iconPath}' 'pen.png',
                 height: kProfileImageHeight, width: kProfileImageWidth),
             const SizedBox(height: xxTiniestSpacing),
-            DatabaseText(
-                textValue: 'EditProfile',
+            Text(DatabaseUtil.getText('EditProfile'),
                 textAlign: TextAlign.center,
-                textStyle: Theme.of(context).textTheme.xxSmall)
+                style: Theme.of(context).textTheme.xxSmall)
           ])),
       GestureDetector(
           onTap: () {
@@ -48,10 +46,9 @@ class EditOptionsSection extends StatelessWidget {
             Image.asset('${ProfileUtil.iconPath}' 'exchange.png',
                 height: kProfileImageHeight, width: kProfileImageWidth),
             const SizedBox(height: xxTiniestSpacing),
-            DatabaseText(
-                textValue: 'ChangeClient',
+            Text(DatabaseUtil.getText('ChangeClient'),
                 textAlign: TextAlign.center,
-                textStyle: Theme.of(context).textTheme.xxSmall)
+                style: Theme.of(context).textTheme.xxSmall)
           ])),
       GestureDetector(
           onTap: () {
@@ -59,8 +56,8 @@ class EditOptionsSection extends StatelessWidget {
                 context: context,
                 builder: (context) {
                   return AndroidPopUp(
-                      titleValue: DatabaseUtil.box.get('Logout'),
-                      contentValue: DatabaseUtil.box.get('LogoutMessage'),
+                      titleValue: DatabaseUtil.getText('Logout'),
+                      contentValue: DatabaseUtil.getText('LogoutMessage'),
                       onPressed: () {
                         Navigator.of(context);
                         context.read<ProfileBloc>().add(Logout());
@@ -71,10 +68,9 @@ class EditOptionsSection extends StatelessWidget {
             Image.asset('${ProfileUtil.iconPath}' 'logout.png',
                 height: kProfileImageHeight, width: kProfileImageWidth),
             const SizedBox(height: xxTiniestSpacing),
-            DatabaseText(
-                textValue: 'Logout',
+            Text(DatabaseUtil.getText('Logout'),
                 textAlign: TextAlign.center,
-                textStyle: Theme.of(context).textTheme.xxSmall)
+                style: Theme.of(context).textTheme.xxSmall)
           ]))
     ]);
   }

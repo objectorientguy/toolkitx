@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:toolkit/configs/app_theme.dart';
 import 'package:toolkit/utils/constants/string_constants.dart';
+import 'package:toolkit/utils/database_utils.dart';
 
 import '../../../configs/app_color.dart';
 import '../../../configs/app_dimensions.dart';
@@ -64,7 +65,8 @@ class OffLineModules extends StatelessWidget {
                         padding: const EdgeInsets.only(
                             left: xxTiniestSpacing, right: xxTiniestSpacing),
                         child: Text(
-                          ModulesUtil.listModulesMode[index].moduleName,
+                          DatabaseUtil.getText(
+                              ModulesUtil.listModulesMode[index].moduleName),
                           textAlign: TextAlign.center,
                         ),
                       ),

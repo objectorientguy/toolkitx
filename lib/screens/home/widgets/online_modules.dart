@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:toolkit/screens/checklist/checklist_list_screen.dart';
 import 'package:toolkit/screens/incident/incident_list_screen.dart';
-import 'package:toolkit/widgets/db_text_widget.dart';
+import 'package:toolkit/utils/database_utils.dart';
 
 import '../../../blocs/client/client_bloc.dart';
 import '../../../blocs/client/client_events.dart';
@@ -19,61 +18,45 @@ class OnLineModules extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<ClientBloc, ClientStates>(builder: (context, state) {
-      if (state is HomeScreenFetching) {
-        return const Center(child: CircularProgressIndicator());
-      }
-      if (state is HomeScreenFetched) {
-        return GridView.builder(
-            primary: false,
-            itemCount: state.availableModules.length,
-            physics: const NeverScrollableScrollPhysics(),
-            shrinkWrap: true,
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 3,
-                crossAxisSpacing: tinier,
-                mainAxisSpacing: tinier),
-            itemBuilder: (BuildContext context, int index) {
-              return InkWell(
-                  onTap: () => navigateToModule(
-                      state.availableModules[index].key, context),
-                  child: Card(
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(kCardRadius)),
-                      color: AppColor.lightestBlue,
-                      shadowColor: AppColor.ghostWhite,
-                      elevation: kCardElevation,
-                      child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            SizedBox(
-                                child: Image.asset(
-                                    state.availableModules[index].moduleImage,
-                                    height: kModuleIconSize,
-                                    width: kModuleIconSize)),
-                            const SizedBox(height: xxTinySpacing),
-                            Padding(
-                                padding: const EdgeInsets.only(
-                                    left: xxTiniestSpacing,
-                                    right: xxTiniestSpacing),
-                                child: DatabaseText(
-                                    textValue: state
-                                        .availableModules[index].moduleName,
-                                    textAlign: TextAlign.center))
-                          ])));
-            });
-      } else if (state is FetchHomeScreenError) {
-        return Center(
-            child: GenericReloadButton(
-                onPressed: () {
-                  context.read<ClientBloc>().add(FetchHomeScreenData());
-                },
-                textValue: StringConstants.kReload));
-      } else {
-        return const SizedBox();
-      }
-    });
+    return GridView.builder(
+        primary: false,
+        itemCount: availableModules.length,
+        physics: const NeverScrollableScrollPhysics(),
+        shrinkWrap: true,
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 3,
+            crossAxisSpacing: tinier,
+            mainAxisSpacing: tinier),
+        itemBuilder: (BuildContext context, int index) {
+          return InkWell(
+              onTap: () =>
+                  navigateToModule(availableModules[index].key, context),
+              child: Card(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(kCardRadius)),
+                  color: AppColor.lightestBlue,
+                  shadowColor: AppColor.ghostWhite,
+                  elevation: kCardElevation,
+                  child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        SizedBox(
+                            child: Image.asset(
+                                availableModules[index].moduleImage,
+                                height: kModuleIconSize,
+                                width: kModuleIconSize)),
+                        const SizedBox(height: xxTinySpacing),
+                        Padding(
+                            padding: const EdgeInsets.only(
+                                left: xxTiniestSpacing,
+                                right: xxTiniestSpacing),
+                            child: Text(
+                                DatabaseUtil.getText(
+                                    availableModules[index].moduleName),
+                                textAlign: TextAlign.center))
+                      ])));
+        });
   }
 
   navigateToModule(moduleKey, context) {

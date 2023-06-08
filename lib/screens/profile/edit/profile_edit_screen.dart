@@ -7,6 +7,7 @@ import 'package:toolkit/configs/app_spacing.dart';
 import 'package:toolkit/configs/app_theme.dart';
 import 'package:toolkit/screens/root/root_screen.dart';
 import 'package:toolkit/utils/constants/string_constants.dart';
+import 'package:toolkit/utils/database_utils.dart';
 import 'package:toolkit/widgets/custom_snackbar.dart';
 import 'package:toolkit/widgets/primary_button.dart';
 import 'package:toolkit/widgets/progress_bar.dart';
@@ -51,43 +52,43 @@ class ProfileEditScreen extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               const SizedBox(height: xxxSmallerSpacing),
-                              Text(StringConstants.kFirstName,
+                              Text(DatabaseUtil.getText('FirstName'),
                                   style: Theme.of(context).textTheme.medium),
                               const SizedBox(height: tinier),
                               TextFieldWidget(
                                   value: state.profileDetailsMap['fname'],
                                   textInputAction: TextInputAction.next,
-                                  hintText: StringConstants.kFirstName,
+                                  hintText: DatabaseUtil.getText('FirstName'),
                                   onTextFieldChanged: (String textField) {
                                     state.profileDetailsMap['fname'] =
                                         textField;
                                   }),
                               const SizedBox(height: tinier),
-                              Text(StringConstants.kLastName,
+                              Text(DatabaseUtil.getText('LastName'),
                                   style: Theme.of(context).textTheme.medium),
                               const SizedBox(height: tinier),
                               TextFieldWidget(
                                   value: state.profileDetailsMap['lname'],
                                   textInputAction: TextInputAction.next,
-                                  hintText: StringConstants.kLastName,
+                                  hintText: DatabaseUtil.getText('LastName'),
                                   onTextFieldChanged: (String textField) {
                                     state.profileDetailsMap['lname'] =
                                         textField;
                                   }),
                               const SizedBox(height: tinier),
-                              Text(StringConstants.kContact,
+                              Text(DatabaseUtil.getText('Contact'),
                                   style: Theme.of(context).textTheme.medium),
                               const SizedBox(height: tinier),
                               TextFieldWidget(
                                   value: state.profileDetailsMap['contact'],
                                   textInputAction: TextInputAction.done,
-                                  hintText: StringConstants.kContact,
+                                  hintText: DatabaseUtil.getText('Contact'),
                                   onTextFieldChanged: (String textField) {
                                     state.profileDetailsMap['contact'] =
                                         textField;
                                   }),
                               const SizedBox(height: tinier),
-                              Text(StringConstants.kBloodGroup,
+                              Text(DatabaseUtil.getText('BloodGroup'),
                                   style: Theme.of(context).textTheme.medium),
                               const SizedBox(height: tinier),
                               BloodGroupExpansionTile(
@@ -100,7 +101,7 @@ class ProfileEditScreen extends StatelessWidget {
                                             updateProfileMap:
                                                 state.profileDetailsMap));
                                   },
-                                  textValue: StringConstants.kSave)
+                                  textValue: DatabaseUtil.getText('buttonSave'))
                             ]);
                       } else {
                         return const SizedBox();
