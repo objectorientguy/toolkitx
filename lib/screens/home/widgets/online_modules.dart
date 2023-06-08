@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:toolkit/screens/checklist/checklist_list_screen.dart';
 import 'package:toolkit/screens/incident/incident_list_screen.dart';
-import 'package:toolkit/widgets/db_text_widget.dart';
+import 'package:toolkit/utils/database_utils.dart';
 
 import '../../../configs/app_color.dart';
 import '../../../configs/app_dimensions.dart';
@@ -49,8 +49,9 @@ class OnLineModules extends StatelessWidget {
                             padding: const EdgeInsets.only(
                                 left: xxTiniestSpacing,
                                 right: xxTiniestSpacing),
-                            child: DatabaseText(
-                                textValue: availableModules[index].moduleName,
+                            child: Text(
+                                DatabaseUtil.getText(
+                                    availableModules[index].moduleName),
                                 textAlign: TextAlign.center))
                       ])));
         });

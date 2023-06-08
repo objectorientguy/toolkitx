@@ -8,7 +8,7 @@ import '../../../configs/app_dimensions.dart';
 import '../../../configs/app_spacing.dart';
 import '../../../data/models/language/languages_model.dart';
 import '../../../utils/constants/api_constants.dart';
-import 'custom_card.dart';
+import '../../../widgets/custom_card.dart';
 
 class SelectLanguageBody extends StatelessWidget {
   final List<GetLanguagesData> getLanguagesData;

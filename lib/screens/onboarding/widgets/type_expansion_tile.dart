@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:toolkit/configs/app_theme.dart';
+import 'package:toolkit/utils/database_utils.dart';
 
 import '../../../blocs/login/login_bloc.dart';
 import '../../../blocs/login/login_events.dart';
@@ -22,7 +23,8 @@ class UserTypeExpansionTile extends StatelessWidget {
         child: ExpansionTile(
             maintainState: true,
             key: GlobalKey(),
-            title: Text(usertype == 'null' ? 'Select' : usertype,
+            title: Text(
+                usertype == 'null' ? 'Select' : DatabaseUtil.getText(usertype),
                 style: Theme.of(context).textTheme.xSmall),
             children: [
               ListView.builder(
@@ -33,11 +35,13 @@ class UserTypeExpansionTile extends StatelessWidget {
                     return RadioListTile(
                         contentPadding: EdgeInsets.zero,
                         activeColor: AppColor.deepBlue,
-                        title: Text(UserType.values.elementAt(index).type,
+                        title: Text(
+                            DatabaseUtil.getText(
+                                UserType.values.elementAt(index).type),
                             style: Theme.of(context).textTheme.xSmall),
                         controlAffinity: ListTileControlAffinity.trailing,
                         value: UserType.values.elementAt(index).type,
-                        groupValue: usertype,
+                        groupValue: DatabaseUtil.getText(usertype),
                         onChanged: (value) {
                           value = UserType.values.elementAt(index).type;
                           context.read<LoginBloc>().add(ChangeUserType(

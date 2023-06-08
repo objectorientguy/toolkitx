@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:toolkit/blocs/client/client_bloc.dart';
 import 'package:toolkit/blocs/client/client_states.dart';
 import 'package:toolkit/configs/app_spacing.dart';
-import 'package:toolkit/screens/onboarding/widgets/custom_card.dart';
+import 'package:toolkit/widgets/custom_card.dart';
 import 'package:toolkit/screens/root/root_screen.dart';
 import 'package:toolkit/utils/constants/string_constants.dart';
 import 'package:toolkit/utils/database_utils.dart';
@@ -23,7 +23,7 @@ class ClientListScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     context.read<ClientBloc>().add(FetchClientList());
     return Scaffold(
-        appBar: GenericAppBar(title: DatabaseUtil.box.get('ClientList')),
+        appBar: GenericAppBar(title: DatabaseUtil.getText('Clientlist')),
         body: Padding(
             padding: const EdgeInsets.only(
                 left: leftRightMargin,

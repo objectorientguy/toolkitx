@@ -28,7 +28,10 @@ class SelectLanguageScreen extends StatelessWidget {
         .read<LanguageBloc>()
         .add(FetchLanguages(isFromProfile: isFromProfile));
     return Scaffold(
-        appBar: const GenericAppBar(title: StringConstants.kSelectYourLanguage),
+        appBar: GenericAppBar(
+            title: (isFromProfile == true)
+                ? DatabaseUtil.getText('LanguageTanslate')
+                : StringConstants.kSelectYourLanguage),
         body: Padding(
             padding: const EdgeInsets.only(
                 left: leftRightMargin,
@@ -76,7 +79,7 @@ class SelectLanguageScreen extends StatelessWidget {
                         builder: (context) {
                           return AndroidPopUp(
                               titleValue:
-                                  DatabaseUtil.box.get('ApproveLotoTitle'),
+                                  DatabaseUtil.getText('ApproveLotoTitle'),
                               contentValue:
                                   'Language file doesnt exist or an old version. please download the language file',
                               onPressed: () {
