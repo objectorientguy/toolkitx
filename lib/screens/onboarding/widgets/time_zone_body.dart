@@ -33,7 +33,8 @@ class TimeZoneBody extends StatelessWidget {
                     context.read<TimeZoneBloc>().add(SelectTimeZone(
                         timeZoneCode: timeZoneData[index].code,
                         isFromProfile: isFromProfile,
-                        timeZoneName: timeZoneData[index].name));
+                        timeZoneName: timeZoneData[index].name,
+                        timeZoneOffset: timeZoneData[index].offset));
                     if (isFromProfile == true) {
                       Navigator.pop(context);
                     } else {

@@ -13,8 +13,12 @@ class UserProfileFetching extends ProfileStates {}
 class UserProfileFetched extends ProfileStates {
   final UserProfileModel userProfileModel;
   final String userType;
+  final String userName;
 
-  UserProfileFetched({required this.userType, required this.userProfileModel});
+  UserProfileFetched(
+      {required this.userType,
+      required this.userProfileModel,
+      required this.userName});
 }
 
 class UserProfileFetchError extends ProfileStates {}

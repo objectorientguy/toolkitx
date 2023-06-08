@@ -62,8 +62,24 @@ class CustomerCache {
     await sharedPreferences.setString(CacheKeys.clientImage, string);
   }
 
+  void setUserName(String key, String string) async {
+    await sharedPreferences.setString(CacheKeys.userName, string);
+  }
+
+  void setTimeZoneOffset(String key, String string) async {
+    await sharedPreferences.setString(CacheKeys.timeZoneOffset, string);
+  }
+
   Future<String?> getDateFormat(String key) async {
     return sharedPreferences.getString(CacheKeys.dateFormatKey);
+  }
+
+  Future<String?> getUserName(String key) async {
+    return sharedPreferences.getString(CacheKeys.userName);
+  }
+
+  Future<String?> getTimeZoneOffset(String key) async {
+    return sharedPreferences.getString(CacheKeys.timeZoneOffset);
   }
 
   Future<String?> getClientDataKey(String key) async {

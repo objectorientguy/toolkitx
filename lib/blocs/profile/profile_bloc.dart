@@ -40,17 +40,20 @@ class ProfileBloc extends Bloc<ProfileEvents, ProfileStates> {
       String typeValue =
           (await _customerCache.getUserType(CacheKeys.userType))!;
       String hashCode = (await _customerCache.getHashCode(CacheKeys.hashcode))!;
-
       String userType = UserType.values
           .elementAt(UserType.values
               .indexWhere((element) => element.value == typeValue))
           .type;
+
       UserProfileModel userProfileModel =
           await _profileRepository.fetchUserProfile(hashCode);
+      _customerCache.setUserName(CacheKeys.userName,
+          '${userProfileModel.data!.fname} ${userProfileModel.data!.lname}');
       emit(UserProfileFetched(
-        userProfileModel: userProfileModel,
-        userType: userType,
-      ));
+          userProfileModel: userProfileModel,
+          userType: userType,
+          userName:
+              '${userProfileModel.data!.fname} ${userProfileModel.data!.lname}'));
     } catch (e) {
       emit(UserProfileFetchError());
     }
@@ -158,7 +161,6 @@ class ProfileBloc extends Bloc<ProfileEvents, ProfileStates> {
       String hashCode = (await _customerCache.getHashCode(CacheKeys.hashcode))!;
       String userId = (await _customerCache.getUserId(CacheKeys.userId))!;
       String privateKey = (await _customerCache.getApiKey(CacheKeys.apiKey))!;
-
       if (event.changePasswordMap['oldPass_opt'].toString().trim() == 'null') {
         emit(ChangePasswordError(message: 'Please enter old password/opt'));
       } else if (event.changePasswordMap['newPassword'].toString().trim() ==
@@ -195,8 +197,9 @@ class ProfileBloc extends Bloc<ProfileEvents, ProfileStates> {
     }
   }
 
-  FutureOr<void> _logOut(Logout event, Emitter<ProfileStates> emit) {
+  FutureOr<void> _logOut(Logout event, Emitter<ProfileStates> emit) async {
     _customerCache.clearAll();
+
     emit(LoggedOut());
   }
 }

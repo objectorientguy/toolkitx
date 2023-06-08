@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:toolkit/screens/home/home_screen.dart';
@@ -10,7 +12,6 @@ import '../../configs/app_spacing.dart';
 
 class RootScreen extends StatefulWidget {
   static const routeName = 'RootScreen';
-
   const RootScreen({super.key});
 
   @override
@@ -25,87 +26,69 @@ class _RootScreenState extends State<RootScreen> {
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
+      log('setState index======>$_selectedIndex');
     });
   }
 
   static final List<Widget> _widgetOptions = <Widget>[
     const HomeScreen(),
-    const Text(
-      'Index 1: Location',
-    ),
-    const Text(
-      'Index 2: Notification',
-    ),
-    const Text(
-      'Index 3: Chat',
-    ),
-    const ProfileScreen(),
+    const Text('Index 1: Location'),
+    const Text('Index 2: Notification'),
+    const Text('Index 3: Chat'),
+    const ProfileScreen()
   ];
 
   @override
   Widget build(BuildContext context) {
+    log('index======>$_selectedIndex');
     return Scaffold(
-      body: Center(
-        child: _widgetOptions.elementAt(_selectedIndex),
-      ),
-      bottomNavigationBar:
-          BlocBuilder<WifiConnectivityBloc, WifiConnectivityState>(
-        builder: (context, state) {
+        body: Center(child: _widgetOptions.elementAt(_selectedIndex)),
+        bottomNavigationBar:
+            BlocBuilder<WifiConnectivityBloc, WifiConnectivityState>(
+                builder: (context, state) {
           if (state is NoNetwork) {
             return _bottomNavigationBar(true);
           } else {
             return _bottomNavigationBar(false);
           }
-        },
-      ),
-    );
+        }));
   }
 
   BottomNavigationBar _bottomNavigationBar(bool isDisabled) {
     return BottomNavigationBar(
-      enableFeedback: true,
-      type: BottomNavigationBarType.fixed,
-      items: const <BottomNavigationBarItem>[
-        BottomNavigationBarItem(
-          icon: Padding(
-            padding: EdgeInsets.only(top: xxTiniestSpacing),
-            child: Icon(Icons.home),
-          ),
-          label: '',
-        ),
-        BottomNavigationBarItem(
-          icon: Padding(
-            padding: EdgeInsets.only(top: xxTiniestSpacing),
-            child: Icon(Icons.location_on),
-          ),
-          label: '',
-        ),
-        BottomNavigationBarItem(
-          icon: Padding(
-            padding: EdgeInsets.only(top: xxTiniestSpacing),
-            child: Icon(Icons.notifications_sharp),
-          ),
-          label: '',
-        ),
-        BottomNavigationBarItem(
-          icon: Padding(
-            padding: EdgeInsets.only(top: xxTiniestSpacing),
-            child: Icon(Icons.message),
-          ),
-          label: '',
-        ),
-        BottomNavigationBarItem(
-          icon: Padding(
-            padding: EdgeInsets.only(top: xxTiniestSpacing),
-            child: Icon(Icons.person),
-          ),
-          label: '',
-        ),
-      ],
-      currentIndex: _selectedIndex,
-      selectedItemColor: Colors.blue,
-      unselectedItemColor: (isDisabled) ? AppColor.lightestGrey : AppColor.grey,
-      onTap: (isDisabled) ? null : _onItemTapped,
-    );
+        enableFeedback: true,
+        type: BottomNavigationBarType.fixed,
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+              icon: Padding(
+                  padding: EdgeInsets.only(top: xxTiniestSpacing),
+                  child: Icon(Icons.home)),
+              label: ''),
+          BottomNavigationBarItem(
+              icon: Padding(
+                  padding: EdgeInsets.only(top: xxTiniestSpacing),
+                  child: Icon(Icons.location_on)),
+              label: ''),
+          BottomNavigationBarItem(
+              icon: Padding(
+                  padding: EdgeInsets.only(top: xxTiniestSpacing),
+                  child: Icon(Icons.notifications_sharp)),
+              label: ''),
+          BottomNavigationBarItem(
+              icon: Padding(
+                  padding: EdgeInsets.only(top: xxTiniestSpacing),
+                  child: Icon(Icons.message)),
+              label: ''),
+          BottomNavigationBarItem(
+              icon: Padding(
+                  padding: EdgeInsets.only(top: xxTiniestSpacing),
+                  child: Icon(Icons.person)),
+              label: '')
+        ],
+        currentIndex: _selectedIndex,
+        selectedItemColor: Colors.blue,
+        unselectedItemColor:
+            (isDisabled) ? AppColor.lightestGrey : AppColor.grey,
+        onTap: (isDisabled) ? null : _onItemTapped);
   }
 }

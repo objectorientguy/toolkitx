@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:toolkit/blocs/home/home_events.dart';
 import 'package:toolkit/blocs/home/home_states.dart';
@@ -30,7 +31,25 @@ class HomeBloc extends Bloc<HomeEvents, HomeStates> {
     } catch (e) {
       timeZoneName = DateTime.now().timeZoneName;
     }
+    DateTime dateTime = DateTime.now();
+    String? image = await _customerCache.getClientImage(CacheKeys.clientImage);
+    String? timeZoneOffset =
+        await _customerCache.getTimeZoneOffset(CacheKeys.timeZoneOffset);
+    if (timeZoneOffset != null) {
+      List offset =
+          timeZoneOffset.replaceAll('+', '').replaceAll('-', '').split(':');
+      log('Datetime now=====>$dateTime');
+      if (timeZoneOffset.contains('+')) {
+        dateTime = DateTime.now().toUtc().add(Duration(
+            hours: int.parse(offset[0]), minutes: int.parse(offset[1].trim())));
+        log('Add Datetime====>$dateTime');
+      } else {
+        dateTime = DateTime.now().toUtc().subtract(Duration(
+            hours: int.parse(offset[0]), minutes: int.parse(offset[1].trim())));
+        log('Sub Datetime====>$dateTime');
+      }
+    }
     emit(DateAndTimeLoaded(
-        dateTime: DateTime.now(), timeZoneName: timeZoneName));
+        dateTime: dateTime, timeZoneName: timeZoneName, image: image!));
   }
 }

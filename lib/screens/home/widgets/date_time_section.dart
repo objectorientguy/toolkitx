@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:toolkit/configs/app_spacing.dart';
@@ -8,15 +9,25 @@ import '../../../configs/app_dimensions.dart';
 import '../../../utils/date_util.dart';
 
 class DateAndTimeSection extends StatelessWidget {
-  final String dateTimeOffset;
-  const DateAndTimeSection({Key? key, required this.dateTimeOffset})
-      : super(key: key);
+  const DateAndTimeSection({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<HomeBloc, HomeStates>(builder: (context, state) {
       if (state is DateAndTimeLoaded) {
         return Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
+          CachedNetworkImage(
+              height: kHomeScreenImageHeight,
+              imageUrl: state.image,
+              placeholder: (context, url) => const Center(
+                  child: SizedBox(
+                      height: kImageCircularProgressIndicatorSize,
+                      width: kImageCircularProgressIndicatorSize,
+                      child: CircularProgressIndicator(
+                          strokeWidth: kCircularIndicatorStrokeWidth))),
+              errorWidget: (context, url, error) =>
+                  const Icon(Icons.error_outline_sharp, size: kIconSize)),
+          const SizedBox(height: xxxSmallerSpacing),
           Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
