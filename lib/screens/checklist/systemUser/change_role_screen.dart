@@ -7,9 +7,9 @@ import '../../../blocs/checklist/systemUser/system_user_checklist_states.dart';
 import '../../../configs/app_color.dart';
 import '../../../configs/app_dimensions.dart';
 import '../../../configs/app_spacing.dart';
+import '../../../widgets/custom_card.dart';
 import '../../../widgets/error_section.dart';
 import '../../../widgets/generic_app_bar.dart';
-import '../../onboarding/widgets/custom_card.dart';
 
 class ChangeRoleScreen extends StatelessWidget {
   static const routeName = 'ChangeRoleScreen';

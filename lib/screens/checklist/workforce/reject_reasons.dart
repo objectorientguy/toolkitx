@@ -4,7 +4,6 @@ import 'package:toolkit/blocs/checklist/workforce/workforce_checklist_bloc.dart'
 import 'package:toolkit/blocs/checklist/workforce/workforce_checklist_events.dart';
 import 'package:toolkit/blocs/checklist/workforce/workforce_checklist_states.dart';
 import 'package:toolkit/screens/checklist/workforce/questions_list_screen.dart';
-import 'package:toolkit/screens/onboarding/widgets/custom_card.dart';
 import 'package:toolkit/utils/constants/string_constants.dart';
 import 'package:toolkit/widgets/error_section.dart';
 import 'package:toolkit/widgets/generic_app_bar.dart';
@@ -14,6 +13,7 @@ import 'package:toolkit/widgets/progress_bar.dart';
 import '../../../configs/app_color.dart';
 import '../../../configs/app_dimensions.dart';
 import '../../../configs/app_spacing.dart';
+import '../../../widgets/custom_card.dart';
 import '../../../widgets/custom_snackbar.dart';
 import '../../../widgets/generic_text_field.dart';
 

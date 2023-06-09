@@ -48,6 +48,7 @@ class IncidentFilterScreen extends StatelessWidget {
               Expanded(
                 child: DatePickerTextField(
                   hintText: DatabaseUtil.getText('SelectDate'),
+                  onDatePicked: (String pickDate) {},
                 ),
               )
             ]),

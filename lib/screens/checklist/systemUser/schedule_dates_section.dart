@@ -5,7 +5,7 @@ import '../../../blocs/checklist/systemUser/system_user_checklist_bloc.dart';
 import '../../../blocs/checklist/systemUser/system_user_checklist_events.dart';
 import '../../../configs/app_color.dart';
 import '../../../data/models/checklist/systemUser/system_user_cheklist_by_dates_model.dart';
-import '../../onboarding/widgets/custom_card.dart';
+import '../../../widgets/custom_card.dart';
 
 class ScheduleDatesSection extends StatelessWidget {
   final GetChecklistDetailsData getChecklistDetailsData;

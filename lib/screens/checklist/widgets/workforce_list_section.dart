@@ -8,7 +8,7 @@ import '../../../configs/app_color.dart';
 import '../../../configs/app_dimensions.dart';
 import '../../../configs/app_spacing.dart';
 import '../../../data/models/checklist/systemUser/system_user_workfoce_list_model.dart';
-import '../../onboarding/widgets/custom_card.dart';
+import '../../../widgets/custom_card.dart';
 
 class SystemUserWorkForceListSection extends StatelessWidget {
   final ChecklistWorkforceListModel getChecklistStatusModel;

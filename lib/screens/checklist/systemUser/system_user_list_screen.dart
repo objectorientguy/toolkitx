@@ -13,10 +13,10 @@ import '../../../blocs/checklist/systemUser/system_user_checklist_events.dart';
 import '../../../configs/app_color.dart';
 import '../../../configs/app_dimensions.dart';
 import '../../../data/models/checklist/systemUser/system_user_list_model.dart';
+import '../../../widgets/custom_card.dart';
 import '../../../widgets/custom_snackbar.dart';
 import '../../../widgets/error_section.dart';
 import '../../../widgets/progress_bar.dart';
-import '../../onboarding/widgets/custom_card.dart';
 import '../widgets/custom_tags_container.dart';
 import 'schedule_dates_screen.dart';
 

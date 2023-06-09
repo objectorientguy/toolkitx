@@ -10,8 +10,8 @@ import '../../../../configs/app_color.dart';
 import '../../../../configs/app_spacing.dart';
 import '../../../../data/models/checklist/workforce/questions_list_model.dart';
 import '../../../../utils/constants/string_constants.dart';
+import '../../../../widgets/custom_card.dart';
 import '../../../../widgets/secondary_button.dart';
-import '../../../onboarding/widgets/custom_card.dart';
 
 class QuestionsListSection extends StatelessWidget {
   final GetQuestionListModel getQuestionListModel;

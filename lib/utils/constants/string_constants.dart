@@ -38,12 +38,9 @@ abstract class StringConstants {
   static const String kEnterOtp = 'Enter OTP';
   static const String kAddImages = 'Add Image/Comment';
   static const String kAddTodo = 'Add ToDo';
-  static const String kOldPassword = 'Old Password'; //
-  static const String kEnterOtp = 'Enter OTP'; //
   static const String kSelectYourLanguage = 'Select Your Language';
   static const String kPleaseConfirm = 'Please Confirm';
   static const String kReject = 'Reject'; //
-  static const String kReject = 'Reject';
   static const String kUploadPhotos = 'Upload Photo';
   static const String kCamera = 'Camera';
   static const String kDevice = 'Device';
@@ -128,9 +125,6 @@ abstract class StringConstants {
   static const String kValidateEmptyEmail = 'Please enter email'; //
   static const String kValidateEmptyPassword = 'Please enter password';
   static const String kSelectUserTypeValidation = 'Please select a type'; //
-  static const String kRefresh = 'Refresh'; //
-  static const String kSomethingWentWrong = 'Something went wrong';
-  static const String kSelectUserTypeValidation = 'Please select a type';
   static const String kRefresh = 'Refresh';
   static const String kNoInternetError =
       'We could not load the information. Please\ncheck the internet connection and refresh\nthis screen so we can synchronize the data.'; //

@@ -11,9 +11,9 @@ import '../../../blocs/checklist/systemUser/system_user_checklist_events.dart';
 import '../../../blocs/checklist/systemUser/system_user_checklist_states.dart';
 import '../../../configs/app_color.dart';
 import '../../../configs/app_dimensions.dart';
+import '../../../widgets/custom_card.dart';
 import '../../../widgets/custom_snackbar.dart';
 
-import '../../onboarding/widgets/custom_card.dart';
 import '../widgets/checklist_app_bar.dart';
 
 class SystemUserScheduleDatesScreen extends StatelessWidget {

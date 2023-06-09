@@ -8,8 +8,8 @@ import 'package:toolkit/widgets/error_section.dart';
 import '../../../blocs/checklist/workforce/workforce_checklist_events.dart';
 import '../../../configs/app_color.dart';
 import '../../../utils/constants/string_constants.dart';
+import '../../../widgets/custom_card.dart';
 import '../../../widgets/generic_app_bar.dart';
-import '../../onboarding/widgets/custom_card.dart';
 import '../widgets/custom_tags_container.dart';
 import 'questions_list_screen.dart';
 

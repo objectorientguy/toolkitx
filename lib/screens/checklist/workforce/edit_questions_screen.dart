@@ -18,10 +18,10 @@ import '../../../blocs/checklist/workforce/workforce_checklist_events.dart';
 import '../../../configs/app_color.dart';
 import '../../../configs/app_spacing.dart';
 import '../../../utils/constants/string_constants.dart';
+import '../../../widgets/custom_card.dart';
 import '../../../widgets/generic_text_field.dart';
 import '../../../widgets/progress_bar.dart';
 import '../../../widgets/upload_alert_dialog.dart';
-import '../../onboarding/widgets/custom_card.dart';
 import 'widgets/drop_down_expansion_tile.dart';
 import 'widgets/multi_select_expansion_tile.dart';
 
