@@ -39,9 +39,11 @@ class PasswordBody extends StatelessWidget {
                     Text(DatabaseUtil.getText('password'),
                         style: Theme.of(context).textTheme.medium),
                     const SizedBox(height: xxxTinierSpacing),
-                    TextFieldWidget(onTextFieldChanged: (String textField) {
-                      loginMap['password'] = textField;
-                    }),
+                    TextFieldWidget(
+                        obscureText: true,
+                        onTextFieldChanged: (String textField) {
+                          loginMap['password'] = textField;
+                        }),
                     BlocBuilder<LoginBloc, LoginStates>(
                         buildWhen: (previousState, currentState) =>
                             currentState is UserTypeChanged,

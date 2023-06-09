@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:toolkit/blocs/profile/profile_events.dart';
 import 'package:toolkit/blocs/profile/profile_states.dart';
@@ -81,7 +80,7 @@ class ProfileBloc extends Bloc<ProfileEvents, ProfileStates> {
         if (userProfileModel.status == 200) {
           _customerCache.setUserName(CacheKeys.userName,
               '${userProfileModel.data!.fname} ${userProfileModel.data!.lname}');
-          Map encryptedDataMap = userProfileModel.data!.toJson();
+          Map decryptedDataMap = userProfileModel.data!.toJson();
           String bloodGroupDecrypt = '';
           String contactDecrypt = '';
           String privateKey =
@@ -94,12 +93,13 @@ class ProfileBloc extends Bloc<ProfileEvents, ProfileStates> {
             contactDecrypt = await EncryptData.decryptAESPrivateKey(
                 userProfileModel.data!.contact, privateKey);
           }
-          encryptedDataMap['bloodgrp'] = bloodGroupDecrypt;
-          encryptedDataMap['contact'] = contactDecrypt;
-          add(InitializeEditUserProfile(profileDetailsMap: encryptedDataMap));
+          decryptedDataMap['bloodgrp'] = bloodGroupDecrypt;
+          decryptedDataMap['contact'] = contactDecrypt;
+
+          add(InitializeEditUserProfile(profileDetailsMap: decryptedDataMap));
         }
       } else {
-        Map encryptedDataMap = Map.from(profileDataMap);
+        Map decryptedDataMap = Map.from(profileDataMap);
         String bloodGroupDecrypt = '';
         String contactDecrypt = '';
         String privateKey = (await _customerCache.getApiKey(CacheKeys.apiKey))!;
@@ -111,9 +111,10 @@ class ProfileBloc extends Bloc<ProfileEvents, ProfileStates> {
           contactDecrypt = await EncryptData.decryptAESPrivateKey(
               profileDataMap['contact'], privateKey);
         }
-        encryptedDataMap['bloodgrp'] = bloodGroupDecrypt;
-        encryptedDataMap['contact'] = contactDecrypt;
-        add(InitializeEditUserProfile(profileDetailsMap: encryptedDataMap));
+        decryptedDataMap['bloodgrp'] = bloodGroupDecrypt;
+        decryptedDataMap['contact'] = contactDecrypt;
+
+        add(InitializeEditUserProfile(profileDetailsMap: decryptedDataMap));
       }
     } catch (e) {
       emit(EditProfileError(
@@ -163,6 +164,8 @@ class ProfileBloc extends Bloc<ProfileEvents, ProfileStates> {
         UpdateUserProfileModel updateUserProfileModel =
             await _profileRepository.updateUserProfile(updateUserProfileMap);
         if (updateUserProfileModel.status == 200) {
+          _customerCache.setUserName(CacheKeys.userName,
+              '${event.updateProfileMap['fname'].trim()} ${event.updateProfileMap['lname'].trim()}');
           emit(UserProfileUpdated(
               updateUserProfileModel: updateUserProfileModel));
         } else {

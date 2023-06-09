@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:toolkit/configs/app_spacing.dart';
 import 'package:toolkit/configs/app_theme.dart';
+import 'package:toolkit/utils/constants/string_constants.dart';
+import 'package:toolkit/widgets/error_section.dart';
 import '../../../blocs/profile/profile_bloc.dart';
 import '../../../blocs/profile/profile_events.dart';
 import '../../../blocs/profile/profile_states.dart';
@@ -23,7 +25,7 @@ class ProfileEditScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     context.read<ProfileBloc>().add(DecryptUserProfileData());
     return Scaffold(
-        appBar: const GenericAppBar(),
+        appBar: GenericAppBar(title: DatabaseUtil.getText('MyProfile')),
         body: BlocConsumer<ProfileBloc, ProfileStates>(
             buildWhen: (previousState, currentState) =>
                 currentState is EditProfileInitialized ||
@@ -41,9 +43,8 @@ class ProfileEditScreen extends StatelessWidget {
                 ProgressBar.dismiss(context);
                 showCustomSnackBar(context, state.message, '');
               }
-              if (state is EditProfileError) {
+              if (state is UserProfileUpdateCancel) {
                 Navigator.pop(context);
-                showCustomSnackBar(context, state.errorMessage, '');
               }
             },
             builder: (context, state) {
@@ -110,6 +111,15 @@ class ProfileEditScreen extends StatelessWidget {
                                   },
                                   textValue: DatabaseUtil.getText('buttonSave'))
                             ])));
+              } else if (state is EditProfileError) {
+                return Center(
+                    child: GenericReloadButton(
+                        onPressed: () {
+                          context
+                              .read<ProfileBloc>()
+                              .add(DecryptUserProfileData());
+                        },
+                        textValue: StringConstants.kReload));
               } else {
                 return const SizedBox();
               }

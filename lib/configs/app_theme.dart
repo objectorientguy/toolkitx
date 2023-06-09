@@ -25,10 +25,9 @@ FloatingActionButtonThemeData floatingActionButtonThemeData =
 ExpansionTileThemeData expansionTileThemeData = ExpansionTileThemeData(
     tilePadding: const EdgeInsets.only(
         left: kExpansionTileMargin, right: kExpansionTileMargin),
-    collapsedBackgroundColor: AppColor.white,
+    collapsedBackgroundColor: AppColor.offWhite,
     shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(kCardRadius)),
-    backgroundColor: AppColor.white,
     iconColor: AppColor.deepBlue,
     textColor: AppColor.black);
 

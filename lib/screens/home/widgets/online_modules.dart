@@ -23,7 +23,7 @@ class OnLineModules extends StatelessWidget {
       if (state is HomeScreenFetching) {
         return Padding(
             padding:
-                EdgeInsets.only(top: MediaQuery.of(context).size.width * 0.6),
+                EdgeInsets.only(top: MediaQuery.of(context).size.height / 3.5),
             child: const Center(child: CircularProgressIndicator()));
       }
       if (state is HomeScreenFetched) {
@@ -67,12 +67,16 @@ class OnLineModules extends StatelessWidget {
                           ])));
             });
       } else if (state is FetchHomeScreenError) {
-        return Center(
-            child: GenericReloadButton(
-                onPressed: () {
-                  context.read<ClientBloc>().add(FetchHomeScreenData());
-                },
-                textValue: StringConstants.kReload));
+        return Padding(
+          padding:
+              EdgeInsets.only(top: MediaQuery.of(context).size.height / 3.5),
+          child: Center(
+              child: GenericReloadButton(
+                  onPressed: () {
+                    context.read<ClientBloc>().add(FetchHomeScreenData());
+                  },
+                  textValue: StringConstants.kReload)),
+        );
       } else {
         return const SizedBox();
       }

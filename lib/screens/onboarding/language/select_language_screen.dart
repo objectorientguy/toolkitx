@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:toolkit/configs/app_theme.dart';
 import 'package:toolkit/screens/root/root_screen.dart';
 import 'package:toolkit/widgets/android_pop_up.dart';
 import 'package:toolkit/widgets/custom_snackbar.dart';
@@ -11,7 +12,6 @@ import '../../../configs/app_spacing.dart';
 import '../../../utils/constants/string_constants.dart';
 import '../../../utils/database_utils.dart';
 import '../selectTimeZone/select_time_zone_screen.dart';
-import '../../../widgets/generic_app_bar.dart';
 import '../../../widgets/error_section.dart';
 import '../../../widgets/generic_loading_popup.dart';
 import '../widgets/select_language_body.dart';
@@ -29,10 +29,11 @@ class SelectLanguageScreen extends StatelessWidget {
         .read<LanguageBloc>()
         .add(FetchLanguages(isFromProfile: isFromProfile));
     return Scaffold(
-        appBar: GenericAppBar(
-            title: (isFromProfile == true)
+        appBar: AppBar(
+            title: Text((isFromProfile == true)
                 ? DatabaseUtil.getText('LanguageTanslate')
                 : StringConstants.kSelectYourLanguage),
+            titleTextStyle: Theme.of(context).textTheme.mediumLarge),
         body: Padding(
             padding: const EdgeInsets.only(
                 left: leftRightMargin,
@@ -72,8 +73,7 @@ class SelectLanguageScreen extends StatelessWidget {
                   if (state is NewLanguageKeysUnavailable) {
                     if (isFromProfile == true) {
                       ProgressBar.dismiss(context);
-                      showCustomSnackBar(context, 'No new keys available',
-                          StringConstants.kOk);
+                      showCustomSnackBar(context, 'No new keys available', '');
                     } else {
                       Navigator.pushNamed(
                           context, SelectTimeZoneScreen.routeName,

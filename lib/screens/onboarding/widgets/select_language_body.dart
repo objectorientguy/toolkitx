@@ -1,9 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shimmer/shimmer.dart';
 
 import '../../../blocs/language/language_bloc.dart';
 import '../../../blocs/language/language_events.dart';
+import '../../../configs/app_color.dart';
 import '../../../configs/app_dimensions.dart';
 import '../../../configs/app_spacing.dart';
 import '../../../data/models/language/languages_model.dart';
@@ -39,9 +41,17 @@ class SelectLanguageBody extends StatelessWidget {
                       height: kLanguageFlagHeight,
                       imageUrl:
                           '${ApiConstants.baseUrlFlag}${getLanguagesData[index].flagName}',
-                      placeholder: (context, url) =>
-                          const CircularProgressIndicator(
-                              strokeWidth: kCircularIndicatorStrokeWidth),
+                      placeholder: (context, url) => Shimmer.fromColors(
+                          baseColor: Colors.grey.shade100,
+                          highlightColor: AppColor.white,
+                          child: Container(
+                            height: kLanguageFlagHeight,
+                            width: kLanguageFlagWidth,
+                            decoration: BoxDecoration(
+                                color: AppColor.white,
+                                borderRadius:
+                                    BorderRadius.circular(kCardRadius)),
+                          )),
                       errorWidget: (context, url, error) => const Icon(
                           Icons.error_outline_sharp,
                           size: kIconSize)),

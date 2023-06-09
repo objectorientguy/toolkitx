@@ -1,10 +1,12 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shimmer/shimmer.dart';
 import 'package:toolkit/configs/app_spacing.dart';
 
 import '../../../blocs/home/home_bloc.dart';
 import '../../../blocs/home/home_states.dart';
+import '../../../configs/app_color.dart';
 import '../../../configs/app_dimensions.dart';
 import '../../../utils/date_util.dart';
 
@@ -19,12 +21,15 @@ class DateAndTimeSection extends StatelessWidget {
           CachedNetworkImage(
               height: kHomeScreenImageHeight,
               imageUrl: state.image,
-              placeholder: (context, url) => const Center(
-                  child: SizedBox(
-                      height: kImageCircularProgressIndicatorSize,
-                      width: kImageCircularProgressIndicatorSize,
-                      child: CircularProgressIndicator(
-                          strokeWidth: kCircularIndicatorStrokeWidth))),
+              placeholder: (context, url) => Shimmer.fromColors(
+                  baseColor: AppColor.offWhite,
+                  highlightColor: AppColor.white,
+                  child: Container(
+                      height: kHomeScreenImageHeight,
+                      width: 180,
+                      decoration: BoxDecoration(
+                          color: AppColor.offWhite,
+                          borderRadius: BorderRadius.circular(kCardRadius)))),
               errorWidget: (context, url, error) =>
                   const Icon(Icons.error_outline_sharp, size: kIconSize)),
           const SizedBox(height: xxxSmallerSpacing),

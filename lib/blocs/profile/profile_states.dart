@@ -20,6 +20,8 @@ class UserProfileFetchError extends ProfileStates {}
 
 class UserProfileUpdating extends ProfileStates {}
 
+class UserProfileUpdateCancel extends ProfileStates {}
+
 class UserProfileUpdated extends ProfileStates {
   final UpdateUserProfileModel updateUserProfileModel;
 

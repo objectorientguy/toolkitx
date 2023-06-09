@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:toolkit/configs/app_theme.dart';
+import 'package:toolkit/utils/database_utils.dart';
 import '../../blocs/profile/profile_bloc.dart';
 import '../../blocs/profile/profile_events.dart';
 import '../../blocs/profile/profile_states.dart';
@@ -63,13 +64,16 @@ class ProfileScreen extends StatelessWidget {
                                             imagePath: 'mechanic_person.png'),
                                         const SizedBox(
                                             height: xxxSmallerSpacing),
-                                        Text(state.userName,
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .large),
-                                        const SizedBox(
-                                            height: xxTiniestSpacing),
-                                        Text(state.userType,
+                                        Text(
+                                          state.userName,
+                                          style:
+                                              Theme.of(context).textTheme.large,
+                                          textAlign: TextAlign.center,
+                                        ),
+                                        const SizedBox(height: tiniest),
+                                        Text(
+                                            DatabaseUtil.getText(
+                                                state.userType),
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .xSmall),
