@@ -23,7 +23,7 @@ class ClientListScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     context.read<ClientBloc>().add(FetchClientList());
     return Scaffold(
-        appBar: GenericAppBar(title: DatabaseUtil.getText('Clientlist')),
+        appBar: GenericAppBar(title: DatabaseUtil.getText('ClientList')),
         body: BlocConsumer<ClientBloc, ClientStates>(
             buildWhen: (previousState, currentState) =>
                 currentState is ClientListFetching ||
