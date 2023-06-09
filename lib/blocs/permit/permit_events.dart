@@ -9,3 +9,7 @@ class GetAllPermits extends PermitEvents {
 class GetPermitDetails extends PermitEvents {
   const GetPermitDetails();
 }
+
+class GeneratePDF extends PermitEvents {
+  const GeneratePDF();
+}

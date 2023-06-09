@@ -6,9 +6,9 @@ abstract class StringConstants {
       'Workforce management designed to enhance efficiency, productivity and safety';
   static const String kWelcomeToToolkitX = 'Welcome to ToolKitX';
   static const String kStartNow = 'START NOW';
-  static const String kSelectTimeZone = 'Select Your TimeZone'; // not in db
+  static const String kSelectTimeZone = 'Select Your TimeZone';
   static const String kEmailAddress = 'Email Address';
-  static const String kPassword = 'Password';
+  static const String kPassword = 'Password'; //
   static const String kNext = 'NEXT';
   static const String kLogin = 'LOGIN';
   static const String kWelcome = 'Welcome';
@@ -22,8 +22,9 @@ abstract class StringConstants {
   static const String kSaveDraft = 'Save as Draft';
   static const String kType = 'Type';
   static const String kGenerateOtp = 'GENERATE OTP';
-  static const String kEnterNewPassword = 'Enter New Password';
-  static const String kConfirmPassword = 'Confirm Password';
+  static const String kEnterNewPassword =
+      'Enter New Password'; // comment lines indicates that keys are not available
+  static const String kConfirmPassword = 'Confirm Password'; //
   static const String kOtpGenerated = 'OTP generated';
   static const String kEnterReason = 'Enter reason here...';
   static const String kSubmit = 'Submit';
@@ -37,24 +38,27 @@ abstract class StringConstants {
   static const String kEnterOtp = 'Enter OTP';
   static const String kAddImages = 'Add Image/Comment';
   static const String kAddTodo = 'Add ToDo';
+  static const String kOldPassword = 'Old Password'; //
+  static const String kEnterOtp = 'Enter OTP'; //
   static const String kSelectYourLanguage = 'Select Your Language';
   static const String kPleaseConfirm = 'Please Confirm';
+  static const String kReject = 'Reject'; //
   static const String kReject = 'Reject';
   static const String kUploadPhotos = 'Upload Photo';
   static const String kCamera = 'Camera';
   static const String kDevice = 'Device';
   static const String kUploadFrom = 'Upload From';
   static const String kDialogContent =
-      "The language file doesn't exist or an old version.Please download the latest language file.";
+      "The language file doesn't exist or an old version.Please download the latest language file."; //
   static const String kNo = 'NO';
   static const String kYes = 'YES';
-  static const String kReload = 'RELOAD';
+  static const String kReload = 'RELOAD'; //
   static const String kOk = 'Ok';
-  static const String kDateFormatValidate = 'Please select a Date Format!';
+  static const String kDateFormatValidate = 'Please select a Date Format!'; //
   static const String kEditProfile = 'Edit Profile';
   static const String kChangeClient = 'Change Client';
   static const String kLogout = 'Logout';
-  static const String kChangePassword = 'Change Password';
+  static const String kChangePassword = 'Change Password'; //
   static const String kChangeLanguage = 'Change Language';
   static const String kChangeTimezone = 'Change Timezone';
   static const String kChangeDateFormat = 'Change DateFormat';
@@ -70,7 +74,7 @@ abstract class StringConstants {
   static const String kLastName = 'Last Name';
   static const String kContact = 'Contact';
   static const String kBloodGroup = 'Blood Group';
-  static const String kSelectBloodGroup = 'Select Blood Group';
+  static const String kSelectBloodGroup = 'Select Blood Group'; //
   static const String kSelectCategory = 'Select Category';
   static const String kSignature = 'Signature';
   static const String kUploadSignature = 'Upload Signature';
@@ -91,9 +95,8 @@ abstract class StringConstants {
   static const String kLogoutDialogContent =
       'Are you sure you want to log out?';
   static const String kNoInternetMessage =
-      'Oops! Please ensure your device is connected to the internet to access rest of the module';
+      'Oops! Please ensure your device is connected to the internet to access rest of the module'; //
   static const String kReportAnIncident = 'Report an Incident';
-  static const String kFilter = 'Filter';
   static const String kDateRange = 'Date Range';
   static const String kSelectDate = 'Select Date';
   static const String kBis = 'bis';
@@ -118,14 +121,22 @@ abstract class StringConstants {
   static const String kReportToAuthorities = 'Report to authorities';
   static const String kSelectSite = 'Select Site';
   static const String kSelectLocation = 'Select Location';
-  static const String kSelectLanguageAgain = 'Please select language again';
-  static const String kTryAgainInSomeTime = 'Try again in some time';
-  static const String kOtpUnsuccessful = 'OTP generation was Unsuccessful!';
-  static const String kInitializingLanguage = 'Initializing Language...';
-  static const String kValidateEmptyEmail = 'Please enter email';
+  static const String kSelectLanguageAgain = 'Please select language again'; //
+  static const String kTryAgainInSomeTime = 'Try again in some time'; //
+  static const String kOtpUnsuccessful = 'OTP generation was Unsuccessful!'; //
+  static const String kInitializingLanguage = 'Initializing Language...'; //
+  static const String kValidateEmptyEmail = 'Please enter email'; //
   static const String kValidateEmptyPassword = 'Please enter password';
+  static const String kSelectUserTypeValidation = 'Please select a type'; //
+  static const String kRefresh = 'Refresh'; //
+  static const String kSomethingWentWrong = 'Something went wrong';
   static const String kSelectUserTypeValidation = 'Please select a type';
   static const String kRefresh = 'Refresh';
   static const String kNoInternetError =
-      'We could not load the information. Please\ncheck the internet connection and refresh\nthis screen so we can synchronize the data.';
+      'We could not load the information. Please\ncheck the internet connection and refresh\nthis screen so we can synchronize the data.'; //
+  static const String kValidatePassword = 'Please enter old password/opt';
+  static const String kValidateNewPassword = 'Please enter a new password';
+  static const String kValidateConfirmPassword =
+      'Please enter confirm password';
+  static const String kValidatePasswordMatch = 'Passwords must match!';
 }

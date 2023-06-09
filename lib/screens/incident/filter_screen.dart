@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:toolkit/configs/app_spacing.dart';
 import 'package:toolkit/configs/app_theme.dart';
 import 'package:toolkit/utils/constants/string_constants.dart';
+import 'package:toolkit/utils/database_utils.dart';
 import 'package:toolkit/widgets/generic_app_bar.dart';
 import 'package:toolkit/widgets/primary_button.dart';
 
@@ -16,8 +17,8 @@ class IncidentFilterScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const GenericAppBar(
-        title: StringConstants.kFilter,
+      appBar: GenericAppBar(
+        title: DatabaseUtil.getText('Filters'),
       ),
       body: Padding(
         padding: const EdgeInsets.only(
@@ -28,7 +29,7 @@ class IncidentFilterScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
           children: [
-            Text(StringConstants.kDateRange,
+            Text(DatabaseUtil.getText('DateRange'),
                 style: Theme.of(context)
                     .textTheme
                     .xSmall
@@ -42,17 +43,16 @@ class IncidentFilterScreen extends StatelessWidget {
                 ),
               ),
               const SizedBox(width: xxTinierSpacing),
-              const Text(StringConstants.kBis),
+              Text(DatabaseUtil.getText('to')),
               const SizedBox(width: xxTinierSpacing),
               Expanded(
                 child: DatePickerTextField(
-                  hintText: StringConstants.kSelectDate,
-                  onDatePicked: (String pickDate) {},
+                  hintText: DatabaseUtil.getText('SelectDate'),
                 ),
               )
             ]),
             const SizedBox(height: xxTinySpacing),
-            Text(StringConstants.kStatus,
+            Text(DatabaseUtil.getText('Status'),
                 style: Theme.of(context)
                     .textTheme
                     .xSmall
@@ -60,7 +60,8 @@ class IncidentFilterScreen extends StatelessWidget {
             const SizedBox(height: xxTinySpacing),
             const FilterStatusExpansionTile(),
             const SizedBox(height: xxxSmallerSpacing),
-            PrimaryButton(onPressed: () {}, textValue: StringConstants.kApply)
+            PrimaryButton(
+                onPressed: () {}, textValue: DatabaseUtil.getText('Apply'))
           ],
         ),
       ),

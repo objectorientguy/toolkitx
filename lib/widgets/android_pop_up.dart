@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:toolkit/configs/app_spacing.dart';
 import 'package:toolkit/configs/app_theme.dart';
-import 'package:toolkit/utils/constants/string_constants.dart';
+import 'package:toolkit/utils/database_utils.dart';
 
 class AndroidPopUp extends StatelessWidget {
   final String titleValue;
@@ -31,12 +31,12 @@ class AndroidPopUp extends StatelessWidget {
             .copyWith(fontWeight: FontWeight.w500),
         actions: [
           TextButton(
-              child: const Text(StringConstants.kNo),
+              child: Text(DatabaseUtil.getText('No')),
               onPressed: () {
                 Navigator.of(context).pop();
               }),
           TextButton(
-              onPressed: onPressed, child: const Text(StringConstants.kYes))
+              onPressed: onPressed, child: Text(DatabaseUtil.getText('Yes')))
         ]);
   }
 }

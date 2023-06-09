@@ -25,13 +25,24 @@ import 'blocs/dateFormat/date_format_bloc.dart';
 import 'blocs/home/home_bloc.dart';
 import 'blocs/language/language_bloc.dart';
 import 'blocs/login/login_bloc.dart';
+import 'blocs/onboarding/onboarding_bloc.dart';
 import 'blocs/onboarding/onboarding_events.dart';
+import 'blocs/onboarding/onboarding_states.dart';
+import 'blocs/permit/permit_bloc.dart';
+import 'blocs/profile/profile_bloc.dart';
 import 'blocs/pickImage/pick_image_bloc.dart';
 import 'blocs/timeZone/time_zone_bloc.dart';
+import 'blocs/wifiConnectivity/wifi_connectivity_bloc.dart';
+import 'blocs/wifiConnectivity/wifi_connectivity_events.dart';
 import 'blocs/wifiConnectivity/wifi_connectivity_states.dart';
+import 'configs/app_theme.dart';
 import 'di/app_module.dart';
 import 'configs/app_route.dart';
+import 'screens/onboarding/login/login_screen.dart';
+import 'screens/onboarding/selectDateFormat/select_date_format_screen.dart';
+import 'screens/onboarding/selectTimeZone/select_time_zone_screen.dart';
 import 'screens/onboarding/welcome_screen.dart';
+import 'screens/root/root_screen.dart';
 
 void main() async {
   await _initApp();

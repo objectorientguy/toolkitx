@@ -39,3 +39,4 @@ const double kHomeScreenImageHeight = 80;
 const double kCircularIndicatorStrokeWidth = 2;
 const double kExpansionTileMargin = 3;
 const double kCardPadding = 15;
+const double kCircularContainer = 10;

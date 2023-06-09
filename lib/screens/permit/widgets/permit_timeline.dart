@@ -14,9 +14,10 @@ class CustomTimeline extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: xxxSmallerSpacing),
+      padding: const EdgeInsets.only(
+          top: xxxSmallerSpacing, bottom: xxxSmallerSpacing),
       child: ListView.builder(
-        itemCount: 23,
+        itemCount: permitDetailsModel.data.tab4.length,
         itemBuilder: (context, index) {
           return Row(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -38,27 +39,28 @@ class CustomTimeline extends StatelessWidget {
     return Column(
       children: [
         Container(
-          width: 15,
-          height: 15,
+          width: MediaQuery.of(context).size.width * 0.035,
+          height: MediaQuery.of(context).size.width * 0.035,
           decoration: const BoxDecoration(
             shape: BoxShape.circle,
             color: AppColor.lightGrey,
           ),
         ),
         Visibility(
-          visible: index != 23 - 1,
+          visible: index != permitDetailsModel.data.tab4.length - 1,
           child: Container(
-            width: 1.0, // Adjust the width as needed
-            height: MediaQuery.of(context).size.height *
-                0.13, // Adjust the height as needed
+            width: 1,
+            height: MediaQuery.of(context).size.height * 0.13,
             color: AppColor.lightGrey,
           ),
-        )
+        ),
       ],
     );
   }
 
   Widget _buildDateAndTime(int index) {
+    List<String> dateTime =
+        permitDetailsModel.data.tab4[index].createdAt.split(' ');
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.start,
@@ -70,7 +72,7 @@ class CustomTimeline extends StatelessWidget {
             Image.asset('assets/icons/calendar.png',
                 height: kImageMediumHeight, width: kImageMediumWidth),
             const SizedBox(width: xxTiniestSpacing),
-            const Text('24.05.2023')
+            Text(dateTime[0])
           ],
         ),
         const SizedBox(height: xxTinierSpacing),
@@ -81,7 +83,7 @@ class CustomTimeline extends StatelessWidget {
             Image.asset('assets/icons/clock.png',
                 height: kImageMediumHeight, width: kImageMediumWidth),
             const SizedBox(width: xxTiniestSpacing),
-            const Text('03:30')
+            Text(dateTime[1])
           ],
         )
       ],
@@ -93,7 +95,7 @@ class CustomTimeline extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'Sumit Despande',
+          permitDetailsModel.data.tab4[index].createdBy,
           style: Theme.of(context).textTheme.small.copyWith(
               fontWeight: FontWeight.w700, color: AppColor.mediumBlack),
         ),
@@ -101,12 +103,12 @@ class CustomTimeline extends StatelessWidget {
         SizedBox(
             width: MediaQuery.of(context).size.width * 0.490,
             child: Text(
-              'The permit has been approved by : Service Department The permit has been approved by : Service Department',
+              permitDetailsModel.data.tab4[index].action,
               style: Theme.of(context)
                   .textTheme
                   .xSmall
                   .copyWith(color: AppColor.grey),
-              maxLines: 5,
+              maxLines: 7,
             )),
       ],
     );

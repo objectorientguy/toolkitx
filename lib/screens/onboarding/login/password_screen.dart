@@ -42,27 +42,22 @@ class PasswordScreen extends StatelessWidget {
                       }
                       if (state is LoginError) {
                         ProgressBar.dismiss(context);
-                        showCustomSnackBar(
-                            context, state.message, StringConstants.kOk);
+                        showCustomSnackBar(context, state.message, '');
                       }
                       if (state is GeneratingOtpLogin) {
                         ProgressBar.show(context);
                       }
                       if (state is LoginOtpGenerated) {
-                        if (state.generateOtpLoginModel.message != '0') {
-                          showCustomSnackBar(
-                              context,
-                              StringConstants.kTryAgainInSomeTime,
-                              StringConstants.kOk);
-                        }
                         ProgressBar.dismiss(context);
+                        if (state.generateOtpLoginModel.message != '1') {
+                          showCustomSnackBar(
+                              context, StringConstants.kTryAgainInSomeTime, '');
+                        }
                       }
                       if (state is GenerateOtpLoginError) {
                         ProgressBar.dismiss(context);
                         showCustomSnackBar(
-                            context,
-                            StringConstants.kOtpUnsuccessful,
-                            StringConstants.kOk);
+                            context, StringConstants.kTryAgainInSomeTime, '');
                       }
                     },
                     child: PasswordBody()))));

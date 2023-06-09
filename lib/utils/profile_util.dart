@@ -1,4 +1,5 @@
 import 'package:toolkit/utils/constants/string_constants.dart';
+import 'package:toolkit/utils/database_utils.dart';
 
 import '../data/models/profile/profile_options_model.dart';
 
@@ -12,21 +13,22 @@ abstract class ProfileUtil {
           title: StringConstants.kChangePassword,
           image: "${iconPath}reset-password.png"),
       ProfileOptions(
-          title: StringConstants.kChangeLanguage,
+          title: DatabaseUtil.getText('LanguageTanslate'),
           image: "${iconPath}languages.png"),
       ProfileOptions(
-          title: StringConstants.kChangeTimezone,
+          title: DatabaseUtil.getText('changetimezone'),
           image: "${iconPath}time_zone.png"),
       ProfileOptions(
-          title: StringConstants.kChangeDateFormat,
+          title: DatabaseUtil.getText('changedateformat'),
           image: "${iconPath}calendar.png"),
       ProfileOptions(
-          title: StringConstants.kToolKitEmail, image: "${iconPath}email.png"),
+          title: DatabaseUtil.getText('MailUs'), image: "${iconPath}email.png"),
       ProfileOptions(
-          title: StringConstants.kPrivacyPolicy,
+          title: DatabaseUtil.getText('PrivacyPolicies'),
           image: "${iconPath}compliant.png"),
       ProfileOptions(
-          title: StringConstants.kMaturityModel, image: "${iconPath}shield.png")
+          title: DatabaseUtil.getText('MaturityModel'),
+          image: "${iconPath}shield.png")
     ];
   }
 }
