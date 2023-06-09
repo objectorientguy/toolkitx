@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:toolkit/screens/onboarding/widgets/show_error.dart';
 import 'package:toolkit/utils/constants/string_constants.dart';
 import '../../../blocs/checklist/systemUser/system_user_checklist_bloc.dart';
 import '../../../blocs/checklist/systemUser/system_user_checklist_events.dart';
@@ -8,6 +7,7 @@ import '../../../blocs/checklist/systemUser/system_user_checklist_states.dart';
 import '../../../configs/app_color.dart';
 import '../../../configs/app_dimensions.dart';
 import '../../../configs/app_spacing.dart';
+import '../../../widgets/error_section.dart';
 import '../../../widgets/generic_app_bar.dart';
 import '../../onboarding/widgets/custom_card.dart';
 
@@ -22,13 +22,13 @@ class ChangeRoleScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: const GenericAppBar(
-          title: Text(StringConstants.kChangeRole),
+          title: StringConstants.kChangeRole,
         ),
         body: Padding(
             padding: const EdgeInsets.only(
                 left: leftRightMargin,
                 right: leftRightMargin,
-                top: topBottomSpacing),
+                top: topBottomPadding),
             child: BlocConsumer<ChecklistBloc, ChecklistStates>(
                 buildWhen: (previousState, currentState) =>
                     currentState is RolesFetched,
@@ -45,13 +45,13 @@ class ChangeRoleScreen extends StatelessWidget {
                     return Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const SizedBox(height: tiniestSpacing),
+                          const SizedBox(height: xxTinierSpacing),
                           CustomCard(
                               elevation: kZeroElevation,
                               child: ListView.separated(
                                   physics: const NeverScrollableScrollPhysics(),
-                                  padding: const EdgeInsets.only(
-                                      bottom: tiniestSpacing),
+                                  padding:
+                                      const EdgeInsets.only(bottom: tiniest),
                                   shrinkWrap: true,
                                   itemCount:
                                       state.checkListRolesModel.data!.length,
@@ -91,14 +91,14 @@ class ChangeRoleScreen extends StatelessWidget {
                                         thickness: kDividerThickness,
                                         height: kDividerHeight);
                                   })),
-                          const SizedBox(height: mediumSpacing)
+                          const SizedBox(height: xxLargerSpacing)
                         ]);
                   } else if (state is FetchRolesError) {
-                    return ShowError(onPressed: () {
-                      context
-                          .read<ChecklistBloc>()
-                          .add(FetchRoles(userId: 'MQFmIsmjOcA38gtYss+3Tw=='));
-                    });
+                    return GenericReloadButton(
+                        onPressed: () {
+                          context.read<ChecklistBloc>().add(FetchRoles());
+                        },
+                        textValue: StringConstants.kReload);
                   } else {
                     return const SizedBox();
                   }

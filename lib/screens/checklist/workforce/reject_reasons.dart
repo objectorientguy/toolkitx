@@ -5,9 +5,8 @@ import 'package:toolkit/blocs/checklist/workforce/workforce_checklist_events.dar
 import 'package:toolkit/blocs/checklist/workforce/workforce_checklist_states.dart';
 import 'package:toolkit/screens/checklist/workforce/questions_list_screen.dart';
 import 'package:toolkit/screens/onboarding/widgets/custom_card.dart';
-import 'package:toolkit/screens/onboarding/widgets/show_error.dart';
-import 'package:toolkit/screens/onboarding/widgets/text_field.dart';
 import 'package:toolkit/utils/constants/string_constants.dart';
+import 'package:toolkit/widgets/error_section.dart';
 import 'package:toolkit/widgets/generic_app_bar.dart';
 import 'package:toolkit/widgets/primary_button.dart';
 import 'package:toolkit/widgets/progress_bar.dart';
@@ -16,6 +15,7 @@ import '../../../configs/app_color.dart';
 import '../../../configs/app_dimensions.dart';
 import '../../../configs/app_spacing.dart';
 import '../../../widgets/custom_snackbar.dart';
+import '../../../widgets/generic_text_field.dart';
 
 class RejectReasonsScreen extends StatelessWidget {
   static const routeName = 'RejectReasonsScreen';
@@ -27,12 +27,12 @@ class RejectReasonsScreen extends StatelessWidget {
     String reasonValue = '';
     context.read<WorkforceChecklistBloc>().add(FetchRejectReasons());
     return Scaffold(
-        appBar: const GenericAppBar(title: Text('Checklist Reject')),
+        appBar: const GenericAppBar(title: 'Checklist Reject'),
         body: Padding(
             padding: const EdgeInsets.only(
                 left: leftRightMargin,
                 right: leftRightMargin,
-                top: topBottomSpacing),
+                top: topBottomPadding),
             child: BlocConsumer<WorkforceChecklistBloc,
                     WorkforceChecklistStates>(
                 buildWhen: (previousState, currentState) =>
@@ -101,15 +101,15 @@ class RejectReasonsScreen extends StatelessWidget {
                                         thickness: kDividerThickness,
                                         height: kDividerHeight);
                                   })),
-                          const SizedBox(height: tinySpacing),
+                          const SizedBox(height: xxTinySpacing),
                           TextFieldWidget(
                             maxLines: 6,
                             hintText: StringConstants.kEnterReason,
-                            onTextFieldValueChanged: (String textValue) {
+                            onTextFieldChanged: (String textValue) {
                               reasonValue = textValue;
                             },
                           ),
-                          const SizedBox(height: tinySpacing),
+                          const SizedBox(height: xxTinySpacing),
                           PrimaryButton(
                               onPressed: () {
                                 context.read<WorkforceChecklistBloc>().add(
@@ -121,7 +121,8 @@ class RejectReasonsScreen extends StatelessWidget {
                               textValue: StringConstants.kSave)
                         ]);
                   } else if (state is RejectReasonsError) {
-                    return ShowError(onPressed: () {});
+                    return GenericReloadButton(
+                        onPressed: () {}, textValue: StringConstants.kReload);
                   } else {
                     return const SizedBox();
                   }

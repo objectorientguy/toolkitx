@@ -3,21 +3,24 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:toolkit/blocs/checklist/workforce/workforce_checklist_bloc.dart';
 import 'package:toolkit/blocs/checklist/workforce/workforce_checklist_states.dart';
+import 'package:toolkit/configs/app_dimensions.dart';
 import 'package:toolkit/configs/app_theme.dart';
+import 'package:toolkit/screens/checklist/widgets/checklist_app_bar.dart';
 import 'package:toolkit/screens/checklist/workforce/questions_list_screen.dart';
 import 'package:toolkit/screens/checklist/workforce/widgets/radio_button_list_expansion_tile.dart';
 import 'package:toolkit/screens/incident/widgets/date_picker.dart';
 import 'package:toolkit/screens/incident/widgets/time_picker.dart';
-import 'package:toolkit/screens/onboarding/widgets/text_field.dart';
 import 'package:toolkit/widgets/android_pop_up.dart';
-import 'package:toolkit/widgets/generic_app_bar.dart';
+import 'package:toolkit/widgets/custom_snackbar.dart';
 import 'package:toolkit/widgets/primary_button.dart';
 import 'package:toolkit/widgets/secondary_button.dart';
 import '../../../blocs/checklist/workforce/workforce_checklist_events.dart';
 import '../../../configs/app_color.dart';
 import '../../../configs/app_spacing.dart';
 import '../../../utils/constants/string_constants.dart';
+import '../../../widgets/generic_text_field.dart';
 import '../../../widgets/progress_bar.dart';
+import '../../../widgets/upload_alert_dialog.dart';
 import '../../onboarding/widgets/custom_card.dart';
 import 'widgets/drop_down_expansion_tile.dart';
 import 'widgets/multi_select_expansion_tile.dart';
@@ -27,21 +30,22 @@ class EditQuestionsScreen extends StatelessWidget {
 
   const EditQuestionsScreen({Key? key}) : super(key: key);
 
-  Widget fetchSwitchCaseWidget(type, index, answerModelList, answerList) {
+  Widget fetchSwitchCaseWidget(
+      type, index, answerModelList, answerList, context) {
     switch (type) {
       case 1:
         return TextFieldWidget(
             maxLines: 1,
-            value: '',
-            onTextFieldValueChanged: (String textValue) {
+            value: answerList[index]["answer"],
+            onTextFieldChanged: (String textValue) {
               answerList[index]["answer"] = textValue;
               log("text 1======>${answerList[index]["answer"]}");
             });
       case 2:
         return TextFieldWidget(
             maxLines: 4,
-            value: '',
-            onTextFieldValueChanged: (String textValue) {
+            value: answerList[index]["answer"],
+            onTextFieldChanged: (String textValue) {
               answerList[index]["answer"] = textValue;
               log("text 2======>${answerList[index]["answer"]}");
             });
@@ -68,7 +72,7 @@ class EditQuestionsScreen extends StatelessWidget {
                 currentState is QuestionsEdited,
             builder: (context, state) {
               if (state is QuestionsEdited) {
-                answerList[index]["answer"] = state.multiSelect
+                answerList[index]["answer"] = state.multiSelectId
                     .toString()
                     .replaceAll("[", "")
                     .replaceAll("]", "");
@@ -76,15 +80,27 @@ class EditQuestionsScreen extends StatelessWidget {
                 return MultiSelectExpansionTile(
                     answerModelList: answerModelList,
                     index: index,
-                    selectedItems: state.multiSelect);
+                    selectedIdList: state.multiSelectId,
+                    selectedNamesList: state.multiSelectNames);
               } else {
                 return const SizedBox();
               }
             });
+      case 6:
+        return SecondaryButton(
+            onPressed: () {
+              showDialog(
+                  context: context,
+                  builder: (context) {
+                    return UploadAlertDialog(onCamera: () {}, onDevice: () {});
+                  });
+            },
+            textValue: StringConstants.kUpload);
       case 7:
         return TextFieldWidget(
-            value: '',
-            onTextFieldValueChanged: (String textValue) {
+            textInputType: TextInputType.number,
+            value: answerList[index]["answer"],
+            onTextFieldChanged: (String textValue) {
               log("text 7======>${answerList[index]["answer"]}");
               answerList[index]["answer"] = textValue;
             });
@@ -93,12 +109,14 @@ class EditQuestionsScreen extends StatelessWidget {
       case 10:
         return DatePickerTextField(
             hintText: StringConstants.kSelectDate,
+            editDate: answerList[index]["answer"],
             onDatePicked: (String pickDate) {
               answerList[index]["answer"] = pickDate;
               log("date picked======>${answerList[index]["answer"]}");
             });
       case 11:
         return TimePickerTextField(
+          editTime: answerList[index]["answer"],
           hintText: StringConstants.kSelectTime,
           onTimePicked: (String timePicked) {
             answerList[index]["answer"] = timePicked;
@@ -112,11 +130,10 @@ class EditQuestionsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String saveDraft = '';
     context.read<WorkforceChecklistBloc>().add(
         EditQuestionData(questionList: [], multiSelect: '', dropDownValue: ''));
     return Scaffold(
-        appBar: GenericAppBar(
+        appBar: ChecklistAppBar(
           title: BlocBuilder<WorkforceChecklistBloc, WorkforceChecklistStates>(
               buildWhen: (previousState, currentState) =>
                   currentState is SavedQuestions,
@@ -135,19 +152,22 @@ class EditQuestionsScreen extends StatelessWidget {
               if (state is SubmittingQuestion) {
                 ProgressBar.show(context);
               } else if (state is QuestionSubmitted) {
-                saveDraft = state.submitQuestionModel.message.toString();
                 ProgressBar.dismiss(context);
                 Navigator.pushReplacementNamed(
                     context, WorkForceQuestionsList.routeName);
-              } else if (state is QuestionsError) {}
+              } else if (state is QuestionNotSubmitted) {
+                ProgressBar.dismiss(context);
+                showCustomSnackBar(context, state.message, StringConstants.kOk);
+              }
             },
             builder: (context, state) {
               if (state is SavedQuestions) {
+                log("stateee=====>${state.answersList}");
                 return Padding(
                     padding: const EdgeInsets.only(
                         left: leftRightMargin,
                         right: leftRightMargin,
-                        top: topBottomSpacing),
+                        top: topBottomPadding),
                     child: SingleChildScrollView(
                       physics: const BouncingScrollPhysics(),
                       child: Column(children: [
@@ -159,7 +179,7 @@ class EditQuestionsScreen extends StatelessWidget {
                               return CustomCard(
                                   child: Padding(
                                       padding:
-                                          const EdgeInsets.all(cardPadding),
+                                          const EdgeInsets.all(kCardPadding),
                                       child: Column(
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,
@@ -175,16 +195,16 @@ class EditQuestionsScreen extends StatelessWidget {
                                                         color: AppColor.black,
                                                         fontWeight:
                                                             FontWeight.w500)),
-                                            const SizedBox(
-                                                height: tiniestSpacing),
+                                            const SizedBox(height: tiniest),
                                             fetchSwitchCaseWidget(
                                                 state.answerModelList[index]
                                                     .type,
                                                 index,
                                                 state.answerModelList,
-                                                state.answersList),
+                                                state.answersList,
+                                                context),
                                             const SizedBox(
-                                                height: midTiniestSpacing),
+                                                height: xxTinierSpacing),
                                             Visibility(
                                               visible: state
                                                       .answerModelList[index]
@@ -201,8 +221,7 @@ class EditQuestionsScreen extends StatelessWidget {
                                                           fontWeight:
                                                               FontWeight.w400)),
                                             ),
-                                            const SizedBox(
-                                                height: tiniestSpacing),
+                                            const SizedBox(height: tiniest),
                                             Row(
                                                 mainAxisAlignment:
                                                     MainAxisAlignment
@@ -214,9 +233,9 @@ class EditQuestionsScreen extends StatelessWidget {
                                                             .read<
                                                                 WorkforceChecklistBloc>()
                                                             .add(FetchQuestionComment(
-                                                                questionResponseId:
-                                                                    state.allChecklistDataMap[
-                                                                        "questionResponseId"]));
+                                                            questionResponseId:
+                                                            state.allChecklistDataMap[
+                                                            "questionResponseId"]));
                                                       },
                                                       textValue: StringConstants
                                                           .kAddImages),
@@ -229,9 +248,9 @@ class EditQuestionsScreen extends StatelessWidget {
                             },
                             separatorBuilder:
                                 (BuildContext context, int index) {
-                              return const SizedBox(height: tinySpacing);
+                              return const SizedBox(height: xxTinySpacing);
                             }),
-                        const SizedBox(height: mediumSpacing),
+                        const SizedBox(height: xxxSmallerSpacing),
                         Row(children: [
                           Expanded(
                             child: PrimaryButton(
@@ -243,7 +262,7 @@ class EditQuestionsScreen extends StatelessWidget {
                                             titleValue:
                                                 StringConstants.kChecklist,
                                             contentValue:
-                                                'After submitting you will not be able to edit the checklist again.',
+                                            'After submitting you will not be able to edit the checklist again.',
                                             onPressed: () {
                                               context
                                                   .read<
@@ -251,14 +270,13 @@ class EditQuestionsScreen extends StatelessWidget {
                                                   .add(SubmitQuestions(
                                                       editQuestionsList:
                                                           state.answersList,
-                                                      draft: '',
                                                       isDraft: false));
                                             });
                                       });
                                 },
                                 textValue: StringConstants.kSubmit),
                           ),
-                          const SizedBox(width: tinySpacing),
+                          const SizedBox(width: xxTinySpacing),
                           Expanded(
                               child: PrimaryButton(
                                   onPressed: () {
@@ -266,7 +284,6 @@ class EditQuestionsScreen extends StatelessWidget {
                                         SubmitQuestions(
                                             editQuestionsList:
                                                 state.answersList,
-                                            draft: saveDraft,
                                             isDraft: true));
                                   },
                                   textValue: StringConstants.kSaveDraft))

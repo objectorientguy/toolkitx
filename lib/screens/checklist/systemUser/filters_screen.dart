@@ -1,10 +1,11 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:toolkit/configs/app_spacing.dart';
 import 'package:toolkit/configs/app_theme.dart';
-import 'package:toolkit/screens/onboarding/widgets/show_error.dart';
-import 'package:toolkit/screens/onboarding/widgets/text_field.dart';
 import 'package:toolkit/utils/constants/string_constants.dart';
+import 'package:toolkit/utils/string_extension.dart';
 import 'package:toolkit/widgets/generic_app_bar.dart';
 import 'package:toolkit/widgets/primary_button.dart';
 
@@ -12,50 +13,66 @@ import '../../../blocs/checklist/systemUser/system_user_checklist_bloc.dart';
 import '../../../blocs/checklist/systemUser/system_user_checklist_events.dart';
 import '../../../blocs/checklist/systemUser/system_user_checklist_states.dart';
 import '../../../configs/app_color.dart';
+import '../../../configs/app_dimensions.dart';
+import '../../../widgets/error_section.dart';
+import '../../../widgets/generic_text_field.dart';
+import '../../../widgets/progress_bar.dart';
+import 'system_user_list_screen.dart';
 
 class FiltersScreen extends StatelessWidget {
   static const routeName = 'FiltersScreen';
 
-  const FiltersScreen({Key? key}) : super(key: key);
+  FiltersScreen({Key? key}) : super(key: key);
+  final Map filterDataMap = {};
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: const GenericAppBar(
-          title: Text(StringConstants.kFilters),
+          title: StringConstants.kFilters,
         ),
         body: Padding(
             padding: const EdgeInsets.only(
                 left: leftRightMargin,
                 right: leftRightMargin,
-                top: topBottomSpacing),
-            child: BlocBuilder<ChecklistBloc, ChecklistStates>(
+                top: topBottomPadding),
+            child: BlocConsumer<ChecklistBloc, ChecklistStates>(
+                listener: (context, state) {
+                  if (state is SavingFilterData) {
+                    ProgressBar.show(context);
+                  } else if (state is SavedFilterData) {
+                    ProgressBar.dismiss(context);
+                    Navigator.pushReplacementNamed(
+                        context, SystemUserCheckListScreen.routeName);
+                  }
+                },
                 buildWhen: (previousState, currentState) =>
                     currentState is CategoryFetched,
                 builder: (context, state) {
-                  if (state is CategoryFetching) {
-                    return const Center(child: CircularProgressIndicator());
-                  } else if (state is CategoryFetched) {
+                  if (state is CategoryFetched) {
                     return Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(StringConstants.kChecklistName,
                             style: Theme.of(context).textTheme.medium),
-                        const SizedBox(height: midTinySpacing),
+                        const SizedBox(height: tinier),
                         TextFieldWidget(
-                          onTextFieldValueChanged: (String textValue) {},
+                          onTextFieldChanged: (String textValue) {
+                            filterDataMap["checklistname"] = textValue;
+                            log("value=====>${filterDataMap["checklistname"]}");
+                          },
                         ),
-                        const SizedBox(height: midTinySpacing),
+                        const SizedBox(height: tinier),
                         Text(StringConstants.kCategory,
                             style: Theme.of(context).textTheme.medium),
-                        const SizedBox(height: midTinySpacing),
+                        const SizedBox(height: tinier),
                         Theme(
                             data: Theme.of(context)
                                 .copyWith(dividerColor: Colors.transparent),
                             child: ExpansionTile(
                                 tilePadding: const EdgeInsets.only(
-                                    left: expansionTileMargin,
-                                    right: expansionTileMargin),
+                                    left: kExpansionTileMargin,
+                                    right: kExpansionTileMargin),
                                 collapsedBackgroundColor: AppColor.white,
                                 maintainState: true,
                                 iconColor: AppColor.deepBlue,
@@ -64,14 +81,14 @@ class FiltersScreen extends StatelessWidget {
                                 title: Text(
                                     state.categoryName == ""
                                         ? StringConstants.kSelectCategory
-                                        : state.categoryName,
+                                        : state.categoryName.capitalize(),
                                     style: Theme.of(context).textTheme.xSmall),
                                 children: [
                                   ListView.builder(
                                       physics: const BouncingScrollPhysics(),
                                       shrinkWrap: true,
                                       itemCount:
-                                          state.getFilterCategoryData.length,
+                                      state.getFilterCategoryData.length,
                                       itemBuilder:
                                           (BuildContext context, int index) {
                                         return RadioListTile(
@@ -80,13 +97,14 @@ class FiltersScreen extends StatelessWidget {
                                             title: Text(
                                                 state.getFilterCategoryData
                                                     .elementAt(index)
-                                                    .name,
+                                                    .name
+                                                    .capitalize(),
                                                 style: Theme.of(context)
                                                     .textTheme
                                                     .xSmall),
                                             controlAffinity:
-                                                ListTileControlAffinity
-                                                    .trailing,
+                                            ListTileControlAffinity
+                                                .trailing,
                                             value: state.getFilterCategoryData
                                                 .elementAt(index)
                                                 .name,
@@ -100,20 +118,30 @@ class FiltersScreen extends StatelessWidget {
                                                   ChangeCategory(
                                                       getFilterCategoryData: state
                                                           .getFilterCategoryData,
-                                                      categoryName: value));
+                                                      categoryName: value,
+                                                      categoryId: state
+                                                          .getFilterCategoryData
+                                                          .elementAt(index)
+                                                          .id
+                                                          .toString()));
                                             });
                                       })
                                 ])),
-                        const SizedBox(height: mediumSpacing),
+                        const SizedBox(height: xxxSmallerSpacing),
                         PrimaryButton(
-                            onPressed: () {}, textValue: StringConstants.kApply)
+                            onPressed: () {
+                              context.read<ChecklistBloc>().add(FilterChecklist(
+                                  filterChecklistMap: filterDataMap));
+                            },
+                            textValue: StringConstants.kApply)
                       ],
                     );
                   } else if (state is CategoryError) {
-                    return ShowError(onPressed: () {
-                      context.read<ChecklistBloc>().add(
-                          FetchCategory(userId: 'W2mt1FgZTZTQWTIvm4wU1w=='));
-                    });
+                    return GenericReloadButton(
+                        onPressed: () {
+                          context.read<ChecklistBloc>().add(FetchCategory());
+                        },
+                        textValue: StringConstants.kReload);
                   } else {
                     return const SizedBox();
                   }

@@ -40,11 +40,7 @@ class FetchPdf extends ChecklistEvents {
   FetchPdf({required this.responseId});
 }
 
-class FetchRoles extends ChecklistEvents {
-  final String userId;
-
-  FetchRoles({required this.userId});
-}
+class FetchRoles extends ChecklistEvents {}
 
 class ChangeRoles extends ChecklistEvents {
   final CheckListRolesModel checkListRolesModel;
@@ -59,18 +55,17 @@ class ChangeRoles extends ChecklistEvents {
       required this.roleName});
 }
 
-class FetchCategory extends ChecklistEvents {
-  final String userId;
-
-  FetchCategory({required this.userId});
-}
+class FetchCategory extends ChecklistEvents {}
 
 class ChangeCategory extends ChecklistEvents {
   final List<GetFilterCategoryData> getFilterCategoryData;
   final String categoryName;
+  final String categoryId;
 
   ChangeCategory(
-      {required this.getFilterCategoryData, required this.categoryName});
+      {required this.categoryId,
+      required this.getFilterCategoryData,
+      required this.categoryName});
 }
 
 class FetchEditHeader extends ChecklistEvents {
@@ -123,4 +118,10 @@ class ThirdPartyApprove extends ChecklistEvents {
   final Map thirdPartyApprove;
 
   ThirdPartyApprove({required this.thirdPartyApprove});
+}
+
+class FilterChecklist extends ChecklistEvents {
+  final Map filterChecklistMap;
+
+  FilterChecklist({required this.filterChecklistMap});
 }

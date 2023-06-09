@@ -30,10 +30,9 @@ class SystemUserWorkForceListSection extends StatelessWidget {
             itemBuilder: (context, index) {
               return CustomCard(
                   child: ListTile(
-                      contentPadding: const EdgeInsets.all(midTinySpacing),
+                      contentPadding: const EdgeInsets.all(tinier),
                       title: Padding(
-                          padding:
-                              const EdgeInsets.only(bottom: tiniestSpacing),
+                          padding: const EdgeInsets.only(bottom: tiniest),
                           child: Text(getChecklistStatusModel.data![index].name,
                               style: Theme.of(context)
                                   .textTheme
@@ -48,14 +47,14 @@ class SystemUserWorkForceListSection extends StatelessWidget {
                                     .textTheme
                                     .xSmall
                                     .copyWith(color: AppColor.grey)),
-                            const SizedBox(height: tiniestSpacing),
+                            const SizedBox(height: tiniest),
                             Text(
                                 'Response Date: ${getChecklistStatusModel.data![index].responsedate}',
                                 style: Theme.of(context)
                                     .textTheme
                                     .xSmall
                                     .copyWith(color: AppColor.grey)),
-                            const SizedBox(height: tiniestSpacing),
+                            const SizedBox(height: tiniest),
                             Visibility(
                               visible: getChecklistStatusModel
                                       .data![index].approvalstatus ==
@@ -66,7 +65,7 @@ class SystemUserWorkForceListSection extends StatelessWidget {
                                       .xSmall
                                       .copyWith(color: AppColor.grey)),
                             ),
-                            const SizedBox(height: tiniestSpacing),
+                            const SizedBox(height: tiniest),
                             Visibility(
                                 visible: getChecklistStatusModel
                                         .data![index].responseid !=
@@ -109,7 +108,7 @@ class SystemUserWorkForceListSection extends StatelessWidget {
                               }))));
             },
             separatorBuilder: (context, index) {
-              return const SizedBox(height: tinySpacing);
+              return const SizedBox(height: xxTinySpacing);
             }));
   }
 }

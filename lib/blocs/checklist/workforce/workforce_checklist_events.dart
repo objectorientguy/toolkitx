@@ -3,11 +3,7 @@ import '../../../data/models/checklist/workforce/reject_reasons_model.dart';
 
 abstract class WorkforceCheckListEvents {}
 
-class FetchChecklist extends WorkforceCheckListEvents {
-  final String userId;
-
-  FetchChecklist({required this.userId});
-}
+class FetchChecklist extends WorkforceCheckListEvents {}
 
 class FetchRejectReasons extends WorkforceCheckListEvents {}
 
@@ -53,13 +49,9 @@ class SaveQuestionComment extends WorkforceCheckListEvents {
 
 class SubmitQuestions extends WorkforceCheckListEvents {
   final List editQuestionsList;
-  final String draft;
   final bool isDraft;
 
-  SubmitQuestions(
-      {required this.isDraft,
-      required this.draft,
-      required this.editQuestionsList});
+  SubmitQuestions({required this.isDraft, required this.editQuestionsList});
 }
 
 class EditQuestionData extends WorkforceCheckListEvents {
@@ -75,15 +67,17 @@ class EditQuestionData extends WorkforceCheckListEvents {
 
 class EditQuestions extends WorkforceCheckListEvents {
   final String? dropDownValue;
-  final List multiSelectList;
+  final List multiSelectIdList;
   final String multiSelectItem;
   final String? radioValue;
   final String multiSelectName;
+  final List multiSelectNameList;
 
   EditQuestions(
-      {required this.multiSelectName,
+      {required this.multiSelectNameList,
+      required this.multiSelectName,
       this.radioValue = '',
       required this.multiSelectItem,
-      required this.multiSelectList,
+      required this.multiSelectIdList,
       this.dropDownValue = ''});
 }

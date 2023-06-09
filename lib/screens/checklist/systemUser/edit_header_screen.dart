@@ -5,15 +5,15 @@ import 'package:toolkit/blocs/checklist/systemUser/system_user_checklist_states.
 import 'package:toolkit/configs/app_color.dart';
 import 'package:toolkit/configs/app_spacing.dart';
 import 'package:toolkit/configs/app_theme.dart';
-import 'package:toolkit/screens/onboarding/widgets/show_error.dart';
-import 'package:toolkit/screens/onboarding/widgets/text_field.dart';
 import 'package:toolkit/utils/constants/string_constants.dart';
 import 'package:toolkit/widgets/custom_snackbar.dart';
-import 'package:toolkit/widgets/generic_app_bar.dart';
+import 'package:toolkit/widgets/error_section.dart';
 import 'package:toolkit/widgets/primary_button.dart';
 import 'package:toolkit/widgets/progress_bar.dart';
 
 import '../../../blocs/checklist/systemUser/system_user_checklist_events.dart';
+import '../../../widgets/generic_text_field.dart';
+import '../widgets/checklist_app_bar.dart';
 
 class EditHeaderScreen extends StatelessWidget {
   static const routeName = 'EditHeaderScreen';
@@ -32,41 +32,41 @@ class EditHeaderScreen extends StatelessWidget {
       case 0:
         return TextFieldWidget(
           value: editHeaderData.fieldvalue,
-          onTextFieldValueChanged: (String textValue) {
+          onTextFieldChanged: (String textValue) {
             editHeader[index]["value"] = textValue;
           },
         );
       case 1:
         return TextFieldWidget(
           value: editHeaderData.fieldvalue,
-          onTextFieldValueChanged: (String textValue) {
+          onTextFieldChanged: (String textValue) {
             editHeader[index]["value"] = textValue;
           },
         );
       case 2:
         return TextFieldWidget(
           value: editHeaderData.fieldvalue,
-          onTextFieldValueChanged: (String textValue) {
+          onTextFieldChanged: (String textValue) {
             editHeader[index]["value"] = textValue;
           },
         );
       case 3:
         return TextFieldWidget(
             value: editHeaderData.fieldvalue,
-            onTextFieldValueChanged: (String textValue) {
+            onTextFieldChanged: (String textValue) {
               editHeader[index]["value"] = textValue;
             });
       case 4:
         return TextFieldWidget(
           value: editHeaderData.fieldvalue,
-          onTextFieldValueChanged: (String textValue) {
+          onTextFieldChanged: (String textValue) {
             editHeader[index]["value"] = textValue;
           },
         );
       case 5:
         return TextFieldWidget(
           value: editHeaderData.fieldvalue,
-          onTextFieldValueChanged: (String textValue) {
+          onTextFieldChanged: (String textValue) {
             editHeader[index]["value"] = textValue;
           },
         );
@@ -81,7 +81,7 @@ class EditHeaderScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     context.read<ChecklistBloc>().add(FetchEditHeader(scheduleId: ''));
     return Scaffold(
-        appBar: GenericAppBar(
+        appBar: ChecklistAppBar(
             title: BlocBuilder<ChecklistBloc, ChecklistStates>(
                 buildWhen: (previousState, currentState) =>
                     currentState is EditHeaderFetched,
@@ -97,7 +97,7 @@ class EditHeaderScreen extends StatelessWidget {
             padding: const EdgeInsets.only(
                 left: leftRightMargin,
                 right: leftRightMargin,
-                top: topBottomSpacing),
+                top: topBottomPadding),
             child: BlocConsumer<ChecklistBloc, ChecklistStates>(
                 buildWhen: (previousState, currentState) =>
                     currentState is EditHeaderFetched,
@@ -133,15 +133,15 @@ class EditHeaderScreen extends StatelessWidget {
                                             .data![index].title,
                                         style:
                                             Theme.of(context).textTheme.medium),
-                                    const SizedBox(height: midTiniestSpacing),
+                                    const SizedBox(height: xxTinierSpacing),
                                     fetchEditHeaderSwitchCaseWidget(
                                         index,
                                         state.getCheckListEditHeaderModel
                                             .data![index]),
-                                    const SizedBox(height: midTiniestSpacing),
+                                    const SizedBox(height: xxTinierSpacing),
                                   ]);
                             }),
-                        const SizedBox(height: tinySpacing),
+                        const SizedBox(height: xxTinySpacing),
                         PrimaryButton(
                             onPressed: () {
                               context.read<ChecklistBloc>().add(SubmitHeader(
@@ -153,7 +153,8 @@ class EditHeaderScreen extends StatelessWidget {
                       ]),
                     );
                   } else if (state is EditHeaderError) {
-                    return ShowError(onPressed: () {});
+                    return GenericReloadButton(
+                        onPressed: () {}, textValue: StringConstants.kReload);
                   } else {
                     return const SizedBox();
                   }

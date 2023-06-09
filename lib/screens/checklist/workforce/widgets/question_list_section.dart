@@ -1,5 +1,8 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:toolkit/configs/app_dimensions.dart';
 import 'package:toolkit/configs/app_theme.dart';
 import '../../../../blocs/checklist/workforce/workforce_checklist_bloc.dart';
 import '../../../../blocs/checklist/workforce/workforce_checklist_events.dart';
@@ -14,8 +17,7 @@ class QuestionsListSection extends StatelessWidget {
   final GetQuestionListModel getQuestionListModel;
   final List answerList;
 
-  const QuestionsListSection(
-      {Key? key, required this.getQuestionListModel, required this.answerList})
+  const QuestionsListSection({Key? key, required this.getQuestionListModel, required this.answerList})
       : super(key: key);
 
   @override
@@ -24,14 +26,15 @@ class QuestionsListSection extends StatelessWidget {
         padding: const EdgeInsets.only(
             left: leftRightMargin,
             right: leftRightMargin,
-            top: topBottomSpacing),
+            top: topBottomPadding),
         physics: const BouncingScrollPhysics(),
         shrinkWrap: true,
         itemCount: getQuestionListModel.data!.questionlist!.length,
         itemBuilder: (context, index) {
+          log("answer listtttt=====>$answerList");
           return CustomCard(
               child: Padding(
-            padding: const EdgeInsets.all(cardPadding),
+            padding: const EdgeInsets.all(kCardPadding),
             child:
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               Row(
@@ -43,9 +46,9 @@ class QuestionsListSection extends StatelessWidget {
                     child: Text(
                         '${getQuestionListModel.data!.questionlist![index].title}?',
                         style: Theme.of(context).textTheme.small.copyWith(
-                            color: AppColor.black, fontWeight: FontWeight.w500),
-                        maxLines: 3,
-                        overflow: TextOverflow.ellipsis),
+                                color: AppColor.black, fontWeight: FontWeight.w500),
+                            maxLines: 3,
+                            overflow: TextOverflow.ellipsis),
                   ),
                   Visibility(
                     visible: getQuestionListModel
@@ -56,7 +59,7 @@ class QuestionsListSection extends StatelessWidget {
                   )
                 ],
               ),
-              const SizedBox(height: tiniestSpacing),
+              const SizedBox(height: tiniest),
               Text(
                   (answerList[index]["answer"].toString() == 'null'
                       ? ''
@@ -65,27 +68,31 @@ class QuestionsListSection extends StatelessWidget {
                       .textTheme
                       .small
                       .copyWith(color: AppColor.black)),
-              const SizedBox(height: tiniestSpacing),
+              const SizedBox(height: tiniest),
               Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-                SecondaryButton(
-                    onPressed: () {
-                      context
-                          .read<WorkforceChecklistBloc>()
-                          .add(FetchQuestionComment(
-                            questionResponseId: getQuestionListModel
-                                .data!.questionlist![index].queresponseid
-                                .toString(),
-                          ));
-                    },
-                    textValue: StringConstants.kAddImages),
-                SecondaryButton(
-                    onPressed: () {}, textValue: StringConstants.kAddTodo)
+                Expanded(
+                    child: SecondaryButton(
+                        onPressed: () {
+                          context
+                              .read<WorkforceChecklistBloc>()
+                              .add(FetchQuestionComment(
+                                questionResponseId: getQuestionListModel
+                                    .data!.questionlist![index].queresponseid
+                                    .toString(),
+                              ));
+                        },
+                        textValue: StringConstants.kAddImages)),
+                const SizedBox(width: tiniest),
+                Expanded(
+                  child: SecondaryButton(
+                      onPressed: () {}, textValue: StringConstants.kAddTodo),
+                )
               ]),
-            ]),
-          ));
+                ]),
+              ));
         },
         separatorBuilder: (BuildContext context, int index) {
-          return const SizedBox(height: tinySpacing);
+          return const SizedBox(height: xxTinySpacing);
         });
   }
 }

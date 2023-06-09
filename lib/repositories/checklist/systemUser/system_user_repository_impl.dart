@@ -18,67 +18,69 @@ import 'system_user_repository.dart';
 
 class ChecklistRepositoryImpl extends ChecklistRepository {
   @override
-  Future<ChecklistListModel> fetchChecklist(int pageNo) async {
+  Future<ChecklistListModel> fetchChecklist(
+      int pageNo, String hashCode, String filter) async {
     final response = await DioClient().get(
-        "${ApiConstants.baseUrl}/api/checklist/getallchecklists?pageno=$pageNo&hashcode=SvwH32gnWK1slqvskIsSg9duoVfgOQLWitcfZGr+n2KX1yltKm2T+EbsIhBm0E6B|3|1|1|azot_91&filter={}");
+        "${ApiConstants.baseUrl}checklist/getallchecklists?pageno=$pageNo&hashcode=$hashCode&filter=$filter");
     log("response======>$response");
     return ChecklistListModel.fromJson(response);
   }
 
   @override
   Future<ChecklistScheduledByDatesModel> fetchChecklistDetails(
-      String checklistId) async {
+      String checklistId, String hashCode) async {
     final response = await DioClient().get(
-        "${ApiConstants.baseUrl}/api/checklist/getscheduleddates?checklistid=$checklistId&hashcode=SvwH32gnWK1slqvskIsSg9duoVfgOQLWitcfZGr+n2KX1yltKm2T+EbsIhBm0E6B|3|1|1|azot_91");
+        "${ApiConstants.baseUrl}checklist/getscheduleddates?checklistid=$checklistId&hashcode=$hashCode");
     return ChecklistScheduledByDatesModel.fromJson(response);
   }
 
   @override
   Future<ChecklistWorkforceListModel> fetchChecklistStatus(
-      String scheduleId, String role) async {
+      String scheduleId, String hashCode, String role) async {
     final response = await DioClient().get(
-        "${ApiConstants.baseUrl}/api/checklist/getallworkforce?scheduleid=$scheduleId&hashcode=SvwH32gnWK1slqvskIsSg9duoVfgOQLWitcfZGr+n2KX1yltKm2T+EbsIhBm0E6B|3|1|1|azot_91&role=$role");
+        "${ApiConstants.baseUrl}checklist/getallworkforce?scheduleid=$scheduleId&hashcode=$hashCode&role=$role");
     log("schedule idddd====>$scheduleId");
     log("schedule role====>$role");
-    log("urlll========>${"${ApiConstants.baseUrl}/api/checklist/getallworkforce?scheduleid=$scheduleId&hashcode=SvwH32gnWK1slqvskIsSg9duoVfgOQLWitcfZGr+n2KX1yltKm2T+EbsIhBm0E6B|3|1|1|azot_91&role=$role"}");
+    log("urlll========>${"${ApiConstants.baseUrl}/api/checklist/getallworkforce?scheduleid=$scheduleId&hashcode=$hashCode&role=$role"}");
     return ChecklistWorkforceListModel.fromJson(response);
   }
 
   @override
-  Future<GetPdfModel> fetchPdf(String responseId) async {
+  Future<GetPdfModel> fetchPdf(String responseId, String hashCode) async {
     final response = await DioClient().get(
-        "${ApiConstants.baseUrl}/api/checklist/getpdf?responseid=$responseId&hashcode=SvwH32gnWK1slqvskIsSg9duoVfgOQLWitcfZGr+n2KX1yltKm2T+EbsIhBm0E6B|3|1|1|azot_91");
+        "${ApiConstants.baseUrl}checklist/getpdf?responseid=$responseId&hashcode=$hashCode");
     log("reponse id=======>$responseId");
     return GetPdfModel.fromJson(response);
   }
 
   @override
-  Future<CheckListRolesModel> fetchRoles(String userId) async {
+  Future<CheckListRolesModel> fetchRoles(String hashCode, String userId) async {
     final response = await DioClient().get(
-        "${ApiConstants.baseUrl}/api/checklist/getroles?hashcode=SvwH32gnWK1slqvskIsSg9duoVfgOQLWitcfZGr+n2KX1yltKm2T+EbsIhBm0E6B|3|1|1|azot_91&userid=MQFmIsmjOcA38gtYss+3Tw==");
+        "${ApiConstants.baseUrl}checklist/getroles?hashcode=$hashCode&userid=$userId");
     log("role response=====>$response");
     return CheckListRolesModel.fromJson(response);
   }
 
   @override
-  Future<GetFilterCategoryModel> fetchCategory(String userId) async {
+  Future<GetFilterCategoryModel> fetchCategory(
+      String hashCode, String userId) async {
     final response = await DioClient().get(
-        "${ApiConstants.baseUrl}/api/checklist/getmaster?hashcode=SvwH32gnWK1slqvskIsSg9duoVfgOQLWitcfZGr+n2KX1yltKm2T+EbsIhBm0E6B|3|1|1|azot_91&userid=W2mt1FgZTZTQWTIvm4wU1w==");
+        "${ApiConstants.baseUrl}checklist/getmaster?hashcode=$hashCode&userid=$userId");
     return GetFilterCategoryModel.fromJson(response);
   }
 
   @override
   Future<CheckListEditHeaderDetailsModel> fetchEditHeader(
-      String scheduleId) async {
+      String scheduleId, String hashCode) async {
     final response = await DioClient().get(
-        "${ApiConstants.baseUrl}/api/checklist/gettemplatecustomfields?scheduleid=$scheduleId&hashcode=SvwH32gnWK1slqvskIsSg9duoVfgOQLWitcfZGr+n2KX1yltKm2T+EbsIhBm0E6B|3|1|1|azot_91");
+        "${ApiConstants.baseUrl}checklist/gettemplatecustomfields?scheduleid=$scheduleId&hashcode=$hashCode");
     return CheckListEditHeaderDetailsModel.fromJson(response);
   }
 
   @override
   Future<ChecklistApproveModel> checklistApprove(Map postApproveDataMap) async {
     final response = await DioClient().post(
-        "${ApiConstants.baseUrl}/api/checklist/approvechecklist",
+        "${ApiConstants.baseUrl}checklist/approvechecklist",
         postApproveDataMap);
     return ChecklistApproveModel.fromJson(response);
   }
@@ -86,8 +88,7 @@ class ChecklistRepositoryImpl extends ChecklistRepository {
   @override
   Future<ChecklistRejectModel> checklistReject(Map postRejectDataMap) async {
     final response = await DioClient().post(
-        "${ApiConstants.baseUrl}/api/checklist/rejectchecklist",
-        postRejectDataMap);
+        "${ApiConstants.baseUrl}checklist/rejectchecklist", postRejectDataMap);
     return ChecklistRejectModel.fromJson(response);
   }
 
@@ -95,7 +96,7 @@ class ChecklistRepositoryImpl extends ChecklistRepository {
   Future<ChecklistSubmitHeaderModel> submitHeader(
       Map postSubmitHeaderMap) async {
     final response = await DioClient().post(
-        "${ApiConstants.baseUrl}/api/checklist/savetemplatecustomfields",
+        "${ApiConstants.baseUrl}checklist/savetemplatecustomfields",
         postSubmitHeaderMap);
     log("headerrr========>$response");
     return ChecklistSubmitHeaderModel.fromJson(response);
@@ -105,7 +106,7 @@ class ChecklistRepositoryImpl extends ChecklistRepository {
   Future<SaveThirdPartyApproval> saveThirdPartyApproval(
       Map postThirdPartyApproval) async {
     final response = await DioClient().post(
-        "${ApiConstants.baseUrl}/api/checklist/savethirdpartysign",
+        "${ApiConstants.baseUrl}checklist/savethirdpartysign",
         postThirdPartyApproval);
     log("headerr third party========>$response");
     return SaveThirdPartyApproval.fromJson(response);

@@ -11,21 +11,23 @@ import '../../../data/models/checklist/systemUser/system_user_workfoce_list_mode
 import '../../../data/models/checklist/systemUser/system_user_submit_header_model.dart';
 
 abstract class ChecklistRepository {
-  Future<ChecklistListModel> fetchChecklist(int pageNo);
+  Future<ChecklistListModel> fetchChecklist(
+      int pageNo, String hashCode, String filter);
 
   Future<ChecklistScheduledByDatesModel> fetchChecklistDetails(
-      String checklistId);
+      String checklistId, String hashCode);
 
   Future<ChecklistWorkforceListModel> fetchChecklistStatus(
-      String scheduleId, String role);
+      String scheduleId, String hashCode, String role);
 
-  Future<GetPdfModel> fetchPdf(String responseId);
+  Future<GetPdfModel> fetchPdf(String responseId, String hashCode);
 
-  Future<CheckListRolesModel> fetchRoles(String userId);
+  Future<CheckListRolesModel> fetchRoles(String hashCode, String userId);
 
-  Future<GetFilterCategoryModel> fetchCategory(String userId);
+  Future<GetFilterCategoryModel> fetchCategory(String hashCode, String userId);
 
-  Future<CheckListEditHeaderDetailsModel> fetchEditHeader(String scheduleId);
+  Future<CheckListEditHeaderDetailsModel> fetchEditHeader(
+      String scheduleId, String hashCode);
 
   Future<ChecklistApproveModel> checklistApprove(Map postApproveDataMap);
 

@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:toolkit/blocs/checklist/workforce/workforce_checklist_bloc.dart';
 import 'package:toolkit/blocs/checklist/workforce/workforce_checklist_events.dart';
+import 'package:toolkit/configs/app_dimensions.dart';
 import 'package:toolkit/configs/app_theme.dart';
 import '../../../../configs/app_color.dart';
-import '../../../../configs/app_spacing.dart';
 import '../../../../data/models/checklist/workforce/questions_list_model.dart';
 
 typedef CheckBoxCallBack = Function(String checkboxId, String checkboxValue);
@@ -13,28 +13,32 @@ typedef CheckBoxCallBack = Function(String checkboxId, String checkboxValue);
 class MultiSelectExpansionTile extends StatelessWidget {
   final List<Questionlist> answerModelList;
   final int index;
-  final List selectedItems;
+  final List selectedIdList;
+  final List selectedNamesList;
 
   const MultiSelectExpansionTile(
       {Key? key,
       required this.answerModelList,
       required this.index,
-      required this.selectedItems})
+      required this.selectedIdList,
+      required this.selectedNamesList})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    String multiSelectNames =
+        selectedNamesList.toString().replaceAll("[", "").replaceAll("]", "");
     return Theme(
         data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
         child: ExpansionTile(
             tilePadding: const EdgeInsets.only(
-                left: expansionTileMargin, right: expansionTileMargin),
+                left: kExpansionTileMargin, right: kExpansionTileMargin),
             collapsedBackgroundColor: AppColor.offWhite,
             maintainState: true,
             iconColor: AppColor.deepBlue,
             textColor: AppColor.black,
-            key: GlobalKey(),
-            title: Text('', style: Theme.of(context).textTheme.xSmall),
+            title: Text((multiSelectNames == "") ? 'Select' : multiSelectNames,
+                style: Theme.of(context).textTheme.xSmall),
             children: [
               ListView.builder(
                   physics: const BouncingScrollPhysics(),
@@ -42,7 +46,8 @@ class MultiSelectExpansionTile extends StatelessWidget {
                   itemCount: answerModelList[index].queoptions!.length,
                   itemBuilder: (BuildContext context, int listIndex) {
                     return CheckboxListTile(
-                        value: selectedItems.contains(answerModelList[index]
+                        contentPadding: EdgeInsets.zero,
+                        value: selectedIdList.contains(answerModelList[index]
                             .queoptions![listIndex]["queoptionid"]
                             .toString()),
                         title: Text(answerModelList[index]
@@ -54,13 +59,13 @@ class MultiSelectExpansionTile extends StatelessWidget {
                               .toString();
                           context.read<WorkforceChecklistBloc>().add(
                               EditQuestions(
-                                  multiSelectList: selectedItems,
+                                  multiSelectIdList: selectedIdList,
                                   multiSelectItem: answerModelList[index]
                                       .queoptions![listIndex]["queoptionid"]
                                       .toString(),
                                   multiSelectName: answerModelList[index]
-                                          .queoptions![listIndex]
-                                      ["queoptiontext"]));
+                                      .queoptions![listIndex]["queoptiontext"],
+                                  multiSelectNameList: selectedNamesList));
                           log("replace all=====>$selectedId");
                         });
                   })

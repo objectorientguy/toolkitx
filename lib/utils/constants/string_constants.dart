@@ -14,6 +14,7 @@ abstract class StringConstants {
   static const String kWelcome = 'Welcome';
   static const String kResponded = 'Responded';
   static const String kOverdue = 'Overdue';
+  static const String kSubmitted = 'Submitted';
   static const String kNotAccepted = 'Not Accepted';
   static const String kApproved = 'Approved';
   static const String kAddComment = 'Please add comment';
@@ -74,6 +75,7 @@ abstract class StringConstants {
   static const String kSignature = 'Signature';
   static const String kUploadSignature = 'Upload Signature';
   static const String kUpload = 'Upload';
+  static const String kAddMore = 'Add More';
   static const String kChecklist = 'Checklist';
   static const String kFilters = 'Filters';
   static const String kChecklistName = 'Checklist Name';
@@ -124,7 +126,6 @@ abstract class StringConstants {
   static const String kValidateEmptyPassword = 'Please enter password';
   static const String kSelectUserTypeValidation = 'Please select a type';
   static const String kRefresh = 'Refresh';
-  static const String kSomethingWentWrong = 'Something went wrong';
   static const String kNoInternetError =
       'We could not load the information. Please\ncheck the internet connection and refresh\nthis screen so we can synchronize the data.';
 }

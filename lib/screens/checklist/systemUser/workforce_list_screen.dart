@@ -5,14 +5,14 @@ import 'package:toolkit/configs/app_theme.dart';
 import 'package:toolkit/utils/constants/api_constants.dart';
 import 'package:toolkit/utils/constants/string_constants.dart';
 import 'package:toolkit/widgets/custom_snackbar.dart';
-import 'package:toolkit/widgets/generic_app_bar.dart';
+import 'package:toolkit/widgets/error_section.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 import '../../../blocs/checklist/systemUser/system_user_checklist_bloc.dart';
 import '../../../blocs/checklist/systemUser/system_user_checklist_states.dart';
 import '../../../configs/app_dimensions.dart';
 import '../../../data/models/encrypt_data.dart';
 import '../../../widgets/progress_bar.dart';
-import '../../onboarding/widgets/show_error.dart';
+import '../widgets/checklist_app_bar.dart';
 import '../widgets/pop_up_menu.dart';
 import '../widgets/workforce_list_section.dart';
 
@@ -24,7 +24,7 @@ class ChecklistWorkForceListScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: GenericAppBar(
+        appBar: ChecklistAppBar(
             title: BlocBuilder<ChecklistBloc, ChecklistStates>(
                 buildWhen: (previousState, currentState) =>
                     currentState is ChecklistWorkforceListFetched,
@@ -57,7 +57,7 @@ class ChecklistWorkForceListScreen extends StatelessWidget {
             padding: const EdgeInsets.only(
                 left: leftRightMargin,
                 right: leftRightMargin,
-                top: topBottomSpacing),
+                top: topBottomPadding),
             child: Column(children: [
               BlocBuilder<ChecklistBloc, ChecklistStates>(
                   buildWhen: (previousState, currentState) =>
@@ -71,7 +71,7 @@ class ChecklistWorkForceListScreen extends StatelessWidget {
                             Image.asset("assets/icons/calendar.png",
                                 height: kProfileImageHeight,
                                 width: kProfileImageWidth),
-                            const SizedBox(width: midTiniestSpacing),
+                            const SizedBox(width: xxTinierSpacing),
                             Text(
                                 '${state.getChecklistStatusModel.data![0].startdate} - ${state.getChecklistStatusModel.data![0].enddate}',
                                 style: Theme.of(context).textTheme.xSmall),
@@ -82,7 +82,7 @@ class ChecklistWorkForceListScreen extends StatelessWidget {
                       return const SizedBox();
                     }
                   }),
-              const SizedBox(height: tinySpacing),
+              const SizedBox(height: xxTinySpacing),
               Expanded(
                   child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -99,7 +99,7 @@ class ChecklistWorkForceListScreen extends StatelessWidget {
                                 state.getPdfModel.message,
                                 "SvwH32gnWK1slqvskIsSg9duoVfgOQLWitcfZGr+n2KX1yltKm2T+EbsIhBm0E6B");
                             launchUrlString(
-                              '${ApiConstants.baseDocsUrl}$decrypted.pdf',
+                              '${ApiConstants.baseDocUrl}$decrypted.pdf',
                               mode: LaunchMode.externalApplication,
                             );
                           } else if (state is FetchPdfError) {
@@ -116,8 +116,9 @@ class ChecklistWorkForceListScreen extends StatelessWidget {
                                     state.getChecklistStatusModel,
                                 selectedStatusList: state.selectedIdsList);
                           } else if (state is ChecklistWorkforceListError) {
-                            return ShowError(
+                            return GenericReloadButton(
                               onPressed: () {},
+                              textValue: StringConstants.kReload,
                             );
                           } else {
                             return const SizedBox();

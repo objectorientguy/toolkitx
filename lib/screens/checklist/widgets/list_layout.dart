@@ -1,7 +1,7 @@
 // import 'package:flutter/material.dart';
 // import 'package:flutter_bloc/flutter_bloc.dart';
 // import 'package:toolkit/configs/app_theme.dart';
-// import 'package:toolkit/screens/checklist/widgets/custom_visibility_tags_container.dart';
+// import 'package:toolkit/screens/checklist/widgets/custom_tags_container.dart';
 // import 'package:toolkit/utils/constants/string_constants.dart';
 // import '../../../blocs/checklist/systemUser/system_user_checklist_bloc.dart';
 // import '../../../blocs/checklist/systemUser/system_user_checklist_events.dart';

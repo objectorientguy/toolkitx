@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:toolkit/configs/app_dimensions.dart';
 import 'package:toolkit/configs/app_theme.dart';
 
 import '../../../configs/app_color.dart';
-import '../../../configs/app_spacing.dart';
 import '../../../utils/constants/string_constants.dart';
 
 class CategoryExpansionTile extends StatefulWidget {
@@ -27,7 +27,7 @@ class _CategoryExpansionTileState extends State<CategoryExpansionTile> {
         data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
         child: ExpansionTile(
             tilePadding: const EdgeInsets.only(
-                left: expansionTileMargin, right: expansionTileMargin),
+                left: kExpansionTileMargin, right: kExpansionTileMargin),
             collapsedBackgroundColor: AppColor.white,
             maintainState: true,
             iconColor: AppColor.deepBlue,

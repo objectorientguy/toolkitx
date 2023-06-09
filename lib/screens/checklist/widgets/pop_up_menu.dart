@@ -6,6 +6,7 @@ import 'package:toolkit/blocs/checklist/systemUser/system_user_checklist_states.
 import 'package:toolkit/configs/app_dimensions.dart';
 import 'package:toolkit/configs/app_theme.dart';
 import 'package:toolkit/screens/checklist/widgets/reject_popup.dart';
+import '../../../configs/app_color.dart';
 import '../../../configs/app_spacing.dart';
 import '../../../utils/constants/string_constants.dart';
 import '../systemUser/edit_header_screen.dart';
@@ -46,7 +47,7 @@ class PopUpMenu extends StatelessWidget {
                 ),
                 iconSize: kIconSize,
                 icon: const Icon(Icons.more_vert_outlined),
-                offset: const Offset(0, midTiniestSpacing),
+                offset: const Offset(0, xxTinierSpacing),
                 onSelected: (value) {
                   if (value == 'Approve') {
                     showDialog(
@@ -59,6 +60,7 @@ class PopUpMenu extends StatelessWidget {
                   }
                   if (value == 'Reject') {
                     showDialog(
+                        barrierColor: AppColor.transparent,
                         context: context,
                         builder: (context) {
                           return RejectPopUp(
@@ -68,7 +70,7 @@ class PopUpMenu extends StatelessWidget {
                   }
                   if (value == 'Third Party Approve') {
                     showDialog(
-                        useRootNavigator: false,
+                        barrierColor: AppColor.transparent,
                         context: context,
                         builder: (context) {
                           return ThirdPartyApprovePopUp(

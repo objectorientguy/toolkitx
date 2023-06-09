@@ -8,17 +8,19 @@ import '../../../data/models/checklist/workforce/save_reject_reasons.dart';
 import '../../../data/models/checklist/workforce/submit_questions.dart';
 
 abstract class WorkforceChecklistRepository {
-  Future<WorkforceGetCheckListModel> fetchChecklist();
+  Future<WorkforceGetCheckListModel> fetchChecklist(
+      String userId, String hashCode);
 
-  Future<GetCheckListRejectReasonsModel> fetchChecklistRejectReason();
+  Future<GetCheckListRejectReasonsModel> fetchChecklistRejectReason(
+      String hashCode);
 
   Future<GetQuestionListModel> fetchChecklistQuestions(
-      String scheduleId, String userId);
+      String scheduleId, String userId, String hashCode);
 
   Future<PostRejectReasonsModel> saveRejectReasons(Map saveRejectReasonsMap);
 
   Future<GetQuestionCommentsModel> fetchQuestionsComments(
-      String questionResponseId);
+      String questionResponseId, String hashCode);
 
   Future<SaveQuestionCommentsModel> saveQuestionsComments(
       Map saveQuestionsCommentMap);

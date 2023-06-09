@@ -213,12 +213,16 @@ class SavedQuestions extends WorkforceChecklistStates {
 
 class QuestionsEdited extends WorkforceChecklistStates {
   final String? dropDownValue;
-  final List multiSelect;
+  final List multiSelectId;
   final String? radioValue;
+  final List multiSelectNames;
 
   QuestionsEdited(
-      {this.radioValue, required this.multiSelect, this.dropDownValue});
+      {required this.multiSelectNames,
+      this.radioValue,
+      required this.multiSelectId,
+      this.dropDownValue});
 
   @override
-  List<Object?> get props => [dropDownValue, multiSelect, radioValue];
+  List<Object?> get props => [dropDownValue, multiSelectId, radioValue];
 }

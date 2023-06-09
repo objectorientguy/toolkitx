@@ -5,7 +5,7 @@ import 'package:toolkit/widgets/text_button.dart';
 import '../../../configs/app_color.dart';
 import '../../../configs/app_spacing.dart';
 import '../../../utils/constants/string_constants.dart';
-import '../../onboarding/widgets/text_field.dart';
+import '../../../widgets/generic_text_field.dart';
 
 class CommentsPopUp extends StatelessWidget {
   final String textValue;
@@ -15,19 +15,22 @@ class CommentsPopUp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-        titlePadding:
-            const EdgeInsets.only(left: smallSpacing, top: smallSpacing),
-        buttonPadding: const EdgeInsets.all(tiniestSpacing),
+        titlePadding: const EdgeInsets.only(left: tiny, top: tiny),
+        buttonPadding: const EdgeInsets.all(tiniest),
         contentPadding: const EdgeInsets.only(
-            left: tinySpacing, right: tinySpacing, top: tinySpacing, bottom: 0),
+            left: xxTinySpacing,
+            right: xxTinySpacing,
+            top: xxTinySpacing,
+            bottom: 0),
         actionsPadding:
-            const EdgeInsets.only(right: tinySpacing, bottom: tiniestSpacing),
+            const EdgeInsets.only(right: xxTinySpacing, bottom: tiniest),
         title: Text(StringConstants.kComments,
             style: Theme.of(context)
                 .textTheme
                 .small
                 .copyWith(color: AppColor.black)),
-        content: const TextFieldWidget(maxLines: 7),
+        content: TextFieldWidget(
+            maxLines: 7, onTextFieldChanged: (String textField) {}),
         titleTextStyle: Theme.of(context)
             .textTheme
             .large

@@ -5,6 +5,7 @@ import 'package:toolkit/blocs/checklist/workforce/workforce_checklist_states.dar
 import 'package:toolkit/configs/app_spacing.dart';
 
 import '../../../../blocs/checklist/workforce/workforce_checklist_events.dart';
+import '../../../../configs/app_color.dart';
 import '../../../../data/models/checklist/workforce/questions_list_model.dart';
 
 typedef DropDownCallBack = Function(String dropDownId, String dropDownString);
@@ -37,11 +38,11 @@ class DropDownExpansionTile extends StatelessWidget {
                     .copyWith(dividerColor: Colors.transparent),
                 child: ExpansionTile(
                     key: GlobalKey(),
-                    collapsedBackgroundColor: Colors.grey[100],
+                    collapsedBackgroundColor: AppColor.offWhite,
                     tilePadding: const EdgeInsets.only(
-                        left: midTiniestSpacing, right: midTiniestSpacing),
-                    iconColor: Colors.blue,
-                    textColor: Colors.black,
+                        left: xxTinierSpacing, right: xxTinierSpacing),
+                    iconColor: AppColor.deepBlue,
+                    textColor: AppColor.black,
                     title: Text((dropDown == "") ? 'Select' : dropDown),
                     children: [
                       MediaQuery(
@@ -53,8 +54,8 @@ class DropDownExpansionTile extends StatelessWidget {
                                   answerModelList[index].queoptions!.length,
                               itemBuilder: (context, listIndex) {
                                 return ListTile(
-                                    contentPadding: const EdgeInsets.only(
-                                        left: tiniestSpacing),
+                                    contentPadding:
+                                        const EdgeInsets.only(left: tiniest),
                                     title: Text(answerModelList[index]
                                             .queoptions![listIndex]
                                         ["queoptiontext"]),
@@ -72,9 +73,10 @@ class DropDownExpansionTile extends StatelessWidget {
                                           .read<WorkforceChecklistBloc>()
                                           .add(EditQuestions(
                                               dropDownValue: dropDown,
-                                              multiSelectList: [],
+                                              multiSelectIdList: [],
                                               multiSelectItem: '',
-                                              multiSelectName: ''));
+                                              multiSelectName: '',
+                                              multiSelectNameList: []));
                                     });
                               }))
                     ]));

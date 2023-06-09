@@ -6,8 +6,7 @@ import 'package:toolkit/widgets/primary_button.dart';
 import '../../../configs/app_color.dart';
 import '../../../configs/app_dimensions.dart';
 import '../../../widgets/generic_app_bar.dart';
-import '../../onboarding/widgets/text_field.dart';
-import '../widgets/blood_group_expansion_tile.dart';
+import '../../../widgets/generic_text_field.dart';
 
 class EditScreen extends StatelessWidget {
   static const routeName = 'EditScreen';
@@ -32,32 +31,38 @@ class EditScreen extends StatelessWidget {
                 child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const SizedBox(height: mediumSpacing),
+                      const SizedBox(height: xxxSmallerSpacing),
                       Text(StringConstants.kFirstName,
                           style: Theme.of(context).textTheme.medium),
-                      const SizedBox(height: midTinySpacing),
+                      const SizedBox(height: tinier),
                       TextFieldWidget(
-                          textInputAction: TextInputAction.next,
-                          hintText: StringConstants.kFirstName),
-                      const SizedBox(height: midTinySpacing),
+                        textInputAction: TextInputAction.next,
+                        hintText: StringConstants.kFirstName,
+                        onTextFieldChanged: (String textField) {},
+                      ),
+                      const SizedBox(height: tinier),
                       Text(StringConstants.kLastName,
                           style: Theme.of(context).textTheme.medium),
-                      const SizedBox(height: midTinySpacing),
+                      const SizedBox(height: tinier),
                       TextFieldWidget(
-                          textInputAction: TextInputAction.next,
-                          hintText: StringConstants.kLastName),
-                      const SizedBox(height: midTinySpacing),
+                        textInputAction: TextInputAction.next,
+                        hintText: StringConstants.kLastName,
+                        onTextFieldChanged: (String textField) {},
+                      ),
+                      const SizedBox(height: tinier),
                       Text(StringConstants.kContact,
                           style: Theme.of(context).textTheme.medium),
-                      const SizedBox(height: midTinySpacing),
+                      const SizedBox(height: tinier),
                       TextFieldWidget(
-                          textInputAction: TextInputAction.done,
-                          hintText: StringConstants.kContact),
-                      const SizedBox(height: midTinySpacing),
+                        textInputAction: TextInputAction.done,
+                        hintText: StringConstants.kContact,
+                        onTextFieldChanged: (String textField) {},
+                      ),
+                      const SizedBox(height: tinier),
                       Text(StringConstants.kBloodGroup,
                           style: Theme.of(context).textTheme.medium),
-                      const SizedBox(height: midTinySpacing),
-                      const BloodGroupExpansionTile()
+                      const SizedBox(height: tinier),
+                      // const BloodGroupExpansionTile()
                     ]))));
   }
 }

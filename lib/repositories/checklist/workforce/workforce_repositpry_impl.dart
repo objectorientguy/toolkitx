@@ -13,25 +13,26 @@ import 'workforce_repository.dart';
 
 class WorkforceChecklistRepositoryImpl extends WorkforceChecklistRepository {
   @override
-  Future<WorkforceGetCheckListModel> fetchChecklist() async {
+  Future<WorkforceGetCheckListModel> fetchChecklist(
+      String userId, String hashCode) async {
     final response = await DioClient().get(
-        "${ApiConstants.baseUrl}api/checklist/get?userid=W2mt1FgZTZTQWTIvm4wU1w==&hashcode=9i2CF+lFcvH59NOsOTI9b2POWg0nKle29CpuaapAGRJGICrBkG7OH4mA2ip4z1yY|3|2|1|ist_42&filter=");
-    log("response======>$response");
+        "${ApiConstants.baseUrl}checklist/get?userid=$userId&hashcode=$hashCode&filter=");
     return WorkforceGetCheckListModel.fromJson(response);
   }
 
   @override
-  Future<GetCheckListRejectReasonsModel> fetchChecklistRejectReason() async {
+  Future<GetCheckListRejectReasonsModel> fetchChecklistRejectReason(
+      String hashCode) async {
     final response = await DioClient().get(
-        "${ApiConstants.baseUrl}api/checklist/getrejectreasons?hashcode=9i2CF+lFcvH59NOsOTI9b2POWg0nKle29CpuaapAGRJGICrBkG7OH4mA2ip4z1yY|3|2|1|ist_42");
+        "${ApiConstants.baseUrl}checklist/getrejectreasons?hashcode=$hashCode");
     return GetCheckListRejectReasonsModel.fromJson(response);
   }
 
   @override
   Future<GetQuestionListModel> fetchChecklistQuestions(
-      String scheduleId, String userId) async {
+      String scheduleId, String userId, String hashCode) async {
     final response = await DioClient().get(
-        "${ApiConstants.baseUrl}/api/checklist/getquestions?scheduleid=$scheduleId&userid=W2mt1FgZTZTQWTIvm4wU1w==&hashcode=9i2CF+lFcvH59NOsOTI9b2POWg0nKle29CpuaapAGRJGICrBkG7OH4mA2ip4z1yY|3|2|1|ist_42");
+        "${ApiConstants.baseUrl}checklist/getquestions?scheduleid=$scheduleId&userid=$userId&hashcode=$hashCode");
     return GetQuestionListModel.fromJson(response);
   }
 
@@ -39,7 +40,7 @@ class WorkforceChecklistRepositoryImpl extends WorkforceChecklistRepository {
   Future<PostRejectReasonsModel> saveRejectReasons(
       Map saveRejectReasonsMap) async {
     final response = await DioClient().post(
-        "${ApiConstants.baseUrl}/api/checklist/rejectbyworkforce",
+        "${ApiConstants.baseUrl}checklist/rejectbyworkforce",
         saveRejectReasonsMap);
     log("headerrr post reject========>$response");
     return PostRejectReasonsModel.fromJson(response);
@@ -47,9 +48,9 @@ class WorkforceChecklistRepositoryImpl extends WorkforceChecklistRepository {
 
   @override
   Future<GetQuestionCommentsModel> fetchQuestionsComments(
-      String questionResponseId) async {
+      String questionResponseId, String hashCode) async {
     final response = await DioClient().get(
-        "${ApiConstants.baseUrl}/api/checklist/getquestionresponsecomments?queresponseid=$questionResponseId&hashcode=9i2CF+lFcvH59NOsOTI9b2POWg0nKle29CpuaapAGRJGICrBkG7OH4mA2ip4z1yY|3|2|1|ist_42");
+        "${ApiConstants.baseUrl}checklist/getquestionresponsecomments?queresponseid=$questionResponseId&hashcode=$hashCode");
     return GetQuestionCommentsModel.fromJson(response);
   }
 
@@ -57,7 +58,7 @@ class WorkforceChecklistRepositoryImpl extends WorkforceChecklistRepository {
   Future<SaveQuestionCommentsModel> saveQuestionsComments(
       Map saveQuestionsCommentMap) async {
     final response = await DioClient().post(
-        "${ApiConstants.baseUrl}/api/checklist/SaveQuestionResponseComments",
+        "${ApiConstants.baseUrl}checklist/SaveQuestionResponseComments",
         saveQuestionsCommentMap);
     return SaveQuestionCommentsModel.fromJson(response);
   }
@@ -65,9 +66,7 @@ class WorkforceChecklistRepositoryImpl extends WorkforceChecklistRepository {
   @override
   Future<SubmitQuestionModel> submitQuestions(Map submitQuestionMap) async {
     final response = await DioClient()
-        .post("${ApiConstants.baseUrl}/api/checklist/save", submitQuestionMap);
-    log("saveee responsee======>$response");
-    log("saveee mappp======>$submitQuestionMap");
+        .post("${ApiConstants.baseUrl}checklist/save", submitQuestionMap);
     return SubmitQuestionModel.fromJson(response);
   }
 }

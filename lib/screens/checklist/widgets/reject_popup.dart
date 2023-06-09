@@ -9,9 +9,9 @@ import '../../../configs/app_color.dart';
 import '../../../configs/app_spacing.dart';
 import '../../../utils/constants/string_constants.dart';
 import '../../../widgets/custom_snackbar.dart';
+import '../../../widgets/generic_text_field.dart';
 import '../../../widgets/progress_bar.dart';
 import '../../../widgets/text_button.dart';
-import '../../onboarding/widgets/text_field.dart';
 
 class RejectPopUp extends StatelessWidget {
   final String textValue;
@@ -36,23 +36,22 @@ class RejectPopUp extends StatelessWidget {
           }
         },
         child: AlertDialog(
-            titlePadding:
-                const EdgeInsets.only(left: smallSpacing, top: smallSpacing),
-            buttonPadding: const EdgeInsets.all(tiniestSpacing),
+            titlePadding: const EdgeInsets.only(left: tiny, top: tiny),
+            buttonPadding: const EdgeInsets.all(tiniest),
             contentPadding: const EdgeInsets.only(
-                left: tinySpacing,
-                right: tinySpacing,
-                top: tinySpacing,
+                left: xxTinierSpacing,
+                right: xxTinierSpacing,
+                top: xxTinierSpacing,
                 bottom: 0),
-            actionsPadding: const EdgeInsets.only(
-                right: tinySpacing, bottom: tiniestSpacing),
+            actionsPadding:
+                const EdgeInsets.only(right: xxTinierSpacing, bottom: tiniest),
             title: Text(StringConstants.kComments,
                 style: Theme.of(context)
                     .textTheme
                     .small
                     .copyWith(color: AppColor.black)),
             content: TextFieldWidget(
-                onTextFieldValueChanged: (String textValue) {
+                onTextFieldChanged: (String textValue) {
                   rejectMap["comment"] = textValue;
                 },
                 maxLines: 7),

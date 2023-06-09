@@ -2,16 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:toolkit/blocs/checklist/systemUser/system_user_checklist_bloc.dart';
 import 'package:toolkit/blocs/checklist/systemUser/system_user_checklist_states.dart';
+import 'package:toolkit/configs/app_spacing.dart';
 import 'package:toolkit/configs/app_theme.dart';
 import 'package:toolkit/widgets/progress_bar.dart';
 import 'package:toolkit/widgets/text_button.dart';
 
 import '../../../blocs/checklist/systemUser/system_user_checklist_events.dart';
 import '../../../configs/app_color.dart';
-import '../../../configs/app_spacing.dart';
 import '../../../utils/constants/string_constants.dart';
 import '../../../widgets/custom_snackbar.dart';
-import '../../onboarding/widgets/text_field.dart';
+import '../../../widgets/generic_text_field.dart';
 import '../systemUser/schedule_dates_screen.dart';
 
 class ApprovePopUp extends StatelessWidget {
@@ -40,23 +40,22 @@ class ApprovePopUp extends StatelessWidget {
           }
         },
         child: AlertDialog(
-            titlePadding:
-                const EdgeInsets.only(left: smallSpacing, top: smallSpacing),
-            buttonPadding: const EdgeInsets.all(tiniestSpacing),
+            titlePadding: const EdgeInsets.only(left: tiny, top: tiny),
+            buttonPadding: const EdgeInsets.all(tiniest),
             contentPadding: const EdgeInsets.only(
-                left: tinySpacing,
-                right: tinySpacing,
-                top: tinySpacing,
+                left: xxTinySpacing,
+                right: xxTinySpacing,
+                top: xxTinySpacing,
                 bottom: 0),
             actionsPadding: const EdgeInsets.only(
-                right: tinySpacing, bottom: tiniestSpacing),
+                right: xxTinySpacing, bottom: xxTinySpacing),
             title: Text(StringConstants.kComments,
                 style: Theme.of(context)
                     .textTheme
                     .small
                     .copyWith(color: AppColor.black)),
             content: TextFieldWidget(
-                onTextFieldValueChanged: (String textValue) {
+                onTextFieldChanged: (String textValue) {
                   approveMap["comment"] = textValue;
                 },
                 maxLines: 7),

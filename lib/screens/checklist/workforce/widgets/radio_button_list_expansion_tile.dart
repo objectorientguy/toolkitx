@@ -51,6 +51,7 @@ class RadioButtonExpansionTile extends StatelessWidget {
                           itemCount: answerModelList[index].queoptions!.length,
                           itemBuilder: (BuildContext context, int listIndex) {
                             return RadioListTile(
+                                contentPadding: EdgeInsets.zero,
                                 dense: true,
                                 activeColor: AppColor.deepBlue,
                                 controlAffinity:
@@ -70,10 +71,11 @@ class RadioButtonExpansionTile extends StatelessWidget {
                                   onRadioButtonChecked(value, radioValue);
                                   context.read<WorkforceChecklistBloc>().add(
                                       EditQuestions(
-                                          multiSelectList: [],
+                                          multiSelectIdList: [],
                                           radioValue: value,
                                           multiSelectItem: '',
-                                          multiSelectName: ''));
+                                          multiSelectName: '',
+                                          multiSelectNameList: []));
                                 });
                           })
                     ]));

@@ -3,9 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:toolkit/configs/app_spacing.dart';
 import 'package:toolkit/configs/app_theme.dart';
 import 'package:toolkit/screens/checklist/systemUser/workforce_list_screen.dart';
-import 'package:toolkit/screens/onboarding/widgets/show_error.dart';
 import 'package:toolkit/utils/constants/string_constants.dart';
-import 'package:toolkit/widgets/generic_app_bar.dart';
+import 'package:toolkit/widgets/error_section.dart';
 import 'package:toolkit/widgets/progress_bar.dart';
 import '../../../blocs/checklist/systemUser/system_user_checklist_bloc.dart';
 import '../../../blocs/checklist/systemUser/system_user_checklist_events.dart';
@@ -15,6 +14,7 @@ import '../../../configs/app_dimensions.dart';
 import '../../../widgets/custom_snackbar.dart';
 
 import '../../onboarding/widgets/custom_card.dart';
+import '../widgets/checklist_app_bar.dart';
 
 class SystemUserScheduleDatesScreen extends StatelessWidget {
   static const routeName = 'SystemUserScheduleDatesScreen';
@@ -41,7 +41,7 @@ class SystemUserScheduleDatesScreen extends StatelessWidget {
         builder: (context, state) {
           if (state is ChecklistDatesScheduled) {
             return Scaffold(
-                appBar: GenericAppBar(
+                appBar: ChecklistAppBar(
                     title: BlocBuilder<ChecklistBloc, ChecklistStates>(
                         buildWhen: (previousState, currentState) =>
                             currentState is ChecklistDatesScheduled,
@@ -57,8 +57,8 @@ class SystemUserScheduleDatesScreen extends StatelessWidget {
                     padding: const EdgeInsets.only(
                         left: leftRightMargin,
                         right: leftRightMargin,
-                        top: topBottomSpacing,
-                        bottom: topBottomSpacing),
+                        top: topBottomPadding,
+                        bottom: topBottomPadding),
                     child: ListView.separated(
                         physics: const BouncingScrollPhysics(),
                         shrinkWrap: true,
@@ -68,14 +68,14 @@ class SystemUserScheduleDatesScreen extends StatelessWidget {
                               child: ListTile(
                                   title: Padding(
                                     padding: const EdgeInsets.only(
-                                        top: midTiniestSpacing,
-                                        bottom: midTiniestSpacing),
+                                        top: xxTinierSpacing,
+                                        bottom: xxTinierSpacing),
                                     child: Row(
                                       children: [
                                         Image.asset("assets/icons/calendar.png",
                                             height: kProfileImageHeight,
                                             width: kProfileImageWidth),
-                                        const SizedBox(width: tiniestSpacing),
+                                        const SizedBox(width: tiniest),
                                         Text(
                                             state.getChecklistDetailsModel
                                                 .data![index].dates,
@@ -95,7 +95,7 @@ class SystemUserScheduleDatesScreen extends StatelessWidget {
                                               .textTheme
                                               .xxSmall
                                               .copyWith(color: AppColor.grey)),
-                                      const SizedBox(height: tiniestSpacing),
+                                      const SizedBox(height: tiniest),
                                       Visibility(
                                           visible: state
                                                   .getChecklistDetailsModel
@@ -106,7 +106,7 @@ class SystemUserScheduleDatesScreen extends StatelessWidget {
                                               Icons.question_mark_outlined,
                                               color: AppColor.errorRed,
                                               size: kIconSize)),
-                                      const SizedBox(height: tiniestSpacing),
+                                      const SizedBox(height: tiniest),
                                     ],
                                   ),
                                   onTap: () {
@@ -121,10 +121,11 @@ class SystemUserScheduleDatesScreen extends StatelessWidget {
                                   }));
                         },
                         separatorBuilder: (context, index) {
-                          return const SizedBox(height: tinySpacing);
+                          return const SizedBox(height: xxTinySpacing);
                         })));
           } else if (state is ChecklistScheduleDatesError) {
-            return ShowError(onPressed: () {});
+            return GenericReloadButton(
+                onPressed: () {}, textValue: StringConstants.kReload);
           } else {
             return const SizedBox();
           }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:toolkit/screens/checklist/systemUser/system_user_list_screen.dart';
+import 'package:toolkit/screens/checklist/workforce/list_screen.dart';
 import 'package:toolkit/screens/incident/incident_list_screen.dart';
 import 'package:toolkit/widgets/db_text_widget.dart';
 
@@ -64,8 +65,11 @@ class OnLineModules extends StatelessWidget {
       case 'hse':
         Navigator.pushNamed(context, IncidentListScreen.routeName);
         break;
+      case 'wf_checklist':
+        Navigator.pushNamed(context, WorkForceListScreen.routeName);
+        break;
       case 'checklist':
-        Navigator.pushNamed(context, ChecklistScreen.routeName);
+        Navigator.pushNamed(context, SystemUserCheckListScreen.routeName);
         break;
     }
   }

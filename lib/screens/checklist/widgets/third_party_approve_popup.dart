@@ -2,17 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:toolkit/blocs/checklist/systemUser/system_user_checklist_events.dart';
 import 'package:toolkit/configs/app_dimensions.dart';
+import 'package:toolkit/configs/app_spacing.dart';
 import 'package:toolkit/configs/app_theme.dart';
 
 import '../../../blocs/checklist/systemUser/system_user_checklist_bloc.dart';
 import '../../../blocs/checklist/systemUser/system_user_checklist_states.dart';
 import '../../../configs/app_color.dart';
-import '../../../configs/app_spacing.dart';
 import '../../../utils/constants/string_constants.dart';
 import '../../../widgets/custom_snackbar.dart';
+import '../../../widgets/generic_text_field.dart';
 import '../../../widgets/progress_bar.dart';
 import '../../../widgets/text_button.dart';
-import '../../onboarding/widgets/text_field.dart';
 
 class ThirdPartyApprovePopUp extends StatelessWidget {
   final String textValue;
@@ -35,16 +35,16 @@ class ThirdPartyApprovePopUp extends StatelessWidget {
           }
         },
         child: AlertDialog(
-            titlePadding: const EdgeInsets.only(
-                left: smallSpacing, top: smallSpacing, right: smallSpacing),
-            buttonPadding: const EdgeInsets.all(tiniestSpacing),
+            titlePadding:
+                const EdgeInsets.only(left: tiny, top: tiny, right: tiny),
+            buttonPadding: const EdgeInsets.all(tiniest),
             contentPadding: const EdgeInsets.only(
-                left: tinySpacing,
-                right: tinySpacing,
-                top: tinySpacing,
+                left: xxTinySpacing,
+                right: xxTinySpacing,
+                top: xxTinySpacing,
                 bottom: 0),
-            actionsPadding: const EdgeInsets.only(
-                right: tinySpacing, bottom: tiniestSpacing),
+            actionsPadding:
+                const EdgeInsets.only(right: xxTinySpacing, bottom: tiniest),
             title:
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               Row(
@@ -65,11 +65,11 @@ class ThirdPartyApprovePopUp extends StatelessWidget {
                       icon: const Icon(Icons.close_outlined, size: kIconSize))
                 ],
               ),
-              const SizedBox(height: midTiniestSpacing),
-              TextFieldWidget(onTextFieldValueChanged: (String textValue) {
+              const SizedBox(height: xxTinierSpacing),
+              TextFieldWidget(onTextFieldChanged: (String textValue) {
                 thirdPartyApproveMap["name"] = textValue;
               }),
-              const SizedBox(height: midTiniestSpacing),
+              const SizedBox(height: xxTinierSpacing),
               Text('Add Signature',
                   style: Theme.of(context)
                       .textTheme
@@ -77,7 +77,7 @@ class ThirdPartyApprovePopUp extends StatelessWidget {
                       .copyWith(color: AppColor.black)),
             ]),
             content: TextFieldWidget(
-                onTextFieldValueChanged: (String textValue) {
+                onTextFieldChanged: (String textValue) {
                   thirdPartyApproveMap["sign_text"] = textValue;
                 },
                 maxLines: 7),

@@ -10,6 +10,7 @@ dependencies:
     sdk: flutter
   dio:
   intl:
+  http:
   path:
   get_it:
   encrypt:

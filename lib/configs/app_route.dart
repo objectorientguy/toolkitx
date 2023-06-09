@@ -1,23 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:toolkit/screens/checklist/systemUser/system_user_list_screen.dart';
 import 'package:toolkit/screens/checklist/systemUser/schedule_dates_screen.dart';
-import 'package:toolkit/screens/checklist/systemUser/filters_screen.dart';
 import 'package:toolkit/screens/checklist/workforce/reject_reasons.dart';
-import 'package:toolkit/screens/onboarding/login/emailAddress/login_screen.dart';
-import 'package:toolkit/screens/onboarding/login/password/password_screen.dart';
 import 'package:toolkit/screens/onboarding/welcome_screen.dart';
 import 'package:toolkit/screens/profile/edit/edit_screen.dart';
 import '../screens/checklist/systemUser/change_role_screen.dart';
 import '../screens/checklist/systemUser/edit_header_screen.dart';
+import '../screens/checklist/systemUser/filters_screen.dart';
 import '../screens/checklist/systemUser/workforce_list_screen.dart';
 import '../screens/checklist/workforce/add_image_and_comment_screen.dart';
 import '../screens/checklist/workforce/list_screen.dart';
 import '../screens/checklist/workforce/questions_list_screen.dart';
 import '../screens/checklist/workforce/edit_questions_screen.dart';
-import '../screens/checklist/change_role_screen.dart';
 import '../screens/checklist/checklist_list_screen.dart';
 import '../screens/checklist/details_screen.dart';
-import '../screens/checklist/filters_screen.dart';
 import '../screens/incident/category_screen.dart';
 import '../screens/incident/filter_screen.dart';
 import '../screens/incident/incident_list_screen.dart';
@@ -27,7 +23,6 @@ import '../screens/onboarding/login/login_screen.dart';
 import '../screens/onboarding/login/password_screen.dart';
 import '../screens/onboarding/selectDateFormat/select_date_format_screen.dart';
 import '../screens/onboarding/selectTimeZone/select_time_zone_screen.dart';
-import '../screens/onboarding/welcome_screen.dart';
 import '../screens/profile/changePassword/change_password_screen.dart';
 import '../screens/profile/changePassword/select_change_password_screen.dart';
 import '../screens/profile/edit/profile_edit_screen.dart';
@@ -55,14 +50,13 @@ class AppRoutes {
       case PasswordScreen.routeName:
         return _createRoute(PasswordScreen());
       case RootScreen.routeName:
-        return _materialRoute(const RootScreen());
-      case EditScreen.routeName:
-        return _materialRoute(const EditScreen());
-      case SystemUserScheduleDatesScreen.routeName:
-        return _materialRoute(const SystemUserScheduleDatesScreen());
-      case SystemUserCheckListScreen.routeName:
-        return _materialRoute(const SystemUserCheckListScreen());
         return _createRoute(const RootScreen());
+      case EditScreen.routeName:
+        return _createRoute(const EditScreen());
+      case SystemUserScheduleDatesScreen.routeName:
+        return _createRoute(const SystemUserScheduleDatesScreen());
+      case SystemUserCheckListScreen.routeName:
+        return _createRoute(SystemUserCheckListScreen());
       case ProfileEditScreen.routeName:
         return _createRoute(const ProfileEditScreen());
       case DetailsScreen.routeName:
@@ -72,28 +66,28 @@ class AppRoutes {
       case ChangeRoleScreen.routeName:
         return _createRoute(const ChangeRoleScreen());
       case FiltersScreen.routeName:
-        return _createRoute(const FiltersScreen());
+        return _createRoute(FiltersScreen());
       case IncidentListScreen.routeName:
         return _createRoute(const IncidentListScreen());
       case IncidentFilterScreen.routeName:
         return _createRoute(const IncidentFilterScreen());
       case CategoryScreen.routeName:
-        return _materialRoute(const CategoryScreen());
-      case ChecklistWorkForceListScreen.routeName:
-        return _materialRoute(const ChecklistWorkForceListScreen());
-      case WorkForceListScreen.routeName:
-        return _materialRoute(const WorkForceListScreen());
-      case RejectReasonsScreen.routeName:
-        return _materialRoute(const RejectReasonsScreen());
-      case EditHeaderScreen.routeName:
-        return _materialRoute(EditHeaderScreen());
-      case WorkForceQuestionsList.routeName:
-        return _materialRoute(const WorkForceQuestionsList());
-      case AddImageAndCommentScreen.routeName:
-        return _materialRoute(AddImageAndCommentScreen());
-      case EditQuestionsScreen.routeName:
-        return _materialRoute(const EditQuestionsScreen());
         return _createRoute(const CategoryScreen());
+      case ChecklistWorkForceListScreen.routeName:
+        return _createRoute(const ChecklistWorkForceListScreen());
+      case WorkForceListScreen.routeName:
+        return _createRoute(const WorkForceListScreen());
+      case RejectReasonsScreen.routeName:
+        return _createRoute(const RejectReasonsScreen());
+      case EditHeaderScreen.routeName:
+        return _createRoute(EditHeaderScreen());
+      case WorkForceQuestionsList.routeName:
+        return _createRoute(WorkForceQuestionsList(
+            checklistDataMap: settings.arguments as Map));
+      case AddImageAndCommentScreen.routeName:
+        return _createRoute(AddImageAndCommentScreen());
+      case EditQuestionsScreen.routeName:
+        return _createRoute(const EditQuestionsScreen());
       case PermitListScreen.routeName:
         return _createRoute(const PermitListScreen());
       case PermitDetailsScreen.routeName:

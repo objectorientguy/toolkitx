@@ -153,12 +153,15 @@ class CategoryFetching extends ChecklistStates {
 class CategoryFetched extends ChecklistStates {
   final List<GetFilterCategoryData> getFilterCategoryData;
   final String categoryName;
+  final String categoryId;
 
   CategoryFetched(
-      {required this.categoryName, required this.getFilterCategoryData});
+      {required this.categoryId,
+      required this.categoryName,
+      required this.getFilterCategoryData});
 
   @override
-  List<Object?> get props => [getFilterCategoryData, categoryName];
+  List<Object?> get props => [getFilterCategoryData, categoryName, categoryId];
 }
 
 class CategoryError extends ChecklistStates {
@@ -294,4 +297,27 @@ class ThirdPartyDisapprove extends ChecklistStates {
 
   @override
   List<Object?> get props => throw UnimplementedError();
+}
+
+class SavingFilterData extends ChecklistStates {
+  @override
+  List<Object?> get props => throw UnimplementedError();
+}
+
+class SavedFilterData extends ChecklistStates {
+  final Map saveFilterData;
+
+  SavedFilterData({required this.saveFilterData});
+
+  @override
+  List<Object?> get props => [saveFilterData];
+}
+
+class FilterDataNotSave extends ChecklistStates {
+  final String errorMessage;
+
+  FilterDataNotSave({required this.errorMessage});
+
+  @override
+  List<Object?> get props => [errorMessage];
 }

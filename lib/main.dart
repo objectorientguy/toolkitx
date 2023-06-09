@@ -3,12 +3,13 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:toolkit/blocs/checklist/systemUser/checklist_bloc/system_user_checklist_bloc.dart';
+import 'package:toolkit/blocs/checklist/systemUser/scheduleDates/sys_user_schedule_dates_bloc.dart';
 import 'package:toolkit/blocs/checklist/workforce/workforce_checklist_bloc.dart';
-import 'package:toolkit/blocs/selectDateFormat/select_date_format_bloc.dart';
+import 'package:toolkit/blocs/uploadImage/upload_image_bloc.dart';
 import 'package:toolkit/blocs/wifiConnectivity/wifi_connectivity_bloc.dart';
 import 'package:toolkit/blocs/wifiConnectivity/wifi_connectivity_events.dart';
 import 'package:toolkit/configs/app_theme.dart';
-import 'package:toolkit/screens/home/home_screen.dart';
 import 'blocs/checklist/systemUser/system_user_checklist_bloc.dart';
 import 'package:toolkit/blocs/permit/permit_bloc.dart';
 import 'package:toolkit/blocs/onboarding/onboarding_bloc.dart';
@@ -25,11 +26,9 @@ import 'blocs/home/home_bloc.dart';
 import 'blocs/language/language_bloc.dart';
 import 'blocs/login/login_bloc.dart';
 import 'blocs/onboarding/onboarding_events.dart';
+import 'blocs/pickImage/pick_image_bloc.dart';
 import 'blocs/timeZone/time_zone_bloc.dart';
-import 'blocs/wifiConnectivity/wifi_connectivity_bloc.dart';
-import 'blocs/wifiConnectivity/wifi_connectivity_events.dart';
 import 'blocs/wifiConnectivity/wifi_connectivity_states.dart';
-import 'configs/app_theme.dart';
 import 'di/app_module.dart';
 import 'configs/app_route.dart';
 import 'screens/onboarding/welcome_screen.dart';
@@ -77,6 +76,10 @@ class MyApp extends StatelessWidget {
           BlocProvider(lazy: false, create: (context) => LoginBloc()),
           BlocProvider(lazy: false, create: (context) => ClientBloc()),
           BlocProvider(lazy: false, create: (context) => ProfileBloc()),
+          BlocProvider(lazy: false, create: (context) => PickImageBloc()),
+          BlocProvider(lazy: false, create: (context) => UploadImageBloc()),
+          BlocProvider(lazy: false, create: (context) => CheckListBloc()),
+          BlocProvider(lazy: false, create: (context) => ScheduleDatesBloc()),
           BlocProvider(
               lazy: false,
               create: (context) => OnBoardingBloc()..add(CheckLoggedIn()))

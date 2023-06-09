@@ -35,7 +35,7 @@ class WorkForcePopUpMenu extends StatelessWidget {
                 ),
                 iconSize: kIconSize,
                 icon: const Icon(Icons.more_vert_outlined),
-                offset: const Offset(0, midTiniestSpacing),
+                offset: const Offset(0, xxTinierSpacing),
                 onSelected: (value) {
                   if (value == 'Edit') {
                     Navigator.pushNamed(

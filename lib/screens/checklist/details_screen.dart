@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:toolkit/configs/app_spacing.dart';
 import 'package:toolkit/configs/app_theme.dart';
-import 'package:toolkit/screens/checklist/status_screen.dart';
+import 'package:toolkit/screens/checklist/systemUser/schedule_dates_screen.dart';
 import 'package:toolkit/screens/onboarding/widgets/custom_card.dart';
 import 'package:toolkit/widgets/generic_app_bar.dart';
 
@@ -38,7 +38,7 @@ class DetailsScreen extends StatelessWidget {
                           .copyWith(color: AppColor.grey)),
                   onTap: () {
                     Navigator.pushNamed(
-                        context, ChecklistStatusScreen.routeName);
+                        context, SystemUserScheduleDatesScreen.routeName);
                   },
                 ));
               },
