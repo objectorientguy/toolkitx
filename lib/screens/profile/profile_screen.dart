@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:toolkit/blocs/profile/profile_bloc.dart';
-import 'package:toolkit/blocs/profile/profile_events.dart';
-import 'package:toolkit/blocs/profile/profile_states.dart';
-import 'package:toolkit/configs/app_spacing.dart';
 import 'package:toolkit/configs/app_theme.dart';
-import 'package:toolkit/screens/onboarding/welcome_screen.dart';
+import '../../blocs/profile/profile_bloc.dart';
+import '../../blocs/profile/profile_events.dart';
+import '../../blocs/profile/profile_states.dart';
 import '../../configs/app_dimensions.dart';
+import '../../configs/app_spacing.dart';
 import '../../utils/constants/string_constants.dart';
 import '../../widgets/circle_avatar.dart';
 import '../../widgets/error_section.dart';
 import '../../widgets/custom_card.dart';
+import '../onboarding/welcome_screen.dart';
 import 'widgets/edit_options_section.dart';
 import 'widgets/profile_options.dart';
 
@@ -63,8 +63,7 @@ class ProfileScreen extends StatelessWidget {
                                             imagePath: 'mechanic_person.png'),
                                         const SizedBox(
                                             height: xxxSmallerSpacing),
-                                        Text(
-                                            "${state.userProfileModel.data!.fname} ${state.userProfileModel.data!.lname} ",
+                                        Text(state.userName,
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .large),
@@ -76,9 +75,7 @@ class ProfileScreen extends StatelessWidget {
                                                 .xSmall),
                                         const SizedBox(
                                             height: xxxSmallerSpacing),
-                                        EditOptionsSection(
-                                            userprofileDetails:
-                                                state.userProfileModel.data!)
+                                        const EditOptionsSection()
                                       ]))),
                               const SizedBox(height: xxTinySpacing),
                               const ProfileOptions()

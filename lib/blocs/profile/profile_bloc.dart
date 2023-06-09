@@ -20,6 +20,7 @@ import '../../di/app_module.dart';
 class ProfileBloc extends Bloc<ProfileEvents, ProfileStates> {
   final ProfileRepository _profileRepository = getIt<ProfileRepository>();
   final CustomerCache _customerCache = getIt<CustomerCache>();
+  Map profileDataMap = {};
 
   ProfileStates get initialState => ProfileInitial();
 
@@ -39,26 +40,92 @@ class ProfileBloc extends Bloc<ProfileEvents, ProfileStates> {
       FetchUserProfile event, Emitter<ProfileStates> emit) async {
     emit(UserProfileFetching());
     try {
+      String? userName = await _customerCache.getUserName(CacheKeys.userName);
       String typeValue =
           (await _customerCache.getUserType(CacheKeys.userType))!;
-      String hashCode = (await _customerCache.getHashCode(CacheKeys.hashcode))!;
       String userType = UserType.values
           .elementAt(UserType.values
               .indexWhere((element) => element.value == typeValue))
           .type;
-
-      UserProfileModel userProfileModel =
-          await _profileRepository.fetchUserProfile(hashCode);
-      _customerCache.setUserName(CacheKeys.userName,
-          '${userProfileModel.data!.fname} ${userProfileModel.data!.lname}');
-      emit(UserProfileFetched(
-          userProfileModel: userProfileModel,
-          userType: userType,
-          userName:
-              '${userProfileModel.data!.fname} ${userProfileModel.data!.lname}'));
+      if (userName == null) {
+        String hashCode =
+            (await _customerCache.getHashCode(CacheKeys.hashcode))!;
+        UserProfileModel userProfileModel =
+            await _profileRepository.fetchUserProfile(hashCode);
+        if (userProfileModel.status == 200) {
+          profileDataMap = userProfileModel.data!.toJson();
+          _customerCache.setUserName(CacheKeys.userName,
+              '${userProfileModel.data!.fname} ${userProfileModel.data!.lname}');
+          emit(UserProfileFetched(
+              userType: userType,
+              userName:
+                  '${userProfileModel.data!.fname} ${userProfileModel.data!.lname}'));
+        }
+      } else {
+        emit(UserProfileFetched(userType: userType, userName: userName));
+      }
     } catch (e) {
       emit(UserProfileFetchError());
     }
+  }
+
+  FutureOr<void> _decryptUserProfileData(
+      DecryptUserProfileData event, Emitter<ProfileStates> emit) async {
+    emit(EditProfileInitializing());
+    try {
+      if (profileDataMap.isEmpty) {
+        String hashCode =
+            (await _customerCache.getHashCode(CacheKeys.hashcode))!;
+        UserProfileModel userProfileModel =
+            await _profileRepository.fetchUserProfile(hashCode);
+        if (userProfileModel.status == 200) {
+          _customerCache.setUserName(CacheKeys.userName,
+              '${userProfileModel.data!.fname} ${userProfileModel.data!.lname}');
+          Map encryptedDataMap = userProfileModel.data!.toJson();
+          String bloodGroupDecrypt = '';
+          String contactDecrypt = '';
+          String privateKey =
+              (await _customerCache.getApiKey(CacheKeys.apiKey))!;
+          if (userProfileModel.data!.bloodgrp.toString() != '') {
+            bloodGroupDecrypt = await EncryptData.decryptAESPrivateKey(
+                userProfileModel.data!.bloodgrp, privateKey);
+          }
+          if (userProfileModel.data!.contact.toString() != '') {
+            contactDecrypt = await EncryptData.decryptAESPrivateKey(
+                userProfileModel.data!.contact, privateKey);
+          }
+          encryptedDataMap['bloodgrp'] = bloodGroupDecrypt;
+          encryptedDataMap['contact'] = contactDecrypt;
+          add(InitializeEditUserProfile(profileDetailsMap: encryptedDataMap));
+        }
+      } else {
+        Map encryptedDataMap = Map.from(profileDataMap);
+        String bloodGroupDecrypt = '';
+        String contactDecrypt = '';
+        String privateKey = (await _customerCache.getApiKey(CacheKeys.apiKey))!;
+        if (profileDataMap['bloodgrp'].toString() != '') {
+          bloodGroupDecrypt = await EncryptData.decryptAESPrivateKey(
+              profileDataMap['bloodgrp'], privateKey);
+        }
+        if (profileDataMap['contact'].toString() != '') {
+          contactDecrypt = await EncryptData.decryptAESPrivateKey(
+              profileDataMap['contact'], privateKey);
+        }
+        encryptedDataMap['bloodgrp'] = bloodGroupDecrypt;
+        encryptedDataMap['contact'] = contactDecrypt;
+        add(InitializeEditUserProfile(profileDetailsMap: encryptedDataMap));
+      }
+    } catch (e) {
+      emit(EditProfileError(
+          errorMessage:
+              DatabaseUtil.getText('some_unknown_error_please_try_again')));
+    }
+  }
+
+  FutureOr<void> _initializeEditUserProfile(
+      InitializeEditUserProfile event, Emitter<ProfileStates> emit) async {
+    emit(EditProfileInitialized(profileDetailsMap: event.profileDetailsMap));
+    profileDataMap.clear();
   }
 
   FutureOr<void> _updateProfile(
@@ -107,30 +174,6 @@ class ProfileBloc extends Bloc<ProfileEvents, ProfileStates> {
     } catch (e) {
       emit(UserProfileUpdateError());
     }
-  }
-
-  FutureOr<void> _decryptUserProfileData(
-      DecryptUserProfileData event, Emitter<ProfileStates> emit) async {
-    Map encryptedDataMap = event.userprofileDetails;
-    String bloodGroupDecrypt = '';
-    String contactDecrypt = '';
-    String privateKey = (await _customerCache.getApiKey(CacheKeys.apiKey))!;
-    if (event.userprofileDetails['bloodgrp'].toString() != '') {
-      bloodGroupDecrypt = await EncryptData.decryptAESPrivateKey(
-          event.userprofileDetails['bloodgrp'], privateKey);
-    }
-    if (event.userprofileDetails['contact'].toString() != '') {
-      contactDecrypt = await EncryptData.decryptAESPrivateKey(
-          event.userprofileDetails['contact'], privateKey);
-    }
-    encryptedDataMap['bloodgrp'] = bloodGroupDecrypt;
-    encryptedDataMap['contact'] = contactDecrypt;
-    add(InitializeEditUserProfile(profileDetailsMap: encryptedDataMap));
-  }
-
-  FutureOr<void> _initializeEditUserProfile(
-      InitializeEditUserProfile event, Emitter<ProfileStates> emit) async {
-    emit(EditProfileInitialized(profileDetailsMap: event.profileDetailsMap));
   }
 
   _changePasswordType(ChangePasswordType event, Emitter<ProfileStates> emit) {
@@ -207,7 +250,7 @@ class ProfileBloc extends Bloc<ProfileEvents, ProfileStates> {
 
   FutureOr<void> _logOut(Logout event, Emitter<ProfileStates> emit) async {
     _customerCache.clearAll();
-
+    DatabaseUtil.box.clear();
     emit(LoggedOut());
   }
 }

@@ -15,7 +15,6 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    context.read<HomeBloc>().add(const SetDateAndTime());
     context.read<HomeBloc>().add(const StartTimer());
     context.read<ClientBloc>().add(FetchHomeScreenData());
     return Scaffold(

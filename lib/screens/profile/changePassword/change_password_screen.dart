@@ -44,7 +44,8 @@ class ChangePasswordScreen extends StatelessWidget {
                     if (state is PasswordChanged) {
                       ProgressBar.dismiss(context);
                       Navigator.pushReplacementNamed(
-                          context, RootScreen.routeName);
+                          context, RootScreen.routeName,
+                          arguments: false);
                     }
                     if (state is ChangePasswordError) {
                       ProgressBar.dismiss(context);

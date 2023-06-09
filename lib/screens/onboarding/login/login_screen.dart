@@ -79,7 +79,8 @@ class LoginScreen extends StatelessWidget {
                                 context.read<LoginBloc>().add(
                                     ValidateEmail(email: emailMap['email']));
                               },
-                              textValue: DatabaseUtil.getText('Next')))
+                              textValue:
+                                  DatabaseUtil.getText('nextButtonText')))
                     ]))));
   }
 }

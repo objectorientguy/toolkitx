@@ -82,7 +82,9 @@ class MyApp extends StatelessWidget {
                   return BlocBuilder<OnBoardingBloc, OnBoardingStates>(
                       builder: (context, state) {
                     if (state is LoggedIn) {
-                      return const RootScreen();
+                      return const RootScreen(
+                        isFromClientList: false,
+                      );
                     } else if (state is LanguageSelected) {
                       return const SelectTimeZoneScreen();
                     } else if (state is TimeZoneSelected) {

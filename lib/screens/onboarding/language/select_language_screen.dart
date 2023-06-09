@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:toolkit/screens/root/root_screen.dart';
 import 'package:toolkit/widgets/android_pop_up.dart';
 import 'package:toolkit/widgets/custom_snackbar.dart';
 import 'package:toolkit/widgets/progress_bar.dart';
@@ -50,7 +51,8 @@ class SelectLanguageScreen extends StatelessWidget {
                   if (state is LanguageKeysFetched) {
                     GenericLoadingPopUp.dismiss(context);
                     if (state.isFromProfile == true) {
-                      Navigator.pop(context);
+                      Navigator.pushNamed(context, RootScreen.routeName,
+                          arguments: false);
                     } else {
                       Navigator.pushNamed(
                           context, SelectTimeZoneScreen.routeName,
@@ -68,9 +70,15 @@ class SelectLanguageScreen extends StatelessWidget {
                     ProgressBar.show(context);
                   }
                   if (state is NewLanguageKeysUnavailable) {
-                    ProgressBar.dismiss(context);
-                    showCustomSnackBar(
-                        context, 'No new keys available', StringConstants.kOk);
+                    if (isFromProfile == true) {
+                      ProgressBar.dismiss(context);
+                      showCustomSnackBar(context, 'No new keys available',
+                          StringConstants.kOk);
+                    } else {
+                      Navigator.pushNamed(
+                          context, SelectTimeZoneScreen.routeName,
+                          arguments: false);
+                    }
                   }
                   if (state is NewKeysLanguageAvailable) {
                     ProgressBar.dismiss(context);

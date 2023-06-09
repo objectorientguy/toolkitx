@@ -73,7 +73,7 @@ class PasswordBody extends StatelessWidget {
           onPressed: () {
             context.read<LoginBloc>().add(LoginEvent(loginMap: loginMap));
           },
-          textValue: DatabaseUtil.getText('Login')),
+          textValue: DatabaseUtil.getText('logins')),
     ]);
   }
 }

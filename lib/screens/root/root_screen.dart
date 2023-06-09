@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:toolkit/screens/home/home_screen.dart';
@@ -12,7 +10,9 @@ import '../../configs/app_spacing.dart';
 
 class RootScreen extends StatefulWidget {
   static const routeName = 'RootScreen';
-  const RootScreen({super.key});
+  final bool isFromClientList;
+
+  const RootScreen({super.key, required this.isFromClientList});
 
   @override
   State<RootScreen> createState() => _RootScreenState();
@@ -23,10 +23,15 @@ class _RootScreenState extends State<RootScreen> {
   final ProfileScreen profileScreen = const ProfileScreen();
   static int _selectedIndex = 0;
 
+  @override
+  void initState() {
+    widget.isFromClientList == true ? _selectedIndex = 0 : null;
+    super.initState();
+  }
+
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
-      log('setState index======>$_selectedIndex');
     });
   }
 
@@ -40,7 +45,6 @@ class _RootScreenState extends State<RootScreen> {
 
   @override
   Widget build(BuildContext context) {
-    log('index======>$_selectedIndex');
     return Scaffold(
         body: Center(child: _widgetOptions.elementAt(_selectedIndex)),
         bottomNavigationBar:

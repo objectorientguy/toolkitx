@@ -56,7 +56,6 @@ class LanguageBloc extends Bloc<LanguageEvent, LanguageStates> {
           for (var element in getLanguageKeysModel.data!.keys) {
             DatabaseUtil.box.put(element.key, element.value);
           }
-
           emit(LanguageKeysFetched(
               languageKeysModel: getLanguageKeysModel,
               isFromProfile: event.isFromProfile));

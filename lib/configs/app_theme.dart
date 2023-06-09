@@ -22,10 +22,13 @@ FloatingActionButtonThemeData floatingActionButtonThemeData =
         iconSize: kFloatingButtonIconSize,
         foregroundColor: AppColor.white);
 
-ExpansionTileThemeData expansionTileThemeData = const ExpansionTileThemeData(
-    tilePadding: EdgeInsets.only(
+ExpansionTileThemeData expansionTileThemeData = ExpansionTileThemeData(
+    tilePadding: const EdgeInsets.only(
         left: kExpansionTileMargin, right: kExpansionTileMargin),
-    collapsedBackgroundColor: AppColor.offWhite,
+    collapsedBackgroundColor: AppColor.white,
+    shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(kCardRadius)),
+    backgroundColor: AppColor.white,
     iconColor: AppColor.deepBlue,
     textColor: AppColor.black);
 

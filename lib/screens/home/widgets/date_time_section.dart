@@ -35,7 +35,7 @@ class DateAndTimeSection extends StatelessWidget {
                 Image.asset('assets/icons/calendar.png',
                     height: kImageHeight, width: kImageWidth),
                 const SizedBox(width: xxTiniestSpacing),
-                Text(DateUtil.formatDate(state.dateTime)),
+                Text(DateUtil.formatDate(state.dateTime, state.dateFormat)),
                 const SizedBox(width: xxxTinierSpacing),
                 Image.asset('assets/icons/clock.png',
                     height: kImageHeight, width: kImageWidth),
