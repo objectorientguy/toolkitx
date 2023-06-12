@@ -23,9 +23,14 @@ class PickCameraImage extends PickImage {
 }
 
 class PickGalleryImage extends PickImage {
-  final String galleryImagePath;
   final bool isImageAttached;
+  final List galleryImagesList;
 
-  const PickGalleryImage(
-      {required this.galleryImagePath, required this.isImageAttached});
+  final int? index;
+
+  const PickGalleryImage({
+    this.index,
+    required this.isImageAttached,
+    required this.galleryImagesList,
+  });
 }

@@ -50,12 +50,11 @@ class UploadPictureContainer extends StatelessWidget {
                                         isImageAttached: false,
                                         cameraImageList: imagePathsList,
                                         index: index));
-                                context
-                                    .read<PickImageBloc>()
-                                    .add(PickGalleryImage(
-                                      isImageAttached: false,
-                                      galleryImagePath: imagePathsList[index],
-                                    ));
+                                context.read<PickImageBloc>().add(
+                                    PickGalleryImage(
+                                        isImageAttached: false,
+                                        galleryImagesList: imagePathsList,
+                                        index: index));
                               });
                         });
                   }),

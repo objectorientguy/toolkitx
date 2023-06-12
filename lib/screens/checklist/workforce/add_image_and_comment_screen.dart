@@ -91,6 +91,7 @@ class AddImageAndCommentScreen extends StatelessWidget {
                               children: [
                                 BlocBuilder<PickImageBloc, PickImageStates>(
                                     builder: (context, state) {
+                                  log("state====>$state");
                                   if (state is PickImageLoading) {
                                     return const SizedBox();
                                   } else if (state is ImagePickerLoaded) {
@@ -98,7 +99,8 @@ class AddImageAndCommentScreen extends StatelessWidget {
                                         .toString()
                                         .replaceAll("[", "")
                                         .replaceAll("]", "");
-                                    log("stste${state.imagePath}");
+                                    log("listtttt state====>${state.imagePathsList}");
+                                    log("image attached state====>${state.isImageAttached}");
                                     return Visibility(
                                         visible: state.isImageAttached == true,
                                         child: UploadPictureContainer(

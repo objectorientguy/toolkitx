@@ -11,7 +11,8 @@ import 'pick_image_states.dart';
 
 class PickImageBloc extends Bloc<PickImage, PickImageStates> {
   final ImagePicker _imagePicker = ImagePicker();
-  List imagePathsList = [];
+  List cameraPathsList = [];
+  List galleryPathsList = [];
 
   PickImageStates get initialState => PermissionInitial();
 
@@ -38,7 +39,7 @@ class PickImageBloc extends Bloc<PickImage, PickImageStates> {
       RequestGalleryPermission event, Emitter<PickImageStates> emit) async {
     final status = await Permission.storage.request();
     if (status.isGranted) {
-      add(const PickGalleryImage(isImageAttached: true, galleryImagePath: ''));
+      add(const PickGalleryImage(isImageAttached: true, galleryImagesList: []));
     } else if (status.isDenied) {
       openAppSettings();
     } else {
@@ -51,37 +52,23 @@ class PickImageBloc extends Bloc<PickImage, PickImageStates> {
     emit(PickImageLoading());
     try {
       if (event.isImageAttached == false) {
-        log("boolll========>${event.isImageAttached}");
-        log("event image list========>${event.cameraImageList}");
-        log("event list length========>${event.cameraImageList.length}");
-        log("index========>${event.index}");
-        event.cameraImageList.removeAt(event.index!);
-        // if (event.index! >= 0 && event.index! < event.cameraImageList.length) {
-        //   event.cameraImageList.removeAt(event.index!);
-        //   log("removee========>${event.cameraImageList.removeAt(event.index!)}");
-        //   log("removee list========>${event.cameraImageList}");
-        // }
-        log("index after========>${event.index}");
+        log("lenghtt=====>${event.cameraImageList}");
+        log("index=====>${event.index}");
+        if (event.index! >= 0 && event.index! < event.cameraImageList.length) {
+          event.cameraImageList.removeAt(event.index!);
+        }
         emit(ImagePickerLoaded(
-            imagePath: File(event.cameraImageList[0]).path,
-            isImageAttached: true,
-            imagePathsList: event.cameraImageList));
+            isImageAttached: true, imagePathsList: event.cameraImageList));
       } else {
         final pickedFile = await _imagePicker.pickImage(
             source: ImageSource.camera, imageQuality: 25);
         if (pickedFile != null) {
-          String cameraPaths = '';
-          imagePathsList.add(pickedFile.path);
-          for (int i = 0; i < imagePathsList.length; i++) {
-            cameraPaths = imagePathsList[i];
-            log("paths loop======>$cameraPaths");
-          }
+          cameraPathsList.add(pickedFile.path);
           emit(ImagePickerLoaded(
-              imagePath: File(cameraPaths).path,
               isImageAttached: event.isImageAttached,
-              imagePathsList: imagePathsList));
+              imagePathsList: cameraPathsList));
         } else {
-          emit(const ImagePickerError(''));
+          emit(const ImagePickerError('hjjhjkhj'));
         }
       }
     } catch (e) {
@@ -91,30 +78,27 @@ class PickImageBloc extends Bloc<PickImage, PickImageStates> {
 
   FutureOr<void> _pickGalleryImage(
       PickGalleryImage event, Emitter<PickImageStates> emit) async {
+    emit(PickImageLoading());
     try {
       if (event.isImageAttached == false) {
-        String galleryImagePath = event.galleryImagePath;
-        galleryImagePath = "null";
+        log("lenghtt=====>${event.galleryImagesList.length}");
+        log("index=====>${event.index}");
+        if (event.index! >= 0 &&
+            event.index! < event.galleryImagesList.length) {
+          event.galleryImagesList.removeAt(event.index!);
+        }
         emit(ImagePickerLoaded(
-            imagePath: File(galleryImagePath).path,
-            isImageAttached: event.isImageAttached,
-            imagePathsList: []));
+            isImageAttached: true, imagePathsList: event.galleryImagesList));
       } else {
         final pickedFile =
-            await _imagePicker.pickImage(source: ImageSource.gallery);
+        await _imagePicker.pickImage(source: ImageSource.gallery);
         if (pickedFile != null) {
-          String cameraPaths = '';
-          imagePathsList.add(pickedFile.path);
-          for (int i = 0; i < imagePathsList.length; i++) {
-            cameraPaths = imagePathsList[i];
-            log("paths loop======>$cameraPaths");
-          }
+          galleryPathsList.add(pickedFile.path);
           emit(ImagePickerLoaded(
-              imagePath: File(cameraPaths).path,
-              isImageAttached: true,
-              imagePathsList: imagePathsList));
+              isImageAttached: event.isImageAttached,
+              imagePathsList: galleryPathsList));
         } else {
-          emit(const ImagePickerError(''));
+          emit(const ImagePickerError('gallery error'));
         }
       }
     } catch (e) {

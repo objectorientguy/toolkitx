@@ -12,20 +12,14 @@ class PermissionInitial extends PickImageStates {}
 class PickImageLoading extends PickImageStates {}
 
 class ImagePickerLoaded extends PickImageStates {
-  final String imagePath;
   final bool isImageAttached;
   final List imagePathsList;
-  final int? index;
 
   const ImagePickerLoaded(
-      {this.index,
-      required this.imagePathsList,
-      required this.isImageAttached,
-      required this.imagePath});
+      {required this.imagePathsList, required this.isImageAttached});
 
   @override
-  List<Object> get props =>
-      [imagePathsList, imagePath, isImageAttached, index!];
+  List<Object> get props => [imagePathsList, isImageAttached];
 }
 
 class ImagePickerError extends PickImageStates {
