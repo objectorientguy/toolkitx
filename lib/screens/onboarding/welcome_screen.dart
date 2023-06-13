@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:toolkit/configs/app_spacing.dart';
 import 'package:toolkit/configs/app_theme.dart';
-import 'package:toolkit/utils/database_utils.dart';
 import 'package:toolkit/widgets/circle_avatar.dart';
 import 'package:toolkit/utils/constants/string_constants.dart';
 import '../../configs/app_color.dart';
@@ -45,7 +44,7 @@ class WelcomeScreen extends StatelessWidget {
                             context, SelectLanguageScreen.routeName,
                             arguments: false);
                       },
-                      textValue: DatabaseUtil.getText('startButtonText'))
+                      textValue: StringConstants.kStartNow)
                 ])));
   }
 }

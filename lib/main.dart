@@ -14,6 +14,7 @@ import 'blocs/onboarding/onboarding_events.dart';
 import 'blocs/onboarding/onboarding_states.dart';
 import 'blocs/permit/permit_bloc.dart';
 import 'blocs/profile/profile_bloc.dart';
+import 'blocs/role/role_bloc.dart';
 import 'blocs/timeZone/time_zone_bloc.dart';
 import 'blocs/wifiConnectivity/wifi_connectivity_bloc.dart';
 import 'blocs/wifiConnectivity/wifi_connectivity_events.dart';
@@ -65,6 +66,7 @@ class MyApp extends StatelessWidget {
           BlocProvider(lazy: false, create: (context) => LoginBloc()),
           BlocProvider(lazy: false, create: (context) => ClientBloc()),
           BlocProvider(lazy: false, create: (context) => ProfileBloc()),
+          BlocProvider(lazy: false, create: (context) => PermitRoleBloc()),
           BlocProvider(
               lazy: false,
               create: (context) => OnBoardingBloc()..add(CheckLoggedIn()))
@@ -82,7 +84,9 @@ class MyApp extends StatelessWidget {
                   return BlocBuilder<OnBoardingBloc, OnBoardingStates>(
                       builder: (context, state) {
                     if (state is LoggedIn) {
-                      return const RootScreen();
+                      return const RootScreen(
+                        isFromClientList: false,
+                      );
                     } else if (state is LanguageSelected) {
                       return const SelectTimeZoneScreen();
                     } else if (state is TimeZoneSelected) {

@@ -10,7 +10,6 @@ import '../../../blocs/login/login_bloc.dart';
 import '../../../blocs/login/login_events.dart';
 import '../../../configs/app_spacing.dart';
 import '../../../widgets/circle_avatar.dart';
-import '../../../widgets/generic_app_bar.dart';
 import '../../../widgets/generic_text_field.dart';
 import '../../../widgets/primary_button.dart';
 import '../../../widgets/custom_card.dart';
@@ -25,7 +24,7 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: const GenericAppBar(),
+        appBar: AppBar(),
         body: SingleChildScrollView(
             physics: const BouncingScrollPhysics(),
             child: Padding(
@@ -79,7 +78,8 @@ class LoginScreen extends StatelessWidget {
                                 context.read<LoginBloc>().add(
                                     ValidateEmail(email: emailMap['email']));
                               },
-                              textValue: DatabaseUtil.getText('Next')))
+                              textValue:
+                                  DatabaseUtil.getText('nextButtonText')))
                     ]))));
   }
 }

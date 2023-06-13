@@ -1,6 +1,5 @@
 import 'package:toolkit/data/models/profile/change_password_model.dart';
 import 'package:toolkit/data/models/profile/update_user_profile_model.dart';
-import 'package:toolkit/data/models/profile/user_profile_model.dart';
 
 import '../../data/models/profile/generate_change_password_opt_model.dart';
 
@@ -11,15 +10,17 @@ class ProfileInitial extends ProfileStates {}
 class UserProfileFetching extends ProfileStates {}
 
 class UserProfileFetched extends ProfileStates {
-  final UserProfileModel userProfileModel;
   final String userType;
+  final String userName;
 
-  UserProfileFetched({required this.userType, required this.userProfileModel});
+  UserProfileFetched({required this.userType, required this.userName});
 }
 
 class UserProfileFetchError extends ProfileStates {}
 
 class UserProfileUpdating extends ProfileStates {}
+
+class UserProfileUpdateCancel extends ProfileStates {}
 
 class UserProfileUpdated extends ProfileStates {
   final UpdateUserProfileModel updateUserProfileModel;
@@ -33,10 +34,18 @@ class UserProfileUpdateError extends ProfileStates {
   UserProfileUpdateError({this.message = ''});
 }
 
+class EditProfileInitializing extends ProfileStates {}
+
 class EditProfileInitialized extends ProfileStates {
   final Map profileDetailsMap;
 
   EditProfileInitialized({required this.profileDetailsMap});
+}
+
+class EditProfileError extends ProfileStates {
+  final String errorMessage;
+
+  EditProfileError({required this.errorMessage});
 }
 
 class ChangePasswordTypeLoaded extends ProfileStates {

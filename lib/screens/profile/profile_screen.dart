@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:toolkit/blocs/profile/profile_bloc.dart';
-import 'package:toolkit/blocs/profile/profile_events.dart';
-import 'package:toolkit/blocs/profile/profile_states.dart';
-import 'package:toolkit/configs/app_spacing.dart';
 import 'package:toolkit/configs/app_theme.dart';
-import 'package:toolkit/screens/onboarding/welcome_screen.dart';
+import 'package:toolkit/utils/database_utils.dart';
+import '../../blocs/profile/profile_bloc.dart';
+import '../../blocs/profile/profile_events.dart';
+import '../../blocs/profile/profile_states.dart';
 import '../../configs/app_dimensions.dart';
+import '../../configs/app_spacing.dart';
 import '../../utils/constants/string_constants.dart';
 import '../../widgets/circle_avatar.dart';
 import '../../widgets/error_section.dart';
 import '../../widgets/custom_card.dart';
+import '../onboarding/welcome_screen.dart';
 import 'widgets/edit_options_section.dart';
 import 'widgets/profile_options.dart';
 
@@ -64,21 +65,21 @@ class ProfileScreen extends StatelessWidget {
                                         const SizedBox(
                                             height: xxxSmallerSpacing),
                                         Text(
-                                            "${state.userProfileModel.data!.fname} ${state.userProfileModel.data!.lname} ",
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .large),
-                                        const SizedBox(
-                                            height: xxTiniestSpacing),
-                                        Text(state.userType,
+                                          state.userName,
+                                          style:
+                                              Theme.of(context).textTheme.large,
+                                          textAlign: TextAlign.center,
+                                        ),
+                                        const SizedBox(height: tiniest),
+                                        Text(
+                                            DatabaseUtil.getText(
+                                                state.userType),
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .xSmall),
                                         const SizedBox(
                                             height: xxxSmallerSpacing),
-                                        EditOptionsSection(
-                                            userprofileDetails:
-                                                state.userProfileModel.data!)
+                                        const EditOptionsSection()
                                       ]))),
                               const SizedBox(height: xxTinySpacing),
                               const ProfileOptions()
