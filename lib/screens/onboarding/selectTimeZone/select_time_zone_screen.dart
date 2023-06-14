@@ -82,8 +82,9 @@ class SelectTimeZoneScreen extends StatelessWidget {
                           },
                           emptyWidget: const Text('No records found'),
                           filter: (value) => state.getTimeZoneModel.data!
-                              .where((element) =>
-                                  element.name.toLowerCase().contains(value))
+                              .where((element) => element.name
+                                  .toLowerCase()
+                                  .contains(value.toLowerCase().trim()))
                               .toList(),
                           inputDecoration: InputDecoration(
                               hintStyle: Theme.of(context)

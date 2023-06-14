@@ -61,14 +61,16 @@ class SelectLanguageBody extends StatelessWidget {
         },
         emptyWidget: const Text('No records found'),
         filter: (value) => getLanguagesData
-            .where((element) => element.langName.toLowerCase().contains(value))
+            .where((element) => element.langName
+                .toLowerCase()
+                .contains(value.toLowerCase().trim()))
             .toList(),
         inputDecoration: InputDecoration(
             hintStyle: Theme.of(context)
                 .textTheme
                 .xSmall
                 .copyWith(color: AppColor.grey),
-            hintText: 'Search TimeZone',
+            hintText: 'Search Language',
             contentPadding: const EdgeInsets.all(xxxTinierSpacing),
             enabledBorder: const OutlineInputBorder(
                 borderSide: BorderSide(color: AppColor.lightGrey)),
