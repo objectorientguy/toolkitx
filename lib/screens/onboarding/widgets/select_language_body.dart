@@ -1,7 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:searchable_listview/searchable_listview.dart';
 import 'package:shimmer/shimmer.dart';
+import 'package:toolkit/configs/app_theme.dart';
 
 import '../../../blocs/language/language_bloc.dart';
 import '../../../blocs/language/language_events.dart';
@@ -15,50 +17,64 @@ import '../../../widgets/custom_card.dart';
 class SelectLanguageBody extends StatelessWidget {
   final List<GetLanguagesData> getLanguagesData;
   final bool isFromProfile;
+
   const SelectLanguageBody(
       {Key? key, required this.getLanguagesData, required this.isFromProfile})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return ListView.separated(
-        padding: EdgeInsets.zero,
-        physics: const BouncingScrollPhysics(),
-        shrinkWrap: true,
-        itemCount: getLanguagesData.length,
-        itemBuilder: (context, index) {
-          return CustomCard(
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(kCardRadius)),
-              child: ListTile(
-                  onTap: () {
-                    context.read<LanguageBloc>().add(FetchLanguageKeys(
-                        languageId: getLanguagesData[index].id.toString(),
-                        isFromProfile: isFromProfile));
-                  },
-                  minVerticalPadding: kLanguagesTileHeight,
-                  leading: CachedNetworkImage(
-                      height: kLanguageFlagHeight,
-                      imageUrl:
-                          '${ApiConstants.baseUrlFlag}${getLanguagesData[index].flagName}',
-                      placeholder: (context, url) => Shimmer.fromColors(
-                          baseColor: Colors.grey.shade100,
-                          highlightColor: AppColor.white,
-                          child: Container(
-                            height: kLanguageFlagHeight,
-                            width: kLanguageFlagWidth,
-                            decoration: BoxDecoration(
-                                color: AppColor.white,
-                                borderRadius:
-                                    BorderRadius.circular(kCardRadius)),
-                          )),
-                      errorWidget: (context, url, error) => const Icon(
-                          Icons.error_outline_sharp,
-                          size: kIconSize)),
-                  title: Text(getLanguagesData[index].langName)));
+    return SearchableList(
+        autoFocusOnSearch: false,
+        initialList: getLanguagesData,
+        builder: (GetLanguagesData getLanguagesData) {
+          return Padding(
+              padding: const EdgeInsets.only(bottom: xxTinierSpacing),
+              child: CustomCard(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(kCardRadius)),
+                  child: ListTile(
+                      onTap: () {
+                        context.read<LanguageBloc>().add(FetchLanguageKeys(
+                            languageId: getLanguagesData.id.toString(),
+                            isFromProfile: isFromProfile));
+                      },
+                      minVerticalPadding: kLanguagesTileHeight,
+                      leading: CachedNetworkImage(
+                          height: kLanguageFlagHeight,
+                          imageUrl:
+                              '${ApiConstants.baseUrlFlag}${getLanguagesData.flagName}',
+                          placeholder: (context, url) => Shimmer.fromColors(
+                              baseColor: Colors.grey.shade100,
+                              highlightColor: AppColor.white,
+                              child: Container(
+                                  height: kLanguageFlagHeight,
+                                  width: kLanguageFlagWidth,
+                                  decoration: BoxDecoration(
+                                      color: AppColor.white,
+                                      borderRadius:
+                                          BorderRadius.circular(kCardRadius)))),
+                          errorWidget: (context, url, error) => const Icon(
+                              Icons.error_outline_sharp,
+                              size: kIconSize)),
+                      title: Text(getLanguagesData.langName))));
         },
-        separatorBuilder: (BuildContext context, int index) {
-          return const SizedBox(height: xxTinierSpacing);
-        });
+        emptyWidget: const Text('No records found'),
+        filter: (value) => getLanguagesData
+            .where((element) => element.langName.toLowerCase().contains(value))
+            .toList(),
+        inputDecoration: InputDecoration(
+            hintStyle: Theme.of(context)
+                .textTheme
+                .xSmall
+                .copyWith(color: AppColor.grey),
+            hintText: 'Search TimeZone',
+            contentPadding: const EdgeInsets.all(xxxTinierSpacing),
+            enabledBorder: const OutlineInputBorder(
+                borderSide: BorderSide(color: AppColor.lightGrey)),
+            focusedBorder: const OutlineInputBorder(
+                borderSide: BorderSide(color: AppColor.lightGrey)),
+            filled: true,
+            fillColor: AppColor.white));
   }
 }
