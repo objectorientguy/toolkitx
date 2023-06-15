@@ -25,7 +25,10 @@ class ThirdPartyApproveBloc
     emit(ThirdPartyApproving());
     try {
       String hashCode = (await _customerCache.getHashCode(CacheKeys.hashcode))!;
-      if (event.thirdPartyApproveMap["name"] == null ||
+      if (event.responseIdList.isEmpty || event.responseIdList == []) {
+        emit(ThirdPartyNotApproved(
+            errorMessage: 'Please select atleast one record to continue!'));
+      } else if (event.thirdPartyApproveMap["name"] == null ||
           event.thirdPartyApproveMap["name"].toString().trim().isEmpty) {
         emit(ThirdPartyNotApproved(errorMessage: 'Please enter name'));
       } else {
@@ -33,7 +36,7 @@ class ThirdPartyApproveBloc
         for (int i = 0; i < event.responseIdList.length; i++) {
           responseId.add({"id": event.responseIdList[i]});
         }
-        final Map postthirdPartApprovalDataMap = {
+        final Map postThirdPartApprovalDataMap = {
           "hashcode": hashCode,
           "responseids": responseId,
           "name": event.thirdPartyApproveMap["name"],
@@ -41,7 +44,7 @@ class ThirdPartyApproveBloc
         };
         SaveThirdPartyApproval saveThirdPartyApproval =
             await _sysUserCheckListRepository
-                .checklistThirdPartyApproval(postthirdPartApprovalDataMap);
+                .checklistThirdPartyApproval(postThirdPartApprovalDataMap);
         emit(
             ThirdPartyApproved(saveThirdPartyApproval: saveThirdPartyApproval));
       }

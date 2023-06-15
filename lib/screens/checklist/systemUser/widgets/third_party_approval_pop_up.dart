@@ -33,6 +33,7 @@ class ThirdPartyApprovePopUp extends StatelessWidget {
           } else if (state is ThirdPartyApproved) {
             ProgressBar.dismiss(context);
             Navigator.pop(context);
+            Navigator.pop(context);
             Navigator.pushReplacementNamed(
                 context, SystemUserScheduleDatesScreen.routeName,
                 arguments: context.read<ScheduleDatesBloc>().checklistId);
@@ -75,7 +76,7 @@ class ThirdPartyApprovePopUp extends StatelessWidget {
               const SizedBox(height: xxTinierSpacing),
               TextFieldWidget(
                   textInputAction: TextInputAction.done,
-                  maxLength: 250,
+                  maxLength: 50,
                   onTextFieldChanged: (String textValue) {
                     thirdPartyApproveMap["name"] = textValue;
                   }),

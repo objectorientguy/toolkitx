@@ -75,7 +75,7 @@ class ScheduleDatesResponseBloc
     responsesIdsList = List.from(responseIdsList);
     emit(WorkforceListFetched(
         checkListWorkforceListModel: event.checkListWorkforceListModel,
-        selectedIdsList: responsesIdsList,
+        selectedIResponseIdList: responsesIdsList,
         popUpMenuBuilder: event.popUpBuilder));
   }
 
@@ -87,11 +87,11 @@ class ScheduleDatesResponseBloc
       'Third Party Approve',
       'Edit Header'
     ];
-    if (event.popUpMenuBuilder == false) {
-      popUpMenuItems.removeAt(2);
-      popUpMenuItems.removeAt(1);
-      popUpMenuItems.removeAt(0);
-    }
+    // if (event.popUpMenuBuilder == false) {
+    //   popUpMenuItems.removeAt(2);
+    //   popUpMenuItems.removeAt(1);
+    //   popUpMenuItems.removeAt(0);
+    // }
     emit(PopUpMenuItemsFetched(popUpMenuItems: popUpMenuItems));
   }
 }

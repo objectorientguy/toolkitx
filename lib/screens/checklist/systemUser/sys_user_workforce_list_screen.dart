@@ -38,7 +38,7 @@ class WorkForceListScreen extends StatelessWidget {
                   builder: (context, state) {
                     if (state is WorkforceListFetched) {
                       return PopUpMenu(
-                          responseIdList: state.selectedIdsList,
+                          responseIdList: state.selectedIResponseIdList,
                           scheduleId: context
                               .read<ScheduleDatesResponseBloc>()
                               .responseId,

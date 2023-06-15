@@ -24,7 +24,10 @@ class RejectBloc extends Bloc<RejectEvent, RejectStates> {
     emit(RejectingCheckList());
     try {
       String hashCode = (await _customerCache.getHashCode(CacheKeys.hashcode))!;
-      if (event.rejectMap["comment"] == null ||
+      if (event.responseIdList.isEmpty || event.responseIdList == []) {
+        emit(CheckListNotRejected(
+            errorMessage: 'Please select atleast one record to continue!'));
+      } else if (event.rejectMap["comment"] == null ||
           event.rejectMap["comment"].toString().trim().isEmpty) {
         emit(CheckListNotRejected(errorMessage: 'Please add comment!'));
       } else {

@@ -24,7 +24,10 @@ class ApproveBloc extends Bloc<ApproveEvent, ApproveStates> {
     emit(ApprovingCheckList());
     try {
       String hashCode = (await _customerCache.getHashCode(CacheKeys.hashcode))!;
-      if (event.approveMap["comment"] == null ||
+      if (event.responseIdList.isEmpty || event.responseIdList == []) {
+        emit(CheckListNotApproved(
+            errorMessage: 'Please select atleast one record to continue!'));
+      } else if (event.approveMap["comment"] == null ||
           event.approveMap["comment"].toString().trim().isEmpty) {
         emit(CheckListNotApproved(errorMessage: 'Please add comment!'));
       } else {

@@ -32,6 +32,7 @@ class RejectPopUp extends StatelessWidget {
           } else if (state is CheckListRejected) {
             ProgressBar.dismiss(context);
             Navigator.pop(context);
+            Navigator.pop(context);
             Navigator.pushReplacementNamed(
                 context, SystemUserScheduleDatesScreen.routeName,
                 arguments: context.read<ScheduleDatesBloc>().checklistId);

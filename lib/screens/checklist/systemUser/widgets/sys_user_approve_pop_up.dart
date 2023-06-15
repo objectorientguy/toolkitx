@@ -33,16 +33,9 @@ class ApprovePopUp extends StatelessWidget {
             ProgressBar.dismiss(context);
             Navigator.pop(context);
             Navigator.pop(context);
-            Navigator.pushNamed(
+            Navigator.pushReplacementNamed(
                 context, SystemUserScheduleDatesScreen.routeName,
                 arguments: context.read<ScheduleDatesBloc>().checklistId);
-            // Navigator.pushNamedAndRemoveUntil(context, SystemUserScheduleDatesScreen.routeName,
-            //     (route) => route.settings.name == SystemUserScheduleDatesScreen.routeName);
-            // Navigator.of(context).popUntil((route) {
-            //   return Navigator.of(context).canPop() &&
-            //       route.settings.name ==
-            //           SystemUserScheduleDatesScreen.routeName;
-            // });
           } else if (state is CheckListNotApproved) {
             ProgressBar.dismiss(context);
             showCustomSnackBar(context, state.errorMessage, '');

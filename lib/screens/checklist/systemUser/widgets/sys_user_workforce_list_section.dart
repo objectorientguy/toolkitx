@@ -96,9 +96,11 @@ class WorkForceListSection extends StatelessWidget {
                                     //             .isdeptapprove ==
                                     //         "0",
                                     child: Checkbox(
-                                        value: state.selectedIdsList.contains(
-                                            state.checkListWorkforceListModel
-                                                .data![index].responseid),
+                                        value: state.selectedIResponseIdList
+                                            .contains(state
+                                                .checkListWorkforceListModel
+                                                .data![index]
+                                                .responseid),
                                         onChanged: (value) {
                                           context
                                               .read<ScheduleDatesResponseBloc>()
@@ -109,8 +111,8 @@ class WorkForceListSection extends StatelessWidget {
                                                       .responseid,
                                                   checkListWorkforceListModel: state
                                                       .checkListWorkforceListModel,
-                                                  responseIdList:
-                                                      state.selectedIdsList));
+                                                  responseIdList: state
+                                                      .selectedIResponseIdList));
                                         }))));
                       },
                       separatorBuilder: (context, index) {

@@ -26,17 +26,17 @@ class FetchingWorkforceList extends ScheduleDatesResponseStates {
 
 class WorkforceListFetched extends ScheduleDatesResponseStates {
   final CheckListWorkforceListModel checkListWorkforceListModel;
-  final List selectedIdsList;
+  final List selectedIResponseIdList;
   final bool popUpMenuBuilder;
 
   WorkforceListFetched(
       {this.popUpMenuBuilder = false,
       required this.checkListWorkforceListModel,
-      required this.selectedIdsList});
+      required this.selectedIResponseIdList});
 
   @override
   List<Object?> get props =>
-      [checkListWorkforceListModel, selectedIdsList, popUpMenuBuilder];
+      [checkListWorkforceListModel, selectedIResponseIdList, popUpMenuBuilder];
 }
 
 class WorkforceListError extends ScheduleDatesResponseStates {
