@@ -3,6 +3,15 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:toolkit/blocs/checklist/systemUser/approvePopUp/sys_user_approve_pop_up_bloc.dart';
+import 'package:toolkit/blocs/checklist/systemUser/changeRole/sys_user_change_role_bloc.dart';
+import 'package:toolkit/blocs/checklist/systemUser/checkList/sys_user_checklist_bloc.dart';
+import 'package:toolkit/blocs/checklist/systemUser/pdf/sys_user_pdf_bloc.dart';
+import 'package:toolkit/blocs/checklist/systemUser/rejectPopUp/sys_user_reject_pop_up_bloc.dart';
+import 'package:toolkit/blocs/checklist/systemUser/scheduleDates/sys_user_schedule_dates_bloc.dart';
+import 'package:toolkit/blocs/checklist/systemUser/scheduleDatesResponse/schedule_dates_response_bloc.dart';
+import 'package:toolkit/blocs/checklist/systemUser/submitHeader/header_bloc.dart';
+import 'package:toolkit/blocs/checklist/systemUser/thirdPartyApprove/sys_user_third_party_approve_bloc.dart';
 import 'package:toolkit/utils/database_utils.dart';
 import 'blocs/client/client_bloc.dart';
 import 'blocs/dateFormat/date_format_bloc.dart';
@@ -65,6 +74,18 @@ class MyApp extends StatelessWidget {
           BlocProvider(lazy: false, create: (context) => LoginBloc()),
           BlocProvider(lazy: false, create: (context) => ClientBloc()),
           BlocProvider(lazy: false, create: (context) => ProfileBloc()),
+          BlocProvider(
+              lazy: false, create: (context) => SysUserCheckListBloc()),
+          BlocProvider(lazy: false, create: (context) => ScheduleDatesBloc()),
+          BlocProvider(
+              lazy: false, create: (context) => ScheduleDatesResponseBloc()),
+          BlocProvider(lazy: false, create: (context) => UserRoleBloc()),
+          BlocProvider(lazy: false, create: (context) => ApproveBloc()),
+          BlocProvider(lazy: false, create: (context) => RejectBloc()),
+          BlocProvider(
+              lazy: false, create: (context) => ThirdPartyApproveBloc()),
+          BlocProvider(lazy: false, create: (context) => HeaderBloc()),
+          BlocProvider(lazy: false, create: (context) => FetchPdfBloc()),
           BlocProvider(
               lazy: false,
               create: (context) => OnBoardingBloc()..add(CheckLoggedIn()))

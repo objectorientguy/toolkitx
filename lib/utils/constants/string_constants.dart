@@ -14,6 +14,7 @@ abstract class StringConstants {
   static const String kWelcome = 'Welcome';
   static const String kType = 'Type';
   static const String kGenerateOtp = 'GENERATE OTP';
+  static const String kSubmit = 'Submit';
   static const String kEnterNewPassword =
       'Enter New Password'; // comment lines indicates that keys are not available
   static const String kConfirmPassword = 'Confirm Password'; //
@@ -90,6 +91,7 @@ abstract class StringConstants {
   static const String kPhoto = 'Photo';
   static const String kSelectContractor = 'Select Contractor';
   static const String kSite = 'Site';
+  static const String kResponded = 'Responded';
   static const String kLocation = 'Location';
   static const String kWorkforce = 'Workforce';
   static const String kSystemUser = 'System User';

@@ -33,6 +33,6 @@ const double kLoadingPopUpWidth = 240;
 const double kLanguagesTileHeight = 20;
 const double kHomeScreenImageHeight = 80;
 const double kCircularIndicatorStrokeWidth = 2;
-const double kExpansionTileMargin = 3;
+const double kExpansionTileMargin = 6;
 const double kCardPadding = 15;
 const double kCircularContainer = 10;

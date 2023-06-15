@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
-import '../screens/checklist/change_role_screen.dart';
-import '../screens/checklist/checklist_list_screen.dart';
-import '../screens/checklist/details_screen.dart';
-import '../screens/checklist/filters_screen.dart';
+import 'package:toolkit/screens/checklist/systemUser/edit_header_screen.dart';
+import 'package:toolkit/screens/checklist/systemUser/sys_user_checklist_list_screen.dart';
+import '../screens/checklist/systemUser/sys_user_change_role_screen.dart';
+import '../screens/checklist/systemUser/sys_user_schedule_dates_screen.dart';
+import '../screens/checklist/systemUser/sys_user_filters_screen.dart';
+import '../screens/checklist/systemUser/sys_user_workforce_list_screen.dart';
 import '../screens/incident/category_screen.dart';
 import '../screens/incident/filter_screen.dart';
 import '../screens/incident/incident_list_screen.dart';
@@ -43,14 +45,19 @@ class AppRoutes {
         return _createRoute(const RootScreen());
       case ProfileEditScreen.routeName:
         return _createRoute(const ProfileEditScreen());
-      case DetailsScreen.routeName:
-        return _createRoute(const DetailsScreen());
-      case ChecklistScreen.routeName:
-        return _createRoute(const ChecklistScreen());
+      case SystemUserScheduleDatesScreen.routeName:
+        return _createRoute(SystemUserScheduleDatesScreen(
+            checkListId: settings.arguments.toString()));
+      case SystemUserCheckListScreen.routeName:
+        return _createRoute(const SystemUserCheckListScreen());
+      case WorkForceListScreen.routeName:
+        return _createRoute(const WorkForceListScreen());
       case ChangeRoleScreen.routeName:
         return _createRoute(const ChangeRoleScreen());
       case FiltersScreen.routeName:
         return _createRoute(const FiltersScreen());
+      case EditHeaderScreen.routeName:
+        return _createRoute(EditHeaderScreen());
       case IncidentListScreen.routeName:
         return _createRoute(const IncidentListScreen());
       case IncidentFilterScreen.routeName:
