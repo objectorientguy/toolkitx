@@ -10,11 +10,7 @@ class UpdateProfile extends ProfileEvents {
 
 class GenerateChangePasswordOtp extends ProfileEvents {}
 
-class DecryptUserProfileData extends ProfileEvents {
-  final Map userprofileDetails;
-
-  DecryptUserProfileData({required this.userprofileDetails});
-}
+class DecryptUserProfileData extends ProfileEvents {}
 
 class InitializeEditUserProfile extends ProfileEvents {
   Map profileDetailsMap;

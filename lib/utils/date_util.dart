@@ -5,8 +5,8 @@ abstract class DateUtil {
     return '${dateTime.hour}:${dateTime.minute.toString().padLeft(2, '0')}';
   }
 
-  static String formatDate(DateTime dateTime) {
-    return DateFormat('dd.MM.yy').format(dateTime);
+  static String formatDate(DateTime dateTime, String dateFormat) {
+    return DateFormat(dateFormat).format(dateTime);
   }
 
   static List<String> splitDate(String dateTime) {

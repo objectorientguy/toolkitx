@@ -5,6 +5,7 @@ import 'package:toolkit/data/models/encrypt_class.dart';
 import 'package:toolkit/data/models/login/login_model.dart';
 import 'package:toolkit/data/models/login/validate_email_model.dart';
 import 'package:toolkit/utils/constants/string_constants.dart';
+import 'package:toolkit/utils/database_utils.dart';
 
 import '../../data/cache/customer_cache.dart';
 import '../../data/models/login/generate_login_opt_model.dart';
@@ -44,13 +45,18 @@ class LoginBloc extends Bloc<LoginEvents, LoginStates> {
         Map validateEmailMap = {'emailaddress': encryptedEmail};
         ValidateEmailModel validateEmailModel =
             await _loginRepository.validateEmail(validateEmailMap);
-        if (validateEmailModel.message == '1,2') {
-          add(ChangeUserType(userType: 'null', typeValue: ''));
+        if (validateEmailModel.message.isEmpty) {
+          emit(ValidateEmailError(
+              message: DatabaseUtil.getText('EmailNotAssociatedWithToolkitx')));
         } else {
-          _customerCache.setUserType(
-              CacheKeys.userType, validateEmailModel.message);
+          if (validateEmailModel.message == '1,2') {
+            add(ChangeUserType(userType: 'null', typeValue: ''));
+          } else {
+            _customerCache.setUserType(
+                CacheKeys.userType, validateEmailModel.message);
+          }
+          emit(EmailValidated(validateEmailModel: validateEmailModel));
         }
-        emit(EmailValidated(validateEmailModel: validateEmailModel));
       }
     } catch (e) {
       emit(ValidateEmailError(message: e.toString()));
@@ -77,7 +83,7 @@ class LoginBloc extends Bloc<LoginEvents, LoginStates> {
       String? type = await _customerCache.getUserType(CacheKeys.userType);
       if (event.loginMap['password'] == null ||
           event.loginMap['password'].trim() == '') {
-        emit(LoginError(message: StringConstants.kValidateEmptyPassword));
+        emit(LoginError(message: DatabaseUtil.getText('emptyOtp')));
       } else if (type!.isEmpty) {
         emit(LoginError(message: StringConstants.kSelectUserTypeValidation));
       } else {

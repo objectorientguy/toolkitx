@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:toolkit/configs/app_theme.dart';
+import 'package:toolkit/utils/database_utils.dart';
 
 import '../../configs/app_color.dart';
 import '../../configs/app_spacing.dart';
@@ -67,7 +68,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
             right: leftRightMargin,
             top: topBottomPadding),
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          Text(StringConstants.kSelectCategoryIncident,
+          Text(DatabaseUtil.getText('SelectcategoryHeading'),
               style: Theme.of(context)
                   .textTheme
                   .mediumLarge
@@ -122,7 +123,9 @@ class _CategoryScreenState extends State<CategoryScreen> {
                         ]);
                   })),
           const SizedBox(height: xxxSmallerSpacing),
-          PrimaryButton(onPressed: () {}, textValue: StringConstants.kNext),
+          PrimaryButton(
+              onPressed: () {},
+              textValue: DatabaseUtil.getText('nextButtonText')),
           const SizedBox(height: xxTinySpacing)
         ]),
       ),

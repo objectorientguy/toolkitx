@@ -41,7 +41,9 @@ class AppRoutes {
       case PasswordScreen.routeName:
         return _createRoute(PasswordScreen());
       case RootScreen.routeName:
-        return _createRoute(const RootScreen());
+        return _createRoute(RootScreen(
+          isFromClientList: settings.arguments as bool,
+        ));
       case ProfileEditScreen.routeName:
         return _createRoute(const ProfileEditScreen());
       case DetailsScreen.routeName:

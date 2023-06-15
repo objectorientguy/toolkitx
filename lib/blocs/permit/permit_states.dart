@@ -1,3 +1,4 @@
+import '../../data/models/pdf_generation_model.dart';
 import '../../data/models/permit/all_permits_model.dart';
 import '../../data/models/permit/permit_details_model.dart';
 
@@ -35,4 +36,18 @@ class PermitDetailsFetched extends PermitStates {
 
 class CouldNotFetchPermitDetails extends PermitStates {
   const CouldNotFetchPermitDetails();
+}
+
+class GeneratingPDF extends PermitStates {
+  const GeneratingPDF();
+}
+
+class PDFGenerated extends PermitStates {
+  final PdfGenerationModel pdfGenerationModel;
+
+  const PDFGenerated({required this.pdfGenerationModel});
+}
+
+class PDFGenerationFailed extends PermitStates {
+  const PDFGenerationFailed();
 }

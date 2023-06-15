@@ -44,6 +44,8 @@ class TimeZoneBloc extends Bloc<TimeZoneEvents, TimeZoneStates> {
           '$apiKey|$hashKey|$userType|$dateTimeValue|${event.timeZoneCode}';
       _customerCache.setHashCode(CacheKeys.hashcode, hashCode);
     }
+    _customerCache.setTimeZoneOffset(
+        CacheKeys.timeZoneOffset, event.timeZoneOffset.substring(3));
     _customerCache.setTimeZoneCode(CacheKeys.timeZoneCode, event.timeZoneCode);
     _customerCache.setTimeZoneName(CacheKeys.timeZoneName, event.timeZoneName);
   }
