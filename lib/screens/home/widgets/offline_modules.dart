@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:toolkit/configs/app_theme.dart';
 import 'package:toolkit/utils/constants/string_constants.dart';
+import 'package:toolkit/utils/database_utils.dart';
 
 import '../../../configs/app_color.dart';
 import '../../../configs/app_dimensions.dart';
@@ -16,7 +17,7 @@ class OffLineModules extends StatelessWidget {
     return Column(
       children: [
         Container(
-          height: extraLargeSpacing,
+          height: xxLargerSpacing,
           color: AppColor.errorRed,
           child: Center(
             child: Text(
@@ -29,7 +30,7 @@ class OffLineModules extends StatelessWidget {
             ),
           ),
         ),
-        const SizedBox(height: midTinySpacing),
+        const SizedBox(height: tinier),
         GridView.builder(
             primary: false,
             itemCount: 1,
@@ -37,8 +38,8 @@ class OffLineModules extends StatelessWidget {
             shrinkWrap: true,
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 3,
-                crossAxisSpacing: midTinySpacing,
-                mainAxisSpacing: midTinySpacing),
+                crossAxisSpacing: tinier,
+                mainAxisSpacing: tinier),
             itemBuilder: (BuildContext context, int index) {
               return InkWell(
                 onTap: () => navigateToModule(index, context),
@@ -59,12 +60,13 @@ class OffLineModules extends StatelessWidget {
                             height: kModuleIconSize,
                             width: kModuleIconSize),
                       ),
-                      const SizedBox(height: tinySpacing),
+                      const SizedBox(height: xxTinySpacing),
                       Padding(
                         padding: const EdgeInsets.only(
-                            left: tiniestSpacing, right: tiniestSpacing),
+                            left: xxTiniestSpacing, right: xxTiniestSpacing),
                         child: Text(
-                          ModulesUtil.listModulesMode[index].moduleName,
+                          DatabaseUtil.getText(
+                              ModulesUtil.listModulesMode[index].moduleName),
                           textAlign: TextAlign.center,
                         ),
                       ),

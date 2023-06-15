@@ -4,17 +4,17 @@ import 'app_dimensions.dart';
 import 'app_spacing.dart';
 
 ThemeData appTheme = ThemeData(
-  colorScheme: colorScheme,
-  appBarTheme: appBarTheme,
-  listTileTheme: listTileTheme,
-  cardTheme: appCardTheme,
-  bottomAppBarTheme: bottomAppBarTheme,
-  bottomNavigationBarTheme: bottomNavigationBarTheme,
-  textButtonTheme: textButtonTheme,
-  scaffoldBackgroundColor: AppColor.ghostWhite,
-  elevatedButtonTheme: elevatedButtonThemeData,
-  floatingActionButtonTheme: floatingActionButtonThemeData,
-);
+    colorScheme: colorScheme,
+    appBarTheme: appBarTheme,
+    listTileTheme: listTileTheme,
+    cardTheme: appCardTheme,
+    bottomAppBarTheme: bottomAppBarTheme,
+    bottomNavigationBarTheme: bottomNavigationBarTheme,
+    textButtonTheme: textButtonTheme,
+    scaffoldBackgroundColor: AppColor.ghostWhite,
+    elevatedButtonTheme: elevatedButtonThemeData,
+    floatingActionButtonTheme: floatingActionButtonThemeData,
+    expansionTileTheme: expansionTileThemeData);
 
 FloatingActionButtonThemeData floatingActionButtonThemeData =
     const FloatingActionButtonThemeData(
@@ -22,13 +22,21 @@ FloatingActionButtonThemeData floatingActionButtonThemeData =
         iconSize: kFloatingButtonIconSize,
         foregroundColor: AppColor.white);
 
+ExpansionTileThemeData expansionTileThemeData = ExpansionTileThemeData(
+    tilePadding: const EdgeInsets.only(
+        left: kExpansionTileMargin, right: kExpansionTileMargin),
+    collapsedBackgroundColor: AppColor.offWhite,
+    shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(kCardRadius)),
+    iconColor: AppColor.deepBlue,
+    textColor: AppColor.black);
+
 ElevatedButtonThemeData elevatedButtonThemeData = ElevatedButtonThemeData(
     style: ElevatedButton.styleFrom(
         backgroundColor: AppColor.deepBlue,
         minimumSize: const Size(double.maxFinite, 45.0),
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(kCardRadius),
-        )));
+            borderRadius: BorderRadius.circular(kCardRadius))));
 
 TextButtonThemeData textButtonTheme =
     TextButtonThemeData(style: TextButton.styleFrom(padding: EdgeInsets.zero));

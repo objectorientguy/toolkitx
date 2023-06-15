@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:toolkit/configs/app_color.dart';
 import 'package:toolkit/configs/app_theme.dart';
 import 'package:url_launcher/url_launcher_string.dart';
+import 'package:toolkit/utils/database_utils.dart';
 
 import '../../../configs/app_spacing.dart';
 import '../../../data/models/permit/permit_details_model.dart';
@@ -18,67 +19,67 @@ class PermitDetails extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const SizedBox(height: smallSpacing),
+          const SizedBox(height: tiny),
           Text(
-            'Schedule',
+            DatabaseUtil.getText('Schedule'),
             style: Theme.of(context)
                 .textTheme
                 .medium
                 .copyWith(color: AppColor.black, fontWeight: FontWeight.bold),
           ),
-          const SizedBox(height: midTiniestSpacing),
+          const SizedBox(height: xxTinierSpacing),
           Text(permitDetailsModel.data.tab1.schedule,
               style: Theme.of(context).textTheme.small),
-          const SizedBox(height: smallSpacing),
+          const SizedBox(height: tiny),
           Text(
-            'NPI',
+            DatabaseUtil.getText('NPI'),
             style: Theme.of(context)
                 .textTheme
                 .medium
                 .copyWith(color: AppColor.black, fontWeight: FontWeight.bold),
           ),
-          const SizedBox(height: midTiniestSpacing),
+          const SizedBox(height: xxTinierSpacing),
           Text(permitDetailsModel.data.tab1.pnameNpi,
               style: Theme.of(context).textTheme.small),
-          const SizedBox(height: smallSpacing),
+          const SizedBox(height: tiny),
           Text(
-            'NPW',
+            DatabaseUtil.getText('NPW'),
             style: Theme.of(context)
                 .textTheme
                 .medium
                 .copyWith(color: AppColor.black, fontWeight: FontWeight.bold),
           ),
-          const SizedBox(height: midTiniestSpacing),
+          const SizedBox(height: xxTinierSpacing),
           Text(permitDetailsModel.data.tab1.pname,
               style: Theme.of(context).textTheme.small),
-          const SizedBox(height: smallSpacing),
+          const SizedBox(height: tiny),
           Text(
-            'Description',
+            DatabaseUtil.getText('Description'),
             style: Theme.of(context)
                 .textTheme
                 .medium
                 .copyWith(color: AppColor.black, fontWeight: FontWeight.bold),
           ),
-          const SizedBox(height: midTiniestSpacing),
+          const SizedBox(height: xxTinierSpacing),
           Text(permitDetailsModel.data.tab1.details,
               style: Theme.of(context).textTheme.small),
-          const SizedBox(height: smallSpacing),
+          const SizedBox(height: tiny),
           Text(
-            'Location',
+            DatabaseUtil.getText('Location'),
             style: Theme.of(context)
                 .textTheme
                 .medium
                 .copyWith(color: AppColor.black, fontWeight: FontWeight.bold),
           ),
-          const SizedBox(height: midTiniestSpacing),
+          const SizedBox(height: xxTinierSpacing),
           Text(permitDetailsModel.data.tab1.location,
               style: Theme.of(context).textTheme.small),
-          const SizedBox(height: midTiniestSpacing),
+          const SizedBox(height: xxTinierSpacing),
           ListView.separated(
               itemCount: permitDetailsModel.data.tab1.maplinks.length,
               shrinkWrap: true,
               separatorBuilder: (context, index) {
-                return const SizedBox(height: midTiniestSpacing);
+                return const SizedBox(height: xxTinierSpacing);
               },
               itemBuilder: (context, index) {
                 return InkWell(
@@ -110,15 +111,15 @@ class PermitDetails extends StatelessWidget {
                       ),
                     ));
               }),
-          const SizedBox(height: smallSpacing),
+          const SizedBox(height: tiny),
           Text(
-            'Company',
+            DatabaseUtil.getText('Company'),
             style: Theme.of(context)
                 .textTheme
                 .medium
                 .copyWith(color: AppColor.black, fontWeight: FontWeight.bold),
           ),
-          const SizedBox(height: midTiniestSpacing),
+          const SizedBox(height: xxTinierSpacing),
           Text(permitDetailsModel.data.tab1.pcompany,
               style: Theme.of(context).textTheme.small),
         ],

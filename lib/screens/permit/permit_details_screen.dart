@@ -49,7 +49,7 @@ class PermitDetailsScreen extends StatelessWidget {
             padding: const EdgeInsets.only(
                 left: leftRightMargin,
                 right: leftRightMargin,
-                top: midTiniestSpacing),
+                top: xxTinierSpacing),
             child: Column(
               children: [
                 Card(
@@ -57,7 +57,7 @@ class PermitDetailsScreen extends StatelessWidget {
                   elevation: kCardElevation,
                   child: ListTile(
                     title: Padding(
-                      padding: const EdgeInsets.only(top: midTiniestSpacing),
+                      padding: const EdgeInsets.only(top: xxTinierSpacing),
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -82,12 +82,12 @@ class PermitDetailsScreen extends StatelessWidget {
                     ]),
                   ),
                 ),
-                const SizedBox(height: midTiniestSpacing),
+                const SizedBox(height: xxTinierSpacing),
                 const Divider(
                   height: kDividerHeight,
                   thickness: kDividerWidth,
                 ),
-                const SizedBox(height: midTiniestSpacing),
+                const SizedBox(height: xxTinierSpacing),
                 CustomTabBarView(
                   lengthOfTabs: 6,
                   tabBarViewIcons: PermitUtil().tabBarViewIcons,

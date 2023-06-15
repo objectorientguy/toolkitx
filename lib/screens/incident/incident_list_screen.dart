@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:toolkit/configs/app_spacing.dart';
 import 'package:toolkit/configs/app_theme.dart';
+import 'package:toolkit/utils/database_utils.dart';
 
 import '../../configs/app_color.dart';
-import '../../utils/constants/string_constants.dart';
 import '../../widgets/custom_icon_button_row.dart';
 import '../../widgets/generic_app_bar.dart';
-import '../onboarding/widgets/custom_card.dart';
+import '../../widgets/custom_card.dart';
 import 'category_screen.dart';
 import 'filter_screen.dart';
 
@@ -18,7 +18,7 @@ class IncidentListScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const GenericAppBar(title: StringConstants.kReportAnIncident),
+      appBar: GenericAppBar(title: DatabaseUtil.getText('ReportanIncident')),
       floatingActionButton: FloatingActionButton(
           onPressed: () {
             Navigator.pushNamed(context, CategoryScreen.routeName);
@@ -28,7 +28,7 @@ class IncidentListScreen extends StatelessWidget {
         padding: const EdgeInsets.only(
             left: leftRightMargin,
             right: leftRightMargin,
-            top: midTiniestSpacing),
+            top: xxTinierSpacing),
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           CustomIconButtonRow(
               primaryOnPress: () {
@@ -36,7 +36,7 @@ class IncidentListScreen extends StatelessWidget {
               },
               secondaryOnPress: () {},
               clearOnPress: () {}),
-          const SizedBox(height: midTiniestSpacing),
+          const SizedBox(height: xxTinierSpacing),
           Expanded(
               child: ListView.separated(
                   physics: const BouncingScrollPhysics(),
@@ -46,10 +46,10 @@ class IncidentListScreen extends StatelessWidget {
                     return CustomCard(
                         child: ListTile(
                             contentPadding:
-                                const EdgeInsets.all(midTiniestSpacing),
+                                const EdgeInsets.all(xxTinierSpacing),
                             title: Padding(
                                 padding: const EdgeInsets.only(
-                                    bottom: midTiniestSpacing),
+                                    bottom: xxTinierSpacing),
                                 child: Row(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.center,
@@ -76,13 +76,13 @@ class IncidentListScreen extends StatelessWidget {
                                   Text('Testing',
                                       style:
                                           Theme.of(context).textTheme.xSmall),
-                                  const SizedBox(height: midTiniestSpacing),
+                                  const SizedBox(height: xxTinierSpacing),
                                   Text('11.05.2023 17.190',
                                       style: Theme.of(context)
                                           .textTheme
                                           .xSmall
                                           .copyWith(color: AppColor.grey)),
-                                  const SizedBox(height: midTiniestSpacing),
+                                  const SizedBox(height: xxTinierSpacing),
                                   Text('Berlin Office-Belgium - WTG2',
                                       style: Theme.of(context)
                                           .textTheme
@@ -91,9 +91,9 @@ class IncidentListScreen extends StatelessWidget {
                                 ])));
                   },
                   separatorBuilder: (context, index) {
-                    return const SizedBox(height: tinySpacing);
+                    return const SizedBox(height: xxTinySpacing);
                   })),
-          const SizedBox(height: tinySpacing)
+          const SizedBox(height: xxTinySpacing)
         ]),
       ),
     );

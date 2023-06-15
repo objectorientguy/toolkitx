@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:toolkit/configs/app_spacing.dart';
 import 'package:toolkit/configs/app_theme.dart';
 import 'package:toolkit/screens/checklist/status_screen.dart';
-import 'package:toolkit/screens/onboarding/widgets/custom_card.dart';
+import 'package:toolkit/widgets/custom_card.dart';
 import 'package:toolkit/widgets/generic_app_bar.dart';
 
 import '../../configs/app_color.dart';
@@ -20,8 +20,8 @@ class DetailsScreen extends StatelessWidget {
           padding: const EdgeInsets.only(
               left: leftRightMargin,
               right: leftRightMargin,
-              top: topBottomSpacing,
-              bottom: topBottomSpacing),
+              top: topBottomPadding,
+              bottom: topBottomPadding),
           child: ListView.separated(
               physics: const BouncingScrollPhysics(),
               shrinkWrap: true,
@@ -43,7 +43,7 @@ class DetailsScreen extends StatelessWidget {
                 ));
               },
               separatorBuilder: (context, index) {
-                return const SizedBox(height: tinySpacing);
+                return const SizedBox(height: xxTinySpacing);
               }),
         ));
   }

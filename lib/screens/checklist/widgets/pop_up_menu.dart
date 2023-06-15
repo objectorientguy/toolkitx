@@ -58,7 +58,7 @@ class _PopUpMenuState extends State<PopUpMenu> {
         ),
         iconSize: kIconSize,
         icon: const Icon(Icons.more_vert_outlined),
-        offset: const Offset(0, midTiniestSpacing),
+        offset: const Offset(0, xxTinierSpacing),
         onSelected: (value) {
           _onMenuItemSelected(value as int);
         },

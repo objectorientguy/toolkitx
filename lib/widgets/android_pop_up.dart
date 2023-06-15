@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:toolkit/configs/app_spacing.dart';
 import 'package:toolkit/configs/app_theme.dart';
-import 'package:toolkit/utils/constants/string_constants.dart';
+import 'package:toolkit/utils/database_utils.dart';
 
 class AndroidPopUp extends StatelessWidget {
   final String titleValue;
@@ -19,10 +19,10 @@ class AndroidPopUp extends StatelessWidget {
   Widget build(BuildContext context) {
     return AlertDialog(
         titlePadding:
-            const EdgeInsets.only(left: tinySpacing, top: tinySpacing),
-        buttonPadding: const EdgeInsets.all(tiniestSpacing),
-        contentPadding: const EdgeInsets.all(tinySpacing),
-        actionsPadding: const EdgeInsets.only(right: tinySpacing),
+            const EdgeInsets.only(left: xxTinySpacing, top: xxTinySpacing),
+        buttonPadding: const EdgeInsets.all(xxTiniestSpacing),
+        contentPadding: const EdgeInsets.all(xxTinySpacing),
+        actionsPadding: const EdgeInsets.only(right: xxTinySpacing),
         title: Text(titleValue),
         content: Text(contentValue),
         titleTextStyle: Theme.of(context)
@@ -31,12 +31,12 @@ class AndroidPopUp extends StatelessWidget {
             .copyWith(fontWeight: FontWeight.w500),
         actions: [
           TextButton(
-              child: const Text(StringConstants.kNo),
+              child: Text(DatabaseUtil.getText('No')),
               onPressed: () {
                 Navigator.of(context).pop();
               }),
           TextButton(
-              onPressed: onPressed, child: const Text(StringConstants.kYes))
+              onPressed: onPressed, child: Text(DatabaseUtil.getText('Yes')))
         ]);
   }
 }

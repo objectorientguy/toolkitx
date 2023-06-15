@@ -5,7 +5,7 @@ import 'package:toolkit/configs/app_theme.dart';
 import 'package:toolkit/screens/checklist/change_role_screen.dart';
 import 'package:toolkit/screens/checklist/details_screen.dart';
 import 'package:toolkit/screens/checklist/filters_screen.dart';
-import 'package:toolkit/screens/onboarding/widgets/custom_card.dart';
+import 'package:toolkit/widgets/custom_card.dart';
 import 'package:toolkit/utils/constants/string_constants.dart';
 import 'package:toolkit/widgets/generic_app_bar.dart';
 
@@ -25,7 +25,7 @@ class ChecklistScreen extends StatelessWidget {
             padding: const EdgeInsets.only(
                 left: leftRightMargin,
                 right: leftRightMargin,
-                top: midTiniestSpacing),
+                top: xxTinierSpacing),
             child:
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               // The row will be changed with Custom widget.
@@ -47,7 +47,7 @@ class ChecklistScreen extends StatelessWidget {
                     },
                     icon: const Icon(Icons.settings_outlined))
               ]),
-              const SizedBox(height: tiniestSpacing),
+              const SizedBox(height: xxTiniestSpacing),
               Expanded(
                   child: ListView.separated(
                       physics: const BouncingScrollPhysics(),
@@ -56,11 +56,10 @@ class ChecklistScreen extends StatelessWidget {
                       itemBuilder: (context, index) {
                         return CustomCard(
                             child: ListTile(
-                                contentPadding:
-                                    const EdgeInsets.all(midTinySpacing),
+                                contentPadding: const EdgeInsets.all(tinier),
                                 title: Padding(
                                   padding: const EdgeInsets.only(
-                                      bottom: midTiniestSpacing),
+                                      bottom: xxTinierSpacing),
                                   child: Text('Tank Maintenance',
                                       style: Theme.of(context)
                                           .textTheme
@@ -76,7 +75,7 @@ class ChecklistScreen extends StatelessWidget {
                                               .textTheme
                                               .xSmall
                                               .copyWith(color: AppColor.grey)),
-                                      const SizedBox(height: tinySpacing),
+                                      const SizedBox(height: xxTinySpacing),
                                       const DetailsLabelSection()
                                     ]),
                                 onTap: () {
@@ -85,9 +84,9 @@ class ChecklistScreen extends StatelessWidget {
                                 }));
                       },
                       separatorBuilder: (BuildContext context, int index) {
-                        return const SizedBox(height: tinySpacing);
+                        return const SizedBox(height: xxTinySpacing);
                       })),
-              const SizedBox(height: tinySpacing)
+              const SizedBox(height: xxTinySpacing)
             ])));
   }
 }

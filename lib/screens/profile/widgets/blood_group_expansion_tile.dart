@@ -1,38 +1,32 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:toolkit/blocs/profile/profile_bloc.dart';
+import 'package:toolkit/blocs/profile/profile_events.dart';
 import 'package:toolkit/configs/app_theme.dart';
 
 import '../../../configs/app_color.dart';
-import '../../../configs/app_spacing.dart';
 import '../../../data/enums/blood_group_enum.dart';
 import '../../../utils/constants/string_constants.dart';
 
-class BloodGroupExpansionTile extends StatefulWidget {
-  const BloodGroupExpansionTile({Key? key}) : super(key: key);
+class BloodGroupExpansionTile extends StatelessWidget {
+  final Map profileDetailsMap;
 
-  @override
-  State<BloodGroupExpansionTile> createState() =>
-      _BloodGroupExpansionTileState();
-}
-
-class _BloodGroupExpansionTileState extends State<BloodGroupExpansionTile> {
-  String? bloodGroup;
+  const BloodGroupExpansionTile({Key? key, required this.profileDetailsMap})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Theme(
         data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
         child: ExpansionTile(
-            tilePadding: const EdgeInsets.only(
-                left: expansionTileMargin, right: expansionTileMargin),
-            collapsedBackgroundColor: AppColor.white,
             maintainState: true,
-            iconColor: AppColor.deepBlue,
-            textColor: AppColor.black,
+            collapsedBackgroundColor: AppColor.white,
+            backgroundColor: AppColor.white,
             key: GlobalKey(),
             title: Text(
-                bloodGroup == null
+                (profileDetailsMap['bloodgrp'] == '')
                     ? StringConstants.kSelectBloodGroup
-                    : bloodGroup!,
+                    : profileDetailsMap['bloodgrp'],
                 style: Theme.of(context).textTheme.xSmall),
             children: [
               ListView.builder(
@@ -48,13 +42,13 @@ class _BloodGroupExpansionTileState extends State<BloodGroupExpansionTile> {
                             style: Theme.of(context).textTheme.xSmall),
                         controlAffinity: ListTileControlAffinity.trailing,
                         value: BloodGroup.values.elementAt(index).bloodGroup,
-                        groupValue: bloodGroup,
+                        groupValue: profileDetailsMap['bloodgrp'],
                         onChanged: (value) {
-                          setState(() {
-                            value =
-                                BloodGroup.values.elementAt(index).bloodGroup;
-                            bloodGroup = value;
-                          });
+                          value = BloodGroup.values.elementAt(index).bloodGroup;
+                          profileDetailsMap['bloodgrp'] = value;
+                          context.read<ProfileBloc>().add(
+                              InitializeEditUserProfile(
+                                  profileDetailsMap: profileDetailsMap));
                         });
                   })
             ]));

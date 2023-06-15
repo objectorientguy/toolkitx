@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:toolkit/configs/app_theme.dart';
+import 'package:toolkit/utils/database_utils.dart';
 
 import '../../configs/app_color.dart';
 import '../../configs/app_spacing.dart';
@@ -65,14 +66,14 @@ class _CategoryScreenState extends State<CategoryScreen> {
         padding: const EdgeInsets.only(
             left: leftRightMargin,
             right: leftRightMargin,
-            top: topBottomSpacing),
+            top: topBottomPadding),
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          Text(StringConstants.kSelectCategoryIncident,
+          Text(DatabaseUtil.getText('SelectcategoryHeading'),
               style: Theme.of(context)
                   .textTheme
                   .mediumLarge
                   .copyWith(fontWeight: FontWeight.w400)),
-          const SizedBox(height: tinySpacing),
+          const SizedBox(height: xxTinySpacing),
           Expanded(
               child: ListView.builder(
                   physics: const BouncingScrollPhysics(),
@@ -89,7 +90,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
                                   .copyWith(
                                       fontWeight: FontWeight.w600,
                                       color: AppColor.greyBlack)),
-                          const SizedBox(height: tiniestSpacing),
+                          const SizedBox(height: xxTiniestSpacing),
                           ListView.builder(
                               physics: const BouncingScrollPhysics(),
                               shrinkWrap: true,
@@ -118,12 +119,14 @@ class _CategoryScreenState extends State<CategoryScreen> {
                                           isChecked!, index, itemIndex);
                                     });
                               }),
-                          const SizedBox(height: tiniestSpacing)
+                          const SizedBox(height: xxTiniestSpacing)
                         ]);
                   })),
-          const SizedBox(height: mediumSpacing),
-          PrimaryButton(onPressed: () {}, textValue: StringConstants.kNext),
-          const SizedBox(height: tinySpacing)
+          const SizedBox(height: xxxSmallerSpacing),
+          PrimaryButton(
+              onPressed: () {},
+              textValue: DatabaseUtil.getText('nextButtonText')),
+          const SizedBox(height: xxTinySpacing)
         ]),
       ),
     );
