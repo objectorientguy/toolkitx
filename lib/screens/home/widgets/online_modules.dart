@@ -11,9 +11,7 @@ import '../../../configs/app_color.dart';
 import '../../../configs/app_dimensions.dart';
 import '../../../configs/app_spacing.dart';
 import '../../../utils/constants/string_constants.dart';
-import '../../../utils/database_utils.dart';
 import '../../../widgets/error_section.dart';
-import '../../incident/incident_list_screen.dart';
 import '../../permit/permit_list_screen.dart';
 
 class OnLineModules extends StatelessWidget {
