@@ -72,26 +72,38 @@ class SelectTimeZoneScreen extends StatelessWidget {
                                                 arguments: false);
                                           }
                                         },
-                                        leading: const Icon(Icons.public,
-                                            size: kIconSize),
+                                        horizontalTitleGap: kListTileTitleGap,
+                                        minLeadingWidth:
+                                            kListTileMinLeadingWidth,
+                                        leading: const Padding(
+                                            padding: EdgeInsets.only(
+                                                top: kListTileLeadingPadding,
+                                                bottom:
+                                                    kListTileLeadingPadding),
+                                            child: Icon(Icons.public,
+                                                size: kIconSize)),
                                         title: Padding(
                                             padding: const EdgeInsets.only(
                                                 bottom: xxTiniestSpacing),
                                             child: Text(data.offset)),
                                         subtitle: Text(data.name))));
                           },
-                          emptyWidget: const Text('No records found'),
+                          emptyWidget:
+                              const Text(StringConstants.kNoRecordsFound),
                           filter: (value) => state.getTimeZoneModel.data!
                               .where((element) => element.name
                                   .toLowerCase()
                                   .contains(value.toLowerCase().trim()))
                               .toList(),
                           inputDecoration: InputDecoration(
+                              suffix: const SizedBox(),
+                              suffixIcon: const Icon(Icons.search_sharp,
+                                  size: kIconSize),
+                              hintText: StringConstants.kSearchTimezone,
                               hintStyle: Theme.of(context)
                                   .textTheme
                                   .xSmall
                                   .copyWith(color: AppColor.grey),
-                              hintText: 'Search TimeZone',
                               contentPadding:
                                   const EdgeInsets.all(xxxTinierSpacing),
                               enabledBorder: const OutlineInputBorder(
@@ -101,7 +113,7 @@ class SelectTimeZoneScreen extends StatelessWidget {
                                   borderSide:
                                       BorderSide(color: AppColor.lightGrey)),
                               filled: true,
-                              fillColor: AppColor.white)))
+                              fillColor: AppColor.white))),
                 ]);
               } else if (state is FetchTimeZoneError) {
                 return Center(

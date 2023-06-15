@@ -12,6 +12,7 @@ import '../../../configs/app_dimensions.dart';
 import '../../../configs/app_spacing.dart';
 import '../../../data/models/language/languages_model.dart';
 import '../../../utils/constants/api_constants.dart';
+import '../../../utils/constants/string_constants.dart';
 import '../../../widgets/custom_card.dart';
 
 class SelectLanguageBody extends StatelessWidget {
@@ -59,18 +60,20 @@ class SelectLanguageBody extends StatelessWidget {
                               size: kIconSize)),
                       title: Text(getLanguagesData.langName))));
         },
-        emptyWidget: const Text('No records found'),
+        emptyWidget: const Text(StringConstants.kNoRecordsFound),
         filter: (value) => getLanguagesData
             .where((element) => element.langName
                 .toLowerCase()
                 .contains(value.toLowerCase().trim()))
             .toList(),
         inputDecoration: InputDecoration(
+            suffix: const SizedBox(),
+            suffixIcon: const Icon(Icons.search_sharp, size: kIconSize),
             hintStyle: Theme.of(context)
                 .textTheme
                 .xSmall
                 .copyWith(color: AppColor.grey),
-            hintText: 'Search Language',
+            hintText: StringConstants.kSearchLanguage,
             contentPadding: const EdgeInsets.all(xxxTinierSpacing),
             enabledBorder: const OutlineInputBorder(
                 borderSide: BorderSide(color: AppColor.lightGrey)),
