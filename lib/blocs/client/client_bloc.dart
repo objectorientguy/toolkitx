@@ -1,16 +1,15 @@
 import 'dart:async';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:toolkit/blocs/client/client_events.dart';
-import 'package:toolkit/blocs/client/client_states.dart';
-import 'package:toolkit/data/cache/cache_keys.dart';
-import 'package:toolkit/data/models/client/client_list_model.dart';
-import 'package:toolkit/data/models/client/home_screen_model.dart';
-import 'package:toolkit/repositories/client/client_repository.dart';
-
+import '../../data/cache/cache_keys.dart';
 import '../../data/cache/customer_cache.dart';
+import '../../data/models/client/client_list_model.dart';
+import '../../data/models/client/home_screen_model.dart';
 import '../../di/app_module.dart';
+import '../../repositories/client/client_repository.dart';
 import '../../utils/modules_util.dart';
+import 'client_events.dart';
+import 'client_states.dart';
 
 class ClientBloc extends Bloc<ClientEvents, ClientStates> {
   final ClientRepository _clientRepository = getIt<ClientRepository>();
@@ -88,6 +87,10 @@ class ClientBloc extends Bloc<ClientEvents, ClientStates> {
         permissionsList =
             homeScreenModel.data!.permission.replaceAll(' ', '').split(',');
         List availableModules = [];
+        permissionsList.add('safetyNotice');
+        if (permissionsList.contains('wf_calendar') != true) {
+          permissionsList.add('calendar');
+        }
         for (int i = 0; i < ModulesUtil.listModulesMode.length; i++) {
           if (permissionsList.contains(ModulesUtil.listModulesMode[i].key) ==
               true) {

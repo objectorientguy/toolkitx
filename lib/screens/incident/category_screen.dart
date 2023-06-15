@@ -124,7 +124,8 @@ class _CategoryScreenState extends State<CategoryScreen> {
                   })),
           const SizedBox(height: xxxSmallerSpacing),
           PrimaryButton(
-              onPressed: () {}, textValue: DatabaseUtil.getText('Next')),
+              onPressed: () {},
+              textValue: DatabaseUtil.getText('nextButtonText')),
           const SizedBox(height: xxTinySpacing)
         ]),
       ),

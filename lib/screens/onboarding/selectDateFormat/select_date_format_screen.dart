@@ -3,13 +3,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:toolkit/blocs/dateFormat/date_format_bloc.dart';
 import 'package:toolkit/blocs/dateFormat/date_format_events.dart';
 import 'package:toolkit/blocs/dateFormat/date_format_states.dart';
+import 'package:toolkit/configs/app_theme.dart';
 import 'package:toolkit/screens/onboarding/login/login_screen.dart';
 import 'package:toolkit/screens/onboarding/widgets/select_date_format_body.dart';
 import 'package:toolkit/utils/database_utils.dart';
 import 'package:toolkit/widgets/primary_button.dart';
 import '../../../configs/app_spacing.dart';
 import '../../../utils/constants/string_constants.dart';
-import '../../../widgets/generic_app_bar.dart';
 
 class SelectDateFormatScreen extends StatelessWidget {
   static const routeName = 'SelectDateFormatScreen';
@@ -24,10 +24,11 @@ class SelectDateFormatScreen extends StatelessWidget {
         .read<DateFormatBloc>()
         .add(SetDateFormat(isFromProfile: isFromProfile));
     return Scaffold(
-      appBar: GenericAppBar(
-          title: (isFromProfile == true)
+      appBar: AppBar(
+          title: Text((isFromProfile == true)
               ? DatabaseUtil.getText('changedateformat')
               : StringConstants.kSelectDateFormat),
+          titleTextStyle: Theme.of(context).textTheme.mediumLarge),
       body: BlocBuilder<DateFormatBloc, DateFormatStates>(
           builder: (context, state) {
         if (state is DateFormatSelected) {

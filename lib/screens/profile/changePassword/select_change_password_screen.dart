@@ -87,7 +87,7 @@ class SelectChangePasswordTypeScreen extends StatelessWidget {
                                           state.changePasswordType ==
                                               'Change using OTP'));
                             },
-                            textValue: DatabaseUtil.getText('Next')),
+                            textValue: DatabaseUtil.getText('nextButtonText')),
                         const SizedBox(height: xxxSmallerSpacing)
                       ]);
                 } else {

@@ -45,13 +45,18 @@ class LoginBloc extends Bloc<LoginEvents, LoginStates> {
         Map validateEmailMap = {'emailaddress': encryptedEmail};
         ValidateEmailModel validateEmailModel =
             await _loginRepository.validateEmail(validateEmailMap);
-        if (validateEmailModel.message == '1,2') {
-          add(ChangeUserType(userType: 'null', typeValue: ''));
+        if (validateEmailModel.message.isEmpty) {
+          emit(ValidateEmailError(
+              message: DatabaseUtil.getText('EmailNotAssociatedWithToolkitx')));
         } else {
-          _customerCache.setUserType(
-              CacheKeys.userType, validateEmailModel.message);
+          if (validateEmailModel.message == '1,2') {
+            add(ChangeUserType(userType: 'null', typeValue: ''));
+          } else {
+            _customerCache.setUserType(
+                CacheKeys.userType, validateEmailModel.message);
+          }
+          emit(EmailValidated(validateEmailModel: validateEmailModel));
         }
-        emit(EmailValidated(validateEmailModel: validateEmailModel));
       }
     } catch (e) {
       emit(ValidateEmailError(message: e.toString()));

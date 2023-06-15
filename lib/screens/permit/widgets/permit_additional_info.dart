@@ -62,7 +62,7 @@ class PermitAdditionalInfo extends StatelessWidget {
               style: Theme.of(context).textTheme.small),
           const SizedBox(height: tiny),
           Text(
-            'Specific PPR',
+            DatabaseUtil.getText('SpecificPPE'),
             style: Theme.of(context)
                 .textTheme
                 .medium
