@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:toolkit/configs/app_color.dart';
 import 'package:toolkit/configs/app_theme.dart';
 import 'package:url_launcher/url_launcher_string.dart';
+import 'package:toolkit/utils/database_utils.dart';
 import '../../../configs/app_spacing.dart';
 import '../../../data/models/permit/permit_details_model.dart';
 
@@ -19,7 +20,7 @@ class PermitAdditionalInfo extends StatelessWidget {
         children: [
           const SizedBox(height: tiny),
           Text(
-            'Additional Information',
+            DatabaseUtil.getText('AdditionalInformation'),
             style: Theme.of(context)
                 .textTheme
                 .medium
@@ -28,7 +29,7 @@ class PermitAdditionalInfo extends StatelessWidget {
           const SizedBox(height: xxTinierSpacing),
           const SizedBox(height: tiny),
           Text(
-            'Method Statement',
+            DatabaseUtil.getText('MethodStatement'),
             style: Theme.of(context)
                 .textTheme
                 .medium
@@ -39,7 +40,7 @@ class PermitAdditionalInfo extends StatelessWidget {
               style: Theme.of(context).textTheme.small),
           const SizedBox(height: tiny),
           Text(
-            'Relevant Info',
+            DatabaseUtil.getText('RelevantInfo'),
             style: Theme.of(context)
                 .textTheme
                 .medium
@@ -50,7 +51,7 @@ class PermitAdditionalInfo extends StatelessWidget {
               style: Theme.of(context).textTheme.small),
           const SizedBox(height: tiny),
           Text(
-            'Special Work',
+            DatabaseUtil.getText('SpecialWork'),
             style: Theme.of(context)
                 .textTheme
                 .medium
@@ -61,7 +62,7 @@ class PermitAdditionalInfo extends StatelessWidget {
               style: Theme.of(context).textTheme.small),
           const SizedBox(height: tiny),
           Text(
-            'Specific PPR',
+            DatabaseUtil.getText('SpecificPPE'),
             style: Theme.of(context)
                 .textTheme
                 .medium
@@ -72,7 +73,7 @@ class PermitAdditionalInfo extends StatelessWidget {
               style: Theme.of(context).textTheme.small),
           const SizedBox(height: tiny),
           Text(
-            'Protective Measures',
+            DatabaseUtil.getText('Protectivemeasures'),
             style: Theme.of(context)
                 .textTheme
                 .medium
@@ -83,7 +84,7 @@ class PermitAdditionalInfo extends StatelessWidget {
               style: Theme.of(context).textTheme.small),
           const SizedBox(height: tiny),
           Text(
-            'Layout',
+            DatabaseUtil.getText('Layout'),
             style: Theme.of(context)
                 .textTheme
                 .medium

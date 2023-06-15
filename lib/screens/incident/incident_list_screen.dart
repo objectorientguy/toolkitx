@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:toolkit/configs/app_spacing.dart';
 import 'package:toolkit/configs/app_theme.dart';
+import 'package:toolkit/utils/database_utils.dart';
 
 import '../../configs/app_color.dart';
-import '../../utils/constants/string_constants.dart';
 import '../../widgets/custom_icon_button_row.dart';
 import '../../widgets/generic_app_bar.dart';
-import '../onboarding/widgets/custom_card.dart';
+import '../../widgets/custom_card.dart';
 import 'category_screen.dart';
 import 'filter_screen.dart';
 
@@ -18,7 +18,7 @@ class IncidentListScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const GenericAppBar(title: StringConstants.kReportAnIncident),
+      appBar: GenericAppBar(title: DatabaseUtil.getText('ReportanIncident')),
       floatingActionButton: FloatingActionButton(
           onPressed: () {
             Navigator.pushNamed(context, CategoryScreen.routeName);

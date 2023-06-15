@@ -6,6 +6,7 @@ import 'package:toolkit/blocs/profile/profile_states.dart';
 import 'package:toolkit/configs/app_theme.dart';
 import 'package:toolkit/screens/root/root_screen.dart';
 import 'package:toolkit/utils/constants/string_constants.dart';
+import 'package:toolkit/utils/database_utils.dart';
 import 'package:toolkit/widgets/custom_snackbar.dart';
 import 'package:toolkit/widgets/generic_app_bar.dart';
 import 'package:toolkit/widgets/primary_button.dart';
@@ -43,7 +44,8 @@ class ChangePasswordScreen extends StatelessWidget {
                     if (state is PasswordChanged) {
                       ProgressBar.dismiss(context);
                       Navigator.pushReplacementNamed(
-                          context, RootScreen.routeName);
+                          context, RootScreen.routeName,
+                          arguments: false);
                     }
                     if (state is ChangePasswordError) {
                       ProgressBar.dismiss(context);
@@ -55,8 +57,6 @@ class ChangePasswordScreen extends StatelessWidget {
                     }
                     if (state is ChangePasswordOtpGenerated) {
                       ProgressBar.dismiss(context);
-                      showCustomSnackBar(context, StringConstants.kOtpGenerated,
-                          StringConstants.kOk);
                     }
                     if (state is ChangePasswordOtpError) {
                       ProgressBar.dismiss(context);
@@ -100,8 +100,8 @@ class ChangePasswordScreen extends StatelessWidget {
                                             context.read<ProfileBloc>().add(
                                                 GenerateChangePasswordOtp());
                                           },
-                                          textValue:
-                                              StringConstants.kGenerateOtp)
+                                          textValue: DatabaseUtil.getText(
+                                              'generateotp'))
                                     ]),
                                 TextFieldWidget(
                                     obscureText: true,

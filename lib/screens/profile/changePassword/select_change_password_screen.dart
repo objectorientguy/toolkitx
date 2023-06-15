@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:toolkit/blocs/profile/profile_bloc.dart';
 import 'package:toolkit/blocs/profile/profile_events.dart';
 import 'package:toolkit/blocs/profile/profile_states.dart';
+import 'package:toolkit/utils/database_utils.dart';
 import 'package:toolkit/widgets/generic_app_bar.dart';
 
 import '../../../configs/app_color.dart';
@@ -11,7 +12,7 @@ import '../../../configs/app_spacing.dart';
 import '../../../data/enums/change_password_type_enum.dart';
 import '../../../utils/constants/string_constants.dart';
 import '../../../widgets/primary_button.dart';
-import '../../onboarding/widgets/custom_card.dart';
+import '../../../widgets/custom_card.dart';
 import 'change_password_screen.dart';
 
 class SelectChangePasswordTypeScreen extends StatelessWidget {
@@ -86,7 +87,7 @@ class SelectChangePasswordTypeScreen extends StatelessWidget {
                                           state.changePasswordType ==
                                               'Change using OTP'));
                             },
-                            textValue: StringConstants.kNext),
+                            textValue: DatabaseUtil.getText('nextButtonText')),
                         const SizedBox(height: xxxSmallerSpacing)
                       ]);
                 } else {

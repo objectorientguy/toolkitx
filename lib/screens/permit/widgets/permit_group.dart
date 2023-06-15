@@ -7,7 +7,7 @@ import '../../../configs/app_spacing.dart';
 import '../../../data/models/permit/permit_details_model.dart';
 import '../../../data/models/status_tag_model.dart';
 import '../../../utils/permit_util.dart';
-import '../../onboarding/widgets/custom_card.dart';
+import '../../../widgets/custom_card.dart';
 
 class PermitGroup extends StatelessWidget {
   final PermitDetailsModel permitDetailsModel;

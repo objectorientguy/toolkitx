@@ -39,7 +39,7 @@ abstract class ModulesUtil {
         key: 'wf_timesheet'),
     ModulesModel(
         moduleName: 'Incident',
-        moduleImage: '${kBaseImagePath}logbook.png',
+        moduleImage: '${kBaseImagePath}incident.png',
         key: 'hse'),
     ModulesModel(
         moduleName: 'ToDo',
@@ -48,19 +48,19 @@ abstract class ModulesUtil {
     ModulesModel(
         moduleName: 'SafetyNotice',
         moduleImage: '${kBaseImagePath}shield.png',
-        key: ''),
+        key: 'safetyNotice'),
     ModulesModel(
         moduleName: 'WorkOrder',
-        moduleImage: '${kBaseImagePath}logbook.png',
+        moduleImage: '${kBaseImagePath}workOrder.png',
         key: 'workorder'),
     ModulesModel(
         moduleName: 'meetingRoom',
         moduleImage: '${kBaseImagePath}briefing.png',
         key: 'meeting'),
     ModulesModel(
-        moduleName: 'Certificates',
-        moduleImage: '${kBaseImagePath}certificate.png',
-        key: 'certificates'),
+        moduleName: 'Assets',
+        moduleImage: '${kBaseImagePath}assets.png',
+        key: 'eam'),
     ModulesModel(
         moduleName: 'Expense',
         moduleImage: '${kBaseImagePath}expenses.png',
@@ -69,6 +69,10 @@ abstract class ModulesUtil {
         moduleName: 'Expense',
         moduleImage: '${kBaseImagePath}expenses.png',
         key: 'wf_timesheet'),
+    ModulesModel(
+        moduleName: 'Certificates',
+        moduleImage: '${kBaseImagePath}certificate.png',
+        key: 'certificates'),
     ModulesModel(
         moduleName: 'Checklist',
         moduleImage: '${kBaseImagePath}checklist.png',
@@ -91,21 +95,15 @@ abstract class ModulesUtil {
         key: 'loto'),
     ModulesModel(
         moduleName: 'Ticket',
-        moduleImage: '${kBaseImagePath}lottery.png',
+        moduleImage: '${kBaseImagePath}ticket.png',
         key: 'tickets'),
     ModulesModel(
-        moduleName: 'Assets',
-        moduleImage: '${kBaseImagePath}lottery.png',
-        key: 'eam'),
-    ModulesModel(
-        moduleName: 'Location',
-        moduleImage: '${kBaseImagePath}lottery.png',
-        key: 'eam'),
-    ModulesModel(
-        moduleName: 'Trips', moduleImage: '${kBaseImagePath}t.png', key: 'hf'),
+        moduleName: 'Trips',
+        moduleImage: '${kBaseImagePath}trips.png',
+        key: 'hf'),
     ModulesModel(
         moduleName: 'Trips',
-        moduleImage: '${kBaseImagePath}lottery.png',
+        moduleImage: '${kBaseImagePath}trips.png',
         key: 'wf_trips'),
   ];
 }

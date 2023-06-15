@@ -15,4 +15,6 @@ class CacheKeys {
   static const timeZoneName = "timeZoneName";
   static const clientImage = "clientImage ";
   static const isLoggedIn = "isLoggedIn ";
+  static const userName = "userName ";
+  static const timeZoneOffset = "timeZoneOffset ";
 }
