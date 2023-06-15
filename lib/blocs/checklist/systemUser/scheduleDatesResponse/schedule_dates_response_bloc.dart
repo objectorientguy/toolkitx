@@ -87,11 +87,11 @@ class ScheduleDatesResponseBloc
       'Third Party Approve',
       'Edit Header'
     ];
-    // if (event.popUpMenuBuilder == false) {
-    //   popUpMenuItems.removeAt(2);
-    //   popUpMenuItems.removeAt(1);
-    //   popUpMenuItems.removeAt(0);
-    // }
+    if (event.popUpMenuBuilder == false) {
+      popUpMenuItems.removeAt(2);
+      popUpMenuItems.removeAt(1);
+      popUpMenuItems.removeAt(0);
+    }
     emit(PopUpMenuItemsFetched(popUpMenuItems: popUpMenuItems));
   }
 }

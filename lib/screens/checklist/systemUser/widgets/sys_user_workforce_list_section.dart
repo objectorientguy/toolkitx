@@ -39,9 +39,7 @@ class WorkForceListSection extends StatelessWidget {
                                 title: Padding(
                                     padding:
                                         const EdgeInsets.only(bottom: tiniest),
-                                    child: Text(
-                                        state.checkListWorkforceListModel
-                                            .data![index].name,
+                                    child: Text(state.checkListWorkforceListModel.data![index].name,
                                         style: Theme.of(context)
                                             .textTheme
                                             .small
@@ -85,22 +83,18 @@ class WorkForceListSection extends StatelessWidget {
                                               .responseid)
                                     ]),
                                 trailing: Visibility(
-                                    // visible: state
-                                    //         .checkListWorkforceListModel
-                                    //         .data![index]
-                                    //         .responseid
-                                    //         .isNotEmpty &&
-                                    //     state
-                                    //             .checkListWorkforceListModel
-                                    //             .data![index]
-                                    //             .isdeptapprove ==
-                                    //         "0",
+                                    visible: state
+                                            .checkListWorkforceListModel
+                                            .data![index]
+                                            .responseid
+                                            .isNotEmpty &&
+                                        state.checkListWorkforceListModel
+                                                .data![index].isdeptapprove ==
+                                            "0",
                                     child: Checkbox(
                                         value: state.selectedIResponseIdList
-                                            .contains(state
-                                                .checkListWorkforceListModel
-                                                .data![index]
-                                                .responseid),
+                                            .contains(
+                                                state.checkListWorkforceListModel.data![index].responseid),
                                         onChanged: (value) {
                                           context
                                               .read<ScheduleDatesResponseBloc>()
