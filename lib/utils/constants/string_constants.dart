@@ -14,6 +14,12 @@ abstract class StringConstants {
   static const String kWelcome = 'Welcome';
   static const String kType = 'Type';
   static const String kGenerateOtp = 'GENERATE OTP';
+  static const String kAddImages = 'Add Images';
+  static const String kAddTodo = 'Add ToDo';
+  static const String kDraft = 'Draft';
+  static const String kNotAccepted = 'Not Accepted';
+  static const String kOverdue = 'Overdue';
+  static const String kSubmitted = 'Submitted';
   static const String kEnterNewPassword =
       'Enter New Password'; // comment lines indicates that keys are not available
   static const String kConfirmPassword = 'Confirm Password'; //

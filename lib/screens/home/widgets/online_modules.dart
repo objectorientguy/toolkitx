@@ -11,6 +11,7 @@ import '../../../utils/constants/string_constants.dart';
 import '../../../utils/database_utils.dart';
 import '../../../widgets/error_section.dart';
 import '../../checklist/checklist_list_screen.dart';
+import '../../checklist/workforce/workforce_list_screen.dart';
 import '../../incident/incident_list_screen.dart';
 import '../../permit/permit_list_screen.dart';
 
@@ -93,6 +94,9 @@ class OnLineModules extends StatelessWidget {
         break;
       case 'checklist':
         Navigator.pushNamed(context, ChecklistScreen.routeName);
+        break;
+      case 'wf_checklist':
+        Navigator.pushNamed(context, WorkForceListScreen.routeName);
         break;
     }
   }
