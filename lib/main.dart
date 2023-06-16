@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:toolkit/blocs/workforce/comments/workforce_comments_bloc.dart';
 import 'package:toolkit/blocs/workforce/getQuestionsList/get_questions_list_bloc.dart';
 import 'package:toolkit/blocs/workforce/workforceList/workforce_list_bloc.dart';
 import 'package:toolkit/utils/database_utils.dart';
@@ -70,6 +71,7 @@ class MyApp extends StatelessWidget {
           BlocProvider(lazy: false, create: (context) => ProfileBloc()),
           BlocProvider(lazy: false, create: (context) => PermitRoleBloc()),
           BlocProvider(lazy: false, create: (context) => WorkForceListBloc()),
+          BlocProvider(lazy: false, create: (context) => CommentBloc()),
           BlocProvider(
               lazy: false, create: (context) => WorkForceQuestionsListBloc()),
           BlocProvider(

@@ -1,10 +1,7 @@
-import 'package:toolkit/data/models/permit/permit_roles_model.dart';
-
-import '../../data/models/pdf_generation_model.dart';
-import '../../data/models/permit/all_permits_model.dart';
-import '../../data/models/permit/permit_details_model.dart';
+import '../../data/models/workforce/workforce_fetch_comment_model.dart';
 import '../../data/models/workforce/workforce_list_model.dart';
 import '../../data/models/workforce/workforce_questions_list_model.dart';
+import '../../data/models/workforce/workforce_save_comment_model.dart';
 
 abstract class WorkForceRepository {
   Future<WorkforceGetCheckListModel> fetchWorkforceList(
@@ -12,4 +9,9 @@ abstract class WorkForceRepository {
 
   Future<GetQuestionListModel> fetchQuestionsList(
       String scheduleId, String userId, String hashCode);
+
+  Future<GetQuestionCommentsModel> fetchComment(
+      String questionResponseId, String hashCode);
+
+  Future<SaveQuestionCommentsModel> saveComment(Map saveQuestionsCommentMap);
 }

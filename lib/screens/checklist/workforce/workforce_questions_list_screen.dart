@@ -6,11 +6,11 @@ import 'package:toolkit/blocs/workforce/getQuestionsList/get_questions_list_stat
 import 'package:toolkit/screens/checklist/workforce/widgets/checklist_app_bar.dart';
 import 'package:toolkit/screens/checklist/workforce/widgets/question_list_section.dart';
 
-class WorkForceQuestions extends StatelessWidget {
-  static const routeName = 'WorkForceQuestions';
+class WorkForceQuestionsScreen extends StatelessWidget {
+  static const routeName = 'WorkForceQuestionsScreen';
   final Map checklistDataMap;
 
-  const WorkForceQuestions({Key? key, required this.checklistDataMap})
+  const WorkForceQuestionsScreen({Key? key, required this.checklistDataMap})
       : super(key: key);
 
   @override

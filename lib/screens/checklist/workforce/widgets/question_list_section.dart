@@ -12,6 +12,7 @@ import '../../../../utils/constants/string_constants.dart';
 import '../../../../widgets/custom_card.dart';
 import '../../../../widgets/error_section.dart';
 import '../../../../widgets/secondary_button.dart';
+import '../add_image_and_comments_screen.dart';
 
 class QuestionsListSection extends StatelessWidget {
   const QuestionsListSection({
@@ -20,16 +21,8 @@ class QuestionsListSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<WorkForceQuestionsListBloc, WorkForceQuestionsStates>(
-        listener: (context, state) {
-      // if (state is FetchingQuestionComments) {
-      //   ProgressBar.show(context);
-      // } else if (state is QuestionCommentsFetched) {
-      //   ProgressBar.dismiss(context);
-      //   Navigator.pushNamed(
-      //       context, AddImageAndCommentScreen.routeName);
-      // }
-    }, builder: (context, state) {
+    return BlocBuilder<WorkForceQuestionsListBloc, WorkForceQuestionsStates>(
+        builder: (context, state) {
       if (state is FetchingQuestionsList) {
         return const Center(child: CircularProgressIndicator());
       } else if (state is QuestionsListFetched) {
@@ -92,13 +85,14 @@ class QuestionsListSection extends StatelessWidget {
                             Expanded(
                                 child: SecondaryButton(
                                     onPressed: () {
-                                      // context
-                                      //     .read<WorkforceChecklistBloc>()
-                                      //     .add(FetchQuestionComment(
-                                      //       questionResponseId: getQuestionListModel
-                                      //           .data!.questionlist![index].queresponseid
-                                      //           .toString(),
-                                      //     ));
+                                      Navigator.pushNamed(context,
+                                          AddImageAndCommentScreen.routeName,
+                                          arguments: state
+                                              .getQuestionListModel
+                                              .data!
+                                              .questionlist![index]
+                                              .queresponseid
+                                              .toString());
                                     },
                                     textValue: StringConstants.kAddImages)),
                             const SizedBox(width: tiniest),

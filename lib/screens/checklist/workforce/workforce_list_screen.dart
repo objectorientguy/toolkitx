@@ -7,7 +7,6 @@ import 'package:toolkit/configs/app_theme.dart';
 import 'package:toolkit/screens/checklist/workforce/widgets/custom_tag_container.dart';
 import 'package:toolkit/screens/checklist/workforce/workforce_questions_list_screen.dart';
 import 'package:toolkit/widgets/error_section.dart';
-import '../../../blocs/workforce/getQuestionsList/get_questions_list_events.dart';
 import '../../../blocs/workforce/workforceList/workforce_list_events.dart';
 import '../../../configs/app_color.dart';
 import '../../../utils/constants/string_constants.dart';
@@ -131,7 +130,7 @@ class WorkForceListScreen extends StatelessWidget {
                                       .data![index].isrejected
                                 };
                                 Navigator.pushNamed(
-                                    context, WorkForceQuestions.routeName,
+                                    context, WorkForceQuestionsScreen.routeName,
                                     arguments: checklistDataMap);
                               }));
                     },
