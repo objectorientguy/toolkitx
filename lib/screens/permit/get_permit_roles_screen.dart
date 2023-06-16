@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../blocs/role/role_bloc.dart';
-import '../../blocs/role/role_events.dart';
-import '../../blocs/role/role_states.dart';
+import 'package:toolkit/blocs/permit/permit_bloc.dart';
+import 'package:toolkit/blocs/permit/permit_states.dart';
+import '../../blocs/permit/permit_events.dart';
 import '../../configs/app_color.dart';
 import '../../configs/app_spacing.dart';
-import '../../data/models/permit/permit_roles_model.dart';
 import '../../widgets/generic_app_bar.dart';
 
 class GetPermitRolesScreen extends StatelessWidget {
@@ -15,46 +14,51 @@ class GetPermitRolesScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    context.read<RoleBloc>().add(const GetPermitRoles());
+    context.read<PermitBloc>().add(const GetPermitRoles());
     return Scaffold(
-      appBar: const GenericAppBar(title: 'Get Roles'),
-      body: Padding(
-        padding: const EdgeInsets.only(
-            left: leftRightMargin,
-            right: leftRightMargin,
-            top: xxTinierSpacing,
-            bottom: xxTinierSpacing),
-        child:
-            BlocBuilder<RoleBloc, PermitRoleStates>(builder: (context, state) {
-          if (state is FetchingPermitRoles) {
-            return const Center(child: CircularProgressIndicator());
-          } else if (state is PermitRolesFetched) {
-            return Builder(builder: (context) {
-              return ListView.builder(
-                itemCount: state.permitRolesModel.data!.length,
-                itemBuilder: (context, index) {
-                  return RadioListTile(
-                    dense: true,
-                    activeColor: AppColor.deepBlue,
-                    controlAffinity: ListTileControlAffinity.trailing,
-                    title: Text(state.permitRolesModel.data![index].groupName
-                        .toString()),
-                    value: state.permitRolesModel.data![index],
-                    groupValue: state.permitRolesModel.data![index],
-                    onChanged: (value) {
-                      context
-                          .read<RoleBloc>()
-                          .add(SelectCheckBoxEvent(value as Datum));
-                    },
-                  );
-                },
-              );
-            });
-          } else {
-            return const SizedBox();
-          }
-        }),
-      ),
-    );
+        appBar: const GenericAppBar(title: 'Get Roles'),
+        body: Padding(
+            padding: const EdgeInsets.only(
+                left: leftRightMargin,
+                right: leftRightMargin,
+                top: xxTinierSpacing,
+                bottom: xxTinierSpacing),
+            child: BlocConsumer<PermitBloc, PermitStates>(
+              listener: (context, state) {
+                if (state is PermitRoleSelected) {
+                  Navigator.pop(context);
+                  context.read<PermitBloc>().add(const GetAllPermits());
+                }
+              },
+              builder: (context, state) {
+                if (state is FetchingPermitRoles) {
+                  return const Center(child: CircularProgressIndicator());
+                } else if (state is PermitRolesFetched) {
+                  return Builder(builder: (context) {
+                    return ListView.builder(
+                        itemCount: state.permitRolesModel.data!.length,
+                        itemBuilder: (context, index) {
+                          return RadioListTile(
+                              dense: true,
+                              activeColor: AppColor.deepBlue,
+                              controlAffinity: ListTileControlAffinity.trailing,
+                              title: Text(state
+                                  .permitRolesModel.data![index].groupName
+                                  .toString()),
+                              value:
+                                  state.permitRolesModel.data![index].groupId,
+                              groupValue: state.roleId,
+                              onChanged: (value) {
+                                context
+                                    .read<PermitBloc>()
+                                    .add(SelectPermitRoleEvent(value!));
+                              });
+                        });
+                  });
+                } else {
+                  return const SizedBox();
+                }
+              },
+            )));
   }
 }

@@ -1,6 +1,7 @@
 import '../../data/models/pdf_generation_model.dart';
 import '../../data/models/permit/all_permits_model.dart';
 import '../../data/models/permit/permit_details_model.dart';
+import '../../data/models/permit/permit_roles_model.dart';
 
 abstract class PermitStates {
   const PermitStates();
@@ -50,4 +51,24 @@ class PDFGenerated extends PermitStates {
 
 class PDFGenerationFailed extends PermitStates {
   const PDFGenerationFailed();
+}
+
+class FetchingPermitRoles extends PermitStates {
+  const FetchingPermitRoles();
+}
+
+class PermitRolesFetched extends PermitStates {
+  final PermitRolesModel permitRolesModel;
+  final String? roleId;
+
+  const PermitRolesFetched(
+      {required this.roleId, required this.permitRolesModel});
+}
+
+class CouldNotFetchPermitRoles extends PermitStates {
+  const CouldNotFetchPermitRoles();
+}
+
+class PermitRoleSelected extends PermitStates {
+  PermitRoleSelected();
 }

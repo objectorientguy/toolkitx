@@ -5,11 +5,13 @@ import '../../data/models/permit/all_permits_model.dart';
 import '../../data/models/permit/permit_details_model.dart';
 
 abstract class PermitRepository {
-  Future<AllPermitModel> getAllPermits();
+  Future<AllPermitModel> getAllPermits(
+      String hashCode, String filter, String role);
 
-  Future<PermitRolesModel> fetchPermitRoles();
+  Future<PermitRolesModel> fetchPermitRoles(String hashCode, String userId);
 
-  Future<PermitDetailsModel> fetchPermitDetails();
+  Future<PermitDetailsModel> fetchPermitDetails(
+      String hashCode, String permitId, String role);
 
-  Future<PdfGenerationModel> generatePdf();
+  Future<PdfGenerationModel> generatePdf(String hashCode, String permitId);
 }

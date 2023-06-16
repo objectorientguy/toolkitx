@@ -8,28 +8,32 @@ import 'permit_repository.dart';
 
 class PermitRepositoryImpl extends PermitRepository {
   @override
-  Future<AllPermitModel> getAllPermits() async {
+  Future<AllPermitModel> getAllPermits(
+      String hashCode, String filter, String role) async {
     final response = await DioClient().get(
-        "${ApiConstants.baseUrl}permit/get?pageno=1&hashcode=vbdvrj9aN/gnmG9HRZBOV137+VBlDH1innvdsfSI8lOHTShvQP8iAcfeuRbflSG0|3|1|1|cet_3&filter=&role=XyXKlqi+qAnXdhxREzo0SQ==");
+        "${ApiConstants.baseUrl}permit/get?pageno=1&hashcode=vbdvrj9aN/gnmG9HRZBOV137+VBlDH1innvdsfSI8lOHTShvQP8iAcfeuRbflSG0|3|1|1|cet_3&filter=&role=$role");
     return AllPermitModel.fromJson(response);
   }
 
   @override
-  Future<PermitRolesModel> fetchPermitRoles() async {
+  Future<PermitRolesModel> fetchPermitRoles(
+      String hashCode, String userId) async {
     final response = await DioClient().get(
         "${ApiConstants.baseUrl}permit/getroles?hashcode=vbdvrj9aN/gnmG9HRZBOV137+VBlDH1innvdsfSI8lOHTShvQP8iAcfeuRbflSG0|3|1|1|cet_3&userid=2ATY8mLx8MjkcnrmiRLvrA==");
     return PermitRolesModel.fromJson(response);
   }
 
   @override
-  Future<PermitDetailsModel> fetchPermitDetails() async {
+  Future<PermitDetailsModel> fetchPermitDetails(
+      String hashCode, String permitId, String role) async {
     final response = await DioClient().get(
         "${ApiConstants.baseUrl}permit/GetPermitAllDetails?permitid=L1rdKdH2Z2w06XVMdH78Qw==&hashcode=vbdvrj9aN/gnmG9HRZBOV137+VBlDH1innvdsfSI8lOHTShvQP8iAcfeuRbflSG0|3|1|1|cet_3&role=fGLj9XEzYUQ+1lz4/JymXw==");
     return PermitDetailsModel.fromJson(response);
   }
 
   @override
-  Future<PdfGenerationModel> generatePdf() async {
+  Future<PdfGenerationModel> generatePdf(
+      String hashCode, String permitId) async {
     final response = await DioClient().get(
         "${ApiConstants.baseUrl}permit/getpdf?permitid=L1rdKdH2Z2w06XVMdH78Qw==&hashcode=vbdvrj9aN/gnmG9HRZBOV137+VBlDH1innvdsfSI8lOHTShvQP8iAcfeuRbflSG0|3|1|1|cet_3");
     return PdfGenerationModel.fromJson(response);

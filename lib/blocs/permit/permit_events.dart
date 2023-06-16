@@ -13,3 +13,13 @@ class GetPermitDetails extends PermitEvents {
 class GeneratePDF extends PermitEvents {
   const GeneratePDF();
 }
+
+class GetPermitRoles extends PermitEvents {
+  const GetPermitRoles();
+}
+
+class SelectPermitRoleEvent extends PermitEvents {
+  final String roleId;
+
+  const SelectPermitRoleEvent(this.roleId);
+}
