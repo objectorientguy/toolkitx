@@ -27,15 +27,15 @@ class SysUserListSection extends StatelessWidget {
         child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
       BlocConsumer<SysUserCheckListBloc, SysUserCheckListStates>(
           listenWhen: (previousState, currentState) =>
-              currentState is FetchingCheckList ||
-              currentState is CheckListFetched ||
+              currentState is FetchingCheckList && checklistData.isNotEmpty ||
               currentState is CheckListError && checklistData.isNotEmpty,
           buildWhen: (previousState, currentState) =>
-              currentState is FetchingCheckList && checklistData.isNotEmpty ||
               currentState is CheckListFetched ||
               currentState is CheckListError && checklistData.isEmpty,
           listener: (context, state) {
-            if (state is CheckListError &&
+            if (state is FetchingCheckList && checklistData.isNotEmpty) {
+              showCustomSnackBar(context, 'Load more...', '');
+            } else if (state is CheckListError &&
                 checklistData.isNotEmpty &&
                 context.read<SysUserCheckListBloc>().filterData == '{}') {
               showCustomSnackBar(context, 'No more data!', '');
