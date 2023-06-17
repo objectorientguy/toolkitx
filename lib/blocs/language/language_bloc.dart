@@ -44,7 +44,7 @@ class LanguageBloc extends Bloc<LanguageEvent, LanguageStates> {
       String? syncDate =
           await _customerCache.getLanguageSyncDate(CacheKeys.languageSyncDate);
 
-      if (languageId != event.languageId || languageId == null) {
+      if (languageId != event.languageId || event.isFromProfile == false) {
         emit(LanguageKeysFetching());
         LanguageKeysModel getLanguageKeysModel =
             await _languageRepository.fetchLanguageKeys(event.languageId, '');
@@ -65,7 +65,7 @@ class LanguageBloc extends Bloc<LanguageEvent, LanguageStates> {
                   DatabaseUtil.getText('some_unknown_error_please_try_again')));
         }
       } else {
-        add(CheckNewLanguageKeys(languageId: languageId, syncDate: syncDate!));
+        add(CheckNewLanguageKeys(languageId: languageId!, syncDate: syncDate!));
       }
     } catch (e) {
       emit(LanguageKeysError(message: e.toString()));

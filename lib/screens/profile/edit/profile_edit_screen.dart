@@ -66,6 +66,7 @@ class ProfileEditScreen extends StatelessWidget {
                               TextFieldWidget(
                                   value: state.profileDetailsMap['fname'],
                                   textInputAction: TextInputAction.next,
+                                  maxLength: 50,
                                   hintText: DatabaseUtil.getText('FirstName'),
                                   onTextFieldChanged: (String textField) {
                                     state.profileDetailsMap['fname'] =
@@ -77,6 +78,7 @@ class ProfileEditScreen extends StatelessWidget {
                               const SizedBox(height: tinier),
                               TextFieldWidget(
                                   value: state.profileDetailsMap['lname'],
+                                  maxLength: 50,
                                   textInputAction: TextInputAction.next,
                                   hintText: DatabaseUtil.getText('LastName'),
                                   onTextFieldChanged: (String textField) {
@@ -90,6 +92,7 @@ class ProfileEditScreen extends StatelessWidget {
                               TextFieldWidget(
                                   value: state.profileDetailsMap['contact'],
                                   textInputAction: TextInputAction.done,
+                                  maxLength: 20,
                                   hintText: DatabaseUtil.getText('Contact'),
                                   onTextFieldChanged: (String textField) {
                                     state.profileDetailsMap['contact'] =

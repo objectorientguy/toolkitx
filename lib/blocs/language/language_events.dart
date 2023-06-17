@@ -11,10 +11,11 @@ class FetchLanguageKeys extends LanguageEvent {
   final bool isFromProfile;
   final String syncDate;
 
-  FetchLanguageKeys(
-      {this.syncDate = '',
-      required this.isFromProfile,
-      required this.languageId});
+  FetchLanguageKeys({
+    this.syncDate = '',
+    required this.isFromProfile,
+    required this.languageId,
+  });
 }
 
 class CheckNewLanguageKeys extends LanguageEvent {
