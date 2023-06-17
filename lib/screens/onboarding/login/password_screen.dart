@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:toolkit/screens/onboarding/client_list_screen.dart';
 import 'package:toolkit/screens/onboarding/widgets/password_body.dart';
 import 'package:toolkit/utils/constants/string_constants.dart';
+import 'package:toolkit/utils/database_utils.dart';
 import 'package:toolkit/widgets/custom_snackbar.dart';
 import 'package:toolkit/widgets/progress_bar.dart';
 import '../../../blocs/login/login_bloc.dart';
@@ -49,7 +50,10 @@ class PasswordScreen extends StatelessWidget {
                       }
                       if (state is LoginOtpGenerated) {
                         ProgressBar.dismiss(context);
-                        if (state.generateOtpLoginModel.message != '1') {
+                        if (state.generateOtpLoginModel.message == '1') {
+                          showCustomSnackBar(context,
+                              DatabaseUtil.getText('OTPSentMessage'), '');
+                        } else {
                           showCustomSnackBar(
                               context, StringConstants.kTryAgainInSomeTime, '');
                         }

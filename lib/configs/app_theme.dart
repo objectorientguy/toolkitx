@@ -14,7 +14,8 @@ ThemeData appTheme = ThemeData(
     scaffoldBackgroundColor: AppColor.ghostWhite,
     elevatedButtonTheme: elevatedButtonThemeData,
     floatingActionButtonTheme: floatingActionButtonThemeData,
-    expansionTileTheme: expansionTileThemeData);
+    expansionTileTheme: expansionTileThemeData,
+    iconTheme: iconThemeData);
 
 FloatingActionButtonThemeData floatingActionButtonThemeData =
     const FloatingActionButtonThemeData(
@@ -23,8 +24,6 @@ FloatingActionButtonThemeData floatingActionButtonThemeData =
         foregroundColor: AppColor.white);
 
 ExpansionTileThemeData expansionTileThemeData = ExpansionTileThemeData(
-    tilePadding: const EdgeInsets.only(
-        left: kExpansionTileMargin, right: kExpansionTileMargin),
     collapsedBackgroundColor: AppColor.offWhite,
     shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(kCardRadius)),
