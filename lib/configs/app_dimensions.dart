@@ -37,3 +37,7 @@ const double kCircularIndicatorStrokeWidth = 2;
 const double kExpansionTileMargin = 3;
 const double kCardPadding = 15;
 const double kCircularContainer = 10;
+const double kAlertDialogRadius = 15.0;
+const double kAlertDialogTogether = 65.0;
+const double kDividerIndent = 10.0;
+const double kDividerEndIndent = 15.0;

@@ -5,12 +5,12 @@ import 'package:toolkit/blocs/workforce/comments/workforce_comments_events.dart'
 import 'package:toolkit/blocs/workforce/comments/workforce_comments_states.dart';
 import 'package:toolkit/configs/app_spacing.dart';
 import 'package:toolkit/configs/app_theme.dart';
+import 'package:toolkit/screens/checklist/workforce/widgets/upload_image_section.dart';
 import 'package:toolkit/screens/checklist/workforce/workforce_questions_list_screen.dart';
 import 'package:toolkit/utils/constants/string_constants.dart';
 import 'package:toolkit/widgets/custom_snackbar.dart';
 import 'package:toolkit/widgets/error_section.dart';
 import 'package:toolkit/widgets/generic_app_bar.dart';
-import 'package:toolkit/widgets/secondary_button.dart';
 import '../../../blocs/workforce/getQuestionsList/get_questions_list_bloc.dart';
 import '../../../configs/app_color.dart';
 import '../../../widgets/generic_text_field.dart';
@@ -87,13 +87,7 @@ class AddImageAndCommentScreen extends StatelessWidget {
                               style: Theme.of(context).textTheme.small.copyWith(
                                   color: AppColor.black,
                                   fontWeight: FontWeight.w500)),
-                          Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                SecondaryButton(
-                                    onPressed: () {},
-                                    textValue: StringConstants.kUpload)
-                              ]),
+                          const UploadImageSection(),
                           const SizedBox(height: xxTinySpacing),
                           PrimaryButton(
                               onPressed: () {
