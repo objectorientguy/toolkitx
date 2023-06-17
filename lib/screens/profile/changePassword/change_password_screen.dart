@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:toolkit/blocs/profile/profile_bloc.dart';
-import 'package:toolkit/blocs/profile/profile_events.dart';
-import 'package:toolkit/blocs/profile/profile_states.dart';
+import 'package:toolkit/configs/app_spacing.dart';
 import 'package:toolkit/configs/app_theme.dart';
-import 'package:toolkit/screens/root/root_screen.dart';
-import 'package:toolkit/utils/constants/string_constants.dart';
-import 'package:toolkit/utils/database_utils.dart';
-import 'package:toolkit/widgets/custom_snackbar.dart';
-import 'package:toolkit/widgets/generic_app_bar.dart';
-import 'package:toolkit/widgets/primary_button.dart';
-import 'package:toolkit/widgets/progress_bar.dart';
-import 'package:toolkit/widgets/text_button.dart';
 
-import '../../../configs/app_spacing.dart';
+import '../../../blocs/profile/profile_bloc.dart';
+import '../../../blocs/profile/profile_events.dart';
+import '../../../blocs/profile/profile_states.dart';
+import '../../../utils/constants/string_constants.dart';
+import '../../../utils/database_utils.dart';
+import '../../../widgets/custom_snackbar.dart';
+import '../../../widgets/generic_app_bar.dart';
 import '../../../widgets/generic_text_field.dart';
+import '../../../widgets/primary_button.dart';
+import '../../../widgets/progress_bar.dart';
+import '../../../widgets/text_button.dart';
+import '../../root/root_screen.dart';
 
 class ChangePasswordScreen extends StatelessWidget {
   static const routeName = 'ChangePasswordScreen';
@@ -57,6 +57,13 @@ class ChangePasswordScreen extends StatelessWidget {
                     }
                     if (state is ChangePasswordOtpGenerated) {
                       ProgressBar.dismiss(context);
+                      if (state.generateChangePasswordOtpModel.message == '1') {
+                        showCustomSnackBar(context,
+                            DatabaseUtil.getText('OTPSentMessage'), '');
+                      } else {
+                        showCustomSnackBar(
+                            context, StringConstants.kTryAgainInSomeTime, '');
+                      }
                     }
                     if (state is ChangePasswordOtpError) {
                       ProgressBar.dismiss(context);
@@ -76,6 +83,7 @@ class ChangePasswordScreen extends StatelessWidget {
                                 const SizedBox(height: tinier),
                                 TextFieldWidget(
                                     obscureText: true,
+                                    maxLength: 30,
                                     textInputAction: TextInputAction.next,
                                     hintText: StringConstants.kOldPassword,
                                     onTextFieldChanged: (String textField) {
@@ -107,6 +115,7 @@ class ChangePasswordScreen extends StatelessWidget {
                                     obscureText: true,
                                     textInputAction: TextInputAction.next,
                                     hintText: StringConstants.kEnterOtp,
+                                    maxLength: 6,
                                     onTextFieldChanged: (String textField) {
                                       changePasswordMap['oldPass_opt'] =
                                           textField;
@@ -124,6 +133,7 @@ class ChangePasswordScreen extends StatelessWidget {
                   obscureText: true,
                   textInputAction: TextInputAction.next,
                   hintText: StringConstants.kEnterNewPassword,
+                  maxLength: 30,
                   onTextFieldChanged: (String textField) {
                     changePasswordMap['newPassword'] = textField;
                   }),
@@ -133,6 +143,7 @@ class ChangePasswordScreen extends StatelessWidget {
               const SizedBox(height: tinier),
               TextFieldWidget(
                   obscureText: true,
+                  maxLength: 30,
                   textInputAction: TextInputAction.next,
                   hintText: StringConstants.kConfirmPassword,
                   onTextFieldChanged: (String textField) {

@@ -6,6 +6,7 @@ import 'package:toolkit/utils/database_utils.dart';
 import '../../../blocs/login/login_bloc.dart';
 import '../../../blocs/login/login_events.dart';
 import '../../../configs/app_color.dart';
+import '../../../configs/app_dimensions.dart';
 import '../../../data/enums/user_type_emun.dart';
 
 class UserTypeExpansionTile extends StatelessWidget {
@@ -33,7 +34,9 @@ class UserTypeExpansionTile extends StatelessWidget {
                   itemCount: UserType.values.length,
                   itemBuilder: (BuildContext context, int index) {
                     return RadioListTile(
-                        contentPadding: EdgeInsets.zero,
+                        contentPadding: const EdgeInsets.only(
+                            left: kRadioListTilePaddingLeft,
+                            right: kRadioListTilePaddingRight),
                         activeColor: AppColor.deepBlue,
                         title: Text(
                             DatabaseUtil.getText(

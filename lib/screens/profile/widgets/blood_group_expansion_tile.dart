@@ -5,6 +5,7 @@ import 'package:toolkit/blocs/profile/profile_events.dart';
 import 'package:toolkit/configs/app_theme.dart';
 
 import '../../../configs/app_color.dart';
+import '../../../configs/app_dimensions.dart';
 import '../../../data/enums/blood_group_enum.dart';
 import '../../../utils/constants/string_constants.dart';
 
@@ -35,7 +36,9 @@ class BloodGroupExpansionTile extends StatelessWidget {
                   itemCount: BloodGroup.values.length,
                   itemBuilder: (BuildContext context, int index) {
                     return RadioListTile(
-                        contentPadding: EdgeInsets.zero,
+                        contentPadding: const EdgeInsets.only(
+                            left: kRadioListTilePaddingLeft,
+                            right: kRadioListTilePaddingRight),
                         activeColor: AppColor.deepBlue,
                         title: Text(
                             BloodGroup.values.elementAt(index).bloodGroup,

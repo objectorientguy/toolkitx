@@ -43,6 +43,7 @@ class TextFieldWidget extends StatelessWidget {
         cursorColor: AppColor.black,
         obscureText: obscureText,
         decoration: InputDecoration(
+            counterText: '',
             hintStyle: Theme.of(context)
                 .textTheme
                 .xSmall
