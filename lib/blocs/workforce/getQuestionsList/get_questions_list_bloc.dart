@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:developer';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:toolkit/repositories/workforce/workforce_repository.dart';
@@ -29,7 +28,6 @@ class WorkForceQuestionsListBloc
     answerList.clear();
     try {
       allDataForChecklistMap = event.checklistData;
-      log("schedule iddd=====>${event.checklistData["scheduleId"]}");
       String hashCode = (await _customerCache.getHashCode(CacheKeys.hashcode))!;
       String userId = (await _customerCache.getUserId(CacheKeys.userId))!;
       String answerText = '';
@@ -60,8 +58,6 @@ class WorkForceQuestionsListBloc
                 getQuestionListModel.data!.questionlist![i].ismandatory
           });
         }
-        log("answer text 1=======>$answerText");
-        log("answer text 2=======>$answerText");
         emit(QuestionsListFetched(
             getQuestionListModel: getQuestionListModel,
             answerList: answerList,

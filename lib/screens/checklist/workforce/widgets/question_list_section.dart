@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:toolkit/configs/app_dimensions.dart';
@@ -35,7 +34,6 @@ class QuestionsListSection extends StatelessWidget {
             shrinkWrap: true,
             itemCount: state.getQuestionListModel.data!.questionlist!.length,
             itemBuilder: (context, index) {
-              log("answer listtttt=====>${state.answerList}");
               return CustomCard(
                   child: Padding(
                 padding: const EdgeInsets.all(kCardPadding),

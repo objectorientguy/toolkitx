@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:developer';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:toolkit/blocs/workforce/workforceList/workforce_list_events.dart';
@@ -25,8 +24,6 @@ class WorkForceListBloc extends Bloc<FetchWorkForceList, WorkForceListStates> {
     try {
       String hashCode = (await _customerCache.getHashCode(CacheKeys.hashcode))!;
       String userId = (await _customerCache.getUserId(CacheKeys.userId))!;
-      log("user id====>$userId");
-      log("hash code id====>$hashCode");
       WorkforceGetCheckListModel workforceGetCheckListModel =
           await _workForceRepository.fetchWorkforceList(userId, hashCode);
       emit(ListFetched(workforceGetCheckListModel: workforceGetCheckListModel));

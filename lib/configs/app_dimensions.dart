@@ -8,6 +8,7 @@ const double kCircleAvatarRadius = 58.0;
 const double kCardElevation = 1.0;
 const double kImageHeight = 20.0;
 const double kImageWidth = 20.0;
+const double kProgressIndicatorTogether = 20.0;
 const double kImageMediumHeight = 15.0;
 const double kImageMediumWidth = 15.0;
 const double kBodyMargin = 18.0;

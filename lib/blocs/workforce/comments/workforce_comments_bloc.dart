@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:developer';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:toolkit/blocs/workforce/comments/workforce_comments_events.dart';
@@ -27,7 +26,6 @@ class CommentBloc extends Bloc<CommentsEvent, CommentStates> {
       FetchComment event, Emitter<CommentStates> emit) async {
     emit(FetchingComment());
     try {
-      log("comment mapp=========>$allDataForChecklistMap");
       allDataForChecklistMap["questionResponseId"] = event.questionResponseId;
       String hashCode = (await _customerCache.getHashCode(CacheKeys.hashcode))!;
       GetQuestionCommentsModel getQuestionCommentsModel =
@@ -53,14 +51,13 @@ class CommentBloc extends Bloc<CommentsEvent, CommentStates> {
           "id": allDataForChecklistMap["userId"],
           "queresponseid": allDataForChecklistMap["questionResponseId"],
           "comments": event.saveQuestionCommentMap["comments"],
-          "filenames": '',
+          "filenames": event.saveQuestionCommentMap["filenames"],
           "hashcode": hashCode
         };
         SaveQuestionCommentsModel saveQuestionCommentsModel =
             await _workForceRepository.saveComment(saveQuestionCommentMap);
         emit(
             CommentSaved(saveQuestionCommentsModel: saveQuestionCommentsModel));
-        log("mapppp======>$saveQuestionCommentMap");
       }
     } catch (e) {
       emit(CommentNotSaved(message: e.toString()));

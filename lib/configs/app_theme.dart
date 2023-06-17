@@ -10,6 +10,7 @@ ThemeData appTheme = ThemeData(
     cardTheme: appCardTheme,
     bottomAppBarTheme: bottomAppBarTheme,
     bottomNavigationBarTheme: bottomNavigationBarTheme,
+    outlinedButtonTheme: outlinedButtonThemeData,
     textButtonTheme: textButtonTheme,
     scaffoldBackgroundColor: AppColor.ghostWhite,
     elevatedButtonTheme: elevatedButtonThemeData,
@@ -22,7 +23,11 @@ FloatingActionButtonThemeData floatingActionButtonThemeData =
         backgroundColor: AppColor.deepBlue,
         iconSize: kFloatingButtonIconSize,
         foregroundColor: AppColor.white);
-
+OutlinedButtonThemeData outlinedButtonThemeData = OutlinedButtonThemeData(
+    style: OutlinedButton.styleFrom(
+        minimumSize: const Size(double.maxFinite, 40.0),
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(kCardRadius))));
 ExpansionTileThemeData expansionTileThemeData = ExpansionTileThemeData(
     collapsedBackgroundColor: AppColor.offWhite,
     shape: RoundedRectangleBorder(

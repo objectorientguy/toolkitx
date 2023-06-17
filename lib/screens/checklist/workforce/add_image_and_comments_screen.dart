@@ -87,7 +87,15 @@ class AddImageAndCommentScreen extends StatelessWidget {
                               style: Theme.of(context).textTheme.small.copyWith(
                                   color: AppColor.black,
                                   fontWeight: FontWeight.w500)),
-                          const UploadImageSection(),
+                          UploadImageSection(
+                            onUploadImageResponse: (List uploadImageList) {
+                              saveQuestionCommentsMap["filenames"] =
+                                  uploadImageList
+                                      .toString()
+                                      .replaceAll("[", "")
+                                      .replaceAll("]", "");
+                            },
+                          ),
                           const SizedBox(height: xxTinySpacing),
                           PrimaryButton(
                               onPressed: () {

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:toolkit/blocs/pickAndUploadImage/pick_and_upload_image_bloc.dart';
+import 'package:toolkit/blocs/pickAndUploadImage/pick_and_upload_image_states.dart';
 import 'package:toolkit/configs/app_spacing.dart';
 import 'package:toolkit/configs/app_theme.dart';
 import '../../../configs/app_color.dart';
 import '../../../configs/app_dimensions.dart';
 import '../../../utils/constants/string_constants.dart';
-import '../blocs/pickImage/pick_image_bloc.dart';
-import '../blocs/pickImage/pick_image_states.dart';
 
 class UploadAlertDialog extends StatelessWidget {
   final void Function() onCamera;
@@ -18,7 +18,7 @@ class UploadAlertDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<PickImageBloc, PickImageStates>(
+    return BlocBuilder<PickAndUploadImageBloc, PickAndUploadImageStates>(
         builder: (context, state) {
       return AlertDialog(
           shape: RoundedRectangleBorder(
