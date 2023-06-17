@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:toolkit/configs/app_theme.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:url_launcher/url_launcher_string.dart';
-
 import '../../../configs/app_color.dart';
 import '../../../configs/app_dimensions.dart';
 import '../../../configs/app_spacing.dart';
 import '../../../utils/constants/string_constants.dart';
 import '../../../utils/profile_util.dart';
+import '../../../widgets/in_app_web_view.dart';
 import '../../onboarding/language/select_language_screen.dart';
 import '../../onboarding/selectDateFormat/select_date_format_screen.dart';
 import '../../onboarding/selectTimeZone/select_time_zone_screen.dart';
@@ -37,12 +36,12 @@ class ProfileOptions extends StatelessWidget {
         await launchUrl(Uri.parse("mailto:${StringConstants.kToolkitXEmail}"));
         break;
       case 5:
-        await launchUrlString(StringConstants.kPrivacyPolicyUrl,
-            mode: LaunchMode.externalApplication);
+        Navigator.pushNamed(context, InAppWebViewScreen.routeName,
+            arguments: StringConstants.kPrivacyPolicyUrl);
         break;
       case 6:
-        launchUrlString(StringConstants.kMaturityModelUrl,
-            mode: LaunchMode.externalApplication);
+        Navigator.pushNamed(context, InAppWebViewScreen.routeName,
+            arguments: StringConstants.kMaturityModelUrl);
         break;
     }
   }
