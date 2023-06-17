@@ -81,8 +81,9 @@ class MyApp extends StatelessWidget {
           BlocProvider(lazy: false, create: (context) => ScheduleDatesBloc()),
           BlocProvider(
               lazy: false, create: (context) => ScheduleDatesResponseBloc()),
-          BlocProvider(lazy: false, create: (context) => UserRoleBloc()),
-          BlocProvider(lazy: false, create: (context) => ApproveBloc()),
+          BlocProvider(lazy: false, create: (context) => CheckListRoleBloc()),
+          BlocProvider(
+              lazy: false, create: (context) => CheckListApproveBloc()),
           BlocProvider(lazy: false, create: (context) => RejectBloc()),
           BlocProvider(
               lazy: false, create: (context) => ThirdPartyApproveBloc()),

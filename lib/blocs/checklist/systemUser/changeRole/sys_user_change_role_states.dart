@@ -2,19 +2,19 @@ import 'package:equatable/equatable.dart';
 
 import '../../../../data/models/checklist/systemUser/sys_user_change_role_model.dart';
 
-abstract class UserRoleStates extends Equatable {}
+abstract class CheckListRoleStates extends Equatable {}
 
-class UserRoleInitial extends UserRoleStates {
+class RoleInitial extends CheckListRoleStates {
   @override
   List<Object?> get props => throw UnimplementedError();
 }
 
-class FetchingRoles extends UserRoleStates {
+class FetchingRoles extends CheckListRoleStates {
   @override
   List<Object?> get props => throw UnimplementedError();
 }
 
-class RolesFetched extends UserRoleStates {
+class RolesFetched extends CheckListRoleStates {
   final CheckListRolesModel checkListRolesModel;
   final String roleId;
   final String roleName;
@@ -28,12 +28,12 @@ class RolesFetched extends UserRoleStates {
   List<Object?> get props => [checkListRolesModel, roleId, roleName];
 }
 
-class RolesNotFetched extends UserRoleStates {
+class RolesNotFetched extends CheckListRoleStates {
   @override
   List<Object?> get props => throw UnimplementedError();
 }
 
-class RoleChanged extends UserRoleStates {
+class RoleChanged extends CheckListRoleStates {
   @override
   List<Object?> get props => throw UnimplementedError();
 }

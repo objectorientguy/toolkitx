@@ -101,7 +101,7 @@ class ScheduleDatesSection extends StatelessWidget {
                                             .data![index]
                                             .id,
                                         role: context
-                                            .read<UserRoleBloc>()
+                                            .read<CheckListRoleBloc>()
                                             .roleId));
                               }));
                     },

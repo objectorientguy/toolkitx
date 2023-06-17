@@ -8,14 +8,14 @@ import '../../../../data/models/checklist/systemUser/sys_user_approve_model.dart
 import '../../../../di/app_module.dart';
 import '../../../../repositories/checklist/systemUser/sys_user_checklist_repository.dart';
 
-class ApproveBloc extends Bloc<ApproveEvent, ApproveStates> {
+class CheckListApproveBloc extends Bloc<ApproveCheckList, ApproveStates> {
   final SysUserCheckListRepository _sysUserCheckListRepository =
       getIt<SysUserCheckListRepository>();
   final CustomerCache _customerCache = getIt<CustomerCache>();
 
   ApproveStates get initialState => ApproveCheckListInitial();
 
-  ApproveBloc() : super(ApproveCheckListInitial()) {
+  CheckListApproveBloc() : super(ApproveCheckListInitial()) {
     on<ApproveCheckList>(_checklistApprove);
   }
 

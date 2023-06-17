@@ -8,22 +8,22 @@ import '../../../../data/models/checklist/systemUser/sys_user_change_role_model.
 import '../../../../di/app_module.dart';
 import '../../../../repositories/checklist/systemUser/sys_user_checklist_repository.dart';
 
-class UserRoleBloc extends Bloc<UserRole, UserRoleStates> {
+class CheckListRoleBloc extends Bloc<CheckListRole, CheckListRoleStates> {
   final SysUserCheckListRepository _sysUserCheckListRepository =
       getIt<SysUserCheckListRepository>();
   final CustomerCache _customerCache = getIt<CustomerCache>();
   String roleId = '';
   String roleName = '';
 
-  UserRoleStates get initialState => UserRoleInitial();
+  CheckListRoleStates get initialState => RoleInitial();
 
-  UserRoleBloc() : super(UserRoleInitial()) {
-    on<FetchRoles>(_fetchRoles);
-    on<ChangeRole>(_changeRole);
+  CheckListRoleBloc() : super(RoleInitial()) {
+    on<FetchRoles>(_checkListFetchRoles);
+    on<ChangeRole>(_checkListChangeRole);
   }
 
-  FutureOr<void> _fetchRoles(
-      FetchRoles event, Emitter<UserRoleStates> emit) async {
+  FutureOr<void> _checkListFetchRoles(
+      FetchRoles event, Emitter<CheckListRoleStates> emit) async {
     emit(FetchingRoles());
     try {
       String hashCode = (await _customerCache.getHashCode(CacheKeys.hashcode))!;
@@ -44,7 +44,7 @@ class UserRoleBloc extends Bloc<UserRole, UserRoleStates> {
     }
   }
 
-  _changeRole(ChangeRole event, Emitter<UserRoleStates> emit) {
+  _checkListChangeRole(ChangeRole event, Emitter<CheckListRoleStates> emit) {
     roleId = event.roleId;
     roleName = event.roleName;
     emit(RolesFetched(

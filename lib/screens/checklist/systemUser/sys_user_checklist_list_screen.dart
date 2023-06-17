@@ -30,7 +30,7 @@ class SystemUserCheckListScreen extends StatelessWidget {
               right: leftRightMargin,
               top: xxTinierSpacing),
           child: Column(children: [
-            BlocListener<UserRoleBloc, UserRoleStates>(
+            BlocListener<CheckListRoleBloc, CheckListRoleStates>(
               listener: (context, state) {
                 if (state is FetchingRoles) {
                   ProgressBar.show(context);
@@ -44,7 +44,9 @@ class SystemUserCheckListScreen extends StatelessWidget {
                     Navigator.pushNamed(context, FiltersScreen.routeName);
                   },
                   secondaryOnPress: () {
-                    context.read<UserRoleBloc>().add(FetchRoles(roleName: ''));
+                    context
+                        .read<CheckListRoleBloc>()
+                        .add(FetchRoles(roleName: ''));
                   },
                   clearVisible: false,
                   isEnabled: true,

@@ -25,7 +25,7 @@ class ApprovePopUp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<ApproveBloc, ApproveStates>(
+    return BlocListener<CheckListApproveBloc, ApproveStates>(
         listener: (BuildContext context, state) {
           if (state is ApprovingCheckList) {
             ProgressBar.show(context);
@@ -75,7 +75,7 @@ class ApprovePopUp extends StatelessWidget {
                   textValue: StringConstants.kRemove),
               CustomTextButton(
                   onPressed: () {
-                    context.read<ApproveBloc>().add(ApproveCheckList(
+                    context.read<CheckListApproveBloc>().add(ApproveCheckList(
                         approveMap: approveMap,
                         responseIdList: responseIdList));
                   },

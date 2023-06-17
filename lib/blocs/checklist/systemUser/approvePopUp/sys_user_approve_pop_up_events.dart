@@ -1,6 +1,4 @@
-abstract class ApproveEvent {}
-
-class ApproveCheckList extends ApproveEvent {
+class ApproveCheckList {
   final Map approveMap;
   final List responseIdList;
 

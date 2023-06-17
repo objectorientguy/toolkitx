@@ -29,7 +29,7 @@ class ChangeRoleScreen extends StatelessWidget {
                 left: leftRightMargin,
                 right: leftRightMargin,
                 top: topBottomPadding),
-            child: BlocConsumer<UserRoleBloc, UserRoleStates>(
+            child: BlocConsumer<CheckListRoleBloc, CheckListRoleStates>(
                 buildWhen: (previousState, currentState) =>
                     currentState is RolesFetched,
                 listenWhen: (previousState, currentState) =>
@@ -70,7 +70,7 @@ class ChangeRoleScreen extends StatelessWidget {
                                           value = state.checkListRolesModel
                                               .data![index].groupName;
                                           context
-                                              .read<UserRoleBloc>()
+                                              .read<CheckListRoleBloc>()
                                               .add(ChangeRole(
                                                 roleId: state
                                                     .checkListRolesModel
@@ -98,7 +98,7 @@ class ChangeRoleScreen extends StatelessWidget {
                     return GenericReloadButton(
                         onPressed: () {
                           context
-                              .read<UserRoleBloc>()
+                              .read<CheckListRoleBloc>()
                               .add(FetchRoles(roleName: ''));
                         },
                         textValue: StringConstants.kReload);
