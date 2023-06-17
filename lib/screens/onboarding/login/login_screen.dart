@@ -53,6 +53,7 @@ class LoginScreen extends StatelessWidget {
                                     TextFieldWidget(
                                         textInputType:
                                             TextInputType.emailAddress,
+                                        maxLength: 100,
                                         onTextFieldChanged: (String textField) {
                                           emailMap['email'] = textField;
                                         })
