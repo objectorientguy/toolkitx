@@ -37,7 +37,7 @@ class Data {
   final List<Tab3> tab3;
   final List<Tab4> tab4;
   final List<Tab5> tab5;
-  final List<dynamic> tab6;
+  final List<Tab6> tab6;
 
   Data({
     required this.tab1,
@@ -49,12 +49,12 @@ class Data {
   });
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
-        tab1: Tab1.fromJson(json["tab1"]),
+    tab1: Tab1.fromJson(json["tab1"]),
         tab2: Tab2.fromJson(json["tab2"]),
         tab3: List<Tab3>.from(json["tab3"].map((x) => Tab3.fromJson(x))),
         tab4: List<Tab4>.from(json["tab4"].map((x) => Tab4.fromJson(x))),
         tab5: List<Tab5>.from(json["tab5"].map((x) => Tab5.fromJson(x))),
-        tab6: List<dynamic>.from(json["tab6"].map((x) => x)),
+        tab6: List<Tab6>.from(json["tab6"].map((x) => Tab6.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
@@ -354,5 +354,33 @@ class Tab5 {
         "name": name,
         "type": type,
         "files": files,
+      };
+}
+
+class Tab6 {
+  final String createdAt;
+  final String action;
+  final String createdBy;
+  final String role;
+
+  Tab6({
+    required this.createdAt,
+    required this.action,
+    required this.createdBy,
+    required this.role,
+  });
+
+  factory Tab6.fromJson(Map<String, dynamic> json) => Tab6(
+        createdAt: json["created_at"] ?? '',
+        action: json["action"] ?? '',
+        createdBy: json["created_by"] ?? '',
+        role: json["role"] ?? '',
+      );
+
+  Map<String, dynamic> toJson() => {
+        "created_at": createdAt,
+        "action": action,
+        "created_by": createdBy,
+        "role": role,
       };
 }

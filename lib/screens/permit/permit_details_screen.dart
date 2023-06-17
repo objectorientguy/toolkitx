@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:toolkit/configs/app_color.dart';
 import 'package:toolkit/configs/app_dimensions.dart';
+import 'package:toolkit/screens/permit/widgets/permit_comments.dart';
 import 'package:toolkit/utils/permit_util.dart';
 import 'package:toolkit/widgets/custom_tabbar_view.dart';
 import 'package:toolkit/widgets/generic_app_bar.dart';
@@ -29,9 +30,7 @@ class PermitDetailsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     context.read<PermitBloc>().add(const GetPermitDetails());
     return Scaffold(
-      appBar: const GenericAppBar(
-        actions: [PTWActionMenu()],
-      ),
+      appBar: const GenericAppBar(actions: [PTWActionMenu()]),
       body: BlocConsumer<PermitBloc, PermitStates>(listener: (context, state) {
         if (state is PDFGenerated) {
           context.read<PermitBloc>().add(const GetPermitDetails());
@@ -67,7 +66,7 @@ class PermitDetailsScreen extends StatelessWidget {
                             StatusTagModel(
                                 title:
                                     state.permitDetailsModel.data.tab1.status,
-                                bgColor: AppColor.deepBlue),
+                                bgColor: AppColor.deepBlue)
                           ]),
                         ],
                       ),
@@ -100,7 +99,8 @@ class PermitDetailsScreen extends StatelessWidget {
                         permitDetailsModel: state.permitDetailsModel),
                     PermitAttachments(
                         permitDetailsModel: state.permitDetailsModel),
-                    const SizedBox(),
+                    PermitComments(
+                        permitDetailsModel: state.permitDetailsModel),
                   ],
                 )
               ],
