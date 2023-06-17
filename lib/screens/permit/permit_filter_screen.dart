@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:toolkit/configs/app_color.dart';
+import 'package:toolkit/configs/app_dimensions.dart';
 import 'package:toolkit/configs/app_spacing.dart';
 import 'package:toolkit/configs/app_theme.dart';
 import 'package:toolkit/utils/constants/string_constants.dart';
@@ -119,6 +120,88 @@ class PermitFilterScreen extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: xxxSmallerSpacing),
+              Text('Status',
+                  style: Theme.of(context)
+                      .textTheme
+                      .xSmall
+                      .copyWith(fontWeight: FontWeight.w600)),
+              const SizedBox(height: xxxTinierSpacing),
+              Wrap(
+                spacing: 8.0,
+                children: [
+                  FilterChip(
+                    backgroundColor: AppColor.lightestGrey,
+                    label: Text('Approved',
+                        style: Theme.of(context).textTheme.xxSmall.copyWith(
+                            color: AppColor.black,
+                            fontWeight: FontWeight.normal)),
+                    onSelected: (bool selected) {
+                      // Handle chip selection
+                    },
+                  ),
+                  FilterChip(
+                    label: Text('Open',
+                        style: Theme.of(context).textTheme.xxSmall.copyWith(
+                            color: AppColor.black,
+                            fontWeight: FontWeight.normal)),
+                    onSelected: (bool selected) {
+                      // Handle chip selection
+                    },
+                  ),
+                  FilterChip(
+                    label: Text('On Hold',
+                        style: Theme.of(context).textTheme.xxSmall.copyWith(
+                            color: AppColor.black,
+                            fontWeight: FontWeight.normal)),
+                    onSelected: (bool selected) {
+                      // Handle chip selection
+                    },
+                  ),
+                ],
+              ),
+              const SizedBox(height: xxTinySpacing),
+              Text('Emergency',
+                  style: Theme.of(context)
+                      .textTheme
+                      .xSmall
+                      .copyWith(fontWeight: FontWeight.w600)),
+              const SizedBox(height: xxxTinierSpacing),
+              Wrap(
+                spacing: 8.0,
+                children: [
+                  FilterChip(
+                    backgroundColor: AppColor.lightestGrey,
+                    label: Text('Yes',
+                        style: Theme.of(context).textTheme.xxSmall.copyWith(
+                            color: AppColor.black,
+                            fontWeight: FontWeight.normal)),
+                    onSelected: (bool selected) {
+                      // Handle chip selection
+                    },
+                  ),
+                  FilterChip(
+                    label: Text('No',
+                        style: Theme.of(context).textTheme.xxSmall.copyWith(
+                            color: AppColor.black,
+                            fontWeight: FontWeight.normal)),
+                    onSelected: (bool selected) {
+                      // Handle chip selection
+                    },
+                  ),
+                ],
+              ),
+              const SizedBox(height: xxTinySpacing),
+              ListTile(
+                contentPadding: EdgeInsets.zero,
+                title: Text('Location',
+                    style: Theme.of(context)
+                        .textTheme
+                        .xSmall
+                        .copyWith(fontWeight: FontWeight.w600)),
+                trailing:
+                    const Icon(Icons.navigate_next_rounded, size: kIconSize),
+              ),
+              const SizedBox(height: xxTinySpacing),
               PrimaryButton(onPressed: () {}, textValue: StringConstants.kApply)
             ],
           ),
