@@ -41,6 +41,7 @@ class PasswordBody extends StatelessWidget {
                     const SizedBox(height: xxxTinierSpacing),
                     TextFieldWidget(
                         obscureText: true,
+                        maxLength: 30,
                         onTextFieldChanged: (String textField) {
                           loginMap['password'] = textField;
                         }),

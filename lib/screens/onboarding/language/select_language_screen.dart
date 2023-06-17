@@ -71,14 +71,8 @@ class SelectLanguageScreen extends StatelessWidget {
                     ProgressBar.show(context);
                   }
                   if (state is NewLanguageKeysUnavailable) {
-                    if (isFromProfile == true) {
-                      ProgressBar.dismiss(context);
-                      showCustomSnackBar(context, 'No new keys available', '');
-                    } else {
-                      Navigator.pushNamed(
-                          context, SelectTimeZoneScreen.routeName,
-                          arguments: false);
-                    }
+                    ProgressBar.dismiss(context);
+                    showCustomSnackBar(context, 'No new keys available', '');
                   }
                   if (state is NewKeysLanguageAvailable) {
                     ProgressBar.dismiss(context);

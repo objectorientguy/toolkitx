@@ -37,12 +37,12 @@ class ProfileOptions extends StatelessWidget {
         await launchUrl(Uri.parse("mailto:${StringConstants.kToolkitXEmail}"));
         break;
       case 5:
-        launchUrlString(StringConstants.kPrivacyPolicyUrl,
-            mode: LaunchMode.inAppWebView);
+        await launchUrlString(StringConstants.kPrivacyPolicyUrl,
+            mode: LaunchMode.externalApplication);
         break;
       case 6:
         launchUrlString(StringConstants.kMaturityModelUrl,
-            mode: LaunchMode.inAppWebView);
+            mode: LaunchMode.externalApplication);
         break;
     }
   }
