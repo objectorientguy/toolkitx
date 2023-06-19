@@ -4,7 +4,6 @@ import 'package:url_launcher/url_launcher_string.dart';
 import '../../../../blocs/checklist/systemUser/pdf/sys_user_pdf_bloc.dart';
 import '../../../../blocs/checklist/systemUser/pdf/sys_user_pdf_events.dart';
 import '../../../../blocs/checklist/systemUser/pdf/sys_user_pdf_states.dart';
-import '../../../../configs/app_dimensions.dart';
 import '../../../../utils/constants/api_constants.dart';
 import '../../../../utils/constants/string_constants.dart';
 import '../../../../widgets/custom_snackbar.dart';
@@ -28,22 +27,25 @@ class FetchPdfSection extends StatelessWidget {
             mode: LaunchMode.externalApplication,
           );
         } else if (state is FetchPdfError) {
+          ProgressBar.dismiss(context);
           showCustomSnackBar(context, StringConstants.kSomethingWentWrong,
               StringConstants.kOk);
         }
       },
       child: Visibility(
           visible: responseId != "",
-          child: IconButton(
-              padding: EdgeInsets.zero,
-              constraints: const BoxConstraints(),
-              iconSize: kIconSize,
-              onPressed: () {
-                context
-                    .read<FetchPdfBloc>()
-                    .add(FetchPdf(responseId: responseId));
-              },
-              icon: const Icon(Icons.attach_file_outlined))),
+          child: TextButton(
+            style: TextButton.styleFrom(
+                padding: EdgeInsets.zero,
+                alignment: Alignment.topRight,
+                shadowColor: Colors.transparent),
+            onPressed: () {
+              context
+                  .read<FetchPdfBloc>()
+                  .add(FetchPdf(responseId: responseId));
+            },
+            child: const Text('Download Pdf'),
+          )),
     );
   }
 }

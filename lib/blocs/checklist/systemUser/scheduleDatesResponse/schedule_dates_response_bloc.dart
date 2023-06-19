@@ -4,6 +4,7 @@ import 'package:toolkit/blocs/checklist/systemUser/scheduleDatesResponse/schedul
 import 'package:toolkit/blocs/checklist/systemUser/scheduleDatesResponse/schedule_dates_response_states.dart';
 import '../../../../data/cache/cache_keys.dart';
 import '../../../../data/cache/customer_cache.dart';
+import '../../../../data/models/checklist/systemUser/sys_user_schedule_by_dates_model.dart';
 import '../../../../data/models/checklist/systemUser/sys_user_workforce_list_model.dart';
 import '../../../../di/app_module.dart';
 import '../../../../repositories/checklist/systemUser/sys_user_checklist_repository.dart';
@@ -17,6 +18,7 @@ class ScheduleDatesResponseBloc
   String responseId = '';
   String scheduleId = '';
   String responseCount = '';
+  GetChecklistDetailsData? getChecklistDetailsData;
 
   ScheduleDatesResponseStates get initialState =>
       ScheduleDatesResponseInitial();
@@ -31,6 +33,7 @@ class ScheduleDatesResponseBloc
   _checkResponse(CheckScheduleDatesResponse event,
       Emitter<ScheduleDatesResponseStates> emit) {
     scheduleId = event.scheduleId;
+    getChecklistDetailsData = event.getChecklistDetailsData;
     if (event.getChecklistDetailsData.responsecount != 0) {
       add(WorkForceListFetch(
           responseIds: const [],
