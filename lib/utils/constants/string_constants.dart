@@ -18,6 +18,7 @@ abstract class StringConstants {
   static const String kType = 'Type';
   static const String kGenerateOtp = 'GENERATE OTP';
   static const String kAddMore = 'Add More';
+  static const String kDelete = 'Delete';
   static const String kAddImages = 'Add Images/Comment';
   static const String kAddTodo = 'Add ToDo';
   static const String kDeleteImage =

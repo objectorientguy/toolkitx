@@ -23,7 +23,6 @@ class UploadImageSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List uploadImageList = [];
-    bool isAttached = false;
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
       BlocConsumer<PickAndUploadImageBloc, PickAndUploadImageStates>(
           listener: (context, state) {
@@ -44,7 +43,6 @@ class UploadImageSection extends StatelessWidget {
         } else if (state is ImagePickerLoaded) {
           uploadImageList.add(state.uploadPictureModel.data);
           onUploadImageResponse(uploadImageList);
-          isAttached = state.isImageAttached;
           return Visibility(
               visible: state.isImageAttached == true,
               child: UploadPictureContainer(
@@ -83,9 +81,7 @@ class UploadImageSection extends StatelessWidget {
                   });
                 });
           },
-          textValue: (isAttached == true)
-              ? StringConstants.kAddMore
-              : StringConstants.kUpload)
+          textValue: StringConstants.kUpload)
     ]);
   }
 }
