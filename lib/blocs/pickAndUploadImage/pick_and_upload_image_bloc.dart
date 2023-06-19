@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:toolkit/utils/constants/string_constants.dart';
 import '../../data/cache/cache_keys.dart';
 import '../../data/cache/customer_cache.dart';
 import '../../data/models/uploadImage/upload_image_model.dart';
@@ -113,7 +114,7 @@ class PickAndUploadImageBloc
         }
       }
     } catch (e) {
-      emit(const ImagePickerError('Failed to pick image'));
+      emit(const ImagePickerError(StringConstants.kErrorPickImage));
     }
   }
 
@@ -130,7 +131,7 @@ class PickAndUploadImageBloc
           uploadPictureModel: uploadPictureModel));
     } catch (e) {
       emit(const ImageNotUploaded(
-          imageNotUploaded: 'Cannot upload image! Please try again!'));
+          imageNotUploaded: StringConstants.kErrorImageUpload));
     }
   }
 }
