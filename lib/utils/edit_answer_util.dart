@@ -87,7 +87,7 @@ class EditAnswerUtil {
               answerList[index]["answer"] = textValue;
             });
       case 8:
-        return const TextField();
+        return createDataTable(answerModelList, index);
       case 10:
         return DatePickerTextField(
           hintText: StringConstants.kSelectDate,
@@ -110,4 +110,70 @@ class EditAnswerUtil {
         return Container();
     }
   }
+}
+
+createDataTable(answerModelList, index) {
+  final List<dynamic> columnList = answerModelList[index].matrixcols!;
+  String val = '';
+  for (int i = 0; i < columnList.length; i++) {
+    val = i.toString();
+    DataTable(
+      columns: [DataColumn(label: Text(i.toString()))],
+      rows: List<DataRow>.generate(answerModelList[index].matrixrowcount,
+          (index) {
+        if (index < columnList.length) {
+          return DataRow(
+            cells: columnList.map((value) {
+              return DataCell(
+                  TextFieldWidget(onTextFieldChanged: (String textField) {}));
+            }).toList(),
+          );
+        } else {
+          return DataRow(
+            cells: columnList.map((value) {
+              return DataCell(
+                  TextFieldWidget(onTextFieldChanged: (String textField) {}));
+            }).toList(),
+          );
+        }
+      }),
+    );
+  }
+  // return DataTable(
+  //     columns: [DataColumn(label: Text(val))],
+  //     rows: List<DataRow>.generate(answerModelList[index].matrixrowcount,
+  //         (index) {
+  //       if (index < columnList.length) {
+  //         return DataRow(
+  //           cells: columnList.map((value) {
+  //             return DataCell(
+  //                 TextFieldWidget(onTextFieldChanged: (String textField) {}));
+  //           }).toList(),
+  //         );
+  //       } else {
+  //         return DataRow(
+  //           cells: columnList.map((value) {
+  //             return DataCell(
+  //                 TextFieldWidget(onTextFieldChanged: (String textField) {}));
+  //           }).toList(),
+  //         );
+  //       }
+  //     }));
+}
+
+List<DataColumn> _buildColumns(
+    List<dynamic> columnList, answerModelList, index) {
+  return columnList.map((value) {
+    return DataColumn(label: Text(value));
+  }).toList();
+}
+
+List<DataRow> _buildRows(List<dynamic> columnList, answerModelList, index) {
+  return columnList.map((value) {
+    return DataRow(
+        cells: columnList.map((value) {
+      return DataCell(
+          TextFieldWidget(onTextFieldChanged: (String textField) {}));
+    }).toList());
+  }).toList();
 }
