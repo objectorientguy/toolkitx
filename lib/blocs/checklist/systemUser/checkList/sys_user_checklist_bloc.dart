@@ -28,6 +28,18 @@ class SysUserCheckListBloc
     on<FetchCategory>(_fetchCategory);
     on<ChangeCategory>(_changeCategory);
     on<FilterChecklist>(_filterChecklist);
+    on<ClearSystemUserCheckListFilter>(_clearFilter);
+  }
+
+  _filterChecklist(
+      FilterChecklist event, Emitter<SysUserCheckListStates> emit) {
+    emit(SavingFilterData());
+    try {
+      filterData = jsonEncode(event.filterChecklistMap);
+      emit(SavedFilterData(saveFilterData: event.filterChecklistMap));
+    } catch (e) {
+      emit(FilterDataNotSave(errorMessage: e.toString()));
+    }
   }
 
   FutureOr<void> _fetchList(
@@ -82,14 +94,8 @@ class SysUserCheckListBloc
         categoryId: event.categoryId));
   }
 
-  _filterChecklist(
-      FilterChecklist event, Emitter<SysUserCheckListStates> emit) async {
-    emit(SavingFilterData());
-    try {
-      filterData = jsonEncode(event.filterChecklistMap);
-      emit(SavedFilterData(saveFilterData: event.filterChecklistMap));
-    } catch (e) {
-      emit(FilterDataNotSave(errorMessage: e.toString()));
-    }
+  _clearFilter(ClearSystemUserCheckListFilter event,
+      Emitter<SysUserCheckListStates> emit) async {
+    filterData = '{}';
   }
 }

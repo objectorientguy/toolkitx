@@ -22,3 +22,5 @@ class FilterChecklist extends SysUserFetchCheckList {
 
   FilterChecklist({required this.filterChecklistMap});
 }
+
+class ClearSystemUserCheckListFilter extends SysUserFetchCheckList {}

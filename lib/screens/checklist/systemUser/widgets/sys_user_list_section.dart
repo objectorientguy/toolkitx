@@ -30,12 +30,11 @@ class SysUserListSection extends StatelessWidget {
               currentState is FetchingCheckList && checklistData.isNotEmpty ||
               currentState is CheckListError && checklistData.isNotEmpty,
           buildWhen: (previousState, currentState) =>
+          currentState is FetchingCheckList ||
               currentState is CheckListFetched ||
               currentState is CheckListError && checklistData.isEmpty,
           listener: (context, state) {
-            if (state is FetchingCheckList && checklistData.isNotEmpty) {
-              showCustomSnackBar(context, StringConstants.kLoadMore, '');
-            } else if (state is CheckListError &&
+            if (state is CheckListError &&
                 checklistData.isNotEmpty &&
                 context.read<SysUserCheckListBloc>().filterData == '{}') {
               showCustomSnackBar(context, StringConstants.kNoMoreData, '');

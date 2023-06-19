@@ -48,9 +48,15 @@ class SystemUserCheckListScreen extends StatelessWidget {
                         .read<CheckListRoleBloc>()
                         .add(FetchRoles(roleName: ''));
                   },
-                  clearVisible: false,
+                  clearVisible:
+                      context.read<SysUserCheckListBloc>().filterData != '{}',
                   isEnabled: true,
-                  clearOnPress: () {}),
+                  clearOnPress: () {
+                    context
+                        .read<SysUserCheckListBloc>()
+                        .add(ClearSystemUserCheckListFilter());
+                    context.read<SysUserCheckListBloc>().add(FetchList());
+                  }),
             ),
             const SizedBox(height: tiniest),
             SysUserListSection()
