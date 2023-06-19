@@ -23,6 +23,7 @@ import '../screens/permit/permit_details_screen.dart';
 import '../screens/permit/permit_list_screen.dart';
 import '../screens/permit/get_permit_roles_screen.dart';
 import '../screens/root/root_screen.dart';
+import '../widgets/in_app_web_view.dart';
 
 class AppRoutes {
   static Route onGenerateRoutes(RouteSettings settings) {
@@ -82,6 +83,9 @@ class AppRoutes {
       case WorkForceQuestionsScreen.routeName:
         return _createRoute(WorkForceQuestionsScreen(
             checklistDataMap: settings.arguments as Map));
+      case InAppWebViewScreen.routeName:
+        return _createRoute(
+            InAppWebViewScreen(url: settings.arguments as String));
       default:
         return _createRoute(const WelcomeScreen());
     }
