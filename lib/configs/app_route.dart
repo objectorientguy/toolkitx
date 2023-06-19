@@ -4,6 +4,7 @@ import '../screens/checklist/checklist_list_screen.dart';
 import '../screens/checklist/details_screen.dart';
 import '../screens/checklist/filters_screen.dart';
 import '../screens/checklist/workforce/add_image_and_comments_screen.dart';
+import '../screens/checklist/workforce/workforce_edit_answer_list_screen.dart';
 import '../screens/checklist/workforce/workforce_list_screen.dart';
 import '../screens/checklist/workforce/workforce_questions_list_screen.dart';
 import '../screens/incident/category_screen.dart';
@@ -86,6 +87,8 @@ class AppRoutes {
       case InAppWebViewScreen.routeName:
         return _createRoute(
             InAppWebViewScreen(url: settings.arguments as String));
+      case EditAnswerListScreen.routeName:
+        return _createRoute(const EditAnswerListScreen());
       default:
         return _createRoute(const WelcomeScreen());
     }

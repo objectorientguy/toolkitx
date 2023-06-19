@@ -5,6 +5,7 @@ import 'package:toolkit/blocs/workforce/getQuestionsList/get_questions_list_even
 import 'package:toolkit/blocs/workforce/getQuestionsList/get_questions_list_states.dart';
 import 'package:toolkit/screens/checklist/workforce/widgets/checklist_app_bar.dart';
 import 'package:toolkit/screens/checklist/workforce/widgets/question_list_section.dart';
+import 'package:toolkit/screens/checklist/workforce/workforce_pup_up_menu_screen.dart';
 
 class WorkForceQuestionsScreen extends StatelessWidget {
   static const routeName = 'WorkForceQuestionsScreen';
@@ -36,7 +37,7 @@ class WorkForceQuestionsScreen extends StatelessWidget {
                 if (state is QuestionsListFetched) {
                   return Visibility(
                       visible: state.allChecklistDataMap["isRejected"] == "0",
-                      child: Container()
+                      child: const WorkForcePopUpMenu()
                       // const WorkForcePopUpMenu()
                       );
                 } else {

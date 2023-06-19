@@ -4,6 +4,7 @@ import '../../data/models/workforce/workforce_fetch_comment_model.dart';
 import '../../data/models/workforce/workforce_list_model.dart';
 import '../../data/models/workforce/workforce_questions_list_model.dart';
 import '../../data/models/workforce/workforce_save_comment_model.dart';
+import '../../data/models/workforce/workforce_submit_answer_model.dart';
 import '../../utils/constants/api_constants.dart';
 import '../../utils/dio_client.dart';
 
@@ -39,5 +40,12 @@ class WorkforceChecklistRepositoryImpl extends WorkForceRepository {
         "${ApiConstants.baseUrl}checklist/SaveQuestionResponseComments",
         saveQuestionsCommentMap);
     return SaveQuestionCommentsModel.fromJson(response);
+  }
+
+  @override
+  Future<SubmitQuestionModel> submitAnswer(Map submitAnswerMap) async {
+    final response = await DioClient()
+        .post("${ApiConstants.baseUrl}checklist/save", submitAnswerMap);
+    return SubmitQuestionModel.fromJson(response);
   }
 }

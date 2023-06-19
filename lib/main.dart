@@ -4,7 +4,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:toolkit/blocs/workforce/comments/workforce_comments_bloc.dart';
+import 'package:toolkit/blocs/workforce/editAnswer/workforce_edit_answer_bloc.dart';
 import 'package:toolkit/blocs/workforce/getQuestionsList/get_questions_list_bloc.dart';
+import 'package:toolkit/blocs/workforce/popUpMenu/workforce_pop_up_menu_bloc.dart';
+import 'package:toolkit/blocs/workforce/submitAnswers/workforce_submit_answer_bloc.dart';
 import 'package:toolkit/blocs/workforce/workforceList/workforce_list_bloc.dart';
 import 'package:toolkit/utils/database_utils.dart';
 import 'blocs/client/client_bloc.dart';
@@ -74,6 +77,9 @@ class MyApp extends StatelessWidget {
           BlocProvider(lazy: false, create: (context) => CommentBloc()),
           BlocProvider(
               lazy: false, create: (context) => WorkForceQuestionsListBloc()),
+          BlocProvider(lazy: false, create: (context) => PopUpMenuItemsBloc()),
+          BlocProvider(lazy: false, create: (context) => EditAnswerBloc()),
+          BlocProvider(lazy: false, create: (context) => SubmitAnswerBloc()),
           BlocProvider(
               lazy: false,
               create: (context) => OnBoardingBloc()..add(CheckLoggedIn()))
