@@ -55,7 +55,7 @@ class ClientListScreen extends StatelessWidget {
                             itemCount: state.clientListModel.data!.length,
                             itemBuilder: (context, index) {
                               return CustomCard(
-                                  child: GestureDetector(
+                                  child: InkWell(
                                       onTap: () {
                                         context
                                             .read<ClientBloc>()
@@ -72,6 +72,9 @@ class ClientListScreen extends StatelessWidget {
                                                         .apikey,
                                                     image: state.clientListModel
                                                         .data![index].hashimg));
+                                        Navigator.pushNamed(
+                                            context, RootScreen.routeName,
+                                            arguments: true);
                                       },
                                       child: CachedNetworkImage(
                                           fit: BoxFit.fitHeight,
