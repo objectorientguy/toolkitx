@@ -87,7 +87,35 @@ class EditAnswerUtil {
               answerList[index]["answer"] = textValue;
             });
       case 8:
-        return createDataTable(answerModelList, index);
+        return SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: Container(
+            decoration: BoxDecoration(),
+            child: DataTable(columnSpacing: 20, columns: [
+              const DataColumn(label: Text('')),
+              for (int i = 0; i < answerModelList[index].matrixcols.length; i++)
+                DataColumn(label: Text(answerModelList[index].matrixcols[i]))
+            ], rows: [
+              for (int j = 0; j < answerModelList[index].matrixrowcount; j++)
+                DataRow(
+                  cells: [
+                    DataCell(TextFieldWidget(
+                      onTextFieldChanged: (String textField) {},
+                    )),
+                    for (int i = 0;
+                        i < answerModelList[index].matrixcols.length;
+                        i++)
+                      DataCell(SizedBox(
+                        width: 20,
+                        child: TextFieldWidget(
+                            onTextFieldChanged: (String textField) {},
+                            hintText: i.toString()),
+                      ))
+                  ],
+                )
+            ]),
+          ),
+        );
       case 10:
         return DatePickerTextField(
           hintText: StringConstants.kSelectDate,
@@ -112,66 +140,6 @@ class EditAnswerUtil {
   }
 }
 
-createDataTable(answerModelList, index) {
-  final List<dynamic> columnList = answerModelList[index].matrixcols!;
-  for (int i = 0; i < columnList.length; i++) {
-    DataTable(
-      columns: [DataColumn(label: Text(i.toString()))],
-      rows: List<DataRow>.generate(answerModelList[index].matrixrowcount,
-          (index) {
-        if (index < columnList.length) {
-          return DataRow(
-            cells: columnList.map((value) {
-              return DataCell(
-                  TextFieldWidget(onTextFieldChanged: (String textField) {}));
-            }).toList(),
-          );
-        } else {
-          return DataRow(
-            cells: columnList.map((value) {
-              return DataCell(
-                  TextFieldWidget(onTextFieldChanged: (String textField) {}));
-            }).toList(),
-          );
-        }
-      }),
-    );
-  }
-  // return DataTable(
-  //     columns: [DataColumn(label: Text(val))],
-  //     rows: List<DataRow>.generate(answerModelList[index].matrixrowcount,
-  //         (index) {
-  //       if (index < columnList.length) {
-  //         return DataRow(
-  //           cells: columnList.map((value) {
-  //             return DataCell(
-  //                 TextFieldWidget(onTextFieldChanged: (String textField) {}));
-  //           }).toList(),
-  //         );
-  //       } else {
-  //         return DataRow(
-  //           cells: columnList.map((value) {
-  //             return DataCell(
-  //                 TextFieldWidget(onTextFieldChanged: (String textField) {}));
-  //           }).toList(),
-  //         );
-  //       }
-  //     }));
-}
-
-List<DataColumn> _buildColumns(
-    List<dynamic> columnList, answerModelList, index) {
-  return columnList.map((value) {
-    return DataColumn(label: Text(value));
-  }).toList();
-}
-
-List<DataRow> _buildRows(List<dynamic> columnList, answerModelList, index) {
-  return columnList.map((value) {
-    return DataRow(
-        cells: columnList.map((value) {
-      return DataCell(
-          TextFieldWidget(onTextFieldChanged: (String textField) {}));
-    }).toList());
-  }).toList();
-}
+// Widget createDataTable(answerModelList, index) {
+//   return
+// }
