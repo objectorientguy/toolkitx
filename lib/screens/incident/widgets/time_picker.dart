@@ -8,13 +8,16 @@ import '../../../configs/app_spacing.dart';
 import '../../../utils/database_utils.dart';
 import '../../../widgets/text_button.dart';
 
+typedef StringCallBack = Function(String time);
+
 class TimePickerTextField extends StatelessWidget {
+  final StringCallBack onTimeChanged;
   final DateTime? initialDateTime;
   final String editTime;
   final String? hintText;
   final DateTime? minimumTime;
   final TextEditingController timeInputController = TextEditingController();
-  late final bool? isFirstTime;
+  bool? isFirstTime;
 
   TimePickerTextField({
     Key? key,
@@ -23,6 +26,7 @@ class TimePickerTextField extends StatelessWidget {
     this.hintText,
     this.minimumTime,
     this.isFirstTime = true,
+    required this.onTimeChanged,
   }) : super(key: key);
 
   void showDatePicker(BuildContext context) {
@@ -43,10 +47,10 @@ class TimePickerTextField extends StatelessWidget {
                             initialDateTime: (isFirstTime != false)
                                 ? initialDateTime
                                 : DateFormat("HH:mm")
-                                    .parse(timeInputController.text),
+                                .parse(timeInputController.text),
                             onDateTimeChanged: (value) {
                               String formattedDate =
-                                  DateFormat("HH:mm").format(value);
+                              DateFormat("HH:mm").format(value);
                               timeInputController.text = formattedDate;
                               isFirstTime = false;
                             },
@@ -74,7 +78,9 @@ class TimePickerTextField extends StatelessWidget {
     return TextField(
         readOnly: true,
         controller: timeInputController,
-        onChanged: (value) {},
+        onChanged: (value) {
+          onTimeChanged(value);
+        },
         onTap: () async {
           showDatePicker(context);
         },

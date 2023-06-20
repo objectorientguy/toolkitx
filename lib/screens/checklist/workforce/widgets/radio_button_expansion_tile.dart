@@ -15,17 +15,19 @@ class RadioButtonExpansionTile extends StatelessWidget {
   final List<Questionlist> answerModelList;
   final int index;
   final RadioButtonCallBack onRadioButtonChecked;
+  final String editValue;
 
   const RadioButtonExpansionTile(
       {Key? key,
       required this.answerModelList,
       required this.index,
-      required this.onRadioButtonChecked})
+      required this.onRadioButtonChecked,
+      required this.editValue})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    String radioValue = '';
+    String radioValue = editValue;
     return BlocBuilder<EditAnswerBloc, EditAnswerStates>(
         buildWhen: (previousState, currentState) =>
             currentState is AnswersEdited,

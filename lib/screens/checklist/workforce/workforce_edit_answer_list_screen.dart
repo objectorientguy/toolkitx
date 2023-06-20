@@ -68,6 +68,7 @@ class EditAnswerListScreen extends StatelessWidget {
                             shrinkWrap: true,
                             itemCount: state.answerModelList.length,
                             itemBuilder: (context, index) {
+                              // log("state.answerModelList[index]===>${state.answerModelList[index].queoptions![index]["queoptionid"]}");
                               return CustomCard(
                                   child: Padding(
                                       padding:

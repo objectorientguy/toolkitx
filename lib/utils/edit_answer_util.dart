@@ -14,6 +14,7 @@ import 'constants/string_constants.dart';
 class EditAnswerUtil {
   Widget fetchSwitchCaseWidget(
       type, index, answerModelList, answerList, context) {
+    // log("model list=====>${answerModelList[index].queoptions![index]["queoptionid"]}");
     switch (type) {
       case 1:
         return TextFieldWidget(
@@ -39,7 +40,7 @@ class EditAnswerUtil {
           },
           answerModelList: answerModelList,
           index: index,
-          value: '',
+          value: answerModelList[index].queoptions![index]["queoptiontext"],
         );
       case 4:
         return RadioButtonExpansionTile(
@@ -47,7 +48,9 @@ class EditAnswerUtil {
             index: index,
             onRadioButtonChecked: (String radioId, String radioValue) {
               answerList[index]["answer"] = radioId;
-            });
+            },
+            editValue: answerModelList[index].queoptions![index]
+                ["queoptiontext"]);
       case 5:
         return BlocBuilder<EditAnswerBloc, EditAnswerStates>(
             buildWhen: (previousState, currentState) =>
@@ -89,57 +92,67 @@ class EditAnswerUtil {
       case 8:
         return SingleChildScrollView(
           scrollDirection: Axis.horizontal,
+          physics: const BouncingScrollPhysics(),
           child: Container(
-            decoration: BoxDecoration(),
-            child: DataTable(columnSpacing: 20, columns: [
-              const DataColumn(label: Text('')),
-              for (int i = 0; i < answerModelList[index].matrixcols.length; i++)
-                DataColumn(label: Text(answerModelList[index].matrixcols[i]))
-            ], rows: [
-              for (int j = 0; j < answerModelList[index].matrixrowcount; j++)
-                DataRow(
-                  cells: [
-                    DataCell(TextFieldWidget(
-                      onTextFieldChanged: (String textField) {},
-                    )),
-                    for (int i = 0;
-                        i < answerModelList[index].matrixcols.length;
-                        i++)
-                      DataCell(SizedBox(
-                        width: 20,
-                        child: TextFieldWidget(
+            decoration: BoxDecoration(border: Border.all()),
+            child: DataTable(
+                border: TableBorder.all(),
+                columnSpacing: 20,
+                columns: [
+                  const DataColumn(label: Text('')),
+                  for (int i = 0;
+                      i < answerModelList[index].matrixcols.length;
+                      i++)
+                    DataColumn(
+                        label: Text(answerModelList[index].matrixcols[i]))
+                ],
+                rows: [
+                  for (int j = 0;
+                      j < answerModelList[index].matrixrowcount;
+                      j++)
+                    DataRow(
+                      cells: [
+                        DataCell(SizedBox(
+                          height: MediaQuery.of(context).size.width * 0.1,
+                          width: MediaQuery.of(context).size.width * 0.4,
+                          child: TextFieldWidget(
                             onTextFieldChanged: (String textField) {},
-                            hintText: i.toString()),
-                      ))
-                  ],
-                )
-            ]),
+                          ),
+                        )),
+                        for (int i = 0;
+                            i < answerModelList[index].matrixcols.length;
+                            i++)
+                          DataCell(SizedBox(
+                            height: MediaQuery.of(context).size.width * 0.1,
+                            width: MediaQuery.of(context).size.width * 0.5,
+                            child: TextFieldWidget(
+                                onTextFieldChanged: (String textField) {}),
+                          ))
+                      ],
+                    )
+                ]),
           ),
         );
       case 10:
         return DatePickerTextField(
           hintText: StringConstants.kSelectDate,
           editDate: answerList[index]["answer"],
-          // onDatePicked: (String pickDate) {
-          //   answerList[index]["answer"] = pickDate;
-          //   log("date picked======>${answerList[index]["answer"]}");
-          // }
+          onDateChanged: (String date) {
+            answerList[index]["answer"] = date;
+            log("date picked======>${answerList[index]["answer"]}");
+          },
         );
       case 11:
         return TimePickerTextField(
           editTime: answerList[index]["answer"],
           hintText: StringConstants.kSelectTime,
-          // onTimePicked: (String timePicked) {
-          //   answerList[index]["answer"] = timePicked;
-          //   log("time picked======>${answerList[index]["answer"]}");
-          // },
+          onTimeChanged: (String time) {
+            answerList[index]["answer"] = time;
+            log("time picked======>${answerList[index]["answer"]}");
+          },
         );
       default:
         return Container();
     }
   }
 }
-
-// Widget createDataTable(answerModelList, index) {
-//   return
-// }

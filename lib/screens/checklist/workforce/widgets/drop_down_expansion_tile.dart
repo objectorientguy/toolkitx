@@ -26,7 +26,7 @@ class DropDownExpansionTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String dropDown = '';
+    String dropDown = value;
     String dropDownId = '';
     return BlocBuilder<EditAnswerBloc, EditAnswerStates>(
         buildWhen: (previousState, currentState) =>

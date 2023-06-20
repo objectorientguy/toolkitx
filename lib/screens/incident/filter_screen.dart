@@ -39,6 +39,7 @@ class IncidentFilterScreen extends StatelessWidget {
               Expanded(
                 child: DatePickerTextField(
                   hintText: StringConstants.kSelectDate,
+                  onDateChanged: (String date) {},
                 ),
               ),
               const SizedBox(width: xxTinierSpacing),
@@ -47,6 +48,7 @@ class IncidentFilterScreen extends StatelessWidget {
               Expanded(
                 child: DatePickerTextField(
                   hintText: DatabaseUtil.getText('SelectDate'),
+                  onDateChanged: (String date) {},
                 ),
               )
             ]),
