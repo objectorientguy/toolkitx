@@ -12,6 +12,7 @@ import '../../../blocs/checklist/systemUser/scheduleDatesResponse/checklist_sche
 import '../../../configs/app_color.dart';
 import '../../../configs/app_spacing.dart';
 import '../../../utils/constants/string_constants.dart';
+import '../../../utils/database_utils.dart';
 
 class PopUpMenu extends StatelessWidget {
   final List responseIdList;
@@ -51,7 +52,7 @@ class PopUpMenu extends StatelessWidget {
                 icon: const Icon(Icons.more_vert_outlined),
                 offset: const Offset(0, xxTinierSpacing),
                 onSelected: (value) {
-                  if (value == 'Approve') {
+                  if (value == DatabaseUtil.getText('approve')) {
                     showDialog(
                         barrierColor: AppColor.transparent,
                         context: context,
@@ -61,7 +62,7 @@ class PopUpMenu extends StatelessWidget {
                               responseIdList: responseIdList);
                         });
                   }
-                  if (value == 'Reject') {
+                  if (value == DatabaseUtil.getText('Reject')) {
                     showDialog(
                         barrierColor: AppColor.transparent,
                         context: context,
@@ -71,7 +72,7 @@ class PopUpMenu extends StatelessWidget {
                               responseIdList: responseIdList);
                         });
                   }
-                  if (value == 'Third Party Approve') {
+                  if (value == StringConstants.kThirdParty) {
                     showDialog(
                         barrierColor: AppColor.transparent,
                         context: context,
@@ -81,7 +82,7 @@ class PopUpMenu extends StatelessWidget {
                               responseIdList: responseIdList);
                         });
                   }
-                  if (value == 'Edit Header') {
+                  if (value == StringConstants.kEditHeader) {
                     Navigator.pushNamed(context, EditHeaderScreen.routeName);
                   }
                 },

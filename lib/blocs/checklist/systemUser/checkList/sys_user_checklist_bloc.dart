@@ -11,7 +11,7 @@ import '../../../../di/app_module.dart';
 import '../../../../repositories/checklist/systemUser/sys_user_checklist_repository.dart';
 
 class SysUserCheckListBloc
-    extends Bloc<SysUserFetchCheckList, SysUserCheckListStates> {
+    extends Bloc<SysUserFetchCheckListEvent, SysUserCheckListStates> {
   final SysUserCheckListRepository _sysUserCheckListRepository =
       getIt<SysUserCheckListRepository>();
   final CustomerCache _customerCache = getIt<CustomerCache>();

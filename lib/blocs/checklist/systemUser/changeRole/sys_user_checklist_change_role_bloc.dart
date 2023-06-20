@@ -15,9 +15,9 @@ class CheckListRoleBloc extends Bloc<CheckListRoleEvents, CheckListRoleStates> {
   String roleId = '';
   String roleName = '';
 
-  CheckListRoleStates get initialState => RoleInitial();
+  CheckListRoleStates get initialState => CheckListRoleInitial();
 
-  CheckListRoleBloc() : super(RoleInitial()) {
+  CheckListRoleBloc() : super(CheckListRoleInitial()) {
     on<CheckListFetchRoles>(_checkListFetchRoles);
     on<CheckListChangeRole>(_checkListChangeRole);
   }

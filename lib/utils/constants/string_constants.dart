@@ -31,6 +31,8 @@ abstract class StringConstants {
   static const String kEnterOtp = 'Enter OTP'; //
   static const String kSelectYourLanguage = 'Select Your Language';
   static const String kPleaseConfirm = 'Please Confirm';
+  static const String kThirdParty = 'Third Party Approve';
+  static const String kEditHeader = 'Edit Header';
   static const String kReject = 'Reject'; //
   static const String kDialogContent =
       "The language file doesn't exist or an old version.Please download the latest language file."; //

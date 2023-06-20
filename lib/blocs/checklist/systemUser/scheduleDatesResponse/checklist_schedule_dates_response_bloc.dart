@@ -8,6 +8,8 @@ import '../../../../data/models/checklist/systemUser/sys_user_schedule_by_dates_
 import '../../../../data/models/checklist/systemUser/sys_user_workforce_list_model.dart';
 import '../../../../di/app_module.dart';
 import '../../../../repositories/checklist/systemUser/sys_user_checklist_repository.dart';
+import '../../../../utils/constants/string_constants.dart';
+import '../../../../utils/database_utils.dart';
 
 class CheckListScheduleDatesResponseBloc extends Bloc<
     CheckListScheduleDatesResponseEvent, CheckListScheduleDatesResponseStates> {
@@ -86,10 +88,10 @@ class CheckListScheduleDatesResponseBloc extends Bloc<
   _fetchPopUpMenuItems(FetchCheckListPopUpMenu event,
       Emitter<CheckListScheduleDatesResponseStates> emit) {
     List popUpMenuItems = [
-      'Approve',
-      'Reject',
-      'Third Party Approve',
-      'Edit Header'
+      DatabaseUtil.getText('approve'),
+      DatabaseUtil.getText('Reject'),
+      StringConstants.kThirdParty,
+      StringConstants.kEditHeader
     ];
     if (event.popUpMenuBuilder == false) {
       popUpMenuItems.removeAt(2);

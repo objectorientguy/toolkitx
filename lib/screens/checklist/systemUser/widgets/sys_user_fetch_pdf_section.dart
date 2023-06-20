@@ -40,7 +40,7 @@ class FetchPdfSection extends StatelessWidget {
             onPressed: () {
               context
                   .read<FetchCheckListPdfBloc>()
-                  .add(FetchCheckListPdf(responseId: responseId));
+                  .add(FetchCheckListPdfEvent(responseId: responseId));
             },
             label: const Text(StringConstants.kDownloadPdf),
             icon: const Icon(Icons.downloading_outlined, size: kIconSize),

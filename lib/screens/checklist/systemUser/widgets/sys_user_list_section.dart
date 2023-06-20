@@ -89,7 +89,7 @@ class SysUserListSection extends StatelessWidget {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                        '${checklistData[index].categoryname} -- ${checklistData[index].subcategoryname.toString()}',
+                                        '${checklistData[index].categoryname} -- ${checklistData[index].subcategoryname}',
                                         style: Theme.of(context)
                                             .textTheme
                                             .xSmall

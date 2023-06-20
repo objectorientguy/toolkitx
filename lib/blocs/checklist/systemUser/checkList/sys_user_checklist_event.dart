@@ -1,12 +1,12 @@
 import '../../../../data/models/checklist/systemUser/sys_user_change_category_model.dart';
 
-abstract class SysUserFetchCheckList {}
+abstract class SysUserFetchCheckListEvent {}
 
-class FetchCheckList extends SysUserFetchCheckList {}
+class FetchCheckList extends SysUserFetchCheckListEvent {}
 
-class FetchCheckListMaster extends SysUserFetchCheckList {}
+class FetchCheckListMaster extends SysUserFetchCheckListEvent {}
 
-class ChangeCheckListCategory extends SysUserFetchCheckList {
+class ChangeCheckListCategory extends SysUserFetchCheckListEvent {
   final List<GetFilterCategoryData> getFilterCategoryData;
   final String categoryName;
   final String categoryId;
@@ -17,10 +17,10 @@ class ChangeCheckListCategory extends SysUserFetchCheckList {
       required this.categoryName});
 }
 
-class FilterChecklist extends SysUserFetchCheckList {
+class FilterChecklist extends SysUserFetchCheckListEvent {
   final Map filterChecklistMap;
 
   FilterChecklist({required this.filterChecklistMap});
 }
 
-class ClearCheckListFilter extends SysUserFetchCheckList {}
+class ClearCheckListFilter extends SysUserFetchCheckListEvent {}

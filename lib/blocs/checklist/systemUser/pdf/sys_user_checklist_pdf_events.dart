@@ -1,5 +1,5 @@
-class FetchCheckListPdf {
+class FetchCheckListPdfEvent {
   final String responseId;
 
-  FetchCheckListPdf({required this.responseId});
+  FetchCheckListPdfEvent({required this.responseId});
 }

@@ -9,6 +9,7 @@ import '../../../../data/models/checklist/systemUser/sys_user_edit_header_detail
 import '../../../../data/models/checklist/systemUser/sys_user_submit_header_model.dart';
 import '../../../../di/app_module.dart';
 import '../../../../repositories/checklist/systemUser/sys_user_checklist_repository.dart';
+import '../../../../utils/database_utils.dart';
 
 class CheckListHeaderBloc
     extends Bloc<CheckListHeaderEvent, CheckListHeaderStates> {
@@ -52,7 +53,7 @@ class CheckListHeaderBloc
       if (event.submitHeaderList[0]["value"] == "" &&
           event.submitHeaderList[0]["ismandatory"] == 1) {
         emit(CheckListHeaderNotSubmitted(
-            message: 'Please answer the mandatory question!'));
+            message: DatabaseUtil.getText('Pleaseanswerthemandatoryquestion')));
       } else {
         Map postEditHeaderMap = {
           "hashcode": hashCode,

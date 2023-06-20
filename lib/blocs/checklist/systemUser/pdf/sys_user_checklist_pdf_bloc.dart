@@ -10,7 +10,7 @@ import '../../../../di/app_module.dart';
 import '../../../../repositories/checklist/systemUser/sys_user_checklist_repository.dart';
 
 class FetchCheckListPdfBloc
-    extends Bloc<FetchCheckListPdf, FetchCheckListPdfStates> {
+    extends Bloc<FetchCheckListPdfEvent, FetchCheckListPdfStates> {
   final SysUserCheckListRepository _sysUserCheckListRepository =
       getIt<SysUserCheckListRepository>();
   final CustomerCache _customerCache = getIt<CustomerCache>();
@@ -18,11 +18,11 @@ class FetchCheckListPdfBloc
   FetchCheckListPdfStates get initialState => FetchCheckListPdfInitial();
 
   FetchCheckListPdfBloc() : super(FetchCheckListPdfInitial()) {
-    on<FetchCheckListPdf>(_fetchPdf);
+    on<FetchCheckListPdfEvent>(_fetchPdf);
   }
 
-  FutureOr<void> _fetchPdf(
-      FetchCheckListPdf event, Emitter<FetchCheckListPdfStates> emit) async {
+  FutureOr<void> _fetchPdf(FetchCheckListPdfEvent event,
+      Emitter<FetchCheckListPdfStates> emit) async {
     emit(FetchingCheckListPdf());
     try {
       String hashCode = (await _customerCache.getHashCode(CacheKeys.hashcode))!;

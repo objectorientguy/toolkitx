@@ -4,7 +4,7 @@ import '../../../../data/models/checklist/systemUser/sys_user_change_role_model.
 
 abstract class CheckListRoleStates extends Equatable {}
 
-class RoleInitial extends CheckListRoleStates {
+class CheckListRoleInitial extends CheckListRoleStates {
   @override
   List<Object?> get props => throw UnimplementedError();
 }
@@ -35,7 +35,7 @@ class CheckListRolesNotFetched extends CheckListRoleStates {
   List<Object?> get props => throw UnimplementedError();
 }
 
-class RoleChanged extends CheckListRoleStates {
+class CheckListRoleChanged extends CheckListRoleStates {
   @override
   List<Object?> get props => throw UnimplementedError();
 }
