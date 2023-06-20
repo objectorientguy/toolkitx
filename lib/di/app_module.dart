@@ -4,6 +4,8 @@ import 'package:toolkit/data/models/permit/all_permits_model.dart';
 import 'package:toolkit/repositories/login/login_repository_impl.dart';
 import 'package:toolkit/repositories/profile/profile_repository_impl.dart';
 
+import '../repositories/checklist/systemUser/sys_user_checklist_repository.dart';
+import '../repositories/checklist/systemUser/sys_user_checklist_repository_impl.dart';
 import '../repositories/permit/permit_repository.dart';
 import '../repositories/permit/permit_repository_impl.dart';
 import '../data/cache/customer_cache.dart';
@@ -32,4 +34,6 @@ configurableDependencies() {
   getIt.registerLazySingleton<LoginRepository>(() => LoginRepositoryImpl());
   getIt.registerLazySingleton<ClientRepository>(() => ClientRepositoryImpl());
   getIt.registerLazySingleton<ProfileRepository>(() => ProfileRepositoryImpl());
+  getIt.registerLazySingleton<SysUserCheckListRepository>(
+      () => SysUserCheckListRepositoryImpl());
 }
