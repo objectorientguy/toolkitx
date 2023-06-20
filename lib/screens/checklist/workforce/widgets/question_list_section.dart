@@ -71,9 +71,12 @@ class QuestionsListSection extends StatelessWidget {
                       const SizedBox(height: tiniest),
                       Text(
                           (state.answerList[index]["answer"].toString() ==
-                                  'null'
+                                      'null' ||
+                                  state.answerList[index]["answer"]
+                                          .toString() ==
+                                      "")
                               ? ''
-                              : state.answerList[index]["answer"].toString()),
+                              : state.answerList[index]["answer"].toString(),
                           style: Theme.of(context)
                               .textTheme
                               .small

@@ -48,7 +48,7 @@ class WorkForceQuestionsListBloc
             answerText = getQuestionListModel
                 .data!.questionlist![i].optioncomment
                 .toString();
-          } else if (getQuestionListModel.data!.questionlist![i].optionid !=
+          } else if (getQuestionListModel.data!.questionlist![i].optiontext !=
               null) {
             answerText = getQuestionListModel.data!.questionlist![i].optiontext
                 .toString();

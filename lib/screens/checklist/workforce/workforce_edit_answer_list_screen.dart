@@ -20,7 +20,6 @@ import '../../../utils/constants/string_constants.dart';
 import '../../../utils/edit_answer_util.dart';
 import '../../../widgets/custom_card.dart';
 import '../../../widgets/custom_snackbar.dart';
-import '../../../widgets/generic_text_field.dart';
 import '../../../widgets/progress_bar.dart';
 
 class EditAnswerListScreen extends StatelessWidget {

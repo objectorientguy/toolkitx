@@ -114,9 +114,7 @@ class EditAnswerUtil {
 
 createDataTable(answerModelList, index) {
   final List<dynamic> columnList = answerModelList[index].matrixcols!;
-  String val = '';
   for (int i = 0; i < columnList.length; i++) {
-    val = i.toString();
     DataTable(
       columns: [DataColumn(label: Text(i.toString()))],
       rows: List<DataRow>.generate(answerModelList[index].matrixrowcount,
