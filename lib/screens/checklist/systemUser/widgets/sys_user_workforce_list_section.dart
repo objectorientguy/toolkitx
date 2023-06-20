@@ -18,13 +18,12 @@ class WorkForceListSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Expanded(
-        child: BlocConsumer<ScheduleDatesResponseBloc,
+        child: BlocBuilder<ScheduleDatesResponseBloc,
                 ScheduleDatesResponseStates>(
             buildWhen: (previousState, currentState) =>
                 currentState is FetchingWorkforceList ||
                 currentState is WorkforceListFetched ||
                 currentState is WorkforceListError,
-            listener: (context, state) {},
             builder: (context, state) {
               if (state is FetchingWorkforceList) {
                 return const Center(child: CircularProgressIndicator());

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:toolkit/widgets/text_button.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 import '../../../../blocs/checklist/systemUser/pdf/sys_user_pdf_bloc.dart';
 import '../../../../blocs/checklist/systemUser/pdf/sys_user_pdf_events.dart';
@@ -34,17 +35,13 @@ class FetchPdfSection extends StatelessWidget {
       },
       child: Visibility(
           visible: responseId != "",
-          child: TextButton(
-            style: TextButton.styleFrom(
-                padding: EdgeInsets.zero,
-                alignment: Alignment.topRight,
-                shadowColor: Colors.transparent),
+          child: CustomTextButton(
             onPressed: () {
               context
                   .read<FetchPdfBloc>()
                   .add(FetchPdf(responseId: responseId));
             },
-            child: const Text('Download Pdf'),
+            textValue: StringConstants.kDownloadPdf,
           )),
     );
   }

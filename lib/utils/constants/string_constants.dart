@@ -33,6 +33,7 @@ abstract class StringConstants {
   static const String kNo = 'NO';
   static const String kYes = 'YES';
   static const String kReload = 'RELOAD'; //
+  static const String kDownloadPdf = 'Download Pdf';
   static const String kOk = 'Ok';
   static const String kDateFormatValidate = 'Please select a Date Format!'; //
   static const String kEditProfile = 'Edit Profile';

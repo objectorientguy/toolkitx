@@ -29,7 +29,8 @@ class EditHeaderScreen extends StatelessWidget {
             title: BlocBuilder<HeaderBloc, HeaderStates>(
                 buildWhen: (previousState, currentState) =>
                     currentState is FetchingEditHeader ||
-                    currentState is EditHeaderFetched,
+                    currentState is EditHeaderFetched ||
+                    currentState is EditHeaderError,
                 builder: (context, state) {
                   if (state is EditHeaderFetched) {
                     return Text(state
@@ -46,7 +47,8 @@ class EditHeaderScreen extends StatelessWidget {
             child: BlocConsumer<HeaderBloc, HeaderStates>(
                 buildWhen: (previousState, currentState) =>
                     currentState is FetchingEditHeader ||
-                    currentState is EditHeaderFetched,
+                    currentState is EditHeaderFetched ||
+                    currentState is EditHeaderError,
                 listener: (context, state) {
                   if (state is SubmittingHeader) {
                     ProgressBar.show(context);
