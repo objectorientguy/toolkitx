@@ -23,6 +23,10 @@ abstract class StringConstants {
   static const String kOtpGenerated = 'OTP generated';
   static const String kSelectDateFormat = 'Select Your Date Format';
   static const String kSave = 'SAVE';
+  static const String kNoDatesScheduled =
+      'No dates scheduled for this checklist!';
+  static const String kNoHeader =
+      'No header data available for this checklist!';
   static const String kOldPassword = 'Old Password'; //
   static const String kEnterOtp = 'Enter OTP'; //
   static const String kSelectYourLanguage = 'Select Your Language';
@@ -33,7 +37,7 @@ abstract class StringConstants {
   static const String kNo = 'NO';
   static const String kYes = 'YES';
   static const String kReload = 'RELOAD'; //
-  static const String kDownloadPdf = 'Download Pdf';
+  static const String kDownloadPdf = 'Pdf';
   static const String kOk = 'Ok';
   static const String kDateFormatValidate = 'Please select a Date Format!'; //
   static const String kEditProfile = 'Edit Profile';

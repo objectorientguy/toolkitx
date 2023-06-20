@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:toolkit/blocs/checklist/systemUser/scheduleDatesResponse/schedule_dates_response_bloc.dart';
-import 'package:toolkit/blocs/checklist/systemUser/scheduleDatesResponse/schedule_dates_response_states.dart';
+import 'package:toolkit/blocs/checklist/systemUser/scheduleDatesResponse/checklist_schedule_dates_response_bloc.dart';
+import 'package:toolkit/blocs/checklist/systemUser/scheduleDatesResponse/checklist_schedule_dates_response_states.dart';
 import 'package:toolkit/configs/app_dimensions.dart';
 import 'package:toolkit/configs/app_theme.dart';
-import 'package:toolkit/screens/checklist/systemUser/edit_header_screen.dart';
+import 'package:toolkit/screens/checklist/systemUser/sys_user_edit_header_screen.dart';
 import 'package:toolkit/screens/checklist/systemUser/widgets/sys_user_approve_pop_up.dart';
 import 'package:toolkit/screens/checklist/systemUser/widgets/sys_user_reject_pop_up.dart';
 import 'package:toolkit/screens/checklist/systemUser/widgets/third_party_approval_pop_up.dart';
-import '../../../blocs/checklist/systemUser/scheduleDatesResponse/schedule_dates_response_events.dart';
+import '../../../blocs/checklist/systemUser/scheduleDatesResponse/checklist_schedule_dates_response_events.dart';
 import '../../../configs/app_color.dart';
 import '../../../configs/app_spacing.dart';
 import '../../../utils/constants/string_constants.dart';
@@ -34,13 +34,15 @@ class PopUpMenu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    context.read<ScheduleDatesResponseBloc>().add(FetchPopUpMenu(
-        popUpMenuItems: const [], popUpMenuBuilder: popUpMenuBuilder));
-    return BlocBuilder<ScheduleDatesResponseBloc, ScheduleDatesResponseStates>(
+    context.read<CheckListScheduleDatesResponseBloc>().add(
+        FetchCheckListPopUpMenu(
+            popUpMenuItems: const [], popUpMenuBuilder: popUpMenuBuilder));
+    return BlocBuilder<CheckListScheduleDatesResponseBloc,
+            CheckListScheduleDatesResponseStates>(
         buildWhen: (previousState, currentState) =>
-            currentState is PopUpMenuItemsFetched,
+            currentState is CheckListPopUpMenuItemsFetched,
         builder: (context, state) {
-          if (state is PopUpMenuItemsFetched) {
+          if (state is CheckListPopUpMenuItemsFetched) {
             return PopupMenuButton(
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(kCardRadius),

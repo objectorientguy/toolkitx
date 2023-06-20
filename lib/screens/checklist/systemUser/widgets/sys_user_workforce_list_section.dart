@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:toolkit/configs/app_theme.dart';
-import '../../../../blocs/checklist/systemUser/changeRole/sys_user_change_role_bloc.dart';
-import '../../../../blocs/checklist/systemUser/scheduleDatesResponse/schedule_dates_response_bloc.dart';
-import '../../../../blocs/checklist/systemUser/scheduleDatesResponse/schedule_dates_response_events.dart';
-import '../../../../blocs/checklist/systemUser/scheduleDatesResponse/schedule_dates_response_states.dart';
+import '../../../../blocs/checklist/systemUser/changeRole/sys_user_checklist_change_role_bloc.dart';
+import '../../../../blocs/checklist/systemUser/scheduleDatesResponse/checklist_schedule_dates_response_bloc.dart';
+import '../../../../blocs/checklist/systemUser/scheduleDatesResponse/checklist_schedule_dates_response_events.dart';
+import '../../../../blocs/checklist/systemUser/scheduleDatesResponse/checklist_schedule_dates_response_states.dart';
 import '../../../../configs/app_color.dart';
 import '../../../../configs/app_spacing.dart';
 import '../../../../utils/constants/string_constants.dart';
@@ -18,16 +18,19 @@ class WorkForceListSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Expanded(
-        child: BlocBuilder<ScheduleDatesResponseBloc,
-                ScheduleDatesResponseStates>(
+        child: Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        BlocBuilder<CheckListScheduleDatesResponseBloc,
+                CheckListScheduleDatesResponseStates>(
             buildWhen: (previousState, currentState) =>
-                currentState is FetchingWorkforceList ||
-                currentState is WorkforceListFetched ||
-                currentState is WorkforceListError,
+                currentState is FetchingCheckListWorkforceList ||
+                currentState is CheckListWorkforceListFetched ||
+                currentState is CheckListWorkforceListError,
             builder: (context, state) {
-              if (state is FetchingWorkforceList) {
+              if (state is FetchingCheckListWorkforceList) {
                 return const Center(child: CircularProgressIndicator());
-              } else if (state is WorkforceListFetched) {
+              } else if (state is CheckListWorkforceListFetched) {
                 return Expanded(
                     child: ListView.separated(
                         physics: const BouncingScrollPhysics(),
@@ -48,7 +51,7 @@ class WorkForceListSection extends StatelessWidget {
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
                                     crossAxisAlignment:
-                                        CrossAxisAlignment.start,
+                                        CrossAxisAlignment.center,
                                     children: [
                                       Text(
                                           state.checkListWorkforceListModel
@@ -59,7 +62,8 @@ class WorkForceListSection extends StatelessWidget {
                                               .copyWith(color: AppColor.black)),
                                       FetchPdfSection(
                                           responseId: context
-                                              .read<ScheduleDatesResponseBloc>()
+                                              .read<
+                                                  CheckListScheduleDatesResponseBloc>()
                                               .responseId)
                                     ],
                                   ),
@@ -115,8 +119,8 @@ class WorkForceListSection extends StatelessWidget {
                                           onChanged: (value) {
                                             context
                                                 .read<
-                                                    ScheduleDatesResponseBloc>()
-                                                .add(CheckBoxCheck(
+                                                    CheckListScheduleDatesResponseBloc>()
+                                                .add(CheckListCheckBoxCheck(
                                                     responseId: state
                                                         .checkListWorkforceListModel
                                                         .data![index]
@@ -131,24 +135,28 @@ class WorkForceListSection extends StatelessWidget {
                         separatorBuilder: (context, index) {
                           return const SizedBox(height: xxTinySpacing);
                         }));
-              } else if (state is WorkforceListError) {
-                return GenericReloadButton(
-                  onPressed: () {
-                    context.read<ScheduleDatesResponseBloc>().add(
-                        CheckScheduleDatesResponse(
-                            getChecklistDetailsData: context
-                                .read<ScheduleDatesResponseBloc>()
-                                .getChecklistDetailsData!,
-                            scheduleId: context
-                                .read<ScheduleDatesResponseBloc>()
-                                .scheduleId,
-                            role: context.read<CheckListRoleBloc>().roleId));
-                  },
-                  textValue: StringConstants.kReload,
+              } else if (state is CheckListWorkforceListError) {
+                return Center(
+                  child: GenericReloadButton(
+                    onPressed: () {
+                      context.read<CheckListScheduleDatesResponseBloc>().add(
+                          CheckCheckListScheduleDatesResponse(
+                              getChecklistDetailsData: context
+                                  .read<CheckListScheduleDatesResponseBloc>()
+                                  .getChecklistDetailsData!,
+                              scheduleId: context
+                                  .read<CheckListScheduleDatesResponseBloc>()
+                                  .scheduleId,
+                              role: context.read<CheckListRoleBloc>().roleId));
+                    },
+                    textValue: StringConstants.kReload,
+                  ),
                 );
               } else {
                 return const SizedBox();
               }
-            }));
+            }),
+      ],
+    ));
   }
 }

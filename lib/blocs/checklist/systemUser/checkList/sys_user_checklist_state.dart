@@ -33,17 +33,17 @@ class CheckListError extends SysUserCheckListStates {
   List<Object?> get props => [errorMessage];
 }
 
-class FetchingCategory extends SysUserCheckListStates {
+class FetchingCheckListCategory extends SysUserCheckListStates {
   @override
   List<Object?> get props => [];
 }
 
-class CategoryFetched extends SysUserCheckListStates {
+class CheckListCategoryFetched extends SysUserCheckListStates {
   final List<GetFilterCategoryData> getFilterCategoryData;
   final String categoryName;
   final String categoryId;
 
-  CategoryFetched(
+  CheckListCategoryFetched(
       {required this.categoryId,
       required this.categoryName,
       required this.getFilterCategoryData});
@@ -52,7 +52,7 @@ class CategoryFetched extends SysUserCheckListStates {
   List<Object?> get props => [getFilterCategoryData, categoryName, categoryId];
 }
 
-class CategoryNotFetched extends SysUserCheckListStates {
+class CheckListCategoryNotFetched extends SysUserCheckListStates {
   @override
   List<Object?> get props => [];
 }
@@ -62,19 +62,19 @@ class SavingFilterData extends SysUserCheckListStates {
   List<Object?> get props => [];
 }
 
-class SavedFilterData extends SysUserCheckListStates {
+class SavedCheckListFilterData extends SysUserCheckListStates {
   final Map saveFilterData;
 
-  SavedFilterData({required this.saveFilterData});
+  SavedCheckListFilterData({required this.saveFilterData});
 
   @override
   List<Object?> get props => [saveFilterData];
 }
 
-class FilterDataNotSave extends SysUserCheckListStates {
+class CheckListFilterDataNotSaved extends SysUserCheckListStates {
   final String errorMessage;
 
-  FilterDataNotSave({required this.errorMessage});
+  CheckListFilterDataNotSaved({required this.errorMessage});
 
   @override
   List<Object?> get props => [errorMessage];

@@ -1,24 +1,24 @@
 import 'dart:convert';
 
-GetFilterCategoryModel getFilterCategoryModelFromJson(String str) =>
-    GetFilterCategoryModel.fromJson(json.decode(str));
+GetCheckListFilterCategoryModel getFilterCategoryModelFromJson(String str) =>
+    GetCheckListFilterCategoryModel.fromJson(json.decode(str));
 
-String getFilterCategoryModelToJson(GetFilterCategoryModel data) =>
+String getFilterCategoryModelToJson(GetCheckListFilterCategoryModel data) =>
     json.encode(data.toJson());
 
-class GetFilterCategoryModel {
+class GetCheckListFilterCategoryModel {
   final int status;
   final String? message;
   final List<List<GetFilterCategoryData>>? data;
 
-  GetFilterCategoryModel({
+  GetCheckListFilterCategoryModel({
     required this.status,
     this.message,
     this.data,
   });
 
-  factory GetFilterCategoryModel.fromJson(Map<String, dynamic> json) =>
-      GetFilterCategoryModel(
+  factory GetCheckListFilterCategoryModel.fromJson(Map<String, dynamic> json) =>
+      GetCheckListFilterCategoryModel(
         status: json["Status"],
         message: json["Message"],
         data: List<List<GetFilterCategoryData>>.from(json["Data"].map((x) =>

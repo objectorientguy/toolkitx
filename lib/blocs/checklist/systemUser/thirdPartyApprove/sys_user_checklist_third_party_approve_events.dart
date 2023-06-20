@@ -1,9 +1,7 @@
-abstract class ThirdPartyApproveEvent {}
-
-class ThirdPartyApproveCheckList extends ThirdPartyApproveEvent {
+class ThirdPartyApproveCheckListEvent {
   final Map thirdPartyApproveMap;
   final List responseIdList;
 
-  ThirdPartyApproveCheckList(
+  ThirdPartyApproveCheckListEvent(
       {required this.responseIdList, required this.thirdPartyApproveMap});
 }

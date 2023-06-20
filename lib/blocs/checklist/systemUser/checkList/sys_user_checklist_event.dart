@@ -2,16 +2,16 @@ import '../../../../data/models/checklist/systemUser/sys_user_change_category_mo
 
 abstract class SysUserFetchCheckList {}
 
-class FetchList extends SysUserFetchCheckList {}
+class FetchCheckList extends SysUserFetchCheckList {}
 
-class FetchCategory extends SysUserFetchCheckList {}
+class FetchCheckListMaster extends SysUserFetchCheckList {}
 
-class ChangeCategory extends SysUserFetchCheckList {
+class ChangeCheckListCategory extends SysUserFetchCheckList {
   final List<GetFilterCategoryData> getFilterCategoryData;
   final String categoryName;
   final String categoryId;
 
-  ChangeCategory(
+  ChangeCheckListCategory(
       {required this.categoryId,
       required this.getFilterCategoryData,
       required this.categoryName});
@@ -23,4 +23,4 @@ class FilterChecklist extends SysUserFetchCheckList {
   FilterChecklist({required this.filterChecklistMap});
 }
 
-class ClearSystemUserCheckListFilter extends SysUserFetchCheckList {}
+class ClearCheckListFilter extends SysUserFetchCheckList {}

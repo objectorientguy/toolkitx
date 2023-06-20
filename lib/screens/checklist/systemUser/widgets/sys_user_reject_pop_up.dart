@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:toolkit/blocs/checklist/systemUser/rejectPopUp/sys_user_reject_pop_up_bloc.dart';
-import 'package:toolkit/blocs/checklist/systemUser/rejectPopUp/sys_user_reject_pop_up_events.dart';
-import 'package:toolkit/blocs/checklist/systemUser/rejectPopUp/sys_user_reject_pop_up_states.dart';
 import 'package:toolkit/configs/app_theme.dart';
 
-import '../../../../blocs/checklist/systemUser/scheduleDates/sys_user_schedule_dates_bloc.dart';
+import '../../../../blocs/checklist/systemUser/reject/sys_user_reject_checklist_bloc.dart';
+import '../../../../blocs/checklist/systemUser/reject/sys_user_reject_checklist_events.dart';
+import '../../../../blocs/checklist/systemUser/reject/sys_user_reject_checklist_states.dart';
+import '../../../../blocs/checklist/systemUser/scheduleDates/sys_user_checklist_schedule_dates_bloc.dart';
 import '../../../../configs/app_color.dart';
 import '../../../../configs/app_spacing.dart';
 import '../../../../utils/constants/string_constants.dart';
@@ -25,7 +25,7 @@ class RejectPopUp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<RejectBloc, RejectStates>(
+    return BlocListener<RejectCheckListBloc, RejectCheckListStates>(
         listener: (BuildContext context, state) {
           if (state is RejectingCheckList) {
             ProgressBar.show(context);
@@ -35,7 +35,8 @@ class RejectPopUp extends StatelessWidget {
             Navigator.pop(context);
             Navigator.pushReplacementNamed(
                 context, SystemUserScheduleDatesScreen.routeName,
-                arguments: context.read<ScheduleDatesBloc>().checklistId);
+                arguments:
+                    context.read<CheckListScheduleDatesBloc>().checklistId);
           } else if (state is CheckListNotRejected) {
             ProgressBar.dismiss(context);
             showCustomSnackBar(context, state.errorMessage, '');
@@ -75,8 +76,10 @@ class RejectPopUp extends StatelessWidget {
                   textValue: StringConstants.kRemove),
               CustomTextButton(
                   onPressed: () {
-                    context.read<RejectBloc>().add(RejectCheckList(
-                        rejectMap: rejectMap, responseIdList: responseIdList));
+                    context.read<RejectCheckListBloc>().add(
+                        RejectCheckListEvent(
+                            rejectMap: rejectMap,
+                            responseIdList: responseIdList));
                   },
                   textValue: textValue)
             ]));

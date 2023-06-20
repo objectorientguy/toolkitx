@@ -22,9 +22,9 @@ class FilterExpansionTileLayout extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<SysUserCheckListBloc, SysUserCheckListStates>(
         builder: (context, state) {
-      if (state is FetchingCategory) {
+      if (state is FetchingCheckListCategory) {
         return const Center(child: CircularProgressIndicator());
-      } else if (state is CategoryFetched) {
+      } else if (state is CheckListCategoryFetched) {
         return Theme(
             data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
             child: ExpansionTile(
@@ -68,7 +68,7 @@ class FilterExpansionTileLayout extends StatelessWidget {
                                   .name;
                               onCategoryChanged(value);
                               context.read<SysUserCheckListBloc>().add(
-                                  ChangeCategory(
+                                  ChangeCheckListCategory(
                                       getFilterCategoryData:
                                           state.getFilterCategoryData,
                                       categoryName: value,
@@ -79,12 +79,16 @@ class FilterExpansionTileLayout extends StatelessWidget {
                             });
                       })
                 ]));
-      } else if (state is CategoryNotFetched) {
-        return GenericReloadButton(
-            onPressed: () {
-              context.read<SysUserCheckListBloc>().add(FetchCategory());
-            },
-            textValue: StringConstants.kReload);
+      } else if (state is CheckListCategoryNotFetched) {
+        return Center(
+          child: GenericReloadButton(
+              onPressed: () {
+                context
+                    .read<SysUserCheckListBloc>()
+                    .add(FetchCheckListMaster());
+              },
+              textValue: StringConstants.kReload),
+        );
       } else {
         return const SizedBox();
       }

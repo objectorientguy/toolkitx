@@ -2,34 +2,38 @@ import 'package:equatable/equatable.dart';
 
 import '../../../../data/models/checklist/systemUser/sys_user_workforce_list_model.dart';
 
-abstract class ScheduleDatesResponseStates extends Equatable {}
+abstract class CheckListScheduleDatesResponseStates extends Equatable {}
 
-class ScheduleDatesResponseInitial extends ScheduleDatesResponseStates {
+class CheckListScheduleDatesResponseInitial
+    extends CheckListScheduleDatesResponseStates {
   @override
   List<Object?> get props => [];
 }
 
-class NoResponseFound extends ScheduleDatesResponseStates {
+class CheckListNoResponseFound extends CheckListScheduleDatesResponseStates {
   final String noResponseMessage;
   final String scheduleId;
 
-  NoResponseFound({required this.scheduleId, required this.noResponseMessage});
+  CheckListNoResponseFound(
+      {required this.scheduleId, required this.noResponseMessage});
 
   @override
   List<Object?> get props => [noResponseMessage, scheduleId];
 }
 
-class FetchingWorkforceList extends ScheduleDatesResponseStates {
+class FetchingCheckListWorkforceList
+    extends CheckListScheduleDatesResponseStates {
   @override
   List<Object?> get props => [];
 }
 
-class WorkforceListFetched extends ScheduleDatesResponseStates {
+class CheckListWorkforceListFetched
+    extends CheckListScheduleDatesResponseStates {
   final CheckListWorkforceListModel checkListWorkforceListModel;
   final List selectedIResponseIdList;
   final bool popUpMenuBuilder;
 
-  WorkforceListFetched(
+  CheckListWorkforceListFetched(
       {this.popUpMenuBuilder = false,
       required this.checkListWorkforceListModel,
       required this.selectedIResponseIdList});
@@ -39,15 +43,16 @@ class WorkforceListFetched extends ScheduleDatesResponseStates {
       [checkListWorkforceListModel, selectedIResponseIdList, popUpMenuBuilder];
 }
 
-class WorkforceListError extends ScheduleDatesResponseStates {
+class CheckListWorkforceListError extends CheckListScheduleDatesResponseStates {
   @override
   List<Object?> get props => [];
 }
 
-class PopUpMenuItemsFetched extends ScheduleDatesResponseStates {
+class CheckListPopUpMenuItemsFetched
+    extends CheckListScheduleDatesResponseStates {
   final List popUpMenuItems;
 
-  PopUpMenuItemsFetched({required this.popUpMenuItems});
+  CheckListPopUpMenuItemsFetched({required this.popUpMenuItems});
 
   @override
   List<Object?> get props => [popUpMenuItems];

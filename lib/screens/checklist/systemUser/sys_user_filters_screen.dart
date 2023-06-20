@@ -15,7 +15,7 @@ class FiltersScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    context.read<SysUserCheckListBloc>().add(FetchCategory());
+    context.read<SysUserCheckListBloc>().add(FetchCheckListMaster());
     return Scaffold(
         appBar: const GenericAppBar(
           title: StringConstants.kFilters,

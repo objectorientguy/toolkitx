@@ -28,6 +28,7 @@ class SysUserListSection extends StatelessWidget {
       BlocConsumer<SysUserCheckListBloc, SysUserCheckListStates>(
           listenWhen: (previousState, currentState) =>
               currentState is FetchingCheckList && checklistData.isNotEmpty ||
+              currentState is CheckListFetched ||
               currentState is CheckListError && checklistData.isNotEmpty,
           buildWhen: (previousState, currentState) =>
               currentState is FetchingCheckList ||
@@ -50,7 +51,7 @@ class SysUserListSection extends StatelessWidget {
             } else if (state is CheckListError && checklistData.isEmpty) {
               return GenericReloadButton(
                   onPressed: () {
-                    context.read<SysUserCheckListBloc>().add(FetchList());
+                    context.read<SysUserCheckListBloc>().add(FetchCheckList());
                   },
                   textValue: StringConstants.kReload);
             } else {
@@ -68,7 +69,7 @@ class SysUserListSection extends StatelessWidget {
                             !context.read<SysUserCheckListBloc>().isFetching) {
                           context.read<SysUserCheckListBloc>()
                             ..isFetching = true
-                            ..add(FetchList());
+                            ..add(FetchCheckList());
                         }
                       }),
                     itemBuilder: (context, index) {

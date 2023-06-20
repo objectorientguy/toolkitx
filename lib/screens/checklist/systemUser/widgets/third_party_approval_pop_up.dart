@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:toolkit/blocs/checklist/systemUser/thirdPartyApprove/sys_user_third_party_approve_bloc.dart';
-import 'package:toolkit/blocs/checklist/systemUser/thirdPartyApprove/sys_user_third_party_approve_events.dart';
-import 'package:toolkit/blocs/checklist/systemUser/thirdPartyApprove/sys_user_third_party_approve_states.dart';
+import 'package:toolkit/blocs/checklist/systemUser/thirdPartyApprove/sys_user_checklist_third_party_approve_bloc.dart';
+import 'package:toolkit/blocs/checklist/systemUser/thirdPartyApprove/sys_user_checklist_third_party_approve_events.dart';
+import 'package:toolkit/blocs/checklist/systemUser/thirdPartyApprove/sys_user_checklist_third_party_approve_states.dart';
 import 'package:toolkit/configs/app_dimensions.dart';
 import 'package:toolkit/configs/app_spacing.dart';
 import 'package:toolkit/configs/app_theme.dart';
-import '../../../../blocs/checklist/systemUser/scheduleDates/sys_user_schedule_dates_bloc.dart';
+import '../../../../blocs/checklist/systemUser/scheduleDates/sys_user_checklist_schedule_dates_bloc.dart';
 import '../../../../configs/app_color.dart';
 import '../../../../utils/constants/string_constants.dart';
 import '../../../../widgets/custom_snackbar.dart';
@@ -26,18 +26,20 @@ class ThirdPartyApprovePopUp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<ThirdPartyApproveBloc, ThirdPartyApproveStates>(
+    return BlocListener<CheckListThirdPartyApproveBloc,
+            CheckListThirdPartyApproveStates>(
         listener: (BuildContext context, state) {
-          if (state is ThirdPartyApproving) {
+          if (state is CheckListThirdPartyApproving) {
             ProgressBar.show(context);
-          } else if (state is ThirdPartyApproved) {
+          } else if (state is CheckListThirdPartyApproved) {
             ProgressBar.dismiss(context);
             Navigator.pop(context);
             Navigator.pop(context);
             Navigator.pushReplacementNamed(
                 context, SystemUserScheduleDatesScreen.routeName,
-                arguments: context.read<ScheduleDatesBloc>().checklistId);
-          } else if (state is ThirdPartyNotApproved) {
+                arguments:
+                    context.read<CheckListScheduleDatesBloc>().checklistId);
+          } else if (state is CheckListThirdPartyNotApproved) {
             ProgressBar.dismiss(context);
             showCustomSnackBar(context, state.errorMessage, '');
           }
@@ -100,8 +102,8 @@ class ThirdPartyApprovePopUp extends StatelessWidget {
                   textValue: StringConstants.kRemove),
               CustomTextButton(
                   onPressed: () {
-                    context.read<ThirdPartyApproveBloc>().add(
-                        ThirdPartyApproveCheckList(
+                    context.read<CheckListThirdPartyApproveBloc>().add(
+                        ThirdPartyApproveCheckListEvent(
                             thirdPartyApproveMap: thirdPartyApproveMap,
                             responseIdList: responseIdList));
                   },

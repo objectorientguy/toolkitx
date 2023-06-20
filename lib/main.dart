@@ -3,16 +3,16 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:toolkit/blocs/checklist/systemUser/approvePopUp/sys_user_approve_pop_up_bloc.dart';
-import 'package:toolkit/blocs/checklist/systemUser/changeRole/sys_user_change_role_bloc.dart';
+import 'package:toolkit/blocs/checklist/systemUser/changeRole/sys_user_checklist_change_role_bloc.dart';
 import 'package:toolkit/blocs/checklist/systemUser/checkList/sys_user_checklist_bloc.dart';
-import 'package:toolkit/blocs/checklist/systemUser/pdf/sys_user_pdf_bloc.dart';
-import 'package:toolkit/blocs/checklist/systemUser/rejectPopUp/sys_user_reject_pop_up_bloc.dart';
-import 'package:toolkit/blocs/checklist/systemUser/scheduleDates/sys_user_schedule_dates_bloc.dart';
-import 'package:toolkit/blocs/checklist/systemUser/scheduleDatesResponse/schedule_dates_response_bloc.dart';
-import 'package:toolkit/blocs/checklist/systemUser/submitHeader/header_bloc.dart';
-import 'package:toolkit/blocs/checklist/systemUser/thirdPartyApprove/sys_user_third_party_approve_bloc.dart';
+import 'package:toolkit/blocs/checklist/systemUser/pdf/sys_user_checklist_pdf_bloc.dart';
+import 'package:toolkit/blocs/checklist/systemUser/scheduleDates/sys_user_checklist_schedule_dates_bloc.dart';
+import 'package:toolkit/blocs/checklist/systemUser/scheduleDatesResponse/checklist_schedule_dates_response_bloc.dart';
+import 'package:toolkit/blocs/checklist/systemUser/submitHeader/sys_user_checklist_header_bloc.dart';
+import 'package:toolkit/blocs/checklist/systemUser/thirdPartyApprove/sys_user_checklist_third_party_approve_bloc.dart';
 import 'package:toolkit/utils/database_utils.dart';
+import 'blocs/checklist/systemUser/approve/sys_user_approve_checklist_bloc.dart';
+import 'blocs/checklist/systemUser/reject/sys_user_reject_checklist_bloc.dart';
 import 'blocs/client/client_bloc.dart';
 import 'blocs/dateFormat/date_format_bloc.dart';
 import 'blocs/home/home_bloc.dart';
@@ -78,17 +78,21 @@ class MyApp extends StatelessWidget {
           BlocProvider(lazy: false, create: (context) => PermitRoleBloc()),
           BlocProvider(
               lazy: false, create: (context) => SysUserCheckListBloc()),
-          BlocProvider(lazy: false, create: (context) => ScheduleDatesBloc()),
           BlocProvider(
-              lazy: false, create: (context) => ScheduleDatesResponseBloc()),
+              lazy: false, create: (context) => CheckListScheduleDatesBloc()),
+          BlocProvider(
+              lazy: false,
+              create: (context) => CheckListScheduleDatesResponseBloc()),
           BlocProvider(lazy: false, create: (context) => CheckListRoleBloc()),
           BlocProvider(
               lazy: false, create: (context) => CheckListApproveBloc()),
-          BlocProvider(lazy: false, create: (context) => RejectBloc()),
+          BlocProvider(lazy: false, create: (context) => RejectCheckListBloc()),
           BlocProvider(
-              lazy: false, create: (context) => ThirdPartyApproveBloc()),
-          BlocProvider(lazy: false, create: (context) => HeaderBloc()),
-          BlocProvider(lazy: false, create: (context) => FetchPdfBloc()),
+              lazy: false,
+              create: (context) => CheckListThirdPartyApproveBloc()),
+          BlocProvider(lazy: false, create: (context) => CheckListHeaderBloc()),
+          BlocProvider(
+              lazy: false, create: (context) => FetchCheckListPdfBloc()),
           BlocProvider(
               lazy: false,
               create: (context) => OnBoardingBloc()..add(CheckLoggedIn()))

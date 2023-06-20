@@ -1,24 +1,24 @@
 import 'dart:convert';
 
-SaveThirdPartyApproval saveThirdPartyApprovalFromJson(String str) =>
-    SaveThirdPartyApproval.fromJson(json.decode(str));
+SaveCheckListThirdPartyApproval saveThirdPartyApprovalFromJson(String str) =>
+    SaveCheckListThirdPartyApproval.fromJson(json.decode(str));
 
-String saveThirdPartyApprovalToJson(SaveThirdPartyApproval data) =>
+String saveThirdPartyApprovalToJson(SaveCheckListThirdPartyApproval data) =>
     json.encode(data.toJson());
 
-class SaveThirdPartyApproval {
+class SaveCheckListThirdPartyApproval {
   final int status;
   final String? message;
   final Data? data;
 
-  SaveThirdPartyApproval({
+  SaveCheckListThirdPartyApproval({
     required this.status,
     this.message,
     this.data,
   });
 
-  factory SaveThirdPartyApproval.fromJson(Map<String, dynamic> json) =>
-      SaveThirdPartyApproval(
+  factory SaveCheckListThirdPartyApproval.fromJson(Map<String, dynamic> json) =>
+      SaveCheckListThirdPartyApproval(
         status: json["Status"],
         message: json["Message"],
         data: Data.fromJson(json["Data"]),

@@ -15,7 +15,7 @@ import '../../../utils/dio_client.dart';
 
 class SysUserCheckListRepositoryImpl extends SysUserCheckListRepository {
   @override
-  Future<ChecklistListModel> fetchChecklist(
+  Future<ChecklistListModel> fetchCheckList(
       int pageNo, String hashCode, String filter) async {
     final response = await DioClient().get(
         "${ApiConstants.baseUrl}checklist/getallchecklists?pageno=$pageNo&hashcode=$hashCode&filter=$filter");
@@ -23,7 +23,7 @@ class SysUserCheckListRepositoryImpl extends SysUserCheckListRepository {
   }
 
   @override
-  Future<ChecklistScheduledByDatesModel> fetchScheduleDates(
+  Future<ChecklistScheduledByDatesModel> fetchCheckListScheduleDates(
       String checklistId, String hashCode) async {
     final response = await DioClient().get(
         "${ApiConstants.baseUrl}checklist/getscheduleddates?checklistid=$checklistId&hashcode=$hashCode");
@@ -31,7 +31,7 @@ class SysUserCheckListRepositoryImpl extends SysUserCheckListRepository {
   }
 
   @override
-  Future<CheckListWorkforceListModel> fetchWorkforceList(
+  Future<CheckListWorkforceListModel> fetchCheckListWorkforceList(
       String scheduleId, String hashCode, String role) async {
     final response = await DioClient().get(
         "${ApiConstants.baseUrl}checklist/getallworkforce?scheduleid=$scheduleId&hashcode=$hashCode&role=$role");
@@ -39,22 +39,23 @@ class SysUserCheckListRepositoryImpl extends SysUserCheckListRepository {
   }
 
   @override
-  Future<CheckListRolesModel> fetchRole(String hashCode, String userId) async {
+  Future<CheckListRolesModel> fetchCheckListRole(
+      String hashCode, String userId) async {
     final response = await DioClient().get(
         "${ApiConstants.baseUrl}checklist/getroles?hashcode=$hashCode&userid=$userId");
     return CheckListRolesModel.fromJson(response);
   }
 
   @override
-  Future<GetFilterCategoryModel> fetchCategory(
+  Future<GetCheckListFilterCategoryModel> fetchCheckListCategory(
       String hashCode, String userId) async {
     final response = await DioClient().get(
         "${ApiConstants.baseUrl}checklist/getmaster?hashcode=$hashCode&userid=$userId");
-    return GetFilterCategoryModel.fromJson(response);
+    return GetCheckListFilterCategoryModel.fromJson(response);
   }
 
   @override
-  Future<ChecklistApproveModel> checklistApprove(Map postApproveDataMap) async {
+  Future<ChecklistApproveModel> checkListApprove(Map postApproveDataMap) async {
     final response = await DioClient().post(
         "${ApiConstants.baseUrl}checklist/approvechecklist",
         postApproveDataMap);
@@ -62,23 +63,23 @@ class SysUserCheckListRepositoryImpl extends SysUserCheckListRepository {
   }
 
   @override
-  Future<ChecklistRejectModel> checklistReject(Map postRejectDataMap) async {
+  Future<ChecklistRejectModel> checkListReject(Map postRejectDataMap) async {
     final response = await DioClient().post(
         "${ApiConstants.baseUrl}checklist/rejectchecklist", postRejectDataMap);
     return ChecklistRejectModel.fromJson(response);
   }
 
   @override
-  Future<SaveThirdPartyApproval> checklistThirdPartyApproval(
+  Future<SaveCheckListThirdPartyApproval> checklistThirdPartyApproval(
       Map postThirdPartyApprovalMap) async {
     final response = await DioClient().post(
         "${ApiConstants.baseUrl}checklist/savethirdpartysign",
         postThirdPartyApprovalMap);
-    return SaveThirdPartyApproval.fromJson(response);
+    return SaveCheckListThirdPartyApproval.fromJson(response);
   }
 
   @override
-  Future<CheckListEditHeaderDetailsModel> fetchEditHeader(
+  Future<CheckListEditHeaderDetailsModel> fetchCheckListEditHeader(
       String scheduleId, String hashCode) async {
     final response = await DioClient().get(
         "${ApiConstants.baseUrl}checklist/gettemplatecustomfields?scheduleid=$scheduleId&hashcode=$hashCode");
@@ -86,7 +87,7 @@ class SysUserCheckListRepositoryImpl extends SysUserCheckListRepository {
   }
 
   @override
-  Future<ChecklistSubmitHeaderModel> submitHeader(
+  Future<ChecklistSubmitHeaderModel> submitCheckListHeader(
       Map postSubmitHeaderMap) async {
     final response = await DioClient().post(
         "${ApiConstants.baseUrl}checklist/savetemplatecustomfields",
@@ -95,7 +96,8 @@ class SysUserCheckListRepositoryImpl extends SysUserCheckListRepository {
   }
 
   @override
-  Future<GetPdfModel> fetchPdf(String responseId, String hashCode) async {
+  Future<GetPdfModel> fetchCheckListPdf(
+      String responseId, String hashCode) async {
     final response = await DioClient().get(
         "${ApiConstants.baseUrl}checklist/getpdf?responseid=$responseId&hashcode=$hashCode");
     return GetPdfModel.fromJson(response);

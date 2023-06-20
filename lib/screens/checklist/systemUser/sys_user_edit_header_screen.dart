@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:toolkit/blocs/checklist/systemUser/scheduleDatesResponse/schedule_dates_response_bloc.dart';
-import 'package:toolkit/blocs/checklist/systemUser/submitHeader/header_bloc.dart';
-import 'package:toolkit/blocs/checklist/systemUser/submitHeader/header_states.dart';
+import 'package:toolkit/blocs/checklist/systemUser/scheduleDatesResponse/checklist_schedule_dates_response_bloc.dart';
+import 'package:toolkit/blocs/checklist/systemUser/submitHeader/sys_user_checklist_header_bloc.dart';
+import 'package:toolkit/blocs/checklist/systemUser/submitHeader/sys_user_checklist_header_states.dart';
 import 'package:toolkit/configs/app_spacing.dart';
 import 'package:toolkit/configs/app_theme.dart';
 import 'package:toolkit/utils/constants/string_constants.dart';
 import 'package:toolkit/utils/edit_header_util.dart';
 import 'package:toolkit/widgets/custom_snackbar.dart';
-import 'package:toolkit/widgets/error_section.dart';
 import 'package:toolkit/widgets/primary_button.dart';
 import 'package:toolkit/widgets/progress_bar.dart';
-import '../../../blocs/checklist/systemUser/submitHeader/header_events.dart';
+import '../../../blocs/checklist/systemUser/submitHeader/sys_user_checklist_header_events.dart';
 import '../widgets/checklist_app_bar.dart';
 
 class EditHeaderScreen extends StatelessWidget {
@@ -22,17 +21,18 @@ class EditHeaderScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    context.read<HeaderBloc>().add(FetchEditHeader(
-        scheduleId: context.read<ScheduleDatesResponseBloc>().scheduleId));
+    context.read<CheckListHeaderBloc>().add(FetchCheckListEditHeader(
+        scheduleId:
+            context.read<CheckListScheduleDatesResponseBloc>().scheduleId));
     return Scaffold(
         appBar: ChecklistAppBar(
-            title: BlocBuilder<HeaderBloc, HeaderStates>(
+            title: BlocBuilder<CheckListHeaderBloc, CheckListHeaderStates>(
                 buildWhen: (previousState, currentState) =>
-                    currentState is FetchingEditHeader ||
-                    currentState is EditHeaderFetched ||
-                    currentState is EditHeaderError,
+                    currentState is FetchingCheckListEditHeader ||
+                    currentState is CheckListEditHeaderFetched ||
+                    currentState is CheckListEditHeaderError,
                 builder: (context, state) {
-                  if (state is EditHeaderFetched) {
+                  if (state is CheckListEditHeaderFetched) {
                     return Text(state
                         .getCheckListEditHeaderModel.data![0].checklistname);
                   } else {
@@ -44,27 +44,23 @@ class EditHeaderScreen extends StatelessWidget {
                 left: leftRightMargin,
                 right: leftRightMargin,
                 top: topBottomPadding),
-            child: BlocConsumer<HeaderBloc, HeaderStates>(
+            child: BlocConsumer<CheckListHeaderBloc, CheckListHeaderStates>(
                 buildWhen: (previousState, currentState) =>
-                    currentState is FetchingEditHeader ||
-                    currentState is EditHeaderFetched ||
-                    currentState is EditHeaderError,
+                    currentState is FetchingCheckListEditHeader ||
+                    currentState is CheckListEditHeaderFetched ||
+                    currentState is CheckListEditHeaderError,
                 listener: (context, state) {
-                  if (state is SubmittingHeader) {
+                  if (state is SubmittingCheckListHeader) {
                     ProgressBar.show(context);
-                  } else if (state is HeaderSubmitted) {
+                  } else if (state is CheckListHeaderSubmitted) {
                     ProgressBar.dismiss(context);
                     showCustomSnackBar(context, state.headerMessage, '');
-                  } else if (state is HeaderNotSubmitted) {
-                    ProgressBar.dismiss(context);
-                    showCustomSnackBar(
-                        context, state.message, StringConstants.kOk);
                   }
                 },
                 builder: (context, state) {
-                  if (state is FetchingEditHeader) {
+                  if (state is FetchingCheckListEditHeader) {
                     return const Center(child: CircularProgressIndicator());
-                  } else if (state is EditHeaderFetched) {
+                  } else if (state is CheckListEditHeaderFetched) {
                     return SingleChildScrollView(
                       physics: const BouncingScrollPhysics(),
                       child: Column(children: [
@@ -113,24 +109,21 @@ class EditHeaderScreen extends StatelessWidget {
                         const SizedBox(height: xxTinySpacing),
                         PrimaryButton(
                             onPressed: () {
-                              context.read<HeaderBloc>().add(SubmitHeader(
-                                  scheduleId: context
-                                      .read<ScheduleDatesResponseBloc>()
-                                      .scheduleId,
-                                  submitHeaderList: editHeaderList));
+                              context.read<CheckListHeaderBloc>().add(
+                                  CheckListSubmitHeader(
+                                      scheduleId: context
+                                          .read<
+                                              CheckListScheduleDatesResponseBloc>()
+                                          .scheduleId,
+                                      submitHeaderList: editHeaderList));
                             },
                             textValue: StringConstants.kSubmit)
                       ]),
                     );
-                  } else if (state is EditHeaderError) {
-                    return GenericReloadButton(
-                        onPressed: () {
-                          context.read<HeaderBloc>().add(FetchEditHeader(
-                              scheduleId: context
-                                  .read<ScheduleDatesResponseBloc>()
-                                  .scheduleId));
-                        },
-                        textValue: StringConstants.kReload);
+                  } else if (state is CheckListEditHeaderError) {
+                    return Center(
+                        child: Text(state.noHeaderMessage,
+                            style: Theme.of(context).textTheme.medium));
                   } else {
                     return const SizedBox();
                   }

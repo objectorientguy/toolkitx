@@ -1,16 +1,16 @@
 import 'package:equatable/equatable.dart';
 import 'package:toolkit/data/models/checklist/systemUser/sys_user_reject_model.dart';
 
-abstract class RejectStates extends Equatable {
+abstract class RejectCheckListStates extends Equatable {
   @override
   List<Object?> get props => throw UnimplementedError();
 }
 
-class RejectCheckListInitial extends RejectStates {}
+class RejectCheckListInitial extends RejectCheckListStates {}
 
-class RejectingCheckList extends RejectStates {}
+class RejectingCheckList extends RejectCheckListStates {}
 
-class CheckListRejected extends RejectStates {
+class CheckListRejected extends RejectCheckListStates {
   final ChecklistRejectModel checklistRejectModel;
 
   CheckListRejected({required this.checklistRejectModel});
@@ -19,7 +19,7 @@ class CheckListRejected extends RejectStates {
   List<Object?> get props => [checklistRejectModel];
 }
 
-class CheckListNotRejected extends RejectStates {
+class CheckListNotRejected extends RejectCheckListStates {
   final String errorMessage;
 
   CheckListNotRejected({required this.errorMessage});

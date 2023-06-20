@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:toolkit/blocs/checklist/systemUser/scheduleDates/sys_user_schedule_dates_event.dart';
+import 'package:toolkit/blocs/checklist/systemUser/scheduleDates/sys_user_checklist_schedule_dates_event.dart';
 import 'package:toolkit/screens/checklist/systemUser/widgets/sys_user_schedule_dates_section.dart';
 import 'package:toolkit/screens/checklist/widgets/checklist_app_bar.dart';
-import '../../../blocs/checklist/systemUser/scheduleDates/sys_user_schedule_dates_bloc.dart';
-import '../../../blocs/checklist/systemUser/scheduleDates/sys_user_schedule_dates_states.dart';
+import '../../../blocs/checklist/systemUser/scheduleDates/sys_user_checklist_schedule_dates_bloc.dart';
+import '../../../blocs/checklist/systemUser/scheduleDates/sys_user_checklist_schedule_dates_states.dart';
 
 class SystemUserScheduleDatesScreen extends StatelessWidget {
   static const routeName = 'SystemUserScheduleDatesScreen';
@@ -16,13 +16,12 @@ class SystemUserScheduleDatesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     context
-        .read<ScheduleDatesBloc>()
-        .add(FetchScheduleDatesList(checklistId: checkListId));
+        .read<CheckListScheduleDatesBloc>()
+        .add(FetchCheckListScheduleDatesEvent(checklistId: checkListId));
     return Scaffold(
-        appBar: ChecklistAppBar(title:
-            BlocBuilder<ScheduleDatesBloc, ScheduleDatesStates>(
-                builder: (context, state) {
-          if (state is DatesScheduled) {
+        appBar: ChecklistAppBar(title: BlocBuilder<CheckListScheduleDatesBloc,
+            CheckListScheduleDatesStates>(builder: (context, state) {
+          if (state is CheckListDatesScheduled) {
             return Text(
                 state.checklistScheduledByDatesModel.data![0].checklistname);
           } else {

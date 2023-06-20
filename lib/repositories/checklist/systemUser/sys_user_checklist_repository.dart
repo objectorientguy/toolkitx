@@ -11,30 +11,33 @@ import '../../../data/models/checklist/systemUser/sys_user_schedule_by_dates_mod
 import '../../../data/models/checklist/systemUser/sys_user_submit_header_model.dart';
 
 abstract class SysUserCheckListRepository {
-  Future<ChecklistListModel> fetchChecklist(
+  Future<ChecklistListModel> fetchCheckList(
       int pageNo, String hashCode, String filter);
 
-  Future<ChecklistScheduledByDatesModel> fetchScheduleDates(
+  Future<ChecklistScheduledByDatesModel> fetchCheckListScheduleDates(
       String checklistId, String hashCode);
 
-  Future<CheckListWorkforceListModel> fetchWorkforceList(
+  Future<CheckListWorkforceListModel> fetchCheckListWorkforceList(
       String scheduleId, String hashCode, String role);
 
-  Future<CheckListRolesModel> fetchRole(String hashCode, String userId);
+  Future<CheckListRolesModel> fetchCheckListRole(
+      String hashCode, String userId);
 
-  Future<GetFilterCategoryModel> fetchCategory(String hashCode, String userId);
+  Future<GetCheckListFilterCategoryModel> fetchCheckListCategory(
+      String hashCode, String userId);
 
-  Future<ChecklistApproveModel> checklistApprove(Map postApproveDataMap);
+  Future<ChecklistApproveModel> checkListApprove(Map postApproveDataMap);
 
-  Future<ChecklistRejectModel> checklistReject(Map postRejectDataMap);
+  Future<ChecklistRejectModel> checkListReject(Map postRejectDataMap);
 
-  Future<SaveThirdPartyApproval> checklistThirdPartyApproval(
+  Future<SaveCheckListThirdPartyApproval> checklistThirdPartyApproval(
       Map postThirdPartyApprovalMap);
 
-  Future<CheckListEditHeaderDetailsModel> fetchEditHeader(
+  Future<CheckListEditHeaderDetailsModel> fetchCheckListEditHeader(
       String scheduleId, String hashCode);
 
-  Future<ChecklistSubmitHeaderModel> submitHeader(Map postSubmitHeaderMap);
+  Future<ChecklistSubmitHeaderModel> submitCheckListHeader(
+      Map postSubmitHeaderMap);
 
-  Future<GetPdfModel> fetchPdf(String responseId, String hashCode);
+  Future<GetPdfModel> fetchCheckListPdf(String responseId, String hashCode);
 }

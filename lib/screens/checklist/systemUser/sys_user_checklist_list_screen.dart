@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:toolkit/blocs/checklist/systemUser/changeRole/sys_user_change_role_bloc.dart';
-import 'package:toolkit/blocs/checklist/systemUser/changeRole/sys_user_change_role_event.dart';
 import 'package:toolkit/blocs/checklist/systemUser/checkList/sys_user_checklist_bloc.dart';
 import 'package:toolkit/blocs/checklist/systemUser/checkList/sys_user_checklist_event.dart';
 import 'package:toolkit/configs/app_spacing.dart';
@@ -11,8 +9,6 @@ import 'package:toolkit/screens/checklist/systemUser/widgets/sys_user_list_secti
 import 'package:toolkit/utils/constants/string_constants.dart';
 import 'package:toolkit/widgets/custom_icon_button_row.dart';
 import 'package:toolkit/widgets/generic_app_bar.dart';
-import '../../../blocs/checklist/systemUser/changeRole/sys_user_change_role_states.dart';
-import '../../../widgets/progress_bar.dart';
 
 class SystemUserCheckListScreen extends StatelessWidget {
   static const routeName = 'SystemUserCheckListScreen';
@@ -21,7 +17,7 @@ class SystemUserCheckListScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    context.read<SysUserCheckListBloc>().add(FetchList());
+    context.read<SysUserCheckListBloc>().add(FetchCheckList());
     return Scaffold(
       appBar: const GenericAppBar(title: StringConstants.kChecklist),
       body: Padding(
@@ -30,34 +26,22 @@ class SystemUserCheckListScreen extends StatelessWidget {
               right: leftRightMargin,
               top: xxTinierSpacing),
           child: Column(children: [
-            BlocListener<CheckListRoleBloc, CheckListRoleStates>(
-              listener: (context, state) {
-                if (state is FetchingRoles) {
-                  ProgressBar.show(context);
-                } else if (state is RolesFetched) {
-                  ProgressBar.dismiss(context);
+            CustomIconButtonRow(
+                primaryOnPress: () {
+                  Navigator.pushNamed(context, FiltersScreen.routeName);
+                },
+                secondaryOnPress: () {
                   Navigator.pushNamed(context, ChangeRoleScreen.routeName);
-                }
-              },
-              child: CustomIconButtonRow(
-                  primaryOnPress: () {
-                    Navigator.pushNamed(context, FiltersScreen.routeName);
-                  },
-                  secondaryOnPress: () {
-                    context
-                        .read<CheckListRoleBloc>()
-                        .add(FetchRoles(roleName: ''));
-                  },
-                  clearVisible:
-                      context.read<SysUserCheckListBloc>().filterData != '{}',
-                  isEnabled: true,
-                  clearOnPress: () {
-                    context
-                        .read<SysUserCheckListBloc>()
-                        .add(ClearSystemUserCheckListFilter());
-                    context.read<SysUserCheckListBloc>().add(FetchList());
-                  }),
-            ),
+                },
+                clearVisible:
+                    context.read<SysUserCheckListBloc>().filterData != '{}',
+                isEnabled: true,
+                clearOnPress: () {
+                  context
+                      .read<SysUserCheckListBloc>()
+                      .add(ClearCheckListFilter());
+                  context.read<SysUserCheckListBloc>().add(FetchCheckList());
+                }),
             const SizedBox(height: tiniest),
             SysUserListSection()
           ])),

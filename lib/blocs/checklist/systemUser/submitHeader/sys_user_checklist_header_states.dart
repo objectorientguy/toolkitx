@@ -3,50 +3,54 @@ import 'package:equatable/equatable.dart';
 import '../../../../data/models/checklist/systemUser/sys_user_edit_header_details_model.dart';
 import '../../../../data/models/checklist/systemUser/sys_user_submit_header_model.dart';
 
-abstract class HeaderStates extends Equatable {
+abstract class CheckListHeaderStates extends Equatable {
   @override
   List<Object?> get props => throw UnimplementedError();
 }
 
-class HeaderInitial extends HeaderStates {}
+class CheckListHeaderInitial extends CheckListHeaderStates {}
 
-class FetchingEditHeader extends HeaderStates {
+class FetchingCheckListEditHeader extends CheckListHeaderStates {
   final String scheduleId;
 
-  FetchingEditHeader({required this.scheduleId});
+  FetchingCheckListEditHeader({required this.scheduleId});
 
   @override
   List<Object?> get props => [scheduleId];
 }
 
-class EditHeaderFetched extends HeaderStates {
+class CheckListEditHeaderFetched extends CheckListHeaderStates {
   final CheckListEditHeaderDetailsModel getCheckListEditHeaderModel;
 
-  EditHeaderFetched({required this.getCheckListEditHeaderModel});
+  CheckListEditHeaderFetched({required this.getCheckListEditHeaderModel});
 
   @override
   List<Object?> get props => [getCheckListEditHeaderModel];
 }
 
-class EditHeaderError extends HeaderStates {}
+class CheckListEditHeaderError extends CheckListHeaderStates {
+  final String noHeaderMessage;
 
-class SubmittingHeader extends HeaderStates {}
+  CheckListEditHeaderError({required this.noHeaderMessage});
+}
 
-class HeaderSubmitted extends HeaderStates {
+class SubmittingCheckListHeader extends CheckListHeaderStates {}
+
+class CheckListHeaderSubmitted extends CheckListHeaderStates {
   final ChecklistSubmitHeaderModel checklistSubmitHeaderModel;
   final String headerMessage;
 
-  HeaderSubmitted(
+  CheckListHeaderSubmitted(
       {required this.headerMessage, required this.checklistSubmitHeaderModel});
 
   @override
   List<Object?> get props => [checklistSubmitHeaderModel];
 }
 
-class HeaderNotSubmitted extends HeaderStates {
+class CheckListHeaderNotSubmitted extends CheckListHeaderStates {
   final String message;
 
-  HeaderNotSubmitted({required this.message});
+  CheckListHeaderNotSubmitted({required this.message});
 
   @override
   List<Object?> get props => [message];

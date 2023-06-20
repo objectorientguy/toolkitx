@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:toolkit/blocs/checklist/systemUser/scheduleDatesResponse/schedule_dates_response_bloc.dart';
-import 'package:toolkit/blocs/checklist/systemUser/scheduleDatesResponse/schedule_dates_response_states.dart';
+import 'package:toolkit/blocs/checklist/systemUser/scheduleDatesResponse/checklist_schedule_dates_response_bloc.dart';
+import 'package:toolkit/blocs/checklist/systemUser/scheduleDatesResponse/checklist_schedule_dates_response_states.dart';
 import 'package:toolkit/configs/app_spacing.dart';
 import 'package:toolkit/configs/app_theme.dart';
 import 'package:toolkit/screens/checklist/widgets/checklist_app_bar.dart';
@@ -18,12 +18,14 @@ class WorkForceListScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: ChecklistAppBar(
-            title: BlocBuilder<ScheduleDatesResponseBloc,
-                    ScheduleDatesResponseStates>(
+            title: BlocBuilder<CheckListScheduleDatesResponseBloc,
+                    CheckListScheduleDatesResponseStates>(
                 buildWhen: (previousState, currentState) =>
-                    currentState is WorkforceListFetched,
+                    currentState is FetchingCheckListWorkforceList ||
+                    currentState is CheckListWorkforceListFetched ||
+                    currentState is CheckListWorkforceListError,
                 builder: (context, state) {
-                  if (state is WorkforceListFetched) {
+                  if (state is CheckListWorkforceListFetched) {
                     return Text(state
                         .checkListWorkforceListModel.data![0].checklistname);
                   } else {
@@ -31,16 +33,18 @@ class WorkForceListScreen extends StatelessWidget {
                   }
                 }),
             actions: [
-              BlocBuilder<ScheduleDatesResponseBloc,
-                      ScheduleDatesResponseStates>(
+              BlocBuilder<CheckListScheduleDatesResponseBloc,
+                      CheckListScheduleDatesResponseStates>(
                   buildWhen: (previousState, currentState) =>
-                      currentState is WorkforceListFetched,
+                      currentState is FetchingCheckListWorkforceList ||
+                      currentState is CheckListWorkforceListFetched ||
+                      currentState is CheckListWorkforceListError,
                   builder: (context, state) {
-                    if (state is WorkforceListFetched) {
+                    if (state is CheckListWorkforceListFetched) {
                       return PopUpMenu(
                           responseIdList: state.selectedIResponseIdList,
                           scheduleId: context
-                              .read<ScheduleDatesResponseBloc>()
+                              .read<CheckListScheduleDatesResponseBloc>()
                               .responseId,
                           popUpMenuBuilder: state.popUpMenuBuilder);
                     } else {
@@ -54,12 +58,14 @@ class WorkForceListScreen extends StatelessWidget {
                 right: leftRightMargin,
                 top: topBottomPadding),
             child: Column(children: [
-              BlocBuilder<ScheduleDatesResponseBloc,
-                      ScheduleDatesResponseStates>(
+              BlocBuilder<CheckListScheduleDatesResponseBloc,
+                      CheckListScheduleDatesResponseStates>(
                   buildWhen: (previousState, currentState) =>
-                      currentState is WorkforceListFetched,
+                      currentState is FetchingCheckListWorkforceList ||
+                      currentState is CheckListWorkforceListFetched ||
+                      currentState is CheckListWorkforceListError,
                   builder: (context, state) {
-                    if (state is WorkforceListFetched) {
+                    if (state is CheckListWorkforceListFetched) {
                       return Align(
                         alignment: Alignment.topLeft,
                         child: Row(

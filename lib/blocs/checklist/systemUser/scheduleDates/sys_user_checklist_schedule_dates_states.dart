@@ -2,20 +2,20 @@ import 'package:equatable/equatable.dart';
 
 import '../../../../data/models/checklist/systemUser/sys_user_schedule_by_dates_model.dart';
 
-abstract class ScheduleDatesStates extends Equatable {
+abstract class CheckListScheduleDatesStates extends Equatable {
   @override
   List<Object?> get props => throw UnimplementedError();
 }
 
-class ScheduleDatesInitial extends ScheduleDatesStates {}
+class CheckListScheduleDatesInitial extends CheckListScheduleDatesStates {}
 
-class FetchingScheduleDates extends ScheduleDatesStates {}
+class FetchingCheckListScheduleDates extends CheckListScheduleDatesStates {}
 
-class DatesScheduled extends ScheduleDatesStates {
+class CheckListDatesScheduled extends CheckListScheduleDatesStates {
   final ChecklistScheduledByDatesModel checklistScheduledByDatesModel;
   final Map allChecklistDataMap;
 
-  DatesScheduled(
+  CheckListDatesScheduled(
       {required this.allChecklistDataMap,
       required this.checklistScheduledByDatesModel});
 
@@ -24,4 +24,8 @@ class DatesScheduled extends ScheduleDatesStates {
       [allChecklistDataMap, checklistScheduledByDatesModel];
 }
 
-class DatesNotScheduled extends ScheduleDatesStates {}
+class CheckListDatesNotScheduled extends CheckListScheduleDatesStates {
+  final String noDatesScheduled;
+
+  CheckListDatesNotScheduled({required this.noDatesScheduled});
+}

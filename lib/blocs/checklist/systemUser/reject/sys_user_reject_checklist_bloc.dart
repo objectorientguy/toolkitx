@@ -1,26 +1,27 @@
 import 'dart:async';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:toolkit/blocs/checklist/systemUser/rejectPopUp/sys_user_reject_pop_up_events.dart';
-import 'package:toolkit/blocs/checklist/systemUser/rejectPopUp/sys_user_reject_pop_up_states.dart';
+import 'package:toolkit/blocs/checklist/systemUser/reject/sys_user_reject_checklist_events.dart';
+import 'package:toolkit/blocs/checklist/systemUser/reject/sys_user_reject_checklist_states.dart';
 import '../../../../data/cache/cache_keys.dart';
 import '../../../../data/cache/customer_cache.dart';
 import '../../../../data/models/checklist/systemUser/sys_user_reject_model.dart';
 import '../../../../di/app_module.dart';
 import '../../../../repositories/checklist/systemUser/sys_user_checklist_repository.dart';
 
-class RejectBloc extends Bloc<RejectEvent, RejectStates> {
+class RejectCheckListBloc
+    extends Bloc<RejectCheckListEvent, RejectCheckListStates> {
   final SysUserCheckListRepository _sysUserCheckListRepository =
       getIt<SysUserCheckListRepository>();
   final CustomerCache _customerCache = getIt<CustomerCache>();
 
-  RejectStates get initialState => RejectCheckListInitial();
+  RejectCheckListStates get initialState => RejectCheckListInitial();
 
-  RejectBloc() : super(RejectCheckListInitial()) {
-    on<RejectCheckList>(_checklistReject);
+  RejectCheckListBloc() : super(RejectCheckListInitial()) {
+    on<RejectCheckListEvent>(_checklistReject);
   }
 
   FutureOr<void> _checklistReject(
-      RejectCheckList event, Emitter<RejectStates> emit) async {
+      RejectCheckListEvent event, Emitter<RejectCheckListStates> emit) async {
     emit(RejectingCheckList());
     try {
       String hashCode = (await _customerCache.getHashCode(CacheKeys.hashcode))!;
@@ -42,7 +43,7 @@ class RejectBloc extends Bloc<RejectEvent, RejectStates> {
         };
         ChecklistRejectModel checklistRejectModel =
             await _sysUserCheckListRepository
-                .checklistReject(postRejectDataMap);
+                .checkListReject(postRejectDataMap);
         emit(CheckListRejected(checklistRejectModel: checklistRejectModel));
       }
     } catch (e) {

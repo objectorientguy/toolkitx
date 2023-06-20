@@ -24,11 +24,11 @@ class SysUserCheckListBloc
   SysUserCheckListStates get initialState => CheckListInitial();
 
   SysUserCheckListBloc() : super(CheckListInitial()) {
-    on<FetchList>(_fetchList);
-    on<FetchCategory>(_fetchCategory);
-    on<ChangeCategory>(_changeCategory);
+    on<FetchCheckList>(_fetchList);
+    on<FetchCheckListMaster>(_fetchCategory);
+    on<ChangeCheckListCategory>(_changeCategory);
     on<FilterChecklist>(_filterChecklist);
-    on<ClearSystemUserCheckListFilter>(_clearFilter);
+    on<ClearCheckListFilter>(_clearFilter);
   }
 
   _filterChecklist(
@@ -36,19 +36,19 @@ class SysUserCheckListBloc
     emit(SavingFilterData());
     try {
       filterData = jsonEncode(event.filterChecklistMap);
-      emit(SavedFilterData(saveFilterData: event.filterChecklistMap));
+      emit(SavedCheckListFilterData(saveFilterData: event.filterChecklistMap));
     } catch (e) {
-      emit(FilterDataNotSave(errorMessage: e.toString()));
+      emit(CheckListFilterDataNotSaved(errorMessage: e.toString()));
     }
   }
 
   FutureOr<void> _fetchList(
-      FetchList event, Emitter<SysUserCheckListStates> emit) async {
+      FetchCheckList event, Emitter<SysUserCheckListStates> emit) async {
     emit(FetchingCheckList());
     try {
       String hashCode = (await _customerCache.getHashCode(CacheKeys.hashcode))!;
       ChecklistListModel getChecklistModel = await _sysUserCheckListRepository
-          .fetchChecklist(page, hashCode, filterData);
+          .fetchCheckList(page, hashCode, filterData);
       if (getChecklistModel.status == 200) {
         emit(CheckListFetched(getChecklistModel: getChecklistModel));
         page++;
@@ -64,38 +64,39 @@ class SysUserCheckListBloc
   }
 
   FutureOr<void> _fetchCategory(
-      FetchCategory event, Emitter<SysUserCheckListStates> emit) async {
-    emit(FetchingCategory());
+      FetchCheckListMaster event, Emitter<SysUserCheckListStates> emit) async {
+    emit(FetchingCheckListCategory());
     try {
       String hashCode = (await _customerCache.getHashCode(CacheKeys.hashcode))!;
       String userId = (await _customerCache.getUserId(CacheKeys.userId))!;
-      GetFilterCategoryModel getFilterCategoryModel =
-          await _sysUserCheckListRepository.fetchCategory(hashCode, userId);
+      GetCheckListFilterCategoryModel getFilterCategoryModel =
+          await _sysUserCheckListRepository.fetchCheckListCategory(
+              hashCode, userId);
       if (getFilterCategoryModel.status == 200 &&
           getFilterCategoryModel.data!.isNotEmpty) {
-        add(ChangeCategory(
+        add(ChangeCheckListCategory(
             getFilterCategoryData: getFilterCategoryModel.data![0],
             categoryName: '',
             categoryId: ''));
       } else {
-        emit(CategoryNotFetched());
+        emit(CheckListCategoryNotFetched());
       }
     } catch (e) {
-      emit(CategoryNotFetched());
+      emit(CheckListCategoryNotFetched());
     }
   }
 
-  FutureOr<void> _changeCategory(
-      ChangeCategory event, Emitter<SysUserCheckListStates> emit) async {
+  FutureOr<void> _changeCategory(ChangeCheckListCategory event,
+      Emitter<SysUserCheckListStates> emit) async {
     categoryId = event.categoryId;
-    emit(CategoryFetched(
+    emit(CheckListCategoryFetched(
         categoryName: event.categoryName,
         getFilterCategoryData: event.getFilterCategoryData,
         categoryId: event.categoryId));
   }
 
-  _clearFilter(ClearSystemUserCheckListFilter event,
-      Emitter<SysUserCheckListStates> emit) async {
+  _clearFilter(
+      ClearCheckListFilter event, Emitter<SysUserCheckListStates> emit) async {
     filterData = '{}';
   }
 }

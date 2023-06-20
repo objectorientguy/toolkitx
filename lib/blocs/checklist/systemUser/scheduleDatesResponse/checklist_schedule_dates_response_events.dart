@@ -1,47 +1,48 @@
 import '../../../../data/models/checklist/systemUser/sys_user_schedule_by_dates_model.dart';
 import '../../../../data/models/checklist/systemUser/sys_user_workforce_list_model.dart';
 
-abstract class ScheduleDatesResponse {}
+abstract class CheckListScheduleDatesResponseEvent {}
 
-class CheckScheduleDatesResponse extends ScheduleDatesResponse {
+class CheckCheckListScheduleDatesResponse
+    extends CheckListScheduleDatesResponseEvent {
   final GetChecklistDetailsData getChecklistDetailsData;
   final String scheduleId;
   final String role;
 
-  CheckScheduleDatesResponse(
+  CheckCheckListScheduleDatesResponse(
       {required this.role,
       required this.getChecklistDetailsData,
       required this.scheduleId});
 }
 
-class WorkForceListFetch extends ScheduleDatesResponse {
+class CheckListWorkForceListFetch extends CheckListScheduleDatesResponseEvent {
   final String scheduleId;
   final String role;
   final List responseIds;
 
-  WorkForceListFetch(
+  CheckListWorkForceListFetch(
       {required this.responseIds,
       required this.role,
       required this.scheduleId});
 }
 
-class CheckBoxCheck extends ScheduleDatesResponse {
+class CheckListCheckBoxCheck extends CheckListScheduleDatesResponseEvent {
   final String responseId;
   final CheckListWorkforceListModel checkListWorkforceListModel;
   final List responseIdList;
   bool popUpBuilder;
 
-  CheckBoxCheck(
+  CheckListCheckBoxCheck(
       {required this.responseId,
       required this.checkListWorkforceListModel,
       required this.responseIdList,
       this.popUpBuilder = false});
 }
 
-class FetchPopUpMenu extends ScheduleDatesResponse {
+class FetchCheckListPopUpMenu extends CheckListScheduleDatesResponseEvent {
   final List popUpMenuItems;
   final bool popUpMenuBuilder;
 
-  FetchPopUpMenu(
+  FetchCheckListPopUpMenu(
       {required this.popUpMenuBuilder, required this.popUpMenuItems});
 }

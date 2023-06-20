@@ -43,12 +43,11 @@ class FilterSection extends StatelessWidget {
               listener: (context, state) {
                 if (state is SavingFilterData) {
                   ProgressBar.show(context);
-                } else if (state is SavedFilterData) {
+                } else if (state is SavedCheckListFilterData) {
                   ProgressBar.dismiss(context);
                   Navigator.pop(context);
                   Navigator.pushReplacementNamed(
                       context, SystemUserCheckListScreen.routeName);
-                  // context.read<SysUserCheckListBloc>().add(FetchList());
                 }
               },
               child: PrimaryButton(

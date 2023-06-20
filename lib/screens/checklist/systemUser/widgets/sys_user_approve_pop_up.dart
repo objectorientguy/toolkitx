@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:toolkit/blocs/checklist/systemUser/approvePopUp/sys_user_approve_pop_up_bloc.dart';
-import 'package:toolkit/blocs/checklist/systemUser/approvePopUp/sys_user_approve_pop_up_events.dart';
-import 'package:toolkit/blocs/checklist/systemUser/approvePopUp/sys_user_approve_pop_up_states.dart';
-import 'package:toolkit/blocs/checklist/systemUser/scheduleDates/sys_user_schedule_dates_bloc.dart';
+import 'package:toolkit/blocs/checklist/systemUser/scheduleDates/sys_user_checklist_schedule_dates_bloc.dart';
 import 'package:toolkit/configs/app_spacing.dart';
 import 'package:toolkit/configs/app_theme.dart';
 import 'package:toolkit/widgets/progress_bar.dart';
 import 'package:toolkit/widgets/text_button.dart';
+import '../../../../blocs/checklist/systemUser/approve/sys_user_approve_checklist_bloc.dart';
+import '../../../../blocs/checklist/systemUser/approve/sys_user_approve_checklist_events.dart';
+import '../../../../blocs/checklist/systemUser/approve/sys_user_approve_checklist_states.dart';
 import '../../../../configs/app_color.dart';
 import '../../../../utils/constants/string_constants.dart';
 import '../../../../widgets/custom_snackbar.dart';
@@ -25,7 +25,7 @@ class ApprovePopUp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<CheckListApproveBloc, ApproveStates>(
+    return BlocListener<CheckListApproveBloc, CheckListApproveStates>(
         listener: (BuildContext context, state) {
           if (state is ApprovingCheckList) {
             ProgressBar.show(context);
@@ -35,7 +35,8 @@ class ApprovePopUp extends StatelessWidget {
             Navigator.pop(context);
             Navigator.pushReplacementNamed(
                 context, SystemUserScheduleDatesScreen.routeName,
-                arguments: context.read<ScheduleDatesBloc>().checklistId);
+                arguments:
+                    context.read<CheckListScheduleDatesBloc>().checklistId);
           } else if (state is CheckListNotApproved) {
             ProgressBar.dismiss(context);
             showCustomSnackBar(context, state.errorMessage, '');
@@ -75,9 +76,10 @@ class ApprovePopUp extends StatelessWidget {
                   textValue: StringConstants.kRemove),
               CustomTextButton(
                   onPressed: () {
-                    context.read<CheckListApproveBloc>().add(ApproveCheckList(
-                        approveMap: approveMap,
-                        responseIdList: responseIdList));
+                    context.read<CheckListApproveBloc>().add(
+                        ApproveCheckListEvent(
+                            approveMap: approveMap,
+                            responseIdList: responseIdList));
                   },
                   textValue: textValue)
             ]));

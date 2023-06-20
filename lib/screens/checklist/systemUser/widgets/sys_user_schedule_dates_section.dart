@@ -1,20 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:toolkit/blocs/checklist/systemUser/changeRole/sys_user_change_role_bloc.dart';
+import 'package:toolkit/blocs/checklist/systemUser/changeRole/sys_user_checklist_change_role_bloc.dart';
 import 'package:toolkit/configs/app_theme.dart';
-import '../../../../blocs/checklist/systemUser/scheduleDates/sys_user_schedule_dates_bloc.dart';
-import '../../../../blocs/checklist/systemUser/scheduleDates/sys_user_schedule_dates_event.dart';
-import '../../../../blocs/checklist/systemUser/scheduleDates/sys_user_schedule_dates_states.dart';
-import '../../../../blocs/checklist/systemUser/scheduleDatesResponse/schedule_dates_response_bloc.dart';
-import '../../../../blocs/checklist/systemUser/scheduleDatesResponse/schedule_dates_response_events.dart';
-import '../../../../blocs/checklist/systemUser/scheduleDatesResponse/schedule_dates_response_states.dart';
+import '../../../../blocs/checklist/systemUser/scheduleDates/sys_user_checklist_schedule_dates_bloc.dart';
+import '../../../../blocs/checklist/systemUser/scheduleDates/sys_user_checklist_schedule_dates_states.dart';
+import '../../../../blocs/checklist/systemUser/scheduleDatesResponse/checklist_schedule_dates_response_bloc.dart';
+import '../../../../blocs/checklist/systemUser/scheduleDatesResponse/checklist_schedule_dates_response_events.dart';
+import '../../../../blocs/checklist/systemUser/scheduleDatesResponse/checklist_schedule_dates_response_states.dart';
 import '../../../../configs/app_color.dart';
 import '../../../../configs/app_dimensions.dart';
 import '../../../../configs/app_spacing.dart';
-import '../../../../utils/constants/string_constants.dart';
 import '../../../../widgets/custom_card.dart';
 import '../../../../widgets/custom_snackbar.dart';
-import '../../../../widgets/error_section.dart';
 import '../sys_user_workforce_list_screen.dart';
 
 class ScheduleDatesSection extends StatelessWidget {
@@ -25,17 +22,17 @@ class ScheduleDatesSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<ScheduleDatesBloc, ScheduleDatesStates>(
-        builder: (context, state) {
-      if (state is FetchingScheduleDates) {
+    return BlocBuilder<CheckListScheduleDatesBloc,
+        CheckListScheduleDatesStates>(builder: (context, state) {
+      if (state is FetchingCheckListScheduleDates) {
         return const Center(child: CircularProgressIndicator());
-      } else if (state is DatesScheduled) {
-        return BlocListener<ScheduleDatesResponseBloc,
-                ScheduleDatesResponseStates>(
+      } else if (state is CheckListDatesScheduled) {
+        return BlocListener<CheckListScheduleDatesResponseBloc,
+                CheckListScheduleDatesResponseStates>(
             listener: (context, state) {
-              if (state is NoResponseFound) {
+              if (state is CheckListNoResponseFound) {
                 showCustomSnackBar(context, 'No response found!', '');
-              } else if (state is FetchingWorkforceList) {
+              } else if (state is FetchingCheckListWorkforceList) {
                 Navigator.pushNamed(context, WorkForceListScreen.routeName);
               }
             },
@@ -91,8 +88,9 @@ class ScheduleDatesSection extends StatelessWidget {
                                     const SizedBox(height: tiniest),
                                   ]),
                               onTap: () {
-                                context.read<ScheduleDatesResponseBloc>().add(
-                                    CheckScheduleDatesResponse(
+                                context
+                                    .read<CheckListScheduleDatesResponseBloc>()
+                                    .add(CheckCheckListScheduleDatesResponse(
                                         getChecklistDetailsData: state
                                             .checklistScheduledByDatesModel
                                             .data![index],
@@ -108,12 +106,10 @@ class ScheduleDatesSection extends StatelessWidget {
                     separatorBuilder: (context, index) {
                       return const SizedBox(height: xxTinySpacing);
                     })));
-      } else if (state is DatesNotScheduled) {
-        return GenericReloadButton(
-            onPressed: () => context
-                .read<ScheduleDatesBloc>()
-                .add(FetchScheduleDatesList(checklistId: checklistId)),
-            textValue: StringConstants.kReload);
+      } else if (state is CheckListDatesNotScheduled) {
+        return Center(
+            child: Text(state.noDatesScheduled,
+                style: Theme.of(context).textTheme.medium));
       } else {
         return const SizedBox();
       }
