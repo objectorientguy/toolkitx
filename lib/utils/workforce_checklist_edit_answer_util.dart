@@ -115,41 +115,77 @@ class EditAnswerUtil {
 }
 
 Widget tableControl(index, answerModelList, answerList, context) {
-  // List items = [];
-  // List rowsItems = [];
-  return SingleChildScrollView(
-      scrollDirection: Axis.horizontal,
-      physics: const BouncingScrollPhysics(),
-      child: Container(
-          decoration: BoxDecoration(border: Border.all()),
-          child:
-              DataTable(border: TableBorder.all(), columnSpacing: 20, columns: [
-            const DataColumn(label: Text('')),
-            for (int i = 0; i < answerModelList[index].matrixcols.length; i++)
-              DataColumn(label: Text(answerModelList[index].matrixcols[i]))
-          ], rows: [
-            for (int j = 0; j < answerModelList[index].matrixrowcount; j++)
-              DataRow(cells: [
-                DataCell(SizedBox(
-                  height: MediaQuery.of(context).size.width * 0.1,
-                  width: MediaQuery.of(context).size.width * 0.4,
-                  child:
-                      TextFieldWidget(onTextFieldChanged: (String textField) {
-                    answerList[index]["answer"] = textField;
-                  }),
-                )),
-                for (int k = 0;
-                    k < answerModelList[index].matrixcols.length;
-                    k++)
-                  DataCell(SizedBox(
-                    height: MediaQuery.of(context).size.width * 0.1,
-                    width: MediaQuery.of(context).size.width * 0.5,
-                    child:
-                        TextFieldWidget(onTextFieldChanged: (String textField) {
-                      answerList[index]["answer"] = textField;
-                      log("row items value======>${answerList[index]["answer"]}");
-                    }),
-                  ))
-              ])
-          ])));
+  List items = [];
+  List rowsItems = [];
+  bool? isEditMode = true;
+  return BlocBuilder<WorkForceCheckListEditAnswerBloc,
+          WorkForceCheckListEditAnswerStates>(
+      buildWhen: (previousState, currentState) =>
+          currentState is CheckListAnswersEdited,
+      builder: (context, state) {
+        return SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            physics: const BouncingScrollPhysics(),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                    decoration: BoxDecoration(border: Border.all()),
+                    child: DataTable(
+                      border: TableBorder.all(),
+                      columnSpacing: 20,
+                      columns: [
+                        const DataColumn(label: Text('')),
+                        for (int i = 0;
+                            i < answerModelList[index].matrixcols.length;
+                            i++)
+                          DataColumn(
+                              label: Text(answerModelList[index].matrixcols[i]))
+                      ],
+                      rows: [
+                        for (int j = 0;
+                            j < answerModelList[index].matrixrowcount;
+                            j++)
+                          DataRow(cells: [
+                            DataCell(SizedBox(
+                              height: MediaQuery.of(context).size.width * 0.1,
+                              width: MediaQuery.of(context).size.width * 0.4,
+                              child: TextFieldWidget(
+                                  onTextFieldChanged: (String textField) {
+                                answerList[index]["answer"] = textField;
+                              }),
+                            )),
+                            for (int k = 0;
+                                k < answerModelList[index].matrixcols.length;
+                                k++)
+                              DataCell(
+                                SizedBox(
+                                  height:
+                                      MediaQuery.of(context).size.width * 0.1,
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.5,
+                                  child: TextFieldWidget(
+                                      onTextFieldChanged: (String textField) {
+                                    answerList[index]["answer"] = textField;
+                                    log("row items value======>${answerList[index]["answer"]}");
+                                  }),
+                                ),
+                              )
+                          ])
+                      ],
+                    )),
+                Row(
+                  children: [
+                    Checkbox(
+                      value: isEditMode,
+                      onChanged: (value) {
+                        isEditMode = value;
+                      },
+                    ),
+                    const Text('Edit mode'),
+                  ],
+                )
+              ],
+            ));
+      });
 }
