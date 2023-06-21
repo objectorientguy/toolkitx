@@ -1,12 +1,11 @@
-import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:toolkit/configs/app_dimensions.dart';
 import 'package:toolkit/configs/app_theme.dart';
-import '../../../../blocs/workforce/editAnswer/workforce_edit_answer_bloc.dart';
-import '../../../../blocs/workforce/editAnswer/workforce_edit_answer_events.dart';
+import '../../../../blocs/checklist/workforce/editAnswer/workforce_checklist_edit_answer_bloc.dart';
+import '../../../../blocs/checklist/workforce/editAnswer/workforce_checklist_edit_answer_events.dart';
 import '../../../../configs/app_color.dart';
-import '../../../../data/models/workforce/workforce_questions_list_model.dart';
+import '../../../../data/models/checklist/workforce/workforce_questions_list_model.dart';
 
 typedef CheckBoxCallBack = Function(String checkboxId, String checkboxValue);
 
@@ -54,18 +53,15 @@ class MultiSelectExpansionTile extends StatelessWidget {
                             .queoptions![listIndex]["queoptiontext"]),
                         controlAffinity: ListTileControlAffinity.trailing,
                         onChanged: (isChecked) {
-                          String selectedId = answerModelList[index]
-                              .queoptions![listIndex]["queoptionid"]
-                              .toString();
-                          context.read<EditAnswerBloc>().add(EditAnswerEvent(
-                              multiSelectIdList: selectedIdList,
-                              multiSelectItem: answerModelList[index]
-                                  .queoptions![listIndex]["queoptionid"]
-                                  .toString(),
-                              multiSelectName: answerModelList[index]
-                                  .queoptions![listIndex]["queoptiontext"],
-                              multiSelectNameList: selectedNamesList));
-                          log("replace all=====>$selectedId");
+                          context.read<WorkForceCheckListEditAnswerBloc>().add(
+                              CheckListEditAnswerEvent(
+                                  multiSelectIdList: selectedIdList,
+                                  multiSelectItem: answerModelList[index]
+                                      .queoptions![listIndex]["queoptionid"]
+                                      .toString(),
+                                  multiSelectName: answerModelList[index]
+                                      .queoptions![listIndex]["queoptiontext"],
+                                  multiSelectNameList: selectedNamesList));
                         });
                   })
             ]));

@@ -12,6 +12,7 @@ abstract class StringConstants {
   static const String kNext = 'NEXT';
   static const String kLogin = 'LOGIN';
   static const String kWelcome = 'Welcome';
+  static const String kEnterReason = 'Enter Reason';
   static const String kType = 'Type';
   static const String kGenerateOtp = 'GENERATE OTP';
   static const String kSubmit = 'Submit';

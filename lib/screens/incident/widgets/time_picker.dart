@@ -17,7 +17,7 @@ class TimePickerTextField extends StatelessWidget {
   final String? hintText;
   final DateTime? minimumTime;
   final TextEditingController timeInputController = TextEditingController();
-  bool? isFirstTime;
+  late final bool? isFirstTime;
 
   TimePickerTextField({
     Key? key,
@@ -47,10 +47,10 @@ class TimePickerTextField extends StatelessWidget {
                             initialDateTime: (isFirstTime != false)
                                 ? initialDateTime
                                 : DateFormat("HH:mm")
-                                .parse(timeInputController.text),
+                                    .parse(timeInputController.text),
                             onDateTimeChanged: (value) {
                               String formattedDate =
-                              DateFormat("HH:mm").format(value);
+                                  DateFormat("HH:mm").format(value);
                               timeInputController.text = formattedDate;
                               isFirstTime = false;
                             },

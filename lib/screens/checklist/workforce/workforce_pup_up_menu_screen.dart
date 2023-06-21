@@ -2,14 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:toolkit/configs/app_dimensions.dart';
 import 'package:toolkit/configs/app_theme.dart';
-import 'package:toolkit/screens/checklist/workforce/workforce_edit_answer_list_screen.dart';
+import 'package:toolkit/screens/checklist/workforce/workforce_reject_reason_screen.dart';
 import '../../../../configs/app_spacing.dart';
-import '../../../blocs/workforce/popUpMenu/workforce_pop_up_menu_bloc.dart';
-import '../../../blocs/workforce/popUpMenu/workforce_pop_up_menu_events.dart';
-import '../../../blocs/workforce/popUpMenu/workforce_pop_up_menu_states.dart';
+import '../../../blocs/checklist/workforce/popUpMenu/workforce_checklist_pop_up_menu_bloc.dart';
+import '../../../blocs/checklist/workforce/popUpMenu/workforce_checklist_pop_up_menu_events.dart';
+import '../../../blocs/checklist/workforce/popUpMenu/workforce_checklist_pop_up_menu_states.dart';
 
 class WorkForcePopUpMenu extends StatelessWidget {
-  const WorkForcePopUpMenu({Key? key}) : super(key: key);
+  final Map checklistDataMap;
+
+  const WorkForcePopUpMenu({Key? key, required this.checklistDataMap})
+      : super(key: key);
 
   PopupMenuItem _buildPopupMenuItem(context, String title, String position) {
     return PopupMenuItem(
@@ -21,10 +24,10 @@ class WorkForcePopUpMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     context
-        .read<PopUpMenuItemsBloc>()
-        .add(FetchPopUpMenuItems(popUpMenuItems: []));
-    return BlocBuilder<PopUpMenuItemsBloc, WfPopUpMenuItemsFetched>(
-        builder: (context, state) {
+        .read<WorkForceCheckListPopUpMenuItemsBloc>()
+        .add(WorkForceCheckListFetchPopUpMenuItems(popUpMenuItems: []));
+    return BlocBuilder<WorkForceCheckListPopUpMenuItemsBloc,
+        CheckListWorkForcePopUpMenuItemsFetched>(builder: (context, state) {
       return PopupMenuButton(
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(kCardRadius),
@@ -33,14 +36,10 @@ class WorkForcePopUpMenu extends StatelessWidget {
           icon: const Icon(Icons.more_vert_outlined),
           offset: const Offset(0, xxTinierSpacing),
           onSelected: (value) {
-            if (value == 'Edit') {
-              Navigator.pushNamed(
-                context,
-                EditAnswerListScreen.routeName,
-              );
-            }
+            if (value == 'Edit') {}
             if (value == 'Reject') {
-              // Navigator.pushNamed(context, RejectReasonsScreen.routeName);
+              Navigator.pushNamed(context, RejectReasonsScreen.routeName,
+                  arguments: checklistDataMap);
             }
           },
           position: PopupMenuPosition.under,

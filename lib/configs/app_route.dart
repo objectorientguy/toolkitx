@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:toolkit/screens/checklist/workforce/workforce_list_screen.dart';
 import '../screens/checklist/systemUser/sys_user_workforce_list_screen.dart';
 import '../screens/checklist/workforce/add_image_and_comments_screen.dart';
-import '../screens/checklist/workforce/workforce_edit_answer_list_screen.dart';
 import '../screens/checklist/workforce/workforce_questions_list_screen.dart';
 import 'package:toolkit/screens/checklist/systemUser/sys_user_edit_header_screen.dart';
 import 'package:toolkit/screens/checklist/systemUser/sys_user_checklist_list_screen.dart';
 import '../screens/checklist/systemUser/sys_user_change_role_screen.dart';
 import '../screens/checklist/systemUser/sys_user_schedule_dates_screen.dart';
 import '../screens/checklist/systemUser/sys_user_filters_screen.dart';
+import '../screens/checklist/workforce/workforce_reject_reason_screen.dart';
 import '../screens/incident/category_screen.dart';
 import '../screens/incident/filter_screen.dart';
 import '../screens/incident/incident_list_screen.dart';
@@ -91,11 +91,12 @@ class AppRoutes {
       case WorkForceQuestionsScreen.routeName:
         return _createRoute(WorkForceQuestionsScreen(
             checklistDataMap: settings.arguments as Map));
+      case RejectReasonsScreen.routeName:
+        return _createRoute(
+            RejectReasonsScreen(checklistDataMap: settings.arguments as Map));
       case InAppWebViewScreen.routeName:
         return _createRoute(
             InAppWebViewScreen(url: settings.arguments as String));
-      case EditAnswerListScreen.routeName:
-        return _createRoute(const EditAnswerListScreen());
       default:
         return _createRoute(const WelcomeScreen());
     }

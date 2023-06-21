@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:toolkit/blocs/workforce/editAnswer/workforce_edit_answer_states.dart';
 import 'package:toolkit/configs/app_spacing.dart';
-
-import '../../../../blocs/workforce/editAnswer/workforce_edit_answer_bloc.dart';
-import '../../../../blocs/workforce/editAnswer/workforce_edit_answer_events.dart';
+import '../../../../blocs/checklist/workforce/editAnswer/workforce_checklist_edit_answer_bloc.dart';
+import '../../../../blocs/checklist/workforce/editAnswer/workforce_checklist_edit_answer_events.dart';
+import '../../../../blocs/checklist/workforce/editAnswer/workforce_checklist_edit_answer_states.dart';
 import '../../../../configs/app_color.dart';
-import '../../../../data/models/workforce/workforce_questions_list_model.dart';
+import '../../../../data/models/checklist/workforce/workforce_questions_list_model.dart';
 
 typedef DropDownCallBack = Function(String dropDownId, String dropDownString);
 
@@ -28,11 +27,12 @@ class DropDownExpansionTile extends StatelessWidget {
   Widget build(BuildContext context) {
     String dropDown = value;
     String dropDownId = '';
-    return BlocBuilder<EditAnswerBloc, EditAnswerStates>(
+    return BlocBuilder<WorkForceCheckListEditAnswerBloc,
+            WorkForceCheckListEditAnswerStates>(
         buildWhen: (previousState, currentState) =>
-            currentState is AnswersEdited,
+            currentState is CheckListAnswersEdited,
         builder: (context, state) {
-          if (state is AnswersEdited) {
+          if (state is CheckListAnswersEdited) {
             return Theme(
                 data: Theme.of(context)
                     .copyWith(dividerColor: Colors.transparent),
@@ -69,8 +69,10 @@ class DropDownExpansionTile extends StatelessWidget {
                                           .toString();
                                       onValueChanged(
                                           dropDownId.toString(), dropDown);
-                                      context.read<EditAnswerBloc>().add(
-                                          EditAnswerEvent(
+                                      context
+                                          .read<
+                                              WorkForceCheckListEditAnswerBloc>()
+                                          .add(CheckListEditAnswerEvent(
                                               dropDownValue: dropDown,
                                               multiSelectIdList: [],
                                               multiSelectItem: '',

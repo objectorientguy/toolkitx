@@ -6,6 +6,8 @@ import 'package:toolkit/repositories/profile/profile_repository_impl.dart';
 
 import '../repositories/checklist/systemUser/sys_user_checklist_repository.dart';
 import '../repositories/checklist/systemUser/sys_user_checklist_repository_impl.dart';
+import '../repositories/checklist/workforce/workforce_repository.dart';
+import '../repositories/checklist/workforce/workforce_repository_impl.dart';
 import '../repositories/permit/permit_repository.dart';
 import '../repositories/permit/permit_repository_impl.dart';
 import '../data/cache/customer_cache.dart';
@@ -17,8 +19,6 @@ import '../repositories/login/login_repository.dart';
 import '../repositories/profile/profile_repository.dart';
 import '../repositories/timeZone/time_zone_repository.dart';
 import '../repositories/timeZone/time_zone_repository_impl.dart';
-import '../repositories/workforce/workforce_repository.dart';
-import '../repositories/workforce/workforce_repository_impl.dart';
 
 final getIt = GetIt.instance;
 

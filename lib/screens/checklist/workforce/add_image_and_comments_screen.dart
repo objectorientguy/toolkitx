@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:toolkit/blocs/workforce/comments/workforce_comments_bloc.dart';
-import 'package:toolkit/blocs/workforce/comments/workforce_comments_events.dart';
-import 'package:toolkit/blocs/workforce/comments/workforce_comments_states.dart';
 import 'package:toolkit/configs/app_spacing.dart';
 import 'package:toolkit/configs/app_theme.dart';
 import 'package:toolkit/screens/checklist/workforce/workforce_questions_list_screen.dart';
@@ -11,7 +8,10 @@ import 'package:toolkit/widgets/custom_snackbar.dart';
 import 'package:toolkit/widgets/error_section.dart';
 import 'package:toolkit/widgets/generic_app_bar.dart';
 import 'package:toolkit/widgets/secondary_button.dart';
-import '../../../blocs/workforce/getQuestionsList/get_questions_list_bloc.dart';
+import '../../../blocs/checklist/workforce/comments/workforce_checklist_comments_bloc.dart';
+import '../../../blocs/checklist/workforce/comments/workforce_checklist_comments_events.dart';
+import '../../../blocs/checklist/workforce/comments/workforce_checklist_comments_states.dart';
+import '../../../blocs/checklist/workforce/getQuestionsList/workforce_checklist_get_questions_list_bloc.dart';
 import '../../../configs/app_color.dart';
 import '../../../widgets/generic_text_field.dart';
 import '../../../widgets/primary_button.dart';
@@ -28,8 +28,8 @@ class AddImageAndCommentScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     context
-        .read<CommentBloc>()
-        .add(FetchComment(questionResponseId: questionResponseId));
+        .read<WorkForceCheckListCommentBloc>()
+        .add(CheckListFetchComment(questionResponseId: questionResponseId));
     return Scaffold(
         appBar: const GenericAppBar(title: StringConstants.kAddCommentImage),
         body: Padding(
@@ -37,11 +37,11 @@ class AddImageAndCommentScreen extends StatelessWidget {
                 left: leftRightMargin,
                 right: leftRightMargin,
                 top: topBottomPadding),
-            child: BlocConsumer<CommentBloc, CommentStates>(
-                listener: (context, state) {
-              if (state is SavingComment) {
+            child: BlocConsumer<WorkForceCheckListCommentBloc,
+                WorkForceCheckListCommentStates>(listener: (context, state) {
+              if (state is CheckListSavingComment) {
                 ProgressBar.show(context);
-              } else if (state is CommentSaved) {
+              } else if (state is CheckListCommentSaved) {
                 ProgressBar.dismiss(context);
                 Navigator.pop(context);
                 Navigator.pushReplacementNamed(
@@ -49,14 +49,14 @@ class AddImageAndCommentScreen extends StatelessWidget {
                     arguments: context
                         .read<WorkForceQuestionsListBloc>()
                         .allDataForChecklistMap);
-              } else if (state is CommentNotSaved) {
+              } else if (state is CheckListCommentNotSaved) {
                 ProgressBar.dismiss(context);
                 showCustomSnackBar(context, state.message, StringConstants.kOk);
               }
             }, builder: (context, state) {
-              if (state is FetchingComment) {
+              if (state is CheckListFetchingComment) {
                 return const Center(child: CircularProgressIndicator());
-              } else if (state is CommentFetched) {
+              } else if (state is CheckListCommentFetched) {
                 return SingleChildScrollView(
                     physics: const BouncingScrollPhysics(),
                     child: Column(
@@ -64,12 +64,19 @@ class AddImageAndCommentScreen extends StatelessWidget {
                         children: [
                           Text(state.getQuestionCommentsModel.data!.title,
                               style: Theme.of(context).textTheme.small.copyWith(
+                                  color: AppColor.deepBlue,
+                                  fontWeight: FontWeight.w500)),
+                          const SizedBox(height: xxTinierSpacing),
+                          Text(
+                              state.getQuestionCommentsModel.data!.optiontext
+                                  .toString(),
+                              style: Theme.of(context).textTheme.small.copyWith(
                                   color: AppColor.black,
                                   fontWeight: FontWeight.w500)),
                           const SizedBox(height: xxTinierSpacing),
                           Text(StringConstants.kComments,
                               style: Theme.of(context).textTheme.small.copyWith(
-                                  color: AppColor.black,
+                                  color: AppColor.deepBlue,
                                   fontWeight: FontWeight.w500)),
                           const SizedBox(height: xxTinierSpacing),
                           TextFieldWidget(
@@ -97,17 +104,20 @@ class AddImageAndCommentScreen extends StatelessWidget {
                           const SizedBox(height: xxTinySpacing),
                           PrimaryButton(
                               onPressed: () {
-                                context.read<CommentBloc>().add(SaveComment(
-                                    saveQuestionCommentMap:
-                                        saveQuestionCommentsMap));
+                                context
+                                    .read<WorkForceCheckListCommentBloc>()
+                                    .add(CheckListSaveComment(
+                                        saveQuestionCommentMap:
+                                            saveQuestionCommentsMap));
                               },
                               textValue: StringConstants.kSave),
                         ]));
-              } else if (state is CommentNotFetched) {
+              } else if (state is CheckListCommentNotFetched) {
                 return GenericReloadButton(
                     onPressed: () {
-                      context.read<CommentBloc>().add(FetchComment(
-                          questionResponseId: state.quesResponseId));
+                      context.read<WorkForceCheckListCommentBloc>().add(
+                          CheckListFetchComment(
+                              questionResponseId: state.quesResponseId));
                     },
                     textValue: StringConstants.kReload);
               } else {

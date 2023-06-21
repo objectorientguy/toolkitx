@@ -1,13 +1,11 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:toolkit/blocs/workforce/editAnswer/workforce_edit_answer_events.dart';
-import 'package:toolkit/blocs/workforce/editAnswer/workforce_edit_answer_states.dart';
 import 'package:toolkit/configs/app_theme.dart';
-import '../../../../blocs/workforce/editAnswer/workforce_edit_answer_bloc.dart';
+import '../../../../blocs/checklist/workforce/editAnswer/workforce_checklist_edit_answer_bloc.dart';
+import '../../../../blocs/checklist/workforce/editAnswer/workforce_checklist_edit_answer_events.dart';
+import '../../../../blocs/checklist/workforce/editAnswer/workforce_checklist_edit_answer_states.dart';
 import '../../../../configs/app_color.dart';
-import '../../../../data/models/workforce/workforce_questions_list_model.dart';
+import '../../../../data/models/checklist/workforce/workforce_questions_list_model.dart';
 
 typedef RadioButtonCallBack = Function(String radioId, String radioValue);
 
@@ -28,12 +26,12 @@ class RadioButtonExpansionTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     String radioValue = editValue;
-    return BlocBuilder<EditAnswerBloc, EditAnswerStates>(
+    return BlocBuilder<WorkForceCheckListEditAnswerBloc,
+            WorkForceCheckListEditAnswerStates>(
         buildWhen: (previousState, currentState) =>
-            currentState is AnswersEdited,
+            currentState is CheckListAnswersEdited,
         builder: (context, state) {
-          if (state is AnswersEdited) {
-            log("listttttt state========>${state.radioValue}");
+          if (state is CheckListAnswersEdited) {
             return Theme(
                 data: Theme.of(context)
                     .copyWith(dividerColor: Colors.transparent),
@@ -70,8 +68,9 @@ class RadioButtonExpansionTile extends StatelessWidget {
                                   radioValue = answerModelList[index]
                                       .queoptions![listIndex]["queoptiontext"];
                                   onRadioButtonChecked(value, radioValue);
-                                  context.read<EditAnswerBloc>().add(
-                                      EditAnswerEvent(
+                                  context
+                                      .read<WorkForceCheckListEditAnswerBloc>()
+                                      .add(CheckListEditAnswerEvent(
                                           multiSelectIdList: [],
                                           radioValue: value,
                                           multiSelectItem: '',
