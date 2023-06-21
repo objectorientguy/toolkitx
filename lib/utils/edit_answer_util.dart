@@ -9,6 +9,7 @@ import '../screens/checklist/workforce/widgets/radio_button_expansion_tile.dart'
 import '../screens/incident/widgets/date_picker.dart';
 import '../screens/incident/widgets/time_picker.dart';
 import '../widgets/generic_text_field.dart';
+import '../widgets/secondary_button.dart';
 import 'constants/string_constants.dart';
 
 class EditAnswerUtil {
@@ -69,16 +70,16 @@ class EditAnswerUtil {
                 return const SizedBox();
               }
             });
-      // case 6:
-      //   return SecondaryButton(
-      //       onPressed: () {
-      //         showDialog(
-      //             context: context,
-      //             builder: (context) {
-      //               return UploadAlertDialog(onCamera: () {}, onDevice: () {});
-      //             });
-      //       },
-      //       textValue: StringConstants.kUpload);
+      case 6:
+        return SecondaryButton(
+            onPressed: () {
+              // showDialog(
+              //     context: context,
+              //     builder: (context) {
+              //       return UploadAlertDialog(onCamera: () {}, onDevice: () {});
+              //     });
+            },
+            textValue: StringConstants.kUpload);
       case 7:
         return TextFieldWidget(
             textInputType: TextInputType.number,
@@ -88,11 +89,11 @@ class EditAnswerUtil {
               answerList[index]["answer"] = textValue;
             });
       case 8:
-        return tableControl(index, answerModelList, answerList, context);
+        return const TextField();
       case 10:
         return DatePickerTextField(
           hintText: StringConstants.kSelectDate,
-          // editDate: answerList[index]["answer"],
+          editDate: answerList[index]["answer"],
           onDateChanged: (String date) {
             answerList[index]["answer"] = date;
             log("date picked======>${answerList[index]["answer"]}");
@@ -100,7 +101,7 @@ class EditAnswerUtil {
         );
       case 11:
         return TimePickerTextField(
-          // editTime: answerList[index]["answer"],
+          editTime: answerList[index]["answer"],
           hintText: StringConstants.kSelectTime,
           onTimeChanged: (String time) {
             answerList[index]["answer"] = time;
@@ -111,44 +112,4 @@ class EditAnswerUtil {
         return Container();
     }
   }
-}
-
-Widget tableControl(index, answerModelList, answerList, context) {
-  // List items = [];
-  // List rowsItems = [];
-  return SingleChildScrollView(
-      scrollDirection: Axis.horizontal,
-      physics: const BouncingScrollPhysics(),
-      child: Container(
-          decoration: BoxDecoration(border: Border.all()),
-          child:
-              DataTable(border: TableBorder.all(), columnSpacing: 20, columns: [
-            const DataColumn(label: Text('')),
-            for (int i = 0; i < answerModelList[index].matrixcols.length; i++)
-              DataColumn(label: Text(answerModelList[index].matrixcols[i]))
-          ], rows: [
-            for (int j = 0; j < answerModelList[index].matrixrowcount; j++)
-              DataRow(cells: [
-                DataCell(SizedBox(
-                  height: MediaQuery.of(context).size.width * 0.1,
-                  width: MediaQuery.of(context).size.width * 0.4,
-                  child:
-                      TextFieldWidget(onTextFieldChanged: (String textField) {
-                    answerList[index]["answer"] = textField;
-                  }),
-                )),
-                for (int k = 0;
-                    k < answerModelList[index].matrixcols.length;
-                    k++)
-                  DataCell(SizedBox(
-                    height: MediaQuery.of(context).size.width * 0.1,
-                    width: MediaQuery.of(context).size.width * 0.5,
-                    child:
-                        TextFieldWidget(onTextFieldChanged: (String textField) {
-                      answerList[index]["answer"] = textField;
-                      log("row items value======>${answerList[index]["answer"]}");
-                    }),
-                  ))
-              ])
-          ])));
 }
