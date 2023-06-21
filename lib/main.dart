@@ -9,7 +9,16 @@ import 'package:toolkit/blocs/workforce/getQuestionsList/get_questions_list_bloc
 import 'package:toolkit/blocs/workforce/popUpMenu/workforce_pop_up_menu_bloc.dart';
 import 'package:toolkit/blocs/workforce/submitAnswers/workforce_submit_answer_bloc.dart';
 import 'package:toolkit/blocs/workforce/workforceList/workforce_list_bloc.dart';
+import 'package:toolkit/blocs/checklist/systemUser/changeRole/sys_user_checklist_change_role_bloc.dart';
+import 'package:toolkit/blocs/checklist/systemUser/checkList/sys_user_checklist_bloc.dart';
+import 'package:toolkit/blocs/checklist/systemUser/pdf/sys_user_checklist_pdf_bloc.dart';
+import 'package:toolkit/blocs/checklist/systemUser/scheduleDates/sys_user_checklist_schedule_dates_bloc.dart';
+import 'package:toolkit/blocs/checklist/systemUser/scheduleDatesResponse/checklist_schedule_dates_response_bloc.dart';
+import 'package:toolkit/blocs/checklist/systemUser/submitHeader/sys_user_checklist_header_bloc.dart';
+import 'package:toolkit/blocs/checklist/systemUser/thirdPartyApprove/sys_user_checklist_third_party_approve_bloc.dart';
 import 'package:toolkit/utils/database_utils.dart';
+import 'blocs/checklist/systemUser/approve/sys_user_approve_checklist_bloc.dart';
+import 'blocs/checklist/systemUser/reject/sys_user_reject_checklist_bloc.dart';
 import 'blocs/client/client_bloc.dart';
 import 'blocs/dateFormat/date_format_bloc.dart';
 import 'blocs/home/home_bloc.dart';
@@ -80,6 +89,23 @@ class MyApp extends StatelessWidget {
           BlocProvider(lazy: false, create: (context) => PopUpMenuItemsBloc()),
           BlocProvider(lazy: false, create: (context) => EditAnswerBloc()),
           BlocProvider(lazy: false, create: (context) => SubmitAnswerBloc()),
+          BlocProvider(
+              lazy: false, create: (context) => SysUserCheckListBloc()),
+          BlocProvider(
+              lazy: false, create: (context) => CheckListScheduleDatesBloc()),
+          BlocProvider(
+              lazy: false,
+              create: (context) => CheckListScheduleDatesResponseBloc()),
+          BlocProvider(lazy: false, create: (context) => CheckListRoleBloc()),
+          BlocProvider(
+              lazy: false, create: (context) => CheckListApproveBloc()),
+          BlocProvider(lazy: false, create: (context) => RejectCheckListBloc()),
+          BlocProvider(
+              lazy: false,
+              create: (context) => CheckListThirdPartyApproveBloc()),
+          BlocProvider(lazy: false, create: (context) => CheckListHeaderBloc()),
+          BlocProvider(
+              lazy: false, create: (context) => FetchCheckListPdfBloc()),
           BlocProvider(
               lazy: false,
               create: (context) => OnBoardingBloc()..add(CheckLoggedIn()))

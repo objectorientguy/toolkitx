@@ -24,22 +24,32 @@ abstract class StringConstants {
   static const String kSubmitted = 'Submitted';
   static const String kUploadPhoto = 'Upload Photo';
   static const String kAddCommentImage = 'Add Comment/Image';
+  static const String kSubmit = 'Submit';
+  static const String kLoadMore = 'Load more...';
+  static const String kNoMoreData = 'No more data!';
   static const String kEnterNewPassword =
       'Enter New Password'; // comment lines indicates that keys are not available
   static const String kConfirmPassword = 'Confirm Password'; //
   static const String kOtpGenerated = 'OTP generated';
   static const String kSelectDateFormat = 'Select Your Date Format';
   static const String kSave = 'SAVE';
+  static const String kNoDatesScheduled =
+      'No dates scheduled for this checklist!';
+  static const String kNoHeader =
+      'No header data available for this checklist!';
   static const String kOldPassword = 'Old Password'; //
   static const String kEnterOtp = 'Enter OTP'; //
   static const String kSelectYourLanguage = 'Select Your Language';
   static const String kPleaseConfirm = 'Please Confirm';
+  static const String kThirdParty = 'Third Party Approve';
+  static const String kEditHeader = 'Edit Header';
   static const String kReject = 'Reject'; //
   static const String kDialogContent =
       "The language file doesn't exist or an old version.Please download the latest language file."; //
   static const String kNo = 'NO';
   static const String kYes = 'YES';
   static const String kReload = 'RELOAD'; //
+  static const String kDownloadPdf = 'Pdf';
   static const String kOk = 'Ok';
   static const String kDateFormatValidate = 'Please select a Date Format!'; //
   static const String kEditProfile = 'Edit Profile';
@@ -100,6 +110,7 @@ abstract class StringConstants {
   static const String kPhoto = 'Photo';
   static const String kSelectContractor = 'Select Contractor';
   static const String kSite = 'Site';
+  static const String kResponded = 'Responded';
   static const String kLocation = 'Location';
   static const String kWorkforce = 'Workforce';
   static const String kSystemUser = 'System User';

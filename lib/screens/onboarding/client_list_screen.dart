@@ -72,6 +72,9 @@ class ClientListScreen extends StatelessWidget {
                                                         .apikey,
                                                     image: state.clientListModel
                                                         .data![index].hashimg));
+                                        Navigator.pushNamed(
+                                            context, RootScreen.routeName,
+                                            arguments: true);
                                       },
                                       child: CachedNetworkImage(
                                           fit: BoxFit.fitHeight,
