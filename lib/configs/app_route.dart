@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:toolkit/screens/checklist/workforce/workforce_list_screen.dart';
 import '../screens/checklist/systemUser/sys_user_workforce_list_screen.dart';
 import '../screens/checklist/workforce/add_image_and_comments_screen.dart';
+import '../screens/checklist/workforce/workforce_edit_answer_screen.dart';
 import '../screens/checklist/workforce/workforce_questions_list_screen.dart';
 import 'package:toolkit/screens/checklist/systemUser/sys_user_edit_header_screen.dart';
 import 'package:toolkit/screens/checklist/systemUser/sys_user_checklist_list_screen.dart';
@@ -94,6 +95,8 @@ class AppRoutes {
       case RejectReasonsScreen.routeName:
         return _createRoute(
             RejectReasonsScreen(checklistDataMap: settings.arguments as Map));
+      case EditAnswerListScreen.routeName:
+        return _createRoute(const EditAnswerListScreen());
       case InAppWebViewScreen.routeName:
         return _createRoute(
             InAppWebViewScreen(url: settings.arguments as String));
