@@ -1,18 +1,13 @@
 import 'package:flutter/material.dart';
-import '../screens/checklist/change_role_screen.dart';
-import '../screens/checklist/checklist_list_screen.dart';
-import '../screens/checklist/details_screen.dart';
-import '../screens/checklist/filters_screen.dart';
+import '../screens/checklist/systemUser/sys_user_workforce_list_screen.dart';
 import '../screens/checklist/workforce/add_image_and_comments_screen.dart';
 import '../screens/checklist/workforce/workforce_edit_answer_list_screen.dart';
-import '../screens/checklist/workforce/workforce_list_screen.dart';
 import '../screens/checklist/workforce/workforce_questions_list_screen.dart';
 import 'package:toolkit/screens/checklist/systemUser/sys_user_edit_header_screen.dart';
 import 'package:toolkit/screens/checklist/systemUser/sys_user_checklist_list_screen.dart';
 import '../screens/checklist/systemUser/sys_user_change_role_screen.dart';
 import '../screens/checklist/systemUser/sys_user_schedule_dates_screen.dart';
 import '../screens/checklist/systemUser/sys_user_filters_screen.dart';
-import '../screens/checklist/systemUser/sys_user_workforce_list_screen.dart';
 import '../screens/incident/category_screen.dart';
 import '../screens/incident/filter_screen.dart';
 import '../screens/incident/incident_list_screen.dart';
@@ -61,8 +56,6 @@ class AppRoutes {
             checkListId: settings.arguments.toString()));
       case SystemUserCheckListScreen.routeName:
         return _createRoute(const SystemUserCheckListScreen());
-      case WorkForceListScreen.routeName:
-        return _createRoute(const WorkForceListScreen());
       case ChangeRoleScreen.routeName:
         return _createRoute(const ChangeRoleScreen());
       case FiltersScreen.routeName:
@@ -87,11 +80,11 @@ class AppRoutes {
         return _createRoute(const SelectChangePasswordTypeScreen());
       case ChangePasswordScreen.routeName:
         return _createRoute(ChangePasswordScreen());
-      case WorkForceListScreen.routeName:
-        return _createRoute(const WorkForceListScreen());
       case AddImageAndCommentScreen.routeName:
         return _createRoute(AddImageAndCommentScreen(
             questionResponseId: settings.arguments.toString()));
+      case WorkForceListScreen.routeName:
+        return _createRoute(const WorkForceListScreen());
       case WorkForceQuestionsScreen.routeName:
         return _createRoute(WorkForceQuestionsScreen(
             checklistDataMap: settings.arguments as Map));

@@ -12,9 +12,7 @@ import '../../../configs/app_dimensions.dart';
 import '../../../configs/app_spacing.dart';
 import '../../../utils/constants/string_constants.dart';
 import '../../../widgets/error_section.dart';
-import '../../checklist/checklist_list_screen.dart';
 import '../../checklist/workforce/workforce_list_screen.dart';
-import '../../incident/incident_list_screen.dart';
 import '../../permit/permit_list_screen.dart';
 
 class OnLineModules extends StatelessWidget {

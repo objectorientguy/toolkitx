@@ -24,7 +24,6 @@ abstract class StringConstants {
   static const String kSubmitted = 'Submitted';
   static const String kUploadPhoto = 'Upload Photo';
   static const String kAddCommentImage = 'Add Comment/Image';
-  static const String kSubmit = 'Submit';
   static const String kLoadMore = 'Load more...';
   static const String kNoMoreData = 'No more data!';
   static const String kEnterNewPassword =
