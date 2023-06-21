@@ -14,7 +14,6 @@ import 'constants/string_constants.dart';
 class EditAnswerUtil {
   Widget fetchSwitchCaseWidget(
       type, index, answerModelList, answerList, context) {
-    // log("model list=====>${answerModelList[index].queoptions![index]["queoptionid"]}");
     switch (type) {
       case 1:
         return TextFieldWidget(
@@ -49,8 +48,7 @@ class EditAnswerUtil {
             onRadioButtonChecked: (String radioId, String radioValue) {
               answerList[index]["answer"] = radioId;
             },
-            editValue: answerModelList[index].queoptions![index]
-                ["queoptiontext"]);
+            editValue: answerModelList[index].queoptions![0]["queoptiontext"]);
       case 5:
         return BlocBuilder<EditAnswerBloc, EditAnswerStates>(
             buildWhen: (previousState, currentState) =>
@@ -90,53 +88,11 @@ class EditAnswerUtil {
               answerList[index]["answer"] = textValue;
             });
       case 8:
-        return SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
-          physics: const BouncingScrollPhysics(),
-          child: Container(
-            decoration: BoxDecoration(border: Border.all()),
-            child: DataTable(
-                border: TableBorder.all(),
-                columnSpacing: 20,
-                columns: [
-                  const DataColumn(label: Text('')),
-                  for (int i = 0;
-                      i < answerModelList[index].matrixcols.length;
-                      i++)
-                    DataColumn(
-                        label: Text(answerModelList[index].matrixcols[i]))
-                ],
-                rows: [
-                  for (int j = 0;
-                      j < answerModelList[index].matrixrowcount;
-                      j++)
-                    DataRow(
-                      cells: [
-                        DataCell(SizedBox(
-                          height: MediaQuery.of(context).size.width * 0.1,
-                          width: MediaQuery.of(context).size.width * 0.4,
-                          child: TextFieldWidget(
-                            onTextFieldChanged: (String textField) {},
-                          ),
-                        )),
-                        for (int i = 0;
-                            i < answerModelList[index].matrixcols.length;
-                            i++)
-                          DataCell(SizedBox(
-                            height: MediaQuery.of(context).size.width * 0.1,
-                            width: MediaQuery.of(context).size.width * 0.5,
-                            child: TextFieldWidget(
-                                onTextFieldChanged: (String textField) {}),
-                          ))
-                      ],
-                    )
-                ]),
-          ),
-        );
+        return tableControl(index, answerModelList, answerList, context);
       case 10:
         return DatePickerTextField(
           hintText: StringConstants.kSelectDate,
-          editDate: answerList[index]["answer"],
+          // editDate: answerList[index]["answer"],
           onDateChanged: (String date) {
             answerList[index]["answer"] = date;
             log("date picked======>${answerList[index]["answer"]}");
@@ -144,7 +100,7 @@ class EditAnswerUtil {
         );
       case 11:
         return TimePickerTextField(
-          editTime: answerList[index]["answer"],
+          // editTime: answerList[index]["answer"],
           hintText: StringConstants.kSelectTime,
           onTimeChanged: (String time) {
             answerList[index]["answer"] = time;
@@ -155,4 +111,44 @@ class EditAnswerUtil {
         return Container();
     }
   }
+}
+
+Widget tableControl(index, answerModelList, answerList, context) {
+  // List items = [];
+  // List rowsItems = [];
+  return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      physics: const BouncingScrollPhysics(),
+      child: Container(
+          decoration: BoxDecoration(border: Border.all()),
+          child:
+              DataTable(border: TableBorder.all(), columnSpacing: 20, columns: [
+            const DataColumn(label: Text('')),
+            for (int i = 0; i < answerModelList[index].matrixcols.length; i++)
+              DataColumn(label: Text(answerModelList[index].matrixcols[i]))
+          ], rows: [
+            for (int j = 0; j < answerModelList[index].matrixrowcount; j++)
+              DataRow(cells: [
+                DataCell(SizedBox(
+                  height: MediaQuery.of(context).size.width * 0.1,
+                  width: MediaQuery.of(context).size.width * 0.4,
+                  child:
+                      TextFieldWidget(onTextFieldChanged: (String textField) {
+                    answerList[index]["answer"] = textField;
+                  }),
+                )),
+                for (int k = 0;
+                    k < answerModelList[index].matrixcols.length;
+                    k++)
+                  DataCell(SizedBox(
+                    height: MediaQuery.of(context).size.width * 0.1,
+                    width: MediaQuery.of(context).size.width * 0.5,
+                    child:
+                        TextFieldWidget(onTextFieldChanged: (String textField) {
+                      answerList[index]["answer"] = textField;
+                      log("row items value======>${answerList[index]["answer"]}");
+                    }),
+                  ))
+              ])
+          ])));
 }
