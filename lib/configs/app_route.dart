@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:toolkit/screens/checklist/workforce/workforce_list_screen.dart';
 import '../screens/checklist/systemUser/sys_user_workforce_list_screen.dart';
 import '../screens/checklist/workforce/add_image_and_comments_screen.dart';
 import '../screens/checklist/workforce/workforce_edit_answer_list_screen.dart';
@@ -83,6 +84,8 @@ class AppRoutes {
       case AddImageAndCommentScreen.routeName:
         return _createRoute(AddImageAndCommentScreen(
             questionResponseId: settings.arguments.toString()));
+      case SysUserWorkForceListScreen.routeName:
+        return _createRoute(const SysUserWorkForceListScreen());
       case WorkForceListScreen.routeName:
         return _createRoute(const WorkForceListScreen());
       case WorkForceQuestionsScreen.routeName:
