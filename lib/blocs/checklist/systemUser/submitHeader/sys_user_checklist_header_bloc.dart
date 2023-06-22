@@ -54,6 +54,14 @@ class CheckListHeaderBloc
           event.submitHeaderList[0]["ismandatory"] == 1) {
         emit(CheckListHeaderNotSubmitted(
             message: DatabaseUtil.getText('Pleaseanswerthemandatoryquestion')));
+      } else if (event.submitHeaderList[1]["value"] == "" &&
+          event.submitHeaderList[1]["ismandatory"] == 1) {
+        emit(CheckListHeaderNotSubmitted(
+            message: DatabaseUtil.getText('Pleaseanswerthemandatoryquestion')));
+      } else if (event.submitHeaderList[2]["value"] == "" &&
+          event.submitHeaderList[2]["ismandatory"] == 1) {
+        emit(CheckListHeaderNotSubmitted(
+            message: DatabaseUtil.getText('Pleaseanswerthemandatoryquestion')));
       } else {
         Map postEditHeaderMap = {
           "hashcode": hashCode,

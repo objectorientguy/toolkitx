@@ -30,6 +30,7 @@ abstract class StringConstants {
   static const String kOldPassword = 'Old Password'; //
   static const String kEnterOtp = 'Enter OTP'; //
   static const String kSelectYourLanguage = 'Select Your Language';
+  static const String kClearFilter = 'Clear Filter';
   static const String kPleaseConfirm = 'Please Confirm';
   static const String kThirdParty = 'Third Party Approve';
   static const String kEditHeader = 'Edit Header';

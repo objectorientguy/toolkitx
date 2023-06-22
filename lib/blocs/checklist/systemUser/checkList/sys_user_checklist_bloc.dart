@@ -1,8 +1,10 @@
 import 'dart:async';
 import 'dart:convert';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:toolkit/blocs/checklist/systemUser/checkList/sys_user_checklist_event.dart';
 import 'package:toolkit/blocs/checklist/systemUser/checkList/sys_user_checklist_state.dart';
+import 'package:toolkit/utils/constants/string_constants.dart';
 import '../../../../../data/cache/cache_keys.dart';
 import '../../../../../data/cache/customer_cache.dart';
 import '../../../../data/models/checklist/systemUser/sys_user_change_category_model.dart';
@@ -31,17 +33,6 @@ class SysUserCheckListBloc
     on<ClearCheckListFilter>(_clearFilter);
   }
 
-  _filterChecklist(
-      FilterChecklist event, Emitter<SysUserCheckListStates> emit) {
-    emit(SavingFilterData());
-    try {
-      filterData = jsonEncode(event.filterChecklistMap);
-      emit(SavedCheckListFilterData(saveFilterData: event.filterChecklistMap));
-    } catch (e) {
-      emit(CheckListFilterDataNotSaved(errorMessage: e.toString()));
-    }
-  }
-
   FutureOr<void> _fetchList(
       FetchCheckList event, Emitter<SysUserCheckListStates> emit) async {
     emit(FetchingCheckList());
@@ -55,11 +46,10 @@ class SysUserCheckListBloc
       } else if (getChecklistModel.status == 204) {
         emit(CheckListFetched(getChecklistModel: getChecklistModel));
       } else {
-        emit(CheckListError(errorMessage: 'Oops! Something went wrong'));
+        emit(CheckListError(errorMessage: StringConstants.kSomethingWentWrong));
       }
     } catch (e) {
-      emit(CheckListError(
-          errorMessage: 'Oops! Something went wrong. Please try again.'));
+      emit(CheckListError(errorMessage: StringConstants.kSomethingWentWrong));
     }
   }
 
@@ -93,6 +83,17 @@ class SysUserCheckListBloc
         categoryName: event.categoryName,
         getFilterCategoryData: event.getFilterCategoryData,
         categoryId: event.categoryId));
+  }
+
+  _filterChecklist(
+      FilterChecklist event, Emitter<SysUserCheckListStates> emit) {
+    emit(SavingFilterData());
+    try {
+      filterData = jsonEncode(event.filterChecklistMap);
+      emit(SavedCheckListFilterData(saveFilterData: event.filterChecklistMap));
+    } catch (e) {
+      emit(CheckListFilterDataNotSaved(errorMessage: e.toString()));
+    }
   }
 
   _clearFilter(

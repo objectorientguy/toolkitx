@@ -29,10 +29,13 @@ class SysUserListSection extends StatelessWidget {
           listenWhen: (previousState, currentState) =>
               currentState is FetchingCheckList && checklistData.isNotEmpty ||
               currentState is CheckListFetched ||
+              checklistData.isEmpty ||
+              checklistData.isEmpty ||
               currentState is CheckListError && checklistData.isNotEmpty,
           buildWhen: (previousState, currentState) =>
-              currentState is FetchingCheckList ||
+          currentState is FetchingCheckList ||
               currentState is CheckListFetched ||
+              checklistData.isEmpty ||
               currentState is CheckListError && checklistData.isEmpty,
           listener: (context, state) {
             if (state is CheckListError &&

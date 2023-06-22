@@ -79,3 +79,12 @@ class CheckListFilterDataNotSaved extends SysUserCheckListStates {
   @override
   List<Object?> get props => [errorMessage];
 }
+
+class FilterDataCleared extends SysUserCheckListStates {
+  final String filterCleared;
+
+  FilterDataCleared({required this.filterCleared});
+
+  @override
+  List<Object?> get props => [filterCleared];
+}
