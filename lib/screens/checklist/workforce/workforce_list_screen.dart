@@ -10,6 +10,7 @@ import '../../../blocs/checklist/workforce/workforceList/workforce_list_events.d
 import '../../../blocs/checklist/workforce/workforceList/workforce_list_states.dart';
 import '../../../configs/app_color.dart';
 import '../../../utils/constants/string_constants.dart';
+import '../../../utils/database_utils.dart';
 import '../../../widgets/custom_card.dart';
 import '../../../widgets/generic_app_bar.dart';
 
@@ -75,7 +76,7 @@ class WorkForceListScreen extends StatelessWidget {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                        'Assign Date: ${state.workforceGetCheckListModel.data![index].submitdate}  -- Due on: ${state.workforceGetCheckListModel.data![index].overduedate}',
+                                        '${DatabaseUtil.getText('Assignedate')}: ${state.workforceGetCheckListModel.data![index].submitdate}  -- ${DatabaseUtil.getText('Dueon')}: ${state.workforceGetCheckListModel.data![index].overduedate}',
                                         style: Theme.of(context)
                                             .textTheme
                                             .xSmall

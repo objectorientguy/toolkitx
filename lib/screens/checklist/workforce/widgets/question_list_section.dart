@@ -62,7 +62,7 @@ class QuestionsListSection extends StatelessWidget {
                                     .questionlist![index].moreinfo !=
                                 null,
                             child: Text(
-                                'Hint: ${state.getQuestionListModel.data!.questionlist![index].moreinfo}'),
+                                '${StringConstants.kHint}: ${state.getQuestionListModel.data!.questionlist![index].moreinfo}'),
                           )
                         ],
                       ),

@@ -27,6 +27,9 @@ abstract class StringConstants {
   static const String kAddCommentImage = 'Add Comment/Image';
   static const String kLoadMore = 'Load more...';
   static const String kNoMoreData = 'No more data!';
+  static const String kHint = 'Hint';
+  static const String kSelectComment = 'Please enter comment!';
+  static const String kSelectReason = 'Please select a reason';
   static const String kEnterNewPassword =
       'Enter New Password'; // comment lines indicates that keys are not available
   static const String kConfirmPassword = 'Confirm Password'; //

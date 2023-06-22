@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:toolkit/blocs/checklist/workforce/rejectReason/workforce_checklist_reject_reason_event.dart';
 import 'package:toolkit/blocs/checklist/workforce/rejectReason/workforce_checklist_reject_reason_states.dart';
+import 'package:toolkit/utils/constants/string_constants.dart';
 
 import '../../../../data/cache/cache_keys.dart';
 import '../../../../data/cache/customer_cache.dart';
@@ -56,8 +57,8 @@ class WorkForceCheckListSaveRejectBloc extends Bloc<
       String hashCode = (await _customerCache.getHashCode(CacheKeys.hashcode))!;
       String userId = (await _customerCache.getUserId(CacheKeys.userId))!;
       if (event.reason == "" || event.reason.trim().isEmpty) {
-        emit(
-            CheckListRejectReasonsNotSaved(message: 'Please select a reason!'));
+        emit(CheckListRejectReasonsNotSaved(
+            message: StringConstants.kSelectReason));
       } else {
         Map saveRejectReasonMap = {
           "scheduleid": event.allCheckListDataMap["scheduleId"],
