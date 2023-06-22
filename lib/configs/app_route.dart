@@ -96,7 +96,8 @@ class AppRoutes {
         return _createRoute(
             RejectReasonsScreen(checklistDataMap: settings.arguments as Map));
       case EditAnswerListScreen.routeName:
-        return _createRoute(const EditAnswerListScreen());
+        return _createRoute(
+            EditAnswerListScreen(checklistDataMap: settings.arguments as Map));
       case InAppWebViewScreen.routeName:
         return _createRoute(
             InAppWebViewScreen(url: settings.arguments as String));

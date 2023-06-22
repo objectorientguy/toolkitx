@@ -17,7 +17,7 @@ class TimePickerTextField extends StatelessWidget {
   final String? hintText;
   final DateTime? minimumTime;
   final TextEditingController timeInputController = TextEditingController();
-  late final bool? isFirstTime;
+  bool? isFirstTime;
 
   TimePickerTextField({
     Key? key,

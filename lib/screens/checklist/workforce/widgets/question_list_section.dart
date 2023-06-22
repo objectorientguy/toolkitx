@@ -1,3 +1,5 @@
+import 'dart:convert';
+import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:toolkit/configs/app_dimensions.dart';
@@ -25,90 +27,218 @@ class QuestionsListSection extends StatelessWidget {
       if (state is CheckListFetchingQuestionsList) {
         return const Center(child: CircularProgressIndicator());
       } else if (state is QuestionsListFetched) {
-        return ListView.separated(
-            padding: const EdgeInsets.only(
-                left: leftRightMargin,
-                right: leftRightMargin,
-                top: topBottomPadding),
-            physics: const BouncingScrollPhysics(),
-            shrinkWrap: true,
-            itemCount: state.getQuestionListModel.data!.questionlist!.length,
-            itemBuilder: (context, index) {
-              return CustomCard(
-                  child: Padding(
-                padding: const EdgeInsets.all(kCardPadding),
-                child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          SizedBox(
-                            width: MediaQuery.of(context).size.width * 0.5,
-                            child: Text(
-                                '${state.getQuestionListModel.data!.questionlist![index].title}?',
+        return SingleChildScrollView(
+          physics: const BouncingScrollPhysics(),
+          child: Column(
+            children: [
+              ListView.separated(
+                  padding: const EdgeInsets.only(
+                      left: leftRightMargin,
+                      right: leftRightMargin,
+                      top: topBottomPadding),
+                  physics: const BouncingScrollPhysics(),
+                  shrinkWrap: true,
+                  itemCount:
+                      state.getQuestionListModel.data!.questionlist!.length,
+                  itemBuilder: (context, index) {
+                    log("answer listt=====>${state.answerList[index]}");
+                    num rowCount = state.getQuestionListModel.data!
+                            .questionlist![index].matrixrowcount ??
+                        0;
+                    Map tableData = (state.getQuestionListModel.data!
+                                .questionlist![index].type ==
+                            8)
+                        ? jsonDecode(state.answerList[index]["answer"])
+                        : {};
+                    return CustomCard(
+                        child: Padding(
+                      padding: const EdgeInsets.all(kCardPadding),
+                      child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                SizedBox(
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.5,
+                                  child: Text(
+                                      '${state.getQuestionListModel.data!.questionlist![index].title}?',
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .small
+                                          .copyWith(
+                                              color: AppColor.black,
+                                              fontWeight: FontWeight.w500),
+                                      maxLines: 3,
+                                      overflow: TextOverflow.ellipsis),
+                                ),
+                                Visibility(
+                                  visible: state.getQuestionListModel.data!
+                                          .questionlist![index].moreinfo !=
+                                      null,
+                                  child: Text(
+                                      'Hint: ${state.getQuestionListModel.data!.questionlist![index].moreinfo}'),
+                                )
+                              ],
+                            ),
+                            const SizedBox(height: tiniest),
+                            Text(
+                                (state.answerList[index]["answer"].toString() ==
+                                            'null' ||
+                                        state.answerList[index]["answer"]
+                                                .toString() ==
+                                            "" ||
+                                        state.getQuestionListModel.data!
+                                                .questionlist![index].type ==
+                                            8)
+                                    ? ''
+                                    : state.answerList[index]["answer"]
+                                        .toString(),
                                 style: Theme.of(context)
                                     .textTheme
                                     .small
-                                    .copyWith(
-                                        color: AppColor.black,
-                                        fontWeight: FontWeight.w500),
-                                maxLines: 3,
-                                overflow: TextOverflow.ellipsis),
-                          ),
-                          Visibility(
-                            visible: state.getQuestionListModel.data!
-                                    .questionlist![index].moreinfo !=
-                                null,
-                            child: Text(
-                                'Hint: ${state.getQuestionListModel.data!.questionlist![index].moreinfo}'),
-                          )
-                        ],
-                      ),
-                      const SizedBox(height: tiniest),
-                      Text(
-                          (state.answerList[index]["answer"].toString() ==
-                                      'null' ||
-                                  state.answerList[index]["answer"]
-                                          .toString() ==
-                                      "")
-                              ? ''
-                              : state.answerList[index]["answer"].toString(),
-                          style: Theme.of(context)
-                              .textTheme
-                              .small
-                              .copyWith(color: AppColor.black)),
-                      const SizedBox(height: tiniest),
-                      Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Expanded(
-                                child: SecondaryButton(
-                                    onPressed: () {
-                                      Navigator.pushNamed(context,
-                                          AddImageAndCommentScreen.routeName,
-                                          arguments: state
-                                              .getQuestionListModel
-                                              .data!
-                                              .questionlist![index]
-                                              .queresponseid
-                                              .toString());
-                                    },
-                                    textValue: StringConstants.kAddImages)),
-                            const SizedBox(width: tiniest),
-                            Expanded(
-                              child: SecondaryButton(
-                                  onPressed: () {},
-                                  textValue: StringConstants.kAddTodo),
-                            )
+                                    .copyWith(color: AppColor.black)),
+                            Visibility(
+                              visible: state.getQuestionListModel.data!
+                                          .questionlist![index].type ==
+                                      8 &&
+                                  state
+                                          .getQuestionListModel
+                                          .data!
+                                          .questionlist![index]
+                                          .matrixrowcount !=
+                                      null,
+                              child: SingleChildScrollView(
+                                  scrollDirection: Axis.horizontal,
+                                  physics: const BouncingScrollPhysics(),
+                                  child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Container(
+                                            decoration: BoxDecoration(
+                                                border: Border.all()),
+                                            child: DataTable(
+                                                border: TableBorder.all(),
+                                                columnSpacing: 20,
+                                                columns: [
+                                                  const DataColumn(
+                                                      label: Text('')),
+                                                  for (int i = 0;
+                                                      i <
+                                                          state
+                                                              .getQuestionListModel
+                                                              .data!
+                                                              .questionlist![
+                                                                  index]
+                                                              .matrixcols!
+                                                              .length;
+                                                      i++)
+                                                    DataColumn(
+                                                        label: Text(state
+                                                            .getQuestionListModel
+                                                            .data!
+                                                            .questionlist![
+                                                                index]
+                                                            .matrixcols![i]))
+                                                ],
+                                                rows: [
+                                                  for (int j = 0;
+                                                      j < rowCount;
+                                                      j++)
+                                                    DataRow(cells: [
+                                                      DataCell(SizedBox(
+                                                        height: MediaQuery.of(
+                                                                    context)
+                                                                .size
+                                                                .width *
+                                                            0.1,
+                                                        width: MediaQuery.of(
+                                                                    context)
+                                                                .size
+                                                                .width *
+                                                            0.4,
+                                                        child: const Text(''),
+                                                      )),
+                                                      for (int k = 0;
+                                                          k <
+                                                              state
+                                                                  .getQuestionListModel
+                                                                  .data!
+                                                                  .questionlist![
+                                                                      index]
+                                                                  .matrixcols!
+                                                                  .length;
+                                                          k++)
+                                                        DataCell(SizedBox(
+                                                          height: MediaQuery.of(
+                                                                      context)
+                                                                  .size
+                                                                  .width *
+                                                              0.1,
+                                                          width: MediaQuery.of(
+                                                                      context)
+                                                                  .size
+                                                                  .width *
+                                                              0.5,
+                                                          child: Text((tableData
+                                                                          .toString() ==
+                                                                      "{}" &&
+                                                                  state
+                                                                          .getQuestionListModel
+                                                                          .data!
+                                                                          .questionlist![
+                                                                              index]
+                                                                          .type ==
+                                                                      8)
+                                                              ? ""
+                                                              : tableData[
+                                                                      "data"][j]
+                                                                  [k]),
+                                                        ))
+                                                    ])
+                                                ]))
+                                      ])),
+                            ),
+                            const SizedBox(height: tiniest),
+                            Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Expanded(
+                                      child: SecondaryButton(
+                                          onPressed: () {
+                                            Navigator.pushNamed(
+                                                context,
+                                                AddImageAndCommentScreen
+                                                    .routeName,
+                                                arguments: state
+                                                    .getQuestionListModel
+                                                    .data!
+                                                    .questionlist![index]
+                                                    .queresponseid
+                                                    .toString());
+                                          },
+                                          textValue:
+                                              StringConstants.kAddImages)),
+                                  const SizedBox(width: tiniest),
+                                  Expanded(
+                                    child: SecondaryButton(
+                                        onPressed: () {},
+                                        textValue: StringConstants.kAddTodo),
+                                  )
+                                ]),
                           ]),
-                    ]),
-              ));
-            },
-            separatorBuilder: (BuildContext context, int index) {
-              return const SizedBox(height: xxTinySpacing);
-            });
+                    ));
+                  },
+                  separatorBuilder: (BuildContext context, int index) {
+                    return const SizedBox(height: xxTinySpacing);
+                  }),
+            ],
+          ),
+        );
       } else if (state is CheckListQuestionsListNotFetched) {
         return GenericReloadButton(
             onPressed: () {

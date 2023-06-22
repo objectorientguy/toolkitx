@@ -9,13 +9,8 @@ class WorkForceCheckListEditAnswerBloc extends Bloc<
   WorkForceCheckListEditAnswerBloc() : super(CheckListEditAnswerInitial()) {
     on<CheckListPopulateAnswerData>(_populateAnswerData);
     on<CheckListEditAnswerEvent>(_editAnswer);
-    // on<CheckListTableControlEvent>(_editTable);
   }
 
-  _editTable(CheckListTableControlEvent event,
-      Emitter<CheckListTableControlEdit> emit) {
-    emit(CheckListTableControlEdit(isEdit: event.isEdit));
-  }
 
   _populateAnswerData(CheckListPopulateAnswerData event,
       Emitter<WorkForceCheckListEditAnswerStates> emit) {

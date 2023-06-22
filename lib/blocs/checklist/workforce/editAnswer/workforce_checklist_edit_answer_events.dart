@@ -33,9 +33,3 @@ class CheckListEditAnswerEvent extends WorkForceCheckListEditAnswerEvent {
       required this.multiSelectIdList,
       this.dropDownValue = ''});
 }
-
-class CheckListTableControlEvent extends WorkForceCheckListEditAnswerEvent {
-  final bool isEdit;
-
-  CheckListTableControlEvent({this.isEdit = false});
-}

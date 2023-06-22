@@ -27,6 +27,8 @@ abstract class StringConstants {
   static const String kAddCommentImage = 'Add Comment/Image';
   static const String kLoadMore = 'Load more...';
   static const String kNoMoreData = 'No more data!';
+  static const String kChecklistNotEditable =
+      'After submitting you will not be able to edit the checklist again.';
   static const String kEnterNewPassword =
       'Enter New Password'; // comment lines indicates that keys are not available
   static const String kConfirmPassword = 'Confirm Password'; //

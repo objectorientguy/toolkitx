@@ -18,7 +18,7 @@ class DatePickerTextField extends StatelessWidget {
   final String? hintText;
   final DateTime? minimumDate;
   final TextEditingController dateInputController = TextEditingController();
-  late final bool? isFirstTime;
+  bool? isFirstTime;
 
   DatePickerTextField({
     Key? key,

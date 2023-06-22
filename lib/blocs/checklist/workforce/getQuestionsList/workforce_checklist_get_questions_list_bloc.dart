@@ -53,7 +53,7 @@ class WorkForceQuestionsListBloc extends Bloc<WorkForceCheckListFetchQuestions,
             "questionid": getQuestionListModel.data!.questionlist![i].id,
             "answer": answerText,
             "ismandatory":
-                getQuestionListModel.data!.questionlist![i].ismandatory
+                getQuestionListModel.data!.questionlist![i].ismandatory,
           });
         }
         emit(QuestionsListFetched(

@@ -26,7 +26,9 @@ class WorkForcePopUpMenu extends StatelessWidget {
   Widget build(BuildContext context) {
     context
         .read<WorkForceCheckListPopUpMenuItemsBloc>()
-        .add(WorkForceCheckListFetchPopUpMenuItems(popUpMenuItems: []));
+        .add(WorkForceCheckListFetchPopUpMenuItems(
+          popUpMenuItems: [],
+        ));
     return BlocBuilder<WorkForceCheckListPopUpMenuItemsBloc,
         CheckListWorkForcePopUpMenuItemsFetched>(builder: (context, state) {
       return PopupMenuButton(
@@ -38,7 +40,8 @@ class WorkForcePopUpMenu extends StatelessWidget {
           offset: const Offset(0, xxTinierSpacing),
           onSelected: (value) {
             if (value == 'Edit') {
-              Navigator.pushNamed(context, EditAnswerListScreen.routeName);
+              Navigator.pushNamed(context, EditAnswerListScreen.routeName,
+                  arguments: checklistDataMap);
             }
             if (value == 'Reject') {
               Navigator.pushNamed(context, RejectReasonsScreen.routeName,

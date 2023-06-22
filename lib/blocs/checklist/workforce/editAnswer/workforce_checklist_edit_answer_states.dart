@@ -39,12 +39,3 @@ class CheckListAnswersEdited extends WorkForceCheckListEditAnswerStates {
   @override
   List<Object?> get props => [dropDownValue, multiSelectId, radioValue];
 }
-
-class CheckListTableControlEdit extends WorkForceCheckListEditAnswerStates {
-  final bool isEdit;
-
-  CheckListTableControlEdit({required this.isEdit});
-
-  @override
-  List<Object?> get props => [isEdit];
-}
