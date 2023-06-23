@@ -4,7 +4,7 @@ import 'dart:convert';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:toolkit/blocs/checklist/systemUser/checkList/sys_user_checklist_event.dart';
 import 'package:toolkit/blocs/checklist/systemUser/checkList/sys_user_checklist_state.dart';
-import 'package:toolkit/utils/constants/string_constants.dart';
+import 'package:toolkit/utils/database_utils.dart';
 import '../../../../../data/cache/cache_keys.dart';
 import '../../../../../data/cache/customer_cache.dart';
 import '../../../../data/models/checklist/systemUser/sys_user_change_category_model.dart';
@@ -57,11 +57,14 @@ class SysUserCheckListBloc
               getChecklistModel: getChecklistModel, filterData: filterData));
         } else {
           emit(CheckListError(
-              errorMessage: StringConstants.kSomethingWentWrong));
+              errorMessage:
+                  DatabaseUtil.getText('some_unknown_error_please_try_again')));
         }
       }
     } catch (e) {
-      emit(CheckListError(errorMessage: StringConstants.kSomethingWentWrong));
+      emit(CheckListError(
+          errorMessage:
+              DatabaseUtil.getText('some_unknown_error_please_try_again')));
     }
   }
 
