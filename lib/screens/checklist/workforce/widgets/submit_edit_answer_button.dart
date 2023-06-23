@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../blocs/checklist/workforce/submitAnswer/workforce_checklist_submit_answer_bloc.dart';
 import '../../../../blocs/checklist/workforce/submitAnswer/workforce_checklist_submit_answer_event.dart';
 import '../../../../blocs/checklist/workforce/submitAnswer/workforce_checklist_submit_answer_states.dart';
+import '../../../../configs/app_color.dart';
 import '../../../../configs/app_spacing.dart';
 import '../../../../utils/constants/string_constants.dart';
 import '../../../../widgets/android_pop_up.dart';
@@ -33,7 +34,7 @@ class SubmitEditAnswerButton extends StatelessWidget {
                 arguments: checklistDataMap);
           } else if (state is AnswerNotSubmitted) {
             ProgressBar.dismiss(context);
-            showCustomSnackBar(context, state.message, StringConstants.kOk);
+            showCustomSnackBar(context, state.message, '');
           }
         },
         child: Row(children: [
@@ -41,6 +42,7 @@ class SubmitEditAnswerButton extends StatelessWidget {
             child: PrimaryButton(
                 onPressed: () {
                   showDialog(
+                      barrierColor: AppColor.transparent,
                       context: context,
                       builder: (context) {
                         return AndroidPopUp(
@@ -52,6 +54,7 @@ class SubmitEditAnswerButton extends StatelessWidget {
                                       editQuestionsList: answerList,
                                       isDraft: false,
                                       allChecklistDataMap: checklistDataMap));
+                              Navigator.pop(context);
                             });
                       });
                 },
@@ -63,7 +66,7 @@ class SubmitEditAnswerButton extends StatelessWidget {
                   onPressed: () {
                     context.read<SubmitAnswerBloc>().add(SubmitAnswers(
                         editQuestionsList: answerList,
-                        isDraft: false,
+                        isDraft: true,
                         allChecklistDataMap: checklistDataMap));
                   },
                   textValue: StringConstants.kSaveDraft))

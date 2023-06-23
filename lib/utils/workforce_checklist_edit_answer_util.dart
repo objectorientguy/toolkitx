@@ -53,7 +53,7 @@ class EditAnswerUtil {
           answerModelList: answerModelList,
           index: index,
           value: (answerModelList[index].optiontext.toString() == "null" ||
-              answerModelList[index].optiontext.toString() == "")
+                  answerModelList[index].optiontext.toString() == "")
               ? ''
               : answerModelList[index].optiontext,
         );
@@ -65,15 +65,15 @@ class EditAnswerUtil {
               answerList[index]["answer"] = radioId;
             },
             editValue:
-            (answerModelList[index].optiontext.toString() == "null" ||
-                answerModelList[index].optiontext.toString() == "")
-                ? ''
-                : answerModelList[index].optiontext);
+                (answerModelList[index].optiontext.toString() == "null" ||
+                        answerModelList[index].optiontext.toString() == "")
+                    ? ''
+                    : answerModelList[index].optiontext);
       case 5:
         return BlocBuilder<WorkForceCheckListEditAnswerBloc,
-            WorkForceCheckListEditAnswerStates>(
+                WorkForceCheckListEditAnswerStates>(
             buildWhen: (previousState, currentState) =>
-            currentState is CheckListAnswersEdited,
+                currentState is CheckListAnswersEdited,
             builder: (context, state) {
               if (state is CheckListAnswersEdited) {
                 answerList[index]["answer"] = state.multiSelectId
@@ -86,8 +86,8 @@ class EditAnswerUtil {
                     selectedIdList: state.multiSelectId,
                     selectedNamesList: state.multiSelectNames,
                     editValue: (answerModelList[index].optiontext.toString() ==
-                        "null" ||
-                        answerModelList[index].optiontext.toString() == "")
+                                "null" ||
+                            answerModelList[index].optiontext.toString() == "")
                         ? ''
                         : answerModelList[index].optiontext);
               } else {
@@ -171,10 +171,10 @@ class EditAnswerUtil {
       case 11:
         return TimePickerTextField(
             editTime:
-            (answerModelList[index].optioncomment.toString() == "null" ||
-                answerModelList[index].optioncomment.toString() == "")
-                ? ''
-                : answerModelList[index].optioncomment,
+                (answerModelList[index].optioncomment.toString() == "null" ||
+                        answerModelList[index].optioncomment.toString() == "")
+                    ? ''
+                    : answerModelList[index].optioncomment,
             hintText: StringConstants.kSelectTime,
             onTimeChanged: (String time) {
               answerList[index]["answer"] = time;

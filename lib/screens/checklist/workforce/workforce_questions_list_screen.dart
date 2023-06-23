@@ -37,8 +37,8 @@ class WorkForceQuestionsScreen extends StatelessWidget {
                   WorkForceCheckListQuestionsStates>(builder: (context, state) {
                 if (state is QuestionsListFetched) {
                   return Visibility(
-                      // visible: state.allChecklistDataMap["isRejected"] == "0" &&
-                      //     checklistDataMap["isDraft"] != 0,
+                      visible: state.allChecklistDataMap["isRejected"] == "0" &&
+                          checklistDataMap["isDraft"] != 0,
                       child: WorkForcePopUpMenu(
                           checklistDataMap: checklistDataMap));
                 } else {
