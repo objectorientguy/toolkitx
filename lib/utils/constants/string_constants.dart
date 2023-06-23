@@ -12,11 +12,24 @@ abstract class StringConstants {
   static const String kNext = 'NEXT';
   static const String kLogin = 'LOGIN';
   static const String kWelcome = 'Welcome';
+  static const String kEnterReason = 'Enter Reason';
   static const String kType = 'Type';
   static const String kGenerateOtp = 'GENERATE OTP';
   static const String kSubmit = 'Submit';
+  static const String kAddImages = 'Add Images/Comment';
+  static const String kAddTodo = 'Add ToDo';
+  static const String kDraft = 'Draft';
+  static const String kSaveDraft = 'Save Draft';
+  static const String kNotAccepted = 'Not Accepted';
+  static const String kOverdue = 'Overdue';
+  static const String kSubmitted = 'Submitted';
+  static const String kUploadPhoto = 'Upload Photo';
+  static const String kAddCommentImage = 'Add Comment/Image';
   static const String kLoadMore = 'Load more...';
   static const String kNoMoreData = 'No more data!';
+  static const String kHint = 'Hint';
+  static const String kSelectComment = 'Please enter comment!';
+  static const String kSelectReason = 'Please select a reason';
   static const String kEnterNewPassword =
       'Enter New Password'; // comment lines indicates that keys are not available
   static const String kConfirmPassword = 'Confirm Password'; //
