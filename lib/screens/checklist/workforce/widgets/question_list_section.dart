@@ -44,8 +44,7 @@ class QuestionsListSection extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          SizedBox(
-                            width: MediaQuery.of(context).size.width * 0.5,
+                          Flexible(
                             child: Text(
                                 '${state.getQuestionListModel.data!.questionlist![index].title}?',
                                 style: Theme.of(context)
@@ -54,8 +53,7 @@ class QuestionsListSection extends StatelessWidget {
                                     .copyWith(
                                         color: AppColor.black,
                                         fontWeight: FontWeight.w500),
-                                maxLines: 3,
-                                overflow: TextOverflow.ellipsis),
+                                maxLines: 3),
                           ),
                           Visibility(
                             visible: state.getQuestionListModel.data!
