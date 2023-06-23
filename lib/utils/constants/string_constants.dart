@@ -27,6 +27,9 @@ abstract class StringConstants {
   static const String kAddCommentImage = 'Add Comment/Image';
   static const String kLoadMore = 'Load more...';
   static const String kNoMoreData = 'No more data!';
+  static const String kHint = 'Hint';
+  static const String kSelectComment = 'Please enter comment!';
+  static const String kSelectReason = 'Please select a reason';
   static const String kChecklistNotEditable =
       'After submitting you will not be able to edit the checklist again.';
   static const String kEnterNewPassword =
@@ -35,7 +38,6 @@ abstract class StringConstants {
   static const String kOtpGenerated = 'OTP generated';
   static const String kSelectDateFormat = 'Select Your Date Format';
   static const String kSave = 'SAVE';
-  static const String kHint = 'Hint';
   static const String kValueB = 'Value B: ';
   static const String kValueA = 'Value A: ';
   static const String kNoDatesScheduled =

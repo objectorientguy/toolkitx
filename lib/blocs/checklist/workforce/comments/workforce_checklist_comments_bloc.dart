@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:toolkit/blocs/checklist/workforce/comments/workforce_checklist_comments_events.dart';
 import 'package:toolkit/blocs/checklist/workforce/comments/workforce_checklist_comments_states.dart';
+import 'package:toolkit/utils/constants/string_constants.dart';
 import '../../../../data/cache/cache_keys.dart';
 import '../../../../data/cache/customer_cache.dart';
 import '../../../../data/models/checklist/workforce/workforce_fetch_comment_model.dart';
@@ -45,7 +46,7 @@ class WorkForceCheckListCommentBloc extends Bloc<
       String hashCode = (await _customerCache.getHashCode(CacheKeys.hashcode))!;
       if (event.saveQuestionCommentMap["comments"] == null ||
           event.saveQuestionCommentMap["comments"].toString().trim().isEmpty) {
-        emit(CheckListCommentNotSaved(message: 'Please enter comment!'));
+        emit(CheckListCommentNotSaved(message: StringConstants.kSelectComment));
       } else {
         Map saveQuestionCommentMap = {
           "id": allDataForChecklistMap["userId"],

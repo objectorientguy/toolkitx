@@ -12,6 +12,7 @@ import '../../../blocs/checklist/workforce/rejectReason/workforce_checklist_reje
 import '../../../configs/app_color.dart';
 import '../../../configs/app_dimensions.dart';
 import '../../../configs/app_spacing.dart';
+import '../../../utils/database_utils.dart';
 import '../../../widgets/custom_card.dart';
 import '../../../widgets/custom_snackbar.dart';
 import '../../../widgets/generic_text_field.dart';
@@ -30,7 +31,7 @@ class RejectReasonsScreen extends StatelessWidget {
         .read<WorkForceCheckListSaveRejectBloc>()
         .add(CheckListFetchRejectReasons());
     return Scaffold(
-        appBar: const GenericAppBar(title: 'Checklist Reject'),
+        appBar: GenericAppBar(title: DatabaseUtil.getText('ChecklistReject')),
         body: Padding(
             padding: const EdgeInsets.only(
                 left: leftRightMargin,
