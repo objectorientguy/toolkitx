@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:toolkit/configs/app_dimensions.dart';
@@ -36,60 +38,49 @@ class QuestionsListSection extends StatelessWidget {
             itemCount: state.getQuestionListModel.data!.questionlist!.length,
             itemBuilder: (context, index) {
               Map tableData =
-                  (state.getQuestionListModel.data!.questionlist![index].type ==
-                          8)
-                      ? jsonDecode(state.answerList[index]["answer"])
-                      : {};
+              (state.getQuestionListModel.data!.questionlist![index].type ==
+                  8)
+                  ? jsonDecode(state.answerList[index]["answer"])
+                  : {};
               return CustomCard(
                   child: Padding(
-                padding: const EdgeInsets.all(kCardPadding),
-                child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    padding: const EdgeInsets.all(kCardPadding),
+                    child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Flexible(
-                            child: Text(
-                                '${state.getQuestionListModel.data!.questionlist![index].title}?',
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .small
-                                    .copyWith(
-                                        color: AppColor.black,
-                                        fontWeight: FontWeight.w500),
-                                maxLines: 3),
-                          ),
-                          QuestionListTitleSection(
-                              questionList: state.getQuestionListModel.data!
-                                  .questionlist![index]),
-                          Visibility(
-                            visible: state.getQuestionListModel.data!
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              QuestionListTitleSection(
+                                  questionList: state.getQuestionListModel.data!
+                                      .questionlist![index]),
+                              Visibility(
+                                visible: state.getQuestionListModel.data!
                                     .questionlist![index].moreinfo !=
-                                null,
-                            child: Text(
-                                '${StringConstants.kHint}: ${state.getQuestionListModel.data!.questionlist![index].moreinfo}'),
-                          )
-                        ],
-                      ),
-                      const SizedBox(height: xxxTinierSpacing),
-                      (state.getQuestionListModel.data!.questionlist![index]
-                                  .type !=
+                                    null,
+                                child: Text(
+                                    '${StringConstants.kHint}: ${state.getQuestionListModel.data!.questionlist![index].moreinfo}'),
+                              )
+                            ],
+                          ),
+                          const SizedBox(height: xxxTinierSpacing),
+                          (state.getQuestionListModel.data!.questionlist![index]
+                              .type !=
                               8)
-                          ? Text(
+                              ? Text(
                               (state.answerList[index]["answer"].toString() ==
-                                          'null' ||
-                                      state.answerList[index]["answer"]
-                                              .toString() ==
-                                          "")
+                                  'null' ||
+                                  state.answerList[index]["answer"]
+                                      .toString() ==
+                                      "")
                                   ? ''
                                   : '${state.answerList[index]["answer"]}',
                               style: Theme.of(context)
                                   .textTheme
                                   .xSmall
                                   .copyWith(color: AppColor.black))
-                          : SingleChildScrollView(
+                              : SingleChildScrollView(
                               scrollDirection: Axis.horizontal,
                               physics: const BouncingScrollPhysics(),
                               child: Column(
@@ -97,19 +88,19 @@ class QuestionsListSection extends StatelessWidget {
                                   children: [
                                     Container(
                                         decoration:
-                                            BoxDecoration(border: Border.all()),
+                                        BoxDecoration(border: Border.all()),
                                         child: DataTable(
                                             border: TableBorder.all(),
                                             columns: [
                                               for (int i = 0;
-                                                  i <
-                                                      state
-                                                          .getQuestionListModel
-                                                          .data!
-                                                          .questionlist![index]
-                                                          .matrixcols!
-                                                          .length;
-                                                  i++)
+                                              i <
+                                                  state
+                                                      .getQuestionListModel
+                                                      .data!
+                                                      .questionlist![index]
+                                                      .matrixcols!
+                                                      .length;
+                                              i++)
                                                 DataColumn(
                                                     label: Text(state
                                                         .getQuestionListModel
@@ -119,48 +110,48 @@ class QuestionsListSection extends StatelessWidget {
                                             ],
                                             rows: [
                                               for (int j = 0;
-                                                  j <
+                                              j <
+                                                  state
+                                                      .getQuestionListModel
+                                                      .data!
+                                                      .questionlist![index]
+                                                      .matrixrowcount;
+                                              j++)
+                                                DataRow(cells: [
+                                                  for (int k = 0;
+                                                  k <
                                                       state
                                                           .getQuestionListModel
                                                           .data!
-                                                          .questionlist![index]
-                                                          .matrixrowcount;
-                                                  j++)
-                                                DataRow(cells: [
-                                                  for (int k = 0;
-                                                      k <
-                                                          state
-                                                              .getQuestionListModel
-                                                              .data!
-                                                              .questionlist![
-                                                                  index]
-                                                              .matrixcols!
-                                                              .length;
-                                                      k++)
+                                                          .questionlist![
+                                                      index]
+                                                          .matrixcols!
+                                                          .length;
+                                                  k++)
                                                     DataCell(SizedBox(
                                                       height:
-                                                          MediaQuery.of(context)
-                                                                  .size
-                                                                  .width *
-                                                              0.08,
+                                                      MediaQuery.of(context)
+                                                          .size
+                                                          .width *
+                                                          0.08,
                                                       width:
-                                                          MediaQuery.of(context)
-                                                                  .size
-                                                                  .width *
-                                                              0.2,
+                                                      MediaQuery.of(context)
+                                                          .size
+                                                          .width *
+                                                          0.2,
                                                       child: Text(
                                                           (tableData.toString() ==
-                                                                      "{}" &&
-                                                                  state
-                                                                          .getQuestionListModel
-                                                                          .data!
-                                                                          .questionlist![
-                                                                              index]
-                                                                          .type ==
-                                                                      8)
+                                                              "{}" &&
+                                                              state
+                                                                  .getQuestionListModel
+                                                                  .data!
+                                                                  .questionlist![
+                                                              index]
+                                                                  .type ==
+                                                                  8)
                                                               ? ""
                                                               : tableData[
-                                                                  "data"][j][k],
+                                                          "data"][j][k],
                                                           maxLines: 2,
                                                           overflow: TextOverflow
                                                               .ellipsis),
@@ -168,32 +159,32 @@ class QuestionsListSection extends StatelessWidget {
                                                 ])
                                             ]))
                                   ])),
-                      const SizedBox(height: tiniest),
-                      Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Expanded(
-                                child: SecondaryButton(
-                                    onPressed: () {
-                                      Navigator.pushNamed(context,
-                                          AddImageAndCommentScreen.routeName,
-                                          arguments: state
-                                              .getQuestionListModel
-                                              .data!
-                                              .questionlist![index]
-                                              .queresponseid
-                                              .toString());
-                                    },
-                                    textValue: StringConstants.kAddImages)),
-                            const SizedBox(width: tiniest),
-                            Expanded(
-                              child: SecondaryButton(
-                                  onPressed: () {},
-                                  textValue: StringConstants.kAddTodo),
-                            )
-                          ]),
-                    ]),
-              ));
+                          const SizedBox(height: tiniest),
+                          Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Expanded(
+                                    child: SecondaryButton(
+                                        onPressed: () {
+                                          Navigator.pushNamed(context,
+                                              AddImageAndCommentScreen.routeName,
+                                              arguments: state
+                                                  .getQuestionListModel
+                                                  .data!
+                                                  .questionlist![index]
+                                                  .queresponseid
+                                                  .toString());
+                                        },
+                                        textValue: StringConstants.kAddImages)),
+                                const SizedBox(width: tiniest),
+                                Expanded(
+                                  child: SecondaryButton(
+                                      onPressed: () {},
+                                      textValue: StringConstants.kAddTodo),
+                                )
+                              ]),
+                        ]),
+                  ));
             },
             separatorBuilder: (BuildContext context, int index) {
               return const SizedBox(height: xxTinySpacing);

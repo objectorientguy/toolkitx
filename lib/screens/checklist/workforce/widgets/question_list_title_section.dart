@@ -12,21 +12,23 @@ class QuestionListTitleSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-        width: MediaQuery.of(context).size.width * 0.53,
-        child: RichText(
-            overflow: TextOverflow.ellipsis,
-            textAlign: TextAlign.start,
-            maxLines: 5,
-            text: TextSpan(
-                text: '${questionList.title}?',
-                style: Theme.of(context).textTheme.small.copyWith(
-                    color: AppColor.black, fontWeight: FontWeight.w500),
-                children: [
-                  (questionList.ismandatory == 1)
-                      ? TextSpan(
-                          text: ' *', style: Theme.of(context).textTheme.medium)
-                      : const TextSpan()
-                ])));
+    return Flexible(
+      child: RichText(
+          overflow: TextOverflow.ellipsis,
+          textAlign: TextAlign.start,
+          maxLines: 5,
+          text: TextSpan(
+              text: '${questionList.title}?',
+              style: Theme.of(context)
+                  .textTheme
+                  .small
+                  .copyWith(color: AppColor.black, fontWeight: FontWeight.w500),
+              children: [
+                (questionList.ismandatory == 1)
+                    ? TextSpan(
+                        text: ' *', style: Theme.of(context).textTheme.medium)
+                    : const TextSpan()
+              ])),
+    );
   }
 }
