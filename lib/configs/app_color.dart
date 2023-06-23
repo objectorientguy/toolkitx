@@ -19,4 +19,5 @@ class AppColor {
   static const Color offWhite = Color(0xFFF5F5FF);
   static const Color orange = Color(0xFFf4bd0e);
   static const Color green = Color(0xFF8fc238);
+  static const Color transparent = Color(0x00000000);
 }

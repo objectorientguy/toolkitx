@@ -29,6 +29,7 @@ dependencies:
   searchable_listview: ^2.4.0
   cached_network_image:
   signature: ^5.4.0
+  flutter_inappwebview: ^5.7.2+3
 
 dev_dependencies:
   flutter_test:

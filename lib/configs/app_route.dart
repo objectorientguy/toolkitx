@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
-import '../screens/checklist/change_role_screen.dart';
-import '../screens/checklist/checklist_list_screen.dart';
-import '../screens/checklist/details_screen.dart';
-import '../screens/checklist/filters_screen.dart';
+import 'package:toolkit/screens/checklist/systemUser/sys_user_edit_header_screen.dart';
+import 'package:toolkit/screens/checklist/systemUser/sys_user_checklist_list_screen.dart';
+import '../screens/checklist/systemUser/sys_user_change_role_screen.dart';
+import '../screens/checklist/systemUser/sys_user_schedule_dates_screen.dart';
+import '../screens/checklist/systemUser/sys_user_filters_screen.dart';
+import '../screens/checklist/systemUser/sys_user_workforce_list_screen.dart';
 import '../screens/incident/category_screen.dart';
 import '../screens/incident/filter_screen.dart';
 import '../screens/incident/incident_list_screen.dart';
@@ -20,6 +22,7 @@ import '../screens/permit/permit_details_screen.dart';
 import '../screens/permit/permit_list_screen.dart';
 import '../screens/permit/get_permit_roles_screen.dart';
 import '../screens/root/root_screen.dart';
+import '../widgets/in_app_web_view.dart';
 
 class AppRoutes {
   static Route onGenerateRoutes(RouteSettings settings) {
@@ -49,10 +52,20 @@ class AppRoutes {
         return _createRoute(const DetailsScreen());
       case ChecklistScreen.routeName:
         return _createRoute(const ChecklistScreen());
+        return _createRoute(const ProfileEditScreen());
+      case SystemUserScheduleDatesScreen.routeName:
+        return _createRoute(SystemUserScheduleDatesScreen(
+            checkListId: settings.arguments.toString()));
+      case SystemUserCheckListScreen.routeName:
+        return _createRoute(const SystemUserCheckListScreen());
+      case WorkForceListScreen.routeName:
+        return _createRoute(const WorkForceListScreen());
       case ChangeRoleScreen.routeName:
         return _createRoute(const ChangeRoleScreen());
       case FiltersScreen.routeName:
         return _createRoute(const FiltersScreen());
+      case EditHeaderScreen.routeName:
+        return _createRoute(EditHeaderScreen());
       case IncidentListScreen.routeName:
         return _createRoute(const IncidentListScreen());
       case IncidentFilterScreen.routeName:
@@ -71,6 +84,9 @@ class AppRoutes {
         return _createRoute(const SelectChangePasswordTypeScreen());
       case ChangePasswordScreen.routeName:
         return _createRoute(ChangePasswordScreen());
+      case InAppWebViewScreen.routeName:
+        return _createRoute(
+            InAppWebViewScreen(url: settings.arguments as String));
       default:
         return _createRoute(const WelcomeScreen());
     }
