@@ -44,7 +44,7 @@ class WorkForceQuestionsListBloc extends Bloc<WorkForceCheckListFetchQuestions,
             answerText = getQuestionListModel
                 .data!.questionlist![i].optioncomment
                 .toString();
-          } else if (getQuestionListModel.data!.questionlist![i].optiontext !=
+          } else if (getQuestionListModel.data!.questionlist![i].optionid !=
               null) {
             answerText = getQuestionListModel.data!.questionlist![i].optiontext
                 .toString();

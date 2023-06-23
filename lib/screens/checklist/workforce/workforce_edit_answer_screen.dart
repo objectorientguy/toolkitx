@@ -7,6 +7,8 @@ import 'package:toolkit/configs/app_theme.dart';
 import 'package:toolkit/screens/checklist/workforce/widgets/checklist_app_bar.dart';
 import 'package:toolkit/screens/checklist/workforce/widgets/submit_edit_answer_button.dart';
 import 'package:toolkit/widgets/secondary_button.dart';
+import '../../../blocs/checklist/workforce/comments/workforce_checklist_comments_bloc.dart';
+import '../../../blocs/checklist/workforce/comments/workforce_checklist_comments_events.dart';
 import '../../../blocs/checklist/workforce/editAnswer/workforce_checklist_edit_answer_states.dart';
 import '../../../blocs/checklist/workforce/getQuestionsList/workforce_checklist_get_questions_list_bloc.dart';
 import '../../../configs/app_color.dart';
@@ -16,6 +18,7 @@ import '../../../utils/constants/string_constants.dart';
 import '../../../utils/database_utils.dart';
 import '../../../utils/workforce_checklist_edit_answer_util.dart';
 import '../../../widgets/custom_card.dart';
+import 'add_image_and_comments_screen.dart';
 
 class EditAnswerListScreen extends StatelessWidget {
   static const routeName = 'EditAnswerListScreen';
@@ -138,13 +141,15 @@ class EditAnswerListScreen extends StatelessWidget {
                                                   children: [
                                                     SecondaryButton(
                                                         onPressed: () {
-                                                          // context
-                                                          //     .read<
-                                                          //     WorkforceChecklistBloc>()
-                                                          //     .add(FetchQuestionComment(
-                                                          //     questionResponseId:
-                                                          //     state.allChecklistDataMap[
-                                                          //     "questionResponseId"]));
+                                                          Navigator.pushNamed(
+                                                              context,
+                                                              AddImageAndCommentScreen
+                                                                  .routeName,
+                                                              arguments: state
+                                                                  .answerModelList[
+                                                                      index]
+                                                                  .queresponseid
+                                                                  .toString());
                                                         },
                                                         textValue:
                                                             StringConstants

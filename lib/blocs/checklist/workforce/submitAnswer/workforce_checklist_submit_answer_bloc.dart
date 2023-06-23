@@ -27,8 +27,6 @@ class SubmitAnswerBloc extends Bloc<SubmitAnswers, SubmitAnswerStates> {
     try {
       String hashCode = (await _customerCache.getHashCode(CacheKeys.hashcode))!;
       String userId = (await _customerCache.getUserId(CacheKeys.userId))!;
-      log("event edit questions list=====>${event.allChecklistDataMap}");
-      log("draftt=========>${event.isDraft}");
       List submitList = [];
       String id = '';
       String answer = '';

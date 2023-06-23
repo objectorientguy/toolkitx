@@ -11,23 +11,32 @@ import '../screens/checklist/workforce/widgets/radio_button_expansion_tile.dart'
 import '../screens/incident/widgets/date_picker.dart';
 import '../screens/incident/widgets/time_picker.dart';
 import '../widgets/generic_text_field.dart';
+import '../widgets/secondary_button.dart';
 import 'constants/string_constants.dart';
 
 class EditAnswerUtil {
-  Widget fetchSwitchCaseWidget(type, index, answerModelList, answerList, context) {
+  Widget fetchSwitchCaseWidget(
+      type, index, answerModelList, answerList, context) {
     switch (type) {
       case 1:
         return TextFieldWidget(
             maxLines: 1,
-            value: answerList[index]["answer"],
+            maxLength: 250,
+            value: (answerModelList[index].optioncomment.toString() == "null" ||
+                    answerModelList[index].optioncomment.toString() == "")
+                ? ''
+                : answerModelList[index].optioncomment,
             onTextFieldChanged: (String textValue) {
               answerList[index]["answer"] = textValue;
-              log("text 1======>${answerList[index]["answer"]}");
             });
       case 2:
         return TextFieldWidget(
             maxLines: 4,
-            value: answerList[index]["answer"],
+            maxLength: 250,
+            value: (answerModelList[index].optioncomment.toString() == "null" ||
+                    answerModelList[index].optioncomment.toString() == "")
+                ? ''
+                : answerModelList[index].optioncomment,
             onTextFieldChanged: (String textValue) {
               answerList[index]["answer"] = textValue;
               log("text 2======>${answerList[index]["answer"]}");
@@ -40,7 +49,10 @@ class EditAnswerUtil {
           },
           answerModelList: answerModelList,
           index: index,
-          value: answerModelList[index].queoptions![index]["queoptiontext"],
+          value: (answerModelList[index].optiontext.toString() == "null" ||
+                  answerModelList[index].optiontext.toString() == "")
+              ? ''
+              : answerModelList[index].optiontext,
         );
       case 4:
         return RadioButtonExpansionTile(
@@ -49,44 +61,47 @@ class EditAnswerUtil {
             onRadioButtonChecked: (String radioId, String radioValue) {
               answerList[index]["answer"] = radioId;
             },
-            editValue: answerModelList[index].queoptions![0]["queoptiontext"]);
+            editValue:
+                (answerModelList[index].optiontext.toString() == "null" ||
+                        answerModelList[index].optiontext.toString() == "")
+                    ? ''
+                    : answerModelList[index].optiontext);
       case 5:
         return BlocBuilder<WorkForceCheckListEditAnswerBloc,
-            WorkForceCheckListEditAnswerStates>(
+                WorkForceCheckListEditAnswerStates>(
             buildWhen: (previousState, currentState) =>
-            currentState is CheckListAnswersEdited,
+                currentState is CheckListAnswersEdited,
             builder: (context, state) {
               if (state is CheckListAnswersEdited) {
                 answerList[index]["answer"] = state.multiSelectId
                     .toString()
                     .replaceAll("[", "")
                     .replaceAll("]", "");
-                log("select====>${answerList[index]["answer"]}");
                 return MultiSelectExpansionTile(
                     answerModelList: answerModelList,
                     index: index,
                     selectedIdList: state.multiSelectId,
-                    selectedNamesList: state.multiSelectNames);
+                    selectedNamesList: state.multiSelectNames,
+                    editValue: (answerModelList[index].optiontext.toString() ==
+                                "null" ||
+                            answerModelList[index].optiontext.toString() == "")
+                        ? ''
+                        : answerModelList[index].optiontext);
               } else {
                 return const SizedBox();
               }
             });
-    // case 6:
-    //   return SecondaryButton(
-    //       onPressed: () {
-    //         showDialog(
-    //             context: context,
-    //             builder: (context) {
-    //               return UploadAlertDialog(onCamera: () {}, onDevice: () {});
-    //             });
-    //       },
-    //       textValue: StringConstants.kUpload);
+      case 6:
+        return SecondaryButton(
+            onPressed: () {}, textValue: StringConstants.kUpload);
       case 7:
         return TextFieldWidget(
             textInputType: TextInputType.number,
-            value: answerList[index]["answer"],
+            value: (answerModelList[index].optioncomment.toString() == "null" ||
+                    answerModelList[index].optioncomment.toString() == "")
+                ? ''
+                : answerModelList[index].optioncomment,
             onTextFieldChanged: (String textValue) {
-              log("text 7======>${answerList[index]["answer"]}");
               answerList[index]["answer"] = textValue;
             });
       case 8:
@@ -94,21 +109,26 @@ class EditAnswerUtil {
       case 10:
         return DatePickerTextField(
           hintText: StringConstants.kSelectDate,
-          editDate: answerList[index]["answer"],
+          editDate:
+              (answerModelList[index].optioncomment.toString() == "null" ||
+                      answerModelList[index].optioncomment.toString() == "")
+                  ? ''
+                  : answerModelList[index].optioncomment,
           onDateChanged: (String date) {
             answerList[index]["answer"] = date;
-            log("date picked======>$date");
           },
         );
       case 11:
         return TimePickerTextField(
-          editTime: answerList[index]["answer"],
-          hintText: StringConstants.kSelectTime,
-          onTimeChanged: (String time) {
-            answerList[index]["answer"] = time;
-            log("time picked======>${answerList[index]["answer"]}");
-          },
-        );
+            editTime:
+                (answerModelList[index].optioncomment.toString() == "null" ||
+                        answerModelList[index].optioncomment.toString() == "")
+                    ? ''
+                    : answerModelList[index].optioncomment,
+            hintText: StringConstants.kSelectTime,
+            onTimeChanged: (String time) {
+              answerList[index]["answer"] = time;
+            });
       default:
         return Container();
     }
@@ -151,10 +171,8 @@ Widget tableControl(index, answerModelList, answerList, context) {
                                     : tableData["data"][j][k],
                                 onTextFieldChanged: (String textField) {
                                   tableData["data"][j][k] = textField;
-                                  log("on chnaged=====>${tableData["data"][j][k].toString()}");
                                   answerList[index]["answer"] =
                                       jsonEncode(tableData);
-                                  log("answerList[index]====>${answerList[index]["answer"]}");
                                 })))
                     ])
                 ]))

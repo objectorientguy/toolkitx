@@ -48,7 +48,6 @@ class SubmitEditAnswerButton extends StatelessWidget {
                             titleValue: StringConstants.kChecklist,
                             contentValue: StringConstants.kChecklistNotEditable,
                             onPressed: () {
-                              log("listt=====>$answerList");
                               context.read<SubmitAnswerBloc>().add(
                                   SubmitAnswers(
                                       editQuestionsList: answerList,

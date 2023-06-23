@@ -6,6 +6,7 @@ import '../../../../blocs/checklist/workforce/editAnswer/workforce_checklist_edi
 import '../../../../blocs/checklist/workforce/editAnswer/workforce_checklist_edit_answer_states.dart';
 import '../../../../configs/app_color.dart';
 import '../../../../data/models/checklist/workforce/workforce_questions_list_model.dart';
+import '../../../../utils/database_utils.dart';
 
 typedef RadioButtonCallBack = Function(String radioId, String radioValue);
 
@@ -41,7 +42,10 @@ class RadioButtonExpansionTile extends StatelessWidget {
                     iconColor: AppColor.deepBlue,
                     textColor: AppColor.black,
                     key: GlobalKey(),
-                    title: Text((radioValue == '') ? 'Select' : radioValue,
+                    title: Text(
+                        (radioValue == '')
+                            ? DatabaseUtil.getText('select_item')
+                            : radioValue,
                         style: Theme.of(context).textTheme.xSmall),
                     children: [
                       ListView.builder(

@@ -68,8 +68,15 @@ class AddImageAndCommentScreen extends StatelessWidget {
                                   fontWeight: FontWeight.w500)),
                           const SizedBox(height: xxTinierSpacing),
                           Text(
-                              state.getQuestionCommentsModel.data!.optiontext
-                                  .toString(),
+                              (state.getQuestionCommentsModel.data!.optiontext
+                                          .toString() ==
+                                      "")
+                                  ? state.getQuestionCommentsModel.data!
+                                      .optioncomment
+                                      .toString()
+                                  : state
+                                      .getQuestionCommentsModel.data!.optiontext
+                                      .toString(),
                               style: Theme.of(context).textTheme.small.copyWith(
                                   color: AppColor.black,
                                   fontWeight: FontWeight.w500)),

@@ -4,6 +4,7 @@ import 'package:toolkit/configs/app_dimensions.dart';
 import 'package:toolkit/configs/app_theme.dart';
 import 'package:toolkit/screens/checklist/workforce/workforce_edit_answer_screen.dart';
 import 'package:toolkit/screens/checklist/workforce/workforce_reject_reason_screen.dart';
+import 'package:toolkit/utils/database_utils.dart';
 import '../../../../configs/app_spacing.dart';
 import '../../../blocs/checklist/workforce/popUpMenu/workforce_checklist_pop_up_menu_bloc.dart';
 import '../../../blocs/checklist/workforce/popUpMenu/workforce_checklist_pop_up_menu_events.dart';
@@ -39,11 +40,11 @@ class WorkForcePopUpMenu extends StatelessWidget {
           icon: const Icon(Icons.more_vert_outlined),
           offset: const Offset(0, xxTinierSpacing),
           onSelected: (value) {
-            if (value == 'Edit') {
+            if (value == DatabaseUtil.getText('Edit')) {
               Navigator.pushNamed(context, EditAnswerListScreen.routeName,
                   arguments: checklistDataMap);
             }
-            if (value == 'Reject') {
+            if (value == DatabaseUtil.getText('Reject')) {
               Navigator.pushNamed(context, RejectReasonsScreen.routeName,
                   arguments: checklistDataMap);
             }

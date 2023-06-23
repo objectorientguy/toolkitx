@@ -35,6 +35,7 @@ abstract class StringConstants {
   static const String kOtpGenerated = 'OTP generated';
   static const String kSelectDateFormat = 'Select Your Date Format';
   static const String kSave = 'SAVE';
+  static const String kHint = 'Hint';
   static const String kNoDatesScheduled =
       'No dates scheduled for this checklist!';
   static const String kNoHeader =

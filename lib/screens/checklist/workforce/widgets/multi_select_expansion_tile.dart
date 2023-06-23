@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:toolkit/configs/app_dimensions.dart';
 import 'package:toolkit/configs/app_theme.dart';
+import 'package:toolkit/utils/database_utils.dart';
 import '../../../../blocs/checklist/workforce/editAnswer/workforce_checklist_edit_answer_bloc.dart';
 import '../../../../blocs/checklist/workforce/editAnswer/workforce_checklist_edit_answer_events.dart';
 import '../../../../configs/app_color.dart';
@@ -14,13 +15,15 @@ class MultiSelectExpansionTile extends StatelessWidget {
   final int index;
   final List selectedIdList;
   final List selectedNamesList;
+  final String editValue;
 
   const MultiSelectExpansionTile(
       {Key? key,
       required this.answerModelList,
       required this.index,
       required this.selectedIdList,
-      required this.selectedNamesList})
+      required this.selectedNamesList,
+      required this.editValue})
       : super(key: key);
 
   @override
@@ -36,7 +39,10 @@ class MultiSelectExpansionTile extends StatelessWidget {
             maintainState: true,
             iconColor: AppColor.deepBlue,
             textColor: AppColor.black,
-            title: Text((multiSelectNames == "") ? 'Select' : multiSelectNames,
+            title: Text(
+                (multiSelectNames == "")
+                    ? DatabaseUtil.getText('select_item')
+                    : multiSelectNames,
                 style: Theme.of(context).textTheme.xSmall),
             children: [
               ListView.builder(

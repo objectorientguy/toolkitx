@@ -9,6 +9,8 @@ class SecondaryButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return OutlinedButton(onPressed: onPressed, child: Text(textValue));
+    return OutlinedButton(
+        onPressed: onPressed,
+        child: Text(textValue, textAlign: TextAlign.center));
   }
 }
