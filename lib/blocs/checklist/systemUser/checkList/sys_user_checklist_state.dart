@@ -17,8 +17,9 @@ class FetchingCheckList extends SysUserCheckListStates {
 
 class CheckListFetched extends SysUserCheckListStates {
   final ChecklistListModel getChecklistModel;
+  final String filterData;
 
-  CheckListFetched({required this.getChecklistModel});
+  CheckListFetched({required this.filterData, required this.getChecklistModel});
 
   @override
   List<Object?> get props => [];

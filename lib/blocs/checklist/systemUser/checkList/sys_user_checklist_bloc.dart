@@ -38,15 +38,27 @@ class SysUserCheckListBloc
     emit(FetchingCheckList());
     try {
       String hashCode = (await _customerCache.getHashCode(CacheKeys.hashcode))!;
-      ChecklistListModel getChecklistModel = await _sysUserCheckListRepository
-          .fetchCheckList(page, hashCode, filterData);
-      if (getChecklistModel.status == 200) {
-        emit(CheckListFetched(getChecklistModel: getChecklistModel));
-        page++;
-      } else if (getChecklistModel.status == 204) {
-        emit(CheckListFetched(getChecklistModel: getChecklistModel));
+      if (event.isFromHome != true) {
+        ChecklistListModel getChecklistModel = await _sysUserCheckListRepository
+            .fetchCheckList(page, hashCode, filterData);
+        if (getChecklistModel.status == 200) {
+          emit(CheckListFetched(
+              getChecklistModel: getChecklistModel, filterData: filterData));
+        }
+        add(ClearCheckListFilter());
       } else {
-        emit(CheckListError(errorMessage: StringConstants.kSomethingWentWrong));
+        ChecklistListModel getChecklistModel = await _sysUserCheckListRepository
+            .fetchCheckList(page, hashCode, filterData);
+        if (getChecklistModel.status == 200) {
+          emit(CheckListFetched(
+              getChecklistModel: getChecklistModel, filterData: filterData));
+        } else if (getChecklistModel.status == 204) {
+          emit(CheckListFetched(
+              getChecklistModel: getChecklistModel, filterData: filterData));
+        } else {
+          emit(CheckListError(
+              errorMessage: StringConstants.kSomethingWentWrong));
+        }
       }
     } catch (e) {
       emit(CheckListError(errorMessage: StringConstants.kSomethingWentWrong));
