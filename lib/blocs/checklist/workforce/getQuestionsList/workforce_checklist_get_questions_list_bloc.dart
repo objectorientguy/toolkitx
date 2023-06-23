@@ -44,7 +44,7 @@ class WorkForceQuestionsListBloc extends Bloc<WorkForceCheckListFetchQuestions,
             answerText = getQuestionListModel
                 .data!.questionlist![i].optioncomment
                 .toString();
-          } else if (getQuestionListModel.data!.questionlist![i].optiontext !=
+          } else if (getQuestionListModel.data!.questionlist![i].optionid !=
               null) {
             answerText = getQuestionListModel.data!.questionlist![i].optiontext
                 .toString();
@@ -53,7 +53,7 @@ class WorkForceQuestionsListBloc extends Bloc<WorkForceCheckListFetchQuestions,
             "questionid": getQuestionListModel.data!.questionlist![i].id,
             "answer": answerText,
             "ismandatory":
-                getQuestionListModel.data!.questionlist![i].ismandatory
+                getQuestionListModel.data!.questionlist![i].ismandatory,
           });
         }
         emit(QuestionsListFetched(

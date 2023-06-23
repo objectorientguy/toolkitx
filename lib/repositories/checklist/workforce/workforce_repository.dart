@@ -1,4 +1,5 @@
 import '../../../data/models/checklist/workforce/workforce_checklist_save_reject_reason_model.dart';
+import '../../../data/models/checklist/workforce/workforce_checklist_submit_answer_model.dart';
 import '../../../data/models/checklist/workforce/workforce_fetch_comment_model.dart';
 import '../../../data/models/checklist/workforce/workforce_fetch_reject_reason_model.dart';
 import '../../../data/models/checklist/workforce/workforce_list_model.dart';
@@ -21,4 +22,6 @@ abstract class WorkForceRepository {
       String hashCode);
 
   Future<PostRejectReasonsModel> saveRejectReasons(Map saveRejectReasonsMap);
+
+  Future<SubmitQuestionModel> submitAnswer(Map submitAnswerMap);
 }

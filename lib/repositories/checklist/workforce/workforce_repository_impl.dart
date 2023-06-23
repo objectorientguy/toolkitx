@@ -1,6 +1,7 @@
 import 'package:toolkit/repositories/checklist/workforce/workforce_repository.dart';
 
 import '../../../data/models/checklist/workforce/workforce_checklist_save_reject_reason_model.dart';
+import '../../../data/models/checklist/workforce/workforce_checklist_submit_answer_model.dart';
 import '../../../data/models/checklist/workforce/workforce_fetch_comment_model.dart';
 import '../../../data/models/checklist/workforce/workforce_fetch_reject_reason_model.dart';
 import '../../../data/models/checklist/workforce/workforce_list_model.dart';
@@ -58,5 +59,12 @@ class WorkforceChecklistRepositoryImpl extends WorkForceRepository {
         "${ApiConstants.baseUrl}checklist/rejectbyworkforce",
         saveRejectReasonsMap);
     return PostRejectReasonsModel.fromJson(response);
+  }
+
+  @override
+  Future<SubmitQuestionModel> submitAnswer(Map submitAnswerMap) async {
+    final response = await DioClient()
+        .post("${ApiConstants.baseUrl}checklist/save", submitAnswerMap);
+    return SubmitQuestionModel.fromJson(response);
   }
 }
