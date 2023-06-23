@@ -44,7 +44,7 @@ class WorkForceQuestionsScreen extends StatelessWidget {
                 } else {
                   return const SizedBox();
                 }
-              })
+              }),
             ]),
         body: const QuestionsListSection());
   }

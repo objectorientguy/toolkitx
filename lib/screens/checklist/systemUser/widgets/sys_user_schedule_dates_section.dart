@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:toolkit/blocs/checklist/systemUser/changeRole/sys_user_checklist_change_role_bloc.dart';
 import 'package:toolkit/configs/app_theme.dart';
+import 'package:toolkit/utils/constants/string_constants.dart';
 import '../../../../blocs/checklist/systemUser/scheduleDates/sys_user_checklist_schedule_dates_bloc.dart';
 import '../../../../blocs/checklist/systemUser/scheduleDates/sys_user_checklist_schedule_dates_states.dart';
 import '../../../../blocs/checklist/systemUser/scheduleDatesResponse/checklist_schedule_dates_response_bloc.dart';
@@ -31,7 +32,8 @@ class ScheduleDatesSection extends StatelessWidget {
                 CheckListScheduleDatesResponseStates>(
             listener: (context, state) {
               if (state is CheckListNoResponseFound) {
-                showCustomSnackBar(context, 'No response found!', '');
+                showCustomSnackBar(
+                    context, StringConstants.kNoResponseFound, '');
               } else if (state is FetchingCheckListWorkforceList) {
                 Navigator.pushNamed(
                     context, SysUserWorkForceListScreen.routeName);
