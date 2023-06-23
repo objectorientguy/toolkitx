@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:toolkit/blocs/workforce/workforceList/workforce_list_bloc.dart';
-import 'package:toolkit/blocs/workforce/workforceList/workforce_list_states.dart';
 import 'package:toolkit/configs/app_spacing.dart';
 import 'package:toolkit/configs/app_theme.dart';
 import 'package:toolkit/screens/checklist/workforce/widgets/custom_tag_container.dart';
 import 'package:toolkit/screens/checklist/workforce/workforce_questions_list_screen.dart';
 import 'package:toolkit/widgets/error_section.dart';
-import '../../../blocs/workforce/workforceList/workforce_list_events.dart';
+import '../../../blocs/checklist/workforce/workforceList/workforce_list_bloc.dart';
+import '../../../blocs/checklist/workforce/workforceList/workforce_list_events.dart';
+import '../../../blocs/checklist/workforce/workforceList/workforce_list_states.dart';
 import '../../../configs/app_color.dart';
 import '../../../utils/constants/string_constants.dart';
+import '../../../utils/database_utils.dart';
 import '../../../widgets/custom_card.dart';
 import '../../../widgets/generic_app_bar.dart';
 
@@ -75,7 +76,7 @@ class WorkForceListScreen extends StatelessWidget {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                        'Assign Date: ${state.workforceGetCheckListModel.data![index].submitdate}  -- Due on: ${state.workforceGetCheckListModel.data![index].overduedate}',
+                                        '${DatabaseUtil.getText('Assignedate')}: ${state.workforceGetCheckListModel.data![index].submitdate}  -- ${DatabaseUtil.getText('Dueon')}: ${state.workforceGetCheckListModel.data![index].overduedate}',
                                         style: Theme.of(context)
                                             .textTheme
                                             .xSmall

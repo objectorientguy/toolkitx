@@ -1,4 +1,4 @@
-import '../../../data/models/workforce/workforce_list_model.dart';
+import '../../../../data/models/checklist/workforce/workforce_list_model.dart';
 
 abstract class WorkForceListStates {}
 

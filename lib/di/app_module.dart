@@ -6,6 +6,8 @@ import 'package:toolkit/repositories/profile/profile_repository_impl.dart';
 
 import '../repositories/checklist/systemUser/sys_user_checklist_repository.dart';
 import '../repositories/checklist/systemUser/sys_user_checklist_repository_impl.dart';
+import '../repositories/checklist/workforce/workforce_repository.dart';
+import '../repositories/checklist/workforce/workforce_repository_impl.dart';
 import '../repositories/permit/permit_repository.dart';
 import '../repositories/permit/permit_repository_impl.dart';
 import '../data/cache/customer_cache.dart';

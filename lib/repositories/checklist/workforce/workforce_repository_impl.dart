@@ -1,11 +1,13 @@
-import 'package:toolkit/repositories/workforce/workforce_repository.dart';
+import 'package:toolkit/repositories/checklist/workforce/workforce_repository.dart';
 
-import '../../data/models/workforce/workforce_fetch_comment_model.dart';
-import '../../data/models/workforce/workforce_list_model.dart';
-import '../../data/models/workforce/workforce_questions_list_model.dart';
-import '../../data/models/workforce/workforce_save_comment_model.dart';
-import '../../utils/constants/api_constants.dart';
-import '../../utils/dio_client.dart';
+import '../../../data/models/checklist/workforce/workforce_checklist_save_reject_reason_model.dart';
+import '../../../data/models/checklist/workforce/workforce_fetch_comment_model.dart';
+import '../../../data/models/checklist/workforce/workforce_fetch_reject_reason_model.dart';
+import '../../../data/models/checklist/workforce/workforce_list_model.dart';
+import '../../../data/models/checklist/workforce/workforce_questions_list_model.dart';
+import '../../../data/models/checklist/workforce/workforce_save_comment_model.dart';
+import '../../../utils/constants/api_constants.dart';
+import '../../../utils/dio_client.dart';
 
 class WorkforceChecklistRepositoryImpl extends WorkForceRepository {
   @override
@@ -39,5 +41,22 @@ class WorkforceChecklistRepositoryImpl extends WorkForceRepository {
         "${ApiConstants.baseUrl}checklist/SaveQuestionResponseComments",
         saveQuestionsCommentMap);
     return SaveQuestionCommentsModel.fromJson(response);
+  }
+
+  @override
+  Future<GetCheckListRejectReasonsModel> fetchChecklistRejectReason(
+      String hashCode) async {
+    final response = await DioClient().get(
+        "${ApiConstants.baseUrl}checklist/getrejectreasons?hashcode=$hashCode");
+    return GetCheckListRejectReasonsModel.fromJson(response);
+  }
+
+  @override
+  Future<PostRejectReasonsModel> saveRejectReasons(
+      Map saveRejectReasonsMap) async {
+    final response = await DioClient().post(
+        "${ApiConstants.baseUrl}checklist/rejectbyworkforce",
+        saveRejectReasonsMap);
+    return PostRejectReasonsModel.fromJson(response);
   }
 }

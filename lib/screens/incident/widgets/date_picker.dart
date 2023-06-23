@@ -8,8 +8,11 @@ import '../../../../configs/app_color.dart';
 import '../../../configs/app_spacing.dart';
 import '../../../widgets/text_button.dart';
 
+typedef StringCallBack = Function(String date);
+
 class DatePickerTextField extends StatelessWidget {
   final DateTime? initialDate;
+  final StringCallBack onDateChanged;
   final DateTime? maxDate;
   final String editDate;
   final String? hintText;
@@ -25,6 +28,7 @@ class DatePickerTextField extends StatelessWidget {
     this.hintText,
     this.minimumDate,
     this.isFirstTime = true,
+    required this.onDateChanged,
   }) : super(key: key);
 
   void showDatePicker(BuildContext context) {
@@ -77,7 +81,9 @@ class DatePickerTextField extends StatelessWidget {
     return TextField(
         readOnly: true,
         controller: dateInputController,
-        onChanged: (value) {},
+        onChanged: (value) {
+          onDateChanged(value);
+        },
         onTap: () async {
           showDatePicker(context);
         },

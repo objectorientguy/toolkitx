@@ -11,12 +11,15 @@ import 'package:toolkit/blocs/checklist/systemUser/scheduleDatesResponse/checkli
 import 'package:toolkit/blocs/checklist/systemUser/submitHeader/sys_user_checklist_header_bloc.dart';
 import 'package:toolkit/blocs/checklist/systemUser/thirdPartyApprove/sys_user_checklist_third_party_approve_bloc.dart';
 import 'package:toolkit/blocs/pickAndUploadImage/pick_and_upload_image_bloc.dart';
-import 'package:toolkit/blocs/workforce/comments/workforce_comments_bloc.dart';
-import 'package:toolkit/blocs/workforce/getQuestionsList/get_questions_list_bloc.dart';
-import 'package:toolkit/blocs/workforce/workforceList/workforce_list_bloc.dart';
 import 'package:toolkit/utils/database_utils.dart';
 import 'blocs/checklist/systemUser/approve/sys_user_approve_checklist_bloc.dart';
 import 'blocs/checklist/systemUser/reject/sys_user_reject_checklist_bloc.dart';
+import 'blocs/checklist/workforce/comments/workforce_checklist_comments_bloc.dart';
+import 'blocs/checklist/workforce/editAnswer/workforce_checklist_edit_answer_bloc.dart';
+import 'blocs/checklist/workforce/getQuestionsList/workforce_checklist_get_questions_list_bloc.dart';
+import 'blocs/checklist/workforce/popUpMenu/workforce_checklist_pop_up_menu_bloc.dart';
+import 'blocs/checklist/workforce/rejectReason/workforce_checklist_reject_reason_bloc.dart';
+import 'blocs/checklist/workforce/workforceList/workforce_list_bloc.dart';
 import 'blocs/client/client_bloc.dart';
 import 'blocs/dateFormat/date_format_bloc.dart';
 import 'blocs/home/home_bloc.dart';
@@ -80,6 +83,18 @@ class MyApp extends StatelessWidget {
           BlocProvider(lazy: false, create: (context) => ClientBloc()),
           BlocProvider(lazy: false, create: (context) => ProfileBloc()),
           BlocProvider(lazy: false, create: (context) => PermitRoleBloc()),
+          BlocProvider(lazy: false, create: (context) => WorkForceListBloc()),
+          BlocProvider(
+              lazy: false,
+              create: (context) => WorkForceCheckListCommentBloc()),
+          BlocProvider(
+              lazy: false, create: (context) => WorkForceQuestionsListBloc()),
+          BlocProvider(
+              lazy: false,
+              create: (context) => WorkForceCheckListPopUpMenuItemsBloc()),
+          BlocProvider(
+              lazy: false,
+              create: (context) => WorkForceCheckListEditAnswerBloc()),
           BlocProvider(
               lazy: false, create: (context) => SysUserCheckListBloc()),
           BlocProvider(
@@ -97,12 +112,11 @@ class MyApp extends StatelessWidget {
           BlocProvider(lazy: false, create: (context) => CheckListHeaderBloc()),
           BlocProvider(
               lazy: false, create: (context) => FetchCheckListPdfBloc()),
-          BlocProvider(lazy: false, create: (context) => WorkForceListBloc()),
-          BlocProvider(lazy: false, create: (context) => CommentBloc()),
+          BlocProvider(
+              lazy: false,
+              create: (context) => WorkForceCheckListSaveRejectBloc()),
           BlocProvider(
               lazy: false, create: (context) => PickAndUploadImageBloc()),
-          BlocProvider(
-              lazy: false, create: (context) => WorkForceQuestionsListBloc()),
           BlocProvider(
               lazy: false,
               create: (context) => OnBoardingBloc()..add(CheckLoggedIn()))

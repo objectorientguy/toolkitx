@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:toolkit/configs/app_dimensions.dart';
 import 'package:toolkit/configs/app_theme.dart';
-import '../../../../blocs/workforce/getQuestionsList/get_questions_list_bloc.dart';
-import '../../../../blocs/workforce/getQuestionsList/get_questions_list_events.dart';
-import '../../../../blocs/workforce/getQuestionsList/get_questions_list_states.dart';
+import '../../../../blocs/checklist/workforce/getQuestionsList/workforce_cheklist_get_questions_list_states.dart';
+import '../../../../blocs/checklist/workforce/getQuestionsList/workforce_checklist_get_questions_list_bloc.dart';
+import '../../../../blocs/checklist/workforce/getQuestionsList/workforce_checklist_get_questions_list_events.dart';
 import '../../../../configs/app_color.dart';
 import '../../../../configs/app_spacing.dart';
 import '../../../../utils/constants/string_constants.dart';
@@ -20,9 +20,9 @@ class QuestionsListSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<WorkForceQuestionsListBloc, WorkForceQuestionsStates>(
-        builder: (context, state) {
-      if (state is FetchingQuestionsList) {
+    return BlocBuilder<WorkForceQuestionsListBloc,
+        WorkForceCheckListQuestionsStates>(builder: (context, state) {
+      if (state is CheckListFetchingQuestionsList) {
         return const Center(child: CircularProgressIndicator());
       } else if (state is QuestionsListFetched) {
         return ListView.separated(
@@ -62,16 +62,19 @@ class QuestionsListSection extends StatelessWidget {
                                     .questionlist![index].moreinfo !=
                                 null,
                             child: Text(
-                                'Hint: ${state.getQuestionListModel.data!.questionlist![index].moreinfo}'),
+                                '${StringConstants.kHint}: ${state.getQuestionListModel.data!.questionlist![index].moreinfo}'),
                           )
                         ],
                       ),
                       const SizedBox(height: tiniest),
                       Text(
                           (state.answerList[index]["answer"].toString() ==
-                                  'null'
+                                      'null' ||
+                                  state.answerList[index]["answer"]
+                                          .toString() ==
+                                      "")
                               ? ''
-                              : state.answerList[index]["answer"].toString()),
+                              : state.answerList[index]["answer"].toString(),
                           style: Theme.of(context)
                               .textTheme
                               .small
@@ -106,11 +109,12 @@ class QuestionsListSection extends StatelessWidget {
             separatorBuilder: (BuildContext context, int index) {
               return const SizedBox(height: xxTinySpacing);
             });
-      } else if (state is QuestionsListNotFetched) {
+      } else if (state is CheckListQuestionsListNotFetched) {
         return GenericReloadButton(
             onPressed: () {
               context.read<WorkForceQuestionsListBloc>().add(
-                  FetchQuestions(checklistData: state.allChecklistDataMap));
+                  WorkForceCheckListFetchQuestions(
+                      checklistData: state.allChecklistDataMap));
             },
             textValue: StringConstants.kReload);
       } else {

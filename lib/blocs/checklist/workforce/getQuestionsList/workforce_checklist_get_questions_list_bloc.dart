@@ -1,30 +1,28 @@
 import 'dart:async';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:toolkit/repositories/workforce/workforce_repository.dart';
+import '../../../../data/cache/cache_keys.dart';
+import '../../../../data/cache/customer_cache.dart';
+import '../../../../data/models/checklist/workforce/workforce_questions_list_model.dart';
+import '../../../../di/app_module.dart';
+import '../../../../repositories/checklist/workforce/workforce_repository.dart';
+import 'workforce_checklist_get_questions_list_events.dart';
+import 'workforce_cheklist_get_questions_list_states.dart';
 
-import '../../../data/cache/cache_keys.dart';
-import '../../../data/cache/customer_cache.dart';
-import '../../../data/models/workforce/workforce_questions_list_model.dart';
-import '../../../di/app_module.dart';
-import 'get_questions_list_events.dart';
-import 'get_questions_list_states.dart';
-
-class WorkForceQuestionsListBloc
-    extends Bloc<FetchQuestions, WorkForceQuestionsStates> {
+class WorkForceQuestionsListBloc extends Bloc<WorkForceCheckListFetchQuestions,
+    WorkForceCheckListQuestionsStates> {
   final WorkForceRepository _workForceRepository = getIt<WorkForceRepository>();
   final CustomerCache _customerCache = getIt<CustomerCache>();
   List answerList = [];
   List<Questionlist>? questionList;
   Map allDataForChecklistMap = {};
 
-  WorkForceQuestionsListBloc() : super(FetchQuestionsListInitial()) {
-    on<FetchQuestions>(_fetchQuestions);
+  WorkForceQuestionsListBloc() : super(CheckListFetchQuestionsListInitial()) {
+    on<WorkForceCheckListFetchQuestions>(_fetchQuestions);
   }
 
-  FutureOr<void> _fetchQuestions(
-      FetchQuestions event, Emitter<WorkForceQuestionsStates> emit) async {
-    emit(FetchingQuestionsList());
+  FutureOr<void> _fetchQuestions(WorkForceCheckListFetchQuestions event,
+      Emitter<WorkForceCheckListQuestionsStates> emit) async {
+    emit(CheckListFetchingQuestionsList());
     answerList.clear();
     try {
       allDataForChecklistMap = event.checklistData;
@@ -46,7 +44,7 @@ class WorkForceQuestionsListBloc
             answerText = getQuestionListModel
                 .data!.questionlist![i].optioncomment
                 .toString();
-          } else if (getQuestionListModel.data!.questionlist![i].optionid !=
+          } else if (getQuestionListModel.data!.questionlist![i].optiontext !=
               null) {
             answerText = getQuestionListModel.data!.questionlist![i].optiontext
                 .toString();
@@ -64,8 +62,8 @@ class WorkForceQuestionsListBloc
             allChecklistDataMap: allDataForChecklistMap));
       }
     } catch (e) {
-      emit(
-          QuestionsListNotFetched(allChecklistDataMap: allDataForChecklistMap));
+      emit(CheckListQuestionsListNotFetched(
+          allChecklistDataMap: allDataForChecklistMap));
     }
   }
 }
