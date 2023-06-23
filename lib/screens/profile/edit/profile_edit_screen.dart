@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:signature/signature.dart';
 import 'package:toolkit/configs/app_spacing.dart';
 import 'package:toolkit/configs/app_theme.dart';
 import 'package:toolkit/screens/profile/widgets/signature.dart';
@@ -21,15 +20,12 @@ import '../widgets/blood_group_expansion_tile.dart';
 class ProfileEditScreen extends StatelessWidget {
   static const routeName = 'ProfileEditScreen';
 
-  ProfileEditScreen({Key? key}) : super(key: key);
-  final SignatureController signController = SignatureController(
-    penStrokeWidth: 3,
-    penColor: Colors.black,
-    exportBackgroundColor: Colors.white,
-  );
+  const ProfileEditScreen({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     context.read<ProfileBloc>().add(DecryptUserProfileData());
+
     return Scaffold(
         appBar: GenericAppBar(title: DatabaseUtil.getText('MyProfile')),
         body: BlocConsumer<ProfileBloc, ProfileStates>(
@@ -113,11 +109,11 @@ class ProfileEditScreen extends StatelessWidget {
                               const SizedBox(height: tinier),
                               SignaturePad(
                                   profileDetailsMap: state.profileDetailsMap,
-                                  signController: signController),
+                                  signController: state.signController),
                               const SizedBox(height: tiny),
                               PrimaryButton(
                                   onPressed: () {
-                                    signController.dispose();
+                                    state.signController.dispose();
                                     context.read<ProfileBloc>().add(
                                         UpdateProfile(
                                             updateProfileMap:

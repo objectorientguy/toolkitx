@@ -1,3 +1,4 @@
+import 'package:signature/signature.dart';
 import 'package:toolkit/data/models/profile/change_password_model.dart';
 import 'package:toolkit/data/models/profile/update_user_profile_model.dart';
 
@@ -38,8 +39,10 @@ class EditProfileInitializing extends ProfileStates {}
 
 class EditProfileInitialized extends ProfileStates {
   final Map profileDetailsMap;
+  final SignatureController signController;
 
-  EditProfileInitialized({required this.profileDetailsMap});
+  EditProfileInitialized(
+      {required this.signController, required this.profileDetailsMap});
 }
 
 class EditProfileError extends ProfileStates {

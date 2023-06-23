@@ -1,7 +1,9 @@
 import 'dart:async';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:signature/signature.dart';
 import 'package:toolkit/blocs/profile/profile_events.dart';
 import 'package:toolkit/blocs/profile/profile_states.dart';
+import 'package:toolkit/configs/app_color.dart';
 import 'package:toolkit/data/enums/user_type_emun.dart';
 import 'package:toolkit/data/models/encrypt_class.dart';
 import 'package:toolkit/data/models/profile/change_password_model.dart';
@@ -125,7 +127,14 @@ class ProfileBloc extends Bloc<ProfileEvents, ProfileStates> {
 
   FutureOr<void> _initializeEditUserProfile(
       InitializeEditUserProfile event, Emitter<ProfileStates> emit) async {
-    emit(EditProfileInitialized(profileDetailsMap: event.profileDetailsMap));
+    final SignatureController signController = SignatureController(
+      penStrokeWidth: 3,
+      penColor: AppColor.black,
+      exportBackgroundColor: AppColor.white,
+    );
+    emit(EditProfileInitialized(
+        profileDetailsMap: event.profileDetailsMap,
+        signController: signController));
     profileDataMap.clear();
   }
 

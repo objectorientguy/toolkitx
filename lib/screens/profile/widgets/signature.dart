@@ -9,17 +9,16 @@ import '../../../configs/app_color.dart';
 
 class SignaturePad extends StatelessWidget {
   final Map profileDetailsMap;
+  final SignatureController signController;
 
   const SignaturePad(
       {Key? key, required this.profileDetailsMap, required this.signController})
       : super(key: key);
 
-  final SignatureController signController;
-
-  void saveSign() {
+  saveSign() {
     signController.onDrawEnd = () async {
       profileDetailsMap['sign'] =
-          'data:image/png;base64,${base64Encode(signController.toPngBytes() as List<int>)}';
+          'data:image/png;base64,${base64Encode(await signController.toPngBytes() as List<int>)}';
     };
   }
 

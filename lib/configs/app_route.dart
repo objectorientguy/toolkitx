@@ -47,11 +47,6 @@ class AppRoutes {
           isFromClientList: settings.arguments as bool,
         ));
       case ProfileEditScreen.routeName:
-        return _createRoute(ProfileEditScreen());
-      case DetailsScreen.routeName:
-        return _createRoute(const DetailsScreen());
-      case ChecklistScreen.routeName:
-        return _createRoute(const ChecklistScreen());
         return _createRoute(const ProfileEditScreen());
       case SystemUserScheduleDatesScreen.routeName:
         return _createRoute(SystemUserScheduleDatesScreen(
