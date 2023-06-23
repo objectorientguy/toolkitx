@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:toolkit/configs/app_theme.dart';
 import '../configs/app_color.dart';
@@ -18,21 +16,21 @@ class TextFieldWidget extends StatelessWidget {
   final String? hintText;
   final bool obscureText;
 
-  TextFieldWidget({Key? key,
-    this.textInputAction,
-    this.maxLength,
-    this.textInputType,
-    this.value = '',
-    this.hintText,
-    this.maxLines = 1,
-    required this.onTextFieldChanged,
-    this.obscureText = false})
+  TextFieldWidget(
+      {Key? key,
+      this.textInputAction,
+      this.maxLength,
+      this.textInputType,
+      this.value = '',
+      this.hintText,
+      this.maxLines = 1,
+      required this.onTextFieldChanged,
+      this.obscureText = false})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     textFieldController.text = value;
-    log("valueee======>$value");
     return TextField(
         controller: textFieldController,
         onChanged: (value) {

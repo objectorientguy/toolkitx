@@ -36,6 +36,8 @@ abstract class StringConstants {
   static const String kSelectDateFormat = 'Select Your Date Format';
   static const String kSave = 'SAVE';
   static const String kHint = 'Hint';
+  static const String kValueB = 'Value B: ';
+  static const String kValueA = 'Value A: ';
   static const String kNoDatesScheduled =
       'No dates scheduled for this checklist!';
   static const String kNoHeader =

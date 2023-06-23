@@ -1,7 +1,7 @@
 import 'dart:convert';
-import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:toolkit/configs/app_theme.dart';
 import '../blocs/checklist/workforce/editAnswer/workforce_checklist_edit_answer_bloc.dart';
 import '../blocs/checklist/workforce/editAnswer/workforce_checklist_edit_answer_states.dart';
 import '../configs/app_spacing.dart';
@@ -15,6 +15,9 @@ import '../widgets/secondary_button.dart';
 import 'constants/string_constants.dart';
 
 class EditAnswerUtil {
+  Map value = {};
+  var valueOfA = 0.0;
+
   Widget fetchSwitchCaseWidget(
       type, index, answerModelList, answerList, context) {
     switch (type) {
@@ -22,6 +25,7 @@ class EditAnswerUtil {
         return TextFieldWidget(
             maxLines: 1,
             maxLength: 250,
+            textInputAction: TextInputAction.done,
             value: (answerModelList[index].optioncomment.toString() == "null" ||
                     answerModelList[index].optioncomment.toString() == "")
                 ? ''
@@ -33,24 +37,23 @@ class EditAnswerUtil {
         return TextFieldWidget(
             maxLines: 4,
             maxLength: 250,
+            textInputAction: TextInputAction.done,
             value: (answerModelList[index].optioncomment.toString() == "null" ||
                     answerModelList[index].optioncomment.toString() == "")
                 ? ''
                 : answerModelList[index].optioncomment,
             onTextFieldChanged: (String textValue) {
               answerList[index]["answer"] = textValue;
-              log("text 2======>${answerList[index]["answer"]}");
             });
       case 3:
         return DropDownExpansionTile(
           onValueChanged: (String dropDownId, String dropDownString) {
             answerList[index]["answer"] = dropDownId;
-            log("ans=======>${answerList[index]["answer"]}");
           },
           answerModelList: answerModelList,
           index: index,
           value: (answerModelList[index].optiontext.toString() == "null" ||
-                  answerModelList[index].optiontext.toString() == "")
+              answerModelList[index].optiontext.toString() == "")
               ? ''
               : answerModelList[index].optiontext,
         );
@@ -62,15 +65,15 @@ class EditAnswerUtil {
               answerList[index]["answer"] = radioId;
             },
             editValue:
-                (answerModelList[index].optiontext.toString() == "null" ||
-                        answerModelList[index].optiontext.toString() == "")
-                    ? ''
-                    : answerModelList[index].optiontext);
+            (answerModelList[index].optiontext.toString() == "null" ||
+                answerModelList[index].optiontext.toString() == "")
+                ? ''
+                : answerModelList[index].optiontext);
       case 5:
         return BlocBuilder<WorkForceCheckListEditAnswerBloc,
-                WorkForceCheckListEditAnswerStates>(
+            WorkForceCheckListEditAnswerStates>(
             buildWhen: (previousState, currentState) =>
-                currentState is CheckListAnswersEdited,
+            currentState is CheckListAnswersEdited,
             builder: (context, state) {
               if (state is CheckListAnswersEdited) {
                 answerList[index]["answer"] = state.multiSelectId
@@ -83,8 +86,8 @@ class EditAnswerUtil {
                     selectedIdList: state.multiSelectId,
                     selectedNamesList: state.multiSelectNames,
                     editValue: (answerModelList[index].optiontext.toString() ==
-                                "null" ||
-                            answerModelList[index].optiontext.toString() == "")
+                        "null" ||
+                        answerModelList[index].optiontext.toString() == "")
                         ? ''
                         : answerModelList[index].optiontext);
               } else {
@@ -97,6 +100,7 @@ class EditAnswerUtil {
       case 7:
         return TextFieldWidget(
             textInputType: TextInputType.number,
+            textInputAction: TextInputAction.done,
             value: (answerModelList[index].optioncomment.toString() == "null" ||
                     answerModelList[index].optioncomment.toString() == "")
                 ? ''
@@ -106,6 +110,52 @@ class EditAnswerUtil {
             });
       case 8:
         return tableControl(index, answerModelList, answerList, context);
+      case 9:
+        return SingleChildScrollView(
+            physics: const BouncingScrollPhysics(),
+            child:
+                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Text(StringConstants.kValueA,
+                        style: Theme.of(context).textTheme.xSmall),
+                    const SizedBox(width: tiniest),
+                    SizedBox(
+                        width: MediaQuery.of(context).size.width * 0.4,
+                        height: MediaQuery.of(context).size.width * 0.085,
+                        child: TextFieldWidget(
+                            textInputAction: TextInputAction.next,
+                            textInputType: TextInputType.number,
+                            maxLength: 8,
+                            onTextFieldChanged: (String textField) {
+                              valueOfA = double.parse(textField).toDouble();
+                            }))
+                  ]),
+              const SizedBox(height: tiny),
+              Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Text(StringConstants.kValueB,
+                        style: Theme.of(context).textTheme.xSmall),
+                    const SizedBox(width: tiniest),
+                    SizedBox(
+                        width: MediaQuery.of(context).size.width * 0.4,
+                        height: MediaQuery.of(context).size.width * 0.085,
+                        child: TextFieldWidget(
+                            textInputType: TextInputType.number,
+                            maxLength: 8,
+                            onTextFieldChanged: (String textField) {
+                              value = {
+                                "valueA": valueOfA,
+                                "valueB": double.parse(textField).toDouble(),
+                              };
+                              answerList[index]["answer"] = jsonEncode(value);
+                            }))
+                  ])
+            ]));
       case 10:
         return DatePickerTextField(
           hintText: StringConstants.kSelectDate,
@@ -121,10 +171,10 @@ class EditAnswerUtil {
       case 11:
         return TimePickerTextField(
             editTime:
-                (answerModelList[index].optioncomment.toString() == "null" ||
-                        answerModelList[index].optioncomment.toString() == "")
-                    ? ''
-                    : answerModelList[index].optioncomment,
+            (answerModelList[index].optioncomment.toString() == "null" ||
+                answerModelList[index].optioncomment.toString() == "")
+                ? ''
+                : answerModelList[index].optioncomment,
             hintText: StringConstants.kSelectTime,
             onTimeChanged: (String time) {
               answerList[index]["answer"] = time;

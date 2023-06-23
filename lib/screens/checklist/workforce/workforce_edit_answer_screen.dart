@@ -7,8 +7,6 @@ import 'package:toolkit/configs/app_theme.dart';
 import 'package:toolkit/screens/checklist/workforce/widgets/checklist_app_bar.dart';
 import 'package:toolkit/screens/checklist/workforce/widgets/submit_edit_answer_button.dart';
 import 'package:toolkit/widgets/secondary_button.dart';
-import '../../../blocs/checklist/workforce/comments/workforce_checklist_comments_bloc.dart';
-import '../../../blocs/checklist/workforce/comments/workforce_checklist_comments_events.dart';
 import '../../../blocs/checklist/workforce/editAnswer/workforce_checklist_edit_answer_states.dart';
 import '../../../blocs/checklist/workforce/getQuestionsList/workforce_checklist_get_questions_list_bloc.dart';
 import '../../../configs/app_color.dart';

@@ -11,7 +11,6 @@ class WorkForceCheckListEditAnswerBloc extends Bloc<
     on<CheckListEditAnswerEvent>(_editAnswer);
   }
 
-
   _populateAnswerData(CheckListPopulateAnswerData event,
       Emitter<WorkForceCheckListEditAnswerStates> emit) {
     add(CheckListEditAnswerEvent(

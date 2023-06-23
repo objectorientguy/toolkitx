@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:toolkit/configs/app_spacing.dart';
+import 'package:toolkit/utils/database_utils.dart';
 import '../../../../blocs/checklist/workforce/editAnswer/workforce_checklist_edit_answer_bloc.dart';
 import '../../../../blocs/checklist/workforce/editAnswer/workforce_checklist_edit_answer_events.dart';
 import '../../../../blocs/checklist/workforce/editAnswer/workforce_checklist_edit_answer_states.dart';
@@ -43,7 +44,9 @@ class DropDownExpansionTile extends StatelessWidget {
                         left: xxTinierSpacing, right: xxTinierSpacing),
                     iconColor: AppColor.deepBlue,
                     textColor: AppColor.black,
-                    title: Text((dropDown == "") ? 'Select' : dropDown),
+                    title: Text((dropDown == "")
+                        ? DatabaseUtil.getText('select_item')
+                        : dropDown),
                     children: [
                       MediaQuery(
                           data: MediaQuery.of(context)
