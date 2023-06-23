@@ -42,3 +42,4 @@ const double kRadioListTilePaddingRight = 8;
 const double kListTileLeadingPadding = 8;
 const double kListTileTitleGap = 0;
 const double kListTileMinLeadingWidth = 32;
+const double kSignaturePadHeight = 200;

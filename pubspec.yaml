@@ -28,6 +28,7 @@ dependencies:
   permission_handler:
   searchable_listview: ^2.4.0
   cached_network_image:
+  signature: ^5.4.0
 
 dev_dependencies:
   flutter_test:
