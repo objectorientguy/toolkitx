@@ -35,6 +35,7 @@ abstract class StringConstants {
   static const String kSubmitted = 'Submitted';
   static const String kUploadPhoto = 'Upload Photo';
   static const String kAddCommentImage = 'Add Comment/Image';
+  static const String kFailedToCaptureImage = 'Failed to capture image';
   static const String kEnterNewPassword =
       'Enter New Password'; // comment lines indicates that keys are not available
   static const String kConfirmPassword = 'Confirm Password'; //

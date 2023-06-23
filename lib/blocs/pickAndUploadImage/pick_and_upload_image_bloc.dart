@@ -36,8 +36,6 @@ class PickAndUploadImageBloc
     final status = await Permission.camera.request();
     if (status == PermissionStatus.granted) {
       add(const PickCameraImage(isImageAttached: true, cameraImageList: []));
-    } else if (status.isDenied) {
-      openAppSettings();
     } else {
       openAppSettings();
     }
@@ -48,8 +46,6 @@ class PickAndUploadImageBloc
     final status = await Permission.storage.request();
     if (status.isGranted) {
       add(const PickGalleryImage(isImageAttached: true, galleryImagesList: []));
-    } else if (status.isDenied) {
-      openAppSettings();
     } else {
       openAppSettings();
     }
@@ -82,7 +78,7 @@ class PickAndUploadImageBloc
         }
       }
     } catch (e) {
-      emit(const ImagePickerError('Failed to capture image'));
+      emit(const ImagePickerError(StringConstants.kFailedToCaptureImage));
     }
   }
 
