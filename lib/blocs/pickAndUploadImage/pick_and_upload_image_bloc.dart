@@ -71,14 +71,14 @@ class PickAndUploadImageBloc
           for (int i = 0; i < imagePathsList.length; i++) {
             imagePath = imagePathsList[i];
           }
-          (event.isImageAttached == true)
+          event.isImageAttached == true
               ? add(UploadImageEvent(
                   imageFile: imagePath, isImageAttached: event.isImageAttached))
-              : null;
+              : false;
         }
       }
     } catch (e) {
-      emit(const ImagePickerError(StringConstants.kFailedToCaptureImage));
+      emit(ImagePickerError(StringConstants.kFailedToCaptureImage));
     }
   }
 
@@ -110,7 +110,7 @@ class PickAndUploadImageBloc
         }
       }
     } catch (e) {
-      emit(const ImagePickerError(StringConstants.kErrorPickImage));
+      emit(ImagePickerError(StringConstants.kErrorPickImage));
     }
   }
 
@@ -126,7 +126,7 @@ class PickAndUploadImageBloc
           imagePath: imagePath,
           uploadPictureModel: uploadPictureModel));
     } catch (e) {
-      emit(const ImageNotUploaded(
+      emit(ImageNotUploaded(
           imageNotUploaded: StringConstants.kErrorImageUpload));
     }
   }

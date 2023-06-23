@@ -8,7 +8,6 @@ import '../../../../configs/app_color.dart';
 import '../../../../configs/app_dimensions.dart';
 import '../../../../configs/app_spacing.dart';
 import '../../../../utils/constants/string_constants.dart';
-import '../../../../widgets/custom_snackbar.dart';
 import '../../../../widgets/secondary_button.dart';
 import '../../../../widgets/upload_alert_dialog.dart';
 
@@ -24,14 +23,8 @@ class UploadImageSection extends StatelessWidget {
   Widget build(BuildContext context) {
     List uploadImageList = [];
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-      BlocConsumer<PickAndUploadImageBloc, PickAndUploadImageStates>(
-          listener: (context, state) {
-        if (state is ImagePickerError) {
-          showCustomSnackBar(context, state.errorMessage, '');
-        } else if (state is ImageNotUploaded) {
-          showCustomSnackBar(context, state.imageNotUploaded, '');
-        }
-      }, builder: (context, state) {
+      BlocBuilder<PickAndUploadImageBloc, PickAndUploadImageStates>(
+          builder: (context, state) {
         if (state is PickImageLoading) {
           return const Padding(
             padding: EdgeInsets.all(xxTinierSpacing),
@@ -43,11 +36,11 @@ class UploadImageSection extends StatelessWidget {
         } else if (state is ImagePickerLoaded) {
           uploadImageList.add(state.uploadPictureModel.data);
           onUploadImageResponse(uploadImageList);
-          return Visibility(
-              visible: state.isImageAttached == true,
-              child: UploadPictureContainer(
+          return (state.isImageAttached == true)
+              ? UploadPictureContainer(
                   imagePathsList: state.imagePathsList,
-                  isImageAttached: state.isImageAttached));
+                  isImageAttached: state.isImageAttached)
+              : const SizedBox();
         } else if (state is RemovePickedImage) {
           return Visibility(
               visible: state.isImageAttached == true,

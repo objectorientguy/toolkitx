@@ -23,7 +23,6 @@ abstract class StringConstants {
   static const String kNoMoreData = 'No more data!';
   static const String kAddMore = 'Add More';
   static const String kDelete = 'Delete';
-  static const String kSubmit = 'Submit';
   static const String kAddImages = 'Add Images/Comment';
   static const String kErrorImageUpload =
       'Cannot upload image! Please try again!';
@@ -38,8 +37,6 @@ abstract class StringConstants {
   static const String kSubmitted = 'Submitted';
   static const String kUploadPhoto = 'Upload Photo';
   static const String kAddCommentImage = 'Add Comment/Image';
-  static const String kLoadMore = 'Load more...';
-  static const String kNoMoreData = 'No more data!';
   static const String kHint = 'Hint';
   static const String kSelectComment = 'Please enter comment!';
   static const String kSelectReason = 'Please select a reason';
