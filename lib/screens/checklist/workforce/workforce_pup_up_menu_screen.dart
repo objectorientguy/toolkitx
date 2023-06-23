@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:toolkit/configs/app_dimensions.dart';
 import 'package:toolkit/configs/app_theme.dart';
+import 'package:toolkit/screens/checklist/workforce/workforce_edit_answer_screen.dart';
 import 'package:toolkit/screens/checklist/workforce/workforce_reject_reason_screen.dart';
 import 'package:toolkit/utils/database_utils.dart';
 import '../../../../configs/app_spacing.dart';
@@ -26,7 +27,9 @@ class WorkForcePopUpMenu extends StatelessWidget {
   Widget build(BuildContext context) {
     context
         .read<WorkForceCheckListPopUpMenuItemsBloc>()
-        .add(WorkForceCheckListFetchPopUpMenuItems(popUpMenuItems: []));
+        .add(WorkForceCheckListFetchPopUpMenuItems(
+          popUpMenuItems: [],
+        ));
     return BlocBuilder<WorkForceCheckListPopUpMenuItemsBloc,
         CheckListWorkForcePopUpMenuItemsFetched>(builder: (context, state) {
       return PopupMenuButton(
@@ -37,7 +40,10 @@ class WorkForcePopUpMenu extends StatelessWidget {
           icon: const Icon(Icons.more_vert_outlined),
           offset: const Offset(0, xxTinierSpacing),
           onSelected: (value) {
-            if (value == DatabaseUtil.getText('Edit')) {}
+            if (value == DatabaseUtil.getText('Edit')) {
+              Navigator.pushNamed(context, EditAnswerListScreen.routeName,
+                  arguments: checklistDataMap);
+            }
             if (value == DatabaseUtil.getText('Reject')) {
               Navigator.pushNamed(context, RejectReasonsScreen.routeName,
                   arguments: checklistDataMap);

@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:toolkit/configs/app_dimensions.dart';
 import 'package:toolkit/configs/app_theme.dart';
+import 'package:toolkit/utils/database_utils.dart';
 import '../../../../blocs/checklist/workforce/editAnswer/workforce_checklist_edit_answer_bloc.dart';
 import '../../../../blocs/checklist/workforce/editAnswer/workforce_checklist_edit_answer_events.dart';
 import '../../../../configs/app_color.dart';
 import '../../../../data/models/checklist/workforce/workforce_questions_list_model.dart';
-import '../../../../utils/database_utils.dart';
 
 typedef CheckBoxCallBack = Function(String checkboxId, String checkboxValue);
 
@@ -15,13 +15,15 @@ class MultiSelectExpansionTile extends StatelessWidget {
   final int index;
   final List selectedIdList;
   final List selectedNamesList;
+  final String editValue;
 
   const MultiSelectExpansionTile(
       {Key? key,
       required this.answerModelList,
       required this.index,
       required this.selectedIdList,
-      required this.selectedNamesList})
+      required this.selectedNamesList,
+      required this.editValue})
       : super(key: key);
 
   @override

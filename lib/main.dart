@@ -19,6 +19,7 @@ import 'blocs/checklist/workforce/editAnswer/workforce_checklist_edit_answer_blo
 import 'blocs/checklist/workforce/getQuestionsList/workforce_checklist_get_questions_list_bloc.dart';
 import 'blocs/checklist/workforce/popUpMenu/workforce_checklist_pop_up_menu_bloc.dart';
 import 'blocs/checklist/workforce/rejectReason/workforce_checklist_reject_reason_bloc.dart';
+import 'blocs/checklist/workforce/submitAnswer/workforce_checklist_submit_answer_bloc.dart';
 import 'blocs/checklist/workforce/workforceList/workforce_list_bloc.dart';
 import 'blocs/client/client_bloc.dart';
 import 'blocs/dateFormat/date_format_bloc.dart';
@@ -112,6 +113,7 @@ class MyApp extends StatelessWidget {
           BlocProvider(lazy: false, create: (context) => CheckListHeaderBloc()),
           BlocProvider(
               lazy: false, create: (context) => FetchCheckListPdfBloc()),
+          BlocProvider(lazy: false, create: (context) => SubmitAnswerBloc()),
           BlocProvider(
               lazy: false,
               create: (context) => WorkForceCheckListSaveRejectBloc()),

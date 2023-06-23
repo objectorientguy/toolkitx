@@ -64,7 +64,8 @@ class WorkForceListScreen extends StatelessWidget {
                                                     .data![index]
                                                     .isdraft ==
                                                 1,
-                                            child: Text(StringConstants.kDraft,
+                                            child: Text(
+                                                '[${StringConstants.kDraft}]',
                                                 style: Theme.of(context)
                                                     .textTheme
                                                     .xSmall

@@ -40,6 +40,8 @@ abstract class StringConstants {
   static const String kHint = 'Hint';
   static const String kSelectComment = 'Please enter comment!';
   static const String kSelectReason = 'Please select a reason';
+  static const String kChecklistNotEditable =
+      'After submitting you will not be able to edit the checklist again.';
   static const String kFailedToCaptureImage = 'Failed to capture image';
   static const String kEnterNewPassword =
       'Enter New Password'; // comment lines indicates that keys are not available
@@ -47,6 +49,8 @@ abstract class StringConstants {
   static const String kOtpGenerated = 'OTP generated';
   static const String kSelectDateFormat = 'Select Your Date Format';
   static const String kSave = 'SAVE';
+  static const String kValueB = 'Value B: ';
+  static const String kValueA = 'Value A: ';
   static const String kNoDatesScheduled =
       'No dates scheduled for this checklist!';
   static const String kNoHeader =
