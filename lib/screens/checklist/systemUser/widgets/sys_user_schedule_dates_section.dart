@@ -33,7 +33,8 @@ class ScheduleDatesSection extends StatelessWidget {
               if (state is CheckListNoResponseFound) {
                 showCustomSnackBar(context, 'No response found!', '');
               } else if (state is FetchingCheckListWorkforceList) {
-                Navigator.pushNamed(context, WorkForceListScreen.routeName);
+                Navigator.pushNamed(
+                    context, SysUserWorkForceListScreen.routeName);
               }
             },
             child: Padding(
