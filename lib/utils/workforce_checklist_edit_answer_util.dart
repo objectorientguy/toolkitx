@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:toolkit/configs/app_theme.dart';
 import '../blocs/checklist/workforce/editAnswer/workforce_checklist_edit_answer_bloc.dart';
 import '../blocs/checklist/workforce/editAnswer/workforce_checklist_edit_answer_states.dart';
+import '../configs/app_dimensions.dart';
 import '../configs/app_spacing.dart';
 import '../screens/checklist/workforce/widgets/drop_down_expansion_tile.dart';
 import '../screens/checklist/workforce/widgets/multi_select_expansion_tile.dart';
@@ -120,8 +121,8 @@ class EditAnswerUtil {
                     style: Theme.of(context).textTheme.xSmall),
                 const SizedBox(width: tiniest),
                 SizedBox(
-                    width: MediaQuery.of(context).size.width * 0.4,
-                    height: MediaQuery.of(context).size.width * 0.085,
+                    width: kTimeSpanFieldWidth,
+                    height: xxSmallSpacing,
                     child: TextFieldWidget(
                         textInputAction: TextInputAction.next,
                         textInputType: TextInputType.number,
@@ -139,8 +140,8 @@ class EditAnswerUtil {
                     style: Theme.of(context).textTheme.xSmall),
                 const SizedBox(width: tiniest),
                 SizedBox(
-                    width: MediaQuery.of(context).size.width * 0.4,
-                    height: MediaQuery.of(context).size.width * 0.085,
+                    width: kTimeSpanFieldWidth,
+                    height: xxSmallSpacing,
                     child: TextFieldWidget(
                         textInputType: TextInputType.number,
                         maxLength: 8,
@@ -209,8 +210,8 @@ Widget tableControl(index, answerModelList, answerList, context) {
                           k < answerModelList[index].matrixcols.length;
                           k++)
                         DataCell(SizedBox(
-                            height: MediaQuery.of(context).size.width * 0.1,
-                            width: MediaQuery.of(context).size.width * 0.5,
+                            height: xMediumSpacing,
+                            width: kDataCellWidth,
                             child: TextFieldWidget(
                                 value: (tableData.toString() == "{}" &&
                                         answerModelList[index].type == 8)
