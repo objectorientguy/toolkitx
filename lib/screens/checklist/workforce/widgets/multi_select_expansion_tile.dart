@@ -7,7 +7,6 @@ import '../../../../blocs/checklist/workforce/editAnswer/workforce_checklist_edi
 import '../../../../blocs/checklist/workforce/editAnswer/workforce_checklist_edit_answer_events.dart';
 import '../../../../configs/app_color.dart';
 import '../../../../data/models/checklist/workforce/workforce_questions_list_model.dart';
-import '../../../../utils/database_utils.dart';
 
 typedef CheckBoxCallBack = Function(String checkboxId, String checkboxValue);
 
