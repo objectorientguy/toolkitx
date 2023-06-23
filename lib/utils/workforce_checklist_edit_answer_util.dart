@@ -111,51 +111,48 @@ class EditAnswerUtil {
       case 8:
         return tableControl(index, answerModelList, answerList, context);
       case 9:
-        return SingleChildScrollView(
-            physics: const BouncingScrollPhysics(),
-            child:
-                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Text(StringConstants.kValueA,
-                        style: Theme.of(context).textTheme.xSmall),
-                    const SizedBox(width: tiniest),
-                    SizedBox(
-                        width: MediaQuery.of(context).size.width * 0.4,
-                        height: MediaQuery.of(context).size.width * 0.085,
-                        child: TextFieldWidget(
-                            textInputAction: TextInputAction.next,
-                            textInputType: TextInputType.number,
-                            maxLength: 8,
-                            onTextFieldChanged: (String textField) {
-                              valueOfA = double.parse(textField).toDouble();
-                            }))
-                  ]),
-              const SizedBox(height: tiny),
-              Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Text(StringConstants.kValueB,
-                        style: Theme.of(context).textTheme.xSmall),
-                    const SizedBox(width: tiniest),
-                    SizedBox(
-                        width: MediaQuery.of(context).size.width * 0.4,
-                        height: MediaQuery.of(context).size.width * 0.085,
-                        child: TextFieldWidget(
-                            textInputType: TextInputType.number,
-                            maxLength: 8,
-                            onTextFieldChanged: (String textField) {
-                              value = {
-                                "valueA": valueOfA,
-                                "valueB": double.parse(textField).toDouble(),
-                              };
-                              answerList[index]["answer"] = jsonEncode(value);
-                            }))
-                  ])
-            ]));
+        return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Text(StringConstants.kValueA,
+                    style: Theme.of(context).textTheme.xSmall),
+                const SizedBox(width: tiniest),
+                SizedBox(
+                    width: MediaQuery.of(context).size.width * 0.4,
+                    height: MediaQuery.of(context).size.width * 0.085,
+                    child: TextFieldWidget(
+                        textInputAction: TextInputAction.next,
+                        textInputType: TextInputType.number,
+                        maxLength: 8,
+                        onTextFieldChanged: (String textField) {
+                          valueOfA = double.parse(textField).toDouble();
+                        }))
+              ]),
+          const SizedBox(height: tiny),
+          Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Text(StringConstants.kValueB,
+                    style: Theme.of(context).textTheme.xSmall),
+                const SizedBox(width: tiniest),
+                SizedBox(
+                    width: MediaQuery.of(context).size.width * 0.4,
+                    height: MediaQuery.of(context).size.width * 0.085,
+                    child: TextFieldWidget(
+                        textInputType: TextInputType.number,
+                        maxLength: 8,
+                        onTextFieldChanged: (String textField) {
+                          value = {
+                            "valueA": valueOfA,
+                            "valueB": double.parse(textField).toDouble(),
+                          };
+                          answerList[index]["answer"] = jsonEncode(value);
+                        }))
+              ])
+        ]);
       case 10:
         return DatePickerTextField(
           hintText: StringConstants.kSelectDate,
