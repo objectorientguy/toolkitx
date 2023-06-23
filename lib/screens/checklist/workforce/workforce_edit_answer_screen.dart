@@ -137,26 +137,31 @@ class EditAnswerListScreen extends StatelessWidget {
                                                       MainAxisAlignment
                                                           .spaceBetween,
                                                   children: [
-                                                    SecondaryButton(
-                                                        onPressed: () {
-                                                          Navigator.pushNamed(
-                                                              context,
-                                                              AddImageAndCommentScreen
-                                                                  .routeName,
-                                                              arguments: state
-                                                                  .answerModelList[
-                                                                      index]
-                                                                  .queresponseid
-                                                                  .toString());
-                                                        },
-                                                        textValue:
-                                                            StringConstants
-                                                                .kAddImages),
-                                                    SecondaryButton(
-                                                        onPressed: () {},
-                                                        textValue:
-                                                            StringConstants
-                                                                .kAddTodo)
+                                                    Expanded(
+                                                      child: SecondaryButton(
+                                                          onPressed: () {
+                                                            Navigator.pushNamed(
+                                                                context,
+                                                                AddImageAndCommentScreen
+                                                                    .routeName,
+                                                                arguments: state
+                                                                    .answerModelList[
+                                                                        index]
+                                                                    .queresponseid
+                                                                    .toString());
+                                                          },
+                                                          textValue:
+                                                              StringConstants
+                                                                  .kAddImages),
+                                                    ),
+                                                    const SizedBox(
+                                                        width: tiniest),
+                                                    Expanded(
+                                                        child: SecondaryButton(
+                                                            onPressed: () {},
+                                                            textValue:
+                                                                StringConstants
+                                                                    .kAddTodo))
                                                   ])
                                             ])));
                               },

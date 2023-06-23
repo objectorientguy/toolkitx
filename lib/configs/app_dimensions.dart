@@ -47,5 +47,6 @@ const double kAlertDialogRadius = 15.0;
 const double kAlertDialogTogether = 65.0;
 const double kDividerIndent = 10.0;
 const double kDividerEndIndent = 15.0;
+const double kOutlineButtonWidth = 40;
 const double kTimeSpanFieldWidth = 150;
 const double kDataCellWidth = 170;

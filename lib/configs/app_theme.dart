@@ -25,7 +25,7 @@ FloatingActionButtonThemeData floatingActionButtonThemeData =
         foregroundColor: AppColor.white);
 OutlinedButtonThemeData outlinedButtonThemeData = OutlinedButtonThemeData(
     style: OutlinedButton.styleFrom(
-        minimumSize: const Size(double.maxFinite, 40.0),
+        minimumSize: const Size(double.maxFinite, kOutlineButtonWidth),
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(kCardRadius))));
 ExpansionTileThemeData expansionTileThemeData = ExpansionTileThemeData(

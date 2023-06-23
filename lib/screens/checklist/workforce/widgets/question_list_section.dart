@@ -128,17 +128,7 @@ class QuestionsListSection extends StatelessWidget {
                                                               .matrixcols!
                                                               .length;
                                                       k++)
-                                                    DataCell(SizedBox(
-                                                      height:
-                                                          MediaQuery.of(context)
-                                                                  .size
-                                                                  .width *
-                                                              0.08,
-                                                      width:
-                                                          MediaQuery.of(context)
-                                                                  .size
-                                                                  .width *
-                                                              0.2,
+                                                    DataCell(Flexible(
                                                       child: Text(
                                                           (tableData.toString() ==
                                                                       "{}" &&
