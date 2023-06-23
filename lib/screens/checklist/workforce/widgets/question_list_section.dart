@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:toolkit/configs/app_dimensions.dart';
@@ -51,6 +50,17 @@ class QuestionsListSection extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
+                          Flexible(
+                            child: Text(
+                                '${state.getQuestionListModel.data!.questionlist![index].title}?',
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .small
+                                    .copyWith(
+                                        color: AppColor.black,
+                                        fontWeight: FontWeight.w500),
+                                maxLines: 3),
+                          ),
                           QuestionListTitleSection(
                               questionList: state.getQuestionListModel.data!
                                   .questionlist![index]),
