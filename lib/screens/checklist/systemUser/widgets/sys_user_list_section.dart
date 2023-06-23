@@ -20,7 +20,7 @@ class SysUserListSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
         child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-          BlocBuilder<SysUserCheckListBloc, SysUserCheckListStates>(
+      BlocBuilder<SysUserCheckListBloc, SysUserCheckListStates>(
           buildWhen: (previousState, currentState) =>
               currentState is FetchingCheckList ||
               currentState is CheckListFetched ||
