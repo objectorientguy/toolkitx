@@ -62,6 +62,7 @@ abstract class StringConstants {
   static const String kPleaseConfirm = 'Please Confirm';
   static const String kThirdParty = 'Third Party Approve';
   static const String kEditHeader = 'Edit Header';
+  static const String kResponseDate = 'Response Date:';
   static const String kNoResponseFound = 'No response found!';
   static const String kReject = 'Reject'; //
   static const String kDialogContent =
