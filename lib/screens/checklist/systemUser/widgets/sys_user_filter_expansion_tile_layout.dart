@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:toolkit/configs/app_theme.dart';
-import 'package:toolkit/utils/string_extension.dart';
 import '../../../../blocs/checklist/systemUser/checkList/sys_user_checklist_bloc.dart';
 import '../../../../blocs/checklist/systemUser/checkList/sys_user_checklist_event.dart';
 import '../../../../blocs/checklist/systemUser/checkList/sys_user_checklist_state.dart';
@@ -10,7 +9,7 @@ import '../../../../configs/app_dimensions.dart';
 import '../../../../utils/constants/string_constants.dart';
 import '../../../../widgets/error_section.dart';
 
-typedef FilterCategoryCallBack = Function(String category);
+typedef FilterCategoryCallBack = Function(String categoryId);
 
 class FilterExpansionTileLayout extends StatelessWidget {
   final FilterCategoryCallBack onCategoryChanged;
@@ -38,7 +37,7 @@ class FilterExpansionTileLayout extends StatelessWidget {
                 title: Text(
                     state.categoryName == ""
                         ? StringConstants.kSelectCategory
-                        : state.categoryName.capitalize(),
+                        : state.categoryName,
                     style: Theme.of(context).textTheme.xSmall),
                 children: [
                   ListView.builder(
@@ -54,8 +53,7 @@ class FilterExpansionTileLayout extends StatelessWidget {
                             title: Text(
                                 state.getFilterCategoryData
                                     .elementAt(index)
-                                    .name
-                                    .capitalize(),
+                                    .name,
                                 style: Theme.of(context).textTheme.xSmall),
                             controlAffinity: ListTileControlAffinity.trailing,
                             value: state.getFilterCategoryData
@@ -66,7 +64,10 @@ class FilterExpansionTileLayout extends StatelessWidget {
                               value = state.getFilterCategoryData
                                   .elementAt(index)
                                   .name;
-                              onCategoryChanged(value);
+                              onCategoryChanged(state.getFilterCategoryData
+                                  .elementAt(index)
+                                  .id
+                                  .toString());
                               context.read<SysUserCheckListBloc>().add(
                                   ChangeCheckListCategory(
                                       getFilterCategoryData:

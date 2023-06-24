@@ -47,7 +47,8 @@ class FilterSection extends StatelessWidget {
                   ProgressBar.dismiss(context);
                   Navigator.pop(context);
                   Navigator.pushReplacementNamed(
-                      context, SystemUserCheckListScreen.routeName);
+                      context, SystemUserCheckListScreen.routeName,
+                      arguments: false);
                 }
               },
               child: PrimaryButton(

@@ -59,6 +59,8 @@ class AppRoutes {
             checkListId: settings.arguments.toString()));
       case SystemUserCheckListScreen.routeName:
         return _createRoute(const SystemUserCheckListScreen());
+      case WorkForceListScreen.routeName:
+        return _createRoute(const WorkForceListScreen());
       case ChangeRoleScreen.routeName:
         return _createRoute(const ChangeRoleScreen());
       case FiltersScreen.routeName:
@@ -90,8 +92,6 @@ class AppRoutes {
             questionResponseId: settings.arguments.toString()));
       case SysUserWorkForceListScreen.routeName:
         return _createRoute(const SysUserWorkForceListScreen());
-      case WorkForceListScreen.routeName:
-        return _createRoute(const WorkForceListScreen());
       case WorkForceQuestionsScreen.routeName:
         return _createRoute(WorkForceQuestionsScreen(
             checklistDataMap: settings.arguments as Map));

@@ -17,8 +17,9 @@ class FetchingCheckList extends SysUserCheckListStates {
 
 class CheckListFetched extends SysUserCheckListStates {
   final ChecklistListModel getChecklistModel;
+  final String filterData;
 
-  CheckListFetched({required this.getChecklistModel});
+  CheckListFetched({required this.filterData, required this.getChecklistModel});
 
   @override
   List<Object?> get props => [];
@@ -78,4 +79,13 @@ class CheckListFilterDataNotSaved extends SysUserCheckListStates {
 
   @override
   List<Object?> get props => [errorMessage];
+}
+
+class FilterDataCleared extends SysUserCheckListStates {
+  final String filterCleared;
+
+  FilterDataCleared({required this.filterCleared});
+
+  @override
+  List<Object?> get props => [filterCleared];
 }

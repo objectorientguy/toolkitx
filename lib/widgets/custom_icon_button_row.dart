@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:toolkit/configs/app_color.dart';
+import 'package:toolkit/utils/constants/string_constants.dart';
 
 class CustomIconButtonRow extends StatelessWidget {
   final IconData primaryIcon;
@@ -30,11 +31,9 @@ class CustomIconButtonRow extends StatelessWidget {
     return Row(mainAxisAlignment: MainAxisAlignment.end, children: [
       Visibility(
           visible: clearVisible,
-          child: IconButton(
-              constraints: const BoxConstraints(),
+          child: TextButton(
               onPressed: clearOnPress,
-              icon: const Icon(Icons.filter_alt_off_outlined,
-                  color: AppColor.grey))),
+              child: const Text(StringConstants.kClearFilter))),
       Visibility(
           visible: primaryVisible,
           child: IconButton(
