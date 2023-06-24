@@ -2,7 +2,11 @@ import '../../../../data/models/checklist/systemUser/sys_user_change_category_mo
 
 abstract class SysUserFetchCheckListEvent {}
 
-class FetchCheckList extends SysUserFetchCheckListEvent {}
+class FetchCheckList extends SysUserFetchCheckListEvent {
+  bool isFromHome;
+
+  FetchCheckList({this.isFromHome = false});
+}
 
 class FetchCheckListMaster extends SysUserFetchCheckListEvent {}
 

@@ -93,7 +93,8 @@ class OnLineModules extends StatelessWidget {
         Navigator.pushNamed(context, IncidentListScreen.routeName);
         break;
       case 'checklist':
-        Navigator.pushNamed(context, SystemUserCheckListScreen.routeName);
+        Navigator.pushNamed(context, SystemUserCheckListScreen.routeName,
+            arguments: true);
         break;
       case 'wf_checklist':
         Navigator.pushNamed(context, WorkForceListScreen.routeName);
