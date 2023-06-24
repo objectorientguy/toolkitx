@@ -11,6 +11,7 @@ import '../screens/checklist/systemUser/sys_user_schedule_dates_screen.dart';
 import '../screens/checklist/systemUser/sys_user_filters_screen.dart';
 import '../screens/checklist/workforce/workforce_reject_reason_screen.dart';
 import '../screens/incident/category_screen.dart';
+import '../screens/incident/change_role_screen.dart';
 import '../screens/incident/filter_screen.dart';
 import '../screens/incident/incident_list_screen.dart';
 import '../screens/onboarding/client_list_screen.dart';
@@ -68,6 +69,8 @@ class AppRoutes {
         return _createRoute(const IncidentListScreen());
       case IncidentFilterScreen.routeName:
         return _createRoute(const IncidentFilterScreen());
+      case IncidentChangeRoleScreen.routeName:
+        return _createRoute(const IncidentChangeRoleScreen());
       case CategoryScreen.routeName:
         return _createRoute(const CategoryScreen());
       case PermitListScreen.routeName:

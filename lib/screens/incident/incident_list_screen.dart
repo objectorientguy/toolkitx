@@ -8,6 +8,7 @@ import '../../widgets/custom_icon_button_row.dart';
 import '../../widgets/generic_app_bar.dart';
 import '../../widgets/custom_card.dart';
 import 'category_screen.dart';
+import 'change_role_screen.dart';
 import 'filter_screen.dart';
 
 class IncidentListScreen extends StatelessWidget {
@@ -34,7 +35,11 @@ class IncidentListScreen extends StatelessWidget {
               primaryOnPress: () {
                 Navigator.pushNamed(context, IncidentFilterScreen.routeName);
               },
-              secondaryOnPress: () {},
+              secondaryOnPress: () {
+                Navigator.pushNamed(
+                    context, IncidentChangeRoleScreen.routeName);
+              },
+              isEnabled: true,
               clearOnPress: () {}),
           const SizedBox(height: xxTinierSpacing),
           Expanded(
