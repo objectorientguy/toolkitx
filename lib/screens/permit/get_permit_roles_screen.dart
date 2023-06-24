@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:toolkit/blocs/permit/permit_bloc.dart';
 import 'package:toolkit/blocs/permit/permit_states.dart';
+import 'package:toolkit/utils/database_utils.dart';
 import '../../blocs/permit/permit_events.dart';
 import '../../configs/app_color.dart';
 import '../../configs/app_spacing.dart';
@@ -16,7 +17,7 @@ class GetPermitRolesScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     context.read<PermitBloc>().add(const GetPermitRoles());
     return Scaffold(
-        appBar: const GenericAppBar(title: 'Get Roles'),
+        appBar: GenericAppBar(title: DatabaseUtil.getText('ChangeRole')),
         body: Padding(
             padding: const EdgeInsets.only(
                 left: leftRightMargin,
@@ -24,10 +25,15 @@ class GetPermitRolesScreen extends StatelessWidget {
                 top: xxTinierSpacing,
                 bottom: xxTinierSpacing),
             child: BlocConsumer<PermitBloc, PermitStates>(
+              buildWhen: (previousState, currentState) =>
+                  currentState is FetchingPermitRoles ||
+                  currentState is PermitRolesFetched,
               listener: (context, state) {
                 if (state is PermitRoleSelected) {
                   Navigator.pop(context);
-                  context.read<PermitBloc>().add(const GetAllPermits());
+                  context
+                      .read<PermitBloc>()
+                      .add(const GetAllPermits(isFromHome: false));
                 }
               },
               builder: (context, state) {
@@ -46,7 +52,7 @@ class GetPermitRolesScreen extends StatelessWidget {
                                   .permitRolesModel.data![index].groupName
                                   .toString()),
                               value:
-                                  state.permitRolesModel.data![index].groupId,
+                              state.permitRolesModel.data![index].groupId,
                               groupValue: state.roleId,
                               onChanged: (value) {
                                 context

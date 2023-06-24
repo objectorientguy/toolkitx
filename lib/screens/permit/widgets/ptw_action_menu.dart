@@ -2,39 +2,58 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:toolkit/configs/app_dimensions.dart';
 import 'package:toolkit/configs/app_theme.dart';
+import 'package:toolkit/screens/permit/close_permit_screen.dart';
 import '../../../../../configs/app_spacing.dart';
 import '../../../blocs/permit/permit_bloc.dart';
 import '../../../blocs/permit/permit_events.dart';
+import '../../../data/models/permit/permit_details_model.dart';
+import '../../../utils/constants/string_constants.dart';
+import '../open_permit_screen.dart';
 
 class PTWActionMenu extends StatelessWidget {
-  const PTWActionMenu({Key? key}) : super(key: key);
+  final PermitDetailsModel permitDetailsModel;
+  final List popUpMenuItems;
+  final String permitId;
+
+  const PTWActionMenu(
+      {Key? key,
+      required this.permitDetailsModel,
+      required this.popUpMenuItems,
+      required this.permitId})
+      : super(key: key);
 
   PopupMenuItem _buildPopupMenuItem(context, String title, int position) {
     return PopupMenuItem(
-      value: position,
-      child: Text(title, style: Theme.of(context).textTheme.xSmall),
-    );
+        value: position,
+        child: Text(title, style: Theme.of(context).textTheme.xSmall));
   }
 
   @override
   Widget build(BuildContext context) {
-    List popUpMenuItems = [
-      'Generate PDF',
-    ];
     return PopupMenuButton(
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(kCardRadius),
-        ),
+            borderRadius: BorderRadius.circular(kCardRadius)),
         iconSize: kIconSize,
         icon: const Icon(Icons.more_vert_outlined),
         offset: const Offset(0, xxTiniestSpacing),
-        initialValue: 0,
         onSelected: (value) {
-          context.read<PermitBloc>().add(const GeneratePDF());
+          if (popUpMenuItems[value] == StringConstants.kGeneratePdf) {
+            context.read<PermitBloc>().add(GeneratePDF(permitId));
+          } else if (popUpMenuItems[value] == StringConstants.kClosePermit) {
+            Navigator.pushNamed(context, ClosePermitScreen.routeName,
+                arguments: permitDetailsModel);
+          } else if (popUpMenuItems[value] == StringConstants.kOpenPermit) {
+            Navigator.pushNamed(context, OpenPermitScreen.routeName,
+                arguments: permitDetailsModel);
+          } else if (popUpMenuItems[value] == StringConstants.kRequestPermit) {
+            context.read<PermitBloc>().add(RequestPermit(permitId));
+          }
         },
         position: PopupMenuPosition.under,
-        itemBuilder: (BuildContext context) => [
-              _buildPopupMenuItem(context, popUpMenuItems[0], 0),
+        itemBuilder: (BuildContext context) =>
+        [
+              for (int i = 0; i < popUpMenuItems.length; i++)
+                _buildPopupMenuItem(context, popUpMenuItems[i], i)
             ]);
   }
 }

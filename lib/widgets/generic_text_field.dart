@@ -15,6 +15,7 @@ class TextFieldWidget extends StatelessWidget {
   final String value;
   final String? hintText;
   final bool obscureText;
+  final bool readOnly;
 
   TextFieldWidget(
       {Key? key,
@@ -25,13 +26,15 @@ class TextFieldWidget extends StatelessWidget {
       this.hintText,
       this.maxLines = 1,
       required this.onTextFieldChanged,
-      this.obscureText = false})
+      this.obscureText = false,
+      this.readOnly = false})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     textFieldController.text = value;
     return TextField(
+        readOnly: readOnly,
         controller: textFieldController,
         onChanged: (value) {
           onTextFieldChanged(value);

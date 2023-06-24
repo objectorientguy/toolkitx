@@ -149,4 +149,23 @@ abstract class StringConstants {
   static const String kEmergency = 'Emergency';
   static const String kKeywords = 'Keywords';
   static const String kFilter = 'Filter';
+  static const String kGeneratePdf = 'Generate PDF';
+  static const String kClosePermit = 'Close Permit';
+  static const String kOpenPermit = 'Open Permit';
+  static const String kRequestPermit = 'Request Permit';
+  static const String kPermitNo = 'Permit No';
+  static const String kKeySafeNo = 'Key Safe No';
+  static const String kKeySafeKeyNo = 'Key Safe Key No';
+  static const String kEarthingScheduleNo = 'Earthing Schedule No';
+  static const String kSelectedPersonReport = 'Selected Person Report';
+  static const String kPortableDrainEarth = 'Portable Drain Earth';
+  static const String kCircuitIdentificationFlag =
+      'Circuit Identification Flag';
+  static const String kCircuitIdentificationWristlets =
+      'Circuit Identification Wristlets';
+  static const String kSingleLineDiagram = 'Single Line Diagram';
+  static const String kPID = 'P&ID';
+  static const String kControlPerson = 'Control Person(s)';
+  static const String kCLOSEPERMIT = 'CLOSE PERMIT';
+  static const String kOPENPERMIT = 'OPEN PERMIT';
 }

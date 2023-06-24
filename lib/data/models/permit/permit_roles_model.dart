@@ -9,7 +9,7 @@ String permitRolesModelToJson(PermitRolesModel data) =>
 class PermitRolesModel {
   final int? status;
   final String? message;
-  final List<Datum>? data;
+  final List<PermitRoleDatum>? data;
 
   PermitRolesModel({
     this.status,
@@ -23,7 +23,8 @@ class PermitRolesModel {
         message: json["Message"],
         data: json["Data"] == null
             ? []
-            : List<Datum>.from(json["Data"]!.map((x) => Datum.fromJson(x))),
+            : List<PermitRoleDatum>.from(
+                json["Data"]!.map((x) => PermitRoleDatum.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
@@ -35,16 +36,17 @@ class PermitRolesModel {
       };
 }
 
-class Datum {
+class PermitRoleDatum {
   final String? groupId;
   final String? groupName;
 
-  Datum({
+  PermitRoleDatum({
     this.groupId,
     this.groupName,
   });
 
-  factory Datum.fromJson(Map<String, dynamic> json) => Datum(
+  factory PermitRoleDatum.fromJson(Map<String, dynamic> json) =>
+      PermitRoleDatum(
         groupId: json["group_id"],
         groupName: json["group_name"],
       );

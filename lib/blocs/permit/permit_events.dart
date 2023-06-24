@@ -3,15 +3,21 @@ abstract class PermitEvents {
 }
 
 class GetAllPermits extends PermitEvents {
-  const GetAllPermits();
+  final bool isFromHome;
+
+  const GetAllPermits({required this.isFromHome});
 }
 
 class GetPermitDetails extends PermitEvents {
-  const GetPermitDetails();
+  final String permitId;
+
+  const GetPermitDetails({required this.permitId});
 }
 
 class GeneratePDF extends PermitEvents {
-  const GeneratePDF();
+  final String permitId;
+
+  const GeneratePDF(this.permitId);
 }
 
 class GetPermitRoles extends PermitEvents {
@@ -22,4 +28,54 @@ class SelectPermitRoleEvent extends PermitEvents {
   final String roleId;
 
   const SelectPermitRoleEvent(this.roleId);
+}
+
+class SaveFilterEvent extends PermitEvents {
+  final Map filter;
+
+  const SaveFilterEvent(this.filter);
+}
+
+class FetchPermitMaster extends PermitEvents {
+  const FetchPermitMaster();
+}
+
+class ApplyPermitFilters extends PermitEvents {
+  final Map permitFilters;
+
+  const ApplyPermitFilters(this.permitFilters);
+}
+
+class ClearPermitFilters extends PermitEvents {
+  const ClearPermitFilters();
+}
+
+class FetchClosePermitDetails extends PermitEvents {
+  final String permitId;
+
+  const FetchClosePermitDetails(this.permitId);
+}
+
+class FetchOpenPermitDetails extends PermitEvents {
+  final String permitId;
+
+  const FetchOpenPermitDetails(this.permitId);
+}
+
+class ClosePermit extends PermitEvents {
+  final Map closePermitMap;
+
+  const ClosePermit(this.closePermitMap);
+}
+
+class OpenPermit extends PermitEvents {
+  final Map openPermitMap;
+
+  const OpenPermit(this.openPermitMap);
+}
+
+class RequestPermit extends PermitEvents {
+  final String permitId;
+
+  const RequestPermit(this.permitId);
 }

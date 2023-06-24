@@ -1,12 +1,16 @@
+import 'package:toolkit/data/models/permit/open_close_permit_model.dart';
+import 'package:toolkit/data/models/permit/open_permit_details_model.dart';
 import 'package:toolkit/data/models/permit/permit_roles_model.dart';
 
 import '../../data/models/pdf_generation_model.dart';
 import '../../data/models/permit/all_permits_model.dart';
+import '../../data/models/permit/close_permit_details_model.dart';
 import '../../data/models/permit/permit_details_model.dart';
+import '../../data/models/permit/permit_get_master_model.dart';
 
 abstract class PermitRepository {
   Future<AllPermitModel> getAllPermits(
-      String hashCode, String filter, String role);
+      String hashCode, String filter, String role, int pageNo);
 
   Future<PermitRolesModel> fetchPermitRoles(String hashCode, String userId);
 
@@ -14,4 +18,18 @@ abstract class PermitRepository {
       String hashCode, String permitId, String role);
 
   Future<PdfGenerationModel> generatePdf(String hashCode, String permitId);
+
+  Future<PermitGetMasterModel> fetchMaster(String hashCode);
+
+  Future<OpenClosePermitModel> closePermit(Map closePermitMap);
+
+  Future<ClosePermitDetailsModel> closePermitDetails(
+      String hashCode, String permitId, String role);
+
+  Future<OpenPermitDetailsModel> openPermitDetails(
+      String hashCode, String permitId, String role);
+
+  Future<OpenClosePermitModel> openPermit(Map openPermitMap);
+
+  Future<OpenClosePermitModel> requestPermit(Map requestPermitMap);
 }
