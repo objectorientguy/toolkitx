@@ -8,6 +8,8 @@ import '../repositories/checklist/systemUser/sys_user_checklist_repository.dart'
 import '../repositories/checklist/systemUser/sys_user_checklist_repository_impl.dart';
 import '../repositories/checklist/workforce/workforce_repository.dart';
 import '../repositories/checklist/workforce/workforce_repository_impl.dart';
+import '../repositories/incident/incident_repository.dart';
+import '../repositories/incident/incident_repository_impl.dart';
 import '../repositories/permit/permit_repository.dart';
 import '../repositories/permit/permit_repository_impl.dart';
 import '../data/cache/customer_cache.dart';
@@ -44,4 +46,6 @@ configurableDependencies() {
       () => SysUserCheckListRepositoryImpl());
   getIt.registerLazySingleton<UploadImageRepository>(
       () => UploadImageRepositoryImpl());
+  getIt.registerLazySingleton<IncidentRepository>(
+      () => IncidentRepositoryImpl());
 }
