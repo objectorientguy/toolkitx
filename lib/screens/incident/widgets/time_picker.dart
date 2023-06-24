@@ -8,22 +8,31 @@ import '../../../configs/app_spacing.dart';
 import '../../../utils/database_utils.dart';
 import '../../../widgets/text_button.dart';
 
-class TimePickerTextField extends StatelessWidget {
+typedef StringCallBack = Function(String time);
+
+class TimePickerTextField extends StatefulWidget {
+  final StringCallBack onTimeChanged;
   final DateTime? initialDateTime;
   final String editTime;
   final String? hintText;
   final DateTime? minimumTime;
-  final TextEditingController timeInputController = TextEditingController();
-  late final bool? isFirstTime;
 
-  TimePickerTextField({
+  const TimePickerTextField({
     Key? key,
     this.initialDateTime,
     this.editTime = '',
     this.hintText,
     this.minimumTime,
-    this.isFirstTime = true,
+    required this.onTimeChanged,
   }) : super(key: key);
+
+  @override
+  State<TimePickerTextField> createState() => _TimePickerTextFieldState();
+}
+
+class _TimePickerTextFieldState extends State<TimePickerTextField> {
+  final TextEditingController timeInputController = TextEditingController();
+  bool? isFirstTime = true;
 
   void showDatePicker(BuildContext context) {
     showCupertinoModalPopup(
@@ -41,25 +50,28 @@ class TimePickerTextField extends StatelessWidget {
                             mode: CupertinoDatePickerMode.time,
                             use24hFormat: true,
                             initialDateTime: (isFirstTime != false)
-                                ? initialDateTime
+                                ? widget.initialDateTime
                                 : DateFormat("HH:mm")
                                     .parse(timeInputController.text),
                             onDateTimeChanged: (value) {
                               String formattedDate =
                                   DateFormat("HH:mm").format(value);
                               timeInputController.text = formattedDate;
+                              widget.onTimeChanged(timeInputController.text);
                               isFirstTime = false;
                             },
                             minuteInterval: 1)),
                     CustomTextButton(
                         onPressed: () {
                           if (isFirstTime != false) {
-                            if (initialDateTime == null) {
+                            if (widget.initialDateTime == null) {
                               timeInputController.text =
-                                  DateFormat('HH.mm').format(DateTime.now());
+                                  DateFormat('HH:mm').format(DateTime.now());
+                              widget.onTimeChanged(timeInputController.text);
                             } else {
-                              timeInputController.text =
-                                  DateFormat('HH.mm').format(initialDateTime!);
+                              timeInputController.text = DateFormat('HH:mm')
+                                  .format(widget.initialDateTime!);
+                              widget.onTimeChanged(timeInputController.text);
                             }
                           }
                           Navigator.pop(context);
@@ -74,7 +86,6 @@ class TimePickerTextField extends StatelessWidget {
     return TextField(
         readOnly: true,
         controller: timeInputController,
-        onChanged: (value) {},
         onTap: () async {
           showDatePicker(context);
         },
@@ -84,7 +95,7 @@ class TimePickerTextField extends StatelessWidget {
                 .textTheme
                 .xSmall
                 .copyWith(color: AppColor.grey),
-            hintText: hintText,
+            hintText: widget.hintText,
             contentPadding: const EdgeInsets.all(xxTinierSpacing),
             enabledBorder: const OutlineInputBorder(
                 borderSide: BorderSide(color: AppColor.lightGrey)),

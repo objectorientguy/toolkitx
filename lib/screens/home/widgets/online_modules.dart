@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:toolkit/screens/checklist/systemUser/sys_user_checklist_list_screen.dart';
+import 'package:toolkit/screens/checklist/workforce/workforce_list_screen.dart';
+import 'package:toolkit/screens/incident/incident_list_screen.dart';
+import 'package:toolkit/utils/database_utils.dart';
 
 import '../../../blocs/client/client_bloc.dart';
 import '../../../blocs/client/client_events.dart';
@@ -8,10 +12,7 @@ import '../../../configs/app_color.dart';
 import '../../../configs/app_dimensions.dart';
 import '../../../configs/app_spacing.dart';
 import '../../../utils/constants/string_constants.dart';
-import '../../../utils/database_utils.dart';
 import '../../../widgets/error_section.dart';
-import '../../checklist/checklist_list_screen.dart';
-import '../../incident/incident_list_screen.dart';
 import '../../permit/permit_list_screen.dart';
 
 class OnLineModules extends StatelessWidget {
@@ -92,7 +93,10 @@ class OnLineModules extends StatelessWidget {
         Navigator.pushNamed(context, IncidentListScreen.routeName);
         break;
       case 'checklist':
-        Navigator.pushNamed(context, ChecklistScreen.routeName);
+        Navigator.pushNamed(context, SystemUserCheckListScreen.routeName);
+        break;
+      case 'wf_checklist':
+        Navigator.pushNamed(context, WorkForceListScreen.routeName);
         break;
     }
   }

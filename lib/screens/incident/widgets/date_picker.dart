@@ -8,24 +8,33 @@ import '../../../../configs/app_color.dart';
 import '../../../configs/app_spacing.dart';
 import '../../../widgets/text_button.dart';
 
-class DatePickerTextField extends StatelessWidget {
+typedef StringCallBack = Function(String date);
+
+class DatePickerTextField extends StatefulWidget {
   final DateTime? initialDate;
+  final StringCallBack onDateChanged;
   final DateTime? maxDate;
   final String editDate;
   final String? hintText;
   final DateTime? minimumDate;
-  final TextEditingController dateInputController = TextEditingController();
-  late final bool? isFirstTime;
 
-  DatePickerTextField({
+  const DatePickerTextField({
     Key? key,
     this.initialDate,
     this.maxDate,
     this.editDate = '',
     this.hintText,
     this.minimumDate,
-    this.isFirstTime = true,
+    required this.onDateChanged,
   }) : super(key: key);
+
+  @override
+  State<DatePickerTextField> createState() => _DatePickerTextFieldState();
+}
+
+class _DatePickerTextFieldState extends State<DatePickerTextField> {
+  final TextEditingController dateInputController = TextEditingController();
+  bool isFirstTime = true;
 
   void showDatePicker(BuildContext context) {
     showCupertinoModalPopup(
@@ -42,27 +51,30 @@ class DatePickerTextField extends StatelessWidget {
                         child: CupertinoDatePicker(
                             mode: CupertinoDatePickerMode.date,
                             initialDateTime: (isFirstTime != false)
-                                ? initialDate
+                                ? widget.initialDate
                                 : DateFormat("dd MMM yyyy")
                                     .parse(dateInputController.text),
                             onDateTimeChanged: (value) {
                               String formattedDate =
                                   DateFormat('dd MMM yyyy').format(value);
                               dateInputController.text = formattedDate;
+                              widget.onDateChanged(dateInputController.text);
                               isFirstTime = false;
                             },
-                            maximumDate: maxDate)),
+                            maximumDate: widget.maxDate)),
                     CustomTextButton(
                         onPressed: () {
                           if (isFirstTime != false) {
-                            if (initialDate == null) {
+                            if (widget.initialDate == null) {
                               dateInputController.text =
                                   DateFormat('dd MMM yyyy')
                                       .format(DateTime.now());
+                              widget.onDateChanged(dateInputController.text);
                             } else {
                               dateInputController.text =
                                   DateFormat('dd MMM yyyy')
-                                      .format(initialDate!);
+                                      .format(widget.initialDate!);
+                              widget.onDateChanged(dateInputController.text);
                             }
                           }
                           Navigator.pop(context);
@@ -74,10 +86,10 @@ class DatePickerTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    dateInputController.text = widget.editDate;
     return TextField(
         readOnly: true,
         controller: dateInputController,
-        onChanged: (value) {},
         onTap: () async {
           showDatePicker(context);
         },
@@ -87,7 +99,7 @@ class DatePickerTextField extends StatelessWidget {
                 .textTheme
                 .xSmall
                 .copyWith(color: AppColor.grey),
-            hintText: hintText,
+            hintText: widget.hintText,
             contentPadding: const EdgeInsets.all(xxTinierSpacing),
             enabledBorder: const OutlineInputBorder(
                 borderSide: BorderSide(color: AppColor.lightGrey)),
