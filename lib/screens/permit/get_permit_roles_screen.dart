@@ -52,7 +52,7 @@ class GetPermitRolesScreen extends StatelessWidget {
                                   .permitRolesModel.data![index].groupName
                                   .toString()),
                               value:
-                              state.permitRolesModel.data![index].groupId,
+                                  state.permitRolesModel.data![index].groupId,
                               groupValue: state.roleId,
                               onChanged: (value) {
                                 context

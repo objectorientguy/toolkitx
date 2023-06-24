@@ -50,8 +50,7 @@ class PTWActionMenu extends StatelessWidget {
           }
         },
         position: PopupMenuPosition.under,
-        itemBuilder: (BuildContext context) =>
-        [
+        itemBuilder: (BuildContext context) => [
               for (int i = 0; i < popUpMenuItems.length; i++)
                 _buildPopupMenuItem(context, popUpMenuItems[i], i)
             ]);

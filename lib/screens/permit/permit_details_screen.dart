@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:toolkit/configs/app_color.dart';
 import 'package:toolkit/configs/app_dimensions.dart';
 import 'package:toolkit/screens/permit/widgets/permit_comments.dart';
+import 'package:toolkit/utils/constants/api_constants.dart';
 import 'package:toolkit/utils/permit_util.dart';
 import 'package:toolkit/widgets/custom_snackbar.dart';
 import 'package:toolkit/widgets/custom_tabbar_view.dart';
@@ -58,7 +59,7 @@ class PermitDetailsScreen extends StatelessWidget {
               if (state is PDFGenerated) {
                 ProgressBar.dismiss(context);
                 launchUrlString(
-                    'https://api.toolkitx.com/docs/temp/${state.pdfLink}.pdf',
+                    '${ApiConstants.baseDocUrl}${state.pdfLink}.pdf',
                     mode: LaunchMode.externalApplication);
               } else if (state is PDFGenerationFailed) {
                 ProgressBar.dismiss(context);

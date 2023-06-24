@@ -71,7 +71,8 @@ class PermitRolesFetched extends PermitStates {
   final PermitRolesModel permitRolesModel;
   final String? roleId;
 
-  const PermitRolesFetched({required this.roleId, required this.permitRolesModel});
+  const PermitRolesFetched(
+      {required this.roleId, required this.permitRolesModel});
 }
 
 class CouldNotFetchPermitRoles extends PermitStates {

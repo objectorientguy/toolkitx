@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:toolkit/configs/app_theme.dart';
 
 import '../../../configs/app_color.dart';
+import '../../../configs/app_dimensions.dart';
 import '../../../data/models/permit/permit_get_master_model.dart';
 
 class PermitTypeFilter extends StatefulWidget {
@@ -43,7 +44,7 @@ class _PermitTypeFilterState extends State<PermitTypeFilter> {
 
   @override
   Widget build(BuildContext context) {
-    return Wrap(spacing: 6.0, children: [
+    return Wrap(spacing: kFilterTags, children: [
       for (var item in widget.permitMasterDatum[0])
         FilterChip(
             backgroundColor: (selectedData.contains(item.permittype.toString()))

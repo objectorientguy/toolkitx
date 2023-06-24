@@ -51,3 +51,4 @@ const double kOutlineButtonWidth = 40;
 const double kTimeSpanFieldWidth = 150;
 const double kDataCellWidth = 170;
 const double kElevationButtonWidth = 45.0;
+const double kFilterTags = 6;

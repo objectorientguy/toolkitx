@@ -4,6 +4,7 @@ import 'package:toolkit/data/enums/permit_status_enum.dart';
 import 'package:toolkit/utils/database_utils.dart';
 
 import '../../../configs/app_color.dart';
+import '../../../configs/app_dimensions.dart';
 
 class PermitStatusFilter extends StatefulWidget {
   final Map permitFilterMap;
@@ -40,7 +41,7 @@ class _PermitStatusFilterState extends State<PermitStatusFilter> {
 
   @override
   Widget build(BuildContext context) {
-    return Wrap(spacing: 6.0, children: [
+    return Wrap(spacing: kFilterTags, children: [
       for (var item in PermitStatusEnum.values)
         FilterChip(
             backgroundColor: (selectedData.contains(item.value.toString()))

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:toolkit/utils/database_utils.dart';
 
 import '../../../configs/app_color.dart';
 import '../../../configs/app_dimensions.dart';
@@ -46,13 +47,19 @@ class PermitListTimeSubtitle extends StatelessWidget {
               const SizedBox(height: tinier),
               StatusTag(tags: [
                 StatusTagModel(
-                    title: (allPermitDatum.expired == '2') ? 'Expired' : '',
+                    title: (allPermitDatum.expired == '2')
+                        ? DatabaseUtil.getText('Expired')
+                        : '',
                     bgColor: AppColor.errorRed),
                 StatusTagModel(
-                    title: (allPermitDatum.npiStatus == '1') ? 'NPI' : '',
+                    title: (allPermitDatum.npiStatus == '1')
+                        ? DatabaseUtil.getText('NPI')
+                        : '',
                     bgColor: AppColor.yellow),
                 StatusTagModel(
-                    title: (allPermitDatum.npwStatus == '1') ? 'NPW' : '',
+                    title: (allPermitDatum.npwStatus == '1')
+                        ? DatabaseUtil.getText('NPW')
+                        : '',
                     bgColor: AppColor.yellow)
               ])
             ]));
