@@ -90,8 +90,10 @@ class FetchingPermitMaster extends PermitStates {
 class PermitMasterFetched extends PermitStates {
   final PermitGetMasterModel permitGetMasterModel;
   final Map permitFilterMap;
+  final List location;
 
-  const PermitMasterFetched(this.permitGetMasterModel, this.permitFilterMap);
+  const PermitMasterFetched(
+      this.permitGetMasterModel, this.permitFilterMap, this.location);
 }
 
 class CouldNotFetchPermitMaster extends PermitStates {

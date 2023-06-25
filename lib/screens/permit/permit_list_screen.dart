@@ -39,7 +39,7 @@ class PermitListScreen extends StatelessWidget {
                     builder: (context, state) {
                       if (state is AllPermitsFetched) {
                         return Visibility(
-                            visible: state.filters.toString() != '{}',
+                            visible: state.filters.isNotEmpty,
                             child: CustomTextButton(
                                 onPressed: () {
                                   context

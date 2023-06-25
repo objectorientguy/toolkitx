@@ -42,8 +42,9 @@ class FetchPermitMaster extends PermitEvents {
 
 class ApplyPermitFilters extends PermitEvents {
   final Map permitFilters;
+  final List location;
 
-  const ApplyPermitFilters(this.permitFilters);
+  const ApplyPermitFilters(this.permitFilters, this.location);
 }
 
 class ClearPermitFilters extends PermitEvents {

@@ -168,4 +168,5 @@ abstract class StringConstants {
   static const String kControlPerson = 'Control Person(s)';
   static const String kCLOSEPERMIT = 'CLOSE PERMIT';
   static const String kOPENPERMIT = 'OPEN PERMIT';
+  static const String kNoRecordsFilter = 'No records found for these filters';
 }

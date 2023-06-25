@@ -9,11 +9,13 @@ import '../select_location_screen.dart';
 class PermitLocationFilter extends StatefulWidget {
   final List<List<PermitMasterDatum>> permitMasterDatum;
   final Map permitFilterMap;
+  final List location;
 
   const PermitLocationFilter(
       {super.key,
       required this.permitMasterDatum,
-      required this.permitFilterMap});
+      required this.permitFilterMap,
+      required this.location});
 
   @override
   State<PermitLocationFilter> createState() => _PermitLocationFilterState();
@@ -35,23 +37,29 @@ class _PermitLocationFilterState extends State<PermitLocationFilter> {
     return ListTile(
         contentPadding: EdgeInsets.zero,
         onTap: () async {
-          var locationSelected = await Navigator.push(
+          List? locationSelected = await Navigator.push(
               context,
               MaterialPageRoute(
                   builder: (context) => SelectPermitLocation(
                       permitMasterDatum: widget.permitMasterDatum,
-                      locationSelected: selectLocation)));
-          if (locationSelected.isNotEmpty) {
-            selectLocation.clear();
-            setState(() {
-              for (int i = 0; i < locationSelected.length; i++) {
-                selectLocation.add(locationSelected[i].location);
-              }
-              widget.permitFilterMap['locs'] = selectLocation
-                  .toString()
-                  .replaceAll('[', '')
-                  .replaceAll(']', '');
-            });
+                      locationSelected: List.from(widget.location))));
+          if (locationSelected != null) {
+            if (locationSelected.isNotEmpty) {
+              widget.location.clear();
+              selectLocation.clear();
+              setState(() {
+                for (int i = 0; i < locationSelected.length; i++) {
+                  selectLocation.add(locationSelected[i].location);
+                  widget.location.add(locationSelected[i]);
+                }
+                widget.permitFilterMap['locs'] = selectLocation
+                    .toString()
+                    .replaceAll('[', '')
+                    .replaceAll(']', '');
+              });
+            }
+          } else {
+            null;
           }
         },
         title: Text(DatabaseUtil.getText('Location'),

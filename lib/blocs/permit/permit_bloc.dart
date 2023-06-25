@@ -27,6 +27,7 @@ class PermitBloc extends Bloc<PermitEvents, PermitStates> {
   String roleId = '';
   PermitMasterDatum? selectedDatum;
   Map filters = {};
+  List location = [];
 
   PermitBloc() : super(const FetchingPermitsInitial()) {
     on<GetAllPermits>(_getAllPermits);
@@ -69,11 +70,13 @@ class PermitBloc extends Bloc<PermitEvents, PermitStates> {
   FutureOr<void> _applyFilters(
       ApplyPermitFilters event, Emitter<PermitStates> emit) async {
     filters = event.permitFilters;
+    location = List.from(event.location);
   }
 
   FutureOr<void> _clearFilters(
       ClearPermitFilters event, Emitter<PermitStates> emit) async {
     filters = {};
+    location = [];
   }
 
   FutureOr<void> _fetchMasterApi(
@@ -83,7 +86,7 @@ class PermitBloc extends Bloc<PermitEvents, PermitStates> {
       String hashCode = (await _customerCache.getHashCode(CacheKeys.hashcode))!;
       PermitGetMasterModel permitGetMasterModel =
           await _permitRepository.fetchMaster(hashCode);
-      emit(PermitMasterFetched(permitGetMasterModel, filters));
+      emit(PermitMasterFetched(permitGetMasterModel, filters, location));
     } catch (e) {
       emit(const CouldNotFetchPermitMaster());
       rethrow;

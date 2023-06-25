@@ -28,15 +28,13 @@ class _SelectPermitLocationState extends State<SelectPermitLocation> {
 
   @override
   void initState() {
-    widget.locationSelected.remove('null');
-
     if (widget.locationSelected.toString() != '[]') {
-      for (var i = 0; i < widget.locationSelected.length; i++) {
+      for (int i = 0; i < widget.locationSelected.length; i++) {
         checkBoxChange(
             true,
             widget.permitMasterDatum[1][widget.permitMasterDatum[1].indexWhere(
                 (element) =>
-                    element.location == widget.locationSelected[i].trim())]);
+                    element.location == widget.locationSelected[i].location)]);
       }
     }
     super.initState();
