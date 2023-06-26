@@ -8,13 +8,15 @@ class EditHeader {
       index, editHeaderData, editHeaderList) {
     editHeaderList.add({
       "id": editHeaderData.id,
-      "value": editHeaderData.fieldvalue,
+      "value":
+          (editHeaderData.fieldvalue == '') ? '' : editHeaderData.fieldvalue,
       "ismandatory": editHeaderData.ismandatory
     });
+
     switch (editHeaderData.id) {
       case 4:
         return TextFieldWidget(
-            value: (editHeaderData.fieldvalue == '')
+            value: (editHeaderData.fieldvalue == 'null')
                 ? ''
                 : editHeaderData.fieldvalue,
             maxLength: 3,

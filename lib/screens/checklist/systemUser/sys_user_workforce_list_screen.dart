@@ -9,10 +9,10 @@ import 'package:toolkit/screens/checklist/systemUser/sys_user_pop_up_menu_screen
 import '../../../configs/app_dimensions.dart';
 import 'widgets/sys_user_workforce_list_section.dart';
 
-class WorkForceListScreen extends StatelessWidget {
-  static const routeName = 'WorkForceListScreen';
+class SysUserWorkForceListScreen extends StatelessWidget {
+  static const routeName = 'SysUserWorkForceListScreen';
 
-  const WorkForceListScreen({Key? key}) : super(key: key);
+  const SysUserWorkForceListScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

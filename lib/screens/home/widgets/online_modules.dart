@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:toolkit/screens/checklist/systemUser/sys_user_checklist_list_screen.dart';
+import 'package:toolkit/screens/checklist/workforce/workforce_list_screen.dart';
 import 'package:toolkit/screens/incident/incident_list_screen.dart';
 import 'package:toolkit/utils/database_utils.dart';
 
@@ -92,7 +93,11 @@ class OnLineModules extends StatelessWidget {
         Navigator.pushNamed(context, IncidentListScreen.routeName);
         break;
       case 'checklist':
-        Navigator.pushNamed(context, SystemUserCheckListScreen.routeName);
+        Navigator.pushNamed(context, SystemUserCheckListScreen.routeName,
+            arguments: true);
+        break;
+      case 'wf_checklist':
+        Navigator.pushNamed(context, WorkForceListScreen.routeName);
         break;
     }
   }

@@ -12,17 +12,45 @@ abstract class StringConstants {
   static const String kNext = 'NEXT';
   static const String kLogin = 'LOGIN';
   static const String kWelcome = 'Welcome';
+  static const String kCamera = 'Camera';
+  static const String kDevice = 'Device';
+  static const String kUploadFrom = 'Upload From';
+  static const String kEnterReason = 'Enter Reason';
   static const String kType = 'Type';
   static const String kGenerateOtp = 'GENERATE OTP';
   static const String kSubmit = 'Submit';
   static const String kLoadMore = 'Load more...';
   static const String kNoMoreData = 'No more data!';
+  static const String kAddMore = 'Add More';
+  static const String kDelete = 'Delete';
+  static const String kAddImages = 'Add Images/Comment';
+  static const String kErrorImageUpload =
+      'Cannot upload image! Please try again!';
+  static const String kErrorPickImage = 'Failed to pick image';
+  static const String kAddTodo = 'Add ToDo';
+  static const String kDeleteImage =
+      'Are you sure you want to delete the image?';
+  static const String kDraft = 'Draft';
+  static const String kSaveDraft = 'Save Draft';
+  static const String kNotAccepted = 'Not Accepted';
+  static const String kOverdue = 'Overdue';
+  static const String kSubmitted = 'Submitted';
+  static const String kUploadPhoto = 'Upload Photo';
+  static const String kAddCommentImage = 'Add Comment/Image';
+  static const String kHint = 'Hint';
+  static const String kSelectComment = 'Please enter comment!';
+  static const String kSelectReason = 'Please select a reason';
+  static const String kChecklistNotEditable =
+      'After submitting you will not be able to edit the checklist again.';
+  static const String kFailedToCaptureImage = 'Failed to capture image';
   static const String kEnterNewPassword =
       'Enter New Password'; // comment lines indicates that keys are not available
   static const String kConfirmPassword = 'Confirm Password'; //
   static const String kOtpGenerated = 'OTP generated';
   static const String kSelectDateFormat = 'Select Your Date Format';
   static const String kSave = 'SAVE';
+  static const String kValueB = 'Value B: ';
+  static const String kValueA = 'Value A: ';
   static const String kNoDatesScheduled =
       'No dates scheduled for this checklist!';
   static const String kNoHeader =
@@ -30,9 +58,12 @@ abstract class StringConstants {
   static const String kOldPassword = 'Old Password'; //
   static const String kEnterOtp = 'Enter OTP'; //
   static const String kSelectYourLanguage = 'Select Your Language';
+  static const String kClearFilter = 'Clear Filter';
   static const String kPleaseConfirm = 'Please Confirm';
   static const String kThirdParty = 'Third Party Approve';
   static const String kEditHeader = 'Edit Header';
+  static const String kResponseDate = 'Response Date:';
+  static const String kNoResponseFound = 'No response found!';
   static const String kReject = 'Reject'; //
   static const String kDialogContent =
       "The language file doesn't exist or an old version.Please download the latest language file."; //
