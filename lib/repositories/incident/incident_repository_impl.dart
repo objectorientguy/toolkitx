@@ -7,9 +7,9 @@ import 'incident_repository.dart';
 class IncidentRepositoryImpl extends IncidentRepository {
   @override
   Future<FetchIncidentsListModel> fetchIncidents(
-      String userId, String hashCode) async {
+      String userId, String hashCode, String filter, String role) async {
     final response = await DioClient().get(
-        "${ApiConstants.baseUrl}incident/get?pageno=1&userid=$userId&hashcode=$hashCode&filter=&role=");
+        "${ApiConstants.baseUrl}incident/get?pageno=1&userid=$userId&hashcode=$hashCode&filter=$filter&role=$role");
     return FetchIncidentsListModel.fromJson(response);
   }
 }
