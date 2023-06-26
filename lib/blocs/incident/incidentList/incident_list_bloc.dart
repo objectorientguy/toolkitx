@@ -25,7 +25,7 @@ class IncidentListBloc
       FetchIncidentListEvent event, Emitter<IncidentListStates> emit) async {
     emit(FetchingIncidents());
     try {
-      String userId = (await _customerCache.getHashCode(CacheKeys.userId))!;
+      String userId = (await _customerCache.getUserId(CacheKeys.userId))!;
       String hashCode = (await _customerCache.getHashCode(CacheKeys.hashcode))!;
       FetchIncidentsListModel fetchIncidentsListModel =
           await _incidentRepository.fetchIncidents(userId, hashCode);
