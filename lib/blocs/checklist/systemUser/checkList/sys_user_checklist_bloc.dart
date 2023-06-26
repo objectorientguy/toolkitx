@@ -1,8 +1,10 @@
 import 'dart:async';
 import 'dart:convert';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:toolkit/blocs/checklist/systemUser/checkList/sys_user_checklist_event.dart';
 import 'package:toolkit/blocs/checklist/systemUser/checkList/sys_user_checklist_state.dart';
+import 'package:toolkit/utils/database_utils.dart';
 import '../../../../../data/cache/cache_keys.dart';
 import '../../../../../data/cache/customer_cache.dart';
 import '../../../../data/models/checklist/systemUser/sys_user_change_category_model.dart';
@@ -31,35 +33,38 @@ class SysUserCheckListBloc
     on<ClearCheckListFilter>(_clearFilter);
   }
 
-  _filterChecklist(
-      FilterChecklist event, Emitter<SysUserCheckListStates> emit) {
-    emit(SavingFilterData());
-    try {
-      filterData = jsonEncode(event.filterChecklistMap);
-      emit(SavedCheckListFilterData(saveFilterData: event.filterChecklistMap));
-    } catch (e) {
-      emit(CheckListFilterDataNotSaved(errorMessage: e.toString()));
-    }
-  }
-
   FutureOr<void> _fetchList(
       FetchCheckList event, Emitter<SysUserCheckListStates> emit) async {
     emit(FetchingCheckList());
     try {
       String hashCode = (await _customerCache.getHashCode(CacheKeys.hashcode))!;
-      ChecklistListModel getChecklistModel = await _sysUserCheckListRepository
-          .fetchCheckList(page, hashCode, filterData);
-      if (getChecklistModel.status == 200) {
-        emit(CheckListFetched(getChecklistModel: getChecklistModel));
-        page++;
-      } else if (getChecklistModel.status == 204) {
-        emit(CheckListFetched(getChecklistModel: getChecklistModel));
+      if (event.isFromHome != true) {
+        ChecklistListModel getChecklistModel = await _sysUserCheckListRepository
+            .fetchCheckList(page, hashCode, filterData);
+        if (getChecklistModel.status == 200) {
+          emit(CheckListFetched(
+              getChecklistModel: getChecklistModel, filterData: filterData));
+        }
+        add(ClearCheckListFilter());
       } else {
-        emit(CheckListError(errorMessage: 'Oops! Something went wrong'));
+        ChecklistListModel getChecklistModel = await _sysUserCheckListRepository
+            .fetchCheckList(page, hashCode, filterData);
+        if (getChecklistModel.status == 200) {
+          emit(CheckListFetched(
+              getChecklistModel: getChecklistModel, filterData: filterData));
+        } else if (getChecklistModel.status == 204) {
+          emit(CheckListFetched(
+              getChecklistModel: getChecklistModel, filterData: filterData));
+        } else {
+          emit(CheckListError(
+              errorMessage:
+                  DatabaseUtil.getText('some_unknown_error_please_try_again')));
+        }
       }
     } catch (e) {
       emit(CheckListError(
-          errorMessage: 'Oops! Something went wrong. Please try again.'));
+          errorMessage:
+              DatabaseUtil.getText('some_unknown_error_please_try_again')));
     }
   }
 
@@ -93,6 +98,17 @@ class SysUserCheckListBloc
         categoryName: event.categoryName,
         getFilterCategoryData: event.getFilterCategoryData,
         categoryId: event.categoryId));
+  }
+
+  _filterChecklist(
+      FilterChecklist event, Emitter<SysUserCheckListStates> emit) {
+    emit(SavingFilterData());
+    try {
+      filterData = jsonEncode(event.filterChecklistMap);
+      emit(SavedCheckListFilterData(saveFilterData: event.filterChecklistMap));
+    } catch (e) {
+      emit(CheckListFilterDataNotSaved(errorMessage: e.toString()));
+    }
   }
 
   _clearFilter(
