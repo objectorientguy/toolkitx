@@ -35,6 +35,7 @@ class OnLineModules extends StatelessWidget {
                 child: const Center(child: CircularProgressIndicator()));
           }
           if (state is HomeScreenFetched) {
+            isFirstTime = false;
             return GridView.builder(
                 primary: false,
                 itemCount: state.availableModules.length,
@@ -78,15 +79,14 @@ class OnLineModules extends StatelessWidget {
                 });
           } else if (state is FetchHomeScreenError) {
             return Padding(
-              padding: EdgeInsets.only(
-                  top: MediaQuery.of(context).size.height / 3.5),
-              child: Center(
-                  child: GenericReloadButton(
-                      onPressed: () {
-                        context.read<ClientBloc>().add(FetchHomeScreenData());
-                      },
-                      textValue: StringConstants.kReload)),
-            );
+                padding: EdgeInsets.only(
+                    top: MediaQuery.of(context).size.height / 3.5),
+                child: Center(
+                    child: GenericReloadButton(
+                        onPressed: () {
+                          context.read<ClientBloc>().add(FetchHomeScreenData());
+                        },
+                        textValue: StringConstants.kReload)));
           } else {
             return const SizedBox();
           }
