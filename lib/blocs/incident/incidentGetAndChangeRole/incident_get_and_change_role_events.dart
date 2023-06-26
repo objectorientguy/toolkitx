@@ -1,21 +1,11 @@
-import '../../../data/models/incident/incident_fetch_roles_model.dart';
+abstract class IncidentFetchAndChangeRoleEvent {}
 
-abstract class IncidentGetAndChangeRoleEvent {}
-
-class IncidentFetchRoles extends IncidentGetAndChangeRoleEvent {
-  final String roleId;
-  bool isChanged;
-
-  IncidentFetchRoles({required this.roleId, this.isChanged = false});
+class IncidentFetchRoles extends IncidentFetchAndChangeRoleEvent {
+  IncidentFetchRoles();
 }
 
-class IncidentChangeRole extends IncidentGetAndChangeRoleEvent {
-  final IncidentFetchRolesModel incidentFetchRolesModel;
+class IncidentChangeRole extends IncidentFetchAndChangeRoleEvent {
   final String roleId;
-  final bool isRoleSelected;
 
-  IncidentChangeRole(
-      {this.isRoleSelected = false,
-      required this.incidentFetchRolesModel,
-      required this.roleId});
+  IncidentChangeRole({required this.roleId});
 }

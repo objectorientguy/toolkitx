@@ -15,9 +15,9 @@ class IncidentListBloc
   final IncidentRepository _incidentRepository = getIt<IncidentRepository>();
   final CustomerCache _customerCache = getIt<CustomerCache>();
 
-  IncidentListStates get initialState => FetchIncidentsInitial();
+  IncidentListStates get initialState => FetchIncidentInitial();
 
-  IncidentListBloc() : super(FetchIncidentsInitial()) {
+  IncidentListBloc() : super(FetchIncidentInitial()) {
     on<FetchIncidentListEvent>(_fetchIncidents);
   }
 

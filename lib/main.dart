@@ -118,7 +118,9 @@ class MyApp extends StatelessWidget {
           BlocProvider(
               lazy: false,
               create: (context) => WorkForceCheckListSaveRejectBloc()),
-          BlocProvider(lazy: true, create: (context) => IncidentsRoleBloc()),
+          BlocProvider(
+              lazy: true,
+              create: (context) => IncidentFetchAndChangeRoleBloc()),
           BlocProvider(
               lazy: false, create: (context) => PickAndUploadImageBloc()),
           BlocProvider(lazy: false, create: (context) => IncidentListBloc()),

@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:toolkit/blocs/incident/incidentList/incident_list_event.dart';
 import 'package:toolkit/configs/app_spacing.dart';
-import 'package:toolkit/screens/incident/widgets/list_section.dart';
+import 'package:toolkit/screens/incident/widgets/list_body.dart';
 import 'package:toolkit/utils/database_utils.dart';
 
+import '../../blocs/incident/incidentGetAndChangeRole/incident_get_and_change_role_bloc.dart';
 import '../../blocs/incident/incidentList/incident_list_bloc.dart';
 import '../../widgets/custom_icon_button_row.dart';
 import '../../widgets/generic_app_bar.dart';
@@ -19,7 +20,8 @@ class IncidentListScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    context.read<IncidentListBloc>().add(FetchIncidentListEvent());
+    context.read<IncidentListBloc>().add(FetchIncidentListEvent(
+        roleId: context.read<IncidentFetchAndChangeRoleBloc>().roleId));
     return Scaffold(
       appBar: GenericAppBar(title: DatabaseUtil.getText('ReportanIncident')),
       floatingActionButton: FloatingActionButton(
@@ -37,8 +39,6 @@ class IncidentListScreen extends StatelessWidget {
               primaryOnPress: () {
                 Navigator.pushNamed(context, IncidentFilterScreen.routeName);
               },
-              secondaryOnPress: () {},
-              isEnabled: true,
               secondaryOnPress: () {
                 Navigator.pushNamed(
                     context, IncidentChangeRoleScreen.routeName);
@@ -46,7 +46,7 @@ class IncidentListScreen extends StatelessWidget {
               isEnabled: true,
               clearOnPress: () {}),
           const SizedBox(height: xxTinierSpacing),
-          const IncidentListSection(),
+          const IncidentListBody(),
           const SizedBox(height: xxTinySpacing)
         ]),
       ),

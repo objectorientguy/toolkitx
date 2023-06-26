@@ -8,53 +8,40 @@ import '../../../../data/cache/customer_cache.dart';
 import '../../../../di/app_module.dart';
 import '../../../data/models/incident/incident_fetch_roles_model.dart';
 
-class IncidentsRoleBloc
-    extends Bloc<IncidentGetAndChangeRoleEvent, IncidentRolesStates> {
+class IncidentFetchAndChangeRoleBloc extends Bloc<
+    IncidentFetchAndChangeRoleEvent, IncidentFetchAndChangeRoleStates> {
   final IncidentRepository _incidentRepository = getIt<IncidentRepository>();
   final CustomerCache _customerCache = getIt<CustomerCache>();
   String roleId = '';
 
-  IncidentRolesStates get initialState => IncidentRoleInitial();
+  IncidentFetchAndChangeRoleStates get initialState => IncidentRoleInitial();
 
-  IncidentsRoleBloc() : super(IncidentRoleInitial()) {
+  IncidentFetchAndChangeRoleBloc() : super(IncidentRoleInitial()) {
     on<IncidentFetchRoles>(_incidentFetchRoles);
     on<IncidentChangeRole>(_incidentChangeRole);
   }
 
-  FutureOr<void> _incidentFetchRoles(
-      IncidentFetchRoles event, Emitter<IncidentRolesStates> emit) async {
+  FutureOr<void> _incidentFetchRoles(IncidentFetchRoles event,
+      Emitter<IncidentFetchAndChangeRoleStates> emit) async {
     emit(FetchingIncidentRoles());
     try {
       String hashCode = (await _customerCache.getHashCode(CacheKeys.hashcode))!;
       String userId = (await _customerCache.getUserId(CacheKeys.userId))!;
       IncidentFetchRolesModel incidentFetchRolesModel =
           await _incidentRepository.fetchIncidentRole(hashCode, userId);
-      if (incidentFetchRolesModel.status == 200 &&
-          incidentFetchRolesModel.data!.isNotEmpty) {
-        add(IncidentChangeRole(
-            roleId: roleId, incidentFetchRolesModel: incidentFetchRolesModel));
-      } else {
-        emit(IncidentRolesNotFetched());
+      if (roleId.isEmpty) {
+        roleId = incidentFetchRolesModel.data![0].groupId;
       }
+      emit(IncidentRolesFetched(
+          roleId: roleId, incidentFetchRolesModel: incidentFetchRolesModel));
     } catch (e) {
       emit(IncidentRolesNotFetched());
     }
   }
 
-  _incidentChangeRole(
-      IncidentChangeRole event, Emitter<IncidentRolesStates> emit) {
+  _incidentChangeRole(IncidentChangeRole event,
+      Emitter<IncidentFetchAndChangeRoleStates> emit) {
     roleId = event.roleId;
-    if (event.roleId == '') {
-      roleId = event.incidentFetchRolesModel.data![0].groupId.toString();
-      emit(IncidentRolesFetched(
-          roleId: roleId,
-          isRoleSelected: event.isRoleSelected,
-          incidentFetchRolesModel: event.incidentFetchRolesModel));
-    } else {
-      emit(IncidentRolesFetched(
-          roleId: roleId,
-          isRoleSelected: event.isRoleSelected,
-          incidentFetchRolesModel: event.incidentFetchRolesModel));
-    }
+    emit(IncidentRoleChanged(roleId: roleId));
   }
 }

@@ -7,8 +7,9 @@ import 'package:toolkit/utils/database_utils.dart';
 import 'package:toolkit/widgets/error_section.dart';
 
 import '../../blocs/incident/incidentGetAndChangeRole/incident_get_and_change_role_events.dart';
+import '../../blocs/incident/incidentList/incident_list_bloc.dart';
+import '../../blocs/incident/incidentList/incident_list_event.dart';
 import '../../configs/app_color.dart';
-import '../../configs/app_dimensions.dart';
 import '../../configs/app_spacing.dart';
 import '../../widgets/generic_app_bar.dart';
 
@@ -19,15 +20,17 @@ class IncidentChangeRoleScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    context.read<IncidentsRoleBloc>().add(
-        IncidentFetchRoles(roleId: context.read<IncidentsRoleBloc>().roleId));
+    context.read<IncidentFetchAndChangeRoleBloc>().add(IncidentFetchRoles());
     return Scaffold(
         appBar: GenericAppBar(
           title: DatabaseUtil.getText('ChangeRole'),
         ),
-        body: BlocConsumer<IncidentsRoleBloc, IncidentRolesStates>(
-            listener: (context, state) {
-          if (state is IncidentRolesFetched && state.isRoleSelected == true) {
+        body: BlocConsumer<IncidentFetchAndChangeRoleBloc,
+            IncidentFetchAndChangeRoleStates>(listener: (context, state) {
+          if (state is IncidentRoleChanged) {
+            context
+                .read<IncidentListBloc>()
+                .add(FetchIncidentListEvent(roleId: state.roleId));
             Navigator.pop(context);
           }
         }, builder: (context, state) {
@@ -42,7 +45,7 @@ class IncidentChangeRoleScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         const SizedBox(height: xxTiniestSpacing),
-                        ListView.separated(
+                        ListView.builder(
                             physics: const NeverScrollableScrollPhysics(),
                             padding:
                                 const EdgeInsets.only(bottom: xxTiniestSpacing),
@@ -65,22 +68,12 @@ class IncidentChangeRoleScreen extends StatelessWidget {
                                       onChanged: (value) {
                                         value = state.incidentFetchRolesModel
                                             .data![index].groupId;
-                                        context.read<IncidentsRoleBloc>().add(
-                                            IncidentChangeRole(
-                                                roleId: state
-                                                    .incidentFetchRolesModel
-                                                    .data![index]
-                                                    .groupId
-                                                    .toString(),
-                                                incidentFetchRolesModel: state
-                                                    .incidentFetchRolesModel,
-                                                isRoleSelected: true));
+                                        context
+                                            .read<
+                                                IncidentFetchAndChangeRoleBloc>()
+                                            .add(IncidentChangeRole(
+                                                roleId: value));
                                       }));
-                            },
-                            separatorBuilder: (context, index) {
-                              return const Divider(
-                                  thickness: kDividerThickness,
-                                  height: kDividerHeight);
                             }),
                         const SizedBox(height: xxxSmallerSpacing)
                       ])),
@@ -88,8 +81,9 @@ class IncidentChangeRoleScreen extends StatelessWidget {
           } else if (state is IncidentRolesNotFetched) {
             return GenericReloadButton(
                 onPressed: () {
-                  context.read<IncidentsRoleBloc>().add(IncidentFetchRoles(
-                      roleId: context.read<IncidentsRoleBloc>().roleId));
+                  context
+                      .read<IncidentFetchAndChangeRoleBloc>()
+                      .add(IncidentFetchRoles());
                 },
                 textValue: StringConstants.kReload);
           } else {
