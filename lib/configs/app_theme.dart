@@ -38,7 +38,7 @@ ExpansionTileThemeData expansionTileThemeData = ExpansionTileThemeData(
 ElevatedButtonThemeData elevatedButtonThemeData = ElevatedButtonThemeData(
     style: ElevatedButton.styleFrom(
         backgroundColor: AppColor.deepBlue,
-        minimumSize: const Size(double.maxFinite, 45.0),
+        minimumSize: const Size(double.maxFinite, kElevationButtonWidth),
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(kCardRadius))));
 
@@ -49,10 +49,9 @@ const ColorScheme colorScheme = ColorScheme.light(primary: AppColor.deepBlue);
 BottomNavigationBarThemeData bottomNavigationBarTheme =
     const BottomNavigationBarThemeData(
         backgroundColor: AppColor.white, elevation: 0);
-
-BottomAppBarTheme? bottomAppBarTheme = const BottomAppBarTheme(
-    color: AppColor.white,
-    elevation: 0,
+BottomAppBarTheme bottomAppBarTheme = const BottomAppBarTheme(
+    color: AppColor.ghostWhite,
+    elevation: kZeroElevation,
     padding: EdgeInsets.all(leftRightMargin));
 
 ListTileThemeData listTileTheme = const ListTileThemeData(dense: true);

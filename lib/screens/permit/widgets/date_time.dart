@@ -13,32 +13,31 @@ class DateTimeRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Image.asset('assets/icons/calendar.png',
-                height: kImageHeight, width: kImageWidth),
-            const SizedBox(width: tiniest),
-            Text(
-                '${DateUtil.splitDate(allPermitDatum.schedule!)[0]} - ${DateUtil.splitDate(allPermitDatum.schedule!)[1]}')
-          ],
-        ),
-        Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Image.asset('assets/icons/clock.png',
-                height: kImageHeight, width: kImageWidth),
-            const SizedBox(width: tiniest),
-            Text(
-                '${DateUtil.splitDate(allPermitDatum.schedule!)[2]} - ${DateUtil.splitDate(allPermitDatum.schedule!)[3]}')
-          ],
-        ),
-      ],
-    );
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Image.asset('assets/icons/calendar.png',
+                    height: kImageHeight, width: kImageWidth),
+                const SizedBox(width: tiniest),
+                Text((allPermitDatum.enddate == '')
+                    ? DateUtil.splitDate(allPermitDatum.startdate!)[0]
+                    : '${DateUtil.splitDate(allPermitDatum.startdate!)[0]} - ${DateUtil.splitDate(allPermitDatum.enddate!)[0]}')
+              ]),
+          Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Image.asset('assets/icons/clock.png',
+                    height: kImageHeight, width: kImageWidth),
+                const SizedBox(width: tiniest),
+                Text((allPermitDatum.enddate == '')
+                    ? DateUtil.splitDate(allPermitDatum.startdate!)[1]
+                    : '${DateUtil.splitDate(allPermitDatum.startdate!)[1]} - ${DateUtil.splitDate(allPermitDatum.enddate!)[1]}')
+              ])
+        ]);
   }
 }

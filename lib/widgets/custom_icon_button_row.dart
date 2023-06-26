@@ -19,7 +19,7 @@ class CustomIconButtonRow extends StatelessWidget {
       this.secondaryIcon = Icons.settings_outlined,
       required this.primaryOnPress,
       required this.secondaryOnPress,
-      this.isEnabled = false,
+      this.isEnabled = true,
       this.primaryVisible = true,
       this.secondaryVisible = true,
       this.clearVisible = false,

@@ -89,7 +89,7 @@ class SelectTimeZoneScreen extends StatelessWidget {
                                         subtitle: Text(data.name))));
                           },
                           emptyWidget:
-                              const Text(StringConstants.kNoRecordsFound),
+                              Text(DatabaseUtil.getText('no_records_found')),
                           filter: (value) => state.getTimeZoneModel.data!
                               .where((element) => element.name
                                   .toLowerCase()

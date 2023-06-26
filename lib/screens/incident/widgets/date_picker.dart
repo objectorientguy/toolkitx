@@ -58,7 +58,8 @@ class _DatePickerTextFieldState extends State<DatePickerTextField> {
                               String formattedDate =
                                   DateFormat('dd MMM yyyy').format(value);
                               dateInputController.text = formattedDate;
-                              widget.onDateChanged(dateInputController.text);
+                              widget.onDateChanged(
+                                  DateFormat('dd.MM.yyyy').format(value));
                               isFirstTime = false;
                             },
                             maximumDate: widget.maxDate)),
@@ -69,12 +70,14 @@ class _DatePickerTextFieldState extends State<DatePickerTextField> {
                               dateInputController.text =
                                   DateFormat('dd MMM yyyy')
                                       .format(DateTime.now());
-                              widget.onDateChanged(dateInputController.text);
+                              widget.onDateChanged(DateFormat('dd.MM.yyyy')
+                                  .format(DateTime.now()));
                             } else {
                               dateInputController.text =
                                   DateFormat('dd MMM yyyy')
                                       .format(widget.initialDate!);
-                              widget.onDateChanged(dateInputController.text);
+                              widget.onDateChanged(DateFormat('dd.MM.yyyy')
+                                  .format(widget.initialDate!));
                             }
                           }
                           Navigator.pop(context);

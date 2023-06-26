@@ -82,7 +82,8 @@ class OffLineModules extends StatelessWidget {
   navigateToModule(index, context) {
     switch (index) {
       case 0:
-        Navigator.pushNamed(context, PermitListScreen.routeName);
+        Navigator.pushNamed(context, PermitListScreen.routeName,
+            arguments: true);
         break;
     }
   }
