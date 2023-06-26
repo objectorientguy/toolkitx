@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:toolkit/configs/app_theme.dart';
+import 'package:toolkit/utils/database_utils.dart';
 import '../../../../blocs/checklist/systemUser/changeRole/sys_user_checklist_change_role_bloc.dart';
 import '../../../../blocs/checklist/systemUser/scheduleDatesResponse/checklist_schedule_dates_response_bloc.dart';
 import '../../../../blocs/checklist/systemUser/scheduleDatesResponse/checklist_schedule_dates_response_events.dart';
@@ -42,11 +43,8 @@ class WorkForceListSection extends StatelessWidget {
                           return CustomCard(
                               child: ListTile(
                                   dense: true,
-                                  minVerticalPadding: 0.0,
-                                  contentPadding: const EdgeInsets.only(
-                                      left: tiniest,
-                                      bottom: tiniest,
-                                      top: tiniest),
+                                  contentPadding:
+                                      const EdgeInsets.all(xxxTinierSpacing),
                                   title: Row(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
@@ -64,13 +62,15 @@ class WorkForceListSection extends StatelessWidget {
                                           responseId: context
                                               .read<
                                                   CheckListScheduleDatesResponseBloc>()
-                                              .responseId)
+                                              .responseId),
                                     ],
                                   ),
                                   subtitle: Column(
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
+                                        const SizedBox(
+                                            height: xxTiniestSpacing),
                                         Text(
                                             '${state.checkListWorkforceListModel.data![index].jobtitle} -- ${state.checkListWorkforceListModel.data![index].company}',
                                             style: Theme.of(context)
@@ -80,7 +80,7 @@ class WorkForceListSection extends StatelessWidget {
                                                     color: AppColor.grey)),
                                         const SizedBox(height: tiniest),
                                         Text(
-                                            'Response Date: ${state.checkListWorkforceListModel.data![index].responsedate}',
+                                            '${StringConstants.kResponseDate} ${state.checkListWorkforceListModel.data![index].responsedate}',
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .xSmall
@@ -93,7 +93,8 @@ class WorkForceListSection extends StatelessWidget {
                                                   .data![index]
                                                   .approvalstatus ==
                                               1,
-                                          child: Text('Approved',
+                                          child: Text(
+                                              DatabaseUtil.getText('Approved'),
                                               style: Theme.of(context)
                                                   .textTheme
                                                   .xSmall

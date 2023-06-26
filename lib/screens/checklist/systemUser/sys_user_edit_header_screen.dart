@@ -55,6 +55,9 @@ class EditHeaderScreen extends StatelessWidget {
                   } else if (state is CheckListHeaderSubmitted) {
                     ProgressBar.dismiss(context);
                     showCustomSnackBar(context, state.headerMessage, '');
+                  } else if (state is CheckListHeaderNotSubmitted) {
+                    ProgressBar.dismiss(context);
+                    showCustomSnackBar(context, state.message, '');
                   }
                 },
                 builder: (context, state) {
