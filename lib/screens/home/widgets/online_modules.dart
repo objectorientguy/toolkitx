@@ -87,7 +87,8 @@ class OnLineModules extends StatelessWidget {
   navigateToModule(moduleKey, context) {
     switch (moduleKey) {
       case 'ptw':
-        Navigator.pushNamed(context, PermitListScreen.routeName);
+        Navigator.pushNamed(context, PermitListScreen.routeName,
+            arguments: true);
         break;
       case 'hse':
         Navigator.pushNamed(context, IncidentListScreen.routeName);

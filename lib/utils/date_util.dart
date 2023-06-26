@@ -10,17 +10,10 @@ abstract class DateUtil {
   }
 
   static List<String> splitDate(String dateTime) {
-    List<String> parts = dateTime.split(" - ");
-    String startDate = parts[0];
-    String endDate = parts[1];
+    List<String> startDateParts = dateTime.split(" ");
+    String dateString = startDateParts[0];
+    String timeString = startDateParts[1];
 
-    List<String> startDateParts = startDate.split(" ");
-    String startDateString = startDateParts[0];
-    String startTimeString = startDateParts[1];
-
-    List<String> endDateParts = endDate.split(" ");
-    String endDateString = endDateParts[0];
-    String endTimeString = endDateParts[1];
-    return [startDateString, endDateString, startTimeString, endTimeString];
+    return [dateString, timeString];
   }
 }

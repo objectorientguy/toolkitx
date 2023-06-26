@@ -4,6 +4,8 @@ class OnBoardingInitial extends OnBoardingStates {}
 
 class LoggedIn extends OnBoardingStates {}
 
+class ClientNotSelected extends OnBoardingStates {}
+
 class LanguageSelected extends OnBoardingStates {}
 
 class TimeZoneSelected extends OnBoardingStates {}

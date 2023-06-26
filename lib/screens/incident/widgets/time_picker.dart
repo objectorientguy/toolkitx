@@ -83,6 +83,7 @@ class _TimePickerTextFieldState extends State<TimePickerTextField> {
 
   @override
   Widget build(BuildContext context) {
+    timeInputController.text = widget.editTime;
     return TextField(
         readOnly: true,
         controller: timeInputController,
