@@ -48,38 +48,42 @@ class AllPermitDatum {
   final int? emergency;
   final dynamic npiStatus;
   final dynamic npwStatus;
+  final String? startdate;
+  final String? enddate;
 
-  AllPermitDatum({
-    this.id,
-    this.id2,
-    this.permit,
-    this.schedule,
-    this.location,
-    this.description,
-    this.status,
-    this.expired,
-    this.pname,
-    this.pcompany,
-    this.emergency,
-    this.npiStatus,
-    this.npwStatus,
-  });
+  AllPermitDatum(
+      {this.id,
+      this.id2,
+      this.permit,
+      this.schedule,
+      this.location,
+      this.description,
+      this.status,
+      this.expired,
+      this.pname,
+      this.pcompany,
+      this.emergency,
+      this.npiStatus,
+      this.npwStatus,
+      this.startdate,
+      this.enddate});
 
   factory AllPermitDatum.fromJson(Map<String, dynamic> json) => AllPermitDatum(
-        id: json["id"],
-        id2: json["id2"],
-        permit: json["permit"],
-        schedule: json["schedule"],
-        location: json["location"],
-        description: json["description"],
-        status: json["status"],
-        expired: json["expired"],
-        pname: json["pname"],
-        pcompany: json["pcompany"],
-        emergency: json["emergency"],
-        npiStatus: json["npi_status"],
-        npwStatus: json["npw_status"],
-      );
+      id: json["id"],
+      id2: json["id2"],
+      permit: json["permit"],
+      schedule: json["schedule"],
+      location: json["location"],
+      description: json["description"],
+      status: json["status"],
+      expired: json["expired"],
+      pname: json["pname"],
+      pcompany: json["pcompany"],
+      emergency: json["emergency"],
+      npiStatus: json["npi_status"],
+      npwStatus: json["npw_status"],
+      startdate: json["startdate"],
+      enddate: json["enddate"]);
 
   Map<String, dynamic> toJson() => {
         "id": id,
@@ -95,5 +99,7 @@ class AllPermitDatum {
         "emergency": emergency,
         "npi_status": npiStatus,
         "npw_status": npwStatus,
+        "startdate": startdate,
+        "enddate": enddate
       };
 }
