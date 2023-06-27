@@ -8,13 +8,18 @@ import '../../../../blocs/pickAndUploadImage/pick_and_upload_image_events.dart';
 import '../../../../configs/app_color.dart';
 import '../../../../configs/app_dimensions.dart';
 import '../../../../configs/app_spacing.dart';
+import '../../../../data/models/uploadImage/upload_image_model.dart';
 
 class UploadPictureContainer extends StatelessWidget {
   final List imagePathsList;
   final bool isImageAttached;
+  final UploadPictureModel uploadPictureModel;
 
   const UploadPictureContainer(
-      {Key? key, required this.imagePathsList, required this.isImageAttached})
+      {Key? key,
+      required this.imagePathsList,
+      required this.isImageAttached,
+      required this.uploadPictureModel})
       : super(key: key);
 
   @override
@@ -44,15 +49,11 @@ class UploadPictureContainer extends StatelessWidget {
                               onPressed: () {
                                 Navigator.pop(context);
                                 context.read<PickAndUploadImageBloc>().add(
-                                    PickCameraImage(
-                                        isImageAttached: false,
-                                        cameraImageList: imagePathsList,
-                                        index: index));
-                                context.read<PickAndUploadImageBloc>().add(
-                                    PickGalleryImage(
-                                        isImageAttached: false,
-                                        galleryImagesList: imagePathsList,
-                                        index: index));
+                                    RemoveImage(
+                                        imagesList: imagePathsList,
+                                        index: index,
+                                        uploadPictureModel:
+                                            uploadPictureModel));
                               });
                         });
                   }),

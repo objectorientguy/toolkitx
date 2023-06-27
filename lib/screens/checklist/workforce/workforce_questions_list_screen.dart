@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:toolkit/screens/checklist/workforce/widgets/checklist_app_bar.dart';
 import 'package:toolkit/screens/checklist/workforce/widgets/question_list_section.dart';
-import 'package:toolkit/screens/checklist/workforce/workforce_pup_up_menu_screen.dart';
+import 'package:toolkit/screens/checklist/workforce/workforce_pop_up_menu_screen.dart';
 
 import '../../../blocs/checklist/workforce/getQuestionsList/workforce_cheklist_get_questions_list_states.dart';
 import '../../../blocs/checklist/workforce/getQuestionsList/workforce_checklist_get_questions_list_bloc.dart';
