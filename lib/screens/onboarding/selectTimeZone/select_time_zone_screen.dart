@@ -48,7 +48,7 @@ class SelectTimeZoneScreen extends StatelessWidget {
                                 title: const Padding(
                                   padding:
                                       EdgeInsets.only(bottom: tiniestSpacing),
-                                  child: Text(StringConstants.kUtcTime),
+                                  child: Text(StringConstants.kTimeZone),
                                 ),
                                 subtitle:
                                     const Text(StringConstants.kTimeLocation)));

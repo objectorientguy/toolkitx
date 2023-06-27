@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:toolkit/screens/checklist/checklist_list_screen.dart';
 import 'package:toolkit/screens/checklist/details_screen.dart';
 import 'package:toolkit/screens/checklist/filters_screen.dart';
+import 'package:toolkit/screens/incident/report_incident/injuries_screen.dart';
 import 'package:toolkit/screens/onboarding/login/emailAddress/login_screen.dart';
 import 'package:toolkit/screens/onboarding/login/password/password_screen.dart';
 import 'package:toolkit/screens/onboarding/welcome_screen.dart';
@@ -9,6 +10,13 @@ import 'package:toolkit/screens/profile/edit/edit_screen.dart';
 import 'package:toolkit/screens/qualityManagement/new_qa_reporting_screen.dart';
 import 'package:toolkit/screens/qualityManagement/reporting_screen.dart';
 import '../screens/checklist/change_role_screen.dart';
+import '../screens/incident/report_incident/category_screen.dart';
+import '../screens/incident/filter_screen.dart';
+import '../screens/incident/incident_list_screen.dart';
+import '../screens/incident/report_incident/add_injured_person_screen.dart';
+import '../screens/incident/report_incident/health_safety_screen.dart';
+import '../screens/incident/report_incident/location_screen.dart';
+import '../screens/incident/report_incident/report_incident_screen.dart';
 import '../screens/onboarding/selectDateFormat/select_date_format_screen.dart';
 import '../screens/onboarding/selectLanguage/select_language_screen.dart';
 import '../screens/onboarding/selectTimeZone/select_time_zone_screen.dart';
@@ -43,6 +51,22 @@ class AppRoutes {
         return _materialRoute(const ChangeRoleScreen());
       case FiltersScreen.routeName:
         return _materialRoute(const FiltersScreen());
+      case IncidentListScreen.routeName:
+        return _materialRoute(const IncidentListScreen());
+      case FilterScreen.routeName:
+        return _materialRoute(const FilterScreen());
+      case CategoryScreen.routeName:
+        return _materialRoute(const CategoryScreen());
+      case ReportIncidentScreen.routeName:
+        return _materialRoute(const ReportIncidentScreen());
+      case ReportIncidentLocationScreen.routeName:
+        return _materialRoute(const ReportIncidentLocationScreen());
+      case ReportIncidentHealthSafety.routeName:
+        return _materialRoute(const ReportIncidentHealthSafety());
+      case AddInjuredPersonScreen.routeName:
+        return _materialRoute(const AddInjuredPersonScreen());
+      case InjuriesScreen.routeName:
+        return _materialRoute(const InjuriesScreen());
       case QMDetailsScreen.routeName:
         return _materialRoute(const QMDetailsScreen());
       case NewQAReportingScreen.routeName:
