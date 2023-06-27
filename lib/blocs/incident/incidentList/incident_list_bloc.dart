@@ -15,9 +15,9 @@ class IncidentListBloc
   final IncidentRepository _incidentRepository = getIt<IncidentRepository>();
   final CustomerCache _customerCache = getIt<CustomerCache>();
 
-  IncidentListStates get initialState => FetchIncidentsInitial();
+  IncidentListStates get initialState => FetchIncidentInitial();
 
-  IncidentListBloc() : super(FetchIncidentsInitial()) {
+  IncidentListBloc() : super(FetchIncidentInitial()) {
     on<FetchIncidentListEvent>(_fetchIncidents);
   }
 
@@ -25,7 +25,7 @@ class IncidentListBloc
       FetchIncidentListEvent event, Emitter<IncidentListStates> emit) async {
     emit(FetchingIncidents());
     try {
-      String userId = (await _customerCache.getHashCode(CacheKeys.userId))!;
+      String userId = (await _customerCache.getUserId(CacheKeys.userId))!;
       String hashCode = (await _customerCache.getHashCode(CacheKeys.hashcode))!;
       FetchIncidentsListModel fetchIncidentsListModel =
           await _incidentRepository.fetchIncidents(userId, hashCode);
