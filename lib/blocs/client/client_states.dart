@@ -21,6 +21,7 @@ class HomeScreenFetched extends ClientStates {
   final HomeScreenModel processClientModel;
   final String image;
   final List availableModules;
+
   HomeScreenFetched(
       {required this.processClientModel,
       required this.image,
