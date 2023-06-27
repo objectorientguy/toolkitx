@@ -30,7 +30,7 @@ class _ChangeRoleScreenState extends State<ChangeRoleScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: const GenericAppBar(
-          title: StringConstants.kChangeRole,
+          title: Text(StringConstants.kChangeRole),
         ),
         body: SingleChildScrollView(
           physics: const BouncingScrollPhysics(),

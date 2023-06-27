@@ -28,6 +28,7 @@ abstract class StringConstants {
   static const String kNo = 'NO';
   static const String kYes = 'YES';
   static const String kReload = 'RELOAD';
+  static const String kTimeZone = 'Time Zone';
   static const String kOk = 'Ok';
   static const String kDateFormatValidate = 'Please select a Date Format!';
   static const String kEditProfile = 'Edit Profile';
@@ -105,19 +106,10 @@ abstract class StringConstants {
   static const String kDone = 'Done';
   static const String kSelectCategoryIncident = 'Select category of incident';
   static const String kReportNewIncident = 'Report new incident';
-  static const String kReportAnonymously = 'Report Anonymously';
-  static const String kContractor = 'Contractor';
   static const String kDateOfIncident = 'Date of incident';
-  static const String kTime = 'Time';
   static const String kSelectTime = 'Select Time';
-  static const String kDetailedDescription = 'Detailed description of facts';
   static const String kPhoto = 'Photo';
-  static const String kSelectContractor = 'Select Contractor';
-  static const String kSite = 'Site';
-  static const String kLocation = 'Location';
   static const String kReportToAuthorities = 'Report to authorities';
-  static const String kSelectSite = 'Select Site';
-  static const String kSelectLocation = 'Select Location';
   static const String kOtherSite = 'Other Site';
   static const String kOtherLocation = 'Other Location';
   static const String kAuthorityReportedTo =
@@ -136,5 +128,4 @@ abstract class StringConstants {
   static const String kCompanyName = 'Company Name';
   static const String kCompanyOfInjuredPerson = 'Company of injured person';
   static const String kNatureOfInjury = 'Nature of injury';
-  static const String kSelect = 'Select';
 }

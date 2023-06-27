@@ -16,7 +16,7 @@ class CommentsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: const GenericAppBar(title: StringConstants.kAddComments),
+        appBar: const GenericAppBar(title: Text(StringConstants.kAddComments)),
         body: SingleChildScrollView(
             physics: const BouncingScrollPhysics(),
             child: Padding(

@@ -18,7 +18,7 @@ class QMListScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: const GenericAppBar(title: StringConstants.kQAReporting),
+        appBar: const GenericAppBar(title: Text(StringConstants.kQAReporting)),
         floatingActionButton: FloatingActionButton(
             onPressed: () {
               Navigator.pushNamed(context, NewQAReportingScreen.routeName);

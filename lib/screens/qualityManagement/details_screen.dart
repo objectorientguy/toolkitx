@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:toolkit/configs/app_spacing.dart';
 import 'package:toolkit/configs/app_theme.dart';
-import 'package:toolkit/utils/constants/string_constants.dart';
 import 'package:toolkit/widgets/generic_app_bar.dart';
 import '../../configs/app_color.dart';
+import '../../utils/constants/string_constants.dart';
 import 'widgets/custom_outlined_button.dart';
 import 'widgets/pop_up_menu.dart';
 import 'widgets/upload_alert_dialog.dart';
@@ -17,7 +17,7 @@ class QMDetailsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: const GenericAppBar(
-            title: StringConstants.kDetails, actions: [QAPopupMenu()]),
+            title: Text(StringConstants.kDetails), actions: [QAPopupMenu()]),
         body: Padding(
             padding: const EdgeInsets.only(
                 left: leftRightMargin,

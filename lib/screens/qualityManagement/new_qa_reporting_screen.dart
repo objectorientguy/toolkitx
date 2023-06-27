@@ -21,7 +21,8 @@ class NewQAReportingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: const GenericAppBar(title: StringConstants.kNewQAReporting),
+        appBar:
+            const GenericAppBar(title: Text(StringConstants.kNewQAReporting)),
         bottomNavigationBar: BottomAppBar(
             color: AppColor.white,
             elevation: kZeroElevation,
