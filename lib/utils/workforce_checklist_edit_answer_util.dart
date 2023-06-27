@@ -4,27 +4,20 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:toolkit/configs/app_theme.dart';
 import '../blocs/checklist/workforce/editAnswer/workforce_checklist_edit_answer_bloc.dart';
 import '../blocs/checklist/workforce/editAnswer/workforce_checklist_edit_answer_states.dart';
-import '../blocs/pickAndUploadImage/pick_and_upload_image_bloc.dart';
-import '../blocs/pickAndUploadImage/pick_and_upload_image_events.dart';
-import '../blocs/pickAndUploadImage/pick_and_upload_image_states.dart';
-import '../configs/app_color.dart';
 import '../configs/app_dimensions.dart';
 import '../configs/app_spacing.dart';
 import '../screens/checklist/workforce/widgets/drop_down_expansion_tile.dart';
 import '../screens/checklist/workforce/widgets/multi_select_expansion_tile.dart';
 import '../screens/checklist/workforce/widgets/radio_button_expansion_tile.dart';
-import '../screens/checklist/workforce/widgets/upload_picture_container.dart';
+import '../screens/checklist/workforce/widgets/upload_image_section.dart';
 import '../screens/incident/widgets/date_picker.dart';
 import '../screens/incident/widgets/time_picker.dart';
 import '../widgets/generic_text_field.dart';
-import '../widgets/secondary_button.dart';
-import '../widgets/upload_alert_dialog.dart';
 import 'constants/string_constants.dart';
 
 class EditAnswerUtil {
   Map value = {};
   var valueOfA = 0.0;
-  List uploadImageList = [];
 
   Widget fetchSwitchCaseWidget(
       type, index, answerModelList, answerList, context) {
@@ -103,64 +96,13 @@ class EditAnswerUtil {
               }
             });
       case 6:
-        return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          BlocBuilder<PickAndUploadImageBloc, PickAndUploadImageStates>(
-              builder: (context, state) {
-            if (state is PickImageLoading) {
-              return const Padding(
-                padding: EdgeInsets.all(xxTinierSpacing),
-                child: SizedBox(
-                    width: kProgressIndicatorTogether,
-                    height: kProgressIndicatorTogether,
-                    child: CircularProgressIndicator()),
-              );
-            } else if (state is ImagePickerLoaded) {
-              uploadImageList.add(state.uploadPictureModel.data);
-              answerList[index]["answer"] = uploadImageList
-                  .toString()
-                  .replaceAll("[", "")
-                  .replaceAll("]", "");
-
-              return (state.isImageAttached == true)
-                  ? UploadPictureContainer(
-                      imagePathsList: state.imagePathsList,
-                      isImageAttached: state.isImageAttached)
-                  : const SizedBox();
-            } else if (state is RemovePickedImage) {
-              return Visibility(
-                  visible: state.isImageAttached == true,
-                  child: UploadPictureContainer(
-                      imagePathsList: state.imagePathsList,
-                      isImageAttached: state.isImageAttached));
-            } else if (state is ImagePickerError) {
-              return Text(
-                state.errorMessage,
-                style: const TextStyle(color: AppColor.errorRed),
-              );
-            } else {
-              return const SizedBox();
-            }
-          }),
-          SecondaryButton(
-              onPressed: () {
-                showDialog(
-                    context: context,
-                    builder: (context) {
-                      return UploadAlertDialog(onCamera: () {
-                        context
-                            .read<PickAndUploadImageBloc>()
-                            .add(RequestCameraPermission());
-                        Navigator.pop(context);
-                      }, onDevice: () {
-                        context
-                            .read<PickAndUploadImageBloc>()
-                            .add(RequestGalleryPermission());
-                        Navigator.pop(context);
-                      });
-                    });
-              },
-              textValue: StringConstants.kUpload)
-        ]);
+        return UploadImageMenu(
+            onUploadImageResponse: (List<dynamic> uploadImageList) {
+          answerList[index]["answer"] = uploadImageList
+              .toString()
+              .replaceAll("[", "")
+              .replaceAll("]", "");
+        });
       case 7:
         return TextFieldWidget(
             textInputType: TextInputType.number,

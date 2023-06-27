@@ -13,15 +13,16 @@ import '../../../../widgets/upload_alert_dialog.dart';
 
 typedef UploadImageResponseCallBack = Function(List uploadImageList);
 
-class UploadImageSection extends StatelessWidget {
+class UploadImageMenu extends StatelessWidget {
   final UploadImageResponseCallBack onUploadImageResponse;
+  static List uploadImageList = [];
+  static List imagesList = [];
 
-  const UploadImageSection({Key? key, required this.onUploadImageResponse})
+  const UploadImageMenu({Key? key, required this.onUploadImageResponse})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    List uploadImageList = [];
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
       BlocBuilder<PickAndUploadImageBloc, PickAndUploadImageStates>(
           builder: (context, state) {
@@ -34,19 +35,15 @@ class UploadImageSection extends StatelessWidget {
                 child: CircularProgressIndicator()),
           );
         } else if (state is ImagePickerLoaded) {
-          uploadImageList.add(state.uploadPictureModel.data);
+              uploadImageList.add(state.uploadPictureModel.data);
           onUploadImageResponse(uploadImageList);
+          imagesList = List.from(state.imagePathsList);
           return (state.isImageAttached == true)
               ? UploadPictureContainer(
                   imagePathsList: state.imagePathsList,
-                  isImageAttached: state.isImageAttached)
+                  isImageAttached: state.isImageAttached,
+                  uploadPictureModel: state.uploadPictureModel)
               : const SizedBox();
-        } else if (state is RemovePickedImage) {
-          return Visibility(
-              visible: state.isImageAttached == true,
-              child: UploadPictureContainer(
-                  imagePathsList: state.imagePathsList,
-                  isImageAttached: state.isImageAttached));
         } else if (state is ImagePickerError) {
           return Text(
             state.errorMessage,
@@ -62,14 +59,12 @@ class UploadImageSection extends StatelessWidget {
                 context: context,
                 builder: (context) {
                   return UploadAlertDialog(onCamera: () {
-                    context
-                        .read<PickAndUploadImageBloc>()
-                        .add(RequestCameraPermission());
+                    context.read<PickAndUploadImageBloc>().add(PickCameraImage(
+                        cameraImageList: imagesList, isImageAttached: null));
                     Navigator.pop(context);
                   }, onDevice: () {
-                    context
-                        .read<PickAndUploadImageBloc>()
-                        .add(RequestGalleryPermission());
+                    context.read<PickAndUploadImageBloc>().add(PickGalleryImage(
+                        isImageAttached: null, galleryImagesList: imagesList));
                     Navigator.pop(context);
                   });
                 });

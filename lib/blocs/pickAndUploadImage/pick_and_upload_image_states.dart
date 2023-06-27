@@ -6,12 +6,12 @@ abstract class PickAndUploadImageStates extends Equatable {}
 
 class PermissionInitial extends PickAndUploadImageStates {
   @override
-  List<Object?> get props => throw UnimplementedError();
+  List<Object?> get props => [];
 }
 
 class PickImageLoading extends PickAndUploadImageStates {
   @override
-  List<Object?> get props => throw UnimplementedError();
+  List<Object?> get props => [];
 }
 
 class ImagePickerLoaded extends PickAndUploadImageStates {
@@ -45,7 +45,7 @@ class ImageNotUploaded extends PickAndUploadImageStates {
   ImageNotUploaded({required this.imageNotUploaded});
 
   @override
-  List<Object> get props => [imageNotUploaded];
+  List<Object> get props => [];
 }
 
 class RemovePickedImage extends PickAndUploadImageStates {

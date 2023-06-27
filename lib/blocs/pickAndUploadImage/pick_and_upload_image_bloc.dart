@@ -18,63 +18,62 @@ class PickAndUploadImageBloc
       getIt<UploadImageRepository>();
   final ImagePicker _imagePicker = ImagePicker();
   final CustomerCache _customerCache = getIt<CustomerCache>();
-  List imagePathsList = [];
-  String imagePath = '';
 
   PickAndUploadImageStates get initialState => PermissionInitial();
 
   PickAndUploadImageBloc() : super(PermissionInitial()) {
-    on<RequestCameraPermission>(_requestCameraPermission);
-    on<RequestGalleryPermission>(_requestGalleryPermission);
+    on<UploadInitial>(_uploadInitial);
     on<PickCameraImage>(_pickCameraImage);
     on<PickGalleryImage>(_pickGalleryImage);
     on<UploadImageEvent>(_uploadImageEvent);
+    on<RemoveImage>(_removeImage);
   }
 
-  _requestCameraPermission(RequestCameraPermission event,
-      Emitter<PickAndUploadImageStates> emit) async {
-    final status = await Permission.camera.request();
-    if (status == PermissionStatus.granted) {
-      add(const PickCameraImage(isImageAttached: true, cameraImageList: []));
-    } else {
-      openAppSettings();
-    }
-  }
-
-  _requestGalleryPermission(RequestGalleryPermission event,
-      Emitter<PickAndUploadImageStates> emit) async {
-    final status = await Permission.storage.request();
-    if (status.isGranted) {
-      add(const PickGalleryImage(isImageAttached: true, galleryImagesList: []));
-    } else {
-      openAppSettings();
-    }
+  _uploadInitial(UploadInitial event, Emitter<PickAndUploadImageStates> emit) {
+    emit(PermissionInitial());
   }
 
   FutureOr<void> _pickCameraImage(
       PickCameraImage event, Emitter<PickAndUploadImageStates> emit) async {
     try {
-      if (event.isImageAttached == false) {
-        if (event.index! >= 0 && event.index! < event.cameraImageList.length) {
-          event.cameraImageList.remove(event.index!);
+      Future<bool> handlePermission() async {
+        final cameraStatus = await Permission.camera.request();
+        if (cameraStatus == PermissionStatus.denied) {
+          openAppSettings();
+        } else if (cameraStatus == PermissionStatus.permanentlyDenied) {
+          emit(ImagePickerError(StringConstants.kPermissionsDenied));
         }
-        emit(RemovePickedImage(
-            isImageAttached: true,
-            imagePathsList: event.cameraImageList,
-            imagePath: imagePath));
+        return true;
+      }
+
+      final hasPermission = await handlePermission();
+      if (!hasPermission) {
+        return;
       } else {
+        bool isAttached = false;
+        List cameraPathsList = List.from(event.cameraImageList);
+        String imagePath = '';
         final pickedFile = await _imagePicker.pickImage(
             source: ImageSource.camera, imageQuality: 25);
         emit(PickImageLoading());
         if (pickedFile != null) {
-          imagePathsList.add(pickedFile.path);
-          for (int i = 0; i < imagePathsList.length; i++) {
-            imagePath = imagePathsList[i];
+          isAttached = true;
+          cameraPathsList.add(pickedFile.path);
+          for (int i = 0; i < cameraPathsList.length; i++) {
+            imagePath = cameraPathsList[i];
           }
-          event.isImageAttached == true
+          (isAttached == true)
               ? add(UploadImageEvent(
-                  imageFile: imagePath, isImageAttached: event.isImageAttached))
+                  imageFile: imagePath,
+                  isImageAttached: isAttached,
+                  imagesList: cameraPathsList))
               : false;
+        } else {
+          isAttached = false;
+          add(UploadImageEvent(
+              imageFile: '',
+              isImageAttached: isAttached,
+              imagesList: cameraPathsList));
         }
       }
     } catch (e) {
@@ -84,29 +83,45 @@ class PickAndUploadImageBloc
 
   FutureOr<void> _pickGalleryImage(
       PickGalleryImage event, Emitter<PickAndUploadImageStates> emit) async {
-    emit(PickImageLoading());
     try {
-      if (event.isImageAttached == false) {
-        if (event.index! >= 0 &&
-            event.index! < event.galleryImagesList.length) {
-          event.galleryImagesList.removeAt(event.index!);
+      Future<bool> handlePermission() async {
+        final galleryStatus = await Permission.storage.request();
+        if (galleryStatus == PermissionStatus.denied) {
+          openAppSettings();
+        } else if (galleryStatus == PermissionStatus.permanentlyDenied) {
+          emit(ImagePickerError(StringConstants.kPermissionsDenied));
         }
-        emit(RemovePickedImage(
-            isImageAttached: true,
-            imagePathsList: event.galleryImagesList,
-            imagePath: imagePath));
+        return true;
+      }
+
+      final hasPermission = await handlePermission();
+      if (!hasPermission) {
+        return;
       } else {
+        bool isAttached = false;
+        List galleryPathsList = List.from(event.galleryImagesList);
+        String imagePath = '';
         final pickedFile =
             await _imagePicker.pickImage(source: ImageSource.gallery);
+        emit(PickImageLoading());
         if (pickedFile != null) {
-          imagePathsList.add(pickedFile.path);
-          for (int i = 0; i < imagePathsList.length; i++) {
-            imagePath = imagePathsList[i];
+          isAttached = true;
+          galleryPathsList.add(pickedFile.path);
+          for (int i = 0; i < galleryPathsList.length; i++) {
+            imagePath = galleryPathsList[i];
           }
-          (event.isImageAttached == true)
+          (isAttached == true)
               ? add(UploadImageEvent(
-                  imageFile: imagePath, isImageAttached: event.isImageAttached))
-              : null;
+                  imageFile: imagePath,
+                  isImageAttached: isAttached,
+                  imagesList: galleryPathsList))
+              : false;
+        } else {
+          isAttached = false;
+          add(UploadImageEvent(
+              imageFile: '',
+              isImageAttached: isAttached,
+              imagesList: galleryPathsList));
         }
       }
     } catch (e) {
@@ -122,12 +137,26 @@ class PickAndUploadImageBloc
           .uploadImage(File(event.imageFile), hashCode);
       emit(ImagePickerLoaded(
           isImageAttached: event.isImageAttached,
-          imagePathsList: imagePathsList,
-          imagePath: imagePath,
+          imagePathsList: event.imagesList,
+          imagePath: event.imageFile,
           uploadPictureModel: uploadPictureModel));
     } catch (e) {
       emit(ImageNotUploaded(
           imageNotUploaded: StringConstants.kErrorImageUpload));
+    }
+  }
+
+  _removeImage(RemoveImage event, Emitter<PickAndUploadImageStates> emit) {
+    bool isAttached = true;
+    List images = List.from(event.imagesList);
+    if (event.index >= 0 && event.index < images.length) {
+      images.removeAt(event.index);
+      images.isEmpty ? isAttached = false : isAttached = true;
+      emit(ImagePickerLoaded(
+          isImageAttached: isAttached,
+          imagePathsList: images,
+          imagePath: '',
+          uploadPictureModel: event.uploadPictureModel));
     }
   }
 }
