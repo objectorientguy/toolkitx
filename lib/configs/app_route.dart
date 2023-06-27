@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:toolkit/screens/checklist/workforce/workforce_list_screen.dart';
+import '../data/models/permit/permit_details_model.dart';
 import '../screens/checklist/systemUser/sys_user_workforce_list_screen.dart';
 import '../screens/checklist/workforce/add_image_and_comments_screen.dart';
 import '../screens/checklist/workforce/workforce_edit_answer_screen.dart';
@@ -11,6 +12,7 @@ import '../screens/checklist/systemUser/sys_user_schedule_dates_screen.dart';
 import '../screens/checklist/systemUser/sys_user_filters_screen.dart';
 import '../screens/checklist/workforce/workforce_reject_reason_screen.dart';
 import '../screens/incident/category_screen.dart';
+import '../screens/incident/change_role_screen.dart';
 import '../screens/incident/filter_screen.dart';
 import '../screens/incident/incident_list_screen.dart';
 import '../screens/onboarding/client_list_screen.dart';
@@ -20,6 +22,9 @@ import '../screens/onboarding/login/password_screen.dart';
 import '../screens/onboarding/selectDateFormat/select_date_format_screen.dart';
 import '../screens/onboarding/selectTimeZone/select_time_zone_screen.dart';
 import '../screens/onboarding/welcome_screen.dart';
+import '../screens/permit/close_permit_screen.dart';
+import '../screens/permit/open_permit_screen.dart';
+import '../screens/permit/permit_filter_screen.dart';
 import '../screens/profile/changePassword/change_password_screen.dart';
 import '../screens/profile/changePassword/select_change_password_screen.dart';
 import '../screens/profile/edit/profile_edit_screen.dart';
@@ -48,9 +53,8 @@ class AppRoutes {
       case PasswordScreen.routeName:
         return _createRoute(PasswordScreen());
       case RootScreen.routeName:
-        return _createRoute(RootScreen(
-          isFromClientList: settings.arguments as bool,
-        ));
+        return _createRoute(
+            RootScreen(isFromClientList: settings.arguments as bool));
       case ProfileEditScreen.routeName:
         return _createRoute(const ProfileEditScreen());
       case SystemUserScheduleDatesScreen.routeName:
@@ -70,14 +74,20 @@ class AppRoutes {
         return _createRoute(const IncidentListScreen());
       case IncidentFilterScreen.routeName:
         return _createRoute(const IncidentFilterScreen());
+      case IncidentChangeRoleScreen.routeName:
+        return _createRoute(const IncidentChangeRoleScreen());
       case CategoryScreen.routeName:
         return _createRoute(const CategoryScreen());
       case PermitListScreen.routeName:
-        return _createRoute(const PermitListScreen());
+        return _createRoute(
+            PermitListScreen(isFromHome: settings.arguments as bool));
       case PermitDetailsScreen.routeName:
-        return _createRoute(const PermitDetailsScreen());
+        return _createRoute(
+            PermitDetailsScreen(permitId: settings.arguments as String));
       case GetPermitRolesScreen.routeName:
         return _createRoute(const GetPermitRolesScreen());
+      case PermitFilterScreen.routeName:
+        return _createRoute(PermitFilterScreen());
       case ClientListScreen.routeName:
         return _createRoute(const ClientListScreen());
       case SelectChangePasswordTypeScreen.routeName:
@@ -101,6 +111,12 @@ class AppRoutes {
       case InAppWebViewScreen.routeName:
         return _createRoute(
             InAppWebViewScreen(url: settings.arguments as String));
+      case ClosePermitScreen.routeName:
+        return _createRoute(ClosePermitScreen(
+            permitDetailsModel: settings.arguments as PermitDetailsModel));
+      case OpenPermitScreen.routeName:
+        return _createRoute(OpenPermitScreen(
+            permitDetailsModel: settings.arguments as PermitDetailsModel));
       default:
         return _createRoute(const WelcomeScreen());
     }

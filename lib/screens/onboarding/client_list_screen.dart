@@ -55,7 +55,7 @@ class ClientListScreen extends StatelessWidget {
                             itemCount: state.clientListModel.data!.length,
                             itemBuilder: (context, index) {
                               return CustomCard(
-                                  child: GestureDetector(
+                                  child: InkWell(
                                       onTap: () {
                                         context
                                             .read<ClientBloc>()

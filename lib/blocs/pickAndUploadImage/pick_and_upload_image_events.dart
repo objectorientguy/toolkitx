@@ -1,18 +1,13 @@
-import 'package:equatable/equatable.dart';
+import '../../data/models/uploadImage/upload_image_model.dart';
 
-abstract class PickAndUploadImage extends Equatable {
+abstract class PickAndUploadImage {
   const PickAndUploadImage();
-
-  @override
-  List<Object> get props => [];
 }
 
-class RequestCameraPermission extends PickAndUploadImage {}
-
-class RequestGalleryPermission extends PickAndUploadImage {}
+class UploadInitial extends PickAndUploadImage {}
 
 class PickCameraImage extends PickAndUploadImage {
-  final bool isImageAttached;
+  final bool? isImageAttached;
   final List cameraImageList;
   final int? index;
 
@@ -23,9 +18,8 @@ class PickCameraImage extends PickAndUploadImage {
 }
 
 class PickGalleryImage extends PickAndUploadImage {
-  final bool isImageAttached;
+  final bool? isImageAttached;
   final List galleryImagesList;
-
   final int? index;
 
   const PickGalleryImage({
@@ -38,7 +32,21 @@ class PickGalleryImage extends PickAndUploadImage {
 class UploadImageEvent extends PickAndUploadImage {
   final String imageFile;
   final bool isImageAttached;
+  final List imagesList;
 
   const UploadImageEvent(
-      {required this.isImageAttached, required this.imageFile});
+      {required this.imagesList,
+      required this.isImageAttached,
+      required this.imageFile});
+}
+
+class RemoveImage extends PickAndUploadImage {
+  final List imagesList;
+  final UploadPictureModel uploadPictureModel;
+  final int index;
+
+  RemoveImage(
+      {required this.uploadPictureModel,
+      required this.index,
+      required this.imagesList});
 }

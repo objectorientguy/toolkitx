@@ -25,8 +25,14 @@ class OnBoardingBloc extends Bloc<OnBoardingEvents, OnBoardingStates> {
     try {
       bool isLoggedIn =
           (await _customerCache.getIsLoggedIn(CacheKeys.isLoggedIn))!;
+      String? apiKey;
       if (isLoggedIn == true) {
-        emit(LoggedIn());
+        apiKey = await _customerCache.getDateFormat(CacheKeys.dateFormatKey);
+        if (apiKey == null) {
+          emit(ClientNotSelected());
+        } else {
+          emit(LoggedIn());
+        }
       } else {
         add(CheckDateFormatSelected());
       }

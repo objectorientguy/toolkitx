@@ -13,6 +13,7 @@ import '../../../configs/app_spacing.dart';
 import '../../../data/models/language/languages_model.dart';
 import '../../../utils/constants/api_constants.dart';
 import '../../../utils/constants/string_constants.dart';
+import '../../../utils/database_utils.dart';
 import '../../../widgets/custom_card.dart';
 
 class SelectLanguageBody extends StatelessWidget {
@@ -60,7 +61,7 @@ class SelectLanguageBody extends StatelessWidget {
                               size: kIconSize)),
                       title: Text(getLanguagesData.langName))));
         },
-        emptyWidget: const Text(StringConstants.kNoRecordsFound),
+        emptyWidget: Text(DatabaseUtil.getText('no_records_found')),
         filter: (value) => getLanguagesData
             .where((element) => element.langName
                 .toLowerCase()

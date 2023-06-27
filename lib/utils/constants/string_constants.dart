@@ -43,6 +43,8 @@ abstract class StringConstants {
   static const String kChecklistNotEditable =
       'After submitting you will not be able to edit the checklist again.';
   static const String kFailedToCaptureImage = 'Failed to capture image';
+  static const String kPermissionsDenied =
+      'Permissions are permanently denied. Please provide permission through setting.';
   static const String kEnterNewPassword =
       'Enter New Password'; // comment lines indicates that keys are not available
   static const String kConfirmPassword = 'Confirm Password'; //
@@ -67,31 +69,19 @@ abstract class StringConstants {
   static const String kReject = 'Reject'; //
   static const String kDialogContent =
       "The language file doesn't exist or an old version.Please download the latest language file."; //
-  static const String kNo = 'NO';
-  static const String kYes = 'YES';
   static const String kReload = 'RELOAD'; //
   static const String kDownloadPdf = 'Pdf';
   static const String kOk = 'Ok';
   static const String kDateFormatValidate = 'Please select a Date Format!'; //
-  static const String kEditProfile = 'Edit Profile';
-  static const String kChangeClient = 'Change Client';
-  static const String kLogout = 'Logout';
   static const String kChangePassword = 'Change Password'; //
   static const String kChangeLanguage = 'Change Language';
   static const String kChangeTimezone = 'Change Timezone';
   static const String kChangeDateFormat = 'Change DateFormat';
-  static const String kToolKitEmail = 'Mail us at info@toolkit.com';
-  static const String kPrivacyPolicy = 'Privacy Policy';
-  static const String kMaturityModel = 'PTW Maturity Model';
   static const String kPrivacyPolicyUrl =
       'https://www.toolkitx.com/privacypolicy.html';
   static const String kMaturityModelUrl =
       'https://www.toolkitx.com/campaign/permit-to-work/';
   static const String kToolkitXEmail = 'info@toolkit.com';
-  static const String kFirstName = 'First Name';
-  static const String kLastName = 'Last Name';
-  static const String kContact = 'Contact';
-  static const String kBloodGroup = 'Blood Group';
   static const String kSelectBloodGroup = 'Select Blood Group'; //
   static const String kSelectCategory = 'Select Category';
   static const String kSignature = 'Signature';
@@ -157,4 +147,28 @@ abstract class StringConstants {
   static const String kNoRecordsFound = 'No records found';
   static const String kSearchLanguage = 'Search language';
   static const String kSearchTimezone = 'Search timezone';
+  static const String kPermitType = 'Permit Type';
+  static const String kEmergency = 'Emergency';
+  static const String kKeywords = 'Keywords';
+  static const String kFilter = 'Filter';
+  static const String kGeneratePdf = 'Generate PDF';
+  static const String kClosePermit = 'Close Permit';
+  static const String kOpenPermit = 'Open Permit';
+  static const String kRequestPermit = 'Request Permit';
+  static const String kPermitNo = 'Permit No';
+  static const String kKeySafeNo = 'Key Safe No';
+  static const String kKeySafeKeyNo = 'Key Safe Key No';
+  static const String kEarthingScheduleNo = 'Earthing Schedule No';
+  static const String kSelectedPersonReport = 'Selected Person Report';
+  static const String kPortableDrainEarth = 'Portable Drain Earth';
+  static const String kCircuitIdentificationFlag =
+      'Circuit Identification Flag';
+  static const String kCircuitIdentificationWristlets =
+      'Circuit Identification Wristlets';
+  static const String kSingleLineDiagram = 'Single Line Diagram';
+  static const String kPID = 'P&ID';
+  static const String kControlPerson = 'Control Person(s)';
+  static const String kCLOSEPERMIT = 'CLOSE PERMIT';
+  static const String kOPENPERMIT = 'OPEN PERMIT';
+  static const String kNoRecordsFilter = 'No records found for these filters';
 }
