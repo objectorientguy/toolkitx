@@ -35,7 +35,7 @@ class UploadImageMenu extends StatelessWidget {
                 child: CircularProgressIndicator()),
           );
         } else if (state is ImagePickerLoaded) {
-              uploadImageList.add(state.uploadPictureModel.data);
+          uploadImageList.add(state.uploadPictureModel.data);
           onUploadImageResponse(uploadImageList);
           imagesList = List.from(state.imagePathsList);
           return (state.isImageAttached == true)
