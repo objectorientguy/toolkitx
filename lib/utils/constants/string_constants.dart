@@ -43,6 +43,11 @@ abstract class StringConstants {
   static const String kChecklistNotEditable =
       'After submitting you will not be able to edit the checklist again.';
   static const String kFailedToCaptureImage = 'Failed to capture image';
+  static const String kCustomFieldInfo = 'Custom field info';
+  static const String kCustomField = 'Custom Field';
+  static const String kViewCustomField = 'Tap to view custom field info';
+  static const String kComment = 'Comment';
+  static const String kViewComment = 'Tap to view comment';
   static const String kPermissionsDenied =
       'Permissions are permanently denied. Please provide permission through setting.';
   static const String kEnterNewPassword =

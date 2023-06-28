@@ -52,3 +52,5 @@ const double kTimeSpanFieldWidth = 150;
 const double kDataCellWidth = 170;
 const double kElevationButtonWidth = 45.0;
 const double kFilterTags = 6;
+const double kCachedNetworkImageHeight = 30;
+const double kNetworkImageContainerTogether = 50;
