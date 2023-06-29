@@ -12,6 +12,7 @@ import 'package:toolkit/blocs/checklist/systemUser/submitHeader/sys_user_checkli
 import 'package:toolkit/blocs/checklist/systemUser/thirdPartyApprove/sys_user_checklist_third_party_approve_bloc.dart';
 import 'package:toolkit/blocs/incident/incidentDetails/incident_details_bloc.dart';
 import 'package:toolkit/blocs/incident/incidentGetAndChangeRole/incident_get_and_change_role_bloc.dart';
+import 'package:toolkit/blocs/incident/incidentRemoveLinkedPermit/incident_remove_linked_permit_bloc.dart';
 import 'package:toolkit/blocs/pickAndUploadImage/pick_and_upload_image_bloc.dart';
 import 'package:toolkit/screens/onboarding/client_list_screen.dart';
 import 'package:toolkit/utils/database_utils.dart';
@@ -126,6 +127,9 @@ class MyApp extends StatelessWidget {
               lazy: false, create: (context) => PickAndUploadImageBloc()),
           BlocProvider(lazy: false, create: (context) => IncidentListBloc()),
           BlocProvider(lazy: false, create: (context) => IncidentDetailsBloc()),
+          BlocProvider(
+              lazy: false,
+              create: (context) => IncidentRemoveLinkedPermitBloc()),
           BlocProvider(
               lazy: false,
               create: (context) => OnBoardingBloc()..add(CheckLoggedIn()))
