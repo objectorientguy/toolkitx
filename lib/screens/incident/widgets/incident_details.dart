@@ -2,23 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:toolkit/configs/app_spacing.dart';
 import 'package:toolkit/configs/app_theme.dart';
 import 'package:toolkit/data/models/incident/incident_details_model.dart';
-import 'package:toolkit/screens/incident/widgets/view_incident_details_network_image.dart';
-import 'package:url_launcher/url_launcher_string.dart';
 
 import '../../../configs/app_color.dart';
-import '../../../utils/constants/api_constants.dart';
 import '../../../utils/database_utils.dart';
+import 'incident_details_view_network_image.dart';
+import 'incident_map_links_list.dart';
 
 class IncidentDetails extends StatelessWidget {
   final IncidentDetailsModel incidentDetailsModel;
-  final List fileNames;
-  final String fileRandomValue;
+  final String clientId;
 
   const IncidentDetails(
-      {Key? key,
-      required this.incidentDetailsModel,
-      required this.fileNames,
-      required this.fileRandomValue})
+      {Key? key, required this.incidentDetailsModel, required this.clientId})
       : super(key: key);
 
   @override
@@ -84,43 +79,7 @@ class IncidentDetails extends StatelessWidget {
             Text(incidentDetailsModel.data!.locationname,
                 style: Theme.of(context).textTheme.small),
             const SizedBox(height: xxTinierSpacing),
-            ListView.separated(
-                physics: const BouncingScrollPhysics(),
-                itemCount: incidentDetailsModel.data!.maplinks!.length,
-                shrinkWrap: true,
-                separatorBuilder: (context, index) {
-                  return const SizedBox(height: xxTinierSpacing);
-                },
-                itemBuilder: (context, index) {
-                  return InkWell(
-                      onTap: () {
-                        launchUrlString(
-                            incidentDetailsModel.data!.maplinks![index].link,
-                            mode: LaunchMode.inAppWebView);
-                      },
-                      child: RichText(
-                        overflow: TextOverflow.ellipsis,
-                        textAlign: TextAlign.end,
-                        textDirection: TextDirection.rtl,
-                        softWrap: true,
-                        maxLines: 2,
-                        textScaleFactor: 1,
-                        text: TextSpan(
-                          text:
-                              "${incidentDetailsModel.data!.maplinks![index].name} : ",
-                          style: DefaultTextStyle.of(context).style,
-                          children: <TextSpan>[
-                            TextSpan(
-                                text: incidentDetailsModel
-                                    .data!.maplinks![index].link,
-                                style:
-                                    Theme.of(context).textTheme.xSmall.copyWith(
-                                          color: AppColor.deepBlue,
-                                        )),
-                          ],
-                        ),
-                      ));
-                }),
+            IncidentMapLinksList(incidentDetailsModel: incidentDetailsModel),
             const SizedBox(height: tiny),
             Text(
               DatabaseUtil.getText('Reportedauthority'),
@@ -154,16 +113,9 @@ class IncidentDetails extends StatelessWidget {
             const SizedBox(height: xxTinierSpacing),
             Visibility(
               visible: incidentDetailsModel.data!.files.isNotEmpty,
-              child: ViewIncidentDetailsNetworkImage(
-                onTap: () {
-                  launchUrlString(
-                      '${ApiConstants.viewDocBaseUrl}${fileNames[0]}&code=$fileRandomValue',
-                      mode: LaunchMode.inAppWebView);
-                },
-                imageUrl:
-                    '${ApiConstants.viewDocBaseUrl}${fileNames[0]}&code=$fileRandomValue',
-                itemCount: fileNames.length,
-              ),
+              child: IncidentDetailsViewNetworkImage(
+                  incidentDetailsModel: incidentDetailsModel,
+                  clientId: clientId),
             ),
             const SizedBox(height: tiny)
           ],

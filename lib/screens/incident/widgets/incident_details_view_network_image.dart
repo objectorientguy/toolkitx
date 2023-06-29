@@ -10,12 +10,12 @@ import '../../../utils/constants/api_constants.dart';
 import '../../../utils/generic_alphanumeric_generator_util.dart';
 import '../../../utils/incident_view_image_util.dart';
 
-class IncidentCommentViewNetworkImage extends StatelessWidget {
-  final Commentslist commentsList;
+class IncidentDetailsViewNetworkImage extends StatelessWidget {
+  final IncidentDetailsModel incidentDetailsModel;
   final String clientId;
 
-  const IncidentCommentViewNetworkImage(
-      {Key? key, required this.commentsList, required this.clientId})
+  const IncidentDetailsViewNetworkImage(
+      {Key? key, required this.incidentDetailsModel, required this.clientId})
       : super(key: key);
 
   @override
@@ -24,26 +24,26 @@ class IncidentCommentViewNetworkImage extends StatelessWidget {
         physics: const BouncingScrollPhysics(),
         shrinkWrap: true,
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            childAspectRatio: 180 / 180,
+            childAspectRatio: 200 / 350,
             crossAxisCount: 4,
             crossAxisSpacing: tinier,
             mainAxisSpacing: tinier),
-        itemCount:
-            IncidentViewImageUtil.viewImageList(commentsList.files.toString())
-                .length,
+        itemCount: IncidentViewImageUtil.viewImageList(
+                incidentDetailsModel.data!.files)
+            .length,
         itemBuilder: (context, index) {
           return InkWell(
               splashColor: AppColor.transparent,
               highlightColor: AppColor.transparent,
               onTap: () {
                 launchUrlString(
-                    '${ApiConstants.viewDocBaseUrl}${IncidentViewImageUtil.viewImageList(commentsList.files.toString())[index]}&code=${RandomValueGeneratorUtil.generateRandomValue(clientId)}',
+                    '${ApiConstants.viewDocBaseUrl}${IncidentViewImageUtil.viewImageList(incidentDetailsModel.data!.files)[index]}&code=${RandomValueGeneratorUtil.generateRandomValue(clientId)}',
                     mode: LaunchMode.inAppWebView);
               },
               child: CachedNetworkImage(
                   height: kCachedNetworkImageHeight,
                   imageUrl:
-                      '${ApiConstants.viewDocBaseUrl}${IncidentViewImageUtil.viewImageList(commentsList.files.toString())[index]}&code=${RandomValueGeneratorUtil.generateRandomValue(clientId)}',
+                      '${ApiConstants.viewDocBaseUrl}${IncidentViewImageUtil.viewImageList(incidentDetailsModel.data!.files)[index]}&code=${RandomValueGeneratorUtil.generateRandomValue(clientId)}',
                   placeholder: (context, url) => Shimmer.fromColors(
                       baseColor: Colors.grey.shade100,
                       highlightColor: AppColor.white,

@@ -191,7 +191,7 @@ class Commentslist {
   final String ownername;
   final dynamic rolenames;
   final String created;
-  final dynamic files;
+  final String? files;
   final String comments;
 
   Commentslist({
@@ -221,14 +221,14 @@ class Commentslist {
 
 class Customfield {
   final String title;
-  final String fieldvalue;
+  final String? fieldvalue;
   final int? fieldtype;
   final int fieldid;
   final String optionid;
 
   Customfield({
     required this.title,
-    required this.fieldvalue,
+    this.fieldvalue,
     this.fieldtype,
     required this.fieldid,
     required this.optionid,

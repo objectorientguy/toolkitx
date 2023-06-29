@@ -1,6 +1,4 @@
 import 'dart:async';
-import 'dart:convert';
-import 'dart:math';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:toolkit/repositories/incident/incident_repository.dart';
 import '../../../../data/cache/cache_keys.dart';
@@ -25,26 +23,13 @@ class IncidentDetailsBloc
       Emitter<IncidentDetailsStates> emit) async {
     emit(FetchingIncidentDetails());
     try {
-      List files = [];
       String hashCode = (await _customerCache.getHashCode(CacheKeys.hashcode))!;
       String userId = (await _customerCache.getUserId(CacheKeys.userId))!;
       String hashKey = (await _customerCache.getClientId(CacheKeys.clientId))!;
       IncidentDetailsModel incidentDetailsModel = await _incidentRepository
           .fetchIncidentDetails(event.incidentId, hashCode, userId, event.role);
-      String fileNames = incidentDetailsModel.data!.files;
-      files = jsonDecode(jsonEncode(fileNames.split(',')));
-      const chars =
-          'AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz1234567890';
-      Random rnd = Random();
-      String getRandomString(int length) =>
-          String.fromCharCodes(Iterable.generate(
-              length, (_) => chars.codeUnitAt(rnd.nextInt(chars.length))));
-      String randomValue = getRandomString(16);
-      String filesRandomValue = randomValue + hashKey;
       emit(IncidentDetailsFetched(
-          incidentDetailsModel: incidentDetailsModel,
-          files: files,
-          randomValue: filesRandomValue));
+          incidentDetailsModel: incidentDetailsModel, clientId: hashKey));
     } catch (e) {
       emit(IncidentDetailsNotFetched());
     }

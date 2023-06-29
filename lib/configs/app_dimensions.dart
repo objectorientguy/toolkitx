@@ -54,3 +54,4 @@ const double kElevationButtonWidth = 45.0;
 const double kFilterTags = 6;
 const double kCachedNetworkImageHeight = 30;
 const double kNetworkImageContainerTogether = 50;
+const double kNetworkImageTrailingTogether = 80;

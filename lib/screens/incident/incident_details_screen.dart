@@ -7,7 +7,10 @@ import 'package:toolkit/configs/app_theme.dart';
 import 'package:toolkit/screens/incident/widgets/incident_custom_field_info.dart';
 import 'package:toolkit/screens/incident/widgets/incident_details.dart';
 import 'package:toolkit/screens/incident/widgets/incident_details_comment.dart';
+import 'package:toolkit/screens/incident/widgets/incident_injured_person_list.dart';
+import 'package:toolkit/utils/constants/string_constants.dart';
 import 'package:toolkit/utils/incident_util.dart';
+import 'package:toolkit/widgets/error_section.dart';
 
 import '../../blocs/incident/incidentDetails/incident_details_states.dart';
 import '../../configs/app_color.dart';
@@ -79,18 +82,32 @@ class IncidentDetailsScreen extends StatelessWidget {
                             IncidentDetails(
                                 incidentDetailsModel:
                                     state.incidentDetailsModel,
-                                fileNames: state.files,
-                                fileRandomValue: state.randomValue),
+                                clientId: state.clientId),
                             IncidentCustomFieldInfo(
                                 incidentDetailsModel:
                                     state.incidentDetailsModel),
                             PermitDetailsComment(
                                 incidentDetailsModel:
                                     state.incidentDetailsModel,
-                                fileNames: state.files,
-                                fileRandomValue: state.randomValue)
+                                clientId: state.clientId),
+                            IncidentInjuredPersonList(
+                                incidentDetailsModel:
+                                    state.incidentDetailsModel)
                           ])
                     ]));
+              } else if (state is IncidentDetailsNotFetched) {
+                return Center(
+                  child: GenericReloadButton(
+                      onPressed: () {
+                        context.read<IncidentDetailsBloc>().add(
+                            FetchIncidentDetailsEvent(
+                                incidentId: incidentListDatum.id,
+                                role: context
+                                    .read<IncidentFetchAndChangeRoleBloc>()
+                                    .roleId));
+                      },
+                      textValue: StringConstants.kReload),
+                );
               } else {
                 return const SizedBox();
               }

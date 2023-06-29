@@ -8,13 +8,10 @@ class FetchingIncidentDetails extends IncidentDetailsStates {}
 
 class IncidentDetailsFetched extends IncidentDetailsStates {
   final IncidentDetailsModel incidentDetailsModel;
-  final List files;
-  final String randomValue;
+  final String clientId;
 
   IncidentDetailsFetched(
-      {required this.randomValue,
-      required this.files,
-      required this.incidentDetailsModel});
+      {required this.clientId, required this.incidentDetailsModel});
 }
 
 class IncidentDetailsNotFetched extends IncidentDetailsStates {}
