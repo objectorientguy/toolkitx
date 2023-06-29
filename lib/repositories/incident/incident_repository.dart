@@ -4,8 +4,6 @@ import '../../data/models/incident/incident_fetch_roles_model.dart';
 abstract class IncidentRepository {
   Future<FetchIncidentsListModel> fetchIncidents(
       String userId, String hashCode, String filter, String role);
-      String userId, String hashCode);
-
   Future<IncidentFetchRolesModel> fetchIncidentRole(
       String hashCode, String userId);
 }

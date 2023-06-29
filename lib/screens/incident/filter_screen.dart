@@ -80,9 +80,9 @@ class IncidentFilterScreen extends StatelessWidget {
                           ApplyIncidentFilter(
                               incidentFilterMap: incidentFilterMap));
                       Navigator.pop(context);
-                      context
-                          .read<IncidentLisAndFilterBloc>()
-                          .add(FetchIncidentListEvent(isFromHome: false));
+                      context.read<IncidentLisAndFilterBloc>().add(
+                          FetchIncidentListEvent(
+                              isFromHome: false, roleId: ''));
                     }
                   },
                   textValue: DatabaseUtil.getText('Apply'))

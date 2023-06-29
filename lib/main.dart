@@ -119,12 +119,12 @@ class MyApp extends StatelessWidget {
               lazy: false,
               create: (context) => WorkForceCheckListSaveRejectBloc()),
           BlocProvider(
-              lazy: true,
-              create: (context) => IncidentFetchAndChangeRoleBloc()),
-          BlocProvider(
               lazy: false, create: (context) => PickAndUploadImageBloc()),
           BlocProvider(
               lazy: false, create: (context) => IncidentLisAndFilterBloc()),
+          BlocProvider(
+              lazy: true,
+              create: (context) => IncidentFetchAndChangeRoleBloc()),
           BlocProvider(
               lazy: false,
               create: (context) => OnBoardingBloc()..add(CheckLoggedIn()))

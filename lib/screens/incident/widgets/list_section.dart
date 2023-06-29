@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:toolkit/configs/app_theme.dart';
+import '../../../blocs/incident/incidentGetAndChangeRole/incident_get_and_change_role_bloc.dart';
 import '../../../blocs/incident/incidentListAndFilter/incident_list_and_filter_bloc.dart';
 import '../../../blocs/incident/incidentListAndFilter/incident_list_and_filter_event.dart';
 import '../../../blocs/incident/incidentListAndFilter/incident_list_and_filter_state.dart';
@@ -126,9 +127,12 @@ class IncidentListSection extends StatelessWidget {
             } else if (state is IncidentsNotFetched) {
               return GenericReloadButton(
                   onPressed: () {
-                    context
-                        .read<IncidentLisAndFilterBloc>()
-                        .add(FetchIncidentListEvent(isFromHome: false));
+                    context.read<IncidentLisAndFilterBloc>().add(
+                        FetchIncidentListEvent(
+                            isFromHome: false,
+                            roleId: context
+                                .read<IncidentFetchAndChangeRoleBloc>()
+                                .roleId));
                   },
                   textValue: StringConstants.kReload);
             } else {

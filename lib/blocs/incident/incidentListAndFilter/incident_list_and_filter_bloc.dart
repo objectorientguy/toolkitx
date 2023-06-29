@@ -43,15 +43,14 @@ class IncidentLisAndFilterBloc
       String hashCode = (await _customerCache.getHashCode(CacheKeys.hashcode))!;
       if (event.isFromHome) {
         add(ClearIncidentFilters());
-        // clear role id here
         FetchIncidentsListModel fetchIncidentsListModel =
             await _incidentRepository.fetchIncidents(userId, hashCode, '', '');
         emit(IncidentsFetched(
             fetchIncidentsListModel: fetchIncidentsListModel, filterMap: {}));
       } else {
         FetchIncidentsListModel fetchIncidentsListModel =
-            await _incidentRepository.fetchIncidents(
-                userId, hashCode, jsonEncode(filters), ''); // add role id here.
+            await _incidentRepository.fetchIncidents(userId, hashCode,
+                jsonEncode(filters), event.roleId); // add role id here.
         emit(IncidentsFetched(
             fetchIncidentsListModel: fetchIncidentsListModel,
             filterMap: filters));

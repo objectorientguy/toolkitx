@@ -73,10 +73,9 @@ class AppRoutes {
       case IncidentListScreen.routeName:
         return _createRoute(const IncidentListScreen());
       case IncidentFilterScreen.routeName:
-        return _createRoute(const IncidentFilterScreen());
+        return _createRoute(IncidentFilterScreen());
       case IncidentChangeRoleScreen.routeName:
         return _createRoute(const IncidentChangeRoleScreen());
-        return _createRoute(IncidentFilterScreen());
       case CategoryScreen.routeName:
         return _createRoute(const CategoryScreen());
       case PermitListScreen.routeName:

@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:toolkit/blocs/incident/incidentGetAndChangeRole/incident_get_and_change_role_bloc.dart';
 import 'package:toolkit/configs/app_spacing.dart';
 import 'package:toolkit/screens/incident/widgets/list_body.dart';
 import 'package:toolkit/utils/database_utils.dart';
-
-import '../../blocs/incident/incidentGetAndChangeRole/incident_get_and_change_role_bloc.dart';
-import '../../blocs/incident/incidentList/incident_list_bloc.dart';
+import '../../blocs/incident/incidentListAndFilter/incident_list_and_filter_bloc.dart';
+import '../../blocs/incident/incidentListAndFilter/incident_list_and_filter_event.dart';
+import '../../blocs/incident/incidentListAndFilter/incident_list_and_filter_state.dart';
 import '../../widgets/custom_icon_button_row.dart';
 import '../../widgets/generic_app_bar.dart';
 import '../../widgets/text_button.dart';
@@ -24,7 +25,7 @@ class IncidentListScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     context
         .read<IncidentLisAndFilterBloc>()
-        .add(FetchIncidentListEvent(isFromHome: isFromHome));
+        .add(FetchIncidentListEvent(isFromHome: isFromHome, roleId: ''));
     return Scaffold(
       appBar: GenericAppBar(title: DatabaseUtil.getText('ReportanIncident')),
       floatingActionButton: FloatingActionButton(
@@ -38,16 +39,6 @@ class IncidentListScreen extends StatelessWidget {
             right: leftRightMargin,
             top: xxTinierSpacing),
         child: Column(children: [
-          CustomIconButtonRow(
-              primaryOnPress: () {
-                Navigator.pushNamed(context, IncidentFilterScreen.routeName);
-              },
-              secondaryOnPress: () {
-                Navigator.pushNamed(
-                    context, IncidentChangeRoleScreen.routeName);
-              },
-              isEnabled: true,
-              clearOnPress: () {}),
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
@@ -66,7 +57,11 @@ class IncidentListScreen extends StatelessWidget {
                                     .add(ClearIncidentFilters());
                                 context.read<IncidentLisAndFilterBloc>().add(
                                     FetchIncidentListEvent(
-                                        isFromHome: isFromHome));
+                                        isFromHome: isFromHome,
+                                        roleId: context
+                                            .read<
+                                                IncidentFetchAndChangeRoleBloc>()
+                                            .roleId));
                               },
                               textValue: DatabaseUtil.getText('Clear')));
                     } else {
@@ -78,7 +73,10 @@ class IncidentListScreen extends StatelessWidget {
                     Navigator.pushNamed(
                         context, IncidentFilterScreen.routeName);
                   },
-                  secondaryOnPress: () {},
+                  secondaryOnPress: () {
+                    Navigator.pushNamed(
+                        context, IncidentChangeRoleScreen.routeName);
+                  },
                   isEnabled: true,
                   clearOnPress: () {}),
             ],
