@@ -12,6 +12,8 @@ import '../../../blocs/checklist/workforce/comments/workforce_checklist_comments
 import '../../../blocs/checklist/workforce/comments/workforce_checklist_comments_events.dart';
 import '../../../blocs/checklist/workforce/comments/workforce_checklist_comments_states.dart';
 import '../../../blocs/checklist/workforce/getQuestionsList/workforce_checklist_get_questions_list_bloc.dart';
+import '../../../blocs/pickAndUploadImage/pick_and_upload_image_bloc.dart';
+import '../../../blocs/pickAndUploadImage/pick_and_upload_image_events.dart';
 import '../../../configs/app_color.dart';
 import '../../../widgets/generic_text_field.dart';
 import '../../../widgets/primary_button.dart';
@@ -30,6 +32,7 @@ class AddImageAndCommentScreen extends StatelessWidget {
     context
         .read<WorkForceCheckListCommentBloc>()
         .add(CheckListFetchComment(questionResponseId: questionResponseId));
+    context.read<PickAndUploadImageBloc>().add(UploadInitial());
     return Scaffold(
         appBar: const GenericAppBar(title: StringConstants.kAddCommentImage),
         body: Padding(
@@ -115,7 +118,7 @@ class AddImageAndCommentScreen extends StatelessWidget {
                                       .copyWith(
                                           color: AppColor.black,
                                           fontWeight: FontWeight.w500)),
-                              UploadImageSection(
+                              UploadImageMenu(
                                 onUploadImageResponse: (List uploadImageList) {
                                   saveQuestionCommentsMap["filenames"] =
                                       uploadImageList

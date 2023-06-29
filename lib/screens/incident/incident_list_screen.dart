@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:toolkit/configs/app_spacing.dart';
-import 'package:toolkit/screens/incident/widgets/list_section.dart';
+import 'package:toolkit/screens/incident/widgets/list_body.dart';
 import 'package:toolkit/utils/database_utils.dart';
-import '../../blocs/incident/incidentListAndFilter/incident_list_and_filter_bloc.dart';
-import '../../blocs/incident/incidentListAndFilter/incident_list_and_filter_event.dart';
-import '../../blocs/incident/incidentListAndFilter/incident_list_and_filter_state.dart';
+
+import '../../blocs/incident/incidentGetAndChangeRole/incident_get_and_change_role_bloc.dart';
+import '../../blocs/incident/incidentList/incident_list_bloc.dart';
 import '../../widgets/custom_icon_button_row.dart';
 import '../../widgets/generic_app_bar.dart';
 import '../../widgets/text_button.dart';
 import 'category_screen.dart';
+import 'change_role_screen.dart';
 import 'filter_screen.dart';
 
 class IncidentListScreen extends StatelessWidget {
@@ -37,6 +38,16 @@ class IncidentListScreen extends StatelessWidget {
             right: leftRightMargin,
             top: xxTinierSpacing),
         child: Column(children: [
+          CustomIconButtonRow(
+              primaryOnPress: () {
+                Navigator.pushNamed(context, IncidentFilterScreen.routeName);
+              },
+              secondaryOnPress: () {
+                Navigator.pushNamed(
+                    context, IncidentChangeRoleScreen.routeName);
+              },
+              isEnabled: true,
+              clearOnPress: () {}),
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
@@ -73,7 +84,7 @@ class IncidentListScreen extends StatelessWidget {
             ],
           ),
           const SizedBox(height: xxTinierSpacing),
-          const IncidentListSection(),
+          const IncidentListBody(),
           const SizedBox(height: xxTinySpacing)
         ]),
       ),

@@ -10,6 +10,7 @@ import 'package:toolkit/blocs/checklist/systemUser/scheduleDates/sys_user_checkl
 import 'package:toolkit/blocs/checklist/systemUser/scheduleDatesResponse/checklist_schedule_dates_response_bloc.dart';
 import 'package:toolkit/blocs/checklist/systemUser/submitHeader/sys_user_checklist_header_bloc.dart';
 import 'package:toolkit/blocs/checklist/systemUser/thirdPartyApprove/sys_user_checklist_third_party_approve_bloc.dart';
+import 'package:toolkit/blocs/incident/incidentGetAndChangeRole/incident_get_and_change_role_bloc.dart';
 import 'package:toolkit/blocs/pickAndUploadImage/pick_and_upload_image_bloc.dart';
 import 'package:toolkit/screens/onboarding/client_list_screen.dart';
 import 'package:toolkit/utils/database_utils.dart';
@@ -117,6 +118,9 @@ class MyApp extends StatelessWidget {
           BlocProvider(
               lazy: false,
               create: (context) => WorkForceCheckListSaveRejectBloc()),
+          BlocProvider(
+              lazy: true,
+              create: (context) => IncidentFetchAndChangeRoleBloc()),
           BlocProvider(
               lazy: false, create: (context) => PickAndUploadImageBloc()),
           BlocProvider(
