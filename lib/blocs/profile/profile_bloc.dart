@@ -165,7 +165,7 @@ class ProfileBloc extends Bloc<ProfileEvents, ProfileStates> {
           'sign': event.updateProfileMap['sign'].trim()
         };
         UpdateUserProfileModel updateUserProfileModel =
-        await _profileRepository.updateUserProfile(updateUserProfileMap);
+            await _profileRepository.updateUserProfile(updateUserProfileMap);
         if (updateUserProfileModel.status == 200) {
           _customerCache.setUserName(CacheKeys.userName,
               '${event.updateProfileMap['fname'].trim()} ${event.updateProfileMap['lname'].trim()}');
@@ -174,7 +174,7 @@ class ProfileBloc extends Bloc<ProfileEvents, ProfileStates> {
         } else {
           emit(UserProfileUpdateError(
               message:
-              DatabaseUtil.getText('some_unknown_error_please_try_again')));
+                  DatabaseUtil.getText('some_unknown_error_please_try_again')));
         }
       }
     } catch (e) {
