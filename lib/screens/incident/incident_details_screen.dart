@@ -15,7 +15,6 @@ import 'package:toolkit/utils/incident_util.dart';
 import 'package:toolkit/widgets/error_section.dart';
 
 import '../../blocs/incident/incidentDetails/incident_details_states.dart';
-import '../../blocs/incident/incidentRemoveLinkedPermit/incident_remove_linked_permit_states.dart';
 import '../../configs/app_color.dart';
 import '../../configs/app_dimensions.dart';
 import '../../configs/app_spacing.dart';
@@ -40,11 +39,6 @@ class IncidentDetailsScreen extends StatelessWidget {
     return Scaffold(
         appBar: const GenericAppBar(actions: []),
         body: BlocConsumer<IncidentDetailsBloc, IncidentDetailsStates>(
-            buildWhen: (previousState, currentState) =>
-                currentState is FetchingIncidentDetails ||
-                currentState is IncidentDetailsFetched ||
-                currentState is IncidentUnlinkedPermit ||
-                currentState is IncidentUnlinkedPermit,
             listener: (context, state) {},
             builder: (context, state) {
               if (state is FetchingIncidentDetails) {
@@ -65,9 +59,9 @@ class IncidentDetailsScreen extends StatelessWidget {
                                       top: xxTinierSpacing),
                                   child: Row(
                                       crossAxisAlignment:
-                                      CrossAxisAlignment.center,
+                                          CrossAxisAlignment.center,
                                       mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
+                                          MainAxisAlignment.spaceBetween,
                                       children: [
                                         Text(incidentListDatum.refno,
                                             style: Theme.of(context)
@@ -106,7 +100,8 @@ class IncidentDetailsScreen extends StatelessWidget {
                                     state.incidentDetailsModel),
                             IncidentLinkPermitList(
                                 incidentDetailsModel:
-                                    state.incidentDetailsModel)
+                                    state.incidentDetailsModel,
+                                incidentListDatum: incidentListDatum)
                           ])
                     ]));
               } else if (state is IncidentDetailsNotFetched) {

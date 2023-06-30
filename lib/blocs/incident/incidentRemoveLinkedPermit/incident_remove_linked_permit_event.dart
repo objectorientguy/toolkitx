@@ -1,8 +1,4 @@
-import '../../../data/models/incident/incident_details_model.dart';
-
-abstract class IncidentLinkedPermitEvent {}
-
-class IncidentRemoveLinkedPermitEvent extends IncidentLinkedPermitEvent {
+class IncidentRemoveLinkedPermitEvent {
   final String permitId;
   final List permitLinkedList;
   final int index;
@@ -11,10 +7,4 @@ class IncidentRemoveLinkedPermitEvent extends IncidentLinkedPermitEvent {
       {required this.index,
       required this.permitLinkedList,
       required this.permitId});
-}
-
-class IncidentPermitListFetched extends IncidentLinkedPermitEvent {
-  final IncidentDetailsModel incidentDetailsModel;
-
-  IncidentPermitListFetched({required this.incidentDetailsModel});
 }
