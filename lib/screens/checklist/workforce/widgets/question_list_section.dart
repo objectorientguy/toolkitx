@@ -131,30 +131,27 @@ class QuestionsListSection extends StatelessWidget {
                                                               .matrixcols!
                                                               .length;
                                                       k++)
-                                                    DataCell(Flexible(
-                                                      child: Text(
-                                                          (tableData == {} &&
-                                                                  state
-                                                                          .getQuestionListModel
-                                                                          .data!
-                                                                          .questionlist![
-                                                                              index]
-                                                                          .type ==
-                                                                      8)
-                                                              ? ""
-                                                              : (tableData["data"] ==
-                                                                          null ||
-                                                                      tableData["data"]
-                                                                              .toString() ==
-                                                                          '')
-                                                                  ? ''
-                                                                  : tableData[
-                                                                          "data"]
-                                                                      [j][k],
-                                                          maxLines: 2,
-                                                          overflow: TextOverflow
-                                                              .ellipsis),
-                                                    ))
+                                                    DataCell(Text(
+                                                        (tableData == {} &&
+                                                                state
+                                                                        .getQuestionListModel
+                                                                        .data!
+                                                                        .questionlist![
+                                                                            index]
+                                                                        .type ==
+                                                                    8)
+                                                            ? ""
+                                                            : (tableData["data"] ==
+                                                                        null ||
+                                                                    tableData["data"]
+                                                                            .toString() ==
+                                                                        '')
+                                                                ? ''
+                                                                : tableData[
+                                                                        "data"]
+                                                                    [j][k],
+                                                        overflow: TextOverflow
+                                                            .ellipsis))
                                                 ])
                                             ]))
                                   ])),
