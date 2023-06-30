@@ -86,6 +86,7 @@ abstract class StringConstants {
   static const String kSelectCategory = 'Select Category';
   static const String kSignature = 'Signature';
   static const String kUploadSignature = 'Upload Signature';
+  static const String kSignatureNotFound = 'Signature Not Found';
   static const String kUpload = 'Upload';
   static const String kChecklist = 'Checklist';
   static const String kFilters = 'Filters';

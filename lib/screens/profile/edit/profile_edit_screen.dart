@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:toolkit/configs/app_spacing.dart';
 import 'package:toolkit/configs/app_theme.dart';
+import 'package:toolkit/screens/profile/widgets/signature.dart';
 import 'package:toolkit/utils/constants/string_constants.dart';
 import 'package:toolkit/widgets/error_section.dart';
+import '../../../blocs/pickAndUploadImage/pick_and_upload_image_bloc.dart';
+import '../../../blocs/pickAndUploadImage/pick_and_upload_image_events.dart';
 import '../../../blocs/profile/profile_bloc.dart';
 import '../../../blocs/profile/profile_events.dart';
 import '../../../blocs/profile/profile_states.dart';
@@ -23,7 +26,9 @@ class ProfileEditScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    context.read<PickAndUploadImageBloc>().add(UploadInitial());
     context.read<ProfileBloc>().add(DecryptUserProfileData());
+
     return Scaffold(
         appBar: GenericAppBar(title: DatabaseUtil.getText('MyProfile')),
         body: BlocConsumer<ProfileBloc, ProfileStates>(
@@ -104,7 +109,10 @@ class ProfileEditScreen extends StatelessWidget {
                               const SizedBox(height: tinier),
                               BloodGroupExpansionTile(
                                   profileDetailsMap: state.profileDetailsMap),
-                              const SizedBox(height: xxxSmallerSpacing),
+                              const SizedBox(height: tinier),
+                              SignaturePad(
+                                  profileDetailsMap: state.profileDetailsMap),
+                              const SizedBox(height: tiny),
                               PrimaryButton(
                                   onPressed: () {
                                     context.read<ProfileBloc>().add(
@@ -112,7 +120,9 @@ class ProfileEditScreen extends StatelessWidget {
                                             updateProfileMap:
                                                 state.profileDetailsMap));
                                   },
-                                  textValue: DatabaseUtil.getText('buttonSave'))
+                                  textValue:
+                                      DatabaseUtil.getText('buttonSave')),
+                              const SizedBox(height: xxxSmallerSpacing)
                             ])));
               } else if (state is EditProfileError) {
                 return Center(

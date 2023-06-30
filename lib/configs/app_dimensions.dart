@@ -50,5 +50,6 @@ const double kDividerEndIndent = 15.0;
 const double kOutlineButtonWidth = 40;
 const double kTimeSpanFieldWidth = 150;
 const double kDataCellWidth = 170;
+const double kSignaturePadHeight = 200;
 const double kElevationButtonWidth = 45.0;
 const double kFilterTags = 6;
