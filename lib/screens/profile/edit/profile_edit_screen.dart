@@ -5,6 +5,8 @@ import 'package:toolkit/configs/app_theme.dart';
 import 'package:toolkit/screens/profile/widgets/signature.dart';
 import 'package:toolkit/utils/constants/string_constants.dart';
 import 'package:toolkit/widgets/error_section.dart';
+import '../../../blocs/pickAndUploadImage/pick_and_upload_image_bloc.dart';
+import '../../../blocs/pickAndUploadImage/pick_and_upload_image_events.dart';
 import '../../../blocs/profile/profile_bloc.dart';
 import '../../../blocs/profile/profile_events.dart';
 import '../../../blocs/profile/profile_states.dart';
@@ -24,6 +26,7 @@ class ProfileEditScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    context.read<PickAndUploadImageBloc>().add(UploadInitial());
     context.read<ProfileBloc>().add(DecryptUserProfileData());
 
     return Scaffold(
@@ -108,12 +111,10 @@ class ProfileEditScreen extends StatelessWidget {
                                   profileDetailsMap: state.profileDetailsMap),
                               const SizedBox(height: tinier),
                               SignaturePad(
-                                  profileDetailsMap: state.profileDetailsMap,
-                                  signController: state.signController),
+                                  profileDetailsMap: state.profileDetailsMap),
                               const SizedBox(height: tiny),
                               PrimaryButton(
                                   onPressed: () {
-                                    state.signController.dispose();
                                     context.read<ProfileBloc>().add(
                                         UpdateProfile(
                                             updateProfileMap:

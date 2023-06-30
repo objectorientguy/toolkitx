@@ -1,6 +1,8 @@
 import 'dart:async';
 import 'dart:io';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:toolkit/utils/constants/string_constants.dart';
@@ -27,6 +29,7 @@ class PickAndUploadImageBloc
     on<PickGalleryImage>(_pickGalleryImage);
     on<UploadImageEvent>(_uploadImageEvent);
     on<RemoveImage>(_removeImage);
+    on<CropImage>(_cropImage);
   }
 
   _uploadInitial(UploadInitial event, Emitter<PickAndUploadImageStates> emit) {
@@ -62,12 +65,16 @@ class PickAndUploadImageBloc
           for (int i = 0; i < cameraPathsList.length; i++) {
             imagePath = cameraPathsList[i];
           }
-          (isAttached == true)
-              ? add(UploadImageEvent(
+          if (isAttached == true) {
+            if (event.isSignature == true) {
+              add(CropImage(imagePath: imagePath));
+            } else {
+              add(UploadImageEvent(
                   imageFile: imagePath,
                   isImageAttached: isAttached,
-                  imagesList: cameraPathsList))
-              : false;
+                  imagesList: cameraPathsList));
+            }
+          }
         } else {
           isAttached = false;
           add(UploadImageEvent(
@@ -110,12 +117,16 @@ class PickAndUploadImageBloc
           for (int i = 0; i < galleryPathsList.length; i++) {
             imagePath = galleryPathsList[i];
           }
-          (isAttached == true)
-              ? add(UploadImageEvent(
+          if (isAttached == true) {
+            if (event.isSignature == true) {
+              add(CropImage(imagePath: imagePath));
+            } else {
+              add(UploadImageEvent(
                   imageFile: imagePath,
                   isImageAttached: isAttached,
-                  imagesList: galleryPathsList))
-              : false;
+                  imagesList: galleryPathsList));
+            }
+          }
         } else {
           isAttached = false;
           add(UploadImageEvent(
@@ -158,5 +169,29 @@ class PickAndUploadImageBloc
           imagePath: '',
           uploadPictureModel: event.uploadPictureModel));
     }
+  }
+
+  Future<void> _cropImage(
+      CropImage event, Emitter<PickAndUploadImageStates> emit) async {
+    CroppedFile? croppedFile = await ImageCropper().cropImage(
+      sourcePath: event.imagePath,
+      uiSettings: [
+        AndroidUiSettings(
+            toolbarTitle: 'Cropper',
+            toolbarColor: Colors.deepOrange,
+            toolbarWidgetColor: Colors.white,
+            initAspectRatio: CropAspectRatioPreset.ratio16x9,
+            lockAspectRatio: true,
+            hideBottomControls: true),
+        IOSUiSettings(
+          title: 'Cropper',
+          aspectRatioLockEnabled: true,
+          aspectRatioPickerButtonHidden: true,
+          minimumAspectRatio: 16 / 9,
+        ),
+      ],
+    );
+    add(UploadImageEvent(
+        imageFile: croppedFile!.path, isImageAttached: true, imagesList: []));
   }
 }
