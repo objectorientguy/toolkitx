@@ -48,6 +48,7 @@ abstract class StringConstants {
   static const String kEnterNewPassword =
       'Enter New Password'; // comment lines indicates that keys are not available
   static const String kConfirmPassword = 'Confirm Password'; //
+  static const String kFiles = 'Files'; //
   static const String kOtpGenerated = 'OTP generated';
   static const String kSelectDateFormat = 'Select Your Date Format';
   static const String kSave = 'SAVE';

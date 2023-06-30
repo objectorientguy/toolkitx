@@ -111,7 +111,7 @@ class ProfileEditScreen extends StatelessWidget {
                                   profileDetailsMap: state.profileDetailsMap),
                               const SizedBox(height: tinier),
                               SignaturePad(
-                                  profileDetailsMap: state.profileDetailsMap),
+                                  map: state.profileDetailsMap, mapKey: 'sign'),
                               const SizedBox(height: tiny),
                               PrimaryButton(
                                   onPressed: () {

@@ -6,6 +6,7 @@ import 'package:toolkit/blocs/checklist/systemUser/thirdPartyApprove/sys_user_ch
 import 'package:toolkit/configs/app_dimensions.dart';
 import 'package:toolkit/configs/app_spacing.dart';
 import 'package:toolkit/configs/app_theme.dart';
+import 'package:toolkit/screens/profile/widgets/signature.dart';
 import '../../../../blocs/checklist/systemUser/scheduleDates/sys_user_checklist_schedule_dates_bloc.dart';
 import '../../../../configs/app_color.dart';
 import '../../../../utils/constants/string_constants.dart';
@@ -83,17 +84,8 @@ class ThirdPartyApprovePopUp extends StatelessWidget {
                     thirdPartyApproveMap["name"] = textValue;
                   }),
               const SizedBox(height: xxTinierSpacing),
-              Text('Add Signature',
-                  style: Theme.of(context)
-                      .textTheme
-                      .small
-                      .copyWith(color: AppColor.black)),
+              SignaturePad(map: thirdPartyApproveMap, mapKey: 'sign_text'),
             ]),
-            content: TextFieldWidget(
-                onTextFieldChanged: (String textValue) {
-                  thirdPartyApproveMap["sign_text"] = textValue;
-                },
-                maxLines: 7),
             actions: [
               CustomTextButton(
                   onPressed: () {
