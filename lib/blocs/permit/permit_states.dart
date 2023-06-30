@@ -17,7 +17,9 @@ class FetchingPermitsInitial extends PermitStates {
 }
 
 class FetchingAllPermits extends PermitStates {
-  const FetchingAllPermits();
+  final Map filters;
+
+  const FetchingAllPermits({required this.filters});
 }
 
 class AllPermitsFetched extends PermitStates {

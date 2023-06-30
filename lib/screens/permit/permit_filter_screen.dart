@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:toolkit/configs/app_theme.dart';
+import 'package:toolkit/screens/permit/permit_list_screen.dart';
 import 'package:toolkit/utils/database_utils.dart';
 import 'package:toolkit/widgets/custom_snackbar.dart';
 
@@ -156,9 +157,9 @@ class PermitFilterScreen extends StatelessWidget {
                                           ApplyPermitFilters(
                                               permitFilterMap, location));
                                       Navigator.pop(context);
-                                      context.read<PermitBloc>().add(
-                                          const GetAllPermits(
-                                              isFromHome: false));
+                                      Navigator.pushReplacementNamed(
+                                          context, PermitListScreen.routeName,
+                                          arguments: false);
                                     }
                                   },
                                   textValue: StringConstants.kApply)

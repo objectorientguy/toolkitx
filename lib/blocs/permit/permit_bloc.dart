@@ -26,7 +26,7 @@ class PermitBloc extends Bloc<PermitEvents, PermitStates> {
   final CustomerCache _customerCache = getIt<CustomerCache>();
   String roleId = '';
   PermitMasterDatum? selectedDatum;
-  Map filters = {};
+  static Map filters = {};
   List location = [];
 
   PermitBloc() : super(const FetchingPermitsInitial()) {
@@ -138,7 +138,7 @@ class PermitBloc extends Bloc<PermitEvents, PermitStates> {
   FutureOr<void> _getAllPermits(
       GetAllPermits event, Emitter<PermitStates> emit) async {
     try {
-      emit(const FetchingAllPermits());
+      emit(FetchingAllPermits(filters: filters));
       String hashCode = (await _customerCache.getHashCode(CacheKeys.hashcode))!;
       String userId = (await _customerCache.getUserId(CacheKeys.userId))!;
       if (roleId == '' || event.isFromHome) {
@@ -147,13 +147,13 @@ class PermitBloc extends Bloc<PermitEvents, PermitStates> {
             await _permitRepository.fetchPermitRoles(hashCode, userId);
         if (permitRolesModel.status == 200) {
           roleId = permitRolesModel.data![0].groupId!;
-          AllPermitModel allPermitModel =
-              await _permitRepository.getAllPermits(hashCode, '', roleId, 1);
+          AllPermitModel allPermitModel = await _permitRepository.getAllPermits(
+              hashCode, '', roleId, event.page);
           emit(AllPermitsFetched(allPermitModel: allPermitModel, filters: {}));
         }
       } else {
         AllPermitModel allPermitModel = await _permitRepository.getAllPermits(
-            hashCode, jsonEncode(filters), roleId, 1);
+            hashCode, jsonEncode(filters), roleId, event.page);
         emit(AllPermitsFetched(
             allPermitModel: allPermitModel, filters: filters));
       }

@@ -16,12 +16,15 @@ import 'widgets/permit_list_tile.dart';
 class PermitListScreen extends StatelessWidget {
   static const routeName = 'PermitListScreen';
   final bool isFromHome;
+  static int page = 1;
 
   const PermitListScreen({Key? key, this.isFromHome = false}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    context.read<PermitBloc>().add(GetAllPermits(isFromHome: isFromHome));
+    context
+        .read<PermitBloc>()
+        .add(GetAllPermits(isFromHome: isFromHome, page: page));
     return Scaffold(
         appBar: GenericAppBar(title: DatabaseUtil.getText('PermitToWork')),
         body: Padding(
@@ -35,9 +38,10 @@ class PermitListScreen extends StatelessWidget {
               Row(mainAxisAlignment: MainAxisAlignment.end, children: [
                 BlocBuilder<PermitBloc, PermitStates>(
                     buildWhen: (previousState, currentState) =>
+                    currentState is FetchingAllPermits ||
                         currentState is AllPermitsFetched,
                     builder: (context, state) {
-                      if (state is AllPermitsFetched) {
+                      if (state is FetchingAllPermits) {
                         return Visibility(
                             visible: state.filters.isNotEmpty,
                             child: CustomTextButton(
@@ -45,8 +49,20 @@ class PermitListScreen extends StatelessWidget {
                                   context
                                       .read<PermitBloc>()
                                       .add(const ClearPermitFilters());
-                                  context.read<PermitBloc>().add(
-                                      GetAllPermits(isFromHome: isFromHome));
+                                  context.read<PermitBloc>().add(GetAllPermits(
+                                      isFromHome: isFromHome, page: 1));
+                                },
+                                textValue: DatabaseUtil.getText('Clear')));
+                      } else if (state is AllPermitsFetched) {
+                        return Visibility(
+                            visible: state.filters.isNotEmpty,
+                            child: CustomTextButton(
+                                onPressed: () {
+                                  context
+                                      .read<PermitBloc>()
+                                      .add(const ClearPermitFilters());
+                                  context.read<PermitBloc>().add(GetAllPermits(
+                                      isFromHome: isFromHome, page: 1));
                                 },
                                 textValue: DatabaseUtil.getText('Clear')));
                       } else {
@@ -66,7 +82,7 @@ class PermitListScreen extends StatelessWidget {
                     clearOnPress: () {})
               ]),
               const SizedBox(height: xxTinierSpacing),
-              const PermitListTile()
+              PermitListTile(page: page, isFromHome: isFromHome)
             ],
           ),
         ));

@@ -37,7 +37,7 @@ class ClosePermitScreen extends StatelessWidget {
                 ProgressBar.dismiss(context);
                 context
                     .read<PermitBloc>()
-                    .add(const GetAllPermits(isFromHome: false));
+                    .add(const GetAllPermits(isFromHome: false, page: 1));
                 Navigator.pop(context);
                 Navigator.pop(context);
               }
