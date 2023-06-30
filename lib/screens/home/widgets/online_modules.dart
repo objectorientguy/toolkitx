@@ -105,7 +105,7 @@ class OnLineModules extends StatelessWidget {
                                                               fontSize: 8))
                                                 ]))
                                     ]),
-                                const SizedBox(height: xxTinierSpacing),
+                                const SizedBox(height: xxxTinierSpacing),
                                 Padding(
                                     padding: const EdgeInsets.only(
                                         left: xxTiniestSpacing,
