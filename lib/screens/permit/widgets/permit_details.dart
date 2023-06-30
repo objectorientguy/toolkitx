@@ -19,7 +19,7 @@ class PermitDetails extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const SizedBox(height: tiny),
+          const SizedBox(height: tinySpacing),
           Text(
             DatabaseUtil.getText('Schedule'),
             style: Theme.of(context)
@@ -30,7 +30,7 @@ class PermitDetails extends StatelessWidget {
           const SizedBox(height: xxTinierSpacing),
           Text(permitDetailsModel.data.tab1.schedule,
               style: Theme.of(context).textTheme.small),
-          const SizedBox(height: tiny),
+          const SizedBox(height: tinySpacing),
           Text(
             DatabaseUtil.getText('NPI'),
             style: Theme.of(context)
@@ -41,7 +41,7 @@ class PermitDetails extends StatelessWidget {
           const SizedBox(height: xxTinierSpacing),
           Text(permitDetailsModel.data.tab1.pnameNpi,
               style: Theme.of(context).textTheme.small),
-          const SizedBox(height: tiny),
+          const SizedBox(height: tinySpacing),
           Text(
             DatabaseUtil.getText('NPW'),
             style: Theme.of(context)
@@ -52,7 +52,7 @@ class PermitDetails extends StatelessWidget {
           const SizedBox(height: xxTinierSpacing),
           Text(permitDetailsModel.data.tab1.pname,
               style: Theme.of(context).textTheme.small),
-          const SizedBox(height: tiny),
+          const SizedBox(height: tinySpacing),
           Text(
             DatabaseUtil.getText('Description'),
             style: Theme.of(context)
@@ -63,7 +63,7 @@ class PermitDetails extends StatelessWidget {
           const SizedBox(height: xxTinierSpacing),
           Text(permitDetailsModel.data.tab1.details,
               style: Theme.of(context).textTheme.small),
-          const SizedBox(height: tiny),
+          const SizedBox(height: tinySpacing),
           Text(
             DatabaseUtil.getText('Location'),
             style: Theme.of(context)
@@ -111,7 +111,7 @@ class PermitDetails extends StatelessWidget {
                       ),
                     ));
               }),
-          const SizedBox(height: tiny),
+          const SizedBox(height: tinySpacing),
           Text(
             DatabaseUtil.getText('Company'),
             style: Theme.of(context)

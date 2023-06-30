@@ -78,7 +78,7 @@ class WorkForceListSection extends StatelessWidget {
                                                 .xSmall
                                                 .copyWith(
                                                     color: AppColor.grey)),
-                                        const SizedBox(height: tiniest),
+                                        const SizedBox(height: tiniestSpacing),
                                         Text(
                                             '${StringConstants.kResponseDate} ${state.checkListWorkforceListModel.data![index].responsedate}',
                                             style: Theme.of(context)
@@ -86,7 +86,7 @@ class WorkForceListSection extends StatelessWidget {
                                                 .xSmall
                                                 .copyWith(
                                                     color: AppColor.grey)),
-                                        const SizedBox(height: tiniest),
+                                        const SizedBox(height: tiniestSpacing),
                                         Visibility(
                                           visible: state
                                                   .checkListWorkforceListModel

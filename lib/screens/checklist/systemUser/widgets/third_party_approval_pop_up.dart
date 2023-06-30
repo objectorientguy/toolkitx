@@ -46,16 +46,16 @@ class ThirdPartyApprovePopUp extends StatelessWidget {
           }
         },
         child: AlertDialog(
-            titlePadding:
-                const EdgeInsets.only(left: tiny, top: tiny, right: tiny),
-            buttonPadding: const EdgeInsets.all(tiniest),
+            titlePadding: const EdgeInsets.only(
+                left: tinySpacing, top: tinySpacing, right: tinySpacing),
+            buttonPadding: const EdgeInsets.all(tiniestSpacing),
             contentPadding: const EdgeInsets.only(
                 left: xxTinySpacing,
                 right: xxTinySpacing,
                 top: xxTinySpacing,
                 bottom: 0),
-            actionsPadding:
-                const EdgeInsets.only(right: xxTinySpacing, bottom: tiniest),
+            actionsPadding: const EdgeInsets.only(
+                right: xxTinySpacing, bottom: tiniestSpacing),
             title:
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               Row(

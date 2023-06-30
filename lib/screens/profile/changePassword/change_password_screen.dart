@@ -80,7 +80,7 @@ class ChangePasswordScreen extends StatelessWidget {
                               children: [
                                 Text(StringConstants.kOldPassword,
                                     style: Theme.of(context).textTheme.medium),
-                                const SizedBox(height: tinier),
+                                const SizedBox(height: tinierSpacing),
                                 TextFieldWidget(
                                     obscureText: true,
                                     maxLength: 30,
@@ -90,7 +90,7 @@ class ChangePasswordScreen extends StatelessWidget {
                                       changePasswordMap['oldPass_opt'] =
                                           textField;
                                     }),
-                                const SizedBox(height: tinier),
+                                const SizedBox(height: tinierSpacing),
                               ]),
                           child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -120,7 +120,7 @@ class ChangePasswordScreen extends StatelessWidget {
                                       changePasswordMap['oldPass_opt'] =
                                           textField;
                                     }),
-                                const SizedBox(height: tinier)
+                                const SizedBox(height: tinierSpacing)
                               ]));
                     } else {
                       return const SizedBox();
@@ -128,7 +128,7 @@ class ChangePasswordScreen extends StatelessWidget {
                   }),
               Text(StringConstants.kEnterNewPassword,
                   style: Theme.of(context).textTheme.medium),
-              const SizedBox(height: tinier),
+              const SizedBox(height: tinierSpacing),
               TextFieldWidget(
                   obscureText: true,
                   textInputAction: TextInputAction.next,
@@ -137,10 +137,10 @@ class ChangePasswordScreen extends StatelessWidget {
                   onTextFieldChanged: (String textField) {
                     changePasswordMap['newPassword'] = textField;
                   }),
-              const SizedBox(height: tinier),
+              const SizedBox(height: tinierSpacing),
               Text(StringConstants.kConfirmPassword,
                   style: Theme.of(context).textTheme.medium),
-              const SizedBox(height: tinier),
+              const SizedBox(height: tinierSpacing),
               TextFieldWidget(
                   obscureText: true,
                   maxLength: 30,

@@ -61,7 +61,7 @@ class ScheduleDatesSection extends StatelessWidget {
                                     Image.asset("assets/icons/calendar.png",
                                         height: kProfileImageHeight,
                                         width: kProfileImageWidth),
-                                    const SizedBox(width: tiniest),
+                                    const SizedBox(width: tiniestSpacing),
                                     Text(
                                         state.checklistScheduledByDatesModel
                                             .data![index].dates,
@@ -77,7 +77,7 @@ class ScheduleDatesSection extends StatelessWidget {
                                             .textTheme
                                             .xxSmall
                                             .copyWith(color: AppColor.grey)),
-                                    const SizedBox(height: tiniest),
+                                    const SizedBox(height: tiniestSpacing),
                                     Visibility(
                                         visible: state
                                                 .checklistScheduledByDatesModel
@@ -88,7 +88,7 @@ class ScheduleDatesSection extends StatelessWidget {
                                             Icons.question_mark_outlined,
                                             color: AppColor.errorRed,
                                             size: kIconSize)),
-                                    const SizedBox(height: tiniest),
+                                    const SizedBox(height: tiniestSpacing),
                                   ]),
                               onTap: () {
                                 context

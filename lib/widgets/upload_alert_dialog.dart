@@ -37,7 +37,7 @@ class UploadAlertDialog extends StatelessWidget {
                         ? StringConstants.kUploadFrom
                         : StringConstants.kUploadSignature,
                     style: Theme.of(context).textTheme.medium)),
-            const SizedBox(height: tiniest),
+            const SizedBox(height: tiniestSpacing),
             IntrinsicHeight(
                 child: Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -60,7 +60,7 @@ class UploadAlertDialog extends StatelessWidget {
                                 child: const Center(
                                     child: Icon(Icons.camera_alt_outlined,
                                         size: 30)))),
-                        const SizedBox(height: tiniest),
+                        const SizedBox(height: tiniestSpacing),
                         const Text(
                           StringConstants.kCamera,
                         )
@@ -90,7 +90,7 @@ class UploadAlertDialog extends StatelessWidget {
                             )),
                           ),
                         ),
-                        const SizedBox(height: tiniest),
+                        const SizedBox(height: tiniestSpacing),
                         Text(StringConstants.kDevice,
                             style: Theme.of(context)
                                 .textTheme
@@ -124,7 +124,7 @@ class UploadAlertDialog extends StatelessWidget {
                               )),
                             ),
                           ),
-                          const SizedBox(height: tiniest),
+                          const SizedBox(height: tiniestSpacing),
                           Text(StringConstants.kSignature,
                               style: Theme.of(context)
                                   .textTheme

@@ -67,7 +67,7 @@ class ProfileEditScreen extends StatelessWidget {
                               const SizedBox(height: xxxSmallerSpacing),
                               Text(DatabaseUtil.getText('FirstName'),
                                   style: Theme.of(context).textTheme.medium),
-                              const SizedBox(height: tinier),
+                              const SizedBox(height: tinierSpacing),
                               TextFieldWidget(
                                   value: state.profileDetailsMap['fname'],
                                   textInputAction: TextInputAction.next,
@@ -77,10 +77,10 @@ class ProfileEditScreen extends StatelessWidget {
                                     state.profileDetailsMap['fname'] =
                                         textField;
                                   }),
-                              const SizedBox(height: tinier),
+                              const SizedBox(height: tinierSpacing),
                               Text(DatabaseUtil.getText('LastName'),
                                   style: Theme.of(context).textTheme.medium),
-                              const SizedBox(height: tinier),
+                              const SizedBox(height: tinierSpacing),
                               TextFieldWidget(
                                   value: state.profileDetailsMap['lname'],
                                   maxLength: 50,
@@ -90,10 +90,10 @@ class ProfileEditScreen extends StatelessWidget {
                                     state.profileDetailsMap['lname'] =
                                         textField;
                                   }),
-                              const SizedBox(height: tinier),
+                              const SizedBox(height: tinierSpacing),
                               Text(DatabaseUtil.getText('Contact'),
                                   style: Theme.of(context).textTheme.medium),
-                              const SizedBox(height: tinier),
+                              const SizedBox(height: tinierSpacing),
                               TextFieldWidget(
                                   value: state.profileDetailsMap['contact'],
                                   textInputAction: TextInputAction.done,
@@ -103,16 +103,16 @@ class ProfileEditScreen extends StatelessWidget {
                                     state.profileDetailsMap['contact'] =
                                         textField;
                                   }),
-                              const SizedBox(height: tinier),
+                              const SizedBox(height: tinierSpacing),
                               Text(DatabaseUtil.getText('BloodGroup'),
                                   style: Theme.of(context).textTheme.medium),
-                              const SizedBox(height: tinier),
+                              const SizedBox(height: tinierSpacing),
                               BloodGroupExpansionTile(
                                   profileDetailsMap: state.profileDetailsMap),
-                              const SizedBox(height: tinier),
+                              const SizedBox(height: tinierSpacing),
                               SignaturePad(
                                   map: state.profileDetailsMap, mapKey: 'sign'),
-                              const SizedBox(height: tiny),
+                              const SizedBox(height: tinySpacing),
                               PrimaryButton(
                                   onPressed: () {
                                     context.read<ProfileBloc>().add(

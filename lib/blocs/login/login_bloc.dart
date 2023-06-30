@@ -1,16 +1,16 @@
 import 'dart:async';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:toolkit/data/cache/cache_keys.dart';
-import 'package:toolkit/data/models/encrypt_class.dart';
-import 'package:toolkit/data/models/login/login_model.dart';
-import 'package:toolkit/data/models/login/validate_email_model.dart';
-import 'package:toolkit/utils/constants/string_constants.dart';
-import 'package:toolkit/utils/database_utils.dart';
 
+import '../../data/cache/cache_keys.dart';
 import '../../data/cache/customer_cache.dart';
+import '../../data/models/encrypt_class.dart';
 import '../../data/models/login/generate_login_opt_model.dart';
+import '../../data/models/login/login_model.dart';
+import '../../data/models/login/validate_email_model.dart';
 import '../../di/app_module.dart';
 import '../../repositories/login/login_repository.dart';
+import '../../utils/constants/string_constants.dart';
+import '../../utils/database_utils.dart';
 import 'login_events.dart';
 import 'login_states.dart';
 
@@ -98,7 +98,6 @@ class LoginBloc extends Bloc<LoginEvents, LoginStates> {
         if (loginModel.status == 200) {
           _customerCache.setClientDataKey(
               CacheKeys.clientDataKey, loginModel.message!);
-          _customerCache.setIsLoggedIn(CacheKeys.isLoggedIn, true);
           emit(LoginLoaded(loginModel: loginModel));
         } else {
           emit(LoginError(message: loginModel.message!));
