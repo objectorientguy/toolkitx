@@ -39,7 +39,10 @@ class QuestionsListSection extends StatelessWidget {
             itemBuilder: (context, index) {
               Map tableData =
                   (state.getQuestionListModel.data!.questionlist![index].type ==
-                          8)
+                              8 &&
+                          state.getQuestionListModel.data!.questionlist![index]
+                                  .optioncomment !=
+                              null)
                       ? jsonDecode(state.answerList[index]["answer"])
                       : {};
               return CustomCard(
@@ -130,8 +133,7 @@ class QuestionsListSection extends StatelessWidget {
                                                       k++)
                                                     DataCell(Flexible(
                                                       child: Text(
-                                                          (tableData.toString() ==
-                                                                      "{}" &&
+                                                          (tableData == {} &&
                                                                   state
                                                                           .getQuestionListModel
                                                                           .data!
@@ -140,8 +142,16 @@ class QuestionsListSection extends StatelessWidget {
                                                                           .type ==
                                                                       8)
                                                               ? ""
-                                                              : tableData[
-                                                                  "data"][j][k],
+                                                              : (tableData["data"] ==
+                                                                          null ||
+                                                                      tableData[
+                                                                              "data"]
+                                                                          .toString()
+                                                                          .isEmpty)
+                                                                  ? ''
+                                                                  : tableData[
+                                                                          "data"]
+                                                                      [j][k],
                                                           maxLines: 2,
                                                           overflow: TextOverflow
                                                               .ellipsis),

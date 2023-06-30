@@ -16,9 +16,10 @@ import '../../../configs/app_color.dart';
 import '../../../utils/constants/api_constants.dart';
 
 class SignaturePad extends StatefulWidget {
-  final Map profileDetailsMap;
+  final Map map;
+  final String mapKey;
 
-  const SignaturePad({Key? key, required this.profileDetailsMap})
+  const SignaturePad({Key? key, required this.map, required this.mapKey})
       : super(key: key);
 
   @override
@@ -34,7 +35,7 @@ class _SignaturePadState extends State<SignaturePad> {
 
   saveSign() {
     signController.onDrawEnd = () async {
-      widget.profileDetailsMap['sign'] =
+      widget.map[widget.mapKey] =
           'data:image/png;base64,${base64Encode(await signController.toPngBytes() as List<int>)}';
     };
   }
@@ -44,7 +45,7 @@ class _SignaturePadState extends State<SignaturePad> {
 
   @override
   void initState() {
-    if (widget.profileDetailsMap['sign'] == '') {
+    if (widget.map[widget.mapKey] == '') {
       showSignPad = true;
     }
     saveSign();
@@ -97,7 +98,7 @@ class _SignaturePadState extends State<SignaturePad> {
                   : BlocBuilder<PickAndUploadImageBloc,
                       PickAndUploadImageStates>(builder: (context, state) {
                       if (state is ImagePickerLoaded) {
-                        widget.profileDetailsMap['sign'] =
+                        widget.map[widget.mapKey] =
                             'data:image/png;base64,${base64Encode(File(state.imagePath).readAsBytesSync())}';
                         return Image.file(File(state.imagePath));
                       }
@@ -133,7 +134,7 @@ class _SignaturePadState extends State<SignaturePad> {
                             width: double.infinity,
                             height: kSignaturePadHeight,
                             imageUrl:
-                                '${ApiConstants.baseDocUrl}${widget.profileDetailsMap['sign']}',
+                                '${ApiConstants.baseDocUrl}${widget.map[widget.mapKey]}',
                             placeholder: (context, url) => Shimmer.fromColors(
                                 baseColor: Colors.grey.shade100,
                                 highlightColor: AppColor.white,
