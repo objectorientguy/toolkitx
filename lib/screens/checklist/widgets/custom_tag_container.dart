@@ -16,7 +16,7 @@ class CustomTagContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        padding: const EdgeInsets.all(tiniest),
+        padding: const EdgeInsets.all(tiniestSpacing),
         decoration: BoxDecoration(
             color: color, borderRadius: BorderRadius.circular(kCardRadius)),
         height: kTagsHeight,

@@ -10,7 +10,6 @@ import 'package:toolkit/data/models/profile/user_profile_model.dart';
 import 'package:toolkit/repositories/profile/profile_repository.dart';
 import 'package:toolkit/utils/constants/string_constants.dart';
 import 'package:toolkit/utils/database_utils.dart';
-
 import '../../data/cache/cache_keys.dart';
 import '../../data/cache/customer_cache.dart';
 import '../../data/models/profile/update_user_profile_model.dart';

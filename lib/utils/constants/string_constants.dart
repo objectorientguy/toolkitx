@@ -58,6 +58,7 @@ abstract class StringConstants {
   static const String kNoInjuredPerson = 'No injured person list!'; //
   static const String kNoILinkedPermit = 'No linked permit!'; //
   static const String kCannotUnlinkPermit = 'Cannot unlink permit!';
+  static const String kFiles = 'Files'; //
   static const String kOtpGenerated = 'OTP generated';
   static const String kSelectDateFormat = 'Select Your Date Format';
   static const String kSave = 'SAVE';
@@ -96,6 +97,7 @@ abstract class StringConstants {
   static const String kSelectCategory = 'Select Category';
   static const String kSignature = 'Signature';
   static const String kUploadSignature = 'Upload Signature';
+  static const String kSignatureNotFound = 'Signature Not Found';
   static const String kUpload = 'Upload';
   static const String kChecklist = 'Checklist';
   static const String kFilters = 'Filters';

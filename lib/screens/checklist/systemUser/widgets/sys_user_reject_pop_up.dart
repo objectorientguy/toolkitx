@@ -43,15 +43,16 @@ class RejectPopUp extends StatelessWidget {
           }
         },
         child: AlertDialog(
-            titlePadding: const EdgeInsets.only(left: tiny, top: tiny),
-            buttonPadding: const EdgeInsets.all(tiniest),
+            titlePadding:
+                const EdgeInsets.only(left: tinySpacing, top: tinySpacing),
+            buttonPadding: const EdgeInsets.all(tiniestSpacing),
             contentPadding: const EdgeInsets.only(
                 left: xxTinierSpacing,
                 right: xxTinierSpacing,
                 top: xxTinierSpacing,
                 bottom: 0),
-            actionsPadding:
-                const EdgeInsets.only(right: xxTinierSpacing, bottom: tiniest),
+            actionsPadding: const EdgeInsets.only(
+                right: xxTinierSpacing, bottom: tiniestSpacing),
             title: Text(StringConstants.kComments,
                 style: Theme.of(context)
                     .textTheme

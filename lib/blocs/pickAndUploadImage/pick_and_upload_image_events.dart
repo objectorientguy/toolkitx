@@ -10,9 +10,11 @@ class PickCameraImage extends PickAndUploadImage {
   final bool? isImageAttached;
   final List cameraImageList;
   final int? index;
+  final bool isSignature;
 
   const PickCameraImage(
-      {this.index,
+      {this.isSignature = false,
+      this.index,
       required this.cameraImageList,
       required this.isImageAttached});
 }
@@ -21,8 +23,10 @@ class PickGalleryImage extends PickAndUploadImage {
   final bool? isImageAttached;
   final List galleryImagesList;
   final int? index;
+  final bool isSignature;
 
   const PickGalleryImage({
+    this.isSignature = false,
     this.index,
     required this.isImageAttached,
     required this.galleryImagesList,
@@ -49,4 +53,10 @@ class RemoveImage extends PickAndUploadImage {
       {required this.uploadPictureModel,
       required this.index,
       required this.imagesList});
+}
+
+class CropImage extends PickAndUploadImage {
+  final String imagePath;
+
+  CropImage({required this.imagePath});
 }
