@@ -18,20 +18,20 @@ class PermitListTimeSubtitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-        padding: const EdgeInsets.only(top: tinier),
+        padding: const EdgeInsets.only(top: tinierSpacing),
         child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Text(allPermitDatum.description!, maxLines: 3),
-              const SizedBox(height: tinier),
+              const SizedBox(height: tinierSpacing),
               Row(children: [
                 Image.asset('assets/icons/location.png',
                     height: kImageHeight, width: kImageWidth),
-                const SizedBox(width: tiniest),
+                const SizedBox(width: tiniestSpacing),
                 Flexible(child: Text(allPermitDatum.location!, maxLines: 3))
               ]),
-              const SizedBox(height: tinier),
+              const SizedBox(height: tinierSpacing),
               Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -42,9 +42,9 @@ class PermitListTimeSubtitle extends StatelessWidget {
                     IconAndTextRow(
                         title: allPermitDatum.pcompany!, icon: 'office')
                   ]),
-              const SizedBox(height: tinier),
+              const SizedBox(height: tinierSpacing),
               DateTimeRow(allPermitDatum: allPermitDatum),
-              const SizedBox(height: tinier),
+              const SizedBox(height: tinierSpacing),
               StatusTag(tags: [
                 StatusTagModel(
                     title: (allPermitDatum.expired == '2')

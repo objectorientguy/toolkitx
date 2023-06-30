@@ -64,6 +64,7 @@ class ClientBloc extends Bloc<ClientEvents, ClientStates> {
     emit(HomeScreenFetching());
     try {
       List permissionsList = [];
+      int badgeCount = 0;
       String timeZoneCode =
           (await _customerCache.getTimeZoneCode(CacheKeys.timeZoneCode))!;
       String userType = (await _customerCache.getUserType(CacheKeys.userType))!;
@@ -80,6 +81,7 @@ class ClientBloc extends Bloc<ClientEvents, ClientStates> {
       HomeScreenModel homeScreenModel =
           await _clientRepository.fetchHomeScreen(fetchHomeScreenMap);
       if (homeScreenModel.status == 200) {
+        _customerCache.setIsLoggedIn(CacheKeys.isLoggedIn, true);
         _customerCache.setUserId(
             CacheKeys.userId, homeScreenModel.data!.userid);
         _customerCache.setUserId2(
@@ -97,10 +99,16 @@ class ClientBloc extends Bloc<ClientEvents, ClientStates> {
             availableModules.add(ModulesUtil.listModulesMode[i]);
           }
         }
+        if (homeScreenModel.data!.badges!.isNotEmpty) {
+          for (int i = 0; i < homeScreenModel.data!.badges!.length; i++) {
+            badgeCount = badgeCount + homeScreenModel.data!.badges![i].count;
+          }
+        }
         emit(HomeScreenFetched(
             processClientModel: homeScreenModel,
             image: clientImage,
-            availableModules: availableModules));
+            availableModules: availableModules,
+            badgeCount: badgeCount));
       } else {
         emit(FetchHomeScreenError());
       }

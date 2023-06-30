@@ -101,7 +101,8 @@ class EditAnswerListScreen extends StatelessWidget {
                                                           : const TextSpan()
                                                     ]),
                                               ),
-                                              const SizedBox(height: tiniest),
+                                              const SizedBox(
+                                                  height: tiniestSpacing),
                                               EditAnswerUtil()
                                                   .fetchSwitchCaseWidget(
                                                       state
@@ -131,7 +132,8 @@ class EditAnswerListScreen extends StatelessWidget {
                                                                 FontWeight
                                                                     .w400)),
                                               ),
-                                              const SizedBox(height: tiniest),
+                                              const SizedBox(
+                                                  height: tiniestSpacing),
                                               Row(
                                                   mainAxisAlignment:
                                                       MainAxisAlignment
@@ -155,7 +157,7 @@ class EditAnswerListScreen extends StatelessWidget {
                                                                   .kAddImages),
                                                     ),
                                                     const SizedBox(
-                                                        width: tiniest),
+                                                        width: tiniestSpacing),
                                                     Expanded(
                                                         child: SecondaryButton(
                                                             onPressed: () {},

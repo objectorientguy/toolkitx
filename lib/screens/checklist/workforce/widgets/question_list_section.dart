@@ -155,7 +155,7 @@ class QuestionsListSection extends StatelessWidget {
                                                 ])
                                             ]))
                                   ])),
-                      const SizedBox(height: tiniest),
+                      const SizedBox(height: tiniestSpacing),
                       Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -172,7 +172,7 @@ class QuestionsListSection extends StatelessWidget {
                                               .toString());
                                     },
                                     textValue: StringConstants.kAddImages)),
-                            const SizedBox(width: tiniest),
+                            const SizedBox(width: tiniestSpacing),
                             Expanded(
                               child: SecondaryButton(
                                   onPressed: () {},

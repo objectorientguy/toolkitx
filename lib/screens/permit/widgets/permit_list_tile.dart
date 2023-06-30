@@ -31,7 +31,8 @@ class PermitListTile extends StatelessWidget {
                       itemBuilder: (context, index) {
                         return CustomCard(
                             child: Padding(
-                                padding: const EdgeInsets.only(top: tinier),
+                                padding:
+                                    const EdgeInsets.only(top: tinierSpacing),
                                 child: ListTile(
                                     onTap: () {
                                       Navigator.pushNamed(context,
@@ -47,7 +48,7 @@ class PermitListTile extends StatelessWidget {
                                             .allPermitModel.data![index]))));
                       },
                       separatorBuilder: (context, index) {
-                        return const SizedBox(height: tinier);
+                        return const SizedBox(height: tinierSpacing);
                       }));
             } else {
               if (state.filters.isEmpty) {

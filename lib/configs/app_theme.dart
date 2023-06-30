@@ -99,4 +99,8 @@ extension AppTextTheme on TextTheme {
   TextStyle get xxSmall {
     return const TextStyle(fontSize: 12, color: AppColor.mediumBlack);
   }
+
+  TextStyle get xxxSmall {
+    return const TextStyle(fontSize: 7, color: AppColor.white);
+  }
 }

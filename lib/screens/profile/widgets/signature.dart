@@ -81,7 +81,7 @@ class _SignaturePadState extends State<SignaturePad> {
           ],
         ),
         const SizedBox(
-          height: tinier,
+          height: tinierSpacing,
         ),
         Container(
           decoration:
