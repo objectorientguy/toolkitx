@@ -81,7 +81,6 @@ class ClientBloc extends Bloc<ClientEvents, ClientStates> {
       HomeScreenModel homeScreenModel =
           await _clientRepository.fetchHomeScreen(fetchHomeScreenMap);
       if (homeScreenModel.status == 200) {
-        _customerCache.setIsLoggedIn(CacheKeys.isLoggedIn, true);
         _customerCache.setUserId(
             CacheKeys.userId, homeScreenModel.data!.userid);
         _customerCache.setUserId2(
