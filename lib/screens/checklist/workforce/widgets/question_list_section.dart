@@ -144,10 +144,9 @@ class QuestionsListSection extends StatelessWidget {
                                                               ? ""
                                                               : (tableData["data"] ==
                                                                           null ||
-                                                                      tableData[
-                                                                              "data"]
-                                                                          .toString()
-                                                                          .isEmpty)
+                                                                      tableData["data"]
+                                                                              .toString() ==
+                                                                          '')
                                                                   ? ''
                                                                   : tableData[
                                                                           "data"]
