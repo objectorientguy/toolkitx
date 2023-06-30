@@ -1,11 +1,11 @@
 import 'dart:async';
 import 'dart:io';
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:toolkit/utils/constants/string_constants.dart';
+import '../../configs/app_color.dart';
 import '../../data/cache/cache_keys.dart';
 import '../../data/cache/customer_cache.dart';
 import '../../data/models/uploadImage/upload_image_model.dart';
@@ -178,8 +178,8 @@ class PickAndUploadImageBloc
       uiSettings: [
         AndroidUiSettings(
             toolbarTitle: 'Cropper',
-            toolbarColor: Colors.deepOrange,
-            toolbarWidgetColor: Colors.white,
+            toolbarColor: AppColor.grey,
+            toolbarWidgetColor: AppColor.black,
             initAspectRatio: CropAspectRatioPreset.ratio16x9,
             lockAspectRatio: true,
             hideBottomControls: true),
