@@ -140,7 +140,7 @@ class MyApp extends StatelessWidget {
                     builder: (context, state) {
                   return BlocBuilder<OnBoardingBloc, OnBoardingStates>(
                       builder: (context, state) {
-                        if (state is LoggedIn) {
+                    if (state is LoggedIn) {
                       return const RootScreen(isFromClientList: false);
                     } else if (state is ClientSelected) {
                       return const ClientListScreen(isFromProfile: false);
