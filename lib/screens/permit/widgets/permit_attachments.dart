@@ -20,37 +20,30 @@ class PermitAttachments extends StatelessWidget {
         itemCount: permitDetailsModel.data.tab5.length,
         itemBuilder: (context, index) {
           return CustomCard(
-            child: Padding(
-              padding: const EdgeInsets.only(top: xxTinierSpacing),
-              child: ListTile(
-                title: Text(permitDetailsModel.data.tab5[index].name,
-                    style: Theme.of(context).textTheme.small.copyWith(
-                        fontWeight: FontWeight.w700,
-                        color: AppColor.mediumBlack)),
-                subtitle: Padding(
+              child: Padding(
                   padding: const EdgeInsets.only(top: xxTinierSpacing),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Text(permitDetailsModel.data.tab5[index].type),
-                      const SizedBox(height: xxTinierSpacing),
-                      Text(permitDetailsModel.data.tab5[index].files,
-                          style: Theme.of(context)
-                              .textTheme
-                              .xxSmall
-                              .copyWith(color: AppColor.deepBlue)),
-                      const SizedBox(height: xxTiniestSpacing),
-                    ],
-                  ),
-                ),
-                trailing: const Icon(
-                  Icons.attach_file,
-                  size: kIconSize,
-                ),
-              ),
-            ),
-          );
+                  child: ListTile(
+                      title: Text(permitDetailsModel.data.tab5[index].name,
+                          style: Theme.of(context).textTheme.small.copyWith(
+                              fontWeight: FontWeight.w700,
+                              color: AppColor.mediumBlack)),
+                      subtitle: Padding(
+                          padding: const EdgeInsets.only(top: xxTinierSpacing),
+                          child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Text(permitDetailsModel.data.tab5[index].type),
+                                const SizedBox(height: xxTinierSpacing),
+                                Text(permitDetailsModel.data.tab5[index].files,
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .xxSmall
+                                        .copyWith(color: AppColor.deepBlue)),
+                                const SizedBox(height: xxTiniestSpacing)
+                              ])),
+                      trailing:
+                          const Icon(Icons.attach_file, size: kIconSize))));
         },
         separatorBuilder: (context, index) {
           return const SizedBox(height: xxTinierSpacing);

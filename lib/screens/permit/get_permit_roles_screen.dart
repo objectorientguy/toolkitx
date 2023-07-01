@@ -32,10 +32,9 @@ class GetPermitRolesScreen extends StatelessWidget {
               listener: (context, state) {
                 if (state is PermitRoleSelected) {
                   Navigator.pop(context);
-                  context
-                      .read<PermitBloc>()
-                      .add(const GetAllPermits(isFromHome: false, page: 1));
-                  PermitListScreen.page = 1;
+                  Navigator.pushReplacementNamed(
+                      context, PermitListScreen.routeName,
+                      arguments: false);
                 }
               },
               builder: (context, state) {

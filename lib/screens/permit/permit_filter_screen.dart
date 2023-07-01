@@ -21,7 +21,6 @@ import 'widgets/permit_type_filter.dart';
 
 class PermitFilterScreen extends StatelessWidget {
   static const routeName = 'PermitFilterScreen';
-
   final Map permitFilterMap = {};
   final List location = [];
 

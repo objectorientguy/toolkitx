@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:convert';
-import 'dart:developer';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:toolkit/blocs/checklist/systemUser/checkList/sys_user_checklist_event.dart';
@@ -11,6 +10,7 @@ import '../../../../data/models/checklist/systemUser/sys_user_change_category_mo
 import '../../../../data/models/checklist/systemUser/sys_user_checklist_model.dart';
 import '../../../../di/app_module.dart';
 import '../../../../repositories/checklist/systemUser/sys_user_checklist_repository.dart';
+import '../../../../utils/database_utils.dart';
 
 class SysUserCheckListBloc
     extends Bloc<SysUserFetchCheckListEvent, SysUserCheckListStates> {
@@ -34,27 +34,25 @@ class SysUserCheckListBloc
   FutureOr<void> _fetchList(
       FetchCheckList event, Emitter<SysUserCheckListStates> emit) async {
     emit(FetchingCheckList());
-    // try {
-    log("event page======>${event.page}");
-    String hashCode = (await _customerCache.getHashCode(CacheKeys.hashcode))!;
-    if (event.isFromHome != true) {
-      ChecklistListModel getChecklistModel = await _sysUserCheckListRepository
-          .fetchCheckList(event.page, hashCode, filterData);
-      emit(CheckListFetched(
-          getChecklistModel: getChecklistModel, filterData: filterData));
-    } else {
-      add(ClearCheckListFilter());
-      ChecklistListModel getChecklistModel = await _sysUserCheckListRepository
-          .fetchCheckList(event.page, hashCode, filterData);
-      emit(CheckListFetched(
-          getChecklistModel: getChecklistModel, filterData: filterData));
+    try {
+      String hashCode = (await _customerCache.getHashCode(CacheKeys.hashcode))!;
+      if (event.isFromHome != true) {
+        ChecklistListModel getChecklistModel = await _sysUserCheckListRepository
+            .fetchCheckList(event.page, hashCode, filterData);
+        emit(CheckListFetched(
+            getChecklistModel: getChecklistModel, filterData: filterData));
+      } else {
+        add(ClearCheckListFilter());
+        ChecklistListModel getChecklistModel = await _sysUserCheckListRepository
+            .fetchCheckList(event.page, hashCode, filterData);
+        emit(CheckListFetched(
+            getChecklistModel: getChecklistModel, filterData: filterData));
+      }
+    } catch (e) {
+      emit(CheckListError(
+          errorMessage:
+              DatabaseUtil.getText('some_unknown_error_please_try_again')));
     }
-    // }
-    // catch (e) {
-    //   emit(CheckListError(
-    //       errorMessage:
-    //           DatabaseUtil.getText('some_unknown_error_please_try_again')));
-    // }
   }
 
   FutureOr<void> _fetchCategory(

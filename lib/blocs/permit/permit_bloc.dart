@@ -2,10 +2,6 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
-import 'package:toolkit/blocs/permit/permit_events.dart';
-import 'package:toolkit/blocs/permit/permit_states.dart';
-import 'package:toolkit/utils/constants/string_constants.dart';
-import 'package:toolkit/utils/database_utils.dart';
 
 import '../../data/cache/cache_keys.dart';
 import '../../data/cache/customer_cache.dart';
@@ -20,6 +16,10 @@ import '../../data/models/permit/permit_get_master_model.dart';
 import '../../data/models/permit/permit_roles_model.dart';
 import '../../di/app_module.dart';
 import '../../repositories/permit/permit_repository.dart';
+import '../../utils/constants/string_constants.dart';
+import '../../utils/database_utils.dart';
+import 'permit_events.dart';
+import 'permit_states.dart';
 
 class PermitBloc extends Bloc<PermitEvents, PermitStates> {
   final PermitRepository _permitRepository = getIt<PermitRepository>();
@@ -196,17 +196,18 @@ class PermitBloc extends Bloc<PermitEvents, PermitStates> {
       emit(const GeneratingPDF());
       String hashCode = (await _customerCache.getHashCode(CacheKeys.hashcode))!;
       String aipKey = (await _customerCache.getApiKey(CacheKeys.apiKey))!;
-      final PdfGenerationModel pdfGenerationModel =
-          await _permitRepository.generatePdf(hashCode, event.permitId);
-      if (pdfGenerationModel.message != '') {
-        String pdfLink = EncryptData.decryptAESPrivateKey(
-            pdfGenerationModel.message, aipKey);
-        emit(PDFGenerated(
-            pdfGenerationModel: pdfGenerationModel, pdfLink: pdfLink));
+      if (event.isFromPopUpMenu == true) {
+        final PdfGenerationModel pdfGenerationModel =
+            await _permitRepository.generatePdf(hashCode, event.permitId);
+        if (pdfGenerationModel.message != '') {
+          String pdfLink = EncryptData.decryptAESPrivateKey(
+              pdfGenerationModel.message, aipKey);
+          emit(PDFGenerated(
+              pdfGenerationModel: pdfGenerationModel, pdfLink: pdfLink));
+        }
       }
-      emit(PDFGenerated(pdfGenerationModel: pdfGenerationModel, pdfLink: ''));
     } catch (e) {
-      emit(const CouldNotFetchPermits());
+      emit(const PDFGenerationFailed());
       rethrow;
     }
   }

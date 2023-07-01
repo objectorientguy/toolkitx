@@ -55,10 +55,10 @@ class GeneratingPDF extends PermitStates {
 }
 
 class PDFGenerated extends PermitStates {
-  final PdfGenerationModel pdfGenerationModel;
+  final PdfGenerationModel? pdfGenerationModel;
   final String pdfLink;
 
-  const PDFGenerated({required this.pdfGenerationModel, required this.pdfLink});
+  const PDFGenerated({this.pdfGenerationModel, required this.pdfLink});
 }
 
 class PDFGenerationFailed extends PermitStates {
