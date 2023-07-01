@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:toolkit/blocs/incident/incidentDetails/incident_details_bloc.dart';
@@ -15,7 +13,6 @@ import 'package:toolkit/screens/incident/widgets/incident_link_permit_list.dart'
 import 'package:toolkit/utils/constants/string_constants.dart';
 import 'package:toolkit/utils/incident_util.dart';
 import 'package:toolkit/widgets/error_section.dart';
-
 import '../../blocs/incident/incidentDetails/incident_details_states.dart';
 import '../../configs/app_color.dart';
 import '../../configs/app_dimensions.dart';
@@ -28,20 +25,17 @@ import '../../widgets/status_tag.dart';
 
 class IncidentDetailsScreen extends StatelessWidget {
   final IncidentListDatum incidentListDatum;
-  final int initialIndex;
   static const routeName = 'IncidentDetailsScreen';
 
-  const IncidentDetailsScreen(
-      {Key? key, required this.incidentListDatum, required this.initialIndex})
+  const IncidentDetailsScreen({Key? key, required this.incidentListDatum})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    log('details index=====>$initialIndex');
     context.read<IncidentDetailsBloc>().add(FetchIncidentDetailsEvent(
         incidentId: incidentListDatum.id,
         role: context.read<IncidentFetchAndChangeRoleBloc>().roleId,
-        tabBarIndex: initialIndex));
+        incidentLinkIndex: 0));
     return Scaffold(
         appBar: const GenericAppBar(actions: []),
         body: BlocConsumer<IncidentDetailsBloc, IncidentDetailsStates>(
@@ -65,9 +59,9 @@ class IncidentDetailsScreen extends StatelessWidget {
                                       top: xxTinierSpacing),
                                   child: Row(
                                       crossAxisAlignment:
-                                      CrossAxisAlignment.center,
+                                          CrossAxisAlignment.center,
                                       mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
+                                          MainAxisAlignment.spaceBetween,
                                       children: [
                                         Text(incidentListDatum.refno,
                                             style: Theme.of(context)
@@ -84,38 +78,35 @@ class IncidentDetailsScreen extends StatelessWidget {
                       const Divider(
                           height: kDividerHeight, thickness: kDividerWidth),
                       CustomTabBarView(
-                          lengthOfTabs: 6,
-                          tabBarViewIcons: IncidentUtil().tabBarViewIcons,
-                          tabBarViewWidgets: [
-                            IncidentDetails(
-                                incidentDetailsModel:
-                                    state.incidentDetailsModel,
-                                clientId: state.clientId,
-                                initialIndex: 0),
-                            IncidentCustomFieldInfo(
-                                incidentDetailsModel:
-                                    state.incidentDetailsModel,
-                                initialIndex: 1),
-                            PermitDetailsComment(
-                                incidentDetailsModel:
-                                    state.incidentDetailsModel,
-                                clientId: state.clientId,
-                                initialIndex: 2),
-                            IncidentInjuredPersonList(
-                                incidentDetailsModel:
-                                    state.incidentDetailsModel,
-                                initialIndex: 3),
-                            IncidentCustomTimeLine(
-                                incidentDetailsModel:
-                                    state.incidentDetailsModel,
-                                initialIndex: 4),
-                            IncidentLinkPermitList(
-                                incidentDetailsModel:
-                                    state.incidentDetailsModel,
-                                incidentListDatum: incidentListDatum,
-                                initialIndex: 5)
-                          ],
-                          initialIndex: initialIndex)
+                        lengthOfTabs: 6,
+                        tabBarViewIcons: IncidentUtil().tabBarViewIcons,
+                        tabBarViewWidgets: [
+                          IncidentDetails(
+                              incidentDetailsModel: state.incidentDetailsModel,
+                              clientId: state.clientId,
+                              initialIndex: 0),
+                          IncidentCustomFieldInfo(
+                              incidentDetailsModel: state.incidentDetailsModel,
+                              initialIndex: 1),
+                          PermitDetailsComment(
+                              incidentDetailsModel: state.incidentDetailsModel,
+                              clientId: state.clientId,
+                              initialIndex: 2),
+                          IncidentInjuredPersonList(
+                              incidentDetailsModel: state.incidentDetailsModel,
+                              initialIndex: 3),
+                          IncidentCustomTimeLine(
+                              incidentDetailsModel: state.incidentDetailsModel,
+                              initialIndex: 4),
+                          IncidentLinkPermitList(
+                              incidentDetailsModel: state.incidentDetailsModel,
+                              incidentListDatum: incidentListDatum,
+                              initialIndex: 5)
+                        ],
+                        initialIndex: context
+                            .read<IncidentDetailsBloc>()
+                            .incidentTabIndex,
+                      )
                     ]));
               } else if (state is IncidentDetailsNotFetched) {
                 return Center(
@@ -127,7 +118,7 @@ class IncidentDetailsScreen extends StatelessWidget {
                                 role: context
                                     .read<IncidentFetchAndChangeRoleBloc>()
                                     .roleId,
-                                tabBarIndex: initialIndex));
+                                incidentLinkIndex: 0));
                       },
                       textValue: StringConstants.kReload),
                 );

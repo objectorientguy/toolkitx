@@ -141,7 +141,6 @@ class OnLineModules extends StatelessWidget {
         break;
       case 'hse':
         Navigator.pushNamed(context, IncidentListScreen.routeName);
-        IncidentListScreen.initialIndex = 0;
         break;
       case 'checklist':
         Navigator.pushNamed(context, SystemUserCheckListScreen.routeName,

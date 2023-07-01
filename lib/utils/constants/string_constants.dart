@@ -55,7 +55,7 @@ abstract class StringConstants {
   static const String kConfirmPassword = 'Confirm Password'; //
   static const String kNoCustomFields = 'No custom fields info!'; //
   static const String kNoComment = 'No comments!'; //
-  static const String kNoInjuredPerson = 'No injured person list!'; //
+  static const String kNoInjuredPerson = 'No injured person!'; //
   static const String kNoILinkedPermit = 'No linked permit!'; //
   static const String kCannotUnlinkPermit = 'Cannot unlink permit!';
   static const String kFiles = 'Files'; //

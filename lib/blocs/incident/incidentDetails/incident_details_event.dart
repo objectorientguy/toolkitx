@@ -1,10 +1,10 @@
 class FetchIncidentDetailsEvent {
   final String incidentId;
   final String role;
-  final int tabBarIndex;
+  final int incidentLinkIndex;
 
   FetchIncidentDetailsEvent(
-      {required this.tabBarIndex,
+      {required this.incidentLinkIndex,
       required this.incidentId,
       required this.role});
 }

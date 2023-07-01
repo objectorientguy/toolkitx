@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:toolkit/data/models/incident/fetch_incidents_list_model.dart';
 import 'package:toolkit/screens/incident/incident_details_screen.dart';
 import '../../../blocs/incident/incidentGetAndChangeRole/incident_get_and_change_role_bloc.dart';
 import '../../../blocs/incident/incidentList/incident_list_bloc.dart';
@@ -14,10 +13,7 @@ import 'incident_list_subtitle.dart';
 import 'incident_list_title.dart';
 
 class IncidentListBody extends StatelessWidget {
-  final int initialIndex;
-
-  const IncidentListBody({Key? key, required this.initialIndex})
-      : super(key: key);
+  const IncidentListBody({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -47,12 +43,9 @@ class IncidentListBody extends StatelessWidget {
                             state.fetchIncidentsListModel.data![index]),
                     onTap: () {
                       Navigator.pushNamed(
-                        context,
-                        IncidentDetailsScreen.routeName,
-                        arguments: {
-                          state.fetchIncidentsListModel.data![index],
-                        },
-                      );
+                          context, IncidentDetailsScreen.routeName,
+                          arguments:
+                              state.fetchIncidentsListModel.data![index]);
                     },
                   ));
                 },

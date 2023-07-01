@@ -15,7 +15,6 @@ import 'filter_screen.dart';
 
 class IncidentListScreen extends StatelessWidget {
   static const routeName = 'IncidentListScreen';
-  static int initialIndex = 0;
 
   const IncidentListScreen({Key? key}) : super(key: key);
 
@@ -47,7 +46,7 @@ class IncidentListScreen extends StatelessWidget {
               isEnabled: true,
               clearOnPress: () {}),
           const SizedBox(height: xxTinierSpacing),
-          IncidentListBody(initialIndex: initialIndex),
+          const IncidentListBody(),
           const SizedBox(height: xxTinySpacing)
         ]),
       ),
