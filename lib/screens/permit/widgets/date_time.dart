@@ -22,7 +22,7 @@ class DateTimeRow extends StatelessWidget {
               children: [
                 Image.asset('assets/icons/calendar.png',
                     height: kImageHeight, width: kImageWidth),
-                const SizedBox(width: tiniest),
+                const SizedBox(width: tiniestSpacing),
                 Text((allPermitDatum.enddate == '')
                     ? DateUtil.splitDate(allPermitDatum.startdate!)[0]
                     : '${DateUtil.splitDate(allPermitDatum.startdate!)[0]} - ${DateUtil.splitDate(allPermitDatum.enddate!)[0]}')
@@ -33,7 +33,7 @@ class DateTimeRow extends StatelessWidget {
               children: [
                 Image.asset('assets/icons/clock.png',
                     height: kImageHeight, width: kImageWidth),
-                const SizedBox(width: tiniest),
+                const SizedBox(width: tiniestSpacing),
                 Text((allPermitDatum.enddate == '')
                     ? DateUtil.splitDate(allPermitDatum.startdate!)[1]
                     : '${DateUtil.splitDate(allPermitDatum.startdate!)[1]} - ${DateUtil.splitDate(allPermitDatum.enddate!)[1]}')

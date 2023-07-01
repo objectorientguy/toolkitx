@@ -6,6 +6,7 @@ import 'package:toolkit/blocs/checklist/systemUser/thirdPartyApprove/sys_user_ch
 import 'package:toolkit/configs/app_dimensions.dart';
 import 'package:toolkit/configs/app_spacing.dart';
 import 'package:toolkit/configs/app_theme.dart';
+import 'package:toolkit/screens/profile/widgets/signature.dart';
 import '../../../../blocs/checklist/systemUser/scheduleDates/sys_user_checklist_schedule_dates_bloc.dart';
 import '../../../../configs/app_color.dart';
 import '../../../../utils/constants/string_constants.dart';
@@ -45,16 +46,16 @@ class ThirdPartyApprovePopUp extends StatelessWidget {
           }
         },
         child: AlertDialog(
-            titlePadding:
-                const EdgeInsets.only(left: tiny, top: tiny, right: tiny),
-            buttonPadding: const EdgeInsets.all(tiniest),
+            titlePadding: const EdgeInsets.only(
+                left: tinySpacing, top: tinySpacing, right: tinySpacing),
+            buttonPadding: const EdgeInsets.all(tiniestSpacing),
             contentPadding: const EdgeInsets.only(
                 left: xxTinySpacing,
                 right: xxTinySpacing,
                 top: xxTinySpacing,
                 bottom: 0),
-            actionsPadding:
-                const EdgeInsets.only(right: xxTinySpacing, bottom: tiniest),
+            actionsPadding: const EdgeInsets.only(
+                right: xxTinySpacing, bottom: tiniestSpacing),
             title:
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               Row(
@@ -83,17 +84,8 @@ class ThirdPartyApprovePopUp extends StatelessWidget {
                     thirdPartyApproveMap["name"] = textValue;
                   }),
               const SizedBox(height: xxTinierSpacing),
-              Text('Add Signature',
-                  style: Theme.of(context)
-                      .textTheme
-                      .small
-                      .copyWith(color: AppColor.black)),
+              SignaturePad(map: thirdPartyApproveMap, mapKey: 'sign_text'),
             ]),
-            content: TextFieldWidget(
-                onTextFieldChanged: (String textValue) {
-                  thirdPartyApproveMap["sign_text"] = textValue;
-                },
-                maxLines: 7),
             actions: [
               CustomTextButton(
                   onPressed: () {

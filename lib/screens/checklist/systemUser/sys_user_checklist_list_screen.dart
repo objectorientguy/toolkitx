@@ -16,7 +16,6 @@ import '../../../blocs/checklist/systemUser/checkList/sys_user_checklist_state.d
 class SystemUserCheckListScreen extends StatelessWidget {
   static const routeName = 'SystemUserCheckListScreen';
   final bool isFromHome;
-  static int page = 1;
 
   const SystemUserCheckListScreen({Key? key, this.isFromHome = false})
       : super(key: key);
@@ -25,7 +24,7 @@ class SystemUserCheckListScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     context
         .read<SysUserCheckListBloc>()
-        .add(FetchCheckList(isFromHome: isFromHome, page: page));
+        .add(FetchCheckList(isFromHome: isFromHome));
     return Scaffold(
       appBar: const GenericAppBar(title: StringConstants.kChecklist),
       body: Padding(
@@ -47,9 +46,9 @@ class SystemUserCheckListScreen extends StatelessWidget {
                               context
                                   .read<SysUserCheckListBloc>()
                                   .add(ClearCheckListFilter());
-                              context.read<SysUserCheckListBloc>().add(
-                                  FetchCheckList(
-                                      isFromHome: false, page: page));
+                              context
+                                  .read<SysUserCheckListBloc>()
+                                  .add(FetchCheckList(isFromHome: false));
                             },
                             textValue: StringConstants.kClearFilter));
                   } else {
@@ -67,8 +66,8 @@ class SystemUserCheckListScreen extends StatelessWidget {
                     clearOnPress: () {}),
               ],
             ),
-            const SizedBox(height: tiniest),
-            SysUserListSection(page: page)
+            const SizedBox(height: tiniestSpacing),
+            const SysUserListSection()
           ])),
     );
   }
