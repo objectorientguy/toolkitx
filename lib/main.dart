@@ -126,7 +126,7 @@ class MyApp extends StatelessWidget {
           BlocProvider(lazy: false, create: (context) => IncidentListBloc()),
           BlocProvider(
               lazy: false,
-              create: (context) => OnBoardingBloc()..add(CheckLoggedIn()))
+              create: (context) => OnBoardingBloc()..add(CheckClientSelected()))
         ],
         child: GestureDetector(
             onTap: () {
@@ -140,9 +140,9 @@ class MyApp extends StatelessWidget {
                     builder: (context, state) {
                   return BlocBuilder<OnBoardingBloc, OnBoardingStates>(
                       builder: (context, state) {
-                    if (state is LoggedIn) {
+                    if (state is ClientSelected) {
                       return const RootScreen(isFromClientList: false);
-                    } else if (state is ClientSelected) {
+                    } else if (state is LoggedIn) {
                       return const ClientListScreen(isFromProfile: false);
                     } else if (state is LanguageSelected) {
                       return const SelectTimeZoneScreen();

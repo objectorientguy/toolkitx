@@ -21,6 +21,21 @@ class OnBoardingBloc extends Bloc<OnBoardingEvents, OnBoardingStates> {
     on<CheckClientSelected>(_checkClientSelected);
   }
 
+  Future<FutureOr<void>> _checkClientSelected(
+      CheckClientSelected event, Emitter<OnBoardingStates> emit) async {
+    try {
+      String? isClientSelected;
+      isClientSelected = await _customerCache.getApiKey(CacheKeys.apiKey);
+      if (isClientSelected != null) {
+        emit(ClientSelected());
+      } else {
+        add(CheckLoggedIn());
+      }
+    } catch (e) {
+      add(CheckLoggedIn());
+    }
+  }
+
   Future<FutureOr<void>> _isLoggedIn(
       CheckLoggedIn event, Emitter<OnBoardingStates> emit) async {
     try {
@@ -28,22 +43,6 @@ class OnBoardingBloc extends Bloc<OnBoardingEvents, OnBoardingStates> {
           (await _customerCache.getIsLoggedIn(CacheKeys.isLoggedIn))!;
       if (isLoggedIn == true) {
         emit(LoggedIn());
-      } else {
-        add(CheckClientSelected());
-      }
-    } catch (e) {
-      add(CheckClientSelected());
-    }
-  }
-
-  Future<FutureOr<void>> _checkClientSelected(
-      CheckClientSelected event, Emitter<OnBoardingStates> emit) async {
-    try {
-      String? isClientSelected;
-      isClientSelected =
-          await _customerCache.getDateFormat(CacheKeys.dateFormatKey);
-      if (isClientSelected != null) {
-        emit(ClientSelected());
       } else {
         add(CheckDateFormatSelected());
       }

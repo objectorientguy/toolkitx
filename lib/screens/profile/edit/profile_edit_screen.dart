@@ -96,6 +96,7 @@ class ProfileEditScreen extends StatelessWidget {
                               const SizedBox(height: tinierSpacing),
                               TextFieldWidget(
                                   value: state.profileDetailsMap['contact'],
+                                  textInputType: TextInputType.phone,
                                   textInputAction: TextInputAction.done,
                                   maxLength: 20,
                                   hintText: DatabaseUtil.getText('Contact'),
