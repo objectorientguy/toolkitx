@@ -96,6 +96,7 @@ class LoginBloc extends Bloc<LoginEvents, LoginStates> {
         };
         LoginModel loginModel = await _loginRepository.postLogin(loginMap);
         if (loginModel.status == 200) {
+          _customerCache.setIsLoggedIn(CacheKeys.isLoggedIn, true);
           _customerCache.setClientDataKey(
               CacheKeys.clientDataKey, loginModel.message!);
           emit(LoginLoaded(loginModel: loginModel));
