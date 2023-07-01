@@ -10,9 +10,13 @@ import '../../../widgets/custom_card.dart';
 class PermitDetailsComment extends StatelessWidget {
   final IncidentDetailsModel incidentDetailsModel;
   final String clientId;
+  final int initialIndex;
 
   const PermitDetailsComment(
-      {Key? key, required this.incidentDetailsModel, required this.clientId})
+      {Key? key,
+      required this.incidentDetailsModel,
+      required this.clientId,
+      required this.initialIndex})
       : super(key: key);
 
   @override
@@ -31,10 +35,10 @@ class PermitDetailsComment extends StatelessWidget {
               return CustomCard(
                 child: ListTile(
                   contentPadding: const EdgeInsets.only(
-                      left: tinier,
-                      right: tinier,
-                      top: tiniest,
-                      bottom: tiniest),
+                      left: tinierSpacing,
+                      right: tinierSpacing,
+                      top: tiniestSpacing,
+                      bottom: tiniestSpacing),
                   title: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [

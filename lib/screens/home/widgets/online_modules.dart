@@ -105,7 +105,7 @@ class OnLineModules extends StatelessWidget {
                                                               fontSize: 8))
                                                 ]))
                                     ]),
-                                const SizedBox(height: xxTinierSpacing),
+                                const SizedBox(height: xxxTinierSpacing),
                                 Padding(
                                     padding: const EdgeInsets.only(
                                         left: xxTiniestSpacing,
@@ -141,6 +141,7 @@ class OnLineModules extends StatelessWidget {
         break;
       case 'hse':
         Navigator.pushNamed(context, IncidentListScreen.routeName);
+        IncidentListScreen.initialIndex = 0;
         break;
       case 'checklist':
         Navigator.pushNamed(context, SystemUserCheckListScreen.routeName,

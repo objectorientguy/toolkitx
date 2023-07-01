@@ -9,8 +9,12 @@ import '../../../utils/constants/string_constants.dart';
 
 class IncidentCustomFieldInfo extends StatelessWidget {
   final IncidentDetailsModel incidentDetailsModel;
+  final int initialIndex;
 
-  const IncidentCustomFieldInfo({Key? key, required this.incidentDetailsModel})
+  const IncidentCustomFieldInfo(
+      {Key? key,
+      required this.incidentDetailsModel,
+      required this.initialIndex})
       : super(key: key);
 
   @override
@@ -29,10 +33,10 @@ class IncidentCustomFieldInfo extends StatelessWidget {
               return CustomCard(
                 child: ListTile(
                     contentPadding: const EdgeInsets.only(
-                        left: tinier,
-                        right: tinier,
-                        top: tiniest,
-                        bottom: tiniest),
+                        left: tinierSpacing,
+                        right: tinierSpacing,
+                        top: tiniestSpacing,
+                        bottom: tiniestSpacing),
                     title: Text(
                         '${incidentDetailsModel.data!.customfields![index].title}?',
                         style: Theme.of(context).textTheme.small.copyWith(

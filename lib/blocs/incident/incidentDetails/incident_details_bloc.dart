@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:toolkit/repositories/incident/incident_repository.dart';
 import '../../../../data/cache/cache_keys.dart';
@@ -23,6 +24,7 @@ class IncidentDetailsBloc
       Emitter<IncidentDetailsStates> emit) async {
     emit(FetchingIncidentDetails());
     try {
+      log("event index=====>${event.tabBarIndex}");
       String hashCode = (await _customerCache.getHashCode(CacheKeys.hashcode))!;
       String userId = (await _customerCache.getUserId(CacheKeys.userId))!;
       String hashKey = (await _customerCache.getClientId(CacheKeys.clientId))!;

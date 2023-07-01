@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:toolkit/blocs/incident/incidentDetails/incident_details_bloc.dart';
@@ -26,16 +28,20 @@ import '../../widgets/status_tag.dart';
 
 class IncidentDetailsScreen extends StatelessWidget {
   final IncidentListDatum incidentListDatum;
+  final int initialIndex;
   static const routeName = 'IncidentDetailsScreen';
 
-  const IncidentDetailsScreen({Key? key, required this.incidentListDatum})
+  const IncidentDetailsScreen(
+      {Key? key, required this.incidentListDatum, required this.initialIndex})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    log('details index=====>$initialIndex');
     context.read<IncidentDetailsBloc>().add(FetchIncidentDetailsEvent(
         incidentId: incidentListDatum.id,
-        role: context.read<IncidentFetchAndChangeRoleBloc>().roleId));
+        role: context.read<IncidentFetchAndChangeRoleBloc>().roleId,
+        tabBarIndex: initialIndex));
     return Scaffold(
         appBar: const GenericAppBar(actions: []),
         body: BlocConsumer<IncidentDetailsBloc, IncidentDetailsStates>(
@@ -59,9 +65,9 @@ class IncidentDetailsScreen extends StatelessWidget {
                                       top: xxTinierSpacing),
                                   child: Row(
                                       crossAxisAlignment:
-                                          CrossAxisAlignment.center,
+                                      CrossAxisAlignment.center,
                                       mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
+                                      MainAxisAlignment.spaceBetween,
                                       children: [
                                         Text(incidentListDatum.refno,
                                             style: Theme.of(context)
@@ -84,25 +90,32 @@ class IncidentDetailsScreen extends StatelessWidget {
                             IncidentDetails(
                                 incidentDetailsModel:
                                     state.incidentDetailsModel,
-                                clientId: state.clientId),
+                                clientId: state.clientId,
+                                initialIndex: 0),
                             IncidentCustomFieldInfo(
                                 incidentDetailsModel:
-                                    state.incidentDetailsModel),
+                                    state.incidentDetailsModel,
+                                initialIndex: 1),
                             PermitDetailsComment(
                                 incidentDetailsModel:
                                     state.incidentDetailsModel,
-                                clientId: state.clientId),
+                                clientId: state.clientId,
+                                initialIndex: 2),
                             IncidentInjuredPersonList(
                                 incidentDetailsModel:
-                                    state.incidentDetailsModel),
+                                    state.incidentDetailsModel,
+                                initialIndex: 3),
                             IncidentCustomTimeLine(
                                 incidentDetailsModel:
-                                    state.incidentDetailsModel),
+                                    state.incidentDetailsModel,
+                                initialIndex: 4),
                             IncidentLinkPermitList(
                                 incidentDetailsModel:
                                     state.incidentDetailsModel,
-                                incidentListDatum: incidentListDatum)
-                          ])
+                                incidentListDatum: incidentListDatum,
+                                initialIndex: 5)
+                          ],
+                          initialIndex: initialIndex)
                     ]));
               } else if (state is IncidentDetailsNotFetched) {
                 return Center(
@@ -113,7 +126,8 @@ class IncidentDetailsScreen extends StatelessWidget {
                                 incidentId: incidentListDatum.id,
                                 role: context
                                     .read<IncidentFetchAndChangeRoleBloc>()
-                                    .roleId));
+                                    .roleId,
+                                tabBarIndex: initialIndex));
                       },
                       textValue: StringConstants.kReload),
                 );

@@ -11,9 +11,13 @@ import 'incident_map_links_list.dart';
 class IncidentDetails extends StatelessWidget {
   final IncidentDetailsModel incidentDetailsModel;
   final String clientId;
+  final int initialIndex;
 
   const IncidentDetails(
-      {Key? key, required this.incidentDetailsModel, required this.clientId})
+      {Key? key,
+      required this.incidentDetailsModel,
+      required this.clientId,
+      required this.initialIndex})
       : super(key: key);
 
   @override
@@ -23,7 +27,7 @@ class IncidentDetails extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const SizedBox(height: tiniest),
+            const SizedBox(height: tiniestSpacing),
             Text(
               DatabaseUtil.getText('Reportedby'),
               style: Theme.of(context)
@@ -34,7 +38,7 @@ class IncidentDetails extends StatelessWidget {
             const SizedBox(height: xxTinierSpacing),
             Text(
                 '${incidentDetailsModel.data!.companyname} - ${incidentDetailsModel.data!.createdbyname}'),
-            const SizedBox(height: tiny),
+            const SizedBox(height: tinySpacing),
             Text(
               DatabaseUtil.getText('ReportedDate'),
               style: Theme.of(context)
@@ -45,7 +49,7 @@ class IncidentDetails extends StatelessWidget {
             const SizedBox(height: xxTinierSpacing),
             Text(incidentDetailsModel.data!.eventdatetime,
                 style: Theme.of(context).textTheme.small),
-            const SizedBox(height: tiny),
+            const SizedBox(height: tinySpacing),
             Text(
               DatabaseUtil.getText('Category'),
               style: Theme.of(context)
@@ -56,7 +60,7 @@ class IncidentDetails extends StatelessWidget {
             const SizedBox(height: xxTinierSpacing),
             Text(incidentDetailsModel.data!.categorynames,
                 style: Theme.of(context).textTheme.small),
-            const SizedBox(height: tiny),
+            const SizedBox(height: tinySpacing),
             Text(
               DatabaseUtil.getText('IncidentDetails'),
               style: Theme.of(context)
@@ -67,7 +71,7 @@ class IncidentDetails extends StatelessWidget {
             const SizedBox(height: xxTinierSpacing),
             Text(incidentDetailsModel.data!.description,
                 style: Theme.of(context).textTheme.small),
-            const SizedBox(height: tiny),
+            const SizedBox(height: tinySpacing),
             Text(
               DatabaseUtil.getText('Location'),
               style: Theme.of(context)
@@ -80,7 +84,7 @@ class IncidentDetails extends StatelessWidget {
                 style: Theme.of(context).textTheme.small),
             const SizedBox(height: xxTinierSpacing),
             IncidentMapLinksList(incidentDetailsModel: incidentDetailsModel),
-            const SizedBox(height: tiny),
+            const SizedBox(height: tinySpacing),
             Text(
               DatabaseUtil.getText('Reportedauthority'),
               style: Theme.of(context)
@@ -91,7 +95,7 @@ class IncidentDetails extends StatelessWidget {
             const SizedBox(height: xxTinierSpacing),
             Text(incidentDetailsModel.data!.responsiblePerson,
                 style: Theme.of(context).textTheme.small),
-            const SizedBox(height: tiny),
+            const SizedBox(height: tinySpacing),
             Text(
               DatabaseUtil.getText('ReportedDate'),
               style: Theme.of(context)
@@ -102,7 +106,7 @@ class IncidentDetails extends StatelessWidget {
             const SizedBox(height: xxTinierSpacing),
             Text(incidentDetailsModel.data!.reporteddatetime,
                 style: Theme.of(context).textTheme.small),
-            const SizedBox(height: tiny),
+            const SizedBox(height: tinySpacing),
             Text(
               DatabaseUtil.getText('viewimage'),
               style: Theme.of(context)
@@ -117,7 +121,7 @@ class IncidentDetails extends StatelessWidget {
                   incidentDetailsModel: incidentDetailsModel,
                   clientId: clientId),
             ),
-            const SizedBox(height: tiny)
+            const SizedBox(height: tinySpacing)
           ],
         ));
   }

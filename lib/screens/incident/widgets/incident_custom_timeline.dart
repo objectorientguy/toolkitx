@@ -7,8 +7,12 @@ import '../../../configs/app_spacing.dart';
 
 class IncidentCustomTimeLine extends StatelessWidget {
   final IncidentDetailsModel incidentDetailsModel;
+  final int initialIndex;
 
-  const IncidentCustomTimeLine({Key? key, required this.incidentDetailsModel})
+  const IncidentCustomTimeLine(
+      {Key? key,
+      required this.incidentDetailsModel,
+      required this.initialIndex})
       : super(key: key);
 
   @override

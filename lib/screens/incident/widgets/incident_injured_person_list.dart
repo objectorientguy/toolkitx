@@ -13,9 +13,12 @@ import '../../../widgets/custom_card.dart';
 
 class IncidentInjuredPersonList extends StatelessWidget {
   final IncidentDetailsModel incidentDetailsModel;
+  final int initialIndex;
 
   const IncidentInjuredPersonList(
-      {Key? key, required this.incidentDetailsModel})
+      {Key? key,
+      required this.incidentDetailsModel,
+      required this.initialIndex})
       : super(key: key);
 
   @override
@@ -26,7 +29,7 @@ class IncidentInjuredPersonList extends StatelessWidget {
           label: Row(
             children: [
               const Icon(Icons.add),
-              const SizedBox(width: tiniest),
+              const SizedBox(width: tiniestSpacing),
               Text(DatabaseUtil.getText('addInjuredPersonPageHeading'))
             ],
           ),
@@ -49,10 +52,10 @@ class IncidentInjuredPersonList extends StatelessWidget {
                 return CustomCard(
                   child: ListTile(
                     contentPadding: const EdgeInsets.only(
-                        left: tinier,
-                        right: tinier,
-                        top: tiniest,
-                        bottom: tiniest),
+                        left: tinierSpacing,
+                        right: tinierSpacing,
+                        top: tiniestSpacing,
+                        bottom: tiniestSpacing),
                     trailing: Image.asset(
                       leadingAvatarIcon,
                     ),

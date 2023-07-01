@@ -122,7 +122,8 @@ class AppRoutes {
             permitDetailsModel: settings.arguments as PermitDetailsModel));
       case IncidentDetailsScreen.routeName:
         return _createRoute(IncidentDetailsScreen(
-            incidentListDatum: settings.arguments as IncidentListDatum));
+            incidentListDatum: settings.arguments as IncidentListDatum,
+            initialIndex: settings.arguments as int));
       default:
         return _createRoute(const WelcomeScreen());
     }
