@@ -23,7 +23,6 @@ import 'blocs/client/client_bloc.dart';
 import 'blocs/dateFormat/date_format_bloc.dart';
 import 'blocs/home/home_bloc.dart';
 import 'blocs/incident/incidentGetAndChangeRole/incident_get_and_change_role_bloc.dart';
-import 'blocs/incident/incidentList/incident_list_bloc.dart';
 import 'blocs/incident/incidentListAndFilter/incident_list_and_filter_bloc.dart';
 import 'blocs/language/language_bloc.dart';
 import 'blocs/login/login_bloc.dart';

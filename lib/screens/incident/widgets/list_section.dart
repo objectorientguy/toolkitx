@@ -76,7 +76,7 @@ class IncidentListSection extends StatelessWidget {
                                           style: Theme.of(context)
                                               .textTheme
                                               .xSmall),
-                                      const SizedBox(height: tiniest),
+                                      const SizedBox(height: tiniestSpacing),
                                       Text(
                                           state.fetchIncidentsListModel
                                               .data![index].location,
@@ -91,7 +91,7 @@ class IncidentListSection extends StatelessWidget {
                                               "assets/icons/calendar.png",
                                               height: kIconSize,
                                               width: kIconSize),
-                                          const SizedBox(width: tiniest),
+                                          const SizedBox(width: tiniestSpacing),
                                           Text(
                                               state.fetchIncidentsListModel
                                                   .data![index].eventdatetime,
