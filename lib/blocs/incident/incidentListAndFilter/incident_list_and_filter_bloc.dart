@@ -41,7 +41,7 @@ class IncidentLisAndFilterBloc
     try {
       String userId = (await _customerCache.getUserId(CacheKeys.userId))!;
       String hashCode = (await _customerCache.getHashCode(CacheKeys.hashcode))!;
-      if (event.isFromHome || event.roleId == '') {
+      if (event.isFromHome) {
         add(ClearIncidentFilters());
         FetchIncidentsListModel fetchIncidentsListModel =
             await _incidentRepository.fetchIncidents(userId, hashCode, '', '');
