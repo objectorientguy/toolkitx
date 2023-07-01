@@ -41,7 +41,8 @@ class WorkForceListScreen extends StatelessWidget {
                     itemBuilder: (context, index) {
                       return CustomCard(
                           child: ListTile(
-                              contentPadding: const EdgeInsets.all(tinier),
+                              contentPadding:
+                                  const EdgeInsets.all(tinierSpacing),
                               title: Padding(
                                   padding: const EdgeInsets.only(
                                       bottom: xxTinierSpacing),

@@ -49,7 +49,8 @@ class ChangeRoleScreen extends StatelessWidget {
                           elevation: kZeroElevation,
                           child: ListView.separated(
                               physics: const NeverScrollableScrollPhysics(),
-                              padding: const EdgeInsets.only(bottom: tiniest),
+                              padding:
+                                  const EdgeInsets.only(bottom: tiniestSpacing),
                               shrinkWrap: true,
                               itemCount: state.checkListRolesModel.data!.length,
                               itemBuilder: (context, index) {

@@ -70,7 +70,7 @@ class ProfileScreen extends StatelessWidget {
                                               Theme.of(context).textTheme.large,
                                           textAlign: TextAlign.center,
                                         ),
-                                        const SizedBox(height: tiniest),
+                                        const SizedBox(height: tiniestSpacing),
                                         Text(
                                             DatabaseUtil.getText(
                                                 state.userType),

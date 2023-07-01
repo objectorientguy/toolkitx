@@ -36,7 +36,7 @@ class PasswordBody extends StatelessWidget {
               child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(DatabaseUtil.getText('password'),
+                    Text('${DatabaseUtil.getText('password')}/OTP',
                         style: Theme.of(context).textTheme.medium),
                     const SizedBox(height: xxxTinierSpacing),
                     TextFieldWidget(
@@ -76,7 +76,7 @@ class PasswordBody extends StatelessWidget {
           onPressed: () {
             context.read<LoginBloc>().add(LoginEvent(loginMap: loginMap));
           },
-          textValue: DatabaseUtil.getText('logins')),
+          textValue: DatabaseUtil.getText('logins'))
     ]);
   }
 }

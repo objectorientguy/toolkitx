@@ -39,7 +39,10 @@ class QuestionsListSection extends StatelessWidget {
             itemBuilder: (context, index) {
               Map tableData =
                   (state.getQuestionListModel.data!.questionlist![index].type ==
-                          8)
+                              8 &&
+                          state.getQuestionListModel.data!.questionlist![index]
+                                  .optioncomment !=
+                              null)
                       ? jsonDecode(state.answerList[index]["answer"])
                       : {};
               return CustomCard(
@@ -128,28 +131,31 @@ class QuestionsListSection extends StatelessWidget {
                                                               .matrixcols!
                                                               .length;
                                                       k++)
-                                                    DataCell(Flexible(
-                                                      child: Text(
-                                                          (tableData.toString() ==
-                                                                      "{}" &&
-                                                                  state
-                                                                          .getQuestionListModel
-                                                                          .data!
-                                                                          .questionlist![
-                                                                              index]
-                                                                          .type ==
-                                                                      8)
-                                                              ? ""
-                                                              : tableData[
-                                                                  "data"][j][k],
-                                                          maxLines: 2,
-                                                          overflow: TextOverflow
-                                                              .ellipsis),
-                                                    ))
+                                                    DataCell(Text(
+                                                        (tableData == {} &&
+                                                                state
+                                                                        .getQuestionListModel
+                                                                        .data!
+                                                                        .questionlist![
+                                                                            index]
+                                                                        .type ==
+                                                                    8)
+                                                            ? ""
+                                                            : (tableData["data"] ==
+                                                                        null ||
+                                                                    tableData["data"]
+                                                                            .toString() ==
+                                                                        '')
+                                                                ? ''
+                                                                : tableData[
+                                                                        "data"]
+                                                                    [j][k],
+                                                        overflow: TextOverflow
+                                                            .ellipsis))
                                                 ])
                                             ]))
                                   ])),
-                      const SizedBox(height: tiniest),
+                      const SizedBox(height: tiniestSpacing),
                       Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -166,7 +172,7 @@ class QuestionsListSection extends StatelessWidget {
                                               .toString());
                                     },
                                     textValue: StringConstants.kAddImages)),
-                            const SizedBox(width: tiniest),
+                            const SizedBox(width: tiniestSpacing),
                             Expanded(
                               child: SecondaryButton(
                                   onPressed: () {},

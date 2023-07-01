@@ -89,7 +89,8 @@ class AppRoutes {
       case PermitFilterScreen.routeName:
         return _createRoute(PermitFilterScreen());
       case ClientListScreen.routeName:
-        return _createRoute(const ClientListScreen());
+        return _createRoute(
+            ClientListScreen(isFromProfile: settings.arguments as bool));
       case SelectChangePasswordTypeScreen.routeName:
         return _createRoute(const SelectChangePasswordTypeScreen());
       case ChangePasswordScreen.routeName:
@@ -124,20 +125,17 @@ class AppRoutes {
 
   static Route<dynamic> _createRoute(Widget view) {
     return PageRouteBuilder(
-      pageBuilder: (context, animation, secondaryAnimation) => view,
-      transitionsBuilder: (context, animation, secondaryAnimation, child) {
-        const begin = Offset(1.0, 0.0);
-        const end = Offset.zero;
-        const curve = Curves.ease;
+        pageBuilder: (context, animation, secondaryAnimation) => view,
+        transitionsBuilder: (context, animation, secondaryAnimation, child) {
+          const begin = Offset(1.0, 0.0);
+          const end = Offset.zero;
+          const curve = Curves.ease;
 
-        var tween =
-            Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+          var tween =
+              Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
 
-        return SlideTransition(
-          position: animation.drive(tween),
-          child: child,
-        );
-      },
-    );
+          return SlideTransition(
+              position: animation.drive(tween), child: child);
+        });
   }
 }
