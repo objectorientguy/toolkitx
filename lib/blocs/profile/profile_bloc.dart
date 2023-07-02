@@ -10,7 +10,6 @@ import 'package:toolkit/data/models/profile/user_profile_model.dart';
 import 'package:toolkit/repositories/profile/profile_repository.dart';
 import 'package:toolkit/utils/constants/string_constants.dart';
 import 'package:toolkit/utils/database_utils.dart';
-
 import '../../data/cache/cache_keys.dart';
 import '../../data/cache/customer_cache.dart';
 import '../../data/models/profile/update_user_profile_model.dart';
@@ -137,25 +136,29 @@ class ProfileBloc extends Bloc<ProfileEvents, ProfileStates> {
       String contactEncrypt = '';
       String bloodGroupEncrypt = '';
       String privateKey = (await _customerCache.getApiKey(CacheKeys.apiKey))!;
-      if (event.updateProfileMap['bloodgrp'] != '') {
+      if (event.updateProfileMap['bloodgrp'].toString() != '') {
         bloodGroupEncrypt = EncryptData.encryptAESPrivateKey(
             event.updateProfileMap['bloodgrp'], privateKey);
       }
-      if (event.updateProfileMap['contact'] != '') {
+      if (event.updateProfileMap['contact'].toString() != '' ||
+          event.updateProfileMap['contact'].isNotEmpty) {
         contactEncrypt = await EncryptData.encryptAESPrivateKey(
             event.updateProfileMap['contact'].trim(), privateKey);
       }
-      if (event.updateProfileMap['fname'].trim() == '') {
+      if (event.updateProfileMap['fname'].toString().trim() == '') {
         emit(UserProfileUpdateError(
             message: StringConstants.kFirstNameValidate));
-      } else if (event.updateProfileMap['lname'].trim() == '') {
+      } else if (event.updateProfileMap['lname'].toString().trim() == '') {
         emit(
             UserProfileUpdateError(message: StringConstants.kLastNameValidate));
+      } else if (event.updateProfileMap['contact'].toString() != '' ||
+          event.updateProfileMap['contact'].isNotEmpty) {
+        emit(UserProfileUpdateError(message: StringConstants.kContactValidate));
       } else {
         Map updateUserProfileMap = {
           'hashcode': hashCode,
-          'fname': event.updateProfileMap['fname'].trim(),
-          'lname': event.updateProfileMap['lname'].trim(),
+          'fname': event.updateProfileMap['fname'].toString().trim(),
+          'lname': event.updateProfileMap['lname'].toString().trim(),
           'contact': contactEncrypt,
           'contact2': event.updateProfileMap['contact2'].trim(),
           'bloodgrp': bloodGroupEncrypt,

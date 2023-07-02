@@ -19,7 +19,7 @@ class EditOptionsSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-      GestureDetector(
+      InkWell(
           onTap: () {
             Navigator.pushNamed(context, ProfileEditScreen.routeName);
           },
@@ -31,9 +31,10 @@ class EditOptionsSection extends StatelessWidget {
                 textAlign: TextAlign.center,
                 style: Theme.of(context).textTheme.xxSmall)
           ])),
-      GestureDetector(
+      InkWell(
           onTap: () {
-            Navigator.pushNamed(context, ClientListScreen.routeName);
+            Navigator.pushNamed(context, ClientListScreen.routeName,
+                arguments: true);
             context.read<ClientBloc>().add(FetchClientList());
           },
           child: Column(children: [
@@ -44,7 +45,7 @@ class EditOptionsSection extends StatelessWidget {
                 textAlign: TextAlign.center,
                 style: Theme.of(context).textTheme.xxSmall)
           ])),
-      GestureDetector(
+      InkWell(
           onTap: () {
             showDialog(
                 context: context,

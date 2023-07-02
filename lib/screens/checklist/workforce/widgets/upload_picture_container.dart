@@ -29,8 +29,8 @@ class UploadPictureContainer extends StatelessWidget {
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             childAspectRatio: 200 / 350,
             crossAxisCount: 4,
-            crossAxisSpacing: tinier,
-            mainAxisSpacing: tinier),
+            crossAxisSpacing: tinierSpacing,
+            mainAxisSpacing: tinierSpacing),
         itemCount: imagePathsList.length,
         itemBuilder: (context, index) {
           return ListTile(

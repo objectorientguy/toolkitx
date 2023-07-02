@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:toolkit/blocs/client/client_bloc.dart';
+import 'package:toolkit/blocs/client/client_states.dart';
+import 'package:toolkit/configs/app_theme.dart';
 import 'package:toolkit/screens/home/home_screen.dart';
 import 'package:toolkit/screens/profile/profile_screen.dart';
 
 import '../../blocs/wifiConnectivity/wifi_connectivity_bloc.dart';
 import '../../blocs/wifiConnectivity/wifi_connectivity_states.dart';
 import '../../configs/app_color.dart';
+import '../../configs/app_dimensions.dart';
 import '../../configs/app_spacing.dart';
 
 class RootScreen extends StatefulWidget {
@@ -19,7 +23,6 @@ class RootScreen extends StatefulWidget {
 }
 
 class _RootScreenState extends State<RootScreen> {
-  final HomeScreen homeScreen = const HomeScreen();
   final ProfileScreen profileScreen = const ProfileScreen();
   static int _selectedIndex = 0;
 
@@ -35,12 +38,12 @@ class _RootScreenState extends State<RootScreen> {
     });
   }
 
-  static final List<Widget> _widgetOptions = <Widget>[
-    const HomeScreen(),
-    const Text('Index 1: Location'),
-    const Text('Index 2: Notification'),
-    const Text('Index 3: Chat'),
-    const ProfileScreen()
+  static const List _widgetOptions = [
+    HomeScreen(),
+    Text('Index 1: Location'),
+    Text('Index 2: Notification'),
+    Text('Index 3: Chat'),
+    ProfileScreen()
   ];
 
   @override
@@ -62,28 +65,63 @@ class _RootScreenState extends State<RootScreen> {
     return BottomNavigationBar(
         enableFeedback: true,
         type: BottomNavigationBarType.fixed,
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
+        items: <BottomNavigationBarItem>[
+          const BottomNavigationBarItem(
               icon: Padding(
                   padding: EdgeInsets.only(top: xxTiniestSpacing),
                   child: Icon(Icons.home)),
               label: ''),
-          BottomNavigationBarItem(
+          const BottomNavigationBarItem(
               icon: Padding(
                   padding: EdgeInsets.only(top: xxTiniestSpacing),
                   child: Icon(Icons.location_on)),
               label: ''),
           BottomNavigationBarItem(
-              icon: Padding(
-                  padding: EdgeInsets.only(top: xxTiniestSpacing),
-                  child: Icon(Icons.notifications_sharp)),
+              icon: Center(
+                child: Stack(alignment: Alignment.topCenter, children: [
+                  const Padding(
+                      padding: EdgeInsets.only(top: xxTiniestSpacing),
+                      child: Icon(Icons.notifications_sharp)),
+                  BlocBuilder<ClientBloc, ClientStates>(
+                      buildWhen: (previousState, currentState) =>
+                          currentState is HomeScreenFetched,
+                      builder: (context, state) {
+                        if (state is HomeScreenFetched) {
+                          if (state
+                              .processClientModel.data!.badges!.isNotEmpty) {
+                            return Padding(
+                                padding: const EdgeInsets.only(
+                                    left: kNotificationBadgePadding),
+                                child: Stack(
+                                    alignment: Alignment.center,
+                                    children: [
+                                      Container(
+                                          height: kNotificationBadgeSize,
+                                          width: kNotificationBadgeSize,
+                                          decoration: const BoxDecoration(
+                                              shape: BoxShape.circle,
+                                              color: AppColor.errorRed)),
+                                      Text(state.badgeCount.toString(),
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .xxxSmall)
+                                    ]));
+                          } else {
+                            return const SizedBox();
+                          }
+                        } else {
+                          return const SizedBox();
+                        }
+                      }),
+                ]),
+              ),
               label: ''),
-          BottomNavigationBarItem(
+          const BottomNavigationBarItem(
               icon: Padding(
                   padding: EdgeInsets.only(top: xxTiniestSpacing),
                   child: Icon(Icons.message)),
               label: ''),
-          BottomNavigationBarItem(
+          const BottomNavigationBarItem(
               icon: Padding(
                   padding: EdgeInsets.only(top: xxTiniestSpacing),
                   child: Icon(Icons.person)),

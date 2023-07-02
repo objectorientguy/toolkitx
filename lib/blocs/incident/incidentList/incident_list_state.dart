@@ -2,7 +2,7 @@ import '../../../data/models/incident/fetch_incidents_list_model.dart';
 
 abstract class IncidentListStates {}
 
-class FetchIncidentsInitial extends IncidentListStates {}
+class FetchIncidentInitial extends IncidentListStates {}
 
 class FetchingIncidents extends IncidentListStates {}
 

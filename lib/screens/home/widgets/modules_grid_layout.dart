@@ -12,16 +12,15 @@ class ModulesGridLayout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MediaQuery.removePadding(
-      context: context,
-      removeTop: true,
-      child: BlocBuilder<WifiConnectivityBloc, WifiConnectivityState>(
-          builder: (context, state) {
-        if (state is NoNetwork) {
-          return const OffLineModules();
-        } else {
-          return const OnLineModules();
-        }
-      }),
-    );
+        context: context,
+        removeTop: true,
+        child: BlocBuilder<WifiConnectivityBloc, WifiConnectivityState>(
+            builder: (context, state) {
+          if (state is NoNetwork) {
+            return const OffLineModules();
+          } else {
+            return const OnLineModules();
+          }
+        }));
   }
 }

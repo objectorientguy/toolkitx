@@ -11,7 +11,7 @@ class DioClient {
     try {
       final response = await dio.get(requestUrl, options: Options());
       jsonResponse = (response.data);
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       if (e.response != null) {
         e.response!.statusCode;
         e.response!.data;
@@ -28,7 +28,7 @@ class DioClient {
       final response =
           await dio.post(requestUrl, data: body, options: Options());
       jsonResponse = (response.data);
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       if (e.response != null) {
         e.response!.statusCode;
         e.response!.data;
@@ -49,7 +49,7 @@ class DioClient {
       });
       final response = await dio.post(requestUrl, data: formData);
       jsonResponse = jsonDecode(response.toString());
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       if (e.response != null) {
         e.response!.statusCode;
         e.response!.data;

@@ -66,7 +66,7 @@ class SystemUserCheckListScreen extends StatelessWidget {
                     clearOnPress: () {}),
               ],
             ),
-            const SizedBox(height: tiniest),
+            const SizedBox(height: tiniestSpacing),
             const SysUserListSection()
           ])),
     );

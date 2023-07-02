@@ -9,7 +9,7 @@ String fetchIncidentsListModelToJson(FetchIncidentsListModel data) =>
 class FetchIncidentsListModel {
   final int? status;
   final String? message;
-  final List<Datum>? data;
+  final List<IncidentListDatum>? data;
 
   FetchIncidentsListModel({
     this.status,
@@ -21,7 +21,8 @@ class FetchIncidentsListModel {
       FetchIncidentsListModel(
         status: json["Status"],
         message: json["Message"],
-        data: List<Datum>.from(json["Data"].map((x) => Datum.fromJson(x))),
+        data: List<IncidentListDatum>.from(
+            json["Data"].map((x) => IncidentListDatum.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
@@ -31,7 +32,7 @@ class FetchIncidentsListModel {
       };
 }
 
-class Datum {
+class IncidentListDatum {
   final String id;
   final String refno;
   final String eventdatetime;
@@ -39,7 +40,7 @@ class Datum {
   final String description;
   final String status;
 
-  Datum({
+  IncidentListDatum({
     required this.id,
     required this.refno,
     required this.eventdatetime,
@@ -48,7 +49,8 @@ class Datum {
     required this.status,
   });
 
-  factory Datum.fromJson(Map<String, dynamic> json) => Datum(
+  factory IncidentListDatum.fromJson(Map<String, dynamic> json) =>
+      IncidentListDatum(
         id: json["id"],
         refno: json["refno"],
         eventdatetime: json["eventdatetime"],
