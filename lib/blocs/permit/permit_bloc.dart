@@ -196,16 +196,12 @@ class PermitBloc extends Bloc<PermitEvents, PermitStates> {
       emit(const GeneratingPDF());
       String hashCode = (await _customerCache.getHashCode(CacheKeys.hashcode))!;
       String aipKey = (await _customerCache.getApiKey(CacheKeys.apiKey))!;
-      if (event.isFromPopUpMenu == true) {
-        final PdfGenerationModel pdfGenerationModel =
-            await _permitRepository.generatePdf(hashCode, event.permitId);
-        if (pdfGenerationModel.message != '') {
-          String pdfLink = EncryptData.decryptAESPrivateKey(
-              pdfGenerationModel.message, aipKey);
-          emit(PDFGenerated(
-              pdfGenerationModel: pdfGenerationModel, pdfLink: pdfLink));
-        }
-      }
+      final PdfGenerationModel pdfGenerationModel =
+          await _permitRepository.generatePdf(hashCode, event.permitId);
+      String pdfLink =
+          EncryptData.decryptAESPrivateKey(pdfGenerationModel.message, aipKey);
+      emit(PDFGenerated(
+          pdfGenerationModel: pdfGenerationModel, pdfLink: pdfLink));
     } catch (e) {
       emit(const PDFGenerationFailed());
       rethrow;

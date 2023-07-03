@@ -1,9 +1,8 @@
-import 'package:toolkit/data/models/permit/open_close_permit_model.dart';
-import 'package:toolkit/data/models/permit/open_permit_details_model.dart';
-
 import '../../data/models/pdf_generation_model.dart';
 import '../../data/models/permit/all_permits_model.dart';
 import '../../data/models/permit/close_permit_details_model.dart';
+import '../../data/models/permit/open_close_permit_model.dart';
+import '../../data/models/permit/open_permit_details_model.dart';
 import '../../data/models/permit/permit_details_model.dart';
 import '../../data/models/permit/permit_get_master_model.dart';
 import '../../data/models/permit/permit_roles_model.dart';
