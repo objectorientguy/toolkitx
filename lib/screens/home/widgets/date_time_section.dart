@@ -31,7 +31,7 @@ class DateAndTimeSection extends StatelessWidget {
                           highlightColor: AppColor.white,
                           child: Container(
                               height: kHomeScreenImageHeight,
-                              width: 180,
+                              width: kHomeScreenImageWidth,
                               decoration: BoxDecoration(
                                   color: AppColor.offWhite,
                                   borderRadius:
