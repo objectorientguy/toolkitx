@@ -5,8 +5,7 @@ import '../../data/models/incident/incident_unlink_permit_model.dart';
 
 abstract class IncidentRepository {
   Future<FetchIncidentsListModel> fetchIncidents(
-      String userId, String hashCode);
-
+      String userId, String hashCode, String filter, String role);
   Future<IncidentFetchRolesModel> fetchIncidentRole(
       String hashCode, String userId);
 

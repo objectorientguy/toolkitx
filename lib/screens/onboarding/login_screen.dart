@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:toolkit/blocs/login/login_states.dart';
-import 'package:toolkit/configs/app_dimensions.dart';
 import 'package:toolkit/configs/app_theme.dart';
-import 'package:toolkit/utils/database_utils.dart';
-import 'package:toolkit/widgets/custom_snackbar.dart';
-import 'package:toolkit/widgets/progress_bar.dart';
-import '../../../blocs/login/login_bloc.dart';
-import '../../../blocs/login/login_events.dart';
-import '../../../configs/app_spacing.dart';
-import '../../../widgets/circle_avatar.dart';
-import '../../../widgets/generic_text_field.dart';
-import '../../../widgets/primary_button.dart';
-import '../../../widgets/custom_card.dart';
+import '../../blocs/login/login_bloc.dart';
+import '../../blocs/login/login_events.dart';
+import '../../blocs/login/login_states.dart';
+import '../../configs/app_dimensions.dart';
+import '../../configs/app_spacing.dart';
+import '../../utils/database_utils.dart';
+import '../../widgets/circle_avatar.dart';
+import '../../widgets/custom_snackbar.dart';
+import '../../widgets/generic_text_field.dart';
+import '../../widgets/primary_button.dart';
+import '../../widgets/custom_card.dart';
+import '../../widgets/progress_bar.dart';
 import 'password_screen.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -47,9 +47,12 @@ class LoginScreen extends StatelessWidget {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(DatabaseUtil.getText('email'),
-                                        style:
-                                            Theme.of(context).textTheme.medium),
-                                    const SizedBox(height: xxTinySpacing),
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .xSmall
+                                            .copyWith(
+                                                fontWeight: FontWeight.w600)),
+                                    const SizedBox(height: xxxTinierSpacing),
                                     TextFieldWidget(
                                         textInputType:
                                             TextInputType.emailAddress,

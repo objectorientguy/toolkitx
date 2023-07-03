@@ -5,16 +5,16 @@ import 'package:toolkit/screens/root/root_screen.dart';
 import 'package:toolkit/widgets/android_pop_up.dart';
 import 'package:toolkit/widgets/custom_snackbar.dart';
 import 'package:toolkit/widgets/progress_bar.dart';
-import '../../../blocs/language/language_bloc.dart';
-import '../../../blocs/language/language_events.dart';
-import '../../../blocs/language/language_states.dart';
-import '../../../configs/app_spacing.dart';
-import '../../../utils/constants/string_constants.dart';
-import '../../../utils/database_utils.dart';
-import '../selectTimeZone/select_time_zone_screen.dart';
-import '../../../widgets/error_section.dart';
-import '../../../widgets/generic_loading_popup.dart';
-import '../widgets/select_language_body.dart';
+import '../../blocs/language/language_bloc.dart';
+import '../../blocs/language/language_events.dart';
+import '../../blocs/language/language_states.dart';
+import '../../configs/app_spacing.dart';
+import '../../utils/constants/string_constants.dart';
+import '../../utils/database_utils.dart';
+import 'select_time_zone_screen.dart';
+import '../../widgets/error_section.dart';
+import '../../widgets/generic_loading_popup.dart';
+import 'widgets/select_language_body.dart';
 
 class SelectLanguageScreen extends StatelessWidget {
   static const routeName = 'SelectLanguageScreen';

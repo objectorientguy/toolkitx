@@ -104,7 +104,7 @@ class ClientBloc extends Bloc<ClientEvents, ClientStates> {
           }
         }
         emit(HomeScreenFetched(
-            processClientModel: homeScreenModel,
+            homeScreenModel: homeScreenModel,
             image: clientImage,
             availableModules: availableModules,
             badgeCount: badgeCount));

@@ -25,7 +25,7 @@ import 'blocs/client/client_bloc.dart';
 import 'blocs/dateFormat/date_format_bloc.dart';
 import 'blocs/home/home_bloc.dart';
 import 'blocs/incident/incidentGetAndChangeRole/incident_get_and_change_role_bloc.dart';
-import 'blocs/incident/incidentList/incident_list_bloc.dart';
+import 'blocs/incident/incidentListAndFilter/incident_list_and_filter_bloc.dart';
 import 'blocs/language/language_bloc.dart';
 import 'blocs/login/login_bloc.dart';
 import 'blocs/onboarding/onboarding_bloc.dart';
@@ -42,9 +42,9 @@ import 'configs/app_theme.dart';
 import 'di/app_module.dart';
 import 'configs/app_route.dart';
 import 'screens/onboarding/client_list_screen.dart';
-import 'screens/onboarding/login/login_screen.dart';
-import 'screens/onboarding/selectDateFormat/select_date_format_screen.dart';
-import 'screens/onboarding/selectTimeZone/select_time_zone_screen.dart';
+import 'screens/onboarding/login_screen.dart';
+import 'screens/onboarding/select_date_format_screen.dart';
+import 'screens/onboarding/select_time_zone_screen.dart';
 import 'screens/onboarding/welcome_screen.dart';
 import 'screens/root/root_screen.dart';
 import 'utils/database_utils.dart';
@@ -120,6 +120,10 @@ class MyApp extends StatelessWidget {
           BlocProvider(
               lazy: false,
               create: (context) => WorkForceCheckListSaveRejectBloc()),
+          BlocProvider(
+              lazy: false, create: (context) => PickAndUploadImageBloc()),
+          BlocProvider(
+              lazy: false, create: (context) => IncidentLisAndFilterBloc()),
           BlocProvider(
               lazy: true,
               create: (context) => IncidentFetchAndChangeRoleBloc()),

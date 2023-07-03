@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:toolkit/blocs/dateFormat/date_format_bloc.dart';
-import 'package:toolkit/blocs/dateFormat/date_format_events.dart';
-import 'package:toolkit/blocs/dateFormat/date_format_states.dart';
 import 'package:toolkit/configs/app_theme.dart';
-import 'package:toolkit/screens/onboarding/login/login_screen.dart';
-import 'package:toolkit/screens/onboarding/widgets/select_date_format_body.dart';
-import 'package:toolkit/utils/database_utils.dart';
-import 'package:toolkit/widgets/primary_button.dart';
-import '../../../configs/app_spacing.dart';
-import '../../../utils/constants/string_constants.dart';
+import '../../blocs/dateFormat/date_format_bloc.dart';
+import '../../blocs/dateFormat/date_format_events.dart';
+import '../../blocs/dateFormat/date_format_states.dart';
+import '../../configs/app_spacing.dart';
+import '../../utils/constants/string_constants.dart';
+import '../../utils/database_utils.dart';
+import '../../widgets/primary_button.dart';
+import 'login_screen.dart';
+import 'widgets/select_date_format_body.dart';
 
 class SelectDateFormatScreen extends StatelessWidget {
   static const routeName = 'SelectDateFormatScreen';
