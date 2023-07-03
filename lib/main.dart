@@ -23,7 +23,7 @@ import 'blocs/client/client_bloc.dart';
 import 'blocs/dateFormat/date_format_bloc.dart';
 import 'blocs/home/home_bloc.dart';
 import 'blocs/incident/incidentGetAndChangeRole/incident_get_and_change_role_bloc.dart';
-import 'blocs/incident/incidentList/incident_list_bloc.dart';
+import 'blocs/incident/incidentListAndFilter/incident_list_and_filter_bloc.dart';
 import 'blocs/language/language_bloc.dart';
 import 'blocs/login/login_bloc.dart';
 import 'blocs/onboarding/onboarding_bloc.dart';
@@ -119,11 +119,12 @@ class MyApp extends StatelessWidget {
               lazy: false,
               create: (context) => WorkForceCheckListSaveRejectBloc()),
           BlocProvider(
+              lazy: false, create: (context) => PickAndUploadImageBloc()),
+          BlocProvider(
+              lazy: false, create: (context) => IncidentLisAndFilterBloc()),
+          BlocProvider(
               lazy: true,
               create: (context) => IncidentFetchAndChangeRoleBloc()),
-          BlocProvider(
-              lazy: false, create: (context) => PickAndUploadImageBloc()),
-          BlocProvider(lazy: false, create: (context) => IncidentListBloc()),
           BlocProvider(
               lazy: false,
               create: (context) => OnBoardingBloc()..add(CheckClientSelected()))
