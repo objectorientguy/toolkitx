@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:toolkit/blocs/incident/incidentGetAndChangeRole/incident_get_and_change_role_bloc.dart';
+import 'package:toolkit/blocs/incident/reportNewIncident/report_new_incident_bloc.dart';
+import 'package:toolkit/blocs/incident/reportNewIncident/report_new_incident_events.dart';
+import 'package:toolkit/blocs/incident/reportNewIncident/report_new_incident_states.dart';
 import 'package:toolkit/configs/app_theme.dart';
 import 'package:toolkit/utils/database_utils.dart';
+import 'package:toolkit/widgets/error_section.dart';
 
 import '../../configs/app_color.dart';
 import '../../configs/app_spacing.dart';
@@ -60,6 +66,8 @@ class _CategoryScreenState extends State<CategoryScreen> {
 
   @override
   Widget build(BuildContext context) {
+    context.read<ReportNewIncidentBloc>().add(FetchIncidentCategory(
+        role: context.read<IncidentFetchAndChangeRoleBloc>().roleId));
     return Scaffold(
       appBar: const GenericAppBar(title: StringConstants.kCategory),
       body: Padding(
@@ -74,54 +82,68 @@ class _CategoryScreenState extends State<CategoryScreen> {
                   .mediumLarge
                   .copyWith(fontWeight: FontWeight.w400)),
           const SizedBox(height: xxTinySpacing),
-          Expanded(
-              child: ListView.builder(
-                  physics: const BouncingScrollPhysics(),
-                  shrinkWrap: true,
-                  itemCount: categoryList.length,
-                  itemBuilder: (context, index) {
-                    return Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(categoryList[index]['title'],
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .mediumLarge
-                                  .copyWith(
-                                      fontWeight: FontWeight.w600,
-                                      color: AppColor.greyBlack)),
-                          const SizedBox(height: xxTiniestSpacing),
-                          ListView.builder(
-                              physics: const BouncingScrollPhysics(),
-                              shrinkWrap: true,
-                              itemCount: categoryList[index]['items'].length,
-                              itemBuilder:
-                                  (BuildContext context, int itemIndex) {
-                                return CheckboxListTile(
-                                    checkColor: AppColor.white,
-                                    activeColor: AppColor.deepBlue,
-                                    contentPadding: EdgeInsets.zero,
-                                    value: selectedCategory.contains(
-                                        categoryList[index]['items']
-                                            [itemIndex]),
-                                    title: Text(
-                                        categoryList[index]['items'][itemIndex],
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .mediumLarge
-                                            .copyWith(
-                                                fontWeight: FontWeight.w400,
-                                                color: AppColor.grey)),
-                                    controlAffinity:
-                                        ListTileControlAffinity.trailing,
-                                    onChanged: (isChecked) {
-                                      checkBoxChange(
-                                          isChecked!, index, itemIndex);
-                                    });
-                              }),
-                          const SizedBox(height: xxTiniestSpacing)
-                        ]);
-                  })),
+          BlocBuilder<ReportNewIncidentBloc, ReportNewIncidentStates>(
+              builder: (context, state) {
+            if (state is FetchingIncidentCategory) {
+              return const CircularProgressIndicator();
+            } else if (state is IncidentCategoryFetched) {
+              return Expanded(
+                  child: ListView.builder(
+                      physics: const BouncingScrollPhysics(),
+                      shrinkWrap: true,
+                      itemCount: state.fetchIncidentMasterModel.data.length,
+                      itemBuilder: (context, index) {
+                        return Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(categoryList[index]['title'],
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .mediumLarge
+                                      .copyWith(
+                                          fontWeight: FontWeight.w600,
+                                          color: AppColor.greyBlack)),
+                              const SizedBox(height: xxTiniestSpacing),
+                              ListView.builder(
+                                  physics: const BouncingScrollPhysics(),
+                                  shrinkWrap: true,
+                                  itemCount:
+                                      categoryList[index]['items'].length,
+                                  itemBuilder:
+                                      (BuildContext context, int itemIndex) {
+                                    return CheckboxListTile(
+                                        checkColor: AppColor.white,
+                                        activeColor: AppColor.deepBlue,
+                                        contentPadding: EdgeInsets.zero,
+                                        value: selectedCategory.contains(
+                                            categoryList[index]['items']
+                                                [itemIndex]),
+                                        title: Text(
+                                            categoryList[index]['items']
+                                                [itemIndex],
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .mediumLarge
+                                                .copyWith(
+                                                    fontWeight: FontWeight.w400,
+                                                    color: AppColor.grey)),
+                                        controlAffinity:
+                                            ListTileControlAffinity.trailing,
+                                        onChanged: (isChecked) {
+                                          checkBoxChange(
+                                              isChecked!, index, itemIndex);
+                                        });
+                                  }),
+                              const SizedBox(height: xxTiniestSpacing)
+                            ]);
+                      }));
+            } else if (state is IncidentCategoryNotFetched) {
+              return GenericReloadButton(
+                  onPressed: () {}, textValue: StringConstants.kReload);
+            } else {
+              return const SizedBox();
+            }
+          }),
           const SizedBox(height: xxxSmallerSpacing),
           PrimaryButton(
               onPressed: () {},

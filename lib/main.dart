@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:toolkit/blocs/incident/reportNewIncident/report_new_incident_bloc.dart';
 import 'blocs/checklist/systemUser/approve/sys_user_approve_checklist_bloc.dart';
 import 'blocs/checklist/systemUser/changeRole/sys_user_checklist_change_role_bloc.dart';
 import 'blocs/checklist/systemUser/checkList/sys_user_checklist_bloc.dart';
@@ -125,6 +126,8 @@ class MyApp extends StatelessWidget {
           BlocProvider(
               lazy: true,
               create: (context) => IncidentFetchAndChangeRoleBloc()),
+          BlocProvider(
+              lazy: true, create: (context) => ReportNewIncidentBloc()),
           BlocProvider(
               lazy: false,
               create: (context) => OnBoardingBloc()..add(CheckClientSelected()))
