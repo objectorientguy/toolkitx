@@ -79,7 +79,8 @@ class ProfileOptions extends StatelessWidget {
                   }),
               const SizedBox(height: xxxMediumSpacing),
               Center(
-                  child: Text("App version 1.0.9",
+                  child: Text(
+                      "${StringConstants.kAppVersion} ${ProfileUtil.packageInfo.version}",
                       style: Theme.of(context)
                           .textTheme
                           .xSmall
