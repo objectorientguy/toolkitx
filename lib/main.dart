@@ -129,7 +129,6 @@ class MyApp extends StatelessWidget {
               create: (context) => IncidentFetchAndChangeRoleBloc()),
           BlocProvider(
               lazy: false, create: (context) => PickAndUploadImageBloc()),
-          BlocProvider(lazy: false, create: (context) => IncidentListBloc()),
           BlocProvider(lazy: false, create: (context) => IncidentDetailsBloc()),
           BlocProvider(
               lazy: false,

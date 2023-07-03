@@ -95,7 +95,7 @@ class IncidentLinkPermitList extends StatelessWidget {
                                               .data!.linkedpermits!,
                                           index: index));
                                 },
-                                textValue: 'Remove')),
+                                textValue: StringConstants.kRemove)),
                         title: Text(
                             incidentDetailsModel.data!.linkedpermits![index]
                                 .processedPermitName,
