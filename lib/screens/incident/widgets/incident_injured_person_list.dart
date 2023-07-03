@@ -26,7 +26,7 @@ class IncidentInjuredPersonList extends StatelessWidget {
           label: Row(
             children: [
               const Icon(Icons.add),
-              const SizedBox(width: tiniest),
+              const SizedBox(width: tiniestSpacing),
               Text(DatabaseUtil.getText('addInjuredPersonPageHeading'))
             ],
           ),
@@ -49,10 +49,10 @@ class IncidentInjuredPersonList extends StatelessWidget {
                 return CustomCard(
                   child: ListTile(
                     contentPadding: const EdgeInsets.only(
-                        left: tinier,
-                        right: tinier,
-                        top: tiniest,
-                        bottom: tiniest),
+                        left: tinierSpacing,
+                        right: tinierSpacing,
+                        top: tiniestSpacing,
+                        bottom: tiniestSpacing),
                     trailing: Image.asset(
                       leadingAvatarIcon,
                     ),

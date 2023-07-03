@@ -29,10 +29,10 @@ class IncidentCustomFieldInfo extends StatelessWidget {
               return CustomCard(
                 child: ListTile(
                     contentPadding: const EdgeInsets.only(
-                        left: tinier,
-                        right: tinier,
-                        top: tiniest,
-                        bottom: tiniest),
+                        left: tinierSpacing,
+                        right: tinierSpacing,
+                        top: tiniestSpacing,
+                        bottom: tiniestSpacing),
                     title: Text(
                         '${incidentDetailsModel.data!.customfields![index].title}?',
                         style: Theme.of(context).textTheme.small.copyWith(

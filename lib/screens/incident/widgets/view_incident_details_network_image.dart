@@ -26,8 +26,8 @@ class IncidentCommentViewNetworkImage extends StatelessWidget {
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             childAspectRatio: 180 / 180,
             crossAxisCount: 4,
-            crossAxisSpacing: tinier,
-            mainAxisSpacing: tinier),
+            crossAxisSpacing: tinierSpacing,
+            mainAxisSpacing: tinierSpacing),
         itemCount:
             IncidentViewImageUtil.viewImageList(commentsList.files.toString())
                 .length,

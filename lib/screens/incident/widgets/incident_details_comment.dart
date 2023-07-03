@@ -31,10 +31,10 @@ class PermitDetailsComment extends StatelessWidget {
               return CustomCard(
                 child: ListTile(
                   contentPadding: const EdgeInsets.only(
-                      left: tinier,
-                      right: tinier,
-                      top: tiniest,
-                      bottom: tiniest),
+                      left: tinierSpacing,
+                      right: tinierSpacing,
+                      top: tiniestSpacing,
+                      bottom: tiniestSpacing),
                   title: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [

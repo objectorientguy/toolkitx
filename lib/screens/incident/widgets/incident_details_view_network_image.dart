@@ -26,8 +26,8 @@ class IncidentDetailsViewNetworkImage extends StatelessWidget {
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             childAspectRatio: 200 / 350,
             crossAxisCount: 4,
-            crossAxisSpacing: tinier,
-            mainAxisSpacing: tinier),
+            crossAxisSpacing: tinierSpacing,
+            mainAxisSpacing: tinierSpacing),
         itemCount: IncidentViewImageUtil.viewImageList(
                 incidentDetailsModel.data!.files)
             .length,
