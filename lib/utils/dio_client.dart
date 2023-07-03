@@ -4,7 +4,9 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 
 class DioClient {
-  final Dio dio = Dio();
+  final Dio dio = Dio(BaseOptions(
+      connectTimeout: const Duration(seconds: 75),
+      receiveTimeout: const Duration(seconds: 75)));
 
   Future<dynamic> get(String requestUrl, [Map? body]) async {
     dynamic jsonResponse;
@@ -29,6 +31,9 @@ class DioClient {
           await dio.post(requestUrl, data: body, options: Options());
       jsonResponse = (response.data);
     } on DioError catch (e) {
+      if (e.type == DioErrorType.connectionTimeout) {
+        throw Exception('Connection Timed Out');
+      }
       if (e.response != null) {
         e.response!.statusCode;
         e.response!.data;
