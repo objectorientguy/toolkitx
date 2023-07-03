@@ -21,11 +21,13 @@ class HomeScreenFetched extends ClientStates {
   final HomeScreenModel processClientModel;
   final String image;
   final List availableModules;
+  final int badgeCount;
 
   HomeScreenFetched(
       {required this.processClientModel,
       required this.image,
-      required this.availableModules});
+      required this.availableModules,
+      required this.badgeCount});
 }
 
 class FetchHomeScreenError extends ClientStates {}

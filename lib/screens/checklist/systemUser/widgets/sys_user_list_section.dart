@@ -34,7 +34,8 @@ class SysUserListSection extends StatelessWidget {
                         itemBuilder: (context, index) {
                           return CustomCard(
                               child: ListTile(
-                                  contentPadding: const EdgeInsets.all(tinier),
+                                  contentPadding:
+                                      const EdgeInsets.all(tinierSpacing),
                                   title: Padding(
                                     padding: const EdgeInsets.only(
                                         bottom: xxTinierSpacing),
@@ -73,7 +74,8 @@ class SysUserListSection extends StatelessWidget {
                                                     textValue: StringConstants
                                                         .kResponded),
                                               ),
-                                              const SizedBox(width: tiniest),
+                                              const SizedBox(
+                                                  width: tiniestSpacing),
                                               Visibility(
                                                   visible: state
                                                           .getChecklistModel

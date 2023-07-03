@@ -21,7 +21,7 @@ class PermitListTileTitle extends StatelessWidget {
             Text(allPermitDatum.permit!,
                 style: Theme.of(context).textTheme.small.copyWith(
                     fontWeight: FontWeight.bold, color: AppColor.black)),
-            const SizedBox(width: tinier),
+            const SizedBox(width: tinierSpacing),
             Image.asset('assets/icons/warning.png',
                 height: kImageHeight, width: kImageWidth)
           ]),

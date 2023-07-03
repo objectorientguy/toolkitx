@@ -17,7 +17,7 @@ class IncidentListSubtitle extends StatelessWidget {
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
       Text(incidentListDatum.description,
           style: Theme.of(context).textTheme.xSmall),
-      const SizedBox(height: tiniest),
+      const SizedBox(height: tiniestSpacing),
       Text(incidentListDatum.location,
           style: Theme.of(context)
               .textTheme
@@ -27,7 +27,7 @@ class IncidentListSubtitle extends StatelessWidget {
       Row(children: [
         Image.asset("assets/icons/calendar.png",
             height: kIconSize, width: kIconSize),
-        const SizedBox(width: tiniest),
+        const SizedBox(width: tiniestSpacing),
         Text(incidentListDatum.eventdatetime,
             style: Theme.of(context)
                 .textTheme

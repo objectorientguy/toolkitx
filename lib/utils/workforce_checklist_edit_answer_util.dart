@@ -124,7 +124,7 @@ class EditAnswerUtil {
               children: [
                 Text(StringConstants.kValueA,
                     style: Theme.of(context).textTheme.xSmall),
-                const SizedBox(width: tiniest),
+                const SizedBox(width: tiniestSpacing),
                 SizedBox(
                     width: kTimeSpanFieldWidth,
                     height: xxSmallSpacing,
@@ -136,14 +136,14 @@ class EditAnswerUtil {
                           valueOfA = double.parse(textField).toDouble();
                         }))
               ]),
-          const SizedBox(height: tiny),
+          const SizedBox(height: tinySpacing),
           Row(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Text(StringConstants.kValueB,
                     style: Theme.of(context).textTheme.xSmall),
-                const SizedBox(width: tiniest),
+                const SizedBox(width: tiniestSpacing),
                 SizedBox(
                     width: kTimeSpanFieldWidth,
                     height: xxSmallSpacing,
