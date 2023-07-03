@@ -14,55 +14,11 @@ import '../../utils/constants/string_constants.dart';
 import '../../widgets/generic_app_bar.dart';
 import '../../widgets/primary_button.dart';
 
-class CategoryScreen extends StatefulWidget {
+class CategoryScreen extends StatelessWidget {
   static const routeName = 'CategoryScreen';
+  static List multiSelectList = [];
 
   const CategoryScreen({Key? key}) : super(key: key);
-
-  @override
-  State<CategoryScreen> createState() => _CategoryScreenState();
-}
-
-class _CategoryScreenState extends State<CategoryScreen> {
-  List selectedCategory = [];
-  final List categoryList = [
-    {
-      'title': 'Assets',
-      'items': ['spill/leak', 'Dispose']
-    },
-    {
-      'title': 'Environment',
-      'items': [
-        'Restricted work',
-        'fatality',
-        'Adverse weather',
-        'Air pollution',
-        'Air pollution & emission'
-      ]
-    },
-    {
-      'title': 'Other',
-      'items': ['Information', 'Process']
-    },
-    {
-      'title': 'People',
-      'items': ['Medical treatment']
-    },
-    {
-      'title': 'Reputation',
-      'items': ['Assets']
-    }
-  ]; // List will be removed while integrating API
-
-  void checkBoxChange(bool isSelected, int index, int itemIndex) {
-    setState(() {
-      if (isSelected) {
-        selectedCategory.add(categoryList[index]['items'][itemIndex]);
-      } else {
-        selectedCategory.remove(categoryList[index]['items'][itemIndex]);
-      }
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -85,53 +41,74 @@ class _CategoryScreenState extends State<CategoryScreen> {
           BlocBuilder<ReportNewIncidentBloc, ReportNewIncidentStates>(
               builder: (context, state) {
             if (state is FetchingIncidentCategory) {
-              return const CircularProgressIndicator();
+              return Padding(
+                  padding: EdgeInsets.only(
+                      top: MediaQuery
+                          .of(context)
+                          .size
+                          .height / 3.5),
+                  child: const Center(child: CircularProgressIndicator()));
             } else if (state is IncidentCategoryFetched) {
+              multiSelectList.addAll(state.categorySelectedList);
+              state.addNewIncidentMap['category'] = multiSelectList
+                  .toString()
+                  .replaceAll("[", "")
+                  .replaceAll("]", "");
               return Expanded(
                   child: ListView.builder(
                       physics: const BouncingScrollPhysics(),
                       shrinkWrap: true,
-                      itemCount: state.fetchIncidentMasterModel.data.length,
+                      itemCount: state.categoryList.length,
                       itemBuilder: (context, index) {
                         return Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(categoryList[index]['title'],
-                                  style: Theme.of(context)
+                              Text(state.categoryList[index]['title'],
+                                  style: Theme
+                                      .of(context)
                                       .textTheme
                                       .mediumLarge
                                       .copyWith(
-                                          fontWeight: FontWeight.w600,
-                                          color: AppColor.greyBlack)),
+                                      fontWeight: FontWeight.w600,
+                                      color: AppColor.greyBlack)),
                               const SizedBox(height: xxTiniestSpacing),
                               ListView.builder(
                                   physics: const BouncingScrollPhysics(),
                                   shrinkWrap: true,
                                   itemCount:
-                                      categoryList[index]['items'].length,
+                                  state.categoryList[index]['items'].length,
                                   itemBuilder:
                                       (BuildContext context, int itemIndex) {
                                     return CheckboxListTile(
                                         checkColor: AppColor.white,
                                         activeColor: AppColor.deepBlue,
                                         contentPadding: EdgeInsets.zero,
-                                        value: selectedCategory.contains(
-                                            categoryList[index]['items']
-                                                [itemIndex]),
+                                        value: multiSelectList.contains(
+                                            state.categoryList[index]['items']
+                                            [itemIndex]),
                                         title: Text(
-                                            categoryList[index]['items']
-                                                [itemIndex],
-                                            style: Theme.of(context)
+                                            state.categoryList[index]['items']
+                                            [itemIndex],
+                                            style: Theme
+                                                .of(context)
                                                 .textTheme
                                                 .mediumLarge
                                                 .copyWith(
-                                                    fontWeight: FontWeight.w400,
-                                                    color: AppColor.grey)),
+                                                fontWeight: FontWeight.w400,
+                                                color: AppColor.grey)),
                                         controlAffinity:
-                                            ListTileControlAffinity.trailing,
-                                        onChanged: (isChecked) {
-                                          checkBoxChange(
-                                              isChecked!, index, itemIndex);
+                                        ListTileControlAffinity.trailing,
+                                        onChanged: (value) {
+                                          context
+                                              .read<ReportNewIncidentBloc>()
+                                              .add(SelectIncidentCategory(
+                                              index: index,
+                                              itemIndex: itemIndex,
+                                              fetchIncidentMasterModel: state
+                                                  .fetchIncidentMasterModel,
+                                              isSelected: value!,
+                                              multiSelectList:
+                                              multiSelectList));
                                         });
                                   }),
                               const SizedBox(height: xxTiniestSpacing)
@@ -143,14 +120,14 @@ class _CategoryScreenState extends State<CategoryScreen> {
             } else {
               return const SizedBox();
             }
-          }),
-          const SizedBox(height: xxxSmallerSpacing),
-          PrimaryButton(
-              onPressed: () {},
-              textValue: DatabaseUtil.getText('nextButtonText')),
-          const SizedBox(height: xxTinySpacing)
+              }),
+          const SizedBox(height: xxxSmallerSpacing)
         ]),
       ),
+      bottomNavigationBar: BottomAppBar(
+          child: PrimaryButton(
+              onPressed: () {},
+              textValue: DatabaseUtil.getText('nextButtonText'))),
     );
   }
 }
