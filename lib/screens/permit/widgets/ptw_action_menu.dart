@@ -38,7 +38,7 @@ class PTWActionMenu extends StatelessWidget {
         offset: const Offset(0, xxTiniestSpacing),
         onSelected: (value) {
           if (popUpMenuItems[value] == StringConstants.kGeneratePdf) {
-            context.read<PermitBloc>().add(GeneratePDF(permitId, true));
+            context.read<PermitBloc>().add(GeneratePDF(permitId));
           } else if (popUpMenuItems[value] == StringConstants.kClosePermit) {
             Navigator.pushNamed(context, ClosePermitScreen.routeName,
                 arguments: permitDetailsModel);
