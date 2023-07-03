@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:toolkit/configs/app_color.dart';
 import 'package:toolkit/configs/app_theme.dart';
 import 'package:url_launcher/url_launcher_string.dart';
-import 'package:toolkit/utils/database_utils.dart';
+import '../../../configs/app_color.dart';
 import '../../../configs/app_spacing.dart';
 import '../../../data/models/permit/permit_details_model.dart';
+import '../../../utils/database_utils.dart';
 
 class PermitAdditionalInfo extends StatelessWidget {
   final PermitDetailsModel permitDetailsModel;
@@ -15,9 +15,8 @@ class PermitAdditionalInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
+        physics: const BouncingScrollPhysics(),
+        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           const SizedBox(height: tinySpacing),
           Text(DatabaseUtil.getText('AdditionalInformation'),
               style: Theme.of(context).textTheme.medium.copyWith(
@@ -95,8 +94,6 @@ class PermitAdditionalInfo extends StatelessWidget {
                           style: Theme.of(context).textTheme.small)
                     ]);
               })
-        ],
-      ),
-    );
+        ]));
   }
 }

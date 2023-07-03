@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:toolkit/blocs/profile/profile_bloc.dart';
-import 'package:toolkit/blocs/profile/profile_events.dart';
-import 'package:toolkit/blocs/profile/profile_states.dart';
-import 'package:toolkit/utils/database_utils.dart';
-import 'package:toolkit/widgets/generic_app_bar.dart';
 
-import '../../../configs/app_color.dart';
-import '../../../configs/app_dimensions.dart';
-import '../../../configs/app_spacing.dart';
-import '../../../data/enums/change_password_type_enum.dart';
-import '../../../utils/constants/string_constants.dart';
-import '../../../widgets/primary_button.dart';
-import '../../../widgets/custom_card.dart';
+import '../../blocs/profile/profile_bloc.dart';
+import '../../blocs/profile/profile_events.dart';
+import '../../blocs/profile/profile_states.dart';
+import '../../configs/app_color.dart';
+import '../../configs/app_dimensions.dart';
+import '../../configs/app_spacing.dart';
+import '../../data/enums/change_password_type_enum.dart';
+import '../../utils/constants/string_constants.dart';
+import '../../utils/database_utils.dart';
+import '../../widgets/generic_app_bar.dart';
+import '../../widgets/primary_button.dart';
+import '../../widgets/custom_card.dart';
 import 'change_password_screen.dart';
 
 class SelectChangePasswordTypeScreen extends StatelessWidget {

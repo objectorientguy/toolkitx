@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:toolkit/configs/app_dimensions.dart';
 import 'package:toolkit/configs/app_theme.dart';
 import '../../../configs/app_color.dart';
+import '../../../configs/app_dimensions.dart';
 import '../../../configs/app_spacing.dart';
 import '../../../data/models/permit/permit_details_model.dart';
 import '../../../widgets/custom_card.dart';

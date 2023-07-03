@@ -1,23 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:toolkit/configs/app_spacing.dart';
 import 'package:toolkit/configs/app_theme.dart';
-import 'package:toolkit/screens/profile/widgets/signature.dart';
-import 'package:toolkit/utils/constants/string_constants.dart';
-import 'package:toolkit/widgets/error_section.dart';
-import '../../../blocs/pickAndUploadImage/pick_and_upload_image_bloc.dart';
-import '../../../blocs/pickAndUploadImage/pick_and_upload_image_events.dart';
-import '../../../blocs/profile/profile_bloc.dart';
-import '../../../blocs/profile/profile_events.dart';
-import '../../../blocs/profile/profile_states.dart';
-import '../../../utils/database_utils.dart';
-import '../../../widgets/custom_snackbar.dart';
-import '../../../widgets/generic_app_bar.dart';
-import '../../../widgets/generic_text_field.dart';
-import '../../../widgets/primary_button.dart';
-import '../../../widgets/progress_bar.dart';
-import '../../root/root_screen.dart';
-import '../widgets/blood_group_expansion_tile.dart';
+import '../../blocs/pickAndUploadImage/pick_and_upload_image_bloc.dart';
+import '../../blocs/pickAndUploadImage/pick_and_upload_image_events.dart';
+import '../../blocs/profile/profile_bloc.dart';
+import '../../blocs/profile/profile_events.dart';
+import '../../blocs/profile/profile_states.dart';
+import '../../configs/app_spacing.dart';
+import '../../utils/constants/string_constants.dart';
+import '../../utils/database_utils.dart';
+import '../../widgets/custom_snackbar.dart';
+import '../../widgets/error_section.dart';
+import '../../widgets/generic_app_bar.dart';
+import '../../widgets/generic_text_field.dart';
+import '../../widgets/primary_button.dart';
+import '../../widgets/progress_bar.dart';
+import '../root/root_screen.dart';
+import 'widgets/blood_group_expansion_tile.dart';
+import 'widgets/signature.dart';
 
 class ProfileEditScreen extends StatelessWidget {
   static const routeName = 'ProfileEditScreen';
@@ -28,7 +28,6 @@ class ProfileEditScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     context.read<PickAndUploadImageBloc>().add(UploadInitial());
     context.read<ProfileBloc>().add(DecryptUserProfileData());
-
     return Scaffold(
         appBar: GenericAppBar(title: DatabaseUtil.getText('MyProfile')),
         body: BlocConsumer<ProfileBloc, ProfileStates>(
@@ -66,8 +65,11 @@ class ProfileEditScreen extends StatelessWidget {
                             children: [
                               const SizedBox(height: xxxSmallerSpacing),
                               Text(DatabaseUtil.getText('FirstName'),
-                                  style: Theme.of(context).textTheme.medium),
-                              const SizedBox(height: tinierSpacing),
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .xSmall
+                                      .copyWith(fontWeight: FontWeight.w600)),
+                              const SizedBox(height: xxxTinierSpacing),
                               TextFieldWidget(
                                   value: state.profileDetailsMap['fname'],
                                   textInputAction: TextInputAction.next,
@@ -77,10 +79,13 @@ class ProfileEditScreen extends StatelessWidget {
                                     state.profileDetailsMap['fname'] =
                                         textField;
                                   }),
-                              const SizedBox(height: tinierSpacing),
+                              const SizedBox(height: xxTinySpacing),
                               Text(DatabaseUtil.getText('LastName'),
-                                  style: Theme.of(context).textTheme.medium),
-                              const SizedBox(height: tinierSpacing),
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .xSmall
+                                      .copyWith(fontWeight: FontWeight.w600)),
+                              const SizedBox(height: xxxTinierSpacing),
                               TextFieldWidget(
                                   value: state.profileDetailsMap['lname'],
                                   maxLength: 50,
@@ -90,10 +95,13 @@ class ProfileEditScreen extends StatelessWidget {
                                     state.profileDetailsMap['lname'] =
                                         textField;
                                   }),
-                              const SizedBox(height: tinierSpacing),
+                              const SizedBox(height: xxTinySpacing),
                               Text(DatabaseUtil.getText('Contact'),
-                                  style: Theme.of(context).textTheme.medium),
-                              const SizedBox(height: tinierSpacing),
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .xSmall
+                                      .copyWith(fontWeight: FontWeight.w600)),
+                              const SizedBox(height: xxxTinierSpacing),
                               TextFieldWidget(
                                   value: state.profileDetailsMap['contact'],
                                   textInputType: TextInputType.phone,
@@ -104,16 +112,19 @@ class ProfileEditScreen extends StatelessWidget {
                                     state.profileDetailsMap['contact'] =
                                         textField;
                                   }),
-                              const SizedBox(height: tinierSpacing),
+                              const SizedBox(height: xxTinySpacing),
                               Text(DatabaseUtil.getText('BloodGroup'),
-                                  style: Theme.of(context).textTheme.medium),
-                              const SizedBox(height: tinierSpacing),
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .xSmall
+                                      .copyWith(fontWeight: FontWeight.w600)),
+                              const SizedBox(height: xxxTinierSpacing),
                               BloodGroupExpansionTile(
                                   profileDetailsMap: state.profileDetailsMap),
-                              const SizedBox(height: tinierSpacing),
+                              const SizedBox(height: xxTinySpacing),
                               SignaturePad(
                                   map: state.profileDetailsMap, mapKey: 'sign'),
-                              const SizedBox(height: tinySpacing),
+                              const SizedBox(height: xxxSmallerSpacing),
                               PrimaryButton(
                                   onPressed: () {
                                     context.read<ProfileBloc>().add(

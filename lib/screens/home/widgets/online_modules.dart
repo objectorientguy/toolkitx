@@ -10,6 +10,7 @@ import '../../../configs/app_dimensions.dart';
 import '../../../configs/app_spacing.dart';
 import '../../../utils/constants/string_constants.dart';
 import '../../../utils/database_utils.dart';
+import '../../../widgets/custom_card.dart';
 import '../../../widgets/error_section.dart';
 import '../../checklist/systemUser/sys_user_checklist_list_screen.dart';
 import '../../checklist/workforce/workforce_list_screen.dart';
@@ -43,17 +44,18 @@ class OnLineModules extends StatelessWidget {
                 physics: const NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    childAspectRatio: 1 / 1.08,
                     crossAxisCount: 3,
-                    crossAxisSpacing: tinierSpacing,
-                    mainAxisSpacing: tinierSpacing),
+                    crossAxisSpacing: xxTinierSpacing),
                 itemBuilder: (BuildContext context, int index) {
                   return InkWell(
                       borderRadius: BorderRadius.circular(kCardRadius),
                       onTap: () => navigateToModule(
                           state.availableModules[index].key, context),
-                      child: Card(
+                      child: CustomCard(
                           color: AppColor.transparent,
                           elevation: kZeroElevation,
+                          margin: EdgeInsets.zero,
                           child: Column(
                               crossAxisAlignment: CrossAxisAlignment.center,
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -61,7 +63,7 @@ class OnLineModules extends StatelessWidget {
                                 Stack(
                                     alignment: Alignment.topCenter,
                                     children: [
-                                      Card(
+                                      CustomCard(
                                           margin: const EdgeInsets.all(
                                               kModuleCardMargin),
                                           color: AppColor.lightestBlue,
@@ -74,9 +76,9 @@ class OnLineModules extends StatelessWidget {
                                                       .moduleImage,
                                                   height: kModuleIconSize,
                                                   width: kModuleIconSize))),
-                                      if ('${state.processClientModel.data!.badges!.indexWhere((element) => element.type == state.availableModules[index].key)}' !=
+                                      if ('${state.homeScreenModel.data!.badges!.indexWhere((element) => element.type == state.availableModules[index].key)}' !=
                                               '-1' ||
-                                          '${state.processClientModel.data!.badges!.indexWhere((element) => element.type == state.availableModules[index].notificationKey)}' !=
+                                          '${state.homeScreenModel.data!.badges!.indexWhere((element) => element.type == state.availableModules[index].notificationKey)}' !=
                                               '-1')
                                         Padding(
                                             padding: const EdgeInsets.only(
@@ -94,10 +96,10 @@ class OnLineModules extends StatelessWidget {
                                                               color: AppColor
                                                                   .errorRed)),
                                                   Text(
-                                                      ('${state.processClientModel.data!.badges!.indexWhere((element) => element.type == state.availableModules[index].notificationKey)}' !=
+                                                      ('${state.homeScreenModel.data!.badges!.indexWhere((element) => element.type == state.availableModules[index].notificationKey)}' !=
                                                               '-1')
-                                                          ? '${state.processClientModel.data!.badges![state.processClientModel.data!.badges!.indexWhere((element) => element.type == state.availableModules[index].notificationKey)].count}'
-                                                          : '${state.processClientModel.data!.badges![state.processClientModel.data!.badges!.indexWhere((element) => element.type == state.availableModules[index].key)].count}',
+                                                          ? '${state.homeScreenModel.data!.badges![state.homeScreenModel.data!.badges!.indexWhere((element) => element.type == state.availableModules[index].notificationKey)].count}'
+                                                          : '${state.homeScreenModel.data!.badges![state.homeScreenModel.data!.badges!.indexWhere((element) => element.type == state.availableModules[index].key)].count}',
                                                       style: Theme.of(context)
                                                           .textTheme
                                                           .xxxSmall
