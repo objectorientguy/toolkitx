@@ -11,7 +11,7 @@ import '../../../utils/database_utils.dart';
 import '../../../utils/profile_util.dart';
 import '../../../widgets/android_pop_up.dart';
 import '../../onboarding/client_list_screen.dart';
-import '../edit/profile_edit_screen.dart';
+import '../profile_edit_screen.dart';
 
 class EditOptionsSection extends StatelessWidget {
   const EditOptionsSection({Key? key}) : super(key: key);

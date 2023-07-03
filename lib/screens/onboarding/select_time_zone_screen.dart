@@ -3,17 +3,17 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:searchable_listview/searchable_listview.dart';
 import 'package:toolkit/configs/app_theme.dart';
 import 'package:toolkit/utils/database_utils.dart';
-import '../../../blocs/timeZone/time_zone_bloc.dart';
-import '../../../blocs/timeZone/time_zone_events.dart';
-import '../../../blocs/timeZone/time_zone_states.dart';
-import '../../../configs/app_color.dart';
-import '../../../configs/app_dimensions.dart';
-import '../../../configs/app_spacing.dart';
-import '../../../data/models/timeZones/time_zone_model.dart';
-import '../../../utils/constants/string_constants.dart';
-import '../../../widgets/custom_card.dart';
-import '../../../widgets/error_section.dart';
-import '../selectDateFormat/select_date_format_screen.dart';
+import '../../blocs/timeZone/time_zone_bloc.dart';
+import '../../blocs/timeZone/time_zone_events.dart';
+import '../../blocs/timeZone/time_zone_states.dart';
+import '../../configs/app_color.dart';
+import '../../configs/app_dimensions.dart';
+import '../../configs/app_spacing.dart';
+import '../../data/models/timeZones/time_zone_model.dart';
+import '../../utils/constants/string_constants.dart';
+import '../../widgets/custom_card.dart';
+import '../../widgets/error_section.dart';
+import 'select_date_format_screen.dart';
 
 class SelectTimeZoneScreen extends StatelessWidget {
   static const routeName = 'SelectTimeZoneScreen';
