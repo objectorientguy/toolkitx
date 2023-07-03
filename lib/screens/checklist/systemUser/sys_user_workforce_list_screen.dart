@@ -26,8 +26,12 @@ class SysUserWorkForceListScreen extends StatelessWidget {
                     currentState is CheckListWorkforceListError,
                 builder: (context, state) {
                   if (state is CheckListWorkforceListFetched) {
-                    return Text(state
-                        .checkListWorkforceListModel.data![0].checklistname);
+                    return SingleChildScrollView(
+                      physics: const BouncingScrollPhysics(),
+                      scrollDirection: Axis.horizontal,
+                      child: Text(state
+                          .checkListWorkforceListModel.data![0].checklistname),
+                    );
                   } else {
                     return const SizedBox();
                   }
