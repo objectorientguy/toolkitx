@@ -1,4 +1,3 @@
-import 'package:toolkit/repositories/checklist/systemUser/sys_user_checklist_repository.dart';
 import '../../../data/models/checklist/systemUser/sys_user_approve_model.dart';
 import '../../../data/models/checklist/systemUser/sys_user_change_category_model.dart';
 import '../../../data/models/checklist/systemUser/sys_user_change_role_model.dart';
@@ -12,6 +11,7 @@ import '../../../data/models/checklist/systemUser/sys_user_third_party_approval_
 import '../../../data/models/checklist/systemUser/sys_user_workforce_list_model.dart';
 import '../../../utils/constants/api_constants.dart';
 import '../../../utils/dio_client.dart';
+import 'sys_user_checklist_repository.dart';
 
 class SysUserCheckListRepositoryImpl extends SysUserCheckListRepository {
   @override

@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:toolkit/configs/app_spacing.dart';
 import 'package:toolkit/configs/app_theme.dart';
-import 'package:toolkit/screens/checklist/workforce/widgets/custom_tag_container.dart';
-import 'package:toolkit/screens/checklist/workforce/workforce_questions_list_screen.dart';
-import 'package:toolkit/widgets/error_section.dart';
 import '../../../blocs/checklist/workforce/workforceList/workforce_list_bloc.dart';
 import '../../../blocs/checklist/workforce/workforceList/workforce_list_events.dart';
 import '../../../blocs/checklist/workforce/workforceList/workforce_list_states.dart';
 import '../../../configs/app_color.dart';
+import '../../../configs/app_spacing.dart';
 import '../../../utils/constants/string_constants.dart';
 import '../../../utils/database_utils.dart';
 import '../../../widgets/custom_card.dart';
+import '../../../widgets/error_section.dart';
 import '../../../widgets/generic_app_bar.dart';
+import '../widgets/custom_tag_container.dart';
+import 'workforce_questions_list_screen.dart';
 
 class WorkForceListScreen extends StatelessWidget {
   static const routeName = 'WorkForceListScreen';

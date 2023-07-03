@@ -60,6 +60,7 @@ abstract class StringConstants {
       'No header data available for this checklist!';
   static const String kOldPassword = 'Old Password'; //
   static const String kEnterOtp = 'Enter OTP'; //
+  static const String kAllDataLoaded = 'All Data Loaded'; //
   static const String kSelectYourLanguage = 'Select Your Language';
   static const String kClearFilter = 'Clear Filter';
   static const String kPleaseConfirm = 'Please Confirm';
