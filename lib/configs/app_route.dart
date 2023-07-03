@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:toolkit/screens/checklist/workforce/workforce_list_screen.dart';
+import '../data/models/incident/fetch_incident_master_model.dart';
 import '../data/models/permit/permit_details_model.dart';
 import '../screens/checklist/systemUser/sys_user_workforce_list_screen.dart';
 import '../screens/checklist/workforce/add_image_and_comments_screen.dart';
@@ -15,6 +16,7 @@ import '../screens/incident/category_screen.dart';
 import '../screens/incident/change_role_screen.dart';
 import '../screens/incident/filter_screen.dart';
 import '../screens/incident/incident_list_screen.dart';
+import '../screens/incident/report_new_incident_screen.dart';
 import '../screens/onboarding/client_list_screen.dart';
 import '../screens/onboarding/language/select_language_screen.dart';
 import '../screens/onboarding/login/login_screen.dart';
@@ -118,6 +120,10 @@ class AppRoutes {
       case OpenPermitScreen.routeName:
         return _createRoute(OpenPermitScreen(
             permitDetailsModel: settings.arguments as PermitDetailsModel));
+      case ReportNewIncidentScreen.routeName:
+        return _createRoute(ReportNewIncidentScreen(
+            incidentMasterDatum:
+                settings.arguments as List<List<IncidentMasterDatum>>));
       default:
         return _createRoute(const WelcomeScreen());
     }

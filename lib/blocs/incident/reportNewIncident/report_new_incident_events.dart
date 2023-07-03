@@ -2,10 +2,10 @@ import '../../../data/models/incident/fetch_incident_master_model.dart';
 
 abstract class ReportNewIncidentEvent {}
 
-class FetchIncidentCategory extends ReportNewIncidentEvent {
+class FetchIncidentMaster extends ReportNewIncidentEvent {
   final String role;
 
-  FetchIncidentCategory({required this.role});
+  FetchIncidentMaster({required this.role});
 }
 
 class SelectIncidentCategory extends ReportNewIncidentEvent {
@@ -14,11 +14,24 @@ class SelectIncidentCategory extends ReportNewIncidentEvent {
   final FetchIncidentMasterModel fetchIncidentMasterModel;
   final bool isSelected;
   final List multiSelectList;
+  final Map addNewIncidentMap;
 
   SelectIncidentCategory(
-      {required this.multiSelectList,
+      {required this.addNewIncidentMap,
+      required this.multiSelectList,
       required this.isSelected,
       required this.fetchIncidentMasterModel,
       required this.index,
       required this.itemIndex});
+}
+
+class ReportIncidentExpansionChange extends ReportNewIncidentEvent {
+  final String reportAnonymously;
+  final int selectContractorId;
+  final String selectContractorName;
+
+  ReportIncidentExpansionChange(
+      {required this.selectContractorName,
+      required this.selectContractorId,
+      required this.reportAnonymously});
 }

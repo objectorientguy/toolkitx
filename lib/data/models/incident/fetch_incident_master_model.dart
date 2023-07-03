@@ -9,31 +9,33 @@ String fetchIncidentMasterModelToJson(FetchIncidentMasterModel data) =>
 class FetchIncidentMasterModel {
   final int status;
   final String message;
-  final List<List<Datum>> data;
+  final List<List<IncidentMasterDatum>> incidentMasterDatum;
 
   FetchIncidentMasterModel({
     required this.status,
     required this.message,
-    required this.data,
+    required this.incidentMasterDatum,
   });
 
   factory FetchIncidentMasterModel.fromJson(Map<String, dynamic> json) =>
       FetchIncidentMasterModel(
         status: json["Status"],
         message: json["Message"],
-        data: List<List<Datum>>.from(json["Data"]
-            .map((x) => List<Datum>.from(x.map((x) => Datum.fromJson(x))))),
+        incidentMasterDatum: List<List<IncidentMasterDatum>>.from(json["Data"]
+            .map((x) => List<IncidentMasterDatum>.from(
+                x.map((x) => IncidentMasterDatum.fromJson(x))))),
       );
 
-  Map<String, dynamic> toJson() => {
+  Map<String, dynamic> toJson() =>
+      {
         "Status": status,
         "Message": message,
-        "Data": List<dynamic>.from(
-            data.map((x) => List<dynamic>.from(x.map((x) => x.toJson())))),
+        "Data": List<dynamic>.from(incidentMasterDatum
+            .map((x) => List<dynamic>.from(x.map((x) => x.toJson())))),
       };
 }
 
-class Datum {
+class IncidentMasterDatum {
   final String? name;
   final String? location;
   final int? id;
@@ -62,7 +64,7 @@ class Datum {
   final int? groupId;
   final String? groupName;
 
-  Datum({
+  IncidentMasterDatum({
     this.name,
     this.location,
     this.id,
@@ -92,7 +94,8 @@ class Datum {
     this.groupName,
   });
 
-  factory Datum.fromJson(Map<String, dynamic> json) => Datum(
+  factory IncidentMasterDatum.fromJson(Map<String, dynamic> json) =>
+      IncidentMasterDatum(
         name: json["name"],
         location: json["location"],
         id: json["id"],

@@ -6,38 +6,48 @@ class IncidentSelectCategoryUtil {
     List showCategory = [];
     showCategory = [
       {
-        'title': fetchIncidentMasterModel.data[2][0].typename,
+        'title': fetchIncidentMasterModel.incidentMasterDatum[2][0].typename,
         'items': [
-          for (int i = 0; i < fetchIncidentMasterModel.data[2].length; i++)
-            fetchIncidentMasterModel.data[2][i].name
+          for (int i = 0;
+              i < fetchIncidentMasterModel.incidentMasterDatum[2].length;
+              i++)
+            fetchIncidentMasterModel.incidentMasterDatum[2][i].name
         ]
       },
       {
-        'title': fetchIncidentMasterModel.data[3][0].typename,
+        'title': fetchIncidentMasterModel.incidentMasterDatum[3][0].typename,
         'items': [
-          for (int i = 0; i < fetchIncidentMasterModel.data[3].length; i++)
-            fetchIncidentMasterModel.data[3][i].name
+          for (int i = 0;
+              i < fetchIncidentMasterModel.incidentMasterDatum[3].length;
+              i++)
+            fetchIncidentMasterModel.incidentMasterDatum[3][i].name
         ]
       },
       {
-        'title': fetchIncidentMasterModel.data[4][0].typename,
+        'title': fetchIncidentMasterModel.incidentMasterDatum[4][0].typename,
         'items': [
-          for (int i = 0; i < fetchIncidentMasterModel.data[4].length; i++)
-            fetchIncidentMasterModel.data[4][i].name
+          for (int i = 0;
+              i < fetchIncidentMasterModel.incidentMasterDatum[4].length;
+              i++)
+            fetchIncidentMasterModel.incidentMasterDatum[4][i].name
         ]
       },
       {
-        'title': fetchIncidentMasterModel.data[5][0].typename,
+        'title': fetchIncidentMasterModel.incidentMasterDatum[5][0].typename,
         'items': [
-          for (int i = 0; i < fetchIncidentMasterModel.data[5].length; i++)
-            fetchIncidentMasterModel.data[5][i].name
+          for (int i = 0;
+              i < fetchIncidentMasterModel.incidentMasterDatum[5].length;
+              i++)
+            fetchIncidentMasterModel.incidentMasterDatum[5][i].name
         ]
       },
       {
-        'title': fetchIncidentMasterModel.data[6][0].typename,
+        'title': fetchIncidentMasterModel.incidentMasterDatum[6][0].typename,
         'items': [
-          for (int i = 0; i < fetchIncidentMasterModel.data[6].length; i++)
-            fetchIncidentMasterModel.data[6][i].name
+          for (int i = 0;
+              i < fetchIncidentMasterModel.incidentMasterDatum[6].length;
+              i++)
+            fetchIncidentMasterModel.incidentMasterDatum[6][i].name
         ]
       }
     ];

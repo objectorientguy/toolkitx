@@ -1,7 +1,9 @@
 import 'dart:async';
+import 'dart:developer';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:toolkit/blocs/incident/reportNewIncident/report_new_incident_events.dart';
 import 'package:toolkit/blocs/incident/reportNewIncident/report_new_incident_states.dart';
+import 'package:toolkit/utils/database_utils.dart';
 import '../../../../../data/cache/customer_cache.dart';
 import '../../../../di/app_module.dart';
 import '../../../data/cache/cache_keys.dart';
@@ -17,13 +19,14 @@ class ReportNewIncidentBloc
   ReportNewIncidentStates get initialState => ReportNewIncidentInitial();
 
   ReportNewIncidentBloc() : super(ReportNewIncidentInitial()) {
-    on<FetchIncidentCategory>(_fetchIncidentCategory);
+    on<FetchIncidentMaster>(_fetchIncidentCategory);
     on<SelectIncidentCategory>(_selectIncidentCategory);
+    on<ReportIncidentExpansionChange>(_reportIncidentAnonymously);
   }
 
-  FutureOr<void> _fetchIncidentCategory(FetchIncidentCategory event,
-      Emitter<ReportNewIncidentStates> emit) async {
-    emit(FetchingIncidentCategory());
+  FutureOr<void> _fetchIncidentCategory(
+      FetchIncidentMaster event, Emitter<ReportNewIncidentStates> emit) async {
+    emit(FetchingIncidentMaster());
     try {
       String hashCode = (await _customerCache.getHashCode(CacheKeys.hashcode))!;
       FetchIncidentMasterModel fetchIncidentMasterModel =
@@ -33,59 +36,66 @@ class ReportNewIncidentBloc
           index: 0,
           itemIndex: 0,
           isSelected: false,
-          multiSelectList: []));
+          multiSelectList: [],
+          addNewIncidentMap: {}));
     } catch (e) {
-      emit(IncidentCategoryNotFetched());
+      emit(IncidentMasterNotFetched());
     }
   }
 
   _selectIncidentCategory(
       SelectIncidentCategory event, Emitter<ReportNewIncidentStates> emit) {
+    addNewIncidentMap = event.addNewIncidentMap;
     List showCategory = [];
     showCategory = [
       {
-        'title': event.fetchIncidentMasterModel.data[2][0].typename,
+        'title':
+            event.fetchIncidentMasterModel.incidentMasterDatum[2][0].typename,
         'items': [
           for (int i = 0;
-              i < event.fetchIncidentMasterModel.data[2].length;
+              i < event.fetchIncidentMasterModel.incidentMasterDatum[2].length;
               i++)
-            event.fetchIncidentMasterModel.data[2][i].name
+            event.fetchIncidentMasterModel.incidentMasterDatum[2][i].name
         ]
       },
       {
-        'title': event.fetchIncidentMasterModel.data[3][0].typename,
+        'title':
+            event.fetchIncidentMasterModel.incidentMasterDatum[3][0].typename,
         'items': [
           for (int i = 0;
-              i < event.fetchIncidentMasterModel.data[3].length;
+              i < event.fetchIncidentMasterModel.incidentMasterDatum[3].length;
               i++)
-            event.fetchIncidentMasterModel.data[3][i].name
+            event.fetchIncidentMasterModel.incidentMasterDatum[3][i].name
         ]
       },
       {
-        'title': event.fetchIncidentMasterModel.data[4][0].typename,
+        'title':
+            event.fetchIncidentMasterModel.incidentMasterDatum[4][0].typename,
         'items': [
           for (int i = 0;
-              i < event.fetchIncidentMasterModel.data[4].length;
+              i < event.fetchIncidentMasterModel.incidentMasterDatum[4].length;
               i++)
-            event.fetchIncidentMasterModel.data[4][i].name
+            event.fetchIncidentMasterModel.incidentMasterDatum[4][i].name
         ]
       },
       {
-        'title': event.fetchIncidentMasterModel.data[5][0].typename,
+        'title':
+            event.fetchIncidentMasterModel.incidentMasterDatum[5][0].typename,
         'items': [
           for (int i = 0;
-              i < event.fetchIncidentMasterModel.data[5].length;
+              i < event.fetchIncidentMasterModel.incidentMasterDatum[5].length;
               i++)
-            event.fetchIncidentMasterModel.data[5][i].name
+            event.fetchIncidentMasterModel.incidentMasterDatum[5][i].name
         ]
       },
       {
-        'title': event.fetchIncidentMasterModel.data[6][0].typename,
+        'title':
+            event.fetchIncidentMasterModel.incidentMasterDatum[6][0].typename,
         'items': [
           for (int i = 0;
-              i < event.fetchIncidentMasterModel.data[6].length;
+              i < event.fetchIncidentMasterModel.incidentMasterDatum[6].length;
               i++)
-            event.fetchIncidentMasterModel.data[6][i].name
+            event.fetchIncidentMasterModel.incidentMasterDatum[6][i].name
         ]
       }
     ];
@@ -96,10 +106,25 @@ class ReportNewIncidentBloc
       event.multiSelectList
           .remove(showCategory[event.index]['items'][event.itemIndex]);
     }
-    emit(IncidentCategoryFetched(
+    emit(IncidentMasterFetched(
         fetchIncidentMasterModel: event.fetchIncidentMasterModel,
         categoryList: showCategory,
         categorySelectedList: selectedCategory,
         addNewIncidentMap: addNewIncidentMap));
+  }
+
+  _reportIncidentAnonymously(ReportIncidentExpansionChange event,
+      Emitter<ReportNewIncidentStates> emit) {
+    log("bloc=====>${event.selectContractorId}");
+    List reportAnonymousList = [
+      DatabaseUtil.getText('Yes'),
+      DatabaseUtil.getText('No'),
+    ];
+    emit(ReportNewIncidentFetched(
+        reportAnonymousList: reportAnonymousList,
+        reportAnonymous: event.reportAnonymously,
+        addNewIncidentMap: addNewIncidentMap,
+        selectContractorId: event.selectContractorId,
+        selectContractorName: event.selectContractorName));
   }
 }
