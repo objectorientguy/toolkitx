@@ -4,9 +4,15 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:toolkit/utils/profile_util.dart';
 import 'blocs/checklist/systemUser/approve/sys_user_approve_checklist_bloc.dart';
+import 'blocs/checklist/systemUser/changeRole/sys_user_checklist_change_role_bloc.dart';
+import 'blocs/checklist/systemUser/checkList/sys_user_checklist_bloc.dart';
+import 'blocs/checklist/systemUser/pdf/sys_user_checklist_pdf_bloc.dart';
 import 'blocs/checklist/systemUser/reject/sys_user_reject_checklist_bloc.dart';
+import 'blocs/checklist/systemUser/scheduleDates/sys_user_checklist_schedule_dates_bloc.dart';
+import 'blocs/checklist/systemUser/scheduleDatesResponse/checklist_schedule_dates_response_bloc.dart';
+import 'blocs/checklist/systemUser/submitHeader/sys_user_checklist_header_bloc.dart';
+import 'blocs/checklist/systemUser/thirdPartyApprove/sys_user_checklist_third_party_approve_bloc.dart';
 import 'blocs/checklist/workforce/comments/workforce_checklist_comments_bloc.dart';
 import 'blocs/checklist/workforce/editAnswer/workforce_checklist_edit_answer_bloc.dart';
 import 'blocs/checklist/workforce/getQuestionsList/workforce_checklist_get_questions_list_bloc.dart';
@@ -17,9 +23,9 @@ import 'blocs/checklist/workforce/workforceList/workforce_list_bloc.dart';
 import 'blocs/client/client_bloc.dart';
 import 'blocs/dateFormat/date_format_bloc.dart';
 import 'blocs/home/home_bloc.dart';
+import 'blocs/incident/incidentDetails/incident_details_bloc.dart';
 import 'blocs/incident/incidentGetAndChangeRole/incident_get_and_change_role_bloc.dart';
 import 'blocs/incident/incidentListAndFilter/incident_list_and_filter_bloc.dart';
-import 'blocs/incident/incidentList/incident_list_bloc.dart';
 import 'blocs/language/language_bloc.dart';
 import 'blocs/login/login_bloc.dart';
 import 'blocs/onboarding/onboarding_bloc.dart';
@@ -41,6 +47,8 @@ import 'screens/onboarding/select_date_format_screen.dart';
 import 'screens/onboarding/select_time_zone_screen.dart';
 import 'screens/onboarding/welcome_screen.dart';
 import 'screens/root/root_screen.dart';
+import 'utils/database_utils.dart';
+import 'utils/profile_util.dart';
 
 void main() async {
   await _initApp();
@@ -123,7 +131,6 @@ class MyApp extends StatelessWidget {
               create: (context) => IncidentFetchAndChangeRoleBloc()),
           BlocProvider(
               lazy: false, create: (context) => PickAndUploadImageBloc()),
-          BlocProvider(lazy: true, create: (context) => IncidentListBloc()),
           BlocProvider(lazy: true, create: (context) => IncidentDetailsBloc()),
           BlocProvider(
               lazy: false,
