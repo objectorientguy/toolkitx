@@ -13,9 +13,12 @@ import '../../../widgets/custom_card.dart';
 
 class IncidentInjuredPersonList extends StatelessWidget {
   final IncidentDetailsModel incidentDetailsModel;
+  final int initialIndex;
 
   const IncidentInjuredPersonList(
-      {Key? key, required this.incidentDetailsModel})
+      {Key? key,
+      required this.incidentDetailsModel,
+      required this.initialIndex})
       : super(key: key);
 
   @override

@@ -9,8 +9,12 @@ import '../../../utils/constants/string_constants.dart';
 
 class IncidentCustomFieldInfo extends StatelessWidget {
   final IncidentDetailsModel incidentDetailsModel;
+  final int initialIndex;
 
-  const IncidentCustomFieldInfo({Key? key, required this.incidentDetailsModel})
+  const IncidentCustomFieldInfo(
+      {Key? key,
+      required this.incidentDetailsModel,
+      required this.initialIndex})
       : super(key: key);
 
   @override

@@ -64,7 +64,7 @@ class Data {
   final List<Commentslist>? commentslist;
   final List<Injuredpersonlist>? injuredpersonlist;
   final List<Customfield>? customfields;
-  final List<dynamic>? linkedpermits;
+  final List<Linkedpermit>? linkedpermits;
   final List<Log>? logs;
 
   Data({
@@ -142,7 +142,8 @@ class Data {
                 .map((x) => Injuredpersonlist.fromJson(x))),
         customfields: List<Customfield>.from(
             json["customfields"].map((x) => Customfield.fromJson(x))),
-        linkedpermits: List<dynamic>.from(json["linkedpermits"].map((x) => x)),
+        linkedpermits: List<Linkedpermit>.from(
+            json["linkedpermits"].map((x) => Linkedpermit.fromJson(x))),
         logs: List<Log>.from(json["logs"].map((x) => Log.fromJson(x))),
       );
 
@@ -182,7 +183,8 @@ class Data {
             List<dynamic>.from(injuredpersonlist!.map((x) => x.toJson())),
         "customfields":
             List<dynamic>.from(customfields!.map((x) => x.toJson())),
-        "linkedpermits": List<dynamic>.from(linkedpermits!.map((x) => x)),
+        "linkedpermits":
+            List<dynamic>.from(linkedpermits!.map((x) => x.toJson())),
         "logs": List<dynamic>.from(logs!.map((x) => x.toJson())),
       };
 }
@@ -248,6 +250,26 @@ class Customfield {
         "fieldtype": fieldtype,
         "fieldid": fieldid,
         "optionid": optionid,
+      };
+}
+
+class Linkedpermit {
+  final String id;
+  final String processedPermitName;
+
+  Linkedpermit({
+    required this.id,
+    required this.processedPermitName,
+  });
+
+  factory Linkedpermit.fromJson(Map<String, dynamic> json) => Linkedpermit(
+        id: json["id"],
+        processedPermitName: json["processed_permit_name"],
+      );
+
+  Map<String, dynamic> toJson() => {
+        "id": id,
+        "processed_permit_name": processedPermitName,
       };
 }
 

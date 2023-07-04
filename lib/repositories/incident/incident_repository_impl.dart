@@ -4,6 +4,7 @@ import '../../../utils/constants/api_constants.dart';
 import '../../../utils/dio_client.dart';
 import '../../data/models/incident/incident_details_model.dart';
 import '../../data/models/incident/incident_fetch_roles_model.dart';
+import '../../data/models/incident/incident_unlink_permit_model.dart';
 import 'incident_repository.dart';
 
 class IncidentRepositoryImpl extends IncidentRepository {
@@ -29,5 +30,13 @@ class IncidentRepositoryImpl extends IncidentRepository {
     final response = await DioClient().get(
         "${ApiConstants.baseUrl}incident/getincident1?incidentid=$incidentId&hashcode=$hashCode&userid=$userId&role=$role");
     return IncidentDetailsModel.fromJson(response);
+  }
+
+  @override
+  Future<IncidentUnlinkPermitModel> removeLinkedPermit(
+      Map removeLinkedPermitMap) async {
+    final response = await DioClient().post(
+        "${ApiConstants.baseUrl}incident/unlinkpermit", removeLinkedPermitMap);
+    return IncidentUnlinkPermitModel.fromJson(response);
   }
 }
