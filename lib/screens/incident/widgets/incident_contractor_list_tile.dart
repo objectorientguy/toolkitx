@@ -21,13 +21,13 @@ class IncidentContractorListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     context.read<ReportNewIncidentBloc>().add(
-        ReportIncidentContractorListChange(
+        ReportNewIncidentContractorListChange(
             selectContractorName: '', selectContractorId: 0));
     return BlocBuilder<ReportNewIncidentBloc, ReportNewIncidentStates>(
         buildWhen: (previousState, currentState) =>
-            currentState is ReportIncidentContractorSelected,
+            currentState is ReportNewIncidentContractorSelected,
         builder: (context, state) {
-          if (state is ReportIncidentContractorSelected) {
+          if (state is ReportNewIncidentContractorSelected) {
             addIncidentMap['companyid'] = state.selectContractorId;
             return ListTile(
                 contentPadding: EdgeInsets.zero,

@@ -85,6 +85,8 @@ class ReportNewIncidentScreen extends StatelessWidget {
                             .copyWith(color: AppColor.black)),
                     const SizedBox(height: tiniestSpacing),
                     TextFieldWidget(
+                        maxLength: 250,
+                        maxLines: 3,
                         textInputAction: TextInputAction.done,
                         textInputType: TextInputType.text,
                         onTextFieldChanged: (String textField) {
@@ -102,29 +104,28 @@ class ReportNewIncidentScreen extends StatelessWidget {
                     ),
                     const SizedBox(height: tiniestSpacing),
                     IncidentContractorListTile(addIncidentMap: addIncidentMap),
-                    const SizedBox(height: mediumSpacing),
-                    BlocListener<ReportNewIncidentBloc,
-                        ReportNewIncidentStates>(
-                      listener: (context, state) {
-                        if (state is ReportIncidentDateTimeDescValidated) {
-                          showCustomSnackBar(
-                              context, state.dateTimeDescValidationMessage, '');
-                        } else if (state
-                            is ReportIncidentDateTimeDescValidationComplete) {
-                          Navigator.pushNamed(
-                              context, IncidentLocationScreen.routeName,
-                              arguments: addIncidentMap);
-                        }
-                      },
-                      child: PrimaryButton(
-                          onPressed: () {
-                            context.read<ReportNewIncidentBloc>().add(
-                                ReportIncidentDateTimeDescriptionValidation(
-                                    addIncidentMap: addIncidentMap));
-                          },
-                          textValue: StringConstants.kNext),
-                    )
                   ]))),
+      bottomNavigationBar: BottomAppBar(
+        child: BlocListener<ReportNewIncidentBloc, ReportNewIncidentStates>(
+          listener: (context, state) {
+            if (state is ReportNewIncidentDateTimeDescValidated) {
+              showCustomSnackBar(
+                  context, state.dateTimeDescValidationMessage, '');
+            } else if (state
+                is ReportNewIncidentDateTimeDescValidationComplete) {
+              Navigator.pushNamed(context, IncidentLocationScreen.routeName,
+                  arguments: addIncidentMap);
+            }
+          },
+          child: PrimaryButton(
+              onPressed: () {
+                context.read<ReportNewIncidentBloc>().add(
+                    ReportNewIncidentDateTimeDescriptionValidation(
+                        reportNewIncidentMap: addIncidentMap));
+              },
+              textValue: DatabaseUtil.getText('nextButtonText')),
+        ),
+      ),
     );
   }
 }

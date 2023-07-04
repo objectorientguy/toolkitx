@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:toolkit/blocs/incident/reportNewIncident/report_new_incident_bloc.dart';
+import 'package:toolkit/utils/constants/string_constants.dart';
 import '../../../blocs/incident/reportNewIncident/report_new_incident_events.dart';
 import '../../../configs/app_color.dart';
 import '../../../configs/app_spacing.dart';
@@ -22,7 +23,7 @@ class IncidentContractorList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: const GenericAppBar(title: 'Select Contractor'),
+        appBar: const GenericAppBar(title: StringConstants.kSelectContractor),
         body: SingleChildScrollView(
           physics: const BouncingScrollPhysics(),
           child: Padding(
@@ -56,7 +57,7 @@ class IncidentContractorList extends StatelessWidget {
                                         .incidentMasterDatum![8][index]
                                         .groupId!;
                                     context.read<ReportNewIncidentBloc>().add(
-                                        ReportIncidentContractorListChange(
+                                        ReportNewIncidentContractorListChange(
                                             selectContractorName:
                                                 fetchIncidentMasterModel
                                                     .incidentMasterDatum![8]

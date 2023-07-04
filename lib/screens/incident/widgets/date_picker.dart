@@ -36,6 +36,12 @@ class _DatePickerTextFieldState extends State<DatePickerTextField> {
   final TextEditingController dateInputController = TextEditingController();
   bool isFirstTime = true;
 
+  @override
+  void initState() {
+    dateInputController.text = widget.editDate;
+    super.initState();
+  }
+
   void showDatePicker(BuildContext context) {
     showCupertinoModalPopup(
         context: context,
@@ -55,12 +61,14 @@ class _DatePickerTextFieldState extends State<DatePickerTextField> {
                                 : DateFormat("dd MMM yyyy")
                                     .parse(dateInputController.text),
                             onDateTimeChanged: (value) {
-                              String formattedDate =
-                                  DateFormat('dd MMM yyyy').format(value);
-                              dateInputController.text = formattedDate;
-                              widget.onDateChanged(
-                                  DateFormat('dd.MM.yyyy').format(value));
-                              isFirstTime = false;
+                              setState(() {
+                                String formattedDate =
+                                    DateFormat('dd MMM yyyy').format(value);
+                                dateInputController.text = formattedDate;
+                                widget.onDateChanged(
+                                    DateFormat('dd.MM.yyyy').format(value));
+                                isFirstTime = false;
+                              });
                             },
                             maximumDate: widget.maxDate)),
                     CustomTextButton(
@@ -89,7 +97,6 @@ class _DatePickerTextFieldState extends State<DatePickerTextField> {
 
   @override
   Widget build(BuildContext context) {
-    dateInputController.text = widget.editDate;
     return TextField(
         readOnly: true,
         controller: dateInputController,

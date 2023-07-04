@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:toolkit/configs/app_theme.dart';
+import 'package:toolkit/screens/incident/incident_health_and_safety_screen.dart';
 import 'package:toolkit/screens/incident/widgets/incident_location_list_tile.dart';
 import 'package:toolkit/screens/incident/widgets/incident_repported_authority_expansion_tile.dart';
 import 'package:toolkit/screens/incident/widgets/incident_site_list_tile.dart';
@@ -27,9 +28,7 @@ class IncidentLocationScreen extends StatelessWidget {
       appBar: const GenericAppBar(title: StringConstants.kReportNewIncident),
       body: Padding(
           padding: const EdgeInsets.only(
-              left: leftRightMargin,
-              right: leftRightMargin,
-              top: xxTinySpacing),
+              left: leftRightMargin, right: leftRightMargin),
           child: SingleChildScrollView(
               physics: const BouncingScrollPhysics(),
               child: Column(
@@ -37,32 +36,35 @@ class IncidentLocationScreen extends StatelessWidget {
                   children: [
                     IncidentSiteListTile(addIncidentMap: addIncidentMap),
                     IncidentLocationListTile(addIncidentMap: addIncidentMap),
-                    const SizedBox(height: tinySpacing),
+                    const SizedBox(height: xxxTinierSpacing),
                     Text(DatabaseUtil.getText('ReportedAuthorities'),
                         style: Theme.of(context).textTheme.medium),
                     const SizedBox(height: tiniestSpacing),
                     IncidentReportedAuthorityExpansionTile(
                         addIncidentMap: addIncidentMap),
-                    const SizedBox(height: mediumSpacing),
-                    BlocListener<ReportNewIncidentBloc,
-                        ReportNewIncidentStates>(
-                      listener: (context, state) {
-                        if (state is ReportIncidentSiteLocationValidated) {
-                          showCustomSnackBar(
-                              context, state.siteLocationValidationMessage, '');
-                        } else if (state
-                            is ReportIncidentSiteLocationValidationComplete) {}
-                      },
-                      child: PrimaryButton(
-                          onPressed: () {
-                            context.read<ReportNewIncidentBloc>().add(
-                                ReportIncidentSiteLocationValidation(
-                                    addIncidentMap: addIncidentMap));
-                          },
-                          textValue: StringConstants.kNext),
-                    ),
-                    const SizedBox(height: tinySpacing)
                   ]))),
+      bottomNavigationBar: BottomAppBar(
+        child: BlocListener<ReportNewIncidentBloc, ReportNewIncidentStates>(
+          listener: (context, state) {
+            if (state is ReportNewIncidentSiteLocationValidated) {
+              showCustomSnackBar(
+                  context, state.siteLocationValidationMessage, '');
+            } else if (state
+                is ReportNewIncidentSiteLocationValidationComplete) {
+              Navigator.pushNamed(
+                  context, IncidentHealthAndSafetyScreen.routeName,
+                  arguments: addIncidentMap);
+            }
+          },
+          child: PrimaryButton(
+              onPressed: () {
+                context.read<ReportNewIncidentBloc>().add(
+                    ReportNewIncidentSiteLocationValidation(
+                        reportNewIncidentMap: addIncidentMap));
+              },
+              textValue: DatabaseUtil.getText('nextButtonText')),
+        ),
+      ),
     );
   }
 }

@@ -23,12 +23,12 @@ class IncidentLocationListTile extends StatelessWidget {
   Widget build(BuildContext context) {
     context
         .read<ReportNewIncidentBloc>()
-        .add(ReportIncidentLocationChange(locationName: ''));
+        .add(ReportNewIncidentLocationChange(selectLocationName: ''));
     return BlocBuilder<ReportNewIncidentBloc, ReportNewIncidentStates>(
         buildWhen: (previousState, currentState) =>
-            currentState is ReportIncidentLocationSelected,
+            currentState is ReportNewIncidentLocationSelected,
         builder: (context, state) {
-          if (state is ReportIncidentLocationSelected) {
+          if (state is ReportNewIncidentLocationSelected) {
             addIncidentMap['location_name'] = state.selectLocationName;
             return Column(
               children: [
@@ -64,7 +64,6 @@ class IncidentLocationListTile extends StatelessWidget {
                     child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const SizedBox(height: tinySpacing),
                           Text(StringConstants.kOther,
                               style: Theme.of(context).textTheme.medium),
                           const SizedBox(height: tiniestSpacing),

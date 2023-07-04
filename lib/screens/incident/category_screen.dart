@@ -32,7 +32,7 @@ class CategoryScreen extends StatelessWidget {
             padding: const EdgeInsets.only(
                 left: leftRightMargin,
                 right: leftRightMargin,
-                top: topBottomPadding),
+                top: xxTinySpacing),
             child: BlocBuilder<ReportNewIncidentBloc, ReportNewIncidentStates>(
                 buildWhen: (previousState, currentState) =>
                     currentState is FetchingIncidentMaster ||
@@ -52,7 +52,7 @@ class CategoryScreen extends StatelessWidget {
                           Text(DatabaseUtil.getText('SelectcategoryHeading'),
                               style: Theme.of(context)
                                   .textTheme
-                                  .mediumLarge
+                                  .medium
                                   .copyWith(fontWeight: FontWeight.w500)),
                           const SizedBox(height: xxTinySpacing),
                           Expanded(

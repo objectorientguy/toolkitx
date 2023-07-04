@@ -55,10 +55,12 @@ class IncidentLocationList extends StatelessWidget {
                                         .location!;
                                     context
                                         .read<ReportNewIncidentBloc>()
-                                        .add(ReportIncidentLocationChange(
-                                          locationName: fetchIncidentMasterModel
-                                              .incidentMasterDatum![1][index]
-                                              .location!,
+                                        .add(ReportNewIncidentLocationChange(
+                                          selectLocationName:
+                                              fetchIncidentMasterModel
+                                                  .incidentMasterDatum![1]
+                                                      [index]
+                                                  .location!,
                                         ));
                                     Navigator.pop(context);
                                   }));

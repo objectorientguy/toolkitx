@@ -26,9 +26,9 @@ class IncidentSiteListTile extends StatelessWidget {
         .add(ReportIncidentSiteListChange(selectSiteName: ''));
     return BlocBuilder<ReportNewIncidentBloc, ReportNewIncidentStates>(
         buildWhen: (previousState, currentState) =>
-            currentState is ReportIncidentSiteSelected,
+            currentState is ReportNewIncidentSiteSelected,
         builder: (context, state) {
-          if (state is ReportIncidentSiteSelected) {
+          if (state is ReportNewIncidentSiteSelected) {
             addIncidentMap['site_name'] = state.selectSiteName;
             return Column(
               children: [
@@ -63,7 +63,6 @@ class IncidentSiteListTile extends StatelessWidget {
                     child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const SizedBox(height: tinySpacing),
                           Text(DatabaseUtil.getText('OtherSite'),
                               style: Theme.of(context).textTheme.medium),
                           const SizedBox(height: tiniestSpacing),

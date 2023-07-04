@@ -21,17 +21,18 @@ class SelectIncidentCategory extends ReportNewIncidentEvent {
       required this.itemIndex});
 }
 
-class ReportIncidentAnonymousExpansionChange extends ReportNewIncidentEvent {
-  final String reportAnonymousId;
+class ReportNewIncidentAnonymousExpansionChange extends ReportNewIncidentEvent {
+  final String reportIncidentAnonymousId;
 
-  ReportIncidentAnonymousExpansionChange({required this.reportAnonymousId});
+  ReportNewIncidentAnonymousExpansionChange(
+      {required this.reportIncidentAnonymousId});
 }
 
-class ReportIncidentContractorListChange extends ReportNewIncidentEvent {
+class ReportNewIncidentContractorListChange extends ReportNewIncidentEvent {
   final int selectContractorId;
   final String selectContractorName;
 
-  ReportIncidentContractorListChange(
+  ReportNewIncidentContractorListChange(
       {required this.selectContractorName, required this.selectContractorId});
 }
 
@@ -43,27 +44,41 @@ class ReportIncidentSiteListChange extends ReportNewIncidentEvent {
   ReportIncidentSiteListChange({required this.selectSiteName});
 }
 
-class ReportIncidentLocationChange extends ReportNewIncidentEvent {
-  final String locationName;
+class ReportNewIncidentLocationChange extends ReportNewIncidentEvent {
+  final String selectLocationName;
 
-  ReportIncidentLocationChange({required this.locationName});
+  ReportNewIncidentLocationChange({required this.selectLocationName});
 }
 
-class ReportIncidentAuthorityExpansionChange extends ReportNewIncidentEvent {
-  final String reportAuthorityId;
+class ReportNewIncidentAuthorityExpansionChange extends ReportNewIncidentEvent {
+  final String reportIncidentAuthorityId;
 
-  ReportIncidentAuthorityExpansionChange({required this.reportAuthorityId});
+  ReportNewIncidentAuthorityExpansionChange(
+      {required this.reportIncidentAuthorityId});
 }
 
-class ReportIncidentDateTimeDescriptionValidation
+class ReportNewIncidentDateTimeDescriptionValidation
     extends ReportNewIncidentEvent {
-  final Map addIncidentMap;
+  final Map reportNewIncidentMap;
 
-  ReportIncidentDateTimeDescriptionValidation({required this.addIncidentMap});
+  ReportNewIncidentDateTimeDescriptionValidation(
+      {required this.reportNewIncidentMap});
 }
 
-class ReportIncidentSiteLocationValidation extends ReportNewIncidentEvent {
-  final Map addIncidentMap;
+class ReportNewIncidentSiteLocationValidation extends ReportNewIncidentEvent {
+  final Map reportNewIncidentMap;
 
-  ReportIncidentSiteLocationValidation({required this.addIncidentMap});
+  ReportNewIncidentSiteLocationValidation({required this.reportNewIncidentMap});
+}
+
+class ReportNewIncidentCustomInfoFieldFetch extends ReportNewIncidentEvent {
+  ReportNewIncidentCustomInfoFieldFetch();
+}
+
+class ReportNewIncidentCustomInfoFiledExpansionChange
+    extends ReportNewIncidentEvent {
+  final String reportIncidentCustomInfoOptionId;
+
+  ReportNewIncidentCustomInfoFiledExpansionChange(
+      {required this.reportIncidentCustomInfoOptionId});
 }

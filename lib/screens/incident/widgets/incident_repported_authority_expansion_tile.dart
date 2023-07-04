@@ -25,14 +25,14 @@ class IncidentReportedAuthorityExpansionTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    context
-        .read<ReportNewIncidentBloc>()
-        .add(ReportIncidentAuthorityExpansionChange(reportAuthorityId: ''));
+    context.read<ReportNewIncidentBloc>().add(
+        ReportNewIncidentAuthorityExpansionChange(
+            reportIncidentAuthorityId: ''));
     return BlocBuilder<ReportNewIncidentBloc, ReportNewIncidentStates>(
         buildWhen: (previousState, currentState) =>
-            currentState is IncidentReportAuthoritySelected,
+            currentState is ReportNewIncidentAuthoritySelected,
         builder: (context, state) {
-          if (state is IncidentReportAuthoritySelected) {
+          if (state is ReportNewIncidentAuthoritySelected) {
             return Column(children: [
               Theme(
                   data: Theme.of(context)
@@ -55,35 +55,38 @@ class IncidentReportedAuthorityExpansionTile extends StatelessWidget {
                         ListView.builder(
                             physics: const BouncingScrollPhysics(),
                             shrinkWrap: true,
-                            itemCount: state.reportAuthorityMap.keys.length,
+                            itemCount:
+                                state.reportIncidentAuthorityMap.keys.length,
                             itemBuilder: (BuildContext context, int index) {
                               return RadioListTile(
-                                  contentPadding: EdgeInsets.zero,
+                                  contentPadding: const EdgeInsets.only(
+                                      left: xxxTinierSpacing),
                                   activeColor: AppColor.deepBlue,
                                   title: Text(
-                                      state.reportAuthorityMap.values
+                                      state.reportIncidentAuthorityMap.values
                                           .elementAt(index),
                                       style:
                                           Theme.of(context).textTheme.xSmall),
                                   controlAffinity:
                                       ListTileControlAffinity.trailing,
-                                  value: state.reportAuthorityMap.keys
+                                  value: state.reportIncidentAuthorityMap.keys
                                       .elementAt(index),
-                                  groupValue: state.reportAuthorityId,
+                                  groupValue: state.reportIncidentAuthorityId,
                                   onChanged: (value) {
-                                    value = state.reportAuthorityMap.keys
+                                    value = state
+                                        .reportIncidentAuthorityMap.keys
                                         .elementAt(index);
                                     authorityName = state
-                                        .reportAuthorityMap.values
+                                        .reportIncidentAuthorityMap.values
                                         .elementAt(index);
                                     context.read<ReportNewIncidentBloc>().add(
-                                        ReportIncidentAuthorityExpansionChange(
-                                            reportAuthorityId: value));
+                                        ReportNewIncidentAuthorityExpansionChange(
+                                            reportIncidentAuthorityId: value));
                                   });
                             })
                       ])),
               Visibility(
-                  visible: state.reportAuthorityId == '1',
+                  visible: state.reportIncidentAuthorityId == '1',
                   child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [

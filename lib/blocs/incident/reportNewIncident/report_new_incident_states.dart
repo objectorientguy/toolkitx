@@ -21,70 +21,86 @@ class IncidentMasterFetched extends ReportNewIncidentStates {
 
 class IncidentMasterNotFetched extends ReportNewIncidentStates {}
 
-class IncidentReportAnonymousSelected extends ReportNewIncidentStates {
+class ReportNewIncidentAnonymousSelected extends ReportNewIncidentStates {
   final Map reportAnonymousMap;
   final String reportAnonymousId;
 
-  IncidentReportAnonymousSelected(
+  ReportNewIncidentAnonymousSelected(
       {required this.reportAnonymousId, required this.reportAnonymousMap});
 }
 
-class ReportIncidentContractorSelected extends ReportNewIncidentStates {
+class ReportNewIncidentContractorSelected extends ReportNewIncidentStates {
   final FetchIncidentMasterModel fetchIncidentMasterModel;
   final int selectContractorId;
   final String selectContractorName;
 
-  ReportIncidentContractorSelected(
+  ReportNewIncidentContractorSelected(
       {required this.fetchIncidentMasterModel,
       required this.selectContractorId,
       required this.selectContractorName});
 }
 
-class ReportIncidentSiteSelected extends ReportNewIncidentStates {
+class ReportNewIncidentSiteSelected extends ReportNewIncidentStates {
   final FetchIncidentMasterModel fetchIncidentMasterModel;
   final String selectSiteName;
 
-  ReportIncidentSiteSelected(
+  ReportNewIncidentSiteSelected(
       {required this.fetchIncidentMasterModel, required this.selectSiteName});
 }
 
-class ReportIncidentLocationSelected extends ReportNewIncidentStates {
+class ReportNewIncidentLocationSelected extends ReportNewIncidentStates {
   final FetchIncidentMasterModel fetchIncidentMasterModel;
   final String selectLocationName;
 
-  ReportIncidentLocationSelected(
+  ReportNewIncidentLocationSelected(
       {required this.fetchIncidentMasterModel,
       required this.selectLocationName});
 }
 
-class IncidentReportAuthoritySelected extends ReportNewIncidentStates {
-  final Map reportAuthorityMap;
-  final String reportAuthorityId;
+class ReportNewIncidentAuthoritySelected extends ReportNewIncidentStates {
+  final Map reportIncidentAuthorityMap;
+  final String reportIncidentAuthorityId;
 
-  IncidentReportAuthoritySelected(
-      {required this.reportAuthorityId, required this.reportAuthorityMap});
+  ReportNewIncidentAuthoritySelected(
+      {required this.reportIncidentAuthorityId,
+      required this.reportIncidentAuthorityMap});
 }
 
-class ReportIncidentDateTimeDescValidated extends ReportNewIncidentStates {
+class ReportNewIncidentDateTimeDescValidated extends ReportNewIncidentStates {
   final String dateTimeDescValidationMessage;
 
-  ReportIncidentDateTimeDescValidated(
+  ReportNewIncidentDateTimeDescValidated(
       {required this.dateTimeDescValidationMessage});
 }
 
-class ReportIncidentDateTimeDescValidationComplete
+class ReportNewIncidentDateTimeDescValidationComplete
     extends ReportNewIncidentStates {
-  ReportIncidentDateTimeDescValidationComplete();
+  ReportNewIncidentDateTimeDescValidationComplete();
 }
 
-class ReportIncidentSiteLocationValidated extends ReportNewIncidentStates {
+class ReportNewIncidentSiteLocationValidated extends ReportNewIncidentStates {
   final String siteLocationValidationMessage;
 
-  ReportIncidentSiteLocationValidated(
+  ReportNewIncidentSiteLocationValidated(
       {required this.siteLocationValidationMessage});
 }
 
-class ReportIncidentSiteLocationValidationComplete
+class ReportNewIncidentSiteLocationValidationComplete
     extends ReportNewIncidentStates {
-  ReportIncidentSiteLocationValidationComplete();
+  ReportNewIncidentSiteLocationValidationComplete();
+}
+
+class ReportNewIncidentCustomFieldFetched extends ReportNewIncidentStates {
+  final FetchIncidentMasterModel fetchIncidentMasterModel;
+
+  ReportNewIncidentCustomFieldFetched({required this.fetchIncidentMasterModel});
+}
+
+class ReportNewIncidentCustomFieldSelected extends ReportNewIncidentStates {
+  final FetchIncidentMasterModel fetchIncidentMasterModel;
+  final String reportIncidentCustomInfoOptionId;
+
+  ReportNewIncidentCustomFieldSelected(
+      {required this.fetchIncidentMasterModel,
+      required this.reportIncidentCustomInfoOptionId});
 }

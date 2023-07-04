@@ -15,7 +15,7 @@ class ReportNewIncidentBloc
   final CustomerCache _customerCache = getIt<CustomerCache>();
   FetchIncidentMasterModel fetchIncidentMasterModel =
       FetchIncidentMasterModel();
-  Map addNewIncidentMap = {};
+  Map reportNewIncidentMap = {};
   String selectSiteName = '';
 
   ReportNewIncidentStates get initialState => ReportNewIncidentInitial();
@@ -23,13 +23,16 @@ class ReportNewIncidentBloc
   ReportNewIncidentBloc() : super(ReportNewIncidentInitial()) {
     on<FetchIncidentMaster>(_fetchIncidentCategory);
     on<SelectIncidentCategory>(_selectIncidentCategory);
-    on<ReportIncidentAnonymousExpansionChange>(_reportIncidentAnonymously);
-    on<ReportIncidentContractorListChange>(_reportIncidentContractor);
+    on<ReportNewIncidentAnonymousExpansionChange>(_reportIncidentAnonymously);
+    on<ReportNewIncidentContractorListChange>(_reportIncidentContractor);
     on<ReportIncidentSiteListChange>(_reportIncidentSite);
-    on<ReportIncidentLocationChange>(_reportIncidentLocation);
-    on<ReportIncidentAuthorityExpansionChange>(_reportIncidentAuthority);
-    on<ReportIncidentDateTimeDescriptionValidation>(_dateTimeDescValidation);
-    on<ReportIncidentSiteLocationValidation>(_siteLocationValidation);
+    on<ReportNewIncidentLocationChange>(_reportIncidentLocation);
+    on<ReportNewIncidentAuthorityExpansionChange>(_reportIncidentAuthority);
+    on<ReportNewIncidentDateTimeDescriptionValidation>(_dateTimeDescValidation);
+    on<ReportNewIncidentSiteLocationValidation>(_siteLocationValidation);
+    on<ReportNewIncidentCustomInfoFieldFetch>(_reportIncidentCustomInfoFetch);
+    on<ReportNewIncidentCustomInfoFiledExpansionChange>(
+        _reportIncidentCustomInfo);
   }
 
   FutureOr<void> _fetchIncidentCategory(
@@ -58,7 +61,7 @@ class ReportNewIncidentBloc
 
   _selectIncidentCategory(
       SelectIncidentCategory event, Emitter<ReportNewIncidentStates> emit) {
-    addNewIncidentMap = event.addNewIncidentMap;
+    reportNewIncidentMap = event.addNewIncidentMap;
     List showCategory = [];
     showCategory = [
       {
@@ -119,23 +122,23 @@ class ReportNewIncidentBloc
         fetchIncidentMasterModel: fetchIncidentMasterModel,
         categoryList: showCategory,
         categorySelectedList: selectedCategory,
-        addNewIncidentMap: addNewIncidentMap));
+        addNewIncidentMap: reportNewIncidentMap));
   }
 
-  _reportIncidentAnonymously(ReportIncidentAnonymousExpansionChange event,
+  _reportIncidentAnonymously(ReportNewIncidentAnonymousExpansionChange event,
       Emitter<ReportNewIncidentStates> emit) {
     Map reportAnonymousMap = {
       "1": DatabaseUtil.getText('Yes'),
       "2": DatabaseUtil.getText('No'),
     };
-    emit(IncidentReportAnonymousSelected(
-        reportAnonymousId: event.reportAnonymousId,
+    emit(ReportNewIncidentAnonymousSelected(
+        reportAnonymousId: event.reportIncidentAnonymousId,
         reportAnonymousMap: reportAnonymousMap));
   }
 
-  _reportIncidentContractor(ReportIncidentContractorListChange event,
+  _reportIncidentContractor(ReportNewIncidentContractorListChange event,
       Emitter<ReportNewIncidentStates> emit) {
-    emit(ReportIncidentContractorSelected(
+    emit(ReportNewIncidentContractorSelected(
         fetchIncidentMasterModel: fetchIncidentMasterModel,
         selectContractorId: event.selectContractorId,
         selectContractorName: event.selectContractorName));
@@ -144,52 +147,67 @@ class ReportNewIncidentBloc
   _reportIncidentSite(ReportIncidentSiteListChange event,
       Emitter<ReportNewIncidentStates> emit) {
     selectSiteName = event.selectSiteName;
-    emit(ReportIncidentSiteSelected(
+    emit(ReportNewIncidentSiteSelected(
         fetchIncidentMasterModel: fetchIncidentMasterModel,
         selectSiteName: event.selectSiteName));
   }
 
-  _reportIncidentLocation(ReportIncidentLocationChange event,
+  _reportIncidentLocation(ReportNewIncidentLocationChange event,
       Emitter<ReportNewIncidentStates> emit) {
-    emit(ReportIncidentLocationSelected(
+    emit(ReportNewIncidentLocationSelected(
         fetchIncidentMasterModel: fetchIncidentMasterModel,
-        selectLocationName: event.locationName));
+        selectLocationName: event.selectLocationName));
   }
 
-  _reportIncidentAuthority(ReportIncidentAuthorityExpansionChange event,
+  _reportIncidentAuthority(ReportNewIncidentAuthorityExpansionChange event,
       Emitter<ReportNewIncidentStates> emit) {
     Map reportAuthorityMap = {
       "1": DatabaseUtil.getText('Yes'),
       "2": DatabaseUtil.getText('No'),
     };
-    emit(IncidentReportAuthoritySelected(
-        reportAuthorityId: event.reportAuthorityId,
-        reportAuthorityMap: reportAuthorityMap));
+    emit(ReportNewIncidentAuthoritySelected(
+        reportIncidentAuthorityId: event.reportIncidentAuthorityId,
+        reportIncidentAuthorityMap: reportAuthorityMap));
   }
 
-  _dateTimeDescValidation(ReportIncidentDateTimeDescriptionValidation event,
+  _dateTimeDescValidation(ReportNewIncidentDateTimeDescriptionValidation event,
       Emitter<ReportNewIncidentStates> emit) {
-    addNewIncidentMap = event.addIncidentMap;
-    if (addNewIncidentMap['eventdatetime'] == null &&
-        addNewIncidentMap['description'] == null) {
-      emit(ReportIncidentDateTimeDescValidated(
+    reportNewIncidentMap = event.reportNewIncidentMap;
+    if (reportNewIncidentMap['eventdatetime'] == null &&
+        reportNewIncidentMap['description'] == null) {
+      emit(ReportNewIncidentDateTimeDescValidated(
           dateTimeDescValidationMessage:
               DatabaseUtil.getText('DateTimeNoEmpty')));
     } else {
-      emit(ReportIncidentDateTimeDescValidationComplete());
+      emit(ReportNewIncidentDateTimeDescValidationComplete());
     }
   }
 
-  _siteLocationValidation(ReportIncidentSiteLocationValidation event,
+  _siteLocationValidation(ReportNewIncidentSiteLocationValidation event,
       Emitter<ReportNewIncidentStates> emit) {
-    addNewIncidentMap = event.addIncidentMap;
-    if (addNewIncidentMap['site_name'] == '' ||
-        addNewIncidentMap['location_name'] == '') {
-      emit(ReportIncidentSiteLocationValidated(
+    reportNewIncidentMap = event.reportNewIncidentMap;
+    if (reportNewIncidentMap['site_name'] == '' &&
+        reportNewIncidentMap['location_name'] == '') {
+      emit(ReportNewIncidentSiteLocationValidated(
           siteLocationValidationMessage:
               DatabaseUtil.getText('SiteLocationCompulsory')));
     } else {
-      emit(ReportIncidentSiteLocationValidationComplete());
+      emit(ReportNewIncidentSiteLocationValidationComplete());
     }
+  }
+
+  _reportIncidentCustomInfoFetch(ReportNewIncidentCustomInfoFieldFetch event,
+      Emitter<ReportNewIncidentStates> emit) {
+    emit(ReportNewIncidentCustomFieldFetched(
+        fetchIncidentMasterModel: fetchIncidentMasterModel));
+  }
+
+  _reportIncidentCustomInfo(
+      ReportNewIncidentCustomInfoFiledExpansionChange event,
+      Emitter<ReportNewIncidentStates> emit) {
+    emit(ReportNewIncidentCustomFieldSelected(
+        fetchIncidentMasterModel: fetchIncidentMasterModel,
+        reportIncidentCustomInfoOptionId:
+            event.reportIncidentCustomInfoOptionId));
   }
 }

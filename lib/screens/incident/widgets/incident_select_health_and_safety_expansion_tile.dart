@@ -6,13 +6,12 @@ import 'package:toolkit/configs/app_theme.dart';
 import '../../../blocs/incident/reportNewIncident/report_new_incident_bloc.dart';
 import '../../../blocs/incident/reportNewIncident/report_new_incident_events.dart';
 import '../../../configs/app_color.dart';
-import '../../../configs/app_spacing.dart';
 import '../../../utils/database_utils.dart';
 
-class IncidentReportAnonymousExpansionTile extends StatelessWidget {
+class IncidentReportHealthAndSafetyExpansionTile extends StatelessWidget {
   final Map addIncidentMap;
 
-  const IncidentReportAnonymousExpansionTile(
+  const IncidentReportHealthAndSafetyExpansionTile(
       {Key? key, required this.addIncidentMap})
       : super(key: key);
   static String anonymousName = '';
@@ -27,7 +26,7 @@ class IncidentReportAnonymousExpansionTile extends StatelessWidget {
             currentState is ReportNewIncidentAnonymousSelected,
         builder: (context, state) {
           if (state is ReportNewIncidentAnonymousSelected) {
-            addIncidentMap['identity'] = state.reportAnonymousId;
+            // addIncidentMap['identity'] = state.reportAnonymousId;
             return Theme(
                 data: Theme.of(context)
                     .copyWith(dividerColor: Colors.transparent),
@@ -52,8 +51,7 @@ class IncidentReportAnonymousExpansionTile extends StatelessWidget {
                           itemCount: state.reportAnonymousMap.keys.length,
                           itemBuilder: (BuildContext context, int index) {
                             return RadioListTile(
-                                contentPadding: const EdgeInsets.only(
-                                    left: xxxTinierSpacing),
+                                contentPadding: EdgeInsets.zero,
                                 activeColor: AppColor.deepBlue,
                                 title: Text(
                                     state.reportAnonymousMap.values
