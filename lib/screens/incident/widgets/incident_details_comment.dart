@@ -10,9 +10,13 @@ import '../../../widgets/custom_card.dart';
 class PermitDetailsComment extends StatelessWidget {
   final IncidentDetailsModel incidentDetailsModel;
   final String clientId;
+  final int initialIndex;
 
   const PermitDetailsComment(
-      {Key? key, required this.incidentDetailsModel, required this.clientId})
+      {Key? key,
+      required this.incidentDetailsModel,
+      required this.clientId,
+      required this.initialIndex})
       : super(key: key);
 
   @override

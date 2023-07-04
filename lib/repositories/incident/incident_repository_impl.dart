@@ -32,7 +32,6 @@ class IncidentRepositoryImpl extends IncidentRepository {
     return IncidentDetailsModel.fromJson(response);
   }
 
-
   @override
   Future<IncidentUnlinkPermitModel> removeLinkedPermit(
       Map removeLinkedPermitMap) async {

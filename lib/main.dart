@@ -50,7 +50,6 @@ import 'screens/onboarding/select_time_zone_screen.dart';
 import 'screens/onboarding/welcome_screen.dart';
 import 'screens/root/root_screen.dart';
 import 'utils/database_utils.dart';
-import 'utils/profile_util.dart';
 
 void main() async {
   await _initApp();

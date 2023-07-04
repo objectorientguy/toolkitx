@@ -76,7 +76,7 @@ class IncidentLinkPermitList extends StatelessWidget {
                                             .read<
                                                 IncidentFetchAndChangeRoleBloc>()
                                             .roleId,
-                                        incidentLinkIndex: initialIndex));
+                                        initialIndex: initialIndex));
                               } else if (state
                                   is IncidentLinkedPermitNotRemoved) {
                                 ProgressBar.dismiss(context);
