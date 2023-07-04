@@ -40,7 +40,8 @@ class ProfileEditScreen extends StatelessWidget {
           body: BlocConsumer<ProfileBloc, ProfileStates>(
               buildWhen: (previousState, currentState) =>
                   currentState is EditProfileInitialized ||
-                  currentState is EditProfileInitializing,
+                  currentState is EditProfileInitializing ||
+                  currentState is EditProfileError,
               listener: (BuildContext context, state) {
                 if (state is UserProfileUpdating) {
                   ProgressBar.show(context);
