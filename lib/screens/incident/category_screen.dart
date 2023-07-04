@@ -94,19 +94,24 @@ class CategoryScreen extends StatelessWidget {
                                                         AppColor.deepBlue,
                                                     contentPadding:
                                                         EdgeInsets.zero,
-                                                    value: multiSelectList.contains(
-                                                        state.categoryList[index]
+                                                    value: multiSelectList
+                                                        .contains(state
+                                                            .categoryList[index]
                                                                 ['items']
-                                                            [itemIndex]),
+                                                                [itemIndex]
+                                                            .id),
                                                     title: Text(
-                                                        state.categoryList[index]
+                                                        state
+                                                            .categoryList[index]
                                                                 ['items']
-                                                            [itemIndex],
+                                                                [itemIndex]
+                                                            .name,
                                                         style: Theme.of(context)
                                                             .textTheme
                                                             .xSmall
                                                             .copyWith(
-                                                                fontWeight: FontWeight.w400,
+                                                                fontWeight:
+                                                                    FontWeight.w400,
                                                                 color: AppColor.grey)),
                                                     controlAffinity: ListTileControlAffinity.trailing,
                                                     onChanged: (value) {

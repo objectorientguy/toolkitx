@@ -13,6 +13,7 @@ abstract class StringConstants {
   static const String kLogin = 'LOGIN';
   static const String kWelcome = 'Welcome';
   static const String kCamera = 'Camera';
+  static const String kOther = 'Other';
   static const String kDevice = 'Device';
   static const String kUploadFrom = 'Upload From';
   static const String kEnterReason = 'Enter Reason';

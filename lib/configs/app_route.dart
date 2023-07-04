@@ -15,6 +15,7 @@ import '../screens/incident/category_screen.dart';
 import '../screens/incident/change_role_screen.dart';
 import '../screens/incident/filter_screen.dart';
 import '../screens/incident/incident_list_screen.dart';
+import '../screens/incident/incident_location_screen.dart';
 import '../screens/incident/report_new_incident_screen.dart';
 import '../screens/onboarding/client_list_screen.dart';
 import '../screens/onboarding/language/select_language_screen.dart';
@@ -122,6 +123,9 @@ class AppRoutes {
       case ReportNewIncidentScreen.routeName:
         return _createRoute(
             ReportNewIncidentScreen(addIncidentMap: settings.arguments as Map));
+      case IncidentLocationScreen.routeName:
+        return _createRoute(
+            IncidentLocationScreen(addIncidentMap: settings.arguments as Map));
       default:
         return _createRoute(const WelcomeScreen());
     }

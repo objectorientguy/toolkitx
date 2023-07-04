@@ -43,3 +43,28 @@ class ReportIncidentContractorSelected extends ReportNewIncidentStates {
       required this.selectContractorId,
       required this.selectContractorName});
 }
+
+class ReportIncidentSiteSelected extends ReportNewIncidentStates {
+  final FetchIncidentMasterModel fetchIncidentMasterModel;
+  final String selectSiteName;
+
+  ReportIncidentSiteSelected(
+      {required this.fetchIncidentMasterModel, required this.selectSiteName});
+}
+
+class ReportIncidentLocationSelected extends ReportNewIncidentStates {
+  final FetchIncidentMasterModel fetchIncidentMasterModel;
+  final String selectLocationName;
+
+  ReportIncidentLocationSelected(
+      {required this.fetchIncidentMasterModel,
+      required this.selectLocationName});
+}
+
+class IncidentReportAuthoritySelected extends ReportNewIncidentStates {
+  final Map reportAuthorityMap;
+  final String reportAuthorityId;
+
+  IncidentReportAuthoritySelected(
+      {required this.reportAuthorityId, required this.reportAuthorityMap});
+}

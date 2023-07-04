@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:toolkit/blocs/incident/reportNewIncident/report_new_incident_states.dart';
 import 'package:toolkit/configs/app_theme.dart';
+import 'package:toolkit/screens/incident/incident_location_screen.dart';
 import 'package:toolkit/screens/incident/widgets/date_picker.dart';
 import 'package:toolkit/screens/incident/widgets/incident_contractor_list_tile.dart';
 import 'package:toolkit/screens/incident/widgets/incident_report_anonymously_expansion_tile.dart';
@@ -110,7 +111,11 @@ class ReportNewIncidentScreen extends StatelessWidget {
                                 addIncidentMap: addIncidentMap),
                             const SizedBox(height: mediumSpacing),
                             PrimaryButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  Navigator.pushNamed(
+                                      context, IncidentLocationScreen.routeName,
+                                      arguments: addIncidentMap);
+                                },
                                 textValue: StringConstants.kNext)
                           ]));
                 } else {

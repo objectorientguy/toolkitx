@@ -36,3 +36,23 @@ class ReportIncidentContractorListChange extends ReportNewIncidentEvent {
   ReportIncidentContractorListChange(
       {required this.selectContractorName, required this.selectContractorId});
 }
+
+class ReportNewIncidentLocationListChange extends ReportNewIncidentEvent {}
+
+class ReportIncidentSiteListChange extends ReportNewIncidentEvent {
+  final String selectSiteName;
+
+  ReportIncidentSiteListChange({required this.selectSiteName});
+}
+
+class ReportIncidentLocationChange extends ReportNewIncidentEvent {
+  final String locationName;
+
+  ReportIncidentLocationChange({required this.locationName});
+}
+
+class ReportIncidentAuthorityExpansionChange extends ReportNewIncidentEvent {
+  final String reportAuthorityId;
+
+  ReportIncidentAuthorityExpansionChange({required this.reportAuthorityId});
+}

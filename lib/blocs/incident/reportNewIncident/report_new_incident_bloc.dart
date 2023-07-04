@@ -16,6 +16,7 @@ class ReportNewIncidentBloc
   FetchIncidentMasterModel fetchIncidentMasterModel =
       FetchIncidentMasterModel();
   Map addNewIncidentMap = {};
+  String selectSiteName = '';
 
   ReportNewIncidentStates get initialState => ReportNewIncidentInitial();
 
@@ -25,6 +26,9 @@ class ReportNewIncidentBloc
     on<ReportNewIncidentPrimary>(_reportNewIncidentPrimary);
     on<ReportIncidentAnonymousExpansionChange>(_reportIncidentAnonymously);
     on<ReportIncidentContractorListChange>(_reportIncidentContractor);
+    on<ReportIncidentSiteListChange>(_reportIncidentSite);
+    on<ReportIncidentLocationChange>(_reportIncidentLocation);
+    on<ReportIncidentAuthorityExpansionChange>(_reportIncidentAuthority);
   }
 
   FutureOr<void> _fetchIncidentCategory(
@@ -34,6 +38,12 @@ class ReportNewIncidentBloc
       String hashCode = (await _customerCache.getHashCode(CacheKeys.hashcode))!;
       fetchIncidentMasterModel =
           await _incidentRepository.fetchIncidentMaster(hashCode, event.role);
+      fetchIncidentMasterModel.incidentMasterDatum![0].add(
+          IncidentMasterDatum.fromJson(
+              {"name": DatabaseUtil.getText('Other')}));
+      fetchIncidentMasterModel.incidentMasterDatum![1].add(
+          IncidentMasterDatum.fromJson(
+              {"location": DatabaseUtil.getText('Other')}));
       add(SelectIncidentCategory(
           index: 0,
           itemIndex: 0,
@@ -56,7 +66,7 @@ class ReportNewIncidentBloc
           for (int i = 0;
               i < fetchIncidentMasterModel.incidentMasterDatum![2].length;
               i++)
-            fetchIncidentMasterModel.incidentMasterDatum![2][i].name
+            fetchIncidentMasterModel.incidentMasterDatum![2][i]
         ]
       },
       {
@@ -65,7 +75,7 @@ class ReportNewIncidentBloc
           for (int i = 0;
               i < fetchIncidentMasterModel.incidentMasterDatum![3].length;
               i++)
-            fetchIncidentMasterModel.incidentMasterDatum![3][i].name
+            fetchIncidentMasterModel.incidentMasterDatum![3][i]
         ]
       },
       {
@@ -74,7 +84,7 @@ class ReportNewIncidentBloc
           for (int i = 0;
               i < fetchIncidentMasterModel.incidentMasterDatum![4].length;
               i++)
-            fetchIncidentMasterModel.incidentMasterDatum![4][i].name
+            fetchIncidentMasterModel.incidentMasterDatum![4][i]
         ]
       },
       {
@@ -83,7 +93,7 @@ class ReportNewIncidentBloc
           for (int i = 0;
               i < fetchIncidentMasterModel.incidentMasterDatum![5].length;
               i++)
-            fetchIncidentMasterModel.incidentMasterDatum![5][i].name
+            fetchIncidentMasterModel.incidentMasterDatum![5][i]
         ]
       },
       {
@@ -92,16 +102,17 @@ class ReportNewIncidentBloc
           for (int i = 0;
               i < fetchIncidentMasterModel.incidentMasterDatum![6].length;
               i++)
-            fetchIncidentMasterModel.incidentMasterDatum![6][i].name
+            fetchIncidentMasterModel.incidentMasterDatum![6][i]
         ]
       }
     ];
     List selectedCategory = [];
     if (event.isSelected) {
-      selectedCategory.add(showCategory[event.index]['items'][event.itemIndex]);
+      selectedCategory
+          .add(showCategory[event.index]['items'][event.itemIndex].id);
     } else {
       event.multiSelectList
-          .remove(showCategory[event.index]['items'][event.itemIndex]);
+          .remove(showCategory[event.index]['items'][event.itemIndex].id);
     }
     emit(IncidentMasterFetched(
         fetchIncidentMasterModel: fetchIncidentMasterModel,
@@ -132,5 +143,31 @@ class ReportNewIncidentBloc
         fetchIncidentMasterModel: fetchIncidentMasterModel,
         selectContractorId: event.selectContractorId,
         selectContractorName: event.selectContractorName));
+  }
+
+  _reportIncidentSite(ReportIncidentSiteListChange event,
+      Emitter<ReportNewIncidentStates> emit) {
+    selectSiteName = event.selectSiteName;
+    emit(ReportIncidentSiteSelected(
+        fetchIncidentMasterModel: fetchIncidentMasterModel,
+        selectSiteName: event.selectSiteName));
+  }
+
+  _reportIncidentLocation(ReportIncidentLocationChange event,
+      Emitter<ReportNewIncidentStates> emit) {
+    emit(ReportIncidentLocationSelected(
+        fetchIncidentMasterModel: fetchIncidentMasterModel,
+        selectLocationName: event.locationName));
+  }
+
+  _reportIncidentAuthority(ReportIncidentAuthorityExpansionChange event,
+      Emitter<ReportNewIncidentStates> emit) {
+    Map reportAuthorityMap = {
+      "1": DatabaseUtil.getText('Yes'),
+      "2": DatabaseUtil.getText('No'),
+    };
+    emit(IncidentReportAuthoritySelected(
+        reportAuthorityId: event.reportAuthorityId,
+        reportAuthorityMap: reportAuthorityMap));
   }
 }
