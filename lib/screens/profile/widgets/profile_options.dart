@@ -7,10 +7,10 @@ import '../../../configs/app_spacing.dart';
 import '../../../utils/constants/string_constants.dart';
 import '../../../utils/profile_util.dart';
 import '../../../widgets/in_app_web_view.dart';
-import '../../onboarding/language/select_language_screen.dart';
-import '../../onboarding/selectDateFormat/select_date_format_screen.dart';
-import '../../onboarding/selectTimeZone/select_time_zone_screen.dart';
-import '../changePassword/select_change_password_screen.dart';
+import '../../onboarding/select_language_screen.dart';
+import '../../onboarding/select_date_format_screen.dart';
+import '../../onboarding/select_time_zone_screen.dart';
+import '../select_change_password_screen.dart';
 
 class ProfileOptions extends StatelessWidget {
   const ProfileOptions({Key? key}) : super(key: key);
@@ -79,7 +79,8 @@ class ProfileOptions extends StatelessWidget {
                   }),
               const SizedBox(height: xxxMediumSpacing),
               Center(
-                  child: Text("App version 1.0.9",
+                  child: Text(
+                      "${StringConstants.kAppVersion} ${ProfileUtil.packageInfo.version}",
                       style: Theme.of(context)
                           .textTheme
                           .xSmall

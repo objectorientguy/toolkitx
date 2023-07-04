@@ -6,17 +6,20 @@ class CustomTabBarView extends StatelessWidget {
   final List<Tab> tabBarViewIcons;
   final List<Widget> tabBarViewWidgets;
   final int lengthOfTabs;
+  final int initialIndex;
 
   const CustomTabBarView(
       {super.key,
       required this.tabBarViewIcons,
       required this.tabBarViewWidgets,
-      required this.lengthOfTabs});
+      required this.lengthOfTabs,
+      this.initialIndex = 0});
 
   @override
   Widget build(BuildContext context) {
     return Expanded(
       child: DefaultTabController(
+        initialIndex: initialIndex,
         length: lengthOfTabs, // Set the number of tabs
         child: Column(
           children: [

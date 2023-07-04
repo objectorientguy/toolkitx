@@ -4,7 +4,7 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 
 class DioClient {
-  final Dio dio = Dio();
+  final Dio dio = Dio(BaseOptions(connectTimeout: const Duration(seconds: 75)));
 
   Future<dynamic> get(String requestUrl, [Map? body]) async {
     dynamic jsonResponse;

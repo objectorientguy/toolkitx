@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:toolkit/screens/checklist/workforce/workforce_list_screen.dart';
+import 'package:toolkit/screens/incident/incident_details_screen.dart';
+import '../data/models/incident/fetch_incidents_list_model.dart';
 import '../data/models/permit/permit_details_model.dart';
 import '../screens/checklist/systemUser/sys_user_workforce_list_screen.dart';
 import '../screens/checklist/workforce/add_image_and_comments_screen.dart';
@@ -19,18 +21,18 @@ import '../screens/incident/incident_list_screen.dart';
 import '../screens/incident/incident_location_screen.dart';
 import '../screens/incident/report_new_incident_screen.dart';
 import '../screens/onboarding/client_list_screen.dart';
-import '../screens/onboarding/language/select_language_screen.dart';
-import '../screens/onboarding/login/login_screen.dart';
-import '../screens/onboarding/login/password_screen.dart';
-import '../screens/onboarding/selectDateFormat/select_date_format_screen.dart';
-import '../screens/onboarding/selectTimeZone/select_time_zone_screen.dart';
+import '../screens/onboarding/select_language_screen.dart';
+import '../screens/onboarding/login_screen.dart';
+import '../screens/onboarding/password_screen.dart';
+import '../screens/onboarding/select_date_format_screen.dart';
+import '../screens/onboarding/select_time_zone_screen.dart';
 import '../screens/onboarding/welcome_screen.dart';
 import '../screens/permit/close_permit_screen.dart';
 import '../screens/permit/open_permit_screen.dart';
 import '../screens/permit/permit_filter_screen.dart';
-import '../screens/profile/changePassword/change_password_screen.dart';
-import '../screens/profile/changePassword/select_change_password_screen.dart';
-import '../screens/profile/edit/profile_edit_screen.dart';
+import '../screens/profile/change_password_screen.dart';
+import '../screens/profile/select_change_password_screen.dart';
+import '../screens/profile/profile_edit_screen.dart';
 import '../screens/permit/permit_details_screen.dart';
 import '../screens/permit/permit_list_screen.dart';
 import '../screens/permit/get_permit_roles_screen.dart';
@@ -121,6 +123,9 @@ class AppRoutes {
       case OpenPermitScreen.routeName:
         return _createRoute(OpenPermitScreen(
             permitDetailsModel: settings.arguments as PermitDetailsModel));
+      case IncidentDetailsScreen.routeName:
+        return _createRoute(IncidentDetailsScreen(
+            incidentListDatum: settings.arguments as IncidentListDatum));
       case ReportNewIncidentScreen.routeName:
         return _createRoute(
             ReportNewIncidentScreen(addIncidentMap: settings.arguments as Map));

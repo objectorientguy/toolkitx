@@ -19,6 +19,7 @@ class ProfileBloc extends Bloc<ProfileEvents, ProfileStates> {
   final ProfileRepository _profileRepository = getIt<ProfileRepository>();
   final CustomerCache _customerCache = getIt<CustomerCache>();
   Map profileDataMap = {};
+  Map updateProfileDataMap = {};
 
   ProfileStates get initialState => ProfileInitial();
 
@@ -58,6 +59,8 @@ class ProfileBloc extends Bloc<ProfileEvents, ProfileStates> {
               userType: userType,
               userName:
                   '${userProfileModel.data!.fname} ${userProfileModel.data!.lname}'));
+        } else {
+          emit(UserProfileFetchError());
         }
       } else {
         emit(UserProfileFetched(userType: userType, userName: userName));
@@ -94,8 +97,13 @@ class ProfileBloc extends Bloc<ProfileEvents, ProfileStates> {
           }
           decryptedDataMap['bloodgrp'] = bloodGroupDecrypt;
           decryptedDataMap['contact'] = contactDecrypt;
+          updateProfileDataMap = decryptedDataMap;
 
           add(InitializeEditUserProfile(profileDetailsMap: decryptedDataMap));
+        } else {
+          emit(EditProfileError(
+              errorMessage:
+                  DatabaseUtil.getText('some_unknown_error_please_try_again')));
         }
       } else {
         Map decryptedDataMap = Map.from(profileDataMap);
@@ -112,6 +120,7 @@ class ProfileBloc extends Bloc<ProfileEvents, ProfileStates> {
         }
         decryptedDataMap['bloodgrp'] = bloodGroupDecrypt;
         decryptedDataMap['contact'] = contactDecrypt;
+        updateProfileDataMap = decryptedDataMap;
 
         add(InitializeEditUserProfile(profileDetailsMap: decryptedDataMap));
       }

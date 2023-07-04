@@ -27,7 +27,7 @@ class PasswordBody extends StatelessWidget {
       const SizedBox(height: xxxMediumSpacing),
       Text(DatabaseUtil.getText('welcomeOtp'),
           style: Theme.of(context).textTheme.xLarge),
-      const SizedBox(height: xxxTinierSpacing),
+      const SizedBox(height: xxTinierSpacing),
       CustomCard(
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(kCardRadius)),
@@ -37,7 +37,10 @@ class PasswordBody extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text('${DatabaseUtil.getText('password')}/OTP',
-                        style: Theme.of(context).textTheme.medium),
+                        style: Theme.of(context)
+                            .textTheme
+                            .xSmall
+                            .copyWith(fontWeight: FontWeight.w600)),
                     const SizedBox(height: xxxTinierSpacing),
                     TextFieldWidget(
                         obscureText: true,
@@ -53,10 +56,13 @@ class PasswordBody extends StatelessWidget {
                             return Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  const SizedBox(height: xxxTinierSpacing),
+                                  const SizedBox(height: xxTinySpacing),
                                   Text(DatabaseUtil.getText('type'),
-                                      style:
-                                          Theme.of(context).textTheme.medium),
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .xSmall
+                                          .copyWith(
+                                              fontWeight: FontWeight.w600)),
                                   const SizedBox(height: xxxTinierSpacing),
                                   UserTypeExpansionTile(
                                       typeValue: state.typeValue,

@@ -1,9 +1,8 @@
-import 'package:toolkit/data/models/permit/open_close_permit_model.dart';
-import 'package:toolkit/data/models/permit/open_permit_details_model.dart';
-
 import '../../data/models/pdf_generation_model.dart';
 import '../../data/models/permit/all_permits_model.dart';
 import '../../data/models/permit/close_permit_details_model.dart';
+import '../../data/models/permit/open_close_permit_model.dart';
+import '../../data/models/permit/open_permit_details_model.dart';
 import '../../data/models/permit/permit_details_model.dart';
 import '../../data/models/permit/permit_get_master_model.dart';
 import '../../data/models/permit/permit_roles_model.dart';
@@ -17,7 +16,9 @@ class FetchingPermitsInitial extends PermitStates {
 }
 
 class FetchingAllPermits extends PermitStates {
-  const FetchingAllPermits();
+  final Map filters;
+
+  const FetchingAllPermits({required this.filters});
 }
 
 class AllPermitsFetched extends PermitStates {
@@ -53,10 +54,10 @@ class GeneratingPDF extends PermitStates {
 }
 
 class PDFGenerated extends PermitStates {
-  final PdfGenerationModel pdfGenerationModel;
+  final PdfGenerationModel? pdfGenerationModel;
   final String pdfLink;
 
-  const PDFGenerated({required this.pdfGenerationModel, required this.pdfLink});
+  const PDFGenerated({this.pdfGenerationModel, required this.pdfLink});
 }
 
 class PDFGenerationFailed extends PermitStates {

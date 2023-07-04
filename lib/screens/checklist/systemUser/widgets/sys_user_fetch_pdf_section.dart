@@ -24,7 +24,7 @@ class FetchPdfSection extends StatelessWidget {
         } else if (state is PdfCheckListFetched) {
           ProgressBar.dismiss(context);
           launchUrlString(
-            '${ApiConstants.baseDocUrl}${state.decryptedFile}.pdf',
+            '${ApiConstants.viewDocBaseUrl}${state.decryptedFile}.pdf',
             mode: LaunchMode.externalApplication,
           );
         } else if (state is FetchCheckListPdfError) {

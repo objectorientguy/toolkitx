@@ -28,10 +28,9 @@ class SignaturePad extends StatefulWidget {
 
 class _SignaturePadState extends State<SignaturePad> {
   final SignatureController signController = SignatureController(
-    penStrokeWidth: 3,
-    penColor: AppColor.black,
-    exportBackgroundColor: AppColor.white,
-  );
+      penStrokeWidth: 3,
+      penColor: AppColor.black,
+      exportBackgroundColor: AppColor.white);
 
   saveSign() {
     signController.onDrawEnd = () async {
@@ -60,30 +59,23 @@ class _SignaturePadState extends State<SignaturePad> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(StringConstants.kSignature,
-                style: Theme.of(context).textTheme.medium),
-            if (showSignPad == true)
-              IconButton(
-                onPressed: () {
-                  signController.clear();
-                },
-                icon: const Icon(
-                  Icons.refresh,
-                ),
-                iconSize: kIconSize,
-              )
-          ],
-        ),
-        const SizedBox(
-          height: tinierSpacing,
-        ),
-        Container(
+    return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+      Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+        Text(StringConstants.kSignature,
+            style: Theme.of(context)
+                .textTheme
+                .xSmall
+                .copyWith(fontWeight: FontWeight.w600)),
+        if (showSignPad == true)
+          IconButton(
+              onPressed: () {
+                signController.clear();
+              },
+              icon: const Icon(Icons.refresh),
+              iconSize: kIconSize)
+      ]),
+      const SizedBox(height: xxxTinierSpacing),
+      Container(
           decoration:
               BoxDecoration(border: Border.all(color: AppColor.lightGrey)),
           child: ClipRRect(
@@ -93,8 +85,7 @@ class _SignaturePadState extends State<SignaturePad> {
                       controller: signController,
                       width: double.infinity,
                       height: kSignaturePadHeight,
-                      backgroundColor: AppColor.white,
-                    )
+                      backgroundColor: AppColor.white)
                   : BlocBuilder<PickAndUploadImageBloc,
                       PickAndUploadImageStates>(builder: (context, state) {
                       if (state is ImagePickerLoaded) {
@@ -104,31 +95,25 @@ class _SignaturePadState extends State<SignaturePad> {
                       }
                       if (state is PickImageLoading) {
                         return SizedBox(
-                          height: kSignaturePadHeight,
-                          child: Center(
-                            child: Shimmer.fromColors(
-                                baseColor: Colors.grey.shade100,
-                                highlightColor: AppColor.white,
-                                child: Container(
-                                    decoration: BoxDecoration(
-                                        color: AppColor.white,
-                                        borderRadius: BorderRadius.circular(
-                                            kCardRadius)))),
-                          ),
-                        );
+                            height: kSignaturePadHeight,
+                            child: Center(
+                                child: Shimmer.fromColors(
+                                    baseColor: Colors.grey.shade100,
+                                    highlightColor: AppColor.white,
+                                    child: Container(
+                                        decoration: BoxDecoration(
+                                            color: AppColor.white,
+                                            borderRadius: BorderRadius.circular(
+                                                kCardRadius))))));
                       }
                       if (state is ImagePickerError) {
-                        return Text(
-                          state.errorMessage,
-                          style: const TextStyle(color: AppColor.errorRed),
-                        );
+                        return Text(state.errorMessage,
+                            style: const TextStyle(color: AppColor.errorRed));
                       } else {
                         if (croppedFilePath != null) {
-                          return Image.file(
-                            File(croppedFilePath!),
-                            width: double.infinity,
-                            height: kSignaturePadHeight,
-                          );
+                          return Image.file(File(croppedFilePath!),
+                              width: double.infinity,
+                              height: kSignaturePadHeight);
                         }
                         return CachedNetworkImage(
                             width: double.infinity,
@@ -147,23 +132,21 @@ class _SignaturePadState extends State<SignaturePad> {
                                 child:
                                     Text(StringConstants.kSignatureNotFound)));
                       }
-                    })),
-        ),
-        UploadImageMenu(
-            onUploadImageResponse: (List uploadImageList) {},
-            isSignature: true,
-            removeSignPad: () {
-              setState(() {
-                showSignPad = false;
-              });
-            },
-            onSign: () {
-              setState(() {
-                showSignPad = true;
-                Navigator.pop(context);
-              });
-            })
-      ],
-    );
+                    }))),
+      UploadImageMenu(
+          onUploadImageResponse: (List uploadImageList) {},
+          isSignature: true,
+          removeSignPad: () {
+            setState(() {
+              showSignPad = false;
+            });
+          },
+          onSign: () {
+            setState(() {
+              showSignPad = true;
+              Navigator.pop(context);
+            });
+          })
+    ]);
   }
 }

@@ -3,9 +3,10 @@ import '../../../../data/models/checklist/systemUser/sys_user_change_category_mo
 abstract class SysUserFetchCheckListEvent {}
 
 class FetchCheckList extends SysUserFetchCheckListEvent {
-  bool isFromHome;
+  final bool isFromHome;
+  final int page;
 
-  FetchCheckList({this.isFromHome = false});
+  FetchCheckList({required this.page, this.isFromHome = false});
 }
 
 class FetchCheckListMaster extends SysUserFetchCheckListEvent {}

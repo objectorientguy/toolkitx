@@ -4,8 +4,9 @@ abstract class PermitEvents {
 
 class GetAllPermits extends PermitEvents {
   final bool isFromHome;
+  final int page;
 
-  const GetAllPermits({required this.isFromHome});
+  const GetAllPermits({required this.page, required this.isFromHome});
 }
 
 class GetPermitDetails extends PermitEvents {
@@ -16,8 +17,9 @@ class GetPermitDetails extends PermitEvents {
 
 class GeneratePDF extends PermitEvents {
   final String permitId;
+  final bool isFromPopUpMenu;
 
-  const GeneratePDF(this.permitId);
+  const GeneratePDF(this.permitId, this.isFromPopUpMenu);
 }
 
 class GetPermitRoles extends PermitEvents {

@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:toolkit/utils/profile_util.dart';
+import 'package:toolkit/blocs/incident/incidentRemoveLinkedPermit/incident_remove_linked_permit_bloc.dart';
 import 'package:toolkit/blocs/incident/reportNewIncident/report_new_incident_bloc.dart';
 import 'blocs/checklist/systemUser/approve/sys_user_approve_checklist_bloc.dart';
 import 'blocs/checklist/systemUser/changeRole/sys_user_checklist_change_role_bloc.dart';
@@ -23,6 +26,7 @@ import 'blocs/checklist/workforce/workforceList/workforce_list_bloc.dart';
 import 'blocs/client/client_bloc.dart';
 import 'blocs/dateFormat/date_format_bloc.dart';
 import 'blocs/home/home_bloc.dart';
+import 'blocs/incident/incidentDetails/incident_details_bloc.dart';
 import 'blocs/incident/incidentGetAndChangeRole/incident_get_and_change_role_bloc.dart';
 import 'blocs/incident/incidentListAndFilter/incident_list_and_filter_bloc.dart';
 import 'blocs/language/language_bloc.dart';
@@ -41,9 +45,9 @@ import 'configs/app_theme.dart';
 import 'di/app_module.dart';
 import 'configs/app_route.dart';
 import 'screens/onboarding/client_list_screen.dart';
-import 'screens/onboarding/login/login_screen.dart';
-import 'screens/onboarding/selectDateFormat/select_date_format_screen.dart';
-import 'screens/onboarding/selectTimeZone/select_time_zone_screen.dart';
+import 'screens/onboarding/login_screen.dart';
+import 'screens/onboarding/select_date_format_screen.dart';
+import 'screens/onboarding/select_time_zone_screen.dart';
 import 'screens/onboarding/welcome_screen.dart';
 import 'screens/root/root_screen.dart';
 import 'utils/database_utils.dart';
@@ -59,6 +63,7 @@ _initApp() async {
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   await Hive.initFlutter();
   DatabaseUtil.box = await Hive.openBox('languages_box');
+  ProfileUtil.packageInfo = await PackageInfo.fromPlatform();
 }
 
 _initDependencies() async {
@@ -126,6 +131,15 @@ class MyApp extends StatelessWidget {
           BlocProvider(
               lazy: true,
               create: (context) => IncidentFetchAndChangeRoleBloc()),
+          BlocProvider(
+              lazy: false, create: (context) => PickAndUploadImageBloc()),
+          BlocProvider(lazy: true, create: (context) => IncidentDetailsBloc()),
+          BlocProvider(
+              lazy: false, create: (context) => PickAndUploadImageBloc()),
+          BlocProvider(lazy: false, create: (context) => IncidentDetailsBloc()),
+          BlocProvider(
+              lazy: false,
+              create: (context) => IncidentRemoveLinkedPermitBloc()),
           BlocProvider(
               lazy: true, create: (context) => ReportNewIncidentBloc()),
           BlocProvider(

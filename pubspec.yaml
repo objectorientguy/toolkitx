@@ -24,6 +24,7 @@ dependencies:
   toggle_switch:
   json_annotation: 4.8.1
   cupertino_icons: ^1.0.2
+  package_info_plus: ^4.0.2
   connectivity_plus:
   shared_preferences:
   permission_handler:

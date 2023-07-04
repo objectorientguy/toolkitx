@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:toolkit/blocs/client/client_bloc.dart';
-import 'package:toolkit/blocs/client/client_events.dart';
-import 'package:toolkit/blocs/home/home_bloc.dart';
-import 'package:toolkit/blocs/home/home_events.dart';
-import 'package:toolkit/screens/home/widgets/date_time_section.dart';
-import 'package:toolkit/screens/home/widgets/modules_grid_layout.dart';
 
+import '../../blocs/client/client_bloc.dart';
+import '../../blocs/client/client_events.dart';
+import '../../blocs/home/home_bloc.dart';
+import '../../blocs/home/home_events.dart';
 import '../../configs/app_dimensions.dart';
 import '../../configs/app_spacing.dart';
+import 'widgets/date_time_section.dart';
+import 'widgets/modules_grid_layout.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -29,7 +29,7 @@ class HomeScreen extends StatelessWidget {
                       behavior:
                           const ScrollBehavior().copyWith(overscroll: false),
                       child: const SingleChildScrollView(
-                          child: ModulesGridLayout()))),
+                          child: ModulesGridLayout())))
             ])));
   }
 }
