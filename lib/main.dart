@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:toolkit/utils/profile_util.dart';
 import 'package:toolkit/blocs/incident/incidentDetails/incident_details_bloc.dart';
 import 'package:toolkit/blocs/incident/incidentRemoveLinkedPermit/incident_remove_linked_permit_bloc.dart';
 import 'blocs/checklist/systemUser/approve/sys_user_approve_checklist_bloc.dart';
@@ -60,6 +62,7 @@ _initApp() async {
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   await Hive.initFlutter();
   DatabaseUtil.box = await Hive.openBox('languages_box');
+  ProfileUtil.packageInfo = await PackageInfo.fromPlatform();
 }
 
 _initDependencies() async {
