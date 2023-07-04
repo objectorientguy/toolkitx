@@ -5,16 +5,19 @@ import 'package:toolkit/blocs/incident/reportNewIncident/report_new_incident_eve
 import 'package:toolkit/blocs/incident/reportNewIncident/report_new_incident_states.dart';
 import 'package:toolkit/configs/app_dimensions.dart';
 import 'package:toolkit/configs/app_theme.dart';
+import 'package:toolkit/screens/incident/widgets/time_picker.dart';
 import 'package:toolkit/utils/database_utils.dart';
 
 import '../../../configs/app_color.dart';
 import '../../../configs/app_spacing.dart';
 import '../../../utils/constants/string_constants.dart';
 import '../../../widgets/generic_text_field.dart';
+import 'date_picker.dart';
 
 class IncidentReportedAuthorityExpansionTile extends StatelessWidget {
   final Map addIncidentMap;
   static String authorityName = '';
+  static String reportedDate = '';
 
   const IncidentReportedAuthorityExpansionTile(
       {Key? key, required this.addIncidentMap})
@@ -89,24 +92,31 @@ class IncidentReportedAuthorityExpansionTile extends StatelessWidget {
                             style: Theme.of(context).textTheme.medium),
                         const SizedBox(height: tiniestSpacing),
                         TextFieldWidget(
-                          hintText: DatabaseUtil.getText('WhichAuthority'),
-                          onTextFieldChanged: (String textField) {},
-                        ),
+                            hintText: DatabaseUtil.getText('WhichAuthority'),
+                            onTextFieldChanged: (String textField) {
+                              addIncidentMap['responsible_person'] = textField;
+                            }),
                         const SizedBox(height: tinySpacing),
                         Text(DatabaseUtil.getText('WhenReported'),
                             style: Theme.of(context).textTheme.medium),
                         const SizedBox(height: tiniestSpacing),
-                        TextFieldWidget(
-                          hintText: DatabaseUtil.getText('WhenReported'),
-                          onTextFieldChanged: (String textField) {},
+                        DatePickerTextField(
+                          hintText: StringConstants.kSelectDate,
+                          onDateChanged: (String date) {
+                            reportedDate = date;
+                          },
                         ),
                         const SizedBox(height: tinySpacing),
                         Text(StringConstants.kTime,
                             style: Theme.of(context).textTheme.medium),
                         const SizedBox(height: tiniestSpacing),
-                        TextFieldWidget(
-                            hintText: StringConstants.kSelectTime,
-                            onTextFieldChanged: (String textField) {}),
+                        TimePickerTextField(
+                          hintText: StringConstants.kSelectTime,
+                          onTimeChanged: (String time) {
+                            addIncidentMap['reporteddatetime'] =
+                                '$reportedDate $time';
+                          },
+                        ),
                         const SizedBox(height: tinySpacing)
                       ]))
             ]);

@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:toolkit/configs/app_theme.dart';
 import 'package:toolkit/screens/incident/widgets/incident_location_list_tile.dart';
 import 'package:toolkit/screens/incident/widgets/incident_repported_authority_expansion_tile.dart';
 import 'package:toolkit/screens/incident/widgets/incident_site_list_tile.dart';
 import 'package:toolkit/utils/database_utils.dart';
+import '../../blocs/incident/reportNewIncident/report_new_incident_bloc.dart';
+import '../../blocs/incident/reportNewIncident/report_new_incident_events.dart';
+import '../../blocs/incident/reportNewIncident/report_new_incident_states.dart';
 import '../../configs/app_spacing.dart';
 import '../../utils/constants/string_constants.dart';
+import '../../widgets/custom_snackbar.dart';
 import '../../widgets/generic_app_bar.dart';
 import '../../widgets/primary_button.dart';
 
@@ -32,14 +37,30 @@ class IncidentLocationScreen extends StatelessWidget {
                   children: [
                     IncidentSiteListTile(addIncidentMap: addIncidentMap),
                     IncidentLocationListTile(addIncidentMap: addIncidentMap),
+                    const SizedBox(height: tinySpacing),
                     Text(DatabaseUtil.getText('ReportedAuthorities'),
                         style: Theme.of(context).textTheme.medium),
                     const SizedBox(height: tiniestSpacing),
                     IncidentReportedAuthorityExpansionTile(
                         addIncidentMap: addIncidentMap),
                     const SizedBox(height: mediumSpacing),
-                    PrimaryButton(
-                        onPressed: () {}, textValue: StringConstants.kNext),
+                    BlocListener<ReportNewIncidentBloc,
+                        ReportNewIncidentStates>(
+                      listener: (context, state) {
+                        if (state is ReportIncidentSiteLocationValidated) {
+                          showCustomSnackBar(
+                              context, state.siteLocationValidationMessage, '');
+                        } else if (state
+                            is ReportIncidentSiteLocationValidationComplete) {}
+                      },
+                      child: PrimaryButton(
+                          onPressed: () {
+                            context.read<ReportNewIncidentBloc>().add(
+                                ReportIncidentSiteLocationValidation(
+                                    addIncidentMap: addIncidentMap));
+                          },
+                          textValue: StringConstants.kNext),
+                    ),
                     const SizedBox(height: tinySpacing)
                   ]))),
     );

@@ -54,3 +54,16 @@ class ReportIncidentAuthorityExpansionChange extends ReportNewIncidentEvent {
 
   ReportIncidentAuthorityExpansionChange({required this.reportAuthorityId});
 }
+
+class ReportIncidentDateTimeDescriptionValidation
+    extends ReportNewIncidentEvent {
+  final Map addIncidentMap;
+
+  ReportIncidentDateTimeDescriptionValidation({required this.addIncidentMap});
+}
+
+class ReportIncidentSiteLocationValidation extends ReportNewIncidentEvent {
+  final Map addIncidentMap;
+
+  ReportIncidentSiteLocationValidation({required this.addIncidentMap});
+}

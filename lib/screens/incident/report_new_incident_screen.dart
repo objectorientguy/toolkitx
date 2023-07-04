@@ -1,6 +1,8 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:toolkit/blocs/incident/reportNewIncident/report_new_incident_bloc.dart';
+import 'package:toolkit/blocs/incident/reportNewIncident/report_new_incident_events.dart';
+import 'package:toolkit/blocs/incident/reportNewIncident/report_new_incident_states.dart';
 import 'package:toolkit/configs/app_theme.dart';
 import 'package:toolkit/screens/incident/incident_location_screen.dart';
 import 'package:toolkit/screens/incident/widgets/date_picker.dart';
@@ -8,6 +10,7 @@ import 'package:toolkit/screens/incident/widgets/incident_contractor_list_tile.d
 import 'package:toolkit/screens/incident/widgets/incident_report_anonymously_expansion_tile.dart';
 import 'package:toolkit/screens/incident/widgets/time_picker.dart';
 import 'package:toolkit/utils/database_utils.dart';
+import 'package:toolkit/widgets/custom_snackbar.dart';
 import '../../configs/app_color.dart';
 import '../../configs/app_spacing.dart';
 import '../../utils/constants/string_constants.dart';
@@ -100,14 +103,27 @@ class ReportNewIncidentScreen extends StatelessWidget {
                     const SizedBox(height: tiniestSpacing),
                     IncidentContractorListTile(addIncidentMap: addIncidentMap),
                     const SizedBox(height: mediumSpacing),
-                    PrimaryButton(
-                        onPressed: () {
-                          log("map====>$addIncidentMap}");
+                    BlocListener<ReportNewIncidentBloc,
+                        ReportNewIncidentStates>(
+                      listener: (context, state) {
+                        if (state is ReportIncidentDateTimeDescValidated) {
+                          showCustomSnackBar(
+                              context, state.dateTimeDescValidationMessage, '');
+                        } else if (state
+                            is ReportIncidentDateTimeDescValidationComplete) {
                           Navigator.pushNamed(
                               context, IncidentLocationScreen.routeName,
                               arguments: addIncidentMap);
-                        },
-                        textValue: StringConstants.kNext)
+                        }
+                      },
+                      child: PrimaryButton(
+                          onPressed: () {
+                            context.read<ReportNewIncidentBloc>().add(
+                                ReportIncidentDateTimeDescriptionValidation(
+                                    addIncidentMap: addIncidentMap));
+                          },
+                          textValue: StringConstants.kNext),
+                    )
                   ]))),
     );
   }

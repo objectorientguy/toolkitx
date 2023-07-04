@@ -64,3 +64,27 @@ class IncidentReportAuthoritySelected extends ReportNewIncidentStates {
   IncidentReportAuthoritySelected(
       {required this.reportAuthorityId, required this.reportAuthorityMap});
 }
+
+class ReportIncidentDateTimeDescValidated extends ReportNewIncidentStates {
+  final String dateTimeDescValidationMessage;
+
+  ReportIncidentDateTimeDescValidated(
+      {required this.dateTimeDescValidationMessage});
+}
+
+class ReportIncidentDateTimeDescValidationComplete
+    extends ReportNewIncidentStates {
+  ReportIncidentDateTimeDescValidationComplete();
+}
+
+class ReportIncidentSiteLocationValidated extends ReportNewIncidentStates {
+  final String siteLocationValidationMessage;
+
+  ReportIncidentSiteLocationValidated(
+      {required this.siteLocationValidationMessage});
+}
+
+class ReportIncidentSiteLocationValidationComplete
+    extends ReportNewIncidentStates {
+  ReportIncidentSiteLocationValidationComplete();
+}

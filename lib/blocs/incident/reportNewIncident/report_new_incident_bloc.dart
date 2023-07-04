@@ -28,6 +28,8 @@ class ReportNewIncidentBloc
     on<ReportIncidentSiteListChange>(_reportIncidentSite);
     on<ReportIncidentLocationChange>(_reportIncidentLocation);
     on<ReportIncidentAuthorityExpansionChange>(_reportIncidentAuthority);
+    on<ReportIncidentDateTimeDescriptionValidation>(_dateTimeDescValidation);
+    on<ReportIncidentSiteLocationValidation>(_siteLocationValidation);
   }
 
   FutureOr<void> _fetchIncidentCategory(
@@ -163,5 +165,31 @@ class ReportNewIncidentBloc
     emit(IncidentReportAuthoritySelected(
         reportAuthorityId: event.reportAuthorityId,
         reportAuthorityMap: reportAuthorityMap));
+  }
+
+  _dateTimeDescValidation(ReportIncidentDateTimeDescriptionValidation event,
+      Emitter<ReportNewIncidentStates> emit) {
+    addNewIncidentMap = event.addIncidentMap;
+    if (addNewIncidentMap['eventdatetime'] == null &&
+        addNewIncidentMap['description'] == null) {
+      emit(ReportIncidentDateTimeDescValidated(
+          dateTimeDescValidationMessage:
+              DatabaseUtil.getText('DateTimeNoEmpty')));
+    } else {
+      emit(ReportIncidentDateTimeDescValidationComplete());
+    }
+  }
+
+  _siteLocationValidation(ReportIncidentSiteLocationValidation event,
+      Emitter<ReportNewIncidentStates> emit) {
+    addNewIncidentMap = event.addIncidentMap;
+    if (addNewIncidentMap['site_name'] == '' ||
+        addNewIncidentMap['location_name'] == '') {
+      emit(ReportIncidentSiteLocationValidated(
+          siteLocationValidationMessage:
+              DatabaseUtil.getText('SiteLocationCompulsory')));
+    } else {
+      emit(ReportIncidentSiteLocationValidationComplete());
+    }
   }
 }
