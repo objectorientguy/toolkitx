@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:toolkit/blocs/incident/reportNewIncident/report_new_incident_states.dart';
@@ -17,10 +16,12 @@ import '../../utils/constants/string_constants.dart';
 import '../../widgets/generic_app_bar.dart';
 import '../../widgets/generic_text_field.dart';
 import '../../widgets/primary_button.dart';
+import '../checklist/workforce/widgets/upload_image_section.dart';
 
 class ReportNewIncidentScreen extends StatelessWidget {
   static const routeName = 'ReportNewIncidentScreen';
   final List<List<IncidentMasterDatum>> incidentMasterDatum;
+  static Map reportIncidentExpansionMap = {};
 
   const ReportNewIncidentScreen({Key? key, required this.incidentMasterDatum})
       : super(key: key);
@@ -59,14 +60,11 @@ class ReportNewIncidentScreen extends StatelessWidget {
                             const SizedBox(height: tiniestSpacing),
                             IncidentReportAnonymousExpansionTile(
                                 anonymousList: state.reportAnonymousList,
-                                reportAnonymous: state.reportAnonymous),
-                            const SizedBox(height: tiniestSpacing),
-                            IncidentContractorListTile(
-                                incidentMasterDatum: incidentMasterDatum,
+                                reportAnonymous: state.reportAnonymous,
                                 selectContractorId: state.selectContractorId,
                                 selectContractorName:
                                     state.selectContractorName),
-                            const SizedBox(height: tiniestSpacing),
+                            const SizedBox(height: tinySpacing),
                             Text(StringConstants.kDateOfIncident,
                                 style: Theme.of(context)
                                     .textTheme
@@ -76,7 +74,7 @@ class ReportNewIncidentScreen extends StatelessWidget {
                             DatePickerTextField(
                               hintText: StringConstants.kSelectDate,
                               onDateChanged: (String date) {
-                                eventDate = date;
+                                // eventDate = date;
                               },
                             ),
                             const SizedBox(height: tinySpacing),
@@ -89,9 +87,8 @@ class ReportNewIncidentScreen extends StatelessWidget {
                             TimePickerTextField(
                               hintText: StringConstants.kSelectTime,
                               onTimeChanged: (String time) {
-                                state.addNewIncidentMap['eventdatetime'] =
-                                    '$eventDate $time';
-                                log("date time=====>${state.addNewIncidentMap['eventdatetime']}");
+                                // state.addNewIncidentMap['eventdatetime'] =
+                                //     '$eventDate $time';
                               },
                             ),
                             const SizedBox(height: tinySpacing),
@@ -105,18 +102,27 @@ class ReportNewIncidentScreen extends StatelessWidget {
                               textInputAction: TextInputAction.done,
                               textInputType: TextInputType.text,
                               onTextFieldChanged: (String textField) {
-                                state.addNewIncidentMap['description'] =
-                                    textField;
+                                // state.addNewIncidentMap['description'] =
+                                //     textField;
                               },
                             ),
                             const SizedBox(height: tinySpacing),
+                            IncidentContractorListTile(
+                                incidentMasterDatum: incidentMasterDatum,
+                                selectContractorId: state.selectContractorId,
+                                selectContractorName:
+                                    state.selectContractorName,
+                                reportAnonymous: state.reportAnonymous),
+                            const SizedBox(height: tiniestSpacing),
                             Text(StringConstants.kPhoto,
                                 style: Theme.of(context)
                                     .textTheme
                                     .medium
                                     .copyWith(color: AppColor.black)),
                             const SizedBox(height: tiniestSpacing),
-                            // Image Picker Will be here after dev merge
+                            UploadImageMenu(
+                              onUploadImageResponse: (List uploadImageList) {},
+                            ),
                             const SizedBox(height: mediumSpacing),
                             PrimaryButton(
                                 onPressed: () {},

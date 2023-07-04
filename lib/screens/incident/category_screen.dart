@@ -53,7 +53,7 @@ class CategoryScreen extends StatelessWidget {
                               style: Theme.of(context)
                                   .textTheme
                                   .mediumLarge
-                                  .copyWith(fontWeight: FontWeight.w400)),
+                                  .copyWith(fontWeight: FontWeight.w500)),
                           const SizedBox(height: xxTinySpacing),
                           Expanded(
                               child: ListView.builder(
@@ -70,7 +70,7 @@ class CategoryScreen extends StatelessWidget {
                                                   ['title'],
                                               style: Theme.of(context)
                                                   .textTheme
-                                                  .mediumLarge
+                                                  .medium
                                                   .copyWith(
                                                       fontWeight:
                                                           FontWeight.w600,
@@ -104,7 +104,7 @@ class CategoryScreen extends StatelessWidget {
                                                             [itemIndex],
                                                         style: Theme.of(context)
                                                             .textTheme
-                                                            .mediumLarge
+                                                            .xSmall
                                                             .copyWith(
                                                                 fontWeight: FontWeight.w400,
                                                                 color: AppColor.grey)),

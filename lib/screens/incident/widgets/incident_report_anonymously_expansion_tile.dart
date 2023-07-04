@@ -9,9 +9,15 @@ import '../../../configs/app_color.dart';
 class IncidentReportAnonymousExpansionTile extends StatelessWidget {
   final List anonymousList;
   final String reportAnonymous;
+  final int selectContractorId;
+  final String selectContractorName;
 
   const IncidentReportAnonymousExpansionTile(
-      {Key? key, required this.anonymousList, required this.reportAnonymous})
+      {Key? key,
+      required this.anonymousList,
+      required this.reportAnonymous,
+      required this.selectContractorId,
+      required this.selectContractorName})
       : super(key: key);
 
   @override
@@ -47,8 +53,8 @@ class IncidentReportAnonymousExpansionTile extends StatelessWidget {
                           context.read<ReportNewIncidentBloc>().add(
                               ReportIncidentExpansionChange(
                                   reportAnonymously: value,
-                                  selectContractorId: 0,
-                                  selectContractorName: ''));
+                                  selectContractorId: selectContractorId,
+                                  selectContractorName: selectContractorName));
                         });
                   })
             ]));

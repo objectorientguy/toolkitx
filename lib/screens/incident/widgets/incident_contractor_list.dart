@@ -11,12 +11,14 @@ class IncidentContractorList extends StatelessWidget {
   final List<List<IncidentMasterDatum>> incidentMasterDatum;
   final int selectContractorId;
   final String selectContractorName;
+  final String reportAnonymous;
 
   const IncidentContractorList(
       {Key? key,
       required this.incidentMasterDatum,
       required this.selectContractorId,
-      required this.selectContractorName})
+      required this.selectContractorName,
+      required this.reportAnonymous})
       : super(key: key);
 
   @override
@@ -54,7 +56,7 @@ class IncidentContractorList extends StatelessWidget {
                                         incidentMasterDatum[8][index].groupId;
                                     context.read<ReportNewIncidentBloc>().add(
                                         ReportIncidentExpansionChange(
-                                            reportAnonymously: '',
+                                            reportAnonymously: reportAnonymous,
                                             selectContractorId: value!,
                                             selectContractorName:
                                                 incidentMasterDatum[8][index]
