@@ -80,7 +80,6 @@ abstract class StringConstants {
   static const String kResponseDate = 'Response Date:';
   static const String kNoResponseFound = 'No response found!';
   static const String kReject = 'Reject'; //
-  static const String kCustomFieldInfo = 'Custom field info'; //
   static const String kDialogContent =
       "The language file doesn't exist or an old version.Please download the latest language file."; //
   static const String kReload = 'RELOAD'; //
