@@ -6,6 +6,7 @@ class CustomCard extends StatelessWidget {
   final ShapeBorder? shape;
   final EdgeInsetsGeometry? margin;
   final Widget? child;
+  final Color? shadowColor;
 
   const CustomCard(
       {Key? key,
@@ -13,7 +14,8 @@ class CustomCard extends StatelessWidget {
       this.elevation,
       this.shape,
       this.margin,
-      this.child})
+      this.child,
+      this.shadowColor})
       : super(key: key);
 
   @override
@@ -23,6 +25,7 @@ class CustomCard extends StatelessWidget {
         elevation: elevation,
         shape: shape,
         margin: margin,
+        shadowColor: shadowColor,
         child: child);
   }
 }

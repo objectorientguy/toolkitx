@@ -11,7 +11,7 @@ import '../../../utils/database_utils.dart';
 import '../../../utils/profile_util.dart';
 import '../../../widgets/android_pop_up.dart';
 import '../../onboarding/client_list_screen.dart';
-import '../edit/profile_edit_screen.dart';
+import '../profile_edit_screen.dart';
 
 class EditOptionsSection extends StatelessWidget {
   const EditOptionsSection({Key? key}) : super(key: key);
@@ -19,7 +19,7 @@ class EditOptionsSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-      GestureDetector(
+      InkWell(
           onTap: () {
             Navigator.pushNamed(context, ProfileEditScreen.routeName);
           },
@@ -31,9 +31,10 @@ class EditOptionsSection extends StatelessWidget {
                 textAlign: TextAlign.center,
                 style: Theme.of(context).textTheme.xxSmall)
           ])),
-      GestureDetector(
+      InkWell(
           onTap: () {
-            Navigator.pushNamed(context, ClientListScreen.routeName);
+            Navigator.pushNamed(context, ClientListScreen.routeName,
+                arguments: true);
             context.read<ClientBloc>().add(FetchClientList());
           },
           child: Column(children: [
@@ -44,7 +45,7 @@ class EditOptionsSection extends StatelessWidget {
                 textAlign: TextAlign.center,
                 style: Theme.of(context).textTheme.xxSmall)
           ])),
-      GestureDetector(
+      InkWell(
           onTap: () {
             showDialog(
                 context: context,

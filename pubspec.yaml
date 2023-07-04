@@ -24,12 +24,15 @@ dependencies:
   toggle_switch:
   json_annotation: 4.8.1
   cupertino_icons: ^1.0.2
+  package_info_plus: ^4.0.2
   connectivity_plus:
   shared_preferences:
   permission_handler:
   searchable_listview: ^2.4.0
   cached_network_image:
+  signature: ^5.4.0
   flutter_inappwebview: ^5.7.2+3
+  image_cropper: ^4.0.1
 
 dev_dependencies:
   flutter_test:

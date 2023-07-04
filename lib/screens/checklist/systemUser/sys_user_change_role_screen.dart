@@ -1,31 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:toolkit/blocs/checklist/systemUser/changeRole/sys_user_checklist_change_role_bloc.dart';
-import 'package:toolkit/blocs/checklist/systemUser/changeRole/sys_user_checklist_change_role_states.dart';
-import 'package:toolkit/utils/constants/string_constants.dart';
 import '../../../../configs/app_color.dart';
 import '../../../../configs/app_dimensions.dart';
 import '../../../../configs/app_spacing.dart';
 import '../../../../widgets/custom_card.dart';
 import '../../../../widgets/error_section.dart';
 import '../../../../widgets/generic_app_bar.dart';
+import '../../../blocs/checklist/systemUser/changeRole/sys_user_checklist_change_role_bloc.dart';
 import '../../../blocs/checklist/systemUser/changeRole/sys_user_checklist_change_role_event.dart';
+import '../../../blocs/checklist/systemUser/changeRole/sys_user_checklist_change_role_states.dart';
+import '../../../utils/constants/string_constants.dart';
+import 'sys_user_checklist_list_screen.dart';
 
 class ChangeRoleScreen extends StatelessWidget {
   static const routeName = 'ChangeRoleScreen';
 
-  const ChangeRoleScreen({
-    Key? key,
-  }) : super(key: key);
+  const ChangeRoleScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     context.read<CheckListRoleBloc>().add(CheckListFetchRoles(
         roleName: context.read<CheckListRoleBloc>().roleName));
     return Scaffold(
-        appBar: const GenericAppBar(
-          title: StringConstants.kChangeRole,
-        ),
+        appBar: const GenericAppBar(title: StringConstants.kChangeRole),
         body: Padding(
             padding: const EdgeInsets.only(
                 left: leftRightMargin,
@@ -36,6 +33,9 @@ class ChangeRoleScreen extends StatelessWidget {
               if (state is CheckListRolesFetched &&
                   state.isRoleSelected == true) {
                 Navigator.pop(context);
+                Navigator.pushReplacementNamed(
+                    context, SystemUserCheckListScreen.routeName,
+                    arguments: false);
               }
             }, builder: (context, state) {
               if (state is FetchingCheckListRoles) {
@@ -49,7 +49,8 @@ class ChangeRoleScreen extends StatelessWidget {
                           elevation: kZeroElevation,
                           child: ListView.separated(
                               physics: const NeverScrollableScrollPhysics(),
-                              padding: const EdgeInsets.only(bottom: tiniest),
+                              padding:
+                                  const EdgeInsets.only(bottom: tiniestSpacing),
                               shrinkWrap: true,
                               itemCount: state.checkListRolesModel.data!.length,
                               itemBuilder: (context, index) {
@@ -91,14 +92,13 @@ class ChangeRoleScreen extends StatelessWidget {
                     ]);
               } else if (state is CheckListRolesNotFetched) {
                 return Center(
-                  child: GenericReloadButton(
-                      onPressed: () {
-                        context
-                            .read<CheckListRoleBloc>()
-                            .add(CheckListFetchRoles(roleName: ''));
-                      },
-                      textValue: StringConstants.kReload),
-                );
+                    child: GenericReloadButton(
+                        onPressed: () {
+                          context
+                              .read<CheckListRoleBloc>()
+                              .add(CheckListFetchRoles(roleName: ''));
+                        },
+                        textValue: StringConstants.kReload));
               } else {
                 return const SizedBox();
               }

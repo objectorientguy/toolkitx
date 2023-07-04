@@ -4,21 +4,19 @@ import 'dart:convert';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:toolkit/blocs/checklist/systemUser/checkList/sys_user_checklist_event.dart';
 import 'package:toolkit/blocs/checklist/systemUser/checkList/sys_user_checklist_state.dart';
-import 'package:toolkit/utils/database_utils.dart';
 import '../../../../../data/cache/cache_keys.dart';
 import '../../../../../data/cache/customer_cache.dart';
 import '../../../../data/models/checklist/systemUser/sys_user_change_category_model.dart';
 import '../../../../data/models/checklist/systemUser/sys_user_checklist_model.dart';
 import '../../../../di/app_module.dart';
 import '../../../../repositories/checklist/systemUser/sys_user_checklist_repository.dart';
+import '../../../../utils/database_utils.dart';
 
 class SysUserCheckListBloc
     extends Bloc<SysUserFetchCheckListEvent, SysUserCheckListStates> {
   final SysUserCheckListRepository _sysUserCheckListRepository =
       getIt<SysUserCheckListRepository>();
   final CustomerCache _customerCache = getIt<CustomerCache>();
-  int page = 0;
-  bool isFetching = false;
   String checklistId = '';
   String categoryId = '';
   String filterData = '{}';
@@ -40,26 +38,15 @@ class SysUserCheckListBloc
       String hashCode = (await _customerCache.getHashCode(CacheKeys.hashcode))!;
       if (event.isFromHome != true) {
         ChecklistListModel getChecklistModel = await _sysUserCheckListRepository
-            .fetchCheckList(page, hashCode, filterData);
-        if (getChecklistModel.status == 200) {
-          emit(CheckListFetched(
-              getChecklistModel: getChecklistModel, filterData: filterData));
-        }
-        add(ClearCheckListFilter());
+            .fetchCheckList(event.page, hashCode, filterData);
+        emit(CheckListFetched(
+            getChecklistModel: getChecklistModel, filterData: filterData));
       } else {
+        add(ClearCheckListFilter());
         ChecklistListModel getChecklistModel = await _sysUserCheckListRepository
-            .fetchCheckList(page, hashCode, filterData);
-        if (getChecklistModel.status == 200) {
-          emit(CheckListFetched(
-              getChecklistModel: getChecklistModel, filterData: filterData));
-        } else if (getChecklistModel.status == 204) {
-          emit(CheckListFetched(
-              getChecklistModel: getChecklistModel, filterData: filterData));
-        } else {
-          emit(CheckListError(
-              errorMessage:
-                  DatabaseUtil.getText('some_unknown_error_please_try_again')));
-        }
+            .fetchCheckList(event.page, hashCode, filterData);
+        emit(CheckListFetched(
+            getChecklistModel: getChecklistModel, filterData: filterData));
       }
     } catch (e) {
       emit(CheckListError(

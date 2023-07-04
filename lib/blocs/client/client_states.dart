@@ -18,14 +18,16 @@ class FetchClientListError extends ClientStates {}
 class HomeScreenFetching extends ClientStates {}
 
 class HomeScreenFetched extends ClientStates {
-  final HomeScreenModel processClientModel;
+  final HomeScreenModel homeScreenModel;
   final String image;
   final List availableModules;
+  final int badgeCount;
 
   HomeScreenFetched(
-      {required this.processClientModel,
+      {required this.homeScreenModel,
       required this.image,
-      required this.availableModules});
+      required this.availableModules,
+      required this.badgeCount});
 }
 
 class FetchHomeScreenError extends ClientStates {}

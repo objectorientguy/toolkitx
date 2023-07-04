@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:toolkit/screens/home/widgets/offline_modules.dart';
 
 import '../../../blocs/wifiConnectivity/wifi_connectivity_bloc.dart';
 import '../../../blocs/wifiConnectivity/wifi_connectivity_states.dart';
+import 'offline_modules.dart';
 import 'online_modules.dart';
 
 class ModulesGridLayout extends StatelessWidget {
@@ -12,16 +12,15 @@ class ModulesGridLayout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MediaQuery.removePadding(
-      context: context,
-      removeTop: true,
-      child: BlocBuilder<WifiConnectivityBloc, WifiConnectivityState>(
-          builder: (context, state) {
-        if (state is NoNetwork) {
-          return const OffLineModules();
-        } else {
-          return const OnLineModules();
-        }
-      }),
-    );
+        context: context,
+        removeTop: true,
+        child: BlocBuilder<WifiConnectivityBloc, WifiConnectivityState>(
+            builder: (context, state) {
+          if (state is NoNetwork) {
+            return const OffLineModules();
+          } else {
+            return const OnLineModules();
+          }
+        }));
   }
 }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:toolkit/blocs/permit/permit_bloc.dart';
 import 'package:toolkit/blocs/permit/permit_states.dart';
+import 'package:toolkit/screens/permit/permit_list_screen.dart';
 import 'package:toolkit/utils/database_utils.dart';
 import '../../blocs/permit/permit_events.dart';
 import '../../configs/app_color.dart';
@@ -31,9 +32,9 @@ class GetPermitRolesScreen extends StatelessWidget {
               listener: (context, state) {
                 if (state is PermitRoleSelected) {
                   Navigator.pop(context);
-                  context
-                      .read<PermitBloc>()
-                      .add(const GetAllPermits(isFromHome: false));
+                  Navigator.pushReplacementNamed(
+                      context, PermitListScreen.routeName,
+                      arguments: false);
                 }
               },
               builder: (context, state) {

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:toolkit/configs/app_color.dart';
 import 'package:toolkit/configs/app_theme.dart';
 import 'package:url_launcher/url_launcher_string.dart';
-import 'package:toolkit/utils/database_utils.dart';
+import '../../../configs/app_color.dart';
 import '../../../configs/app_spacing.dart';
 import '../../../data/models/permit/permit_details_model.dart';
+import '../../../utils/database_utils.dart';
 
 class PermitAdditionalInfo extends StatelessWidget {
   final PermitDetailsModel permitDetailsModel;
@@ -15,50 +15,49 @@ class PermitAdditionalInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const SizedBox(height: tiny),
+        physics: const BouncingScrollPhysics(),
+        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          const SizedBox(height: tinySpacing),
           Text(DatabaseUtil.getText('AdditionalInformation'),
               style: Theme.of(context).textTheme.medium.copyWith(
                   color: AppColor.black, fontWeight: FontWeight.bold)),
           const SizedBox(height: xxTinierSpacing),
-          const SizedBox(height: tiny),
+          const SizedBox(height: tinySpacing),
           Text(DatabaseUtil.getText('MethodStatement'),
               style: Theme.of(context).textTheme.medium.copyWith(
                   color: AppColor.black, fontWeight: FontWeight.bold)),
           const SizedBox(height: xxTinierSpacing),
           Text(permitDetailsModel.data.tab2.methodStatement,
               style: Theme.of(context).textTheme.small),
-          const SizedBox(height: tiny),
+          const SizedBox(height: tinySpacing),
           Text(DatabaseUtil.getText('RelevantInfo'),
               style: Theme.of(context).textTheme.medium.copyWith(
                   color: AppColor.black, fontWeight: FontWeight.bold)),
           const SizedBox(height: xxTinierSpacing),
           Text(permitDetailsModel.data.tab2.generalMessage,
               style: Theme.of(context).textTheme.small),
-          const SizedBox(height: tiny),
+          const SizedBox(height: tinySpacing),
           Text(DatabaseUtil.getText('SpecialWork'),
               style: Theme.of(context).textTheme.medium.copyWith(
                   color: AppColor.black, fontWeight: FontWeight.bold)),
           const SizedBox(height: xxTinierSpacing),
           Text(permitDetailsModel.data.tab2.specialWork,
               style: Theme.of(context).textTheme.small),
-          const SizedBox(height: tiny),
+          const SizedBox(height: tinySpacing),
           Text(DatabaseUtil.getText('SpecificPPE'),
               style: Theme.of(context).textTheme.medium.copyWith(
                   color: AppColor.black, fontWeight: FontWeight.bold)),
           const SizedBox(height: xxTinierSpacing),
           Text(permitDetailsModel.data.tab2.specialppe,
               style: Theme.of(context).textTheme.small),
-          const SizedBox(height: tiny),
+          const SizedBox(height: tinySpacing),
           Text(DatabaseUtil.getText('Protectivemeasures'),
               style: Theme.of(context).textTheme.medium.copyWith(
                   color: AppColor.black, fontWeight: FontWeight.bold)),
           const SizedBox(height: xxTinierSpacing),
           Text(permitDetailsModel.data.tab2.protectivemeasures,
               style: Theme.of(context).textTheme.small),
-          const SizedBox(height: tiny),
+          const SizedBox(height: tinySpacing),
           Text(DatabaseUtil.getText('Layout'),
               style: Theme.of(context).textTheme.medium.copyWith(
                   color: AppColor.black, fontWeight: FontWeight.bold)),
@@ -73,7 +72,7 @@ class PermitAdditionalInfo extends StatelessWidget {
                       .textTheme
                       .small
                       .copyWith(color: AppColor.deepBlue))),
-          const SizedBox(height: tiny),
+          const SizedBox(height: tinySpacing),
           ListView.builder(
               shrinkWrap: true,
               itemCount: permitDetailsModel.data.tab2.customfields.length,
@@ -95,8 +94,6 @@ class PermitAdditionalInfo extends StatelessWidget {
                           style: Theme.of(context).textTheme.small)
                     ]);
               })
-        ],
-      ),
-    );
+        ]));
   }
 }

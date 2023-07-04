@@ -43,8 +43,9 @@ class ApprovePopUp extends StatelessWidget {
           }
         },
         child: AlertDialog(
-            titlePadding: const EdgeInsets.only(left: tiny, top: tiny),
-            buttonPadding: const EdgeInsets.all(tiniest),
+            titlePadding:
+                const EdgeInsets.only(left: tinySpacing, top: tinySpacing),
+            buttonPadding: const EdgeInsets.all(tiniestSpacing),
             contentPadding: const EdgeInsets.only(
                 left: xxTinySpacing,
                 right: xxTinySpacing,

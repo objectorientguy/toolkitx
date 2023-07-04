@@ -13,35 +13,35 @@ class StatusTag extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: MediaQuery.of(context).size.width * 0.080,
-      child: ListView.builder(
-          scrollDirection: Axis.horizontal,
-          physics: const BouncingScrollPhysics(),
-          shrinkWrap: true,
-          itemCount: tags!.length,
-          itemBuilder: (context, index) {
-            return (tags![index].title! != '')
-                ? Container(
-                    decoration: BoxDecoration(
-                      color: tags![index].bgColor,
-                      borderRadius: BorderRadius.circular(kCardRadius),
-                    ),
-                    margin:
-                        const EdgeInsets.only(right: tiniest, bottom: tiniest),
-                    alignment: Alignment.center,
-                    child: Padding(
-                        padding: const EdgeInsets.all(tiniest),
-                        child: SizedBox(
-                          height: MediaQuery.of(context).size.width * 0.040,
-                          child: Text(
-                            tags![index].title!,
-                            style: const TextStyle(color: AppColor.white),
-                            textAlign: TextAlign.center,
-                          ),
-                        )),
-                  )
-                : const SizedBox();
-          }),
-    );
+        height: MediaQuery.of(context).size.width * 0.080,
+        child: ListView.builder(
+            scrollDirection: Axis.horizontal,
+            physics: const BouncingScrollPhysics(),
+            shrinkWrap: true,
+            itemCount: tags!.length,
+            itemBuilder: (context, index) {
+              return (tags![index].title! != '')
+                  ? Container(
+                      decoration: BoxDecoration(
+                          color: tags![index].bgColor,
+                          borderRadius: BorderRadius.circular(kCardRadius)),
+                      margin: const EdgeInsets.only(
+                          right: tiniestSpacing, bottom: tiniestSpacing),
+                      alignment: Alignment.center,
+                      child: Padding(
+                          padding: const EdgeInsets.only(
+                              top: xxTiniestSpacing,
+                              bottom: xxTiniestSpacing,
+                              right: tiniestSpacing,
+                              left: tiniestSpacing),
+                          child: SizedBox(
+                              height: MediaQuery.of(context).size.width * 0.040,
+                              child: Center(
+                                  child: Text(tags![index].title!,
+                                      style: const TextStyle(
+                                          color: AppColor.white),
+                                      textAlign: TextAlign.center)))))
+                  : const SizedBox();
+            }));
   }
 }

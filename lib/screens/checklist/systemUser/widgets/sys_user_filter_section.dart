@@ -25,16 +25,16 @@ class FilterSection extends StatelessWidget {
         children: [
           Text(StringConstants.kChecklistName,
               style: Theme.of(context).textTheme.medium),
-          const SizedBox(height: tinier),
+          const SizedBox(height: tinierSpacing),
           TextFieldWidget(
               maxLength: 80,
               onTextFieldChanged: (String textValue) {
                 filterDataMap["checklistname"] = textValue;
               }),
-          const SizedBox(height: tinier),
+          const SizedBox(height: tinierSpacing),
           Text(StringConstants.kCategory,
               style: Theme.of(context).textTheme.medium),
-          const SizedBox(height: tinier),
+          const SizedBox(height: tinierSpacing),
           FilterExpansionTileLayout(onCategoryChanged: (String category) {
             filterDataMap["category"] = category;
           }),

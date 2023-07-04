@@ -111,13 +111,25 @@ class AddImageAndCommentScreen extends StatelessWidget {
                                         textValue;
                                   }),
                               const SizedBox(height: xxTinierSpacing),
+                              Text(StringConstants.kFiles,
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .small
+                                      .copyWith(
+                                          color: AppColor.deepBlue,
+                                          fontWeight: FontWeight.w500)),
+                              const SizedBox(height: xxTinierSpacing),
+                              Text(state.getQuestionCommentsModel.data!.files!,
+                                  style: Theme.of(context).textTheme.xSmall),
+                              const SizedBox(height: xxTinierSpacing),
                               Text(StringConstants.kUploadPhoto,
                                   style: Theme.of(context)
                                       .textTheme
                                       .small
                                       .copyWith(
-                                          color: AppColor.black,
+                                          color: AppColor.deepBlue,
                                           fontWeight: FontWeight.w500)),
+                              const SizedBox(height: xxTinierSpacing),
                               UploadImageMenu(
                                 onUploadImageResponse: (List uploadImageList) {
                                   saveQuestionCommentsMap["filenames"] =

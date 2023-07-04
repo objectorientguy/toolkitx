@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:toolkit/configs/app_color.dart';
 import 'package:toolkit/configs/app_theme.dart';
 import 'package:url_launcher/url_launcher_string.dart';
-import 'package:toolkit/utils/database_utils.dart';
 
+import '../../../configs/app_color.dart';
 import '../../../configs/app_spacing.dart';
 import '../../../data/models/permit/permit_details_model.dart';
+import '../../../utils/database_utils.dart';
 
 class PermitDetails extends StatelessWidget {
   final PermitDetailsModel permitDetailsModel;
@@ -16,61 +16,40 @@ class PermitDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const SizedBox(height: tiny),
-          Text(
-            DatabaseUtil.getText('Schedule'),
-            style: Theme.of(context)
-                .textTheme
-                .medium
-                .copyWith(color: AppColor.black, fontWeight: FontWeight.bold),
-          ),
+        physics: const BouncingScrollPhysics(),
+        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          const SizedBox(height: tinySpacing),
+          Text(DatabaseUtil.getText('Schedule'),
+              style: Theme.of(context).textTheme.medium.copyWith(
+                  color: AppColor.black, fontWeight: FontWeight.bold)),
           const SizedBox(height: xxTinierSpacing),
           Text(permitDetailsModel.data.tab1.schedule,
               style: Theme.of(context).textTheme.small),
-          const SizedBox(height: tiny),
-          Text(
-            DatabaseUtil.getText('NPI'),
-            style: Theme.of(context)
-                .textTheme
-                .medium
-                .copyWith(color: AppColor.black, fontWeight: FontWeight.bold),
-          ),
+          const SizedBox(height: tinySpacing),
+          Text(DatabaseUtil.getText('NPI'),
+              style: Theme.of(context).textTheme.medium.copyWith(
+                  color: AppColor.black, fontWeight: FontWeight.bold)),
           const SizedBox(height: xxTinierSpacing),
           Text(permitDetailsModel.data.tab1.pnameNpi,
               style: Theme.of(context).textTheme.small),
-          const SizedBox(height: tiny),
-          Text(
-            DatabaseUtil.getText('NPW'),
-            style: Theme.of(context)
-                .textTheme
-                .medium
-                .copyWith(color: AppColor.black, fontWeight: FontWeight.bold),
-          ),
+          const SizedBox(height: tinySpacing),
+          Text(DatabaseUtil.getText('NPW'),
+              style: Theme.of(context).textTheme.medium.copyWith(
+                  color: AppColor.black, fontWeight: FontWeight.bold)),
           const SizedBox(height: xxTinierSpacing),
           Text(permitDetailsModel.data.tab1.pname,
               style: Theme.of(context).textTheme.small),
-          const SizedBox(height: tiny),
-          Text(
-            DatabaseUtil.getText('Description'),
-            style: Theme.of(context)
-                .textTheme
-                .medium
-                .copyWith(color: AppColor.black, fontWeight: FontWeight.bold),
-          ),
+          const SizedBox(height: tinySpacing),
+          Text(DatabaseUtil.getText('Description'),
+              style: Theme.of(context).textTheme.medium.copyWith(
+                  color: AppColor.black, fontWeight: FontWeight.bold)),
           const SizedBox(height: xxTinierSpacing),
           Text(permitDetailsModel.data.tab1.details,
               style: Theme.of(context).textTheme.small),
-          const SizedBox(height: tiny),
-          Text(
-            DatabaseUtil.getText('Location'),
-            style: Theme.of(context)
-                .textTheme
-                .medium
-                .copyWith(color: AppColor.black, fontWeight: FontWeight.bold),
-          ),
+          const SizedBox(height: tinySpacing),
+          Text(DatabaseUtil.getText('Location'),
+              style: Theme.of(context).textTheme.medium.copyWith(
+                  color: AppColor.black, fontWeight: FontWeight.bold)),
           const SizedBox(height: xxTinierSpacing),
           Text(permitDetailsModel.data.tab1.location,
               style: Theme.of(context).textTheme.small),
@@ -89,41 +68,35 @@ class PermitDetails extends StatelessWidget {
                           mode: LaunchMode.inAppWebView);
                     },
                     child: RichText(
-                      overflow: TextOverflow.ellipsis,
-                      textAlign: TextAlign.end,
-                      textDirection: TextDirection.rtl,
-                      softWrap: true,
-                      maxLines: 2,
-                      textScaleFactor: 1,
-                      text: TextSpan(
-                        text:
-                            "${permitDetailsModel.data.tab1.maplinks[index].name} : ",
-                        style: DefaultTextStyle.of(context).style,
-                        children: <TextSpan>[
-                          TextSpan(
-                              text: permitDetailsModel
-                                  .data.tab1.maplinks[index].link,
-                              style:
-                                  Theme.of(context).textTheme.xSmall.copyWith(
+                        overflow: TextOverflow.ellipsis,
+                        textAlign: TextAlign.end,
+                        textDirection: TextDirection.rtl,
+                        softWrap: true,
+                        maxLines: 2,
+                        textScaleFactor: 1,
+                        text: TextSpan(
+                            text:
+                                "${permitDetailsModel.data.tab1.maplinks[index].name} : ",
+                            style: DefaultTextStyle.of(context).style,
+                            children: <TextSpan>[
+                              TextSpan(
+                                  text: permitDetailsModel
+                                      .data.tab1.maplinks[index].link,
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .xSmall
+                                      .copyWith(
                                         color: AppColor.deepBlue,
-                                      )),
-                        ],
-                      ),
-                    ));
+                                      ))
+                            ])));
               }),
-          const SizedBox(height: tiny),
-          Text(
-            DatabaseUtil.getText('Company'),
-            style: Theme.of(context)
-                .textTheme
-                .medium
-                .copyWith(color: AppColor.black, fontWeight: FontWeight.bold),
-          ),
+          const SizedBox(height: tinySpacing),
+          Text(DatabaseUtil.getText('Company'),
+              style: Theme.of(context).textTheme.medium.copyWith(
+                  color: AppColor.black, fontWeight: FontWeight.bold)),
           const SizedBox(height: xxTinierSpacing),
           Text(permitDetailsModel.data.tab1.pcompany,
-              style: Theme.of(context).textTheme.small),
-        ],
-      ),
-    );
+              style: Theme.of(context).textTheme.small)
+        ]));
   }
 }

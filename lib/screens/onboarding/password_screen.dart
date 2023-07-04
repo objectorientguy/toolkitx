@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:toolkit/screens/onboarding/client_list_screen.dart';
-import 'package:toolkit/screens/onboarding/widgets/password_body.dart';
-import 'package:toolkit/utils/constants/string_constants.dart';
-import 'package:toolkit/utils/database_utils.dart';
-import 'package:toolkit/widgets/custom_snackbar.dart';
-import 'package:toolkit/widgets/progress_bar.dart';
-import '../../../blocs/login/login_bloc.dart';
-import '../../../blocs/login/login_states.dart';
-import '../../../configs/app_spacing.dart';
-import '../../../widgets/generic_app_bar.dart';
+import '../../blocs/login/login_bloc.dart';
+import '../../blocs/login/login_states.dart';
+import '../../configs/app_spacing.dart';
+import '../../utils/constants/string_constants.dart';
+import '../../utils/database_utils.dart';
+import '../../widgets/custom_snackbar.dart';
+import '../../widgets/generic_app_bar.dart';
+import '../../widgets/progress_bar.dart';
+import 'client_list_screen.dart';
+import 'widgets/password_body.dart';
 
 class PasswordScreen extends StatelessWidget {
   static const routeName = 'PasswordScreen';
@@ -39,7 +39,8 @@ class PasswordScreen extends StatelessWidget {
                         Navigator.pushNamedAndRemoveUntil(
                             context,
                             ClientListScreen.routeName,
-                            (Route<dynamic> route) => false);
+                            (Route<dynamic> route) => false,
+                            arguments: false);
                       }
                       if (state is LoginError) {
                         ProgressBar.dismiss(context);

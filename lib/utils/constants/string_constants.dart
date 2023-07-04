@@ -43,11 +43,22 @@ abstract class StringConstants {
   static const String kChecklistNotEditable =
       'After submitting you will not be able to edit the checklist again.';
   static const String kFailedToCaptureImage = 'Failed to capture image';
+  static const String kCustomFieldInfo = 'Custom field info';
+  static const String kCustomField = 'Custom Field';
+  static const String kViewCustomField = 'Tap to view custom field info';
+  static const String kComment = 'Comment';
+  static const String kViewComment = 'Tap to view comment';
   static const String kPermissionsDenied =
       'Permissions are permanently denied. Please provide permission through setting.';
   static const String kEnterNewPassword =
       'Enter New Password'; // comment lines indicates that keys are not available
   static const String kConfirmPassword = 'Confirm Password'; //
+  static const String kNoCustomFields = 'No custom fields info!'; //
+  static const String kNoComment = 'No comments!'; //
+  static const String kNoInjuredPerson = 'No injured person!'; //
+  static const String kNoILinkedPermit = 'No linked permit!'; //
+  static const String kCannotUnlinkPermit = 'Cannot unlink permit!';
+  static const String kFiles = 'Files';
   static const String kOtpGenerated = 'OTP generated';
   static const String kSelectDateFormat = 'Select Your Date Format';
   static const String kSave = 'SAVE';
@@ -59,6 +70,7 @@ abstract class StringConstants {
       'No header data available for this checklist!';
   static const String kOldPassword = 'Old Password'; //
   static const String kEnterOtp = 'Enter OTP'; //
+  static const String kAllDataLoaded = 'All Data Loaded'; //
   static const String kSelectYourLanguage = 'Select Your Language';
   static const String kClearFilter = 'Clear Filter';
   static const String kPleaseConfirm = 'Please Confirm';
@@ -86,6 +98,7 @@ abstract class StringConstants {
   static const String kSelectCategory = 'Select Category';
   static const String kSignature = 'Signature';
   static const String kUploadSignature = 'Upload Signature';
+  static const String kSignatureNotFound = 'Signature Not Found';
   static const String kUpload = 'Upload';
   static const String kChecklist = 'Checklist';
   static const String kFilters = 'Filters';
@@ -171,4 +184,6 @@ abstract class StringConstants {
   static const String kCLOSEPERMIT = 'CLOSE PERMIT';
   static const String kOPENPERMIT = 'OPEN PERMIT';
   static const String kNoRecordsFilter = 'No records found for these filters';
+  static const String kDiscardChanges = 'Discard Changes ?';
+  static const String kAppVersion = 'App version';
 }

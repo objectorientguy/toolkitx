@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:toolkit/screens/checklist/systemUser/sys_user_checklist_list_screen.dart';
-import 'package:toolkit/screens/checklist/workforce/workforce_list_screen.dart';
-import 'package:toolkit/screens/incident/incident_list_screen.dart';
-import 'package:toolkit/utils/database_utils.dart';
+import 'package:toolkit/configs/app_theme.dart';
 
 import '../../../blocs/client/client_bloc.dart';
 import '../../../blocs/client/client_events.dart';
@@ -12,7 +9,12 @@ import '../../../configs/app_color.dart';
 import '../../../configs/app_dimensions.dart';
 import '../../../configs/app_spacing.dart';
 import '../../../utils/constants/string_constants.dart';
+import '../../../utils/database_utils.dart';
+import '../../../widgets/custom_card.dart';
 import '../../../widgets/error_section.dart';
+import '../../checklist/systemUser/sys_user_checklist_list_screen.dart';
+import '../../checklist/workforce/workforce_list_screen.dart';
+import '../../incident/incident_list_screen.dart';
 import '../../permit/permit_list_screen.dart';
 
 class OnLineModules extends StatelessWidget {
@@ -42,30 +44,70 @@ class OnLineModules extends StatelessWidget {
                 physics: const NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    childAspectRatio: 1 / 1.08,
                     crossAxisCount: 3,
-                    crossAxisSpacing: tinier,
-                    mainAxisSpacing: tinier),
+                    crossAxisSpacing: xxTinierSpacing),
                 itemBuilder: (BuildContext context, int index) {
                   return InkWell(
+                      borderRadius: BorderRadius.circular(kCardRadius),
                       onTap: () => navigateToModule(
                           state.availableModules[index].key, context),
-                      child: Card(
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(kCardRadius)),
-                          color: AppColor.lightestBlue,
-                          shadowColor: AppColor.ghostWhite,
-                          elevation: kCardElevation,
+                      child: CustomCard(
+                          color: AppColor.transparent,
+                          elevation: kZeroElevation,
+                          margin: EdgeInsets.zero,
                           child: Column(
                               crossAxisAlignment: CrossAxisAlignment.center,
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                SizedBox(
-                                    child: Image.asset(
-                                        state.availableModules[index]
-                                            .moduleImage,
-                                        height: kModuleIconSize,
-                                        width: kModuleIconSize)),
-                                const SizedBox(height: xxTinySpacing),
+                                Stack(
+                                    alignment: Alignment.topCenter,
+                                    children: [
+                                      CustomCard(
+                                          margin: const EdgeInsets.all(
+                                              kModuleCardMargin),
+                                          color: AppColor.lightestBlue,
+                                          shadowColor: AppColor.ghostWhite,
+                                          child: Padding(
+                                              padding: const EdgeInsets.all(
+                                                  kModuleImagePadding),
+                                              child: Image.asset(
+                                                  state.availableModules[index]
+                                                      .moduleImage,
+                                                  height: kModuleIconSize,
+                                                  width: kModuleIconSize))),
+                                      if ('${state.homeScreenModel.data!.badges!.indexWhere((element) => element.type == state.availableModules[index].key)}' !=
+                                              '-1' ||
+                                          '${state.homeScreenModel.data!.badges!.indexWhere((element) => element.type == state.availableModules[index].notificationKey)}' !=
+                                              '-1')
+                                        Padding(
+                                            padding: const EdgeInsets.only(
+                                                left: kModulesBadgePadding),
+                                            child: Stack(
+                                                alignment: Alignment.center,
+                                                children: [
+                                                  Container(
+                                                      height: kModulesBadgeSize,
+                                                      width: kModulesBadgeSize,
+                                                      decoration:
+                                                          const BoxDecoration(
+                                                              shape: BoxShape
+                                                                  .circle,
+                                                              color: AppColor
+                                                                  .errorRed)),
+                                                  Text(
+                                                      ('${state.homeScreenModel.data!.badges!.indexWhere((element) => element.type == state.availableModules[index].notificationKey)}' !=
+                                                              '-1')
+                                                          ? '${state.homeScreenModel.data!.badges![state.homeScreenModel.data!.badges!.indexWhere((element) => element.type == state.availableModules[index].notificationKey)].count}'
+                                                          : '${state.homeScreenModel.data!.badges![state.homeScreenModel.data!.badges!.indexWhere((element) => element.type == state.availableModules[index].key)].count}',
+                                                      style: Theme.of(context)
+                                                          .textTheme
+                                                          .xxxSmall
+                                                          .copyWith(
+                                                              fontSize: 8))
+                                                ]))
+                                    ]),
+                                const SizedBox(height: tiniestSpacing),
                                 Padding(
                                     padding: const EdgeInsets.only(
                                         left: xxTiniestSpacing,
@@ -100,7 +142,8 @@ class OnLineModules extends StatelessWidget {
             arguments: true);
         break;
       case 'hse':
-        Navigator.pushNamed(context, IncidentListScreen.routeName);
+        Navigator.pushNamed(context, IncidentListScreen.routeName,
+            arguments: true);
         break;
       case 'checklist':
         Navigator.pushNamed(context, SystemUserCheckListScreen.routeName,
