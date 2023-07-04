@@ -21,10 +21,6 @@ class IncidentMasterFetched extends ReportNewIncidentStates {
 
 class IncidentMasterNotFetched extends ReportNewIncidentStates {}
 
-class ReportNewIncidentPrimaryFetched extends ReportNewIncidentStates {
-  ReportNewIncidentPrimaryFetched();
-}
-
 class IncidentReportAnonymousSelected extends ReportNewIncidentStates {
   final Map reportAnonymousMap;
   final String reportAnonymousId;

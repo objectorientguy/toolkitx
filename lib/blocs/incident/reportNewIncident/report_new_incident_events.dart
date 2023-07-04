@@ -21,8 +21,6 @@ class SelectIncidentCategory extends ReportNewIncidentEvent {
       required this.itemIndex});
 }
 
-class ReportNewIncidentPrimary extends ReportNewIncidentEvent {}
-
 class ReportIncidentAnonymousExpansionChange extends ReportNewIncidentEvent {
   final String reportAnonymousId;
 

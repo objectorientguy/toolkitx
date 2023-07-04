@@ -23,7 +23,6 @@ class ReportNewIncidentBloc
   ReportNewIncidentBloc() : super(ReportNewIncidentInitial()) {
     on<FetchIncidentMaster>(_fetchIncidentCategory);
     on<SelectIncidentCategory>(_selectIncidentCategory);
-    on<ReportNewIncidentPrimary>(_reportNewIncidentPrimary);
     on<ReportIncidentAnonymousExpansionChange>(_reportIncidentAnonymously);
     on<ReportIncidentContractorListChange>(_reportIncidentContractor);
     on<ReportIncidentSiteListChange>(_reportIncidentSite);
@@ -119,11 +118,6 @@ class ReportNewIncidentBloc
         categoryList: showCategory,
         categorySelectedList: selectedCategory,
         addNewIncidentMap: addNewIncidentMap));
-  }
-
-  _reportNewIncidentPrimary(
-      ReportNewIncidentPrimary event, Emitter<ReportNewIncidentStates> emit) {
-    emit(ReportNewIncidentPrimaryFetched());
   }
 
   _reportIncidentAnonymously(ReportIncidentAnonymousExpansionChange event,
