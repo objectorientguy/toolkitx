@@ -1,3 +1,4 @@
+import 'package:package_info_plus/package_info_plus.dart';
 import 'package:toolkit/utils/constants/string_constants.dart';
 import 'package:toolkit/utils/database_utils.dart';
 
@@ -6,6 +7,7 @@ import '../data/models/profile/profile_options_model.dart';
 abstract class ProfileUtil {
   static const String iconPath = 'assets/icons/';
   static const String imagePath = 'assets/images/';
+  static late PackageInfo packageInfo;
 
   static List<ProfileOptions> profileOptionsList() {
     return [
