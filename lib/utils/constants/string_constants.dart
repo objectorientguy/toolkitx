@@ -43,12 +43,20 @@ abstract class StringConstants {
   static const String kChecklistNotEditable =
       'After submitting you will not be able to edit the checklist again.';
   static const String kFailedToCaptureImage = 'Failed to capture image';
+  static const String kCustomFieldInfo = 'Custom field info';
+  static const String kCustomField = 'Custom Field';
+  static const String kViewCustomField = 'Tap to view custom field info';
+  static const String kComment = 'Comment';
+  static const String kViewComment = 'Tap to view comment';
   static const String kPermissionsDenied =
       'Permissions are permanently denied. Please provide permission through setting.';
   static const String kEnterNewPassword =
       'Enter New Password'; // comment lines indicates that keys are not available
   static const String kConfirmPassword = 'Confirm Password'; //
   static const String kFiles = 'Files'; //
+  static const String kNoCustomFields = 'No custom fields info!'; //
+  static const String kNoComment = 'No comments!'; //
+  static const String kNoInjuredPerson = 'No injured person list!'; //
   static const String kOtpGenerated = 'OTP generated';
   static const String kSelectDateFormat = 'Select Your Date Format';
   static const String kSave = 'SAVE';

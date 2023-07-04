@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:toolkit/blocs/incident/incidentListAndFilter/incident_list_and_filter_state.dart';
+import 'package:toolkit/screens/incident/incident_details_screen.dart';
 import '../../../blocs/incident/incidentGetAndChangeRole/incident_get_and_change_role_bloc.dart';
 import '../../../blocs/incident/incidentListAndFilter/incident_list_and_filter_bloc.dart';
 import '../../../blocs/incident/incidentListAndFilter/incident_list_and_filter_event.dart';
@@ -33,13 +34,20 @@ class IncidentListBody extends StatelessWidget {
                 itemBuilder: (context, index) {
                   return CustomCard(
                       child: ListTile(
-                          contentPadding: const EdgeInsets.all(xxTinierSpacing),
-                          title: IncidentListTitle(
-                              incidentListDatum:
-                                  state.fetchIncidentsListModel.data![index]),
-                          subtitle: IncidentListSubtitle(
-                              incidentListDatum:
-                                  state.fetchIncidentsListModel.data![index])));
+                    contentPadding: const EdgeInsets.all(xxTinierSpacing),
+                    title: IncidentListTitle(
+                        incidentListDatum:
+                            state.fetchIncidentsListModel.data![index]),
+                    subtitle: IncidentListSubtitle(
+                        incidentListDatum:
+                            state.fetchIncidentsListModel.data![index]),
+                    onTap: () {
+                      Navigator.pushNamed(
+                          context, IncidentDetailsScreen.routeName,
+                          arguments:
+                              state.fetchIncidentsListModel.data![index]);
+                    },
+                  ));
                 },
                 separatorBuilder: (context, index) {
                   return const SizedBox(height: xxTinySpacing);
