@@ -9,6 +9,7 @@ import '../../blocs/profile/profile_states.dart';
 import '../../configs/app_spacing.dart';
 import '../../utils/constants/string_constants.dart';
 import '../../utils/database_utils.dart';
+import '../../utils/profile_util.dart';
 import '../../widgets/custom_snackbar.dart';
 import '../../widgets/error_section.dart';
 import '../../widgets/generic_app_bar.dart';
@@ -30,7 +31,7 @@ class ProfileEditScreen extends StatelessWidget {
     context.read<PickAndUploadImageBloc>().add(UploadInitial());
     context.read<ProfileBloc>().add(DecryptUserProfileData());
     return WillPopScope(
-      onWillPop: () => DatabaseUtil.showExitPopup(
+      onWillPop: () => ProfileUtil.showExitPopup(
           context.read<ProfileBloc>().updateProfileDataMap,
           copyProfileMap,
           context),
