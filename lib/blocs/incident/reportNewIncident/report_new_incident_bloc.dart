@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:developer';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:toolkit/blocs/incident/reportNewIncident/report_new_incident_events.dart';
 import 'package:toolkit/blocs/incident/reportNewIncident/report_new_incident_states.dart';
@@ -14,6 +13,8 @@ class ReportNewIncidentBloc
     extends Bloc<ReportNewIncidentEvent, ReportNewIncidentStates> {
   final IncidentRepository _incidentRepository = getIt<IncidentRepository>();
   final CustomerCache _customerCache = getIt<CustomerCache>();
+  FetchIncidentMasterModel fetchIncidentMasterModel =
+      FetchIncidentMasterModel();
   Map addNewIncidentMap = {};
 
   ReportNewIncidentStates get initialState => ReportNewIncidentInitial();
@@ -21,7 +22,9 @@ class ReportNewIncidentBloc
   ReportNewIncidentBloc() : super(ReportNewIncidentInitial()) {
     on<FetchIncidentMaster>(_fetchIncidentCategory);
     on<SelectIncidentCategory>(_selectIncidentCategory);
-    on<ReportIncidentExpansionChange>(_reportIncidentAnonymously);
+    on<ReportNewIncidentPrimary>(_reportNewIncidentPrimary);
+    on<ReportIncidentAnonymousExpansionChange>(_reportIncidentAnonymously);
+    on<ReportIncidentContractorListChange>(_reportIncidentContractor);
   }
 
   FutureOr<void> _fetchIncidentCategory(
@@ -29,10 +32,9 @@ class ReportNewIncidentBloc
     emit(FetchingIncidentMaster());
     try {
       String hashCode = (await _customerCache.getHashCode(CacheKeys.hashcode))!;
-      FetchIncidentMasterModel fetchIncidentMasterModel =
+      fetchIncidentMasterModel =
           await _incidentRepository.fetchIncidentMaster(hashCode, event.role);
       add(SelectIncidentCategory(
-          fetchIncidentMasterModel: fetchIncidentMasterModel,
           index: 0,
           itemIndex: 0,
           isSelected: false,
@@ -49,53 +51,48 @@ class ReportNewIncidentBloc
     List showCategory = [];
     showCategory = [
       {
-        'title':
-            event.fetchIncidentMasterModel.incidentMasterDatum[2][0].typename,
+        'title': fetchIncidentMasterModel.incidentMasterDatum![2][0].typename,
         'items': [
           for (int i = 0;
-              i < event.fetchIncidentMasterModel.incidentMasterDatum[2].length;
+              i < fetchIncidentMasterModel.incidentMasterDatum![2].length;
               i++)
-            event.fetchIncidentMasterModel.incidentMasterDatum[2][i].name
+            fetchIncidentMasterModel.incidentMasterDatum![2][i].name
         ]
       },
       {
-        'title':
-            event.fetchIncidentMasterModel.incidentMasterDatum[3][0].typename,
+        'title': fetchIncidentMasterModel.incidentMasterDatum![3][0].typename,
         'items': [
           for (int i = 0;
-              i < event.fetchIncidentMasterModel.incidentMasterDatum[3].length;
+              i < fetchIncidentMasterModel.incidentMasterDatum![3].length;
               i++)
-            event.fetchIncidentMasterModel.incidentMasterDatum[3][i].name
+            fetchIncidentMasterModel.incidentMasterDatum![3][i].name
         ]
       },
       {
-        'title':
-            event.fetchIncidentMasterModel.incidentMasterDatum[4][0].typename,
+        'title': fetchIncidentMasterModel.incidentMasterDatum![4][0].typename,
         'items': [
           for (int i = 0;
-              i < event.fetchIncidentMasterModel.incidentMasterDatum[4].length;
+              i < fetchIncidentMasterModel.incidentMasterDatum![4].length;
               i++)
-            event.fetchIncidentMasterModel.incidentMasterDatum[4][i].name
+            fetchIncidentMasterModel.incidentMasterDatum![4][i].name
         ]
       },
       {
-        'title':
-            event.fetchIncidentMasterModel.incidentMasterDatum[5][0].typename,
+        'title': fetchIncidentMasterModel.incidentMasterDatum![5][0].typename,
         'items': [
           for (int i = 0;
-              i < event.fetchIncidentMasterModel.incidentMasterDatum[5].length;
+              i < fetchIncidentMasterModel.incidentMasterDatum![5].length;
               i++)
-            event.fetchIncidentMasterModel.incidentMasterDatum[5][i].name
+            fetchIncidentMasterModel.incidentMasterDatum![5][i].name
         ]
       },
       {
-        'title':
-            event.fetchIncidentMasterModel.incidentMasterDatum[6][0].typename,
+        'title': fetchIncidentMasterModel.incidentMasterDatum![6][0].typename,
         'items': [
           for (int i = 0;
-              i < event.fetchIncidentMasterModel.incidentMasterDatum[6].length;
+              i < fetchIncidentMasterModel.incidentMasterDatum![6].length;
               i++)
-            event.fetchIncidentMasterModel.incidentMasterDatum[6][i].name
+            fetchIncidentMasterModel.incidentMasterDatum![6][i].name
         ]
       }
     ];
@@ -107,23 +104,32 @@ class ReportNewIncidentBloc
           .remove(showCategory[event.index]['items'][event.itemIndex]);
     }
     emit(IncidentMasterFetched(
-        fetchIncidentMasterModel: event.fetchIncidentMasterModel,
+        fetchIncidentMasterModel: fetchIncidentMasterModel,
         categoryList: showCategory,
         categorySelectedList: selectedCategory,
         addNewIncidentMap: addNewIncidentMap));
   }
 
-  _reportIncidentAnonymously(ReportIncidentExpansionChange event,
+  _reportNewIncidentPrimary(
+      ReportNewIncidentPrimary event, Emitter<ReportNewIncidentStates> emit) {
+    emit(ReportNewIncidentPrimaryFetched());
+  }
+
+  _reportIncidentAnonymously(ReportIncidentAnonymousExpansionChange event,
       Emitter<ReportNewIncidentStates> emit) {
-    log("bloc=====>${event.selectContractorId}");
-    List reportAnonymousList = [
-      DatabaseUtil.getText('Yes'),
-      DatabaseUtil.getText('No'),
-    ];
-    emit(ReportNewIncidentFetched(
-        reportAnonymousList: reportAnonymousList,
-        reportAnonymous: event.reportAnonymously,
-        addNewIncidentMap: addNewIncidentMap,
+    Map reportAnonymousMap = {
+      "1": DatabaseUtil.getText('Yes'),
+      "2": DatabaseUtil.getText('No'),
+    };
+    emit(IncidentReportAnonymousSelected(
+        reportAnonymousId: event.reportAnonymousId,
+        reportAnonymousMap: reportAnonymousMap));
+  }
+
+  _reportIncidentContractor(ReportIncidentContractorListChange event,
+      Emitter<ReportNewIncidentStates> emit) {
+    emit(ReportIncidentContractorSelected(
+        fetchIncidentMasterModel: fetchIncidentMasterModel,
         selectContractorId: event.selectContractorId,
         selectContractorName: event.selectContractorName));
   }

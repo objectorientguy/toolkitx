@@ -1,5 +1,3 @@
-import '../../../data/models/incident/fetch_incident_master_model.dart';
-
 abstract class ReportNewIncidentEvent {}
 
 class FetchIncidentMaster extends ReportNewIncidentEvent {
@@ -11,7 +9,6 @@ class FetchIncidentMaster extends ReportNewIncidentEvent {
 class SelectIncidentCategory extends ReportNewIncidentEvent {
   final int index;
   final int itemIndex;
-  final FetchIncidentMasterModel fetchIncidentMasterModel;
   final bool isSelected;
   final List multiSelectList;
   final Map addNewIncidentMap;
@@ -20,18 +17,22 @@ class SelectIncidentCategory extends ReportNewIncidentEvent {
       {required this.addNewIncidentMap,
       required this.multiSelectList,
       required this.isSelected,
-      required this.fetchIncidentMasterModel,
       required this.index,
       required this.itemIndex});
 }
 
-class ReportIncidentExpansionChange extends ReportNewIncidentEvent {
-  final String reportAnonymously;
+class ReportNewIncidentPrimary extends ReportNewIncidentEvent {}
+
+class ReportIncidentAnonymousExpansionChange extends ReportNewIncidentEvent {
+  final String reportAnonymousId;
+
+  ReportIncidentAnonymousExpansionChange({required this.reportAnonymousId});
+}
+
+class ReportIncidentContractorListChange extends ReportNewIncidentEvent {
   final int selectContractorId;
   final String selectContractorName;
 
-  ReportIncidentExpansionChange(
-      {required this.selectContractorName,
-      required this.selectContractorId,
-      required this.reportAnonymously});
+  ReportIncidentContractorListChange(
+      {required this.selectContractorName, required this.selectContractorId});
 }

@@ -1,24 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:toolkit/blocs/incident/reportNewIncident/report_new_incident_bloc.dart';
-import 'package:toolkit/blocs/incident/reportNewIncident/report_new_incident_events.dart';
+import '../../../blocs/incident/reportNewIncident/report_new_incident_events.dart';
 import '../../../configs/app_color.dart';
 import '../../../configs/app_spacing.dart';
 import '../../../data/models/incident/fetch_incident_master_model.dart';
 import '../../../widgets/generic_app_bar.dart';
 
 class IncidentContractorList extends StatelessWidget {
-  final List<List<IncidentMasterDatum>> incidentMasterDatum;
+  final FetchIncidentMasterModel fetchIncidentMasterModel;
   final int selectContractorId;
   final String selectContractorName;
-  final String reportAnonymous;
 
   const IncidentContractorList(
       {Key? key,
-      required this.incidentMasterDatum,
+      required this.fetchIncidentMasterModel,
       required this.selectContractorId,
-      required this.selectContractorName,
-      required this.reportAnonymous})
+      required this.selectContractorName})
       : super(key: key);
 
   @override
@@ -38,7 +36,8 @@ class IncidentContractorList extends StatelessWidget {
                         padding:
                             const EdgeInsets.only(bottom: xxTiniestSpacing),
                         shrinkWrap: true,
-                        itemCount: incidentMasterDatum[8].length,
+                        itemCount: fetchIncidentMasterModel
+                            .incidentMasterDatum![8].length,
                         itemBuilder: (context, index) {
                           return SizedBox(
                               height: xxxMediumSpacing,
@@ -46,21 +45,24 @@ class IncidentContractorList extends StatelessWidget {
                                   activeColor: AppColor.deepBlue,
                                   controlAffinity:
                                       ListTileControlAffinity.trailing,
-                                  title: Text(incidentMasterDatum[8][index]
-                                      .groupName
-                                      .toString()),
-                                  value: incidentMasterDatum[8][index].groupId,
+                                  title: Text(fetchIncidentMasterModel
+                                      .incidentMasterDatum![8][index]
+                                      .groupName!),
+                                  value: fetchIncidentMasterModel
+                                      .incidentMasterDatum![8][index].groupId!,
                                   groupValue: selectContractorId,
                                   onChanged: (value) {
-                                    value =
-                                        incidentMasterDatum[8][index].groupId;
+                                    value = fetchIncidentMasterModel
+                                        .incidentMasterDatum![8][index]
+                                        .groupId!;
                                     context.read<ReportNewIncidentBloc>().add(
-                                        ReportIncidentExpansionChange(
-                                            reportAnonymously: reportAnonymous,
-                                            selectContractorId: value!,
+                                        ReportIncidentContractorListChange(
                                             selectContractorName:
-                                                incidentMasterDatum[8][index]
-                                                    .groupName!));
+                                                fetchIncidentMasterModel
+                                                    .incidentMasterDatum![8]
+                                                        [index]
+                                                    .groupName!,
+                                            selectContractorId: value));
                                     Navigator.pop(context);
                                   }));
                         }),

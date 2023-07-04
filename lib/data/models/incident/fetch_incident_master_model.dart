@@ -7,14 +7,14 @@ String fetchIncidentMasterModelToJson(FetchIncidentMasterModel data) =>
     json.encode(data.toJson());
 
 class FetchIncidentMasterModel {
-  final int status;
-  final String message;
-  final List<List<IncidentMasterDatum>> incidentMasterDatum;
+  final int? status;
+  final String? message;
+  final List<List<IncidentMasterDatum>>? incidentMasterDatum;
 
   FetchIncidentMasterModel({
-    required this.status,
-    required this.message,
-    required this.incidentMasterDatum,
+    this.status,
+    this.message,
+    this.incidentMasterDatum,
   });
 
   factory FetchIncidentMasterModel.fromJson(Map<String, dynamic> json) =>
@@ -26,11 +26,10 @@ class FetchIncidentMasterModel {
                 x.map((x) => IncidentMasterDatum.fromJson(x))))),
       );
 
-  Map<String, dynamic> toJson() =>
-      {
+  Map<String, dynamic> toJson() => {
         "Status": status,
         "Message": message,
-        "Data": List<dynamic>.from(incidentMasterDatum
+        "Data": List<dynamic>.from(incidentMasterDatum!
             .map((x) => List<dynamic>.from(x.map((x) => x.toJson())))),
       };
 }

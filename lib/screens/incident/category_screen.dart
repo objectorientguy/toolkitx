@@ -117,9 +117,6 @@ class CategoryScreen extends StatelessWidget {
                                                               index: index,
                                                               itemIndex:
                                                                   itemIndex,
-                                                              fetchIncidentMasterModel:
-                                                                  state
-                                                                      .fetchIncidentMasterModel,
                                                               isSelected:
                                                                   value!,
                                                               multiSelectList:
@@ -137,8 +134,7 @@ class CategoryScreen extends StatelessWidget {
                               onPressed: () {
                                 Navigator.pushNamed(
                                     context, ReportNewIncidentScreen.routeName,
-                                    arguments: state.fetchIncidentMasterModel
-                                        .incidentMasterDatum);
+                                    arguments: addIncidentMap);
                               },
                               textValue:
                                   DatabaseUtil.getText('nextButtonText')),

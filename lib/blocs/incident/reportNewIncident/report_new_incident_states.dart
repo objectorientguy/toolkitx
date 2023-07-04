@@ -21,17 +21,25 @@ class IncidentMasterFetched extends ReportNewIncidentStates {
 
 class IncidentMasterNotFetched extends ReportNewIncidentStates {}
 
-class ReportNewIncidentFetched extends ReportNewIncidentStates {
-  final Map addNewIncidentMap;
-  final List reportAnonymousList;
-  final String reportAnonymous;
+class ReportNewIncidentPrimaryFetched extends ReportNewIncidentStates {
+  ReportNewIncidentPrimaryFetched();
+}
+
+class IncidentReportAnonymousSelected extends ReportNewIncidentStates {
+  final Map reportAnonymousMap;
+  final String reportAnonymousId;
+
+  IncidentReportAnonymousSelected(
+      {required this.reportAnonymousId, required this.reportAnonymousMap});
+}
+
+class ReportIncidentContractorSelected extends ReportNewIncidentStates {
+  final FetchIncidentMasterModel fetchIncidentMasterModel;
   final int selectContractorId;
   final String selectContractorName;
 
-  ReportNewIncidentFetched(
-      {required this.selectContractorName,
+  ReportIncidentContractorSelected(
+      {required this.fetchIncidentMasterModel,
       required this.selectContractorId,
-      required this.addNewIncidentMap,
-      required this.reportAnonymous,
-      required this.reportAnonymousList});
+      required this.selectContractorName});
 }
