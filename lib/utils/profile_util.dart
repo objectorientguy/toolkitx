@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:toolkit/configs/app_theme.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 import 'package:toolkit/utils/constants/string_constants.dart';
 import 'package:toolkit/utils/database_utils.dart';
 
@@ -11,6 +12,7 @@ import '../widgets/text_button.dart';
 abstract class ProfileUtil {
   static const String iconPath = 'assets/icons/';
   static const String imagePath = 'assets/images/';
+  static late PackageInfo packageInfo;
 
   static List<ProfileOptions> profileOptionsList() {
     return [
