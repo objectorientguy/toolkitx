@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../blocs/login/login_bloc.dart';
-import '../../../blocs/login/login_states.dart';
-import '../../../configs/app_spacing.dart';
-import '../../../utils/constants/string_constants.dart';
-import '../../../utils/database_utils.dart';
-import '../../../widgets/custom_snackbar.dart';
-import '../../../widgets/generic_app_bar.dart';
-import '../../../widgets/progress_bar.dart';
-import '../client_list_screen.dart';
-import '../widgets/password_body.dart';
+import '../../blocs/login/login_bloc.dart';
+import '../../blocs/login/login_states.dart';
+import '../../configs/app_spacing.dart';
+import '../../utils/constants/string_constants.dart';
+import '../../utils/database_utils.dart';
+import '../../widgets/custom_snackbar.dart';
+import '../../widgets/generic_app_bar.dart';
+import '../../widgets/progress_bar.dart';
+import 'client_list_screen.dart';
+import 'widgets/password_body.dart';
 
 class PasswordScreen extends StatelessWidget {
   static const routeName = 'PasswordScreen';

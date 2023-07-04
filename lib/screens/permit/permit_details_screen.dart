@@ -76,7 +76,7 @@ class PermitDetailsScreen extends StatelessWidget {
                 Navigator.pop(context);
                 context
                     .read<PermitBloc>()
-                    .add(const GetAllPermits(isFromHome: false));
+                    .add(const GetAllPermits(isFromHome: false, page: 1));
               }
               if (state is RequestPermitError) {
                 ProgressBar.dismiss(context);

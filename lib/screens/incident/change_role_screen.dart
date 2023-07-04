@@ -7,8 +7,8 @@ import 'package:toolkit/utils/database_utils.dart';
 import 'package:toolkit/widgets/error_section.dart';
 
 import '../../blocs/incident/incidentGetAndChangeRole/incident_get_and_change_role_events.dart';
-import '../../blocs/incident/incidentList/incident_list_bloc.dart';
-import '../../blocs/incident/incidentList/incident_list_event.dart';
+import '../../blocs/incident/incidentListAndFilter/incident_list_and_filter_bloc.dart';
+import '../../blocs/incident/incidentListAndFilter/incident_list_and_filter_event.dart';
 import '../../configs/app_color.dart';
 import '../../configs/app_spacing.dart';
 import '../../widgets/generic_app_bar.dart';
@@ -28,9 +28,8 @@ class IncidentChangeRoleScreen extends StatelessWidget {
         body: BlocConsumer<IncidentFetchAndChangeRoleBloc,
             IncidentFetchAndChangeRoleStates>(listener: (context, state) {
           if (state is IncidentRoleChanged) {
-            context
-                .read<IncidentListBloc>()
-                .add(FetchIncidentListEvent(roleId: state.roleId));
+            context.read<IncidentLisAndFilterBloc>().add(FetchIncidentListEvent(
+                roleId: state.roleId, isFromHome: false));
             Navigator.pop(context);
           }
         }, builder: (context, state) {

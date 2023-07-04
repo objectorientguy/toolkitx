@@ -5,7 +5,7 @@ import 'package:toolkit/widgets/circle_avatar.dart';
 import 'package:toolkit/utils/constants/string_constants.dart';
 import '../../configs/app_color.dart';
 import '../../widgets/primary_button.dart';
-import 'language/select_language_screen.dart';
+import 'select_language_screen.dart';
 
 class WelcomeScreen extends StatelessWidget {
   static const routeName = 'WelcomeScreen';

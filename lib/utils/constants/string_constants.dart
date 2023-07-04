@@ -68,6 +68,7 @@ abstract class StringConstants {
       'No header data available for this checklist!';
   static const String kOldPassword = 'Old Password'; //
   static const String kEnterOtp = 'Enter OTP'; //
+  static const String kAllDataLoaded = 'All Data Loaded'; //
   static const String kSelectYourLanguage = 'Select Your Language';
   static const String kClearFilter = 'Clear Filter';
   static const String kPleaseConfirm = 'Please Confirm';
@@ -181,4 +182,6 @@ abstract class StringConstants {
   static const String kCLOSEPERMIT = 'CLOSE PERMIT';
   static const String kOPENPERMIT = 'OPEN PERMIT';
   static const String kNoRecordsFilter = 'No records found for these filters';
+  static const String kDiscardChanges = 'Discard Changes ?';
+  static const String kAppVersion = 'App version';
 }

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:toolkit/blocs/incident/incidentListAndFilter/incident_list_and_filter_state.dart';
 import 'package:toolkit/screens/incident/incident_details_screen.dart';
 import '../../../blocs/incident/incidentGetAndChangeRole/incident_get_and_change_role_bloc.dart';
-import '../../../blocs/incident/incidentList/incident_list_bloc.dart';
-import '../../../blocs/incident/incidentList/incident_list_event.dart';
-import '../../../blocs/incident/incidentList/incident_list_state.dart';
+import '../../../blocs/incident/incidentListAndFilter/incident_list_and_filter_bloc.dart';
+import '../../../blocs/incident/incidentListAndFilter/incident_list_and_filter_event.dart';
 import '../../../configs/app_spacing.dart';
 import '../../../utils/constants/string_constants.dart';
 import '../../../widgets/custom_card.dart';
@@ -17,7 +17,7 @@ class IncidentListBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<IncidentListBloc, IncidentListStates>(
+    return BlocBuilder<IncidentLisAndFilterBloc, IncidentListAndFilterStates>(
         builder: (context, state) {
       if (state is FetchingIncidents) {
         return Center(
@@ -55,9 +55,11 @@ class IncidentListBody extends StatelessWidget {
       } else if (state is IncidentsNotFetched) {
         return GenericReloadButton(
             onPressed: () {
-              context.read<IncidentListBloc>().add(FetchIncidentListEvent(
-                  roleId:
-                      context.read<IncidentFetchAndChangeRoleBloc>().roleId));
+              context.read<IncidentLisAndFilterBloc>().add(
+                  FetchIncidentListEvent(
+                      roleId:
+                          context.read<IncidentFetchAndChangeRoleBloc>().roleId,
+                      isFromHome: true));
             },
             textValue: StringConstants.kReload);
       } else {

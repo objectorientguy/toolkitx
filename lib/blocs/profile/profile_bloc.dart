@@ -19,6 +19,7 @@ class ProfileBloc extends Bloc<ProfileEvents, ProfileStates> {
   final ProfileRepository _profileRepository = getIt<ProfileRepository>();
   final CustomerCache _customerCache = getIt<CustomerCache>();
   Map profileDataMap = {};
+  Map updateProfileDataMap = {};
 
   ProfileStates get initialState => ProfileInitial();
 
@@ -94,6 +95,7 @@ class ProfileBloc extends Bloc<ProfileEvents, ProfileStates> {
           }
           decryptedDataMap['bloodgrp'] = bloodGroupDecrypt;
           decryptedDataMap['contact'] = contactDecrypt;
+          updateProfileDataMap = decryptedDataMap;
 
           add(InitializeEditUserProfile(profileDetailsMap: decryptedDataMap));
         }
@@ -112,6 +114,7 @@ class ProfileBloc extends Bloc<ProfileEvents, ProfileStates> {
         }
         decryptedDataMap['bloodgrp'] = bloodGroupDecrypt;
         decryptedDataMap['contact'] = contactDecrypt;
+        updateProfileDataMap = decryptedDataMap;
 
         add(InitializeEditUserProfile(profileDetailsMap: decryptedDataMap));
       }
