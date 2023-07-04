@@ -12,7 +12,6 @@ class IncidentDetailsBloc
     extends Bloc<FetchIncidentDetailsEvent, IncidentDetailsStates> {
   final IncidentRepository _incidentRepository = getIt<IncidentRepository>();
   final CustomerCache _customerCache = getIt<CustomerCache>();
-  int incidentTabIndex = 0;
 
   IncidentDetailsStates get initialState => IncidentDetailsInitial();
 
@@ -24,14 +23,14 @@ class IncidentDetailsBloc
       Emitter<IncidentDetailsStates> emit) async {
     emit(FetchingIncidentDetails());
     try {
-      String hashCode = (await _customerCache.getHashCode(CacheKeys.hashcode))!;
-      String userId = (await _customerCache.getUserId(CacheKeys.userId))!;
-      String hashKey = (await _customerCache.getClientId(CacheKeys.clientId))!;
-      incidentTabIndex = event.incidentLinkIndex;
-      IncidentDetailsModel incidentDetailsModel = await _incidentRepository
-          .fetchIncidentDetails(event.incidentId, hashCode, userId, event.role);
+      String? hashCode = await _customerCache.getHashCode(CacheKeys.hashcode);
+      String? userId = await _customerCache.getUserId(CacheKeys.userId);
+      String? hashKey = await _customerCache.getClientId(CacheKeys.clientId);
+      IncidentDetailsModel incidentDetailsModel =
+          await _incidentRepository.fetchIncidentDetails(
+              event.incidentId, hashCode!, userId!, event.role);
       emit(IncidentDetailsFetched(
-          incidentDetailsModel: incidentDetailsModel, clientId: hashKey));
+          incidentDetailsModel: incidentDetailsModel, clientId: hashKey!));
     } catch (e) {
       emit(IncidentDetailsNotFetched());
     }

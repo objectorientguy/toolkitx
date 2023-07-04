@@ -24,7 +24,6 @@ class IncidentCommentViewNetworkImage extends StatelessWidget {
         physics: const BouncingScrollPhysics(),
         shrinkWrap: true,
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            childAspectRatio: 180 / 180,
             crossAxisCount: 4,
             crossAxisSpacing: tinierSpacing,
             mainAxisSpacing: tinierSpacing),

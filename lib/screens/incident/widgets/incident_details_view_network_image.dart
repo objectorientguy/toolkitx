@@ -41,15 +41,15 @@ class IncidentDetailsViewNetworkImage extends StatelessWidget {
                     mode: LaunchMode.inAppWebView);
               },
               child: CachedNetworkImage(
-                  // height: kCachedNetworkImageHeight,
+                  height: kCachedNetworkImageHeight,
                   imageUrl:
                       '${ApiConstants.viewDocBaseUrl}${IncidentViewImageUtil.viewImageList(incidentDetailsModel.data!.files)[index]}&code=${RandomValueGeneratorUtil.generateRandomValue(clientId)}',
                   placeholder: (context, url) => Shimmer.fromColors(
                       baseColor: Colors.grey.shade100,
                       highlightColor: AppColor.white,
                       child: Container(
-                          // height: kNetworkImageContainerTogether,
-                          // width: kNetworkImageContainerTogether,
+                          height: kNetworkImageContainerTogether,
+                          width: kNetworkImageContainerTogether,
                           decoration: BoxDecoration(
                               color: AppColor.white,
                               borderRadius:

@@ -5,7 +5,6 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:toolkit/utils/profile_util.dart';
-import 'package:toolkit/blocs/incident/incidentDetails/incident_details_bloc.dart';
 import 'package:toolkit/blocs/incident/incidentRemoveLinkedPermit/incident_remove_linked_permit_bloc.dart';
 import 'blocs/checklist/systemUser/approve/sys_user_approve_checklist_bloc.dart';
 import 'blocs/checklist/systemUser/changeRole/sys_user_checklist_change_role_bloc.dart';
@@ -26,6 +25,7 @@ import 'blocs/checklist/workforce/workforceList/workforce_list_bloc.dart';
 import 'blocs/client/client_bloc.dart';
 import 'blocs/dateFormat/date_format_bloc.dart';
 import 'blocs/home/home_bloc.dart';
+import 'blocs/incident/incidentDetails/incident_details_bloc.dart';
 import 'blocs/incident/incidentGetAndChangeRole/incident_get_and_change_role_bloc.dart';
 import 'blocs/incident/incidentListAndFilter/incident_list_and_filter_bloc.dart';
 import 'blocs/language/language_bloc.dart';
@@ -50,6 +50,7 @@ import 'screens/onboarding/select_time_zone_screen.dart';
 import 'screens/onboarding/welcome_screen.dart';
 import 'screens/root/root_screen.dart';
 import 'utils/database_utils.dart';
+import 'utils/profile_util.dart';
 
 void main() async {
   await _initApp();
@@ -130,6 +131,9 @@ class MyApp extends StatelessWidget {
           BlocProvider(
               lazy: true,
               create: (context) => IncidentFetchAndChangeRoleBloc()),
+          BlocProvider(
+              lazy: false, create: (context) => PickAndUploadImageBloc()),
+          BlocProvider(lazy: true, create: (context) => IncidentDetailsBloc()),
           BlocProvider(
               lazy: false, create: (context) => PickAndUploadImageBloc()),
           BlocProvider(lazy: false, create: (context) => IncidentDetailsBloc()),

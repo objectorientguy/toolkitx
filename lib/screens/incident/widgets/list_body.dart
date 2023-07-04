@@ -34,17 +34,20 @@ class IncidentListBody extends StatelessWidget {
                 itemBuilder: (context, index) {
                   return CustomCard(
                       child: ListTile(
-                          onTap: () => Navigator.pushNamed(
-                              context, IncidentDetailsScreen.routeName,
-                              arguments:
-                                  state.fetchIncidentsListModel.data![index]),
-                          contentPadding: const EdgeInsets.all(xxTinierSpacing),
-                          title: IncidentListTitle(
-                              incidentListDatum:
-                                  state.fetchIncidentsListModel.data![index]),
-                          subtitle: IncidentListSubtitle(
-                              incidentListDatum:
-                                  state.fetchIncidentsListModel.data![index])));
+                    contentPadding: const EdgeInsets.all(xxTinierSpacing),
+                    title: IncidentListTitle(
+                        incidentListDatum:
+                            state.fetchIncidentsListModel.data![index]),
+                    subtitle: IncidentListSubtitle(
+                        incidentListDatum:
+                            state.fetchIncidentsListModel.data![index]),
+                    onTap: () {
+                      Navigator.pushNamed(
+                          context, IncidentDetailsScreen.routeName,
+                          arguments:
+                              state.fetchIncidentsListModel.data![index]);
+                    },
+                  ));
                 },
                 separatorBuilder: (context, index) {
                   return const SizedBox(height: xxTinySpacing);

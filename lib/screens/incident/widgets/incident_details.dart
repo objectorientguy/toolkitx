@@ -11,13 +11,9 @@ import 'incident_map_links_list.dart';
 class IncidentDetails extends StatelessWidget {
   final IncidentDetailsModel incidentDetailsModel;
   final String clientId;
-  final int initialIndex;
 
   const IncidentDetails(
-      {Key? key,
-      required this.incidentDetailsModel,
-      required this.clientId,
-      required this.initialIndex})
+      {Key? key, required this.incidentDetailsModel, required this.clientId})
       : super(key: key);
 
   @override

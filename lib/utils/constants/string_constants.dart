@@ -59,6 +59,9 @@ abstract class StringConstants {
   static const String kNoILinkedPermit = 'No linked permit!'; //
   static const String kCannotUnlinkPermit = 'Cannot unlink permit!';
   static const String kFiles = 'Files'; //
+  static const String kNoCustomFields = 'No custom fields info!'; //
+  static const String kNoComment = 'No comments!'; //
+  static const String kNoInjuredPerson = 'No injured person list!'; //
   static const String kOtpGenerated = 'OTP generated';
   static const String kSelectDateFormat = 'Select Your Date Format';
   static const String kSave = 'SAVE';
