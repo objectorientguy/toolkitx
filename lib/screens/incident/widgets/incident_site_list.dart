@@ -5,6 +5,7 @@ import '../../../blocs/incident/reportNewIncident/report_new_incident_events.dar
 import '../../../configs/app_color.dart';
 import '../../../configs/app_spacing.dart';
 import '../../../data/models/incident/fetch_incident_master_model.dart';
+import '../../../utils/constants/string_constants.dart';
 import '../../../widgets/generic_app_bar.dart';
 
 class IncidentSiteList extends StatelessWidget {
@@ -20,7 +21,7 @@ class IncidentSiteList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: const GenericAppBar(title: 'Select Site'),
+        appBar: const GenericAppBar(title: StringConstants.kSelectSite),
         body: SingleChildScrollView(
           physics: const BouncingScrollPhysics(),
           child: Padding(

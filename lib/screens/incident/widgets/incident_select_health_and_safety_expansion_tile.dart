@@ -26,7 +26,6 @@ class IncidentReportHealthAndSafetyExpansionTile extends StatelessWidget {
             currentState is ReportNewIncidentAnonymousSelected,
         builder: (context, state) {
           if (state is ReportNewIncidentAnonymousSelected) {
-            // addIncidentMap['identity'] = state.reportAnonymousId;
             return Theme(
                 data: Theme.of(context)
                     .copyWith(dividerColor: Colors.transparent),
