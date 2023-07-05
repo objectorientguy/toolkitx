@@ -16,6 +16,7 @@ import '../../widgets/generic_app_bar.dart';
 import '../../widgets/primary_button.dart';
 import '../../widgets/progress_bar.dart';
 import '../../widgets/text_button.dart';
+import 'incident_injuries_screen.dart';
 import 'incident_list_screen.dart';
 
 class AddInjuredPersonScreen extends StatelessWidget {
@@ -34,7 +35,9 @@ class AddInjuredPersonScreen extends StatelessWidget {
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
         floatingActionButton: CustomFloatingActionButton(
           textValue: DatabaseUtil.getText('addInjuredPersonPageDetails'),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.pushNamed(context, IncidentInjuriesScreen.routeName);
+          },
         ),
         body: Padding(
             padding: const EdgeInsets.only(
