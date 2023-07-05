@@ -160,8 +160,8 @@ class ProfileBloc extends Bloc<ProfileEvents, ProfileStates> {
       } else if (event.updateProfileMap['lname'].toString().trim() == '') {
         emit(
             UserProfileUpdateError(message: StringConstants.kLastNameValidate));
-      } else if (event.updateProfileMap['contact'].toString() != '' ||
-          event.updateProfileMap['contact'].isNotEmpty) {
+      } else if (event.updateProfileMap['contact'].toString() == '' ||
+          event.updateProfileMap['contact'].isEmpty) {
         emit(UserProfileUpdateError(message: StringConstants.kContactValidate));
       } else {
         Map updateUserProfileMap = {
