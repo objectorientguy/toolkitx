@@ -22,6 +22,7 @@ import '../../data/models/status_tag_model.dart';
 import '../../widgets/custom_tabbar_view.dart';
 import '../../widgets/generic_app_bar.dart';
 import '../../widgets/status_tag.dart';
+import 'incident_pop_up_menu_screen.dart';
 
 class IncidentDetailsScreen extends StatelessWidget {
   final IncidentListDatum incidentListDatum;
@@ -37,7 +38,7 @@ class IncidentDetailsScreen extends StatelessWidget {
         role: context.read<IncidentFetchAndChangeRoleBloc>().roleId,
         initialIndex: 0));
     return Scaffold(
-        appBar: const GenericAppBar(actions: []),
+        appBar: const GenericAppBar(actions: [IncidentDetailsPopUpMenu()]),
         body: BlocConsumer<IncidentDetailsBloc, IncidentDetailsStates>(
             listener: (context, state) {},
             builder: (context, state) {
