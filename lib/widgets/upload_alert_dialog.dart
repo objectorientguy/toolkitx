@@ -35,7 +35,7 @@ class UploadAlertDialog extends StatelessWidget {
                 child: Text(
                     (isSignature == false)
                         ? StringConstants.kUploadFrom
-                        : StringConstants.kUploadSignature,
+                        : StringConstants.kEditSignature,
                     style: Theme.of(context).textTheme.medium)),
             const SizedBox(height: tiniestSpacing),
             IntrinsicHeight(
