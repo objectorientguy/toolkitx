@@ -40,7 +40,7 @@ class ProfileEditScreen extends StatelessWidget {
           appBar: GenericAppBar(title: DatabaseUtil.getText('MyProfile')),
           body: BlocConsumer<ProfileBloc, ProfileStates>(
               buildWhen: (previousState, currentState) =>
-              currentState is EditProfileInitialized ||
+                  currentState is EditProfileInitialized ||
                   currentState is EditProfileInitializing ||
                   currentState is EditProfileError,
               listener: (BuildContext context, state) {
@@ -148,7 +148,7 @@ class ProfileEditScreen extends StatelessWidget {
                                       }
                                     },
                                     textValue:
-                                    DatabaseUtil.getText('buttonSave')),
+                                        DatabaseUtil.getText('buttonSave')),
                                 const SizedBox(height: xxxSmallerSpacing)
                               ])));
                 } else if (state is EditProfileError) {
