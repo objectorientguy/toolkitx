@@ -56,11 +56,11 @@ abstract class ProfileUtil {
               actions: [
                 CustomTextButton(
                   onPressed: () => Navigator.of(context).pop(false),
-                  textValue: 'Cancel',
+                  textValue: StringConstants.kCancel,
                 ),
                 CustomTextButton(
                   onPressed: () => Navigator.of(context).pop(true),
-                  textValue: 'Discard',
+                  textValue: StringConstants.kDiscard,
                 ),
               ],
             ),
