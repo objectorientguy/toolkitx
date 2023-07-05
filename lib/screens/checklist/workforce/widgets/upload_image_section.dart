@@ -99,7 +99,7 @@ class UploadImageMenu extends StatelessWidget {
           },
           textValue: (isSignature == false)
               ? StringConstants.kUpload
-              : StringConstants.kUploadSignature)
+              : StringConstants.kEditSignature)
     ]);
   }
 }

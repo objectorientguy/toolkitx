@@ -97,7 +97,7 @@ abstract class StringConstants {
   static const String kSelectBloodGroup = 'Select Blood Group'; //
   static const String kSelectCategory = 'Select Category';
   static const String kSignature = 'Signature';
-  static const String kUploadSignature = 'Upload Signature';
+  static const String kEditSignature = 'Edit Signature';
   static const String kSignatureNotFound = 'Signature Not Found';
   static const String kUpload = 'Upload';
   static const String kChecklist = 'Checklist';
@@ -184,6 +184,8 @@ abstract class StringConstants {
   static const String kCLOSEPERMIT = 'CLOSE PERMIT';
   static const String kOPENPERMIT = 'OPEN PERMIT';
   static const String kNoRecordsFilter = 'No records found for these filters';
-  static const String kDiscardChanges = 'Discard Changes ?';
+  static const String kDiscardChanges = 'Discard Changes?';
   static const String kAppVersion = 'App version';
+  static const String kCancel = 'Cancel';
+  static const String kDiscard = 'Discard';
 }
