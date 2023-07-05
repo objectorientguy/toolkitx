@@ -14,7 +14,7 @@ import '../../../data/models/incident/incident_details_model.dart';
 import '../../../utils/database_utils.dart';
 import '../../../widgets/custom_snackbar.dart';
 import '../../../widgets/progress_bar.dart';
-import 'add_injured_person_body.dart';
+import 'injury_screen_body.dart';
 import 'incident_injured_person_list.dart';
 
 class IncidentInjuredPersonTab extends StatefulWidget {
@@ -52,20 +52,19 @@ class _IncidentInjuredPersonTabState extends State<IncidentInjuredPersonTab> {
         floatingActionButtonLocation:
             (isList) ? FloatingActionButtonLocation.centerFloat : null,
         floatingActionButton: Visibility(
-          visible: isList,
-          child: FloatingActionButton.extended(
-              label: Row(children: [
-                const Icon(Icons.add),
-                const SizedBox(width: tiniestSpacing),
-                Text(DatabaseUtil.getText('addInjuredPersonPageHeading'))
-              ]),
-              onPressed: () {
-                setState(() {
-                  isList = false;
-                });
-                context.read<InjuryDetailsBloc>().add(const InjuryMaster());
-              }),
-        ),
+            visible: isList,
+            child: FloatingActionButton.extended(
+                label: Row(children: [
+                  const Icon(Icons.add),
+                  const SizedBox(width: tiniestSpacing),
+                  Text(DatabaseUtil.getText('addInjuredPersonPageHeading'))
+                ]),
+                onPressed: () {
+                  setState(() {
+                    isList = false;
+                  });
+                  context.read<InjuryDetailsBloc>().add(const InjuryMaster());
+                })),
         body: Visibility(
             visible: isList,
             replacement: BlocConsumer<InjuryDetailsBloc, InjuryDetailsStates>(

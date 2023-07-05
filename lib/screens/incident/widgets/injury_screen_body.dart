@@ -59,7 +59,7 @@ class InjuryScreenBody extends StatelessWidget {
           const SizedBox(height: xxTinySpacing),
           ClipRRect(
               borderRadius: BorderRadius.circular(kCardRadius),
-              child: Image.asset('assets/images/bodyPart.png',
+              child: Image.asset('assets/icons/bodyPart.png',
                   fit: BoxFit.fitWidth)),
           const SizedBox(height: xxTinySpacing),
           InjuryMultiSelect(injuredPersonDetails: injuredPersonDetails)
