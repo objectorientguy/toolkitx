@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:toolkit/configs/app_theme.dart';
@@ -39,7 +40,7 @@ class ProfileEditScreen extends StatelessWidget {
           appBar: GenericAppBar(title: DatabaseUtil.getText('MyProfile')),
           body: BlocConsumer<ProfileBloc, ProfileStates>(
               buildWhen: (previousState, currentState) =>
-                  currentState is EditProfileInitialized ||
+              currentState is EditProfileInitialized ||
                   currentState is EditProfileInitializing ||
                   currentState is EditProfileError,
               listener: (BuildContext context, state) {
@@ -133,13 +134,21 @@ class ProfileEditScreen extends StatelessWidget {
                                 const SizedBox(height: xxxSmallerSpacing),
                                 PrimaryButton(
                                     onPressed: () {
-                                      context.read<ProfileBloc>().add(
-                                          UpdateProfile(
-                                              updateProfileMap:
-                                                  copyProfileMap));
+                                      if (!mapEquals(
+                                          context
+                                              .read<ProfileBloc>()
+                                              .updateProfileDataMap,
+                                          copyProfileMap)) {
+                                        context.read<ProfileBloc>().add(
+                                            UpdateProfile(
+                                                updateProfileMap:
+                                                    copyProfileMap));
+                                      } else {
+                                        Navigator.pop(context);
+                                      }
                                     },
                                     textValue:
-                                        DatabaseUtil.getText('buttonSave')),
+                                    DatabaseUtil.getText('buttonSave')),
                                 const SizedBox(height: xxxSmallerSpacing)
                               ])));
                 } else if (state is EditProfileError) {

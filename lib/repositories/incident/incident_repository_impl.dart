@@ -1,13 +1,14 @@
-import 'package:toolkit/data/models/incident/fetch_incidents_list_model.dart';
-
 import '../../../utils/constants/api_constants.dart';
 import '../../../utils/dio_client.dart';
+import '../../data/models/incident/fetch_incidents_list_model.dart';
 import '../../data/models/incident/incident_details_model.dart';
 import '../../data/models/incident/fetch_incident_master_model.dart';
 import '../../data/models/incident/incident_fetch_roles_model.dart';
+import '../../data/models/incident/incident_injury_master.dart';
 import '../../data/models/incident/incident_unlink_permit_model.dart';
 import '../../data/models/incident/save_report_new_incident_model.dart';
 import '../../data/models/incident/save_report_new_incident_photos_model.dart';
+import '../../data/models/incident/save_injured_person_model.dart';
 import 'incident_repository.dart';
 
 class IncidentRepositoryImpl extends IncidentRepository {
@@ -25,6 +26,13 @@ class IncidentRepositoryImpl extends IncidentRepository {
     final response = await DioClient().get(
         "${ApiConstants.baseUrl}incident/get?pageno=1&userid=$userId&hashcode=$hashCode&filter=$filter&role=$role");
     return FetchIncidentsListModel.fromJson(response);
+  }
+
+  @override
+  Future<IncidentInjuryMasterModel> fetchInjuryMaster(String hashCode) async {
+    final response = await DioClient().get(
+        "${ApiConstants.baseUrl}incident/getinjuredpersonmaster?hashcode=$hashCode");
+    return IncidentInjuryMasterModel.fromJson(response);
   }
 
   @override
@@ -66,5 +74,12 @@ class IncidentRepositoryImpl extends IncidentRepository {
         "${ApiConstants.baseUrl}incident/savecommentsfiles",
         saveIncidentPhotosMap);
     return SaveReportNewIncidentPhotosModel.fromJson(response);
+  }
+
+  @override
+  Future<SaveInjuredPersonModel> saveInjuredPerson(Map injuredPersonMap) async {
+    final response = await DioClient().post(
+        "${ApiConstants.baseUrl}incident/saveinjuredperson", injuredPersonMap);
+    return SaveInjuredPersonModel.fromJson(response);
   }
 }
