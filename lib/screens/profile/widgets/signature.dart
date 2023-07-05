@@ -40,12 +40,14 @@ class _SignaturePadState extends State<SignaturePad> {
   }
 
   bool showSignPad = false;
+  bool newSign = false;
   String? croppedFilePath;
 
   @override
   void initState() {
     if (widget.map[widget.mapKey] == '') {
       showSignPad = true;
+      newSign = true;
     }
     saveSign();
     super.initState();
@@ -133,20 +135,22 @@ class _SignaturePadState extends State<SignaturePad> {
                                     Text(StringConstants.kSignatureNotFound)));
                       }
                     }))),
-      UploadImageMenu(
-          onUploadImageResponse: (List uploadImageList) {},
-          isSignature: true,
-          removeSignPad: () {
-            setState(() {
-              showSignPad = false;
-            });
-          },
-          onSign: () {
-            setState(() {
-              showSignPad = true;
-              Navigator.pop(context);
-            });
-          })
+      (newSign == false)
+          ? UploadImageMenu(
+              onUploadImageResponse: (List uploadImageList) {},
+              isSignature: true,
+              removeSignPad: () {
+                setState(() {
+                  showSignPad = false;
+                });
+              },
+              onSign: () {
+                setState(() {
+                  showSignPad = true;
+                  Navigator.pop(context);
+                });
+              })
+          : const SizedBox()
     ]);
   }
 }

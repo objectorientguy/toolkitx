@@ -42,27 +42,25 @@ abstract class ProfileUtil {
   static Future<bool> showExitPopup(map1, map2, context) async {
     if (!mapEquals(map1, map2)) {
       return await showDialog(
-            //show confirm dialogue
-            //the return value will be from "Yes" or "No" options
             context: context,
             builder: (context) => AlertDialog(
-              content: Text(
+              title: Text(
                 StringConstants.kDiscardChanges,
-                style: Theme.of(context).textTheme.medium,
+                style: Theme.of(context).textTheme.large,
               ),
-              buttonPadding: const EdgeInsets.all(xxTiniestSpacing),
-              contentPadding: const EdgeInsets.fromLTRB(
-                  xxTinySpacing, xxTinySpacing, xxTinySpacing, 0),
-              actionsPadding: const EdgeInsets.only(top: xxTinierSpacing),
+              titlePadding: const EdgeInsets.fromLTRB(smallestSpacing,
+                  smallestSpacing, smallestSpacing, xxxTinierSpacing),
+              actionsPadding: const EdgeInsets.only(
+                  left: xxTinySpacing, bottom: xxTiniestSpacing),
               actionsAlignment: MainAxisAlignment.start,
               actions: [
                 CustomTextButton(
-                  onPressed: () => Navigator.of(context).pop(true),
-                  textValue: 'Yes',
+                  onPressed: () => Navigator.of(context).pop(false),
+                  textValue: 'Cancel',
                 ),
                 CustomTextButton(
-                  onPressed: () => Navigator.of(context).pop(false),
-                  textValue: 'No',
+                  onPressed: () => Navigator.of(context).pop(true),
+                  textValue: 'Discard',
                 ),
               ],
             ),
