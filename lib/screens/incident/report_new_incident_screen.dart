@@ -120,7 +120,7 @@ class ReportNewIncidentScreen extends StatelessWidget {
               showCustomSnackBar(
                   context, state.dateTimeDescValidationMessage, '');
             } else if (state
-            is ReportNewIncidentDateTimeDescValidationComplete) {
+                is ReportNewIncidentDateTimeDescValidationComplete) {
               Navigator.pushNamed(context, IncidentLocationScreen.routeName,
                   arguments: addIncidentMap);
             }

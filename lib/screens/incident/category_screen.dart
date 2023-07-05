@@ -108,7 +108,7 @@ class CategoryScreen extends StatelessWidget {
                                                             .textTheme
                                                             .xSmall
                                                             .copyWith(
-                                                            fontWeight: FontWeight.w400,
+                                                                fontWeight: FontWeight.w400,
                                                                 color: AppColor.grey)),
                                                     controlAffinity: ListTileControlAffinity.trailing,
                                                     onChanged: (value) {

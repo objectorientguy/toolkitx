@@ -20,7 +20,6 @@ class ReportNewIncidentBloc
   Map reportNewIncidentMap = {};
   String selectSiteName = '';
   String incidentId = '';
-
   ReportNewIncidentStates get initialState => ReportNewIncidentInitial();
 
   ReportNewIncidentBloc() : super(ReportNewIncidentInitial()) {
@@ -47,10 +46,12 @@ class ReportNewIncidentBloc
       String hashCode = (await _customerCache.getHashCode(CacheKeys.hashcode))!;
       fetchIncidentMasterModel =
           await _incidentRepository.fetchIncidentMaster(hashCode, event.role);
-      fetchIncidentMasterModel.incidentMasterDatum![0].add(
+      fetchIncidentMasterModel.incidentMasterDatum![0].insert(
+          0,
           IncidentMasterDatum.fromJson(
               {"name": DatabaseUtil.getText('Other')}));
-      fetchIncidentMasterModel.incidentMasterDatum![1].add(
+      fetchIncidentMasterModel.incidentMasterDatum![1].insert(
+          0,
           IncidentMasterDatum.fromJson(
               {"location": DatabaseUtil.getText('Other')}));
       add(SelectIncidentCategory(multiSelectList: [], selectedCategory: null));
