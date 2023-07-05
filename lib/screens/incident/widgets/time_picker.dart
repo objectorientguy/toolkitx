@@ -34,6 +34,12 @@ class _TimePickerTextFieldState extends State<TimePickerTextField> {
   final TextEditingController timeInputController = TextEditingController();
   bool? isFirstTime = true;
 
+  @override
+  void initState() {
+    timeInputController.text = widget.editTime;
+    super.initState();
+  }
+
   void showDatePicker(BuildContext context) {
     showCupertinoModalPopup(
         context: context,
@@ -54,11 +60,13 @@ class _TimePickerTextFieldState extends State<TimePickerTextField> {
                                 : DateFormat("HH:mm")
                                     .parse(timeInputController.text),
                             onDateTimeChanged: (value) {
-                              String formattedDate =
-                                  DateFormat("HH:mm").format(value);
-                              timeInputController.text = formattedDate;
-                              widget.onTimeChanged(timeInputController.text);
-                              isFirstTime = false;
+                              setState(() {
+                                String formattedDate =
+                                    DateFormat("HH:mm").format(value);
+                                timeInputController.text = formattedDate;
+                                widget.onTimeChanged(timeInputController.text);
+                                isFirstTime = false;
+                              });
                             },
                             minuteInterval: 1)),
                     CustomTextButton(
@@ -83,7 +91,6 @@ class _TimePickerTextFieldState extends State<TimePickerTextField> {
 
   @override
   Widget build(BuildContext context) {
-    timeInputController.text = widget.editTime;
     return TextField(
         readOnly: true,
         controller: timeInputController,

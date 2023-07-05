@@ -13,10 +13,14 @@ import '../screens/checklist/systemUser/sys_user_change_role_screen.dart';
 import '../screens/checklist/systemUser/sys_user_schedule_dates_screen.dart';
 import '../screens/checklist/systemUser/sys_user_filters_screen.dart';
 import '../screens/checklist/workforce/workforce_reject_reason_screen.dart';
+import '../screens/incident/add_injured_person_screen.dart';
 import '../screens/incident/category_screen.dart';
 import '../screens/incident/change_role_screen.dart';
 import '../screens/incident/filter_screen.dart';
+import '../screens/incident/incident_health_and_safety_screen.dart';
 import '../screens/incident/incident_list_screen.dart';
+import '../screens/incident/incident_location_screen.dart';
+import '../screens/incident/report_new_incident_screen.dart';
 import '../screens/onboarding/client_list_screen.dart';
 import '../screens/onboarding/select_language_screen.dart';
 import '../screens/onboarding/login_screen.dart';
@@ -123,6 +127,18 @@ class AppRoutes {
       case IncidentDetailsScreen.routeName:
         return _createRoute(IncidentDetailsScreen(
             incidentListDatum: settings.arguments as IncidentListDatum));
+      case ReportNewIncidentScreen.routeName:
+        return _createRoute(
+            ReportNewIncidentScreen(addIncidentMap: settings.arguments as Map));
+      case IncidentLocationScreen.routeName:
+        return _createRoute(
+            IncidentLocationScreen(addIncidentMap: settings.arguments as Map));
+      case IncidentHealthAndSafetyScreen.routeName:
+        return _createRoute(IncidentHealthAndSafetyScreen(
+            addIncidentMap: settings.arguments as Map));
+      case AddInjuredPersonScreen.routeName:
+        return _createRoute(
+            AddInjuredPersonScreen(addIncidentMap: settings.arguments as Map));
       default:
         return _createRoute(const WelcomeScreen());
     }
