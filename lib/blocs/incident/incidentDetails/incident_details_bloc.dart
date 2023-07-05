@@ -1,11 +1,11 @@
 import 'dart:async';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:toolkit/repositories/incident/incident_repository.dart';
 import '../../../../data/cache/cache_keys.dart';
 import '../../../../data/cache/customer_cache.dart';
 import '../../../../di/app_module.dart';
 import '../../../data/models/incident/incident_details_model.dart';
 import '../../../utils/database_utils.dart';
+import '../../../repositories/incident/incident_repository.dart';
 import 'incident_details_event.dart';
 import 'incident_details_states.dart';
 
