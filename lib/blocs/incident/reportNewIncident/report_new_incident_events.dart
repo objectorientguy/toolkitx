@@ -7,18 +7,11 @@ class FetchIncidentMaster extends ReportNewIncidentEvent {
 }
 
 class SelectIncidentCategory extends ReportNewIncidentEvent {
-  final int index;
-  final int itemIndex;
-  final bool isSelected;
+  final int? selectedCategory;
   final List multiSelectList;
-  final Map addNewIncidentMap;
 
   SelectIncidentCategory(
-      {required this.addNewIncidentMap,
-      required this.multiSelectList,
-      required this.isSelected,
-      required this.index,
-      required this.itemIndex});
+      {required this.selectedCategory, required this.multiSelectList});
 }
 
 class ReportNewIncidentAnonymousExpansionChange extends ReportNewIncidentEvent {
@@ -81,4 +74,18 @@ class ReportNewIncidentCustomInfoFiledExpansionChange
 
   ReportNewIncidentCustomInfoFiledExpansionChange(
       {required this.reportIncidentCustomInfoOptionId});
+}
+
+class SaveReportNewIncident extends ReportNewIncidentEvent {
+  final Map reportNewIncidentMap;
+  final String role;
+
+  SaveReportNewIncident(
+      {required this.role, required this.reportNewIncidentMap});
+}
+
+class SaveReportNewIncidentPhotos extends ReportNewIncidentEvent {
+  final Map reportNewIncidentMap;
+
+  SaveReportNewIncidentPhotos({required this.reportNewIncidentMap});
 }

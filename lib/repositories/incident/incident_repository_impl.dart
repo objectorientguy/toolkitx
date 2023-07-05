@@ -6,6 +6,8 @@ import '../../data/models/incident/incident_details_model.dart';
 import '../../data/models/incident/fetch_incident_master_model.dart';
 import '../../data/models/incident/incident_fetch_roles_model.dart';
 import '../../data/models/incident/incident_unlink_permit_model.dart';
+import '../../data/models/incident/save_report_new_incident_model.dart';
+import '../../data/models/incident/save_report_new_incident_photos_model.dart';
 import 'incident_repository.dart';
 
 class IncidentRepositoryImpl extends IncidentRepository {
@@ -47,5 +49,22 @@ class IncidentRepositoryImpl extends IncidentRepository {
     final response = await DioClient().get(
         "${ApiConstants.baseUrl}incident/getmaster?hashcode=$hashCode&role=$role");
     return FetchIncidentMasterModel.fromJson(response);
+  }
+
+  @override
+  Future<SaveReportNewIncidentModel> saveIncident(
+      Map reportNewIncidentMap) async {
+    final response = await DioClient()
+        .post("${ApiConstants.baseUrl}incident/save", reportNewIncidentMap);
+    return SaveReportNewIncidentModel.fromJson(response);
+  }
+
+  @override
+  Future<SaveReportNewIncidentPhotosModel> saveIncidentPhotos(
+      Map saveIncidentPhotosMap) async {
+    final response = await DioClient().post(
+        "${ApiConstants.baseUrl}incident/savecommentsfiles",
+        saveIncidentPhotosMap);
+    return SaveReportNewIncidentPhotosModel.fromJson(response);
   }
 }

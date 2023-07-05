@@ -16,8 +16,6 @@ import 'date_picker.dart';
 
 class IncidentReportedAuthorityExpansionTile extends StatelessWidget {
   final Map addIncidentMap;
-  static String authorityName = '';
-  static String reportedDate = '';
 
   const IncidentReportedAuthorityExpansionTile(
       {Key? key, required this.addIncidentMap})
@@ -28,6 +26,8 @@ class IncidentReportedAuthorityExpansionTile extends StatelessWidget {
     context.read<ReportNewIncidentBloc>().add(
         ReportNewIncidentAuthorityExpansionChange(
             reportIncidentAuthorityId: ''));
+    String authorityName = '';
+    String reportedDate = '';
     return BlocBuilder<ReportNewIncidentBloc, ReportNewIncidentStates>(
         buildWhen: (previousState, currentState) =>
             currentState is ReportNewIncidentAuthoritySelected,

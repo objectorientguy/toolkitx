@@ -13,6 +13,7 @@ import '../screens/checklist/systemUser/sys_user_change_role_screen.dart';
 import '../screens/checklist/systemUser/sys_user_schedule_dates_screen.dart';
 import '../screens/checklist/systemUser/sys_user_filters_screen.dart';
 import '../screens/checklist/workforce/workforce_reject_reason_screen.dart';
+import '../screens/incident/add_injured_person_screen.dart';
 import '../screens/incident/category_screen.dart';
 import '../screens/incident/change_role_screen.dart';
 import '../screens/incident/filter_screen.dart';
@@ -135,6 +136,9 @@ class AppRoutes {
       case IncidentHealthAndSafetyScreen.routeName:
         return _createRoute(IncidentHealthAndSafetyScreen(
             addIncidentMap: settings.arguments as Map));
+      case AddInjuredPersonScreen.routeName:
+        return _createRoute(
+            AddInjuredPersonScreen(addIncidentMap: settings.arguments as Map));
       default:
         return _createRoute(const WelcomeScreen());
     }

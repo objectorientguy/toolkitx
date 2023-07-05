@@ -17,7 +17,6 @@ import '../../widgets/primary_button.dart';
 
 class CategoryScreen extends StatelessWidget {
   static const routeName = 'CategoryScreen';
-  static List multiSelectList = [];
   static Map addIncidentMap = {};
 
   const CategoryScreen({Key? key}) : super(key: key);
@@ -41,8 +40,7 @@ class CategoryScreen extends StatelessWidget {
                   if (state is FetchingIncidentMaster) {
                     return const Center(child: CircularProgressIndicator());
                   } else if (state is IncidentMasterFetched) {
-                    multiSelectList.addAll(state.categorySelectedList);
-                    addIncidentMap['category'] = multiSelectList
+                    addIncidentMap['category'] = state.categorySelectedList
                         .toString()
                         .replaceAll("[", "")
                         .replaceAll("]", "");
@@ -94,7 +92,7 @@ class CategoryScreen extends StatelessWidget {
                                                         AppColor.deepBlue,
                                                     contentPadding:
                                                         EdgeInsets.zero,
-                                                    value: multiSelectList
+                                                    value: state.categorySelectedList
                                                         .contains(state
                                                             .categoryList[index]
                                                                 ['items']
@@ -110,24 +108,24 @@ class CategoryScreen extends StatelessWidget {
                                                             .textTheme
                                                             .xSmall
                                                             .copyWith(
-                                                                fontWeight:
-                                                                    FontWeight.w400,
+                                                            fontWeight: FontWeight.w400,
                                                                 color: AppColor.grey)),
                                                     controlAffinity: ListTileControlAffinity.trailing,
                                                     onChanged: (value) {
                                                       context
                                                           .read<
                                                               ReportNewIncidentBloc>()
-                                                          .add(SelectIncidentCategory(
-                                                              index: index,
-                                                              itemIndex:
-                                                                  itemIndex,
-                                                              isSelected:
-                                                                  value!,
-                                                              multiSelectList:
-                                                                  multiSelectList,
-                                                              addNewIncidentMap:
-                                                                  addIncidentMap));
+                                                          .add(
+                                                              SelectIncidentCategory(
+                                                            selectedCategory: state
+                                                                .categoryList[
+                                                                    index]
+                                                                    ['items']
+                                                                    [itemIndex]
+                                                                .id,
+                                                            multiSelectList: state
+                                                                .categorySelectedList,
+                                                          ));
                                                     });
                                               }),
                                           const SizedBox(

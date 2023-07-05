@@ -11,6 +11,8 @@ import 'package:toolkit/screens/incident/widgets/incident_report_anonymously_exp
 import 'package:toolkit/screens/incident/widgets/time_picker.dart';
 import 'package:toolkit/utils/database_utils.dart';
 import 'package:toolkit/widgets/custom_snackbar.dart';
+import '../../blocs/pickAndUploadImage/pick_and_upload_image_bloc.dart';
+import '../../blocs/pickAndUploadImage/pick_and_upload_image_events.dart';
 import '../../configs/app_color.dart';
 import '../../configs/app_spacing.dart';
 import '../../utils/constants/string_constants.dart';
@@ -29,6 +31,7 @@ class ReportNewIncidentScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    context.read<PickAndUploadImageBloc>().add(UploadInitial());
     return Scaffold(
       appBar: const GenericAppBar(
         title: StringConstants.kReportNewIncident,
@@ -100,7 +103,12 @@ class ReportNewIncidentScreen extends StatelessWidget {
                             .copyWith(color: AppColor.black)),
                     const SizedBox(height: tiniestSpacing),
                     UploadImageMenu(
-                      onUploadImageResponse: (List uploadImageList) {},
+                      onUploadImageResponse: (List uploadImageList) {
+                        addIncidentMap['filenames'] = uploadImageList
+                            .toString()
+                            .replaceAll("[", "")
+                            .replaceAll("]", "");
+                      },
                     ),
                     const SizedBox(height: tiniestSpacing),
                     IncidentContractorListTile(addIncidentMap: addIncidentMap),
@@ -112,7 +120,7 @@ class ReportNewIncidentScreen extends StatelessWidget {
               showCustomSnackBar(
                   context, state.dateTimeDescValidationMessage, '');
             } else if (state
-                is ReportNewIncidentDateTimeDescValidationComplete) {
+            is ReportNewIncidentDateTimeDescValidationComplete) {
               Navigator.pushNamed(context, IncidentLocationScreen.routeName,
                   arguments: addIncidentMap);
             }

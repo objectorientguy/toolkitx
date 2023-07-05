@@ -3,6 +3,8 @@ import '../../data/models/incident/fetch_incidents_list_model.dart';
 import '../../data/models/incident/incident_details_model.dart';
 import '../../data/models/incident/incident_fetch_roles_model.dart';
 import '../../data/models/incident/incident_unlink_permit_model.dart';
+import '../../data/models/incident/save_report_new_incident_model.dart';
+import '../../data/models/incident/save_report_new_incident_photos_model.dart';
 
 abstract class IncidentRepository {
   Future<FetchIncidentsListModel> fetchIncidents(
@@ -19,4 +21,9 @@ abstract class IncidentRepository {
 
   Future<FetchIncidentMasterModel> fetchIncidentMaster(
       String hashCode, String role);
+
+  Future<SaveReportNewIncidentModel> saveIncident(Map reportNewIncidentMap);
+
+  Future<SaveReportNewIncidentPhotosModel> saveIncidentPhotos(
+      Map saveIncidentPhotosMap);
 }

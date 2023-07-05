@@ -10,6 +10,7 @@ import '../../utils/report_new_incident_health_and_safety_util.dart';
 import '../../utils/constants/string_constants.dart';
 import '../../widgets/generic_app_bar.dart';
 import '../../widgets/primary_button.dart';
+import 'add_injured_person_screen.dart';
 
 class IncidentHealthAndSafetyScreen extends StatelessWidget {
   static const routeName = 'IncidentHealthAndSafetyScreen';
@@ -72,6 +73,8 @@ class IncidentHealthAndSafetyScreen extends StatelessWidget {
           child: PrimaryButton(
               onPressed: () {
                 addIncidentMap['customfields'] = customInfoFieldList;
+                Navigator.pushNamed(context, AddInjuredPersonScreen.routeName,
+                    arguments: addIncidentMap);
               },
               textValue: DatabaseUtil.getText('nextButtonText'))),
     );

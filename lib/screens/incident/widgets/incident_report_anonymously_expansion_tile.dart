@@ -15,13 +15,13 @@ class IncidentReportAnonymousExpansionTile extends StatelessWidget {
   const IncidentReportAnonymousExpansionTile(
       {Key? key, required this.addIncidentMap})
       : super(key: key);
-  static String anonymousName = '';
 
   @override
   Widget build(BuildContext context) {
     context.read<ReportNewIncidentBloc>().add(
         ReportNewIncidentAnonymousExpansionChange(
             reportIncidentAnonymousId: ''));
+    String anonymousName = '';
     return BlocBuilder<ReportNewIncidentBloc, ReportNewIncidentStates>(
         buildWhen: (previousState, currentState) =>
             currentState is ReportNewIncidentAnonymousSelected,

@@ -1,4 +1,6 @@
 import '../../../data/models/incident/fetch_incident_master_model.dart';
+import '../../../data/models/incident/save_report_new_incident_model.dart';
+import '../../../data/models/incident/save_report_new_incident_photos_model.dart';
 
 abstract class ReportNewIncidentStates {}
 
@@ -10,11 +12,9 @@ class IncidentMasterFetched extends ReportNewIncidentStates {
   final FetchIncidentMasterModel fetchIncidentMasterModel;
   final List categoryList;
   final List categorySelectedList;
-  final Map addNewIncidentMap;
 
   IncidentMasterFetched(
-      {required this.addNewIncidentMap,
-      required this.categorySelectedList,
+      {required this.categorySelectedList,
       required this.categoryList,
       required this.fetchIncidentMasterModel});
 }
@@ -103,4 +103,24 @@ class ReportNewIncidentCustomFieldSelected extends ReportNewIncidentStates {
   ReportNewIncidentCustomFieldSelected(
       {required this.fetchIncidentMasterModel,
       required this.reportIncidentCustomInfoOptionId});
+}
+
+class ReportNewIncidentSaving extends ReportNewIncidentStates {}
+
+class ReportNewIncidentSaved extends ReportNewIncidentStates {
+  final SaveReportNewIncidentModel saveReportNewIncidentModel;
+
+  ReportNewIncidentSaved({required this.saveReportNewIncidentModel});
+}
+
+class ReportNewIncidentNotSaved extends ReportNewIncidentStates {
+  final String incidentNotSavedMessage;
+
+  ReportNewIncidentNotSaved({required this.incidentNotSavedMessage});
+}
+
+class ReportNewIncidentPhotoSaved extends ReportNewIncidentStates {
+  final SaveReportNewIncidentPhotosModel saveReportNewIncidentPhotosModel;
+
+  ReportNewIncidentPhotoSaved({required this.saveReportNewIncidentPhotosModel});
 }
