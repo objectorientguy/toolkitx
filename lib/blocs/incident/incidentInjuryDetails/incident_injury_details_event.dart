@@ -13,6 +13,10 @@ class InjuryMaster extends InjuryDetailsEvent {
   const InjuryMaster();
 }
 
+class CancelAddInjuredPerson extends InjuryDetailsEvent {
+  const CancelAddInjuredPerson();
+}
+
 class SelectInjuryNature extends InjuryDetailsEvent {
   final List selectedInjuryId;
   final List selectedInjuryNature;
