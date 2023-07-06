@@ -25,45 +25,40 @@ class IncidentLocationList extends StatelessWidget {
         body: SingleChildScrollView(
           physics: const BouncingScrollPhysics(),
           child: Padding(
-              padding: const EdgeInsets.only(top: topBottomPadding),
+              padding: const EdgeInsets.only(
+                  left: leftRightMargin, right: leftRightMargin),
               child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     ListView.builder(
                         physics: const NeverScrollableScrollPhysics(),
-                        padding:
-                            const EdgeInsets.only(bottom: xxTiniestSpacing),
+                        padding: EdgeInsets.zero,
                         shrinkWrap: true,
                         itemCount: fetchIncidentMasterModel
                             .incidentMasterDatum![1].length,
                         itemBuilder: (context, index) {
-                          return SizedBox(
-                              height: xxxMediumSpacing,
-                              child: RadioListTile(
-                                  activeColor: AppColor.deepBlue,
-                                  controlAffinity:
-                                      ListTileControlAffinity.trailing,
-                                  title: Text(fetchIncidentMasterModel
-                                      .incidentMasterDatum![1][index]
-                                      .location!),
-                                  value: fetchIncidentMasterModel
-                                      .incidentMasterDatum![1][index].location!,
-                                  groupValue: selectLocationName,
-                                  onChanged: (value) {
-                                    value = fetchIncidentMasterModel
-                                        .incidentMasterDatum![1][index]
-                                        .location!;
-                                    context
-                                        .read<ReportNewIncidentBloc>()
-                                        .add(ReportNewIncidentLocationChange(
-                                          selectLocationName:
-                                              fetchIncidentMasterModel
-                                                  .incidentMasterDatum![1]
-                                                      [index]
-                                                  .location!,
-                                        ));
-                                    Navigator.pop(context);
-                                  }));
+                          return RadioListTile(
+                              contentPadding: EdgeInsets.zero,
+                              activeColor: AppColor.deepBlue,
+                              controlAffinity: ListTileControlAffinity.trailing,
+                              title: Text(fetchIncidentMasterModel
+                                  .incidentMasterDatum![1][index].location!),
+                              value: fetchIncidentMasterModel
+                                  .incidentMasterDatum![1][index].location!,
+                              groupValue: selectLocationName,
+                              onChanged: (value) {
+                                value = fetchIncidentMasterModel
+                                    .incidentMasterDatum![1][index].location!;
+                                context
+                                    .read<ReportNewIncidentBloc>()
+                                    .add(ReportNewIncidentLocationChange(
+                                      selectLocationName:
+                                          fetchIncidentMasterModel
+                                              .incidentMasterDatum![1][index]
+                                              .location!,
+                                    ));
+                                Navigator.pop(context);
+                              });
                         }),
                     const SizedBox(height: xxxSmallerSpacing)
                   ])),

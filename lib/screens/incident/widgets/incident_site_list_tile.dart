@@ -46,15 +46,19 @@ class IncidentSiteListTile extends StatelessWidget {
                     title: Text(DatabaseUtil.getText('Site'),
                         style: Theme.of(context)
                             .textTheme
-                            .medium
-                            .copyWith(color: AppColor.black)),
+                            .xSmall
+                            .copyWith(fontWeight: FontWeight.w600)),
                     subtitle: (state.selectSiteName == '')
                         ? null
-                        : Text(state.selectSiteName,
-                            style: Theme.of(context)
-                                .textTheme
-                                .xSmall
-                                .copyWith(color: AppColor.black)),
+                        : Padding(
+                            padding:
+                                const EdgeInsets.only(top: xxxTinierSpacing),
+                            child: Text(state.selectSiteName,
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .xSmall
+                                    .copyWith(color: AppColor.black)),
+                          ),
                     trailing: const Icon(Icons.navigate_next_rounded,
                         size: kIconSize)),
                 Visibility(
@@ -64,13 +68,16 @@ class IncidentSiteListTile extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(DatabaseUtil.getText('OtherSite'),
-                              style: Theme.of(context).textTheme.medium),
-                          const SizedBox(height: tiniestSpacing),
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .xSmall
+                                  .copyWith(fontWeight: FontWeight.w600)),
+                          const SizedBox(height: xxxTinierSpacing),
                           TextFieldWidget(
                               hintText: StringConstants.kOther,
                               onTextFieldChanged: (String textField) {
                                 addIncidentMap['site_name'] = textField;
-                              }),
+                              })
                         ])),
               ],
             );

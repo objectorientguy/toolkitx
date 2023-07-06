@@ -90,29 +90,38 @@ class IncidentReportedAuthorityExpansionTile extends StatelessWidget {
                   child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const SizedBox(height: tinySpacing),
+                        const SizedBox(height: xxTinySpacing),
                         Text(DatabaseUtil.getText('WhichAuthority'),
-                            style: Theme.of(context).textTheme.medium),
-                        const SizedBox(height: tiniestSpacing),
+                            style: Theme.of(context)
+                                .textTheme
+                                .xSmall
+                                .copyWith(fontWeight: FontWeight.w600)),
+                        const SizedBox(height: xxxTinierSpacing),
                         TextFieldWidget(
                             hintText: DatabaseUtil.getText('WhichAuthority'),
                             onTextFieldChanged: (String textField) {
                               addIncidentMap['responsible_person'] = textField;
                             }),
-                        const SizedBox(height: tinySpacing),
+                        const SizedBox(height: xxTinySpacing),
                         Text(DatabaseUtil.getText('WhenReported'),
-                            style: Theme.of(context).textTheme.medium),
-                        const SizedBox(height: tiniestSpacing),
+                            style: Theme.of(context)
+                                .textTheme
+                                .xSmall
+                                .copyWith(fontWeight: FontWeight.w600)),
+                        const SizedBox(height: xxxTinierSpacing),
                         DatePickerTextField(
                           hintText: StringConstants.kSelectDate,
                           onDateChanged: (String date) {
                             reportedDate = date;
                           },
                         ),
-                        const SizedBox(height: tinySpacing),
+                        const SizedBox(height: xxTinySpacing),
                         Text(StringConstants.kTime,
-                            style: Theme.of(context).textTheme.medium),
-                        const SizedBox(height: tiniestSpacing),
+                            style: Theme.of(context)
+                                .textTheme
+                                .xSmall
+                                .copyWith(fontWeight: FontWeight.w600)),
+                        const SizedBox(height: xxxTinierSpacing),
                         TimePickerTextField(
                           hintText: StringConstants.kSelectTime,
                           onTimeChanged: (String time) {
@@ -120,7 +129,7 @@ class IncidentReportedAuthorityExpansionTile extends StatelessWidget {
                                 '$reportedDate $time';
                           },
                         ),
-                        const SizedBox(height: tinySpacing)
+                        const SizedBox(height: xxTinySpacing)
                       ]))
             ]);
           } else {

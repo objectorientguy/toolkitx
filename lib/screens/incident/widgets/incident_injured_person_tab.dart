@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:toolkit/widgets/custom_floating_action_button.dart';
 import 'package:toolkit/widgets/primary_button.dart';
 
 import '../../../blocs/incident/incidentDetails/incident_details_bloc.dart';
@@ -35,31 +36,28 @@ class IncidentInjuredPersonTab extends StatelessWidget {
     injuredPersonDetailMap['incidentId'] = incidentListDatum.id;
     return Scaffold(
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-        floatingActionButton: BlocBuilder<InjuryDetailsBloc,
-                InjuryDetailsStates>(
-            buildWhen: (previousState, currentState) =>
-                currentState is FetchingInjuryMaster ||
-                currentState is InjuryMasterFetched ||
-                currentState is InjuryDetailsInitial,
-            builder: (context, state) {
-              if (state is FetchingInjuryMaster) {
-                return const SizedBox();
-              } else if (state is InjuryMasterFetched) {
-                return const SizedBox();
-              } else {
-                return FloatingActionButton.extended(
-                    label: Row(children: [
-                      const Icon(Icons.add),
-                      const SizedBox(width: tiniestSpacing),
-                      Text(DatabaseUtil.getText('addInjuredPersonPageHeading'))
-                    ]),
-                    onPressed: () {
-                      context
-                          .read<InjuryDetailsBloc>()
-                          .add(const InjuryMaster());
-                    });
-              }
-            }),
+        floatingActionButton:
+            BlocBuilder<InjuryDetailsBloc, InjuryDetailsStates>(
+                buildWhen: (previousState, currentState) =>
+                    currentState is FetchingInjuryMaster ||
+                    currentState is InjuryMasterFetched ||
+                    currentState is InjuryDetailsInitial,
+                builder: (context, state) {
+                  if (state is FetchingInjuryMaster) {
+                    return const SizedBox();
+                  } else if (state is InjuryMasterFetched) {
+                    return const SizedBox();
+                  } else {
+                    return CustomFloatingActionButton(
+                        onPressed: () {
+                          context
+                              .read<InjuryDetailsBloc>()
+                              .add(const InjuryMaster());
+                        },
+                        textValue: DatabaseUtil.getText(
+                            'addInjuredPersonPageHeading'));
+                  }
+                }),
         body: BlocConsumer<InjuryDetailsBloc, InjuryDetailsStates>(
             buildWhen: (previousState, currentState) =>
                 currentState is FetchingInjuryMaster ||

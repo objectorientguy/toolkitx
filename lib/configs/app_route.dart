@@ -18,6 +18,7 @@ import '../screens/incident/category_screen.dart';
 import '../screens/incident/change_role_screen.dart';
 import '../screens/incident/filter_screen.dart';
 import '../screens/incident/incident_health_and_safety_screen.dart';
+import '../screens/incident/incident_injuries_screen.dart';
 import '../screens/incident/incident_list_screen.dart';
 import '../screens/incident/incident_location_screen.dart';
 import '../screens/incident/report_new_incident_screen.dart';
@@ -139,6 +140,10 @@ class AppRoutes {
       case AddInjuredPersonScreen.routeName:
         return _createRoute(
             AddInjuredPersonScreen(addIncidentMap: settings.arguments as Map));
+      case IncidentInjuriesScreen.routeName:
+        return _createRoute(
+            IncidentInjuriesScreen(addIncidentMap: settings.arguments as Map));
+
       default:
         return _createRoute(const WelcomeScreen());
     }

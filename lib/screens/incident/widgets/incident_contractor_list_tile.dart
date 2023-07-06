@@ -8,6 +8,7 @@ import '../../../blocs/incident/reportNewIncident/report_new_incident_events.dar
 import '../../../blocs/incident/reportNewIncident/report_new_incident_states.dart';
 import '../../../configs/app_color.dart';
 import '../../../configs/app_dimensions.dart';
+import '../../../configs/app_spacing.dart';
 import 'incident_contractor_list.dart';
 
 class IncidentContractorListTile extends StatelessWidget {
@@ -49,11 +50,14 @@ class IncidentContractorListTile extends StatelessWidget {
                         .copyWith(color: AppColor.black)),
                 subtitle: (state.selectContractorName == '')
                     ? null
-                    : Text(state.selectContractorName,
-                        style: Theme.of(context)
-                            .textTheme
-                            .xSmall
-                            .copyWith(color: AppColor.black)),
+                    : Padding(
+                        padding: const EdgeInsets.only(top: tiniestSpacing),
+                        child: Text(state.selectContractorName,
+                            style: Theme.of(context)
+                                .textTheme
+                                .xSmall
+                                .copyWith(color: AppColor.black)),
+                      ),
                 trailing:
                     const Icon(Icons.navigate_next_rounded, size: kIconSize));
           } else {
