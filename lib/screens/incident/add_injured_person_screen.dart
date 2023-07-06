@@ -29,50 +29,68 @@ class AddInjuredPersonScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    context.read<ReportNewIncidentBloc>().add(FetchIncidentInjuredPerson(
+        injuredPersonDetailsList: (addIncidentMap['persons'] == null)
+            ? []
+            : addIncidentMap['persons']));
     return Scaffold(
         appBar: GenericAppBar(
             title: DatabaseUtil.getText('addInjuredPersonPageHeading')),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
         floatingActionButton: CustomFloatingActionButton(
-          textValue: DatabaseUtil.getText('addInjuredPersonPageDetails'),
-          onPressed: () {
-            Navigator.pushNamed(context, IncidentInjuriesScreen.routeName);
-          },
-        ),
-        body: Padding(
-            padding: const EdgeInsets.only(
-                left: leftRightMargin,
-                right: leftRightMargin,
-                top: xxTinierSpacing),
-            child: Visibility(
-              visible: injuredPersonDetailsList.isNotEmpty,
-              child: ListView.separated(
-                physics: const BouncingScrollPhysics(),
-                padding: EdgeInsets.zero,
-                shrinkWrap: true,
-                itemCount: 10,
-                itemBuilder: (context, index) {
-                  return CustomCard(
-                      child: ListTile(
-                    contentPadding: const EdgeInsets.only(
-                        left: tinierSpacing,
-                        right: tinierSpacing,
-                        top: tiniestSpacing,
-                        bottom: tiniestSpacing),
-                    trailing: CustomTextButton(
-                        onPressed: () {}, textValue: StringConstants.kRemove),
-                    title: Text('Injured Person Name',
-                        // this will be replaced with the list data.
-                        style: Theme.of(context).textTheme.small.copyWith(
-                            fontWeight: FontWeight.w700,
-                            color: AppColor.mediumBlack)),
-                  ));
-                },
-                separatorBuilder: (context, index) {
-                  return const SizedBox(height: xxTinierSpacing);
-                },
-              ),
-            )),
+            textValue: DatabaseUtil.getText('addInjuredPersonPageDetails'),
+            onPressed: () {
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) =>
+                      IncidentInjuriesScreen(addIncidentMap: addIncidentMap)));
+            }),
+        body: BlocBuilder<ReportNewIncidentBloc, ReportNewIncidentStates>(
+            builder: (context, state) {
+          if (state is ReportNewIncidentInjuredPersonDetailsFetched) {
+            return Padding(
+                padding: const EdgeInsets.only(
+                    left: leftRightMargin,
+                    right: leftRightMargin,
+                    top: xxTinierSpacing),
+                child: Visibility(
+                    visible: state.injuredPersonDetailsList.isNotEmpty,
+                    child: ListView.separated(
+                      physics: const BouncingScrollPhysics(),
+                      padding: EdgeInsets.zero,
+                      shrinkWrap: true,
+                      itemCount: state.injuredPersonDetailsList.length,
+                      itemBuilder: (context, index) {
+                        return CustomCard(
+                            child: ListTile(
+                          contentPadding: const EdgeInsets.only(
+                              left: tinierSpacing,
+                              right: tinierSpacing,
+                              top: tiniestSpacing,
+                              bottom: tiniestSpacing),
+                          trailing: CustomTextButton(
+                              onPressed: () {
+                                context.read<ReportNewIncidentBloc>().add(
+                                    IncidentRemoveInjuredPersonDetails(
+                                        injuredPersonDetailsList:
+                                            addIncidentMap['persons'],
+                                        index: index));
+                              },
+                              textValue: StringConstants.kRemove),
+                          title: Text(
+                              state.injuredPersonDetailsList[index]['name'],
+                              style: Theme.of(context).textTheme.small.copyWith(
+                                  fontWeight: FontWeight.w700,
+                                  color: AppColor.mediumBlack)),
+                        ));
+                      },
+                      separatorBuilder: (context, index) {
+                        return const SizedBox(height: xxTinierSpacing);
+                      },
+                    )));
+          } else {
+            return const SizedBox();
+          }
+        }),
         bottomNavigationBar: BottomAppBar(
           child: BlocListener<ReportNewIncidentBloc, ReportNewIncidentStates>(
               listener: (context, state) {

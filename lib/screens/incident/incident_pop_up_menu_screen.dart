@@ -37,7 +37,9 @@ class IncidentDetailsPopUpMenu extends StatelessWidget {
                 offset: const Offset(0, xxTinierSpacing),
                 onSelected: (value) {
                   if (value == DatabaseUtil.getText('AddComments')) {}
-                  if (value == DatabaseUtil.getText('EditIncident')) {}
+                  if (value == DatabaseUtil.getText('EditIncident')) {
+                    // CategoryScreen.addIncidentMap = // model of details;
+                  }
                   if (value == DatabaseUtil.getText('Report')) {}
                   if (value == DatabaseUtil.getText('Markasresolved')) {}
                   if (value == DatabaseUtil.getText('GenerateReport')) {}

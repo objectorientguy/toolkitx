@@ -13,7 +13,6 @@ import 'package:toolkit/utils/database_utils.dart';
 import 'package:toolkit/widgets/custom_snackbar.dart';
 import '../../blocs/pickAndUploadImage/pick_and_upload_image_bloc.dart';
 import '../../blocs/pickAndUploadImage/pick_and_upload_image_events.dart';
-import '../../configs/app_color.dart';
 import '../../configs/app_spacing.dart';
 import '../../utils/constants/string_constants.dart';
 import '../../widgets/generic_app_bar.dart';
@@ -33,88 +32,89 @@ class ReportNewIncidentScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     context.read<PickAndUploadImageBloc>().add(UploadInitial());
     return Scaffold(
-      appBar: const GenericAppBar(
-        title: StringConstants.kReportNewIncident,
-      ),
-      body: Padding(
-          padding: const EdgeInsets.only(
-              left: leftRightMargin,
-              right: leftRightMargin,
-              top: xxTinySpacing),
-          child: SingleChildScrollView(
-              physics: const BouncingScrollPhysics(),
-              child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(DatabaseUtil.getText('HideMyIdentity'),
-                        style: Theme.of(context)
-                            .textTheme
-                            .medium
-                            .copyWith(color: AppColor.black)),
-                    const SizedBox(height: tiniestSpacing),
-                    IncidentReportAnonymousExpansionTile(
-                        addIncidentMap: addIncidentMap),
-                    const SizedBox(height: tinySpacing),
-                    Text(StringConstants.kDateOfIncident,
-                        style: Theme.of(context)
-                            .textTheme
-                            .medium
-                            .copyWith(color: AppColor.black)),
-                    const SizedBox(height: tiniestSpacing),
-                    DatePickerTextField(
-                      hintText: StringConstants.kSelectDate,
-                      onDateChanged: (String date) {
-                        eventDate = date;
-                      },
-                    ),
-                    const SizedBox(height: tinySpacing),
-                    Text(StringConstants.kTime,
-                        style: Theme.of(context)
-                            .textTheme
-                            .medium
-                            .copyWith(color: AppColor.black)),
-                    const SizedBox(height: tiniestSpacing),
-                    TimePickerTextField(
-                      hintText: StringConstants.kSelectTime,
-                      onTimeChanged: (String time) {
-                        addIncidentMap['eventdatetime'] = '$eventDate $time';
-                      },
-                    ),
-                    const SizedBox(height: tinySpacing),
-                    Text(StringConstants.kDetailedDescription,
-                        style: Theme.of(context)
-                            .textTheme
-                            .medium
-                            .copyWith(color: AppColor.black)),
-                    const SizedBox(height: tiniestSpacing),
-                    TextFieldWidget(
-                        maxLength: 250,
-                        maxLines: 3,
-                        textInputAction: TextInputAction.done,
-                        textInputType: TextInputType.text,
-                        onTextFieldChanged: (String textField) {
-                          addIncidentMap['description'] = textField;
-                        }),
-                    const SizedBox(height: tinySpacing),
-                    Text(StringConstants.kPhoto,
-                        style: Theme.of(context)
-                            .textTheme
-                            .medium
-                            .copyWith(color: AppColor.black)),
-                    const SizedBox(height: tiniestSpacing),
-                    UploadImageMenu(
-                      onUploadImageResponse: (List uploadImageList) {
-                        addIncidentMap['filenames'] = uploadImageList
-                            .toString()
-                            .replaceAll("[", "")
-                            .replaceAll("]", "");
-                      },
-                    ),
-                    const SizedBox(height: tiniestSpacing),
-                    IncidentContractorListTile(addIncidentMap: addIncidentMap),
-                  ]))),
-      bottomNavigationBar: BottomAppBar(
-        child: BlocListener<ReportNewIncidentBloc, ReportNewIncidentStates>(
+        appBar: const GenericAppBar(
+          title: StringConstants.kReportNewIncident,
+        ),
+        body: Padding(
+            padding: const EdgeInsets.only(
+                left: leftRightMargin,
+                right: leftRightMargin,
+                top: xxTinySpacing),
+            child: SingleChildScrollView(
+                physics: const BouncingScrollPhysics(),
+                child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(DatabaseUtil.getText('HideMyIdentity'),
+                          style: Theme.of(context)
+                              .textTheme
+                              .xSmall
+                              .copyWith(fontWeight: FontWeight.w600)),
+                      const SizedBox(height: xxxTinierSpacing),
+                      IncidentReportAnonymousExpansionTile(
+                          addIncidentMap: addIncidentMap),
+                      const SizedBox(height: xxTinySpacing),
+                      Text(StringConstants.kDateOfIncident,
+                          style: Theme.of(context)
+                              .textTheme
+                              .xSmall
+                              .copyWith(fontWeight: FontWeight.w600)),
+                      const SizedBox(height: xxxTinierSpacing),
+                      DatePickerTextField(
+                        hintText: StringConstants.kSelectDate,
+                        onDateChanged: (String date) {
+                          eventDate = date;
+                        },
+                      ),
+                      const SizedBox(height: xxTinySpacing),
+                      Text(StringConstants.kTime,
+                          style: Theme.of(context)
+                              .textTheme
+                              .xSmall
+                              .copyWith(fontWeight: FontWeight.w600)),
+                      const SizedBox(height: xxxTinierSpacing),
+                      TimePickerTextField(
+                        hintText: StringConstants.kSelectTime,
+                        onTimeChanged: (String time) {
+                          addIncidentMap['eventdatetime'] = '$eventDate $time';
+                        },
+                      ),
+                      const SizedBox(height: xxTinySpacing),
+                      Text(StringConstants.kDetailedDescription,
+                          style: Theme.of(context)
+                              .textTheme
+                              .xSmall
+                              .copyWith(fontWeight: FontWeight.w600)),
+                      const SizedBox(height: xxxTinierSpacing),
+                      TextFieldWidget(
+                          maxLength: 250,
+                          maxLines: 3,
+                          textInputAction: TextInputAction.done,
+                          textInputType: TextInputType.text,
+                          onTextFieldChanged: (String textField) {
+                            addIncidentMap['description'] = textField;
+                          }),
+                      const SizedBox(height: xxTinySpacing),
+                      Text(StringConstants.kPhoto,
+                          style: Theme.of(context)
+                              .textTheme
+                              .xSmall
+                              .copyWith(fontWeight: FontWeight.w600)),
+                      const SizedBox(height: xxxTinierSpacing),
+                      UploadImageMenu(
+                        onUploadImageResponse: (List uploadImageList) {
+                          addIncidentMap['filenames'] = uploadImageList
+                              .toString()
+                              .replaceAll("[", "")
+                              .replaceAll("]", "");
+                        },
+                      ),
+                      const SizedBox(height: xxTinySpacing),
+                      IncidentContractorListTile(
+                          addIncidentMap: addIncidentMap),
+                    ]))),
+        bottomNavigationBar: BottomAppBar(
+            child: BlocListener<ReportNewIncidentBloc, ReportNewIncidentStates>(
           listener: (context, state) {
             if (state is ReportNewIncidentDateTimeDescValidated) {
               showCustomSnackBar(
@@ -132,8 +132,6 @@ class ReportNewIncidentScreen extends StatelessWidget {
                         reportNewIncidentMap: addIncidentMap));
               },
               textValue: DatabaseUtil.getText('nextButtonText')),
-        ),
-      ),
-    );
+        )));
   }
 }

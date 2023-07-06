@@ -141,7 +141,8 @@ class AppRoutes {
         return _createRoute(
             AddInjuredPersonScreen(addIncidentMap: settings.arguments as Map));
       case IncidentInjuriesScreen.routeName:
-        return _createRoute(const IncidentInjuriesScreen());
+        return _createRoute(
+            IncidentInjuriesScreen(addIncidentMap: settings.arguments as Map));
 
       default:
         return _createRoute(const WelcomeScreen());

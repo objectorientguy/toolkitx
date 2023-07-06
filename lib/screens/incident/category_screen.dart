@@ -24,7 +24,8 @@ class CategoryScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     context.read<ReportNewIncidentBloc>().add(FetchIncidentMaster(
-        role: context.read<IncidentFetchAndChangeRoleBloc>().roleId));
+        role: context.read<IncidentFetchAndChangeRoleBloc>().roleId,
+        categories: ''));
     return Scaffold(
         appBar: const GenericAppBar(title: StringConstants.kCategory),
         body: Padding(

@@ -47,15 +47,19 @@ class IncidentLocationListTile extends StatelessWidget {
                     title: Text(DatabaseUtil.getText('Location'),
                         style: Theme.of(context)
                             .textTheme
-                            .medium
-                            .copyWith(color: AppColor.black)),
+                            .xSmall
+                            .copyWith(fontWeight: FontWeight.w600)),
                     subtitle: (state.selectLocationName == '')
                         ? null
-                        : Text(state.selectLocationName,
-                            style: Theme.of(context)
-                                .textTheme
-                                .xSmall
-                                .copyWith(color: AppColor.black)),
+                        : Padding(
+                            padding:
+                                const EdgeInsets.only(top: xxxTinierSpacing),
+                            child: Text(state.selectLocationName,
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .xSmall
+                                    .copyWith(color: AppColor.black)),
+                          ),
                     trailing: const Icon(Icons.navigate_next_rounded,
                         size: kIconSize)),
                 Visibility(
@@ -65,15 +69,19 @@ class IncidentLocationListTile extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(StringConstants.kOther,
-                              style: Theme.of(context).textTheme.medium),
-                          const SizedBox(height: tiniestSpacing),
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .xSmall
+                                  .copyWith(fontWeight: FontWeight.w600)),
+                          const SizedBox(height: xxxTinierSpacing),
                           TextFieldWidget(
-                            hintText: DatabaseUtil.getText('OtherLocation'),
-                            onTextFieldChanged: (String textField) {
-                              addIncidentMap['location_name'] = textField;
-                            },
-                          ),
-                          const SizedBox(height: tinySpacing)
+                              hintText: DatabaseUtil.getText('OtherLocation'),
+                              onTextFieldChanged: (String textField) {
+                                addIncidentMap['location_name'] =
+                                    (state.selectLocationName == 'Other'
+                                        ? textField
+                                        : '');
+                              })
                         ])),
               ],
             );

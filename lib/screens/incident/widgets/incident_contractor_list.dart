@@ -27,45 +27,39 @@ class IncidentContractorList extends StatelessWidget {
         body: SingleChildScrollView(
           physics: const BouncingScrollPhysics(),
           child: Padding(
-              padding: const EdgeInsets.only(top: topBottomPadding),
+              padding: const EdgeInsets.only(
+                  left: leftRightMargin, right: leftRightMargin),
               child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const SizedBox(height: xxTiniestSpacing),
                     ListView.builder(
+                        padding: EdgeInsets.zero,
                         physics: const NeverScrollableScrollPhysics(),
-                        padding:
-                            const EdgeInsets.only(bottom: xxTiniestSpacing),
                         shrinkWrap: true,
                         itemCount: fetchIncidentMasterModel
                             .incidentMasterDatum![8].length,
                         itemBuilder: (context, index) {
-                          return SizedBox(
-                              height: xxxMediumSpacing,
-                              child: RadioListTile(
-                                  activeColor: AppColor.deepBlue,
-                                  controlAffinity:
-                                      ListTileControlAffinity.trailing,
-                                  title: Text(fetchIncidentMasterModel
-                                      .incidentMasterDatum![8][index]
-                                      .groupName!),
-                                  value: fetchIncidentMasterModel
-                                      .incidentMasterDatum![8][index].groupId!,
-                                  groupValue: selectContractorId,
-                                  onChanged: (value) {
-                                    value = fetchIncidentMasterModel
-                                        .incidentMasterDatum![8][index]
-                                        .groupId!;
-                                    context.read<ReportNewIncidentBloc>().add(
-                                        ReportNewIncidentContractorListChange(
-                                            selectContractorName:
-                                                fetchIncidentMasterModel
-                                                    .incidentMasterDatum![8]
-                                                        [index]
-                                                    .groupName!,
-                                            selectContractorId: value));
-                                    Navigator.pop(context);
-                                  }));
+                          return RadioListTile(
+                              contentPadding: EdgeInsets.zero,
+                              activeColor: AppColor.deepBlue,
+                              controlAffinity: ListTileControlAffinity.trailing,
+                              title: Text(fetchIncidentMasterModel
+                                  .incidentMasterDatum![8][index].groupName!),
+                              value: fetchIncidentMasterModel
+                                  .incidentMasterDatum![8][index].groupId!,
+                              groupValue: selectContractorId,
+                              onChanged: (value) {
+                                value = fetchIncidentMasterModel
+                                    .incidentMasterDatum![8][index].groupId!;
+                                context.read<ReportNewIncidentBloc>().add(
+                                    ReportNewIncidentContractorListChange(
+                                        selectContractorName:
+                                            fetchIncidentMasterModel
+                                                .incidentMasterDatum![8][index]
+                                                .groupName!,
+                                        selectContractorId: value));
+                                Navigator.pop(context);
+                              });
                         }),
                     const SizedBox(height: xxxSmallerSpacing)
                   ])),

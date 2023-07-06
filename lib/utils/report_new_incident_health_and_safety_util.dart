@@ -7,13 +7,14 @@ class ReportNewIncidentHealthAndSafetyUtil {
   Widget addHealthAndSafetyCaseWidget(
       index, customFieldDatum, customFieldList) {
     customFieldList.add({
-      "id": customFieldDatum[index].id,
+      "id": '',
       "value": '',
     });
     switch (customFieldDatum[index].type) {
       case 4:
         return IncidentReportCustomFiledInfoExpansionTile(
           onCustomFieldChanged: (String customFieldOptionId) {
+            customFieldList[index]['id'] = customFieldDatum[index].id;
             customFieldList[index]['value'] = customFieldOptionId;
           },
           index: index,
@@ -22,6 +23,7 @@ class ReportNewIncidentHealthAndSafetyUtil {
         return TextFieldWidget(
             maxLength: 250,
             onTextFieldChanged: (String textField) {
+              customFieldList[index]['id'] = customFieldDatum[index].id;
               customFieldList[index]['value'] = textField;
             });
       default:

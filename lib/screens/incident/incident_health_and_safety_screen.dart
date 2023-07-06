@@ -52,14 +52,18 @@ class IncidentHealthAndSafetyScreen extends StatelessWidget {
                                 Text(
                                     state.fetchIncidentMasterModel
                                         .incidentMasterDatum![7][index].title!,
-                                    style: Theme.of(context).textTheme.medium),
-                                const SizedBox(height: xxTinierSpacing),
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .xSmall
+                                        .copyWith(fontWeight: FontWeight.w600)),
+                                const SizedBox(height: xxxTinierSpacing),
                                 ReportNewIncidentHealthAndSafetyUtil()
                                     .addHealthAndSafetyCaseWidget(
                                         index,
                                         state.fetchIncidentMasterModel
                                             .incidentMasterDatum![7],
                                         customInfoFieldList),
+                                const SizedBox(height: xxTinySpacing),
                               ],
                             );
                           }),
