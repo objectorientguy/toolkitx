@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:toolkit/blocs/incident/reportNewIncident/report_new_incident_events.dart';
 import 'package:toolkit/configs/app_dimensions.dart';
 import 'package:toolkit/configs/app_theme.dart';
 import '../../../configs/app_spacing.dart';
@@ -7,9 +8,14 @@ import '../../../utils/database_utils.dart';
 import '../../blocs/incident/incidentDetails/incident_details_bloc.dart';
 import '../../blocs/incident/incidentDetails/incident_details_event.dart';
 import '../../blocs/incident/incidentDetails/incident_details_states.dart';
+import '../../data/models/incident/incident_details_model.dart';
+import 'category_screen.dart';
 
 class IncidentDetailsPopUpMenu extends StatelessWidget {
-  const IncidentDetailsPopUpMenu({Key? key}) : super(key: key);
+  final IncidentDetailsModel incidentDetailsModel;
+
+  const IncidentDetailsPopUpMenu({Key? key, required this.incidentDetailsModel})
+      : super(key: key);
 
   PopupMenuItem _buildPopupMenuItem(context, String title, String position) {
     return PopupMenuItem(
@@ -37,7 +43,9 @@ class IncidentDetailsPopUpMenu extends StatelessWidget {
                 offset: const Offset(0, xxTinierSpacing),
                 onSelected: (value) {
                   if (value == DatabaseUtil.getText('AddComments')) {}
-                  if (value == DatabaseUtil.getText('EditIncident')) {}
+                  if (value == DatabaseUtil.getText('EditIncident')) {
+                    Navigator.pushNamed(context, CategoryScreen.routeName);
+                  }
                   if (value == DatabaseUtil.getText('Report')) {}
                   if (value == DatabaseUtil.getText('Markasresolved')) {}
                   if (value == DatabaseUtil.getText('GenerateReport')) {}

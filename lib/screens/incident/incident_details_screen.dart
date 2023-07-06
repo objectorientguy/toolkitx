@@ -38,7 +38,17 @@ class IncidentDetailsScreen extends StatelessWidget {
         role: context.read<IncidentFetchAndChangeRoleBloc>().roleId,
         initialIndex: 0));
     return Scaffold(
-        appBar: const GenericAppBar(actions: [IncidentDetailsPopUpMenu()]),
+        appBar: GenericAppBar(actions: [
+          BlocBuilder<IncidentDetailsBloc, IncidentDetailsStates>(
+              builder: (context, state) {
+            if (state is IncidentDetailsFetched) {
+              return IncidentDetailsPopUpMenu(
+                  incidentDetailsModel: state.incidentDetailsModel);
+            } else {
+              return const SizedBox();
+            }
+          })
+        ]),
         body: BlocBuilder<IncidentDetailsBloc, IncidentDetailsStates>(
             buildWhen: (previousState, currentState) =>
                 currentState is FetchingIncidentDetails ||
