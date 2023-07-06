@@ -17,12 +17,13 @@ import '../../../widgets/progress_bar.dart';
 import 'injury_screen_body.dart';
 import 'incident_injured_person_list.dart';
 
-class IncidentInjuredPersonTab extends StatefulWidget {
+class IncidentInjuredPersonTab extends StatelessWidget {
   final IncidentDetailsModel incidentDetailsModel;
   final int initialIndex;
   final IncidentListDatum incidentListDatum;
+  final Map injuredPersonDetailMap = {};
 
-  const IncidentInjuredPersonTab(
+  IncidentInjuredPersonTab(
       {Key? key,
       required this.incidentDetailsModel,
       required this.initialIndex,
@@ -30,105 +31,102 @@ class IncidentInjuredPersonTab extends StatefulWidget {
       : super(key: key);
 
   @override
-  State<IncidentInjuredPersonTab> createState() =>
-      _IncidentInjuredPersonTabState();
-}
-
-class _IncidentInjuredPersonTabState extends State<IncidentInjuredPersonTab> {
-  bool isList = true;
-  Map injuredPersonDetailMap = {};
-
-  @override
-  void initState() {
-    isList = true;
-    injuredPersonDetailMap = {};
-    injuredPersonDetailMap['incidentId'] = widget.incidentListDatum.id;
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
+    injuredPersonDetailMap['incidentId'] = incidentListDatum.id;
     return Scaffold(
-        floatingActionButtonLocation:
-            (isList) ? FloatingActionButtonLocation.centerFloat : null,
-        floatingActionButton: Visibility(
-            visible: isList,
-            child: FloatingActionButton.extended(
-                label: Row(children: [
-                  const Icon(Icons.add),
-                  const SizedBox(width: tiniestSpacing),
-                  Text(DatabaseUtil.getText('addInjuredPersonPageHeading'))
-                ]),
-                onPressed: () {
-                  setState(() {
-                    isList = false;
-                  });
-                  context.read<InjuryDetailsBloc>().add(const InjuryMaster());
-                })),
-        body: Visibility(
-            visible: isList,
-            replacement: BlocConsumer<InjuryDetailsBloc, InjuryDetailsStates>(
-                buildWhen: (previousState, currentState) =>
-                    currentState is FetchingInjuryMaster ||
-                    currentState is InjuryMasterFetched,
-                listener: (context, state) {
-                  if (state is SavingInjuryPerson) {
-                    ProgressBar.show(context);
-                  }
-                  if (state is SavedInjuredPerson) {
-                    ProgressBar.dismiss(context);
-                    context.read<IncidentDetailsBloc>().add(
-                        FetchIncidentDetailsEvent(
-                            incidentId: widget.incidentListDatum.id,
-                            role: context
-                                .read<IncidentFetchAndChangeRoleBloc>()
-                                .roleId,
-                            initialIndex: widget.initialIndex));
-                  }
-                  if (state is ErrorSavingInjuredPerson) {
-                    ProgressBar.dismiss(context);
-                    showCustomSnackBar(context, state.message, '');
-                  }
-                },
-                builder: (context, state) {
-                  if (state is FetchingInjuryMaster) {
-                    return const Center(child: CircularProgressIndicator());
-                  } else if (state is InjuryMasterFetched) {
-                    return SingleChildScrollView(
-                        physics: const BouncingScrollPhysics(),
-                        child: Column(children: [
-                          InjuryScreenBody(
-                              injuryNatureList:
-                                  state.incidentInjuryMasterModel.data[0],
-                              injuredPersonDetails: injuredPersonDetailMap),
-                          const SizedBox(height: xxxSmallestSpacing),
-                          Row(children: [
-                            Expanded(
-                                child: PrimaryButton(
-                                    onPressed: () {
-                                      setState(() {
-                                        isList = true;
-                                      });
-                                    },
-                                    textValue: DatabaseUtil.getText('Cancel'))),
-                            const SizedBox(width: smallerSpacing),
-                            Expanded(
-                                child: PrimaryButton(
-                                    onPressed: () {
-                                      context.read<InjuryDetailsBloc>().add(
-                                          SaveInjuredPerson(
-                                              injuredPersonDetailMap));
-                                    },
-                                    textValue:
-                                        DatabaseUtil.getText('buttonSave')))
-                          ]),
-                          const SizedBox(height: tiniestSpacing)
-                        ]));
-                  } else {
-                    return const SizedBox();
-                  }
-                }),
-            child: InjuredPersonList(
-                incidentDetailsModel: widget.incidentDetailsModel)));
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+        floatingActionButton: BlocBuilder<InjuryDetailsBloc,
+                InjuryDetailsStates>(
+            buildWhen: (previousState, currentState) =>
+                currentState is FetchingInjuryMaster ||
+                currentState is InjuryMasterFetched ||
+                currentState is InjuryDetailsInitial,
+            builder: (context, state) {
+              if (state is FetchingInjuryMaster) {
+                return const SizedBox();
+              } else if (state is InjuryMasterFetched) {
+                return const SizedBox();
+              } else {
+                return FloatingActionButton.extended(
+                    label: Row(children: [
+                      const Icon(Icons.add),
+                      const SizedBox(width: tiniestSpacing),
+                      Text(DatabaseUtil.getText('addInjuredPersonPageHeading'))
+                    ]),
+                    onPressed: () {
+                      context
+                          .read<InjuryDetailsBloc>()
+                          .add(const InjuryMaster());
+                    });
+              }
+            }),
+        body: BlocConsumer<InjuryDetailsBloc, InjuryDetailsStates>(
+            buildWhen: (previousState, currentState) =>
+                currentState is FetchingInjuryMaster ||
+                currentState is InjuryMasterFetched ||
+                currentState is InjuryDetailsInitial,
+            listener: (context, state) {
+              if (state is SavingInjuryPerson) {
+                ProgressBar.show(context);
+              }
+              if (state is SavedInjuredPerson) {
+                ProgressBar.dismiss(context);
+                context.read<IncidentDetailsBloc>().add(
+                    FetchIncidentDetailsEvent(
+                        incidentId: incidentListDatum.id,
+                        role: context
+                            .read<IncidentFetchAndChangeRoleBloc>()
+                            .roleId,
+                        initialIndex: initialIndex));
+              }
+              if (state is ErrorSavingInjuredPerson) {
+                ProgressBar.dismiss(context);
+                showCustomSnackBar(context, state.message, '');
+              }
+            },
+            builder: (context, state) {
+              if (state is FetchingInjuryMaster) {
+                return const Center(child: CircularProgressIndicator());
+              } else if (state is InjuryMasterFetched) {
+                return SingleChildScrollView(
+                    physics: const BouncingScrollPhysics(),
+                    child: Column(children: [
+                      InjuryScreenBody(
+                          injuryNatureList:
+                              state.incidentInjuryMasterModel.data[0],
+                          injuredPersonDetails: injuredPersonDetailMap),
+                      const SizedBox(height: xxxSmallestSpacing),
+                      Row(children: [
+                        Expanded(
+                            child: PrimaryButton(
+                                onPressed: () {
+                                  context
+                                      .read<IncidentDetailsBloc>()
+                                      .addInjuredPerson = false;
+                                  context
+                                      .read<InjuryDetailsBloc>()
+                                      .add(const CancelAddInjuredPerson());
+                                },
+                                textValue: DatabaseUtil.getText('Cancel'))),
+                        const SizedBox(width: smallerSpacing),
+                        Expanded(
+                            child: PrimaryButton(
+                                onPressed: () {
+                                  context
+                                      .read<IncidentDetailsBloc>()
+                                      .addInjuredPerson = false;
+                                  context.read<InjuryDetailsBloc>().add(
+                                      SaveInjuredPerson(
+                                          injuredPersonDetailMap));
+                                },
+                                textValue: DatabaseUtil.getText('buttonSave')))
+                      ]),
+                      const SizedBox(height: tiniestSpacing)
+                    ]));
+              } else {
+                return InjuredPersonList(
+                    incidentDetailsModel: incidentDetailsModel);
+              }
+            }));
   }
 }
