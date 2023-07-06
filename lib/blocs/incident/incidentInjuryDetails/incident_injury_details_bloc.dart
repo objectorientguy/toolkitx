@@ -22,6 +22,12 @@ class InjuryDetailsBloc extends Bloc<InjuryDetailsEvent, InjuryDetailsStates> {
     on<InjuryMaster>(_getInjuryMaster);
     on<SelectInjuryNature>(_selectInjuryNature);
     on<SaveInjuredPerson>(_saveInjuredPerson);
+    on<CancelAddInjuredPerson>(_cancelAddInjuredPerson);
+  }
+
+  _cancelAddInjuredPerson(
+      CancelAddInjuredPerson event, Emitter<InjuryDetailsStates> emit) {
+    emit(const InjuryDetailsInitial());
   }
 
   FutureOr _getInjuryMaster(
