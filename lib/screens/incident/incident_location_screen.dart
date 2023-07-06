@@ -36,34 +36,36 @@ class IncidentLocationScreen extends StatelessWidget {
                   children: [
                     IncidentSiteListTile(addIncidentMap: addIncidentMap),
                     IncidentLocationListTile(addIncidentMap: addIncidentMap),
-                    const SizedBox(height: xxxTinierSpacing),
+                    const SizedBox(height: xxTinySpacing),
                     Text(DatabaseUtil.getText('ReportedAuthorities'),
-                        style: Theme.of(context).textTheme.medium),
-                    const SizedBox(height: tiniestSpacing),
+                        style: Theme.of(context)
+                            .textTheme
+                            .xSmall
+                            .copyWith(fontWeight: FontWeight.w600)),
+                    const SizedBox(height: xxxTinierSpacing),
                     IncidentReportedAuthorityExpansionTile(
                         addIncidentMap: addIncidentMap),
                   ]))),
       bottomNavigationBar: BottomAppBar(
         child: BlocListener<ReportNewIncidentBloc, ReportNewIncidentStates>(
-          listener: (context, state) {
-            if (state is ReportNewIncidentSiteLocationValidated) {
-              showCustomSnackBar(
-                  context, state.siteLocationValidationMessage, '');
-            } else if (state
-                is ReportNewIncidentSiteLocationValidationComplete) {
-              Navigator.pushNamed(
-                  context, IncidentHealthAndSafetyScreen.routeName,
-                  arguments: addIncidentMap);
-            }
-          },
-          child: PrimaryButton(
-              onPressed: () {
-                context.read<ReportNewIncidentBloc>().add(
-                    ReportNewIncidentSiteLocationValidation(
-                        reportNewIncidentMap: addIncidentMap));
-              },
-              textValue: DatabaseUtil.getText('nextButtonText')),
-        ),
+            listener: (context, state) {
+              if (state is ReportNewIncidentSiteLocationValidated) {
+                showCustomSnackBar(
+                    context, state.siteLocationValidationMessage, '');
+              } else if (state
+                  is ReportNewIncidentSiteLocationValidationComplete) {
+                Navigator.pushNamed(
+                    context, IncidentHealthAndSafetyScreen.routeName,
+                    arguments: addIncidentMap);
+              }
+            },
+            child: PrimaryButton(
+                onPressed: () {
+                  context.read<ReportNewIncidentBloc>().add(
+                      ReportNewIncidentSiteLocationValidation(
+                          reportNewIncidentMap: addIncidentMap));
+                },
+                textValue: DatabaseUtil.getText('nextButtonText'))),
       ),
     );
   }

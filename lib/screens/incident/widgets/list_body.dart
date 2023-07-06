@@ -33,23 +33,25 @@ class IncidentListBody extends StatelessWidget {
                 itemCount: state.fetchIncidentsListModel.data!.length,
                 itemBuilder: (context, index) {
                   return CustomCard(
-                      child: ListTile(
-                          contentPadding: const EdgeInsets.all(xxTinierSpacing),
-                          title: IncidentListTitle(
-                              incidentListDatum:
-                                  state.fetchIncidentsListModel.data![index]),
-                          subtitle: IncidentListSubtitle(
-                              incidentListDatum:
-                                  state.fetchIncidentsListModel.data![index]),
-                          onTap: () {
-                            Navigator.pushNamed(
-                                context, IncidentDetailsScreen.routeName,
-                                arguments:
-                                    state.fetchIncidentsListModel.data![index]);
-                          }));
+                      child: Padding(
+                    padding: const EdgeInsets.only(top: tinierSpacing),
+                    child: ListTile(
+                        title: IncidentListTitle(
+                            incidentListDatum:
+                                state.fetchIncidentsListModel.data![index]),
+                        subtitle: IncidentListSubtitle(
+                            incidentListDatum:
+                                state.fetchIncidentsListModel.data![index]),
+                        onTap: () {
+                          Navigator.pushNamed(
+                              context, IncidentDetailsScreen.routeName,
+                              arguments:
+                                  state.fetchIncidentsListModel.data![index]);
+                        }),
+                  ));
                 },
                 separatorBuilder: (context, index) {
-                  return const SizedBox(height: xxTinySpacing);
+                  return const SizedBox(height: tinierSpacing);
                 }));
       } else if (state is IncidentsNotFetched) {
         return GenericReloadButton(

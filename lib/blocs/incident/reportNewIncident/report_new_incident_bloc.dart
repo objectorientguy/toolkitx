@@ -20,6 +20,7 @@ class ReportNewIncidentBloc
   Map reportNewIncidentMap = {};
   String selectSiteName = '';
   String incidentId = '';
+
   ReportNewIncidentStates get initialState => ReportNewIncidentInitial();
 
   ReportNewIncidentBloc() : super(ReportNewIncidentInitial()) {
@@ -37,12 +38,15 @@ class ReportNewIncidentBloc
         _reportIncidentCustomInfo);
     on<SaveReportNewIncident>(_saveIncident);
     on<SaveReportNewIncidentPhotos>(_saveIncidentPhotos);
+    on<FetchIncidentInjuredPerson>(_fetchIncidentInjuredPersonDetails);
+    on<IncidentRemoveInjuredPersonDetails>(_removeInjuredPerson);
   }
 
   FutureOr<void> _fetchIncidentCategory(
       FetchIncidentMaster event, Emitter<ReportNewIncidentStates> emit) async {
     emit(FetchingIncidentMaster());
     try {
+      List categories = [];
       String hashCode = (await _customerCache.getHashCode(CacheKeys.hashcode))!;
       fetchIncidentMasterModel =
           await _incidentRepository.fetchIncidentMaster(hashCode, event.role);
@@ -54,7 +58,11 @@ class ReportNewIncidentBloc
           0,
           IncidentMasterDatum.fromJson(
               {"location": DatabaseUtil.getText('Other')}));
-      add(SelectIncidentCategory(multiSelectList: [], selectedCategory: null));
+      if (event.categories != "null") {
+        categories = event.categories.toString().split(',');
+      }
+      add(SelectIncidentCategory(
+          multiSelectList: categories, selectedCategory: null));
     } catch (e) {
       emit(IncidentMasterNotFetched());
     }
@@ -221,10 +229,15 @@ class ReportNewIncidentBloc
       Map addNewIncidentMap = {
         "eventdatetime": reportNewIncidentMap['eventdatetime'],
         "description": reportNewIncidentMap['description'],
-        "responsible_person": reportNewIncidentMap['responsible_person'],
+        "responsible_person":
+            (reportNewIncidentMap['responsible_person'] == null)
+                ? ""
+                : reportNewIncidentMap['responsible_person'],
         "site_name": reportNewIncidentMap['site_name'],
         "location_name": reportNewIncidentMap['location_name'],
-        "reporteddatetime": reportNewIncidentMap['reporteddatetime'],
+        "reporteddatetime": (reportNewIncidentMap['reporteddatetime'] == null)
+            ? ""
+            : reportNewIncidentMap['reporteddatetime'],
         "category": reportNewIncidentMap['category'],
         "createduserby": (userType == '1') ? userId : '0',
         "createdworkforceby": (userType == '2') ? userId : '0',
@@ -232,13 +245,21 @@ class ReportNewIncidentBloc
         "role": event.role,
         "identity": reportNewIncidentMap['identity'],
         "companyid": reportNewIncidentMap['companyid'],
-        "persons": [],
-        "customfields": reportNewIncidentMap['customfields']
+        "persons": (reportNewIncidentMap['persons'] == null)
+            ? []
+            : reportNewIncidentMap['persons'],
+        "customfields": (reportNewIncidentMap['customfields'] == null)
+            ? []
+            : reportNewIncidentMap['customfields']
       };
       SaveReportNewIncidentModel saveReportNewIncidentModel =
           await _incidentRepository.saveIncident(addNewIncidentMap);
       if (saveReportNewIncidentModel.status == 200) {
         incidentId = saveReportNewIncidentModel.message;
+      } else {
+        emit(ReportNewIncidentNotSaved(
+            incidentNotSavedMessage:
+                DatabaseUtil.getText('some_unknown_error_please_try_again')));
       }
       (reportNewIncidentMap['filenames'] != null)
           ? add(SaveReportNewIncidentPhotos(
@@ -247,7 +268,9 @@ class ReportNewIncidentBloc
       emit(ReportNewIncidentSaved(
           saveReportNewIncidentModel: saveReportNewIncidentModel));
     } catch (e) {
-      emit(ReportNewIncidentNotSaved(incidentNotSavedMessage: e.toString()));
+      emit(ReportNewIncidentNotSaved(
+          incidentNotSavedMessage:
+              DatabaseUtil.getText('some_unknown_error_please_try_again')));
     }
   }
 
@@ -271,5 +294,18 @@ class ReportNewIncidentBloc
     } catch (e) {
       emit(ReportNewIncidentNotSaved(incidentNotSavedMessage: e.toString()));
     }
+  }
+
+  _fetchIncidentInjuredPersonDetails(
+      FetchIncidentInjuredPerson event, Emitter<ReportNewIncidentStates> emit) {
+    emit(ReportNewIncidentInjuredPersonDetailsFetched(
+        injuredPersonDetailsList: event.injuredPersonDetailsList));
+  }
+
+  _removeInjuredPerson(IncidentRemoveInjuredPersonDetails event,
+      Emitter<ReportNewIncidentStates> emit) {
+    event.injuredPersonDetailsList.removeAt(event.index!);
+    emit(ReportNewIncidentInjuredPersonDetailsFetched(
+        injuredPersonDetailsList: event.injuredPersonDetailsList));
   }
 }

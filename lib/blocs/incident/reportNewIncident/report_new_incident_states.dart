@@ -124,3 +124,11 @@ class ReportNewIncidentPhotoSaved extends ReportNewIncidentStates {
 
   ReportNewIncidentPhotoSaved({required this.saveReportNewIncidentPhotosModel});
 }
+
+class ReportNewIncidentInjuredPersonDetailsFetched
+    extends ReportNewIncidentStates {
+  final List injuredPersonDetailsList;
+
+  ReportNewIncidentInjuredPersonDetailsFetched(
+      {required this.injuredPersonDetailsList});
+}

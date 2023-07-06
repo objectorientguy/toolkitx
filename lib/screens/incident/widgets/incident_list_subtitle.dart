@@ -17,13 +17,13 @@ class IncidentListSubtitle extends StatelessWidget {
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
       Text(incidentListDatum.description,
           style: Theme.of(context).textTheme.xSmall),
-      const SizedBox(height: tiniestSpacing),
+      const SizedBox(height: tinierSpacing),
       Text(incidentListDatum.location,
           style: Theme.of(context)
               .textTheme
               .xSmall
               .copyWith(color: AppColor.grey)),
-      const SizedBox(height: xxTinierSpacing),
+      const SizedBox(height: tinierSpacing),
       Row(children: [
         Image.asset("assets/icons/calendar.png",
             height: kIconSize, width: kIconSize),
@@ -33,7 +33,8 @@ class IncidentListSubtitle extends StatelessWidget {
                 .textTheme
                 .xSmall
                 .copyWith(color: AppColor.grey))
-      ])
+      ]),
+      const SizedBox(height: tinierSpacing),
     ]);
   }
 }

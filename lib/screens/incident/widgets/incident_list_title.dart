@@ -22,6 +22,7 @@ class IncidentListTitle extends StatelessWidget {
               Text(incidentListDatum.refno,
                   style: Theme.of(context).textTheme.small.copyWith(
                       color: AppColor.black, fontWeight: FontWeight.w600)),
+              const SizedBox(width: tinierSpacing),
               Text(incidentListDatum.status,
                   style: Theme.of(context)
                       .textTheme

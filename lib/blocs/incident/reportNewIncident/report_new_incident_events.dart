@@ -2,8 +2,9 @@ abstract class ReportNewIncidentEvent {}
 
 class FetchIncidentMaster extends ReportNewIncidentEvent {
   final String role;
+  final String categories;
 
-  FetchIncidentMaster({required this.role});
+  FetchIncidentMaster({required this.categories, required this.role});
 }
 
 class SelectIncidentCategory extends ReportNewIncidentEvent {
@@ -88,4 +89,18 @@ class SaveReportNewIncidentPhotos extends ReportNewIncidentEvent {
   final Map reportNewIncidentMap;
 
   SaveReportNewIncidentPhotos({required this.reportNewIncidentMap});
+}
+
+class FetchIncidentInjuredPerson extends ReportNewIncidentEvent {
+  final List injuredPersonDetailsList;
+
+  FetchIncidentInjuredPerson({required this.injuredPersonDetailsList});
+}
+
+class IncidentRemoveInjuredPersonDetails extends ReportNewIncidentEvent {
+  final List injuredPersonDetailsList;
+  final int? index;
+
+  IncidentRemoveInjuredPersonDetails(
+      {this.index, required this.injuredPersonDetailsList});
 }
