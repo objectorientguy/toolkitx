@@ -14,6 +14,7 @@ class IncidentDetailsBloc
   final IncidentRepository _incidentRepository = getIt<IncidentRepository>();
   final CustomerCache _customerCache = getIt<CustomerCache>();
   int incidentTabIndex = 0;
+  bool addInjuredPerson = false;
 
   IncidentDetailsStates get initialState => IncidentDetailsInitial();
 
