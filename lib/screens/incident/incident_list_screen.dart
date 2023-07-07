@@ -30,8 +30,8 @@ class IncidentListScreen extends StatelessWidget {
       appBar: GenericAppBar(title: DatabaseUtil.getText('ReportanIncident')),
       floatingActionButton: FloatingActionButton(
           onPressed: () {
-            CategoryScreen.addIncidentMap = {};
             CategoryScreen.isFromEdit = false;
+            CategoryScreen.addIncidentMap = {};
             Navigator.pushNamed(context, CategoryScreen.routeName);
           },
           child: const Icon(Icons.add)),

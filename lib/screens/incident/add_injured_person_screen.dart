@@ -1,15 +1,14 @@
 import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:toolkit/blocs/incident/incidentDetails/incident_details_bloc.dart';
 import 'package:toolkit/blocs/incident/incidentGetAndChangeRole/incident_get_and_change_role_bloc.dart';
 import 'package:toolkit/blocs/incident/reportNewIncident/report_new_incident_events.dart';
 import 'package:toolkit/blocs/incident/reportNewIncident/report_new_incident_states.dart';
 import 'package:toolkit/configs/app_theme.dart';
-import 'package:toolkit/screens/incident/category_screen.dart';
 import 'package:toolkit/utils/database_utils.dart';
 import 'package:toolkit/widgets/custom_snackbar.dart';
-import '../../blocs/incident/incidentDetails/incident_details_event.dart';
+import '../../blocs/incident/incidentListAndFilter/incident_list_and_filter_bloc.dart';
+import '../../blocs/incident/incidentListAndFilter/incident_list_and_filter_event.dart';
 import '../../blocs/incident/reportNewIncident/report_new_incident_bloc.dart';
 import '../../configs/app_color.dart';
 import '../../configs/app_spacing.dart';
@@ -51,51 +50,51 @@ class AddInjuredPersonScreen extends StatelessWidget {
             }),
         body: BlocBuilder<ReportNewIncidentBloc, ReportNewIncidentStates>(
             builder: (context, state) {
-              if (state is ReportNewIncidentInjuredPersonDetailsFetched) {
-                return Padding(
-                    padding: const EdgeInsets.only(
-                        left: leftRightMargin,
-                        right: leftRightMargin,
-                        top: xxTinierSpacing),
-                    child: Visibility(
-                        visible: state.injuredPersonDetailsList.isNotEmpty,
-                        child: ListView.separated(
-                          physics: const BouncingScrollPhysics(),
-                          padding: EdgeInsets.zero,
-                          shrinkWrap: true,
-                          itemCount: state.injuredPersonDetailsList.length,
-                          itemBuilder: (context, index) {
-                            return CustomCard(
-                                child: ListTile(
-                                  contentPadding: const EdgeInsets.only(
-                                      left: tinierSpacing,
-                                      right: tinierSpacing,
-                                      top: tiniestSpacing,
-                                      bottom: tiniestSpacing),
-                                  trailing: CustomTextButton(
-                                      onPressed: () {
-                                        context.read<ReportNewIncidentBloc>().add(
-                                            IncidentRemoveInjuredPersonDetails(
-                                                injuredPersonDetailsList:
-                                                addIncidentMap['persons'],
-                                                index: index));
-                                      },
-                                      textValue: StringConstants.kRemove),
-                                  title: Text(
-                                      state.injuredPersonDetailsList[index]['name'],
-                                      style: Theme.of(context).textTheme.small.copyWith(
-                                          fontWeight: FontWeight.w700,
-                                          color: AppColor.mediumBlack)),
-                                ));
-                          },
-                          separatorBuilder: (context, index) {
-                            return const SizedBox(height: xxTinierSpacing);
-                          },
-                        )));
-              } else {
-                return const SizedBox();
-              }
-            }),
+          if (state is ReportNewIncidentInjuredPersonDetailsFetched) {
+            return Padding(
+                padding: const EdgeInsets.only(
+                    left: leftRightMargin,
+                    right: leftRightMargin,
+                    top: xxTinierSpacing),
+                child: Visibility(
+                    visible: state.injuredPersonDetailsList.isNotEmpty,
+                    child: ListView.separated(
+                      physics: const BouncingScrollPhysics(),
+                      padding: EdgeInsets.zero,
+                      shrinkWrap: true,
+                      itemCount: state.injuredPersonDetailsList.length,
+                      itemBuilder: (context, index) {
+                        return CustomCard(
+                            child: ListTile(
+                          contentPadding: const EdgeInsets.only(
+                              left: tinierSpacing,
+                              right: tinierSpacing,
+                              top: tiniestSpacing,
+                              bottom: tiniestSpacing),
+                          trailing: CustomTextButton(
+                              onPressed: () {
+                                context.read<ReportNewIncidentBloc>().add(
+                                    IncidentRemoveInjuredPersonDetails(
+                                        injuredPersonDetailsList:
+                                            addIncidentMap['persons'],
+                                        index: index));
+                              },
+                              textValue: StringConstants.kRemove),
+                          title: Text(
+                              state.injuredPersonDetailsList[index]['name'],
+                              style: Theme.of(context).textTheme.small.copyWith(
+                                  fontWeight: FontWeight.w700,
+                                  color: AppColor.mediumBlack)),
+                        ));
+                      },
+                      separatorBuilder: (context, index) {
+                        return const SizedBox(height: xxTinierSpacing);
+                      },
+                    )));
+          } else {
+            return const SizedBox();
+          }
+        }),
         bottomNavigationBar: BottomAppBar(
           child: BlocListener<ReportNewIncidentBloc, ReportNewIncidentStates>(
               listener: (context, state) {
@@ -109,6 +108,12 @@ class AddInjuredPersonScreen extends StatelessWidget {
                   Navigator.pop(context);
                   Navigator.pop(context);
                   Navigator.pop(context);
+                  context.read<IncidentLisAndFilterBloc>().add(
+                      FetchIncidentListEvent(
+                          roleId: context
+                              .read<IncidentFetchAndChangeRoleBloc>()
+                              .roleId,
+                          isFromHome: false));
                   Navigator.pushReplacementNamed(
                       context, IncidentListScreen.routeName,
                       arguments: false);

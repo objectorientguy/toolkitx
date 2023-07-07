@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:toolkit/blocs/incident/reportNewIncident/report_new_incident_bloc.dart';
@@ -5,30 +6,31 @@ import 'package:toolkit/blocs/incident/reportNewIncident/report_new_incident_eve
 import 'package:toolkit/blocs/incident/reportNewIncident/report_new_incident_states.dart';
 import 'package:toolkit/configs/app_dimensions.dart';
 import 'package:toolkit/configs/app_theme.dart';
-import 'package:toolkit/screens/incident/category_screen.dart';
-import 'package:toolkit/screens/incident/widgets/time_picker.dart';
 import 'package:toolkit/utils/database_utils.dart';
-
 import '../../../configs/app_color.dart';
 import '../../../configs/app_spacing.dart';
-import '../../../utils/constants/string_constants.dart';
-import '../../../widgets/generic_text_field.dart';
-import 'date_picker.dart';
+import 'incident_reported_authority_fields.dart';
 
 class IncidentReportedAuthorityExpansionTile extends StatelessWidget {
   final Map addIncidentMap;
 
-  const IncidentReportedAuthorityExpansionTile(
-      {Key? key, required this.addIncidentMap})
+  const IncidentReportedAuthorityExpansionTile({Key? key, required this.addIncidentMap})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    log("authority======.${addIncidentMap['responsible_person']}");
     context.read<ReportNewIncidentBloc>().add(
         ReportNewIncidentAuthorityExpansionChange(
-            reportIncidentAuthorityId: ''));
-    String authorityName = '';
-    String reportedDate = '';
+            reportIncidentAuthorityId:
+                (addIncidentMap['responsible_person'] == null ||
+                        addIncidentMap['responsible_person'].isEmpty)
+                    ? ""
+                    : "1"));
+    String authorityName = (addIncidentMap['responsible_person'] == null ||
+            addIncidentMap['responsible_person'].isEmpty)
+        ? ""
+        : DatabaseUtil.getText('Yes');
     return BlocBuilder<ReportNewIncidentBloc, ReportNewIncidentStates>(
         buildWhen: (previousState, currentState) =>
             currentState is ReportNewIncidentAuthoritySelected,
@@ -57,7 +59,7 @@ class IncidentReportedAuthorityExpansionTile extends StatelessWidget {
                             physics: const BouncingScrollPhysics(),
                             shrinkWrap: true,
                             itemCount:
-                                state.reportIncidentAuthorityMap.keys.length,
+                            state.reportIncidentAuthorityMap.keys.length,
                             itemBuilder: (BuildContext context, int index) {
                               return RadioListTile(
                                   contentPadding: const EdgeInsets.only(
@@ -67,9 +69,9 @@ class IncidentReportedAuthorityExpansionTile extends StatelessWidget {
                                       state.reportIncidentAuthorityMap.values
                                           .elementAt(index),
                                       style:
-                                          Theme.of(context).textTheme.xSmall),
+                                      Theme.of(context).textTheme.xSmall),
                                   controlAffinity:
-                                      ListTileControlAffinity.trailing,
+                                  ListTileControlAffinity.trailing,
                                   value: state.reportIncidentAuthorityMap.keys
                                       .elementAt(index),
                                   groupValue: state.reportIncidentAuthorityId,
@@ -86,87 +88,9 @@ class IncidentReportedAuthorityExpansionTile extends StatelessWidget {
                                   });
                             })
                       ])),
-              Visibility(
-                  visible: state.reportIncidentAuthorityId == '1',
-                  child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const SizedBox(height: xxTinySpacing),
-                        Text(DatabaseUtil.getText('WhichAuthority'),
-                            style: Theme.of(context)
-                                .textTheme
-                                .xSmall
-                                .copyWith(fontWeight: FontWeight.w600)),
-                        const SizedBox(height: xxxTinierSpacing),
-                        TextFieldWidget(
-                            value: (CategoryScreen.isFromEdit == true &&
-                                    addIncidentMap['responsible_person'] !=
-                                        null)
-                                ? addIncidentMap['responsible_person']
-                                : '',
-                            hintText: DatabaseUtil.getText('WhichAuthority'),
-                            onTextFieldChanged: (String textField) {
-                              addIncidentMap['responsible_person'] = textField;
-                            }),
-                        const SizedBox(height: xxTinySpacing),
-                        Text(DatabaseUtil.getText('WhenReported'),
-                            style: Theme.of(context)
-                                .textTheme
-                                .xSmall
-                                .copyWith(fontWeight: FontWeight.w600)),
-                        const SizedBox(height: xxxTinierSpacing),
-                        Visibility(
-                          visible: CategoryScreen.isFromEdit != true &&
-                              addIncidentMap['reporteddatetime'] == null,
-                          replacement: TextFieldWidget(
-                              value:
-                                  (addIncidentMap['reporteddatetime'] == null ||
-                                          addIncidentMap['reporteddatetime']
-                                              .isEmpty)
-                                      ? ""
-                                      : addIncidentMap['reporteddatetime']
-                                          .toString()
-                                          .substring(0, 10),
-                              readOnly: true,
-                              onTextFieldChanged: (String textField) {}),
-                          child: DatePickerTextField(
-                            hintText: StringConstants.kSelectDate,
-                            onDateChanged: (String date) {
-                              reportedDate = date;
-                            },
-                          ),
-                        ),
-                        const SizedBox(height: xxTinySpacing),
-                        Text(StringConstants.kTime,
-                            style: Theme.of(context)
-                                .textTheme
-                                .xSmall
-                                .copyWith(fontWeight: FontWeight.w600)),
-                        const SizedBox(height: xxxTinierSpacing),
-                        Visibility(
-                          visible: CategoryScreen.isFromEdit != true &&
-                              addIncidentMap['reporteddatetime'] == null,
-                          replacement: TextFieldWidget(
-                              value:
-                                  (addIncidentMap['reporteddatetime'] == null ||
-                                          addIncidentMap['reporteddatetime']
-                                              .isEmpty)
-                                      ? ""
-                                      : addIncidentMap['reporteddatetime']
-                                          .toString()
-                                          .substring(12, 19),
-                              readOnly: true,
-                              onTextFieldChanged: (String textField) {}),
-                          child: TimePickerTextField(
-                            hintText: StringConstants.kSelectTime,
-                            onTimeChanged: (String time) {
-                              addIncidentMap['reporteddatetime'] =
-                                  '$reportedDate $time';
-                            },
-                          ),
-                        ),
-                        const SizedBox(height: xxTinySpacing)
-                      ]))
+              IncidentReportedAuthorityFields(
+                  addIncidentMap: addIncidentMap,
+                  reportIncidentAuthorityId: state.reportIncidentAuthorityId),
             ]);
           } else {
             return const SizedBox();

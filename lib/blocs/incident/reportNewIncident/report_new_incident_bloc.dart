@@ -21,7 +21,6 @@ class ReportNewIncidentBloc
   Map reportNewIncidentMap = {};
   String selectSiteName = '';
   String incidentId = '';
-  String decryptedId = '';
 
   ReportNewIncidentStates get initialState => ReportNewIncidentInitial();
 
@@ -225,64 +224,64 @@ class ReportNewIncidentBloc
   FutureOr<void> _saveIncident(SaveReportNewIncident event,
       Emitter<ReportNewIncidentStates> emit) async {
     emit(ReportNewIncidentSaving());
-    // try {
-    reportNewIncidentMap = event.reportNewIncidentMap;
-    String? hashCode = await _customerCache.getHashCode(CacheKeys.hashcode);
-    String? userType = await _customerCache.getUserType(CacheKeys.userType);
-    String? userId = await _customerCache.getUserId(CacheKeys.userId);
-    log("custom fields===>${reportNewIncidentMap['customfields']}");
-    Map addNewIncidentMap = {
-      "eventdatetime": reportNewIncidentMap['eventdatetime'],
-      "description": reportNewIncidentMap['description'],
-      "responsible_person": (reportNewIncidentMap['responsible_person'] == null)
-          ? ""
-          : reportNewIncidentMap['responsible_person'],
-      "site_name": reportNewIncidentMap['site_name'],
-      "location_name": reportNewIncidentMap['location_name'],
-      "reporteddatetime": (reportNewIncidentMap['reporteddatetime'] == null)
-          ? ""
+    try {
+      reportNewIncidentMap = event.reportNewIncidentMap;
+      String? hashCode = await _customerCache.getHashCode(CacheKeys.hashcode);
+      String? userType = await _customerCache.getUserType(CacheKeys.userType);
+      String? userId = await _customerCache.getUserId(CacheKeys.userId);
+      log("custom fields===>${reportNewIncidentMap['customfields']}");
+      Map addNewIncidentMap = {
+        "eventdatetime": reportNewIncidentMap['eventdatetime'],
+        "description": reportNewIncidentMap['description'],
+        "responsible_person":
+            (reportNewIncidentMap['responsible_person'] == null)
+                ? ""
+                : reportNewIncidentMap['responsible_person'],
+        "site_name": reportNewIncidentMap['site_name'],
+        "location_name": reportNewIncidentMap['location_name'],
+        "reporteddatetime": (reportNewIncidentMap['reporteddatetime'] == null)
+            ? ""
             : reportNewIncidentMap['reporteddatetime'],
-      "category": reportNewIncidentMap['category'],
-      "createduserby": (userType == '1') ? userId : '0',
-      "createdworkforceby": (userType == '2') ? userId : '0',
-      "hashcode": hashCode,
-      "role": event.role,
-      "identity": reportNewIncidentMap['identity'],
-      "companyid": reportNewIncidentMap['companyid'],
-      "persons": (reportNewIncidentMap['persons'] == null)
-          ? []
-          : reportNewIncidentMap['persons'],
-      "customfields":
-          (reportNewIncidentMap['customfields'].toString().contains("{},"))
-              ? reportNewIncidentMap['customfields']
-                  .toString()
-                  .replaceAll("{}", "")
-                  .replaceAll(",", "")
-                  .replaceAll(" ", "")
-              : reportNewIncidentMap['customfields']
-    };
-    SaveReportNewIncidentModel saveReportNewIncidentModel =
-        await _incidentRepository.saveIncident(addNewIncidentMap);
-    log("model data=====>$addNewIncidentMap");
-    if (saveReportNewIncidentModel.status == 200) {
-      incidentId = saveReportNewIncidentModel.message;
-      // decryptedId = EncryptData.encryptAESPrivateKey(incidentId, hashCode);
-    } else {
+        "category": reportNewIncidentMap['category'],
+        "createduserby": (userType == '1') ? userId : '0',
+        "createdworkforceby": (userType == '2') ? userId : '0',
+        "hashcode": hashCode,
+        "role": event.role,
+        "identity": reportNewIncidentMap['identity'],
+        "companyid": reportNewIncidentMap['companyid'],
+        "persons": (reportNewIncidentMap['persons'] == null)
+            ? []
+            : reportNewIncidentMap['persons'],
+        "customfields":
+            (reportNewIncidentMap['customfields'].toString().contains("{},"))
+                ? reportNewIncidentMap['customfields']
+                    .toString()
+                    .replaceAll("{}", "")
+                    .replaceAll(",", "")
+                    .replaceAll(" ", "")
+                : reportNewIncidentMap['customfields']
+      };
+      // SaveReportNewIncidentModel saveReportNewIncidentModel =
+      //     await _incidentRepository.saveIncident(addNewIncidentMap);
+      log("model data=====>$addNewIncidentMap");
+      // if (saveReportNewIncidentModel.status == 200) {
+      //   incidentId = saveReportNewIncidentModel.message;
+      // } else {
+      //   emit(ReportNewIncidentNotSaved(
+      //       incidentNotSavedMessage:
+      //           DatabaseUtil.getText('some_unknown_error_please_try_again')));
+      // }
+      // (reportNewIncidentMap['filenames'] != null)
+      //     ? add(SaveReportNewIncidentPhotos(
+      //         reportNewIncidentMap: reportNewIncidentMap))
+      //     : null;
+      // emit(ReportNewIncidentSaved(
+      //     saveReportNewIncidentModel: saveReportNewIncidentModel));
+    } catch (e) {
       emit(ReportNewIncidentNotSaved(
           incidentNotSavedMessage:
               DatabaseUtil.getText('some_unknown_error_please_try_again')));
     }
-    (reportNewIncidentMap['filenames'] != null)
-        ? add(SaveReportNewIncidentPhotos(
-            reportNewIncidentMap: reportNewIncidentMap))
-        : null;
-    emit(ReportNewIncidentSaved(
-        saveReportNewIncidentModel: saveReportNewIncidentModel));
-    // } catch (e) {
-    //   emit(ReportNewIncidentNotSaved(
-    //       incidentNotSavedMessage:
-    //           DatabaseUtil.getText('some_unknown_error_please_try_again')));
-    // }
   }
 
   FutureOr<void> _saveIncidentPhotos(SaveReportNewIncidentPhotos event,

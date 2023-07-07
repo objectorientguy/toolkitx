@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/cupertino.dart';
 import 'package:toolkit/widgets/generic_text_field.dart';
 import '../configs/app_color.dart';
