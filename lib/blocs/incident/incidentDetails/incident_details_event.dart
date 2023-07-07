@@ -16,3 +16,17 @@ class IncidentDetailsFetchPopUpMenuItems extends IncidentDetailsEvent {
 
   IncidentDetailsFetchPopUpMenuItems({required this.popUpMenuItems});
 }
+
+class FetchPermitToLinkList extends IncidentDetailsEvent {
+  final String incidentId;
+  final int pageNo;
+
+  FetchPermitToLinkList({required this.pageNo, required this.incidentId});
+}
+
+class SaveLikedPermits extends IncidentDetailsEvent {
+  final String incidentId;
+  final String savedPermitList;
+
+  SaveLikedPermits({required this.savedPermitList, required this.incidentId});
+}
