@@ -1,20 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:toolkit/blocs/incident/reportNewIncident/report_new_incident_events.dart';
 import 'package:toolkit/configs/app_dimensions.dart';
 import 'package:toolkit/configs/app_theme.dart';
+import 'package:toolkit/data/models/incident/incident_details_model.dart';
 import '../../../configs/app_spacing.dart';
 import '../../../utils/database_utils.dart';
 import '../../blocs/incident/incidentDetails/incident_details_bloc.dart';
 import '../../blocs/incident/incidentDetails/incident_details_event.dart';
 import '../../blocs/incident/incidentDetails/incident_details_states.dart';
-import '../../data/models/incident/incident_details_model.dart';
 import 'category_screen.dart';
+import 'widgets/incident_contractor_list_tile.dart';
 
 class IncidentDetailsPopUpMenu extends StatelessWidget {
+  final Map incidentDetailsMap;
   final IncidentDetailsModel incidentDetailsModel;
 
-  const IncidentDetailsPopUpMenu({Key? key, required this.incidentDetailsModel})
+  const IncidentDetailsPopUpMenu(
+      {Key? key,
+      required this.incidentDetailsMap,
+      required this.incidentDetailsModel})
       : super(key: key);
 
   PopupMenuItem _buildPopupMenuItem(context, String title, String position) {
@@ -31,7 +35,7 @@ class IncidentDetailsPopUpMenu extends StatelessWidget {
         .add(IncidentDetailsFetchPopUpMenuItems(popUpMenuItems: const []));
     return BlocBuilder<IncidentDetailsBloc, IncidentDetailsStates>(
         buildWhen: (previousState, currentState) =>
-            currentState is IncidentDetailsPopUpMenuItemsFetched,
+        currentState is IncidentDetailsPopUpMenuItemsFetched,
         builder: (context, state) {
           if (state is IncidentDetailsPopUpMenuItemsFetched) {
             return PopupMenuButton(
@@ -44,6 +48,12 @@ class IncidentDetailsPopUpMenu extends StatelessWidget {
                 onSelected: (value) {
                   if (value == DatabaseUtil.getText('AddComments')) {}
                   if (value == DatabaseUtil.getText('EditIncident')) {
+                    CategoryScreen.addIncidentMap = incidentDetailsMap;
+                    CategoryScreen.isFromEdit = true;
+                    IncidentContractorListTile.contractorName =
+                        (incidentDetailsModel.data!.companyname == "null")
+                            ? ''
+                            : incidentDetailsModel.data!.companyname;
                     Navigator.pushNamed(context, CategoryScreen.routeName);
                   }
                   if (value == DatabaseUtil.getText('Report')) {}

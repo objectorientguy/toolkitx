@@ -20,9 +20,12 @@ class FetchingIncidentDetails extends IncidentDetailsStates {
 class IncidentDetailsFetched extends IncidentDetailsStates {
   final IncidentDetailsModel incidentDetailsModel;
   final String clientId;
+  final Map editIncidentDetailsMap;
 
   IncidentDetailsFetched(
-      {required this.clientId, required this.incidentDetailsModel});
+      {required this.editIncidentDetailsMap,
+      required this.clientId,
+      required this.incidentDetailsModel});
 
   @override
   List<Object?> get props => [];

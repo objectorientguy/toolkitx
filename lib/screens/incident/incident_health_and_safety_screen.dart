@@ -62,7 +62,8 @@ class IncidentHealthAndSafetyScreen extends StatelessWidget {
                                         index,
                                         state.fetchIncidentMasterModel
                                             .incidentMasterDatum![7],
-                                        customInfoFieldList),
+                                        customInfoFieldList,
+                                        addIncidentMap),
                                 const SizedBox(height: xxTinySpacing),
                               ],
                             );

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:toolkit/configs/app_theme.dart';
@@ -13,6 +15,7 @@ import 'incident_contractor_list.dart';
 
 class IncidentContractorListTile extends StatelessWidget {
   final Map addIncidentMap;
+  static String contractorName = '';
 
   const IncidentContractorListTile({
     Key? key,
@@ -21,9 +24,13 @@ class IncidentContractorListTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    log("map data=====>${addIncidentMap['companyid']}");
     context.read<ReportNewIncidentBloc>().add(
         ReportNewIncidentContractorListChange(
-            selectContractorName: '', selectContractorId: 0));
+            selectContractorName: contractorName,
+            selectContractorId: (addIncidentMap['companyid'] == null)
+                ? ''
+                : addIncidentMap['companyid']));
     return BlocBuilder<ReportNewIncidentBloc, ReportNewIncidentStates>(
         buildWhen: (previousState, currentState) =>
             currentState is ReportNewIncidentContractorSelected,
@@ -38,10 +45,10 @@ class IncidentContractorListTile extends StatelessWidget {
                       MaterialPageRoute(
                           builder: (context) => IncidentContractorList(
                               fetchIncidentMasterModel:
-                                  state.fetchIncidentMasterModel,
+                              state.fetchIncidentMasterModel,
                               selectContractorId: state.selectContractorId,
                               selectContractorName:
-                                  state.selectContractorName)));
+                              state.selectContractorName)));
                 },
                 title: Text(DatabaseUtil.getText('contractor'),
                     style: Theme.of(context)
@@ -51,15 +58,15 @@ class IncidentContractorListTile extends StatelessWidget {
                 subtitle: (state.selectContractorName == '')
                     ? null
                     : Padding(
-                        padding: const EdgeInsets.only(top: tiniestSpacing),
-                        child: Text(state.selectContractorName,
-                            style: Theme.of(context)
-                                .textTheme
-                                .xSmall
-                                .copyWith(color: AppColor.black)),
-                      ),
+                  padding: const EdgeInsets.only(top: tiniestSpacing),
+                  child: Text(state.selectContractorName,
+                      style: Theme.of(context)
+                          .textTheme
+                          .xSmall
+                          .copyWith(color: AppColor.black)),
+                ),
                 trailing:
-                    const Icon(Icons.navigate_next_rounded, size: kIconSize));
+                const Icon(Icons.navigate_next_rounded, size: kIconSize));
           } else {
             return const SizedBox();
           }

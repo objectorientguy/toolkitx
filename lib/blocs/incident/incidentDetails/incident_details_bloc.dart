@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../data/cache/cache_keys.dart';
 import '../../../../data/cache/customer_cache.dart';
@@ -27,6 +28,8 @@ class IncidentDetailsBloc
       Emitter<IncidentDetailsStates> emit) async {
     emit(FetchingIncidentDetails());
     try {
+      List customFieldList = [];
+      List injuredPersonList = [];
       String? hashCode = await _customerCache.getHashCode(CacheKeys.hashcode);
       String? userId = await _customerCache.getUserId(CacheKeys.userId);
       String? hashKey = await _customerCache.getClientId(CacheKeys.clientId);
@@ -34,8 +37,48 @@ class IncidentDetailsBloc
       IncidentDetailsModel incidentDetailsModel =
           await _incidentRepository.fetchIncidentDetails(
               event.incidentId, hashCode!, userId!, event.role);
-      emit(IncidentDetailsFetched(
-          incidentDetailsModel: incidentDetailsModel, clientId: hashKey!));
+      if (incidentDetailsModel.status == 200) {
+        for (int i = 0;
+            i < incidentDetailsModel.data!.customfields!.length;
+            i++) {
+          customFieldList.add({
+            "id": incidentDetailsModel.data!.customfields![i].fieldid,
+            "value": incidentDetailsModel.data!.customfields![i].fieldvalue
+          });
+        }
+        for (int j = 0;
+            j < incidentDetailsModel.data!.injuredpersonlist!.length;
+            j++) {
+          injuredPersonList.add({
+            "name": incidentDetailsModel.data!.injuredpersonlist![j].name,
+            "company": "",
+            "injury": "",
+            "bodypart": ""
+          });
+        }
+        Map editIncidentDetailsMap = {
+          "eventdatetime": incidentDetailsModel.data!.eventdatetime,
+          "description": incidentDetailsModel.data!.description,
+          "responsible_person": incidentDetailsModel.data!.responsiblePerson,
+          "site_name": incidentDetailsModel.data!.sitename,
+          "location_name": incidentDetailsModel.data!.locationname,
+          "reporteddatetime": incidentDetailsModel.data!.reporteddatetime,
+          "category": incidentDetailsModel.data!.category,
+          "createduserby": incidentDetailsModel.data!.createduserby,
+          "createdworkforceby": incidentDetailsModel.data!.createdworkforceby,
+          "hashcode": hashCode,
+          "role": event.role,
+          "identity": '',
+          "companyid": incidentDetailsModel.data!.companyid,
+          "persons": injuredPersonList,
+          "customfields": customFieldList
+        };
+        log("edit map bloc======>$editIncidentDetailsMap");
+        emit(IncidentDetailsFetched(
+            incidentDetailsModel: incidentDetailsModel,
+            clientId: hashKey!,
+            editIncidentDetailsMap: editIncidentDetailsMap));
+      }
     } catch (e) {
       emit(IncidentDetailsNotFetched());
     }

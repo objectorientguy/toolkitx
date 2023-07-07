@@ -40,14 +40,18 @@ class IncidentDetailsScreen extends StatelessWidget {
     return Scaffold(
         appBar: GenericAppBar(actions: [
           BlocBuilder<IncidentDetailsBloc, IncidentDetailsStates>(
+              buildWhen: (previousState, currentState) =>
+                  currentState is IncidentDetailsFetched,
               builder: (context, state) {
-            if (state is IncidentDetailsFetched) {
-              return IncidentDetailsPopUpMenu(
-                  incidentDetailsModel: state.incidentDetailsModel);
-            } else {
-              return const SizedBox();
-            }
-          })
+                if (state is IncidentDetailsFetched) {
+                  Map incidentDetailsMap = state.editIncidentDetailsMap;
+                  return IncidentDetailsPopUpMenu(
+                      incidentDetailsMap: incidentDetailsMap,
+                      incidentDetailsModel: state.incidentDetailsModel);
+                } else {
+                  return const SizedBox();
+                }
+              })
         ]),
         body: BlocBuilder<IncidentDetailsBloc, IncidentDetailsStates>(
             buildWhen: (previousState, currentState) =>

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:toolkit/blocs/incident/reportNewIncident/report_new_incident_states.dart';
@@ -14,17 +16,28 @@ typedef CustomFieldCallBack = Function(String customFieldOptionId);
 class IncidentReportCustomFiledInfoExpansionTile extends StatelessWidget {
   final CustomFieldCallBack onCustomFieldChanged;
   final int index;
+  final Map addIncidentMap;
 
   const IncidentReportCustomFiledInfoExpansionTile(
-      {Key? key, required this.onCustomFieldChanged, required this.index})
+      {Key? key,
+      required this.onCustomFieldChanged,
+      required this.index,
+      required this.addIncidentMap})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     context.read<ReportNewIncidentBloc>().add(
         ReportNewIncidentCustomInfoFiledExpansionChange(
-            reportIncidentCustomInfoOptionId: ''));
-    String customFieldName = '';
+            reportIncidentCustomInfoOptionId:
+                (addIncidentMap['customfields'] == null ||
+                        addIncidentMap['customfields'].isEmpty)
+                    ? ""
+                    : addIncidentMap['customfields'][index]['id']));
+    String customFieldName = (addIncidentMap['customfields'] == null ||
+            addIncidentMap['customfields'].isEmpty)
+        ? ""
+        : addIncidentMap['customfields'][index]['value'];
     return BlocBuilder<ReportNewIncidentBloc, ReportNewIncidentStates>(
         buildWhen: (previousState, currentState) =>
             currentState is ReportNewIncidentCustomFieldSelected,
@@ -65,14 +78,14 @@ class IncidentReportCustomFiledInfoExpansionTile extends StatelessWidget {
                                         .queoptions[itemIndex]['optiontext'],
                                     style: Theme.of(context).textTheme.xSmall),
                                 controlAffinity:
-                                    ListTileControlAffinity.trailing,
+                                ListTileControlAffinity.trailing,
                                 value: state
                                     .fetchIncidentMasterModel
                                     .incidentMasterDatum![7][index]
                                     .queoptions[itemIndex]['optionid']
                                     .toString(),
                                 groupValue:
-                                    state.reportIncidentCustomInfoOptionId,
+                                state.reportIncidentCustomInfoOptionId,
                                 onChanged: (value) {
                                   value = state
                                       .fetchIncidentMasterModel
@@ -87,7 +100,7 @@ class IncidentReportCustomFiledInfoExpansionTile extends StatelessWidget {
                                   context.read<ReportNewIncidentBloc>().add(
                                       ReportNewIncidentCustomInfoFiledExpansionChange(
                                           reportIncidentCustomInfoOptionId:
-                                              value));
+                                          value));
                                 });
                           })
                     ]));

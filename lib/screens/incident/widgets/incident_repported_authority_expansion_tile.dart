@@ -5,6 +5,7 @@ import 'package:toolkit/blocs/incident/reportNewIncident/report_new_incident_eve
 import 'package:toolkit/blocs/incident/reportNewIncident/report_new_incident_states.dart';
 import 'package:toolkit/configs/app_dimensions.dart';
 import 'package:toolkit/configs/app_theme.dart';
+import 'package:toolkit/screens/incident/category_screen.dart';
 import 'package:toolkit/screens/incident/widgets/time_picker.dart';
 import 'package:toolkit/utils/database_utils.dart';
 
@@ -98,6 +99,11 @@ class IncidentReportedAuthorityExpansionTile extends StatelessWidget {
                                 .copyWith(fontWeight: FontWeight.w600)),
                         const SizedBox(height: xxxTinierSpacing),
                         TextFieldWidget(
+                            value: (CategoryScreen.isFromEdit == true &&
+                                    addIncidentMap['responsible_person'] !=
+                                        null)
+                                ? addIncidentMap['responsible_person']
+                                : '',
                             hintText: DatabaseUtil.getText('WhichAuthority'),
                             onTextFieldChanged: (String textField) {
                               addIncidentMap['responsible_person'] = textField;
@@ -109,11 +115,26 @@ class IncidentReportedAuthorityExpansionTile extends StatelessWidget {
                                 .xSmall
                                 .copyWith(fontWeight: FontWeight.w600)),
                         const SizedBox(height: xxxTinierSpacing),
-                        DatePickerTextField(
-                          hintText: StringConstants.kSelectDate,
-                          onDateChanged: (String date) {
-                            reportedDate = date;
-                          },
+                        Visibility(
+                          visible: CategoryScreen.isFromEdit != true &&
+                              addIncidentMap['reporteddatetime'] == null,
+                          replacement: TextFieldWidget(
+                              value:
+                                  (addIncidentMap['reporteddatetime'] == null ||
+                                          addIncidentMap['reporteddatetime']
+                                              .isEmpty)
+                                      ? ""
+                                      : addIncidentMap['reporteddatetime']
+                                          .toString()
+                                          .substring(0, 10),
+                              readOnly: true,
+                              onTextFieldChanged: (String textField) {}),
+                          child: DatePickerTextField(
+                            hintText: StringConstants.kSelectDate,
+                            onDateChanged: (String date) {
+                              reportedDate = date;
+                            },
+                          ),
                         ),
                         const SizedBox(height: xxTinySpacing),
                         Text(StringConstants.kTime,
@@ -122,12 +143,27 @@ class IncidentReportedAuthorityExpansionTile extends StatelessWidget {
                                 .xSmall
                                 .copyWith(fontWeight: FontWeight.w600)),
                         const SizedBox(height: xxxTinierSpacing),
-                        TimePickerTextField(
-                          hintText: StringConstants.kSelectTime,
-                          onTimeChanged: (String time) {
-                            addIncidentMap['reporteddatetime'] =
-                                '$reportedDate $time';
-                          },
+                        Visibility(
+                          visible: CategoryScreen.isFromEdit != true &&
+                              addIncidentMap['reporteddatetime'] == null,
+                          replacement: TextFieldWidget(
+                              value:
+                                  (addIncidentMap['reporteddatetime'] == null ||
+                                          addIncidentMap['reporteddatetime']
+                                              .isEmpty)
+                                      ? ""
+                                      : addIncidentMap['reporteddatetime']
+                                          .toString()
+                                          .substring(12, 19),
+                              readOnly: true,
+                              onTextFieldChanged: (String textField) {}),
+                          child: TimePickerTextField(
+                            hintText: StringConstants.kSelectTime,
+                            onTimeChanged: (String time) {
+                              addIncidentMap['reporteddatetime'] =
+                                  '$reportedDate $time';
+                            },
+                          ),
                         ),
                         const SizedBox(height: xxTinySpacing)
                       ]))

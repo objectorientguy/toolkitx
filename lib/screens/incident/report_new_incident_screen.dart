@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:toolkit/blocs/incident/reportNewIncident/report_new_incident_bloc.dart';
@@ -19,6 +21,7 @@ import '../../widgets/generic_app_bar.dart';
 import '../../widgets/generic_text_field.dart';
 import '../../widgets/primary_button.dart';
 import '../checklist/workforce/widgets/upload_image_section.dart';
+import 'category_screen.dart';
 
 class ReportNewIncidentScreen extends StatelessWidget {
   static const routeName = 'ReportNewIncidentScreen';
@@ -60,11 +63,23 @@ class ReportNewIncidentScreen extends StatelessWidget {
                               .xSmall
                               .copyWith(fontWeight: FontWeight.w600)),
                       const SizedBox(height: xxxTinierSpacing),
-                      DatePickerTextField(
-                        hintText: StringConstants.kSelectDate,
-                        onDateChanged: (String date) {
-                          eventDate = date;
-                        },
+                      Visibility(
+                        visible: CategoryScreen.isFromEdit != true &&
+                            addIncidentMap['eventdatetime'] == null,
+                        replacement: TextFieldWidget(
+                            value: (addIncidentMap['eventdatetime'] == null)
+                                ? ""
+                                : addIncidentMap['eventdatetime']
+                                    .toString()
+                                    .substring(0, 10),
+                            readOnly: true,
+                            onTextFieldChanged: (String textField) {}),
+                        child: DatePickerTextField(
+                          hintText: StringConstants.kSelectDate,
+                          onDateChanged: (String date) {
+                            eventDate = date;
+                          },
+                        ),
                       ),
                       const SizedBox(height: xxTinySpacing),
                       Text(StringConstants.kTime,
@@ -73,11 +88,24 @@ class ReportNewIncidentScreen extends StatelessWidget {
                               .xSmall
                               .copyWith(fontWeight: FontWeight.w600)),
                       const SizedBox(height: xxxTinierSpacing),
-                      TimePickerTextField(
-                        hintText: StringConstants.kSelectTime,
-                        onTimeChanged: (String time) {
-                          addIncidentMap['eventdatetime'] = '$eventDate $time';
-                        },
+                      Visibility(
+                        visible: CategoryScreen.isFromEdit != true &&
+                            addIncidentMap['eventdatetime'] == null,
+                        replacement: TextFieldWidget(
+                            value: (addIncidentMap['eventdatetime'] == null)
+                                ? ""
+                                : addIncidentMap['eventdatetime']
+                                    .toString()
+                                    .substring(12, 19),
+                            readOnly: true,
+                            onTextFieldChanged: (String textField) {}),
+                        child: TimePickerTextField(
+                          hintText: StringConstants.kSelectTime,
+                          onTimeChanged: (String time) {
+                            addIncidentMap['eventdatetime'] =
+                                '$eventDate $time';
+                          },
+                        ),
                       ),
                       const SizedBox(height: xxTinySpacing),
                       Text(StringConstants.kDetailedDescription,
@@ -87,6 +115,10 @@ class ReportNewIncidentScreen extends StatelessWidget {
                               .copyWith(fontWeight: FontWeight.w600)),
                       const SizedBox(height: xxxTinierSpacing),
                       TextFieldWidget(
+                          value: (CategoryScreen.isFromEdit == true &&
+                                  addIncidentMap['description'] != null)
+                              ? addIncidentMap['description']
+                              : '',
                           maxLength: 250,
                           maxLines: 3,
                           textInputAction: TextInputAction.done,
@@ -115,23 +147,23 @@ class ReportNewIncidentScreen extends StatelessWidget {
                     ]))),
         bottomNavigationBar: BottomAppBar(
             child: BlocListener<ReportNewIncidentBloc, ReportNewIncidentStates>(
-          listener: (context, state) {
-            if (state is ReportNewIncidentDateTimeDescValidated) {
-              showCustomSnackBar(
-                  context, state.dateTimeDescValidationMessage, '');
-            } else if (state
+              listener: (context, state) {
+                if (state is ReportNewIncidentDateTimeDescValidated) {
+                  showCustomSnackBar(
+                      context, state.dateTimeDescValidationMessage, '');
+                } else if (state
                 is ReportNewIncidentDateTimeDescValidationComplete) {
-              Navigator.pushNamed(context, IncidentLocationScreen.routeName,
-                  arguments: addIncidentMap);
-            }
-          },
-          child: PrimaryButton(
-              onPressed: () {
-                context.read<ReportNewIncidentBloc>().add(
-                    ReportNewIncidentDateTimeDescriptionValidation(
-                        reportNewIncidentMap: addIncidentMap));
+                  Navigator.pushNamed(context, IncidentLocationScreen.routeName,
+                      arguments: addIncidentMap);
+                }
               },
-              textValue: DatabaseUtil.getText('nextButtonText')),
-        )));
+              child: PrimaryButton(
+                  onPressed: () {
+                    context.read<ReportNewIncidentBloc>().add(
+                        ReportNewIncidentDateTimeDescriptionValidation(
+                            reportNewIncidentMap: addIncidentMap));
+                  },
+                  textValue: DatabaseUtil.getText('nextButtonText')),
+            )));
   }
 }

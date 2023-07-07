@@ -17,6 +17,7 @@ import '../../widgets/primary_button.dart';
 
 class CategoryScreen extends StatelessWidget {
   static const routeName = 'CategoryScreen';
+  static bool isFromEdit = false;
   static Map addIncidentMap = {};
 
   const CategoryScreen({Key? key}) : super(key: key);
@@ -25,7 +26,9 @@ class CategoryScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     context.read<ReportNewIncidentBloc>().add(FetchIncidentMaster(
         role: context.read<IncidentFetchAndChangeRoleBloc>().roleId,
-        categories: ''));
+        categories: (addIncidentMap['category'] == null)
+            ? ""
+            : addIncidentMap['category']));
     return Scaffold(
         appBar: const GenericAppBar(title: StringConstants.kCategory),
         body: Padding(
@@ -93,12 +96,12 @@ class CategoryScreen extends StatelessWidget {
                                                         AppColor.deepBlue,
                                                     contentPadding:
                                                         EdgeInsets.zero,
-                                                    value: state.categorySelectedList
-                                                        .contains(state
-                                                            .categoryList[index]
-                                                                ['items']
-                                                                [itemIndex]
-                                                            .id),
+                                                    value: state.categorySelectedList.contains(state
+                                                        .categoryList[index]
+                                                            ['items'][itemIndex]
+                                                        .id
+                                                        .toString()
+                                                        .trim()),
                                                     title: Text(
                                                         state
                                                             .categoryList[index]
@@ -123,7 +126,9 @@ class CategoryScreen extends StatelessWidget {
                                                                     index]
                                                                     ['items']
                                                                     [itemIndex]
-                                                                .id,
+                                                                .id
+                                                                .toString()
+                                                                .trim(),
                                                             multiSelectList: state
                                                                 .categorySelectedList,
                                                           ));

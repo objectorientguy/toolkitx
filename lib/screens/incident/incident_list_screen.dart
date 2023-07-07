@@ -31,6 +31,7 @@ class IncidentListScreen extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
           onPressed: () {
             CategoryScreen.addIncidentMap = {};
+            CategoryScreen.isFromEdit = false;
             Navigator.pushNamed(context, CategoryScreen.routeName);
           },
           child: const Icon(Icons.add)),
