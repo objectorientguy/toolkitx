@@ -66,7 +66,9 @@ class _IncidentLinkPermitListState extends State<IncidentLinkPermitList> {
                       const Icon(Icons.add),
                       const SizedBox(width: tiniestSpacing),
                       Text(StringConstants.kAddLinkToPermit,
-                          style: Theme.of(context).textTheme.small)
+                          style: Theme.of(context).textTheme.small.copyWith(
+                                color: AppColor.white,
+                              ))
                     ],
                   ),
                 ),
