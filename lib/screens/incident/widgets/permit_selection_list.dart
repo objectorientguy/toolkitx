@@ -88,7 +88,7 @@ class _PermitSelectionListState extends State<PermitSelectionList> {
             Expanded(
               child: ElevatedButton(
                 onPressed: widget.goBack,
-                child: const Text('Cancel'),
+                child: const Text(StringConstants.kCancel),
               ),
             ),
             const SizedBox(
@@ -110,7 +110,7 @@ class _PermitSelectionListState extends State<PermitSelectionList> {
                                   incidentId: widget.incidentId));
                         }
                       : null,
-                  child: const Text('Select Permits')),
+                  child: const Text(StringConstants.kSelectPermits)),
             ),
           ],
         ),

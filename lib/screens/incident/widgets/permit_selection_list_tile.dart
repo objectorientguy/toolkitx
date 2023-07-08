@@ -62,6 +62,20 @@ class PermitSelectionListTile extends StatelessWidget {
                             child: Text(permitLinkDatum.description),
                           ),
                           const SizedBox(height: tiniestSpacing),
+                          Row(children: [
+                            Image.asset("assets/icons/calendar.png",
+                                height: kImageHeight, width: kImageWidth),
+                            const SizedBox(width: tiniestSpacing),
+                            Text(permitLinkDatum.schedule)
+                          ]),
+                          const SizedBox(height: tiniestSpacing),
+                          IconAndTextRow(
+                              title: permitLinkDatum.pname!,
+                              icon: 'human_avatar_three'),
+                          const SizedBox(height: tiniestSpacing),
+                          IconAndTextRow(
+                              title: permitLinkDatum.pcompany!, icon: 'office'),
+                          const SizedBox(height: tiniestSpacing),
                           SizedBox(
                             child: Row(
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -77,20 +91,6 @@ class PermitSelectionListTile extends StatelessWidget {
                               ],
                             ),
                           ),
-                          const SizedBox(height: tiniestSpacing),
-                          IconAndTextRow(
-                              title: permitLinkDatum.pname!,
-                              icon: 'human_avatar_three'),
-                          const SizedBox(height: tiniestSpacing),
-                          IconAndTextRow(
-                              title: permitLinkDatum.pcompany!, icon: 'office'),
-                          const SizedBox(height: tiniestSpacing),
-                          Row(children: [
-                            Image.asset("assets/icons/calendar.png",
-                                height: kImageHeight, width: kImageWidth),
-                            const SizedBox(width: tiniestSpacing),
-                            Text(permitLinkDatum.schedule)
-                          ]),
                           if (permitLinkDatum.expired == '2')
                             const SizedBox(height: xxTinierSpacing),
                           if (permitLinkDatum.expired == '2')

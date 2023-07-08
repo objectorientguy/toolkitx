@@ -16,7 +16,6 @@ import '../../../configs/app_spacing.dart';
 import '../../../data/models/incident/fetch_incidents_list_model.dart';
 import '../../../utils/constants/string_constants.dart';
 import '../../../widgets/custom_card.dart';
-import '../../../widgets/custom_floating_action_button.dart';
 import '../../../widgets/progress_bar.dart';
 
 class IncidentLinkPermitList extends StatefulWidget {
@@ -47,20 +46,29 @@ class _IncidentLinkPermitListState extends State<IncidentLinkPermitList> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-        floatingActionButton: (isList == true)
-            ? CustomFloatingActionButton(
-                textValue: 'AddLinkToPermit',
-                onPressed: () {
-                  setState(() {
-                    isList = false;
-                    context.read<IncidentDetailsBloc>().add(
-                        FetchPermitToLinkList(
-                            incidentId: widget.incidentListDatum.id,
-                            pageNo: 1));
-                  });
-                  context.read<IncidentDetailsBloc>().savedList.clear();
-                },
+        bottomNavigationBar: (isList == true)
+            ? Container(
+                color: AppColor.white,
+                child: ElevatedButton(
+                  onPressed: () {
+                    setState(() {
+                      isList = false;
+                      context.read<IncidentDetailsBloc>().add(
+                          FetchPermitToLinkList(
+                              incidentId: widget.incidentListDatum.id,
+                              pageNo: 1));
+                    });
+                    context.read<IncidentDetailsBloc>().savedList.clear();
+                  },
+                  child: const Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(Icons.add),
+                      SizedBox(width: tiniestSpacing),
+                      Text(StringConstants.kAddLinkToPermit)
+                    ],
+                  ),
+                ),
               )
             : null,
         body: Visibility(
