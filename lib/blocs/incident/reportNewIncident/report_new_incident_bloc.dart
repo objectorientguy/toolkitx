@@ -250,7 +250,13 @@ class ReportNewIncidentBloc
             : reportNewIncidentMap['persons'],
         "customfields": (reportNewIncidentMap['customfields'] == null)
             ? []
-            : reportNewIncidentMap['customfields']
+            : (reportNewIncidentMap['customfields'].toString().contains("{},"))
+                ? reportNewIncidentMap['customfields']
+                    .toString()
+                    .replaceAll("{}", "")
+                    .replaceAll(",", "")
+                    .replaceAll(" ", "")
+                : reportNewIncidentMap['customfields']
       };
       SaveReportNewIncidentModel saveReportNewIncidentModel =
           await _incidentRepository.saveIncident(addNewIncidentMap);
