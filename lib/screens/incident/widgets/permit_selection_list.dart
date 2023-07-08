@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:toolkit/blocs/incident/incidentDetails/incident_details_event.dart';
+import 'package:toolkit/blocs/incident/incidentListAndFilter/incident_list_and_filter_bloc.dart';
 import 'package:toolkit/screens/incident/widgets/permit_selection_list_tile.dart';
 import '../../../blocs/incident/incidentDetails/incident_details_bloc.dart';
 import '../../../blocs/incident/incidentDetails/incident_details_states.dart';
-import '../../../blocs/incident/incidentGetAndChangeRole/incident_get_and_change_role_bloc.dart';
 import '../../../configs/app_spacing.dart';
 import '../../../utils/constants/string_constants.dart';
 import '../../../utils/database_utils.dart';
@@ -73,7 +73,7 @@ class _PermitSelectionListState extends State<PermitSelectionList> {
             ProgressBar.dismiss(context);
             context.read<IncidentDetailsBloc>().add(FetchIncidentDetailsEvent(
                 incidentId: widget.incidentId,
-                role: context.read<IncidentFetchAndChangeRoleBloc>().roleId,
+                role: context.read<IncidentLisAndFilterBloc>().roleId,
                 initialIndex: widget.initialIndex));
           }
           if (state is LinkedPermitsNotSaved) {

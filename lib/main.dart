@@ -24,7 +24,6 @@ import 'blocs/client/client_bloc.dart';
 import 'blocs/dateFormat/date_format_bloc.dart';
 import 'blocs/home/home_bloc.dart';
 import 'blocs/incident/incidentDetails/incident_details_bloc.dart';
-import 'blocs/incident/incidentGetAndChangeRole/incident_get_and_change_role_bloc.dart';
 import 'blocs/incident/incidentInjuryDetails/incident_injury_details_bloc.dart';
 import 'blocs/incident/incidentListAndFilter/incident_list_and_filter_bloc.dart';
 import 'blocs/incident/incidentRemoveLinkedPermit/incident_remove_linked_permit_bloc.dart';
@@ -129,9 +128,6 @@ class MyApp extends StatelessWidget {
               lazy: false, create: (context) => PickAndUploadImageBloc()),
           BlocProvider(
               lazy: false, create: (context) => IncidentLisAndFilterBloc()),
-          BlocProvider(
-              lazy: true,
-              create: (context) => IncidentFetchAndChangeRoleBloc()),
           BlocProvider(
               lazy: false, create: (context) => PickAndUploadImageBloc()),
           BlocProvider(lazy: true, create: (context) => IncidentDetailsBloc()),

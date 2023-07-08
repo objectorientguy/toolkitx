@@ -16,7 +16,7 @@ import '../screens/checklist/workforce/workforce_reject_reason_screen.dart';
 import '../screens/incident/add_injured_person_screen.dart';
 import '../screens/incident/category_screen.dart';
 import '../screens/incident/change_role_screen.dart';
-import '../screens/incident/filter_screen.dart';
+import '../screens/incident/incident_filter_screen.dart';
 import '../screens/incident/incident_health_and_safety_screen.dart';
 import '../screens/incident/incident_injuries_screen.dart';
 import '../screens/incident/incident_list_screen.dart';
@@ -78,7 +78,8 @@ class AppRoutes {
       case EditHeaderScreen.routeName:
         return _createRoute(EditHeaderScreen());
       case IncidentListScreen.routeName:
-        return _createRoute(const IncidentListScreen());
+        return _createRoute(
+            IncidentListScreen(isFromHome: settings.arguments as bool));
       case IncidentFilterScreen.routeName:
         return _createRoute(IncidentFilterScreen());
       case IncidentChangeRoleScreen.routeName:
