@@ -1,22 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:toolkit/blocs/incident/incidentRemoveLinkedPermit/incident_remove_linked_permit_bloc.dart';
-import 'package:toolkit/blocs/incident/incidentRemoveLinkedPermit/incident_remove_linked_permit_states.dart';
 import 'package:toolkit/configs/app_theme.dart';
-import 'package:toolkit/data/models/incident/incident_details_model.dart';
-import 'package:toolkit/screens/incident/widgets/permit_selection_list.dart';
-import 'package:toolkit/widgets/custom_snackbar.dart';
-import 'package:toolkit/widgets/text_button.dart';
 import '../../../blocs/incident/incidentDetails/incident_details_bloc.dart';
 import '../../../blocs/incident/incidentDetails/incident_details_event.dart';
-import '../../../blocs/incident/incidentGetAndChangeRole/incident_get_and_change_role_bloc.dart';
+import '../../../blocs/incident/incidentListAndFilter/incident_list_and_filter_bloc.dart';
+import '../../../blocs/incident/incidentRemoveLinkedPermit/incident_remove_linked_permit_bloc.dart';
 import '../../../blocs/incident/incidentRemoveLinkedPermit/incident_remove_linked_permit_event.dart';
+import '../../../blocs/incident/incidentRemoveLinkedPermit/incident_remove_linked_permit_states.dart';
 import '../../../configs/app_color.dart';
 import '../../../configs/app_spacing.dart';
 import '../../../data/models/incident/fetch_incidents_list_model.dart';
+import '../../../data/models/incident/incident_details_model.dart';
 import '../../../utils/constants/string_constants.dart';
 import '../../../widgets/custom_card.dart';
+import '../../../widgets/custom_snackbar.dart';
 import '../../../widgets/progress_bar.dart';
+import '../../../widgets/text_button.dart';
+import 'permit_selection_list.dart';
 
 class IncidentLinkPermitList extends StatefulWidget {
   final IncidentDetailsModel incidentDetailsModel;
@@ -115,8 +115,7 @@ class _IncidentLinkPermitListState extends State<IncidentLinkPermitList> {
                                           incidentId:
                                               widget.incidentListDatum.id,
                                           role: context
-                                              .read<
-                                                  IncidentFetchAndChangeRoleBloc>()
+                                              .read<IncidentLisAndFilterBloc>()
                                               .roleId,
                                           initialIndex: widget.initialIndex));
                                 } else if (state

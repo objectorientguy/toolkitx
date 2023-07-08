@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:toolkit/blocs/incident/incidentGetAndChangeRole/incident_get_and_change_role_bloc.dart';
-import 'package:toolkit/blocs/incident/reportNewIncident/report_new_incident_events.dart';
-import 'package:toolkit/blocs/incident/reportNewIncident/report_new_incident_states.dart';
 import 'package:toolkit/configs/app_theme.dart';
-import 'package:toolkit/utils/database_utils.dart';
-import 'package:toolkit/widgets/custom_snackbar.dart';
+import '../../blocs/incident/incidentListAndFilter/incident_list_and_filter_bloc.dart';
 import '../../blocs/incident/reportNewIncident/report_new_incident_bloc.dart';
+import '../../blocs/incident/reportNewIncident/report_new_incident_events.dart';
+import '../../blocs/incident/reportNewIncident/report_new_incident_states.dart';
 import '../../configs/app_color.dart';
 import '../../configs/app_spacing.dart';
 import '../../utils/constants/string_constants.dart';
+import '../../utils/database_utils.dart';
 import '../../widgets/custom_card.dart';
 import '../../widgets/custom_floating_action_button.dart';
+import '../../widgets/custom_snackbar.dart';
 import '../../widgets/generic_app_bar.dart';
 import '../../widgets/primary_button.dart';
 import '../../widgets/progress_bar.dart';
@@ -62,26 +62,29 @@ class AddInjuredPersonScreen extends StatelessWidget {
                       itemBuilder: (context, index) {
                         return CustomCard(
                             child: ListTile(
-                          contentPadding: const EdgeInsets.only(
-                              left: tinierSpacing,
-                              right: tinierSpacing,
-                              top: tiniestSpacing,
-                              bottom: tiniestSpacing),
-                          trailing: CustomTextButton(
-                              onPressed: () {
-                                context.read<ReportNewIncidentBloc>().add(
-                                    IncidentRemoveInjuredPersonDetails(
-                                        injuredPersonDetailsList:
-                                            addIncidentMap['persons'],
-                                        index: index));
-                              },
-                              textValue: StringConstants.kRemove),
-                          title: Text(
-                              state.injuredPersonDetailsList[index]['name'],
-                              style: Theme.of(context).textTheme.small.copyWith(
-                                  fontWeight: FontWeight.w700,
-                                  color: AppColor.mediumBlack)),
-                        ));
+                                contentPadding: const EdgeInsets.only(
+                                    left: tinierSpacing,
+                                    right: tinierSpacing,
+                                    top: tiniestSpacing,
+                                    bottom: tiniestSpacing),
+                                trailing: CustomTextButton(
+                                    onPressed: () {
+                                      context.read<ReportNewIncidentBloc>().add(
+                                          IncidentRemoveInjuredPersonDetails(
+                                              injuredPersonDetailsList:
+                                                  addIncidentMap['persons'],
+                                              index: index));
+                                    },
+                                    textValue: StringConstants.kRemove),
+                                title: Text(
+                                    state.injuredPersonDetailsList[index]
+                                        ['name'],
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .small
+                                        .copyWith(
+                                            fontWeight: FontWeight.w700,
+                                            color: AppColor.mediumBlack))));
                       },
                       separatorBuilder: (context, index) {
                         return const SizedBox(height: xxTinierSpacing);
@@ -119,7 +122,7 @@ class AddInjuredPersonScreen extends StatelessWidget {
                         SaveReportNewIncident(
                             reportNewIncidentMap: addIncidentMap,
                             role: context
-                                .read<IncidentFetchAndChangeRoleBloc>()
+                                .read<IncidentLisAndFilterBloc>()
                                 .roleId));
                   },
                   textValue: StringConstants.kDone)),
