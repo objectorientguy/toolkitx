@@ -60,12 +60,13 @@ class _IncidentLinkPermitListState extends State<IncidentLinkPermitList> {
                     });
                     context.read<IncidentDetailsBloc>().savedList.clear();
                   },
-                  child: const Row(
+                  child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Icon(Icons.add),
-                      SizedBox(width: tiniestSpacing),
-                      Text(StringConstants.kAddLinkToPermit)
+                      const Icon(Icons.add),
+                      const SizedBox(width: tiniestSpacing),
+                      Text(StringConstants.kAddLinkToPermit,
+                          style: Theme.of(context).textTheme.small)
                     ],
                   ),
                 ),
