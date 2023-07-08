@@ -1,3 +1,5 @@
+import 'package:toolkit/data/models/incident/fetch_permit_to_link_model.dart';
+
 import '../../../utils/constants/api_constants.dart';
 import '../../../utils/dio_client.dart';
 import '../../data/models/incident/fetch_incidents_list_model.dart';
@@ -9,6 +11,7 @@ import '../../data/models/incident/incident_unlink_permit_model.dart';
 import '../../data/models/incident/save_report_new_incident_model.dart';
 import '../../data/models/incident/save_report_new_incident_photos_model.dart';
 import '../../data/models/incident/save_injured_person_model.dart';
+import '../../data/models/incident/saved_linked_permit_model.dart';
 import 'incident_repository.dart';
 
 class IncidentRepositoryImpl extends IncidentRepository {
@@ -81,5 +84,20 @@ class IncidentRepositoryImpl extends IncidentRepository {
     final response = await DioClient().post(
         "${ApiConstants.baseUrl}incident/saveinjuredperson", injuredPersonMap);
     return SaveInjuredPersonModel.fromJson(response);
+  }
+
+  @override
+  Future<FetchPermitToLinkModel> fetchPermitToLink(
+      int pageNo, String hashCode, String filter, String incidentId) async {
+    final response = await DioClient().get(
+        "${ApiConstants.baseUrl}/incident/getpermitstolink?pageno=$pageNo&hashcode=$hashCode&filter=$filter&incidentid=$incidentId");
+    return FetchPermitToLinkModel.fromJson(response);
+  }
+
+  @override
+  Future<SaveLinkedPermitModel> saveLinkedPermit(Map linkedPermitMap) async {
+    final response = await DioClient().post(
+        "${ApiConstants.baseUrl}incident/savelinkedpermit", linkedPermitMap);
+    return SaveLinkedPermitModel.fromJson(response);
   }
 }

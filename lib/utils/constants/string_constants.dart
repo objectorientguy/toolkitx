@@ -190,4 +190,6 @@ abstract class StringConstants {
   static const String kCancel = 'Cancel';
   static const String kDiscard = 'Discard';
   static const String kNameValidation = 'Please enter name';
+  static const String kSelectPermits = 'Select Permits';
+  static const String kAddLinkToPermit = 'Add Link To Permit';
 }
