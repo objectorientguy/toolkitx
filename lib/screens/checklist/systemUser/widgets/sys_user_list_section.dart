@@ -37,75 +37,77 @@ class _SysUserListSectionState extends State<SysUserListSection> {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-        child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-      BlocConsumer<SysUserCheckListBloc, SysUserCheckListStates>(
-          buildWhen: (previousState, currentState) =>
-              ((currentState is CheckListFetched &&
-                      SysUserListSection.noMoreData != true) ||
-                  (currentState is FetchingCheckList &&
-                      widget.checkListData.isEmpty)),
-          listener: (context, state) {
-            if (state is CheckListFetched) {
-              if (state.getChecklistModel.status == 204 &&
-                  widget.checkListData.isNotEmpty) {
-                SysUserListSection.noMoreData = true;
-                showCustomSnackBar(context, StringConstants.kAllDataLoaded, '');
-              }
+    return BlocConsumer<SysUserCheckListBloc, SysUserCheckListStates>(
+        buildWhen: (previousState, currentState) =>
+            ((currentState is CheckListFetched &&
+                    SysUserListSection.noMoreData != true) ||
+                (currentState is FetchingCheckList &&
+                    widget.checkListData.isEmpty)),
+        listener: (context, state) {
+          if (state is CheckListFetched) {
+            if (state.getChecklistModel.status == 204 &&
+                widget.checkListData.isNotEmpty) {
+              SysUserListSection.noMoreData = true;
+              showCustomSnackBar(context, StringConstants.kAllDataLoaded, '');
             }
-          },
-          builder: (context, state) {
-            if (state is CheckListFetched) {
-              if (state.getChecklistModel.data!.isNotEmpty) {
-                for (var item in state.getChecklistModel.data!) {
-                  widget.checkListData.add(item);
-                }
-                waitForData = false;
-                return Expanded(
-                    child: ListView.separated(
-                        physics: const BouncingScrollPhysics(),
-                        controller: controller
-                          ..addListener(() {
-                            if (SysUserListSection.noMoreData != true &&
-                                waitForData == false) {
-                              if (controller.position.extentAfter < 500) {
-                                SystemUserCheckListScreen.page++;
-                                context.read<SysUserCheckListBloc>().add(
-                                    FetchCheckList(
-                                        isFromHome: false,
-                                        page: SystemUserCheckListScreen.page));
-                                waitForData = true;
-                              }
+          }
+        },
+        builder: (context, state) {
+          if (state is CheckListFetched) {
+            if (state.getChecklistModel.data!.isNotEmpty) {
+              for (var item in state.getChecklistModel.data!) {
+                widget.checkListData.add(item);
+              }
+              waitForData = false;
+              return Expanded(
+                  child: ListView.separated(
+                      physics: const BouncingScrollPhysics(),
+                      controller: controller
+                        ..addListener(() {
+                          if (SysUserListSection.noMoreData != true &&
+                              waitForData == false) {
+                            if (controller.position.extentAfter < 500) {
+                              SystemUserCheckListScreen.page++;
+                              context.read<SysUserCheckListBloc>().add(
+                                  FetchCheckList(
+                                      isFromHome: false,
+                                      page: SystemUserCheckListScreen.page));
+                              waitForData = true;
                             }
-                          }),
-                        shrinkWrap: true,
-                        itemCount: widget.checkListData.length,
-                        itemBuilder: (context, index) {
-                          return SystemUserListCard(
-                              checkListDatum: widget.checkListData[index]);
-                        },
-                        separatorBuilder: (BuildContext context, int index) {
-                          return const SizedBox(height: xxTinySpacing);
-                        }));
-              } else {
-                if (state.getChecklistModel.status == 204) {
-                  if (state.filterData == '{}') {
-                    return NoRecordsText(
-                        text: DatabaseUtil.getText('no_records_found'));
-                  } else {
-                    return const NoRecordsText(
-                        text: StringConstants.kNoRecordsFilter);
-                  }
-                } else {
-                  return const SizedBox();
-                }
-              }
-            } else if (state is FetchingCheckList) {
-              return const CircularProgressIndicator();
+                          }
+                        }),
+                      shrinkWrap: true,
+                      itemCount: widget.checkListData.length,
+                      itemBuilder: (context, index) {
+                        return SystemUserListCard(
+                            checkListDatum: widget.checkListData[index]);
+                      },
+                      separatorBuilder: (BuildContext context, int index) {
+                        return const SizedBox(height: xxTinySpacing);
+                      }));
             } else {
-              return const SizedBox();
+              if (state.getChecklistModel.status == 204) {
+                if (state.filterData == '{}') {
+                  return NoRecordsText(
+                      text: DatabaseUtil.getText('no_records_found'));
+                } else {
+                  return const NoRecordsText(
+                      text: StringConstants.kNoRecordsFilter);
+                }
+              } else {
+                return const SizedBox();
+              }
             }
-          })
-    ]));
+          } else if (state is FetchingCheckList) {
+            return Center(
+              child: Padding(
+                  padding: EdgeInsets.only(
+                      top: MediaQuery.of(context).size.height / 3.5),
+                  child: const CircularProgressIndicator()),
+            );
+          } else {
+            return const SizedBox();
+          }
+        });
   }
 }
