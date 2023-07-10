@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:toolkit/blocs/incident/incidentListAndFilter/incident_list_and_filter_event.dart';
 import 'package:toolkit/configs/app_theme.dart';
 import '../../blocs/incident/incidentListAndFilter/incident_list_and_filter_bloc.dart';
 import '../../blocs/incident/reportNewIncident/report_new_incident_bloc.dart';
@@ -17,7 +18,6 @@ import '../../widgets/primary_button.dart';
 import '../../widgets/progress_bar.dart';
 import '../../widgets/text_button.dart';
 import 'incident_injuries_screen.dart';
-import 'incident_list_screen.dart';
 
 class AddInjuredPersonScreen extends StatelessWidget {
   static const routeName = 'AddInjuredPersonScreen';
@@ -107,9 +107,8 @@ class AddInjuredPersonScreen extends StatelessWidget {
                   Navigator.pop(context);
                   Navigator.pop(context);
                   Navigator.pop(context);
-                  Navigator.pushReplacementNamed(
-                      context, IncidentListScreen.routeName,
-                      arguments: false);
+                  context.read<IncidentLisAndFilterBloc>().add(
+                      const FetchIncidentListEvent(page: 1, isFromHome: false));
                 } else if (state is ReportNewIncidentNotSaved) {
                   ProgressBar.dismiss(context);
                   showCustomSnackBar(
