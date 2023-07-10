@@ -42,7 +42,7 @@ class _SysUserListSectionState extends State<SysUserListSection> {
             ((currentState is CheckListFetched &&
                     SysUserListSection.noMoreData != true) ||
                 (currentState is FetchingCheckList &&
-                    widget.checkListData.isEmpty)),
+                    SystemUserCheckListScreen.page == 1)),
         listener: (context, state) {
           if (state is CheckListFetched) {
             if (state.getChecklistModel.status == 204 &&
