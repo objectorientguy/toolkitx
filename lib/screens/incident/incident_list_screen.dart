@@ -66,7 +66,7 @@ class _IncidentListScreenState extends State<IncidentListScreen> {
             child: Column(children: [
               Row(mainAxisAlignment: MainAxisAlignment.end, children: [
                 BlocBuilder<IncidentLisAndFilterBloc,
-                    IncidentListAndFilterStates>(
+                        IncidentListAndFilterStates>(
                     buildWhen: (previousState, currentState) {
                   if (currentState is FetchingIncidents &&
                       widget.isFromHome == true) {
