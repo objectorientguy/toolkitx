@@ -68,7 +68,8 @@ class AppRoutes {
         return _createRoute(SystemUserScheduleDatesScreen(
             checkListId: settings.arguments.toString()));
       case SystemUserCheckListScreen.routeName:
-        return _createRoute(const SystemUserCheckListScreen());
+        return _createRoute(
+            SystemUserCheckListScreen(isFromHome: settings.arguments as bool));
       case WorkForceListScreen.routeName:
         return _createRoute(const WorkForceListScreen());
       case ChangeRoleScreen.routeName:
