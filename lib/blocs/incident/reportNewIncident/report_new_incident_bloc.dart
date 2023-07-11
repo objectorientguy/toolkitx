@@ -215,7 +215,7 @@ class ReportNewIncidentBloc
     emit(ReportNewIncidentCustomFieldSelected(
         fetchIncidentMasterModel: fetchIncidentMasterModel,
         reportIncidentCustomInfoOptionId:
-            event.reportIncidentCustomInfoOptionId));
+            event.reportIncidentCustomInfoOptionId!));
   }
 
   FutureOr<void> _saveIncident(SaveReportNewIncident event,

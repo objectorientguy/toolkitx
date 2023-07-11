@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:toolkit/blocs/incident/reportNewIncident/report_new_incident_bloc.dart';
@@ -116,24 +114,25 @@ class ReportNewIncidentScreen extends StatelessWidget {
                           addIncidentMap: addIncidentMap),
                     ]))),
         bottomNavigationBar: BottomAppBar(
-            child: BlocListener<ReportNewIncidentBloc, ReportNewIncidentStates>(
-              listener: (context, state) {
-                if (state is ReportNewIncidentDateTimeDescValidated) {
-                  showCustomSnackBar(
-                      context, state.dateTimeDescValidationMessage, '');
-                } else if (state
-                is ReportNewIncidentDateTimeDescValidationComplete) {
-                  Navigator.pushNamed(context, IncidentLocationScreen.routeName,
-                      arguments: addIncidentMap);
-                }
-              },
-              child: PrimaryButton(
-                  onPressed: () {
-                    context.read<ReportNewIncidentBloc>().add(
-                        ReportNewIncidentDateTimeDescriptionValidation(
-                            reportNewIncidentMap: addIncidentMap));
-                  },
-                  textValue: DatabaseUtil.getText('nextButtonText')),
-            )));
+          child: BlocListener<ReportNewIncidentBloc, ReportNewIncidentStates>(
+            listener: (context, state) {
+              if (state is ReportNewIncidentDateTimeDescValidated) {
+                showCustomSnackBar(
+                    context, state.dateTimeDescValidationMessage, '');
+              } else if (state
+                  is ReportNewIncidentDateTimeDescValidationComplete) {
+                Navigator.pushNamed(context, IncidentLocationScreen.routeName,
+                    arguments: addIncidentMap);
+              }
+            },
+            child: PrimaryButton(
+                onPressed: () {
+                  context.read<ReportNewIncidentBloc>().add(
+                      ReportNewIncidentDateTimeDescriptionValidation(
+                          reportNewIncidentMap: addIncidentMap));
+                },
+                textValue: DatabaseUtil.getText('nextButtonText')),
+          ),
+        ));
   }
 }
