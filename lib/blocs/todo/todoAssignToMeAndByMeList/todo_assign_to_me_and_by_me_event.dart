@@ -18,3 +18,5 @@ class ToDoToggleIndex extends ToDoAssignedToMeAndByMeEvent {
       this.fetchToDoAssignToByListModel,
       required this.selectedIndex});
 }
+
+class FetchToDoHistoryList extends ToDoAssignedToMeAndByMeEvent {}

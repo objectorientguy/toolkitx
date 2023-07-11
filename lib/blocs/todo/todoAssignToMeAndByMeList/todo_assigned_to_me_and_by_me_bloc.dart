@@ -8,6 +8,7 @@ import '../../../../../data/cache/customer_cache.dart';
 import '../../../../di/app_module.dart';
 import '../../../data/models/todo/fetch_assign_todo_by_me_list_model.dart';
 import '../../../data/models/todo/fetch_assign_todo_to_me_list_model.dart';
+import '../../../data/models/todo/fetch_todo_history_list_model.dart';
 import 'todo_assign_to_me_and_by_me_event.dart';
 
 class TodoAssignedToMeAndByMeBloc
@@ -21,6 +22,7 @@ class TodoAssignedToMeAndByMeBloc
   TodoAssignedToMeAndByMeBloc() : super(TodoAssignedToMeAndByMeInitial()) {
     on<FetchTodoAssignedToMeAndByMeListEvent>(_fetchToDoAssignToMeList);
     on<ToDoToggleIndex>(_toggleIndexChanged);
+    on<FetchToDoHistoryList>(_fetchHistoryList);
   }
 
   FutureOr _fetchToDoAssignToMeList(FetchTodoAssignedToMeAndByMeListEvent event,
@@ -57,5 +59,20 @@ class TodoAssignedToMeAndByMeBloc
         fetchToDoAssignToMeListModel: event.fetchToDoAssignToMeListModel!,
         selectedIndex: event.selectedIndex,
         fetchToDoAssignToByListModel: event.fetchToDoAssignToByListModel!));
+  }
+
+  FutureOr _fetchHistoryList(FetchToDoHistoryList event,
+      Emitter<TodoAssignedToMeAndByMeStates> emit) async {
+    emit(FetchingTodoHistoryList());
+    try {
+      String? userId = await _customerCache.getUserId(CacheKeys.userId);
+      String? hashCode = await _customerCache.getHashCode(CacheKeys.hashcode);
+      FetchToDoHistoryListModel fetchToDoHistoryListModel =
+          await _toDoRepository.fetchToDoHistoryList(1, hashCode!, userId!);
+      emit(TodoHistoryListFetched(
+          fetchToDoHistoryListModel: fetchToDoHistoryListModel));
+    } catch (e) {
+      e.toString();
+    }
   }
 }

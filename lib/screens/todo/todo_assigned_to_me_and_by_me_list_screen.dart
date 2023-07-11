@@ -3,12 +3,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 import 'package:toolkit/configs/app_spacing.dart';
 import 'package:toolkit/utils/database_utils.dart';
+import 'package:toolkit/widgets/custom_icon_button_row.dart';
 import 'package:toolkit/widgets/generic_app_bar.dart';
 import '../../blocs/todo/todoAssignToMeAndByMeList/todo_assign_to_me_and_by_me_event.dart';
 import '../../blocs/todo/todoAssignToMeAndByMeList/todo_assign_to_me_and_by_me_states.dart';
 import '../../blocs/todo/todoAssignToMeAndByMeList/todo_assigned_to_me_and_by_me_bloc.dart';
 import '../../configs/app_color.dart';
 import '../../configs/app_dimensions.dart';
+import 'todo_history_list_screen.dart';
 import 'widgets/todo_assigned_by_me_body.dart';
 import 'widgets/todo_assigned_to_me_body.dart';
 
@@ -34,6 +36,17 @@ class TodoAssignedByMeAndToMeListScreen extends StatelessWidget {
                 top: xxTinierSpacing),
             child: Column(
               children: [
+                CustomIconButtonRow(
+                    clearVisible: true,
+                    textValue: 'View History',
+                    primaryVisible: false,
+                    isEnabled: true,
+                    primaryOnPress: () {},
+                    secondaryOnPress: () {},
+                    clearOnPress: () {
+                      Navigator.of(context)
+                          .pushNamed(ToDoHistoryListScreen.routeName);
+                    }),
                 const SizedBox(height: xxTinySpacing),
                 BlocBuilder<TodoAssignedToMeAndByMeBloc,
                         TodoAssignedToMeAndByMeStates>(
