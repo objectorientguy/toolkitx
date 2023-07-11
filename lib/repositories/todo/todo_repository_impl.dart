@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:toolkit/data/models/todo/fetch_assign_todo_by_me_list_model.dart';
 import 'package:toolkit/data/models/todo/fetch_assign_todo_to_me_list_model.dart';
 import 'package:toolkit/repositories/todo/todo_repository.dart';
@@ -13,7 +11,6 @@ class ToDoRepositoryImpl extends ToDoRepository {
       int pageNo, String hashCode, String filter, String userId) async {
     final response = await DioClient().get(
         "${ApiConstants.baseUrl}todo/get?pageno=1&hashcode=$hashCode&filter=$filter&userid=$userId");
-    log("response====>$response");
     return FetchToDoAssignToMeListModel.fromJson(response);
   }
 
@@ -22,7 +19,6 @@ class ToDoRepositoryImpl extends ToDoRepository {
       int pageNo, String hashCode, String filter, String userId) async {
     final response = await DioClient().get(
         "${ApiConstants.baseUrl}todo/get?pageno=1&hashcode=$hashCode&filter=$filter&userid=$userId");
-    log("response 2====>$response");
     return FetchToDoAssignToByListModel.fromJson(response);
   }
 }
