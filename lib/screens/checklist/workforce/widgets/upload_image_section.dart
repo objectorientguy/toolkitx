@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:toolkit/blocs/pickAndUploadImage/pick_and_upload_image_bloc.dart';
@@ -35,15 +33,11 @@ class UploadImageMenu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    log("list====build====>");
-    UploadImageMenu.imagesList = [];
-    UploadImageMenu.uploadImageList = [];
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
       if (isSignature == false)
         BlocBuilder<PickAndUploadImageBloc, PickAndUploadImageStates>(
             builder: (context, state) {
           if (state is PickImageLoading) {
-            log("PickImageLoading====>$PickImageLoading");
             return const Padding(
               padding: EdgeInsets.all(xxTinierSpacing),
               child: SizedBox(
@@ -52,7 +46,6 @@ class UploadImageMenu extends StatelessWidget {
                   child: CircularProgressIndicator()),
             );
           } else if (state is ImagePickerLoaded) {
-            log("ImagePickerLoaded====>$ImagePickerLoaded");
             uploadImageList.add(state.uploadPictureModel.data);
             onUploadImageResponse(uploadImageList);
             imagesList = List.from(state.imagePathsList);
@@ -95,7 +88,7 @@ class UploadImageMenu extends StatelessWidget {
                       }
                       context.read<PickAndUploadImageBloc>().add(
                           PickGalleryImage(
-                              isImageAttached: false,
+                              isImageAttached: null,
                               galleryImagesList: imagesList,
                               isSignature: isSignature!));
                       Navigator.pop(context);
