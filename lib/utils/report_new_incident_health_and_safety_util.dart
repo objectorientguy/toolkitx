@@ -13,9 +13,10 @@ class ReportNewIncidentHealthAndSafetyUtil {
     switch (customFieldDatum[index].type) {
       case 4:
         return IncidentReportCustomFiledInfoExpansionTile(
-          onCustomFieldChanged: (String customFieldOptionId) {
-            customFieldList[index]['id'] = customFieldDatum[index].id;
-            customFieldList[index]['value'] = customFieldOptionId;
+          onCustomFieldChanged: (int customFieldOptionId) {
+            customFieldList[index]['id'] =
+                customFieldDatum[index].id.toString();
+            customFieldList[index]['value'] = customFieldOptionId.toString();
           },
           index: index,
         );
@@ -23,8 +24,9 @@ class ReportNewIncidentHealthAndSafetyUtil {
         return TextFieldWidget(
             maxLength: 250,
             onTextFieldChanged: (String textField) {
-              customFieldList[index]['id'] = customFieldDatum[index].id;
-              customFieldList[index]['value'] = textField;
+              customFieldList[index]['id'] =
+                  customFieldDatum[index].id.toString();
+              customFieldList[index]['value'] = textField.toString();
             });
       default:
         return Container(
