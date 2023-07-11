@@ -37,8 +37,7 @@ import 'blocs/permit/permit_bloc.dart';
 import 'blocs/pickAndUploadImage/pick_and_upload_image_bloc.dart';
 import 'blocs/profile/profile_bloc.dart';
 import 'blocs/timeZone/time_zone_bloc.dart';
-import 'blocs/todo/todoAssignByMe/todo_assign_by_me_bloc.dart';
-import 'blocs/todo/todoAssignToMe/todo_assign_to_me_bloc.dart';
+import 'blocs/todo/todoAssignToMeAndByMeList/todo_assigned_to_me_and_by_me_bloc.dart';
 import 'blocs/wifiConnectivity/wifi_connectivity_bloc.dart';
 import 'blocs/wifiConnectivity/wifi_connectivity_events.dart';
 import 'blocs/wifiConnectivity/wifi_connectivity_states.dart';
@@ -143,9 +142,7 @@ class MyApp extends StatelessWidget {
               lazy: true, create: (context) => ReportNewIncidentBloc()),
           BlocProvider(lazy: false, create: (context) => InjuryDetailsBloc()),
           BlocProvider(
-              lazy: true, create: (context) => TodoAssignToMeListBloc()),
-          BlocProvider(
-              lazy: true, create: (context) => TodoAssignByMeListBloc()),
+              lazy: true, create: (context) => TodoAssignedToMeAndByMeBloc()),
           BlocProvider(
               lazy: false,
               create: (context) => OnBoardingBloc()..add(CheckClientSelected()))

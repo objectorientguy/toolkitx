@@ -1,3 +1,0 @@
-class FetchTodoAssignToMeListEvent {}
-
-class FetchTodoAssignToMeList {}

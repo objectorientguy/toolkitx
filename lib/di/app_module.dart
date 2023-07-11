@@ -41,14 +41,14 @@ configurableDependencies() {
       () => TimeZoneRepositoryImpl());
   getIt.registerLazySingleton<LoginRepository>(() => LoginRepositoryImpl());
   getIt.registerLazySingleton<WorkForceRepository>(
-          () => WorkforceChecklistRepositoryImpl());
+      () => WorkforceChecklistRepositoryImpl());
   getIt.registerLazySingleton<ClientRepository>(() => ClientRepositoryImpl());
   getIt.registerLazySingleton<ProfileRepository>(() => ProfileRepositoryImpl());
   getIt.registerLazySingleton<SysUserCheckListRepository>(
-          () => SysUserCheckListRepositoryImpl());
+      () => SysUserCheckListRepositoryImpl());
   getIt.registerLazySingleton<UploadImageRepository>(
-          () => UploadImageRepositoryImpl());
+      () => UploadImageRepositoryImpl());
   getIt.registerLazySingleton<IncidentRepository>(
-          () => IncidentRepositoryImpl());
+      () => IncidentRepositoryImpl());
   getIt.registerLazySingleton<ToDoRepository>(() => ToDoRepositoryImpl());
 }

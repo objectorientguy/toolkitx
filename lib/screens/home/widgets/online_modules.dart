@@ -16,7 +16,7 @@ import '../../checklist/systemUser/sys_user_checklist_list_screen.dart';
 import '../../checklist/workforce/workforce_list_screen.dart';
 import '../../incident/incident_list_screen.dart';
 import '../../permit/permit_list_screen.dart';
-import '../../todo/todo_tab_bar_screen.dart';
+import '../../todo/todo_assigned_to_me_and_by_me_list_screen.dart';
 
 class OnLineModules extends StatelessWidget {
   static bool isFirstTime = true;
@@ -154,7 +154,8 @@ class OnLineModules extends StatelessWidget {
         Navigator.pushNamed(context, WorkForceListScreen.routeName);
         break;
       case 'todo':
-        Navigator.pushNamed(context, TodoTabBarScreen.routeName);
+        Navigator.pushNamed(
+            context, TodoAssignedByMeAndToMeListScreen.routeName);
         break;
     }
   }
