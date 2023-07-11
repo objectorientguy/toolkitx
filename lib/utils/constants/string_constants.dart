@@ -58,6 +58,9 @@ abstract class StringConstants {
   static const String kNoComment = 'No comments!'; //
   static const String kNoInjuredPerson = 'No injured person!'; //
   static const String kNoILinkedPermit = 'No linked permit!'; //
+  static const String kAssignedToMe = 'assignedtome'; //
+  static const String kAssignedByMe = 'assignedbyme'; //
+  static const String kViewHistory = 'View History'; //
   static const String kCannotUnlinkPermit = 'Cannot unlink permit!';
   static const String kFiles = 'Files';
   static const String kOtpGenerated = 'OTP generated';
