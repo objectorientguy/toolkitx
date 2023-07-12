@@ -9,8 +9,10 @@ import '../../../configs/app_color.dart';
 import '../../../configs/app_dimensions.dart';
 import '../../../configs/app_spacing.dart';
 import '../../../utils/constants/string_constants.dart';
+import '../../../utils/database_utils.dart';
 import '../../../widgets/custom_card.dart';
 import '../../../widgets/custom_snackbar.dart';
+import '../../../widgets/generic_no_records_text.dart';
 
 class LogbookList extends StatefulWidget {
   static bool noMoreData = false;
@@ -137,10 +139,10 @@ class _LogbookListState extends State<LogbookList> {
                 separatorBuilder: (context, index) {
                   return const SizedBox(height: tinierSpacing);
                 });
+          } else {
+            return NoRecordsText(
+                text: DatabaseUtil.getText('no_records_found'));
           }
-        }
-        if (state is LogbookFetchError) {
-          return const Text('error');
         } else {
           return const SizedBox();
         }

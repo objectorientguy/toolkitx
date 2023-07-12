@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:toolkit/screens/logBook/widgets/logbook_list.dart';
+import 'package:toolkit/utils/database_utils.dart';
 import 'package:toolkit/widgets/generic_app_bar.dart';
 
 import '../../blocs/LogBook/logbook_bloc.dart';
@@ -18,8 +19,8 @@ class LogbookListScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     context.read<LogbookBloc>().add(FetchLogbookList(pageNo: 1));
     return Scaffold(
-      appBar: const GenericAppBar(
-        title: 'Report a Log',
+      appBar: GenericAppBar(
+        title: DatabaseUtil.getText('ReportaLog'),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {},
