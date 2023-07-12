@@ -22,6 +22,7 @@ import '../screens/incident/incident_injuries_screen.dart';
 import '../screens/incident/incident_list_screen.dart';
 import '../screens/incident/incident_location_screen.dart';
 import '../screens/incident/report_new_incident_screen.dart';
+import '../screens/logBook/logbook_list_screen.dart';
 import '../screens/onboarding/client_list_screen.dart';
 import '../screens/onboarding/select_language_screen.dart';
 import '../screens/onboarding/login_screen.dart';
@@ -147,6 +148,8 @@ class AppRoutes {
       case IncidentInjuriesScreen.routeName:
         return _createRoute(
             IncidentInjuriesScreen(addIncidentMap: settings.arguments as Map));
+      case LogbookListScreen.routeName:
+        return _createRoute(const LogbookListScreen());
       case TodoAssignedByMeAndToMeListScreen.routeName:
         return _createRoute(const TodoAssignedByMeAndToMeListScreen());
       case ToDoDetailsAndDocumentDetailsScreen.routeName:
