@@ -21,6 +21,7 @@ class TodoAssignedToMeAndByMeBloc
   TodoAssignedToMeAndByMeBloc() : super(TodoAssignedToMeAndByMeInitial()) {
     on<FetchTodoAssignedToMeAndByMeListEvent>(_fetchToDoAssignToMeList);
     on<ToDoToggleIndex>(_toggleIndexChanged);
+    on<FetchToDoDetails>(_fetchDetails);
   }
 
   FutureOr _fetchToDoAssignToMeList(FetchTodoAssignedToMeAndByMeListEvent event,
@@ -57,5 +58,16 @@ class TodoAssignedToMeAndByMeBloc
         fetchToDoAssignToMeListModel: event.fetchToDoAssignToMeListModel!,
         selectedIndex: event.selectedIndex,
         fetchToDoAssignToByListModel: event.fetchToDoAssignToByListModel!));
+  }
+
+  FutureOr _fetchDetails(FetchToDoDetails event,
+      Emitter<TodoAssignedToMeAndByMeStates> emit) async {
+    emit(FetchingTodoAssignedToMeAndByMeList());
+    try {
+      String? userId = await _customerCache.getUserId(CacheKeys.userId);
+      String? hashCode = await _customerCache.getHashCode(CacheKeys.hashcode);
+    } catch (e) {
+      e.toString();
+    }
   }
 }
