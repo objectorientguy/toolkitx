@@ -23,6 +23,8 @@ import '../repositories/login/login_repository.dart';
 import '../repositories/profile/profile_repository.dart';
 import '../repositories/timeZone/time_zone_repository.dart';
 import '../repositories/timeZone/time_zone_repository_impl.dart';
+import '../repositories/todo/todo_repository.dart';
+import '../repositories/todo/todo_repository_impl.dart';
 import '../repositories/uploadImage/upload_image_repository.dart';
 import '../repositories/uploadImage/upload_image_repository_impl.dart';
 
@@ -51,4 +53,5 @@ configurableDependencies() {
   getIt.registerLazySingleton<IncidentRepository>(
       () => IncidentRepositoryImpl());
   getIt.registerLazySingleton<LogbookRepository>(() => LogbookRepositoryImpl());
+  getIt.registerLazySingleton<ToDoRepository>(() => ToDoRepositoryImpl());
 }

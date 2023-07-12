@@ -40,6 +40,7 @@ import '../screens/permit/permit_details_screen.dart';
 import '../screens/permit/permit_list_screen.dart';
 import '../screens/permit/get_permit_roles_screen.dart';
 import '../screens/root/root_screen.dart';
+import '../screens/todo/todo_assigned_to_me_and_by_me_list_screen.dart';
 import '../widgets/in_app_web_view.dart';
 
 class AppRoutes {
@@ -148,6 +149,8 @@ class AppRoutes {
             IncidentInjuriesScreen(addIncidentMap: settings.arguments as Map));
       case LogbookListScreen.routeName:
         return _createRoute(const LogbookListScreen());
+      case TodoAssignedByMeAndToMeListScreen.routeName:
+        return _createRoute(const TodoAssignedByMeAndToMeListScreen());
       default:
         return _createRoute(const WelcomeScreen());
     }
