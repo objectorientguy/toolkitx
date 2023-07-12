@@ -60,6 +60,7 @@ class ToDoDetailsAndDocumentDetailsScreen extends StatelessWidget {
                       child: const CircularProgressIndicator(),
                     ));
                   } else if (state is TodoDetailsAndDocumentDetailsFetched) {
+                    todoMap['clientId'] = state.clientId;
                     return CustomTabBarView(
                         lengthOfTabs: 2,
                         tabBarViewIcons: ToDoUtil().tabBarViewIcons,

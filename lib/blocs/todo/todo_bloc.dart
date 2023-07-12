@@ -69,6 +69,7 @@ class TodoBloc extends Bloc<ToDoEvent, ToDoStates> {
     emit(FetchingTodoDetailsAndDocumentDetails());
     try {
       String? hashCode = await _customerCache.getHashCode(CacheKeys.hashcode);
+      String? clientId = await _customerCache.getClientId(CacheKeys.clientId);
       initialIndex = event.selectedIndex;
       FetchToDoDetailsModel fetchToDoDetailsModel =
           await _toDoRepository.fetchToDoDetails(hashCode!, event.todoId);
@@ -79,7 +80,8 @@ class TodoBloc extends Bloc<ToDoEvent, ToDoStates> {
           fetchToDoDocumentDetailsModel.status == 200) {
         emit(TodoDetailsAndDocumentDetailsFetched(
             fetchToDoDocumentDetailsModel: fetchToDoDocumentDetailsModel,
-            fetchToDoDetailsModel: fetchToDoDetailsModel));
+            fetchToDoDetailsModel: fetchToDoDetailsModel,
+            clientId: clientId!));
       }
     } catch (e) {
       e.toString();

@@ -14,6 +14,7 @@ import '../../../utils/constants/string_constants.dart';
 import '../../../widgets/android_pop_up.dart';
 import '../../../widgets/custom_card.dart';
 import '../../../widgets/progress_bar.dart';
+import 'todo_document_details_subtitle.dart';
 
 class ToDoDocumentDetailsTab extends StatelessWidget {
   final int initialIndex;
@@ -100,21 +101,12 @@ class ToDoDocumentDetailsTab extends StatelessWidget {
                               )
                             ],
                           ),
-                          subtitle: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                Text(documentDetailsDatum[index].doctypename),
-                                const SizedBox(height: tinierSpacing),
-                                (documentDetailsDatum[index].files == null)
-                                    ? const SizedBox.shrink()
-                                    : Text(documentDetailsDatum[index].files),
-                                const SizedBox(height: tinierSpacing),
-                              ])));
+                          subtitle: ToDoDocumentDetailsSubtitle(
+                              documentDetailsDatum: documentDetailsDatum[index],
+                              todoMap: todoMap)));
                 },
                 separatorBuilder: (context, index) {
                   return const SizedBox(height: tinierSpacing);
-                }),
-          );
+                }));
   }
 }

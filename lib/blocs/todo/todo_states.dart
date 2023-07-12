@@ -26,9 +26,11 @@ class FetchingTodoDetailsAndDocumentDetails extends ToDoStates {}
 class TodoDetailsAndDocumentDetailsFetched extends ToDoStates {
   final FetchToDoDetailsModel fetchToDoDetailsModel;
   final FetchToDoDocumentDetailsModel fetchToDoDocumentDetailsModel;
+  final String clientId;
 
   TodoDetailsAndDocumentDetailsFetched(
-      {required this.fetchToDoDocumentDetailsModel,
+      {required this.clientId,
+      required this.fetchToDoDocumentDetailsModel,
       required this.fetchToDoDetailsModel});
 }
 
