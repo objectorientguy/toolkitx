@@ -9,7 +9,7 @@ String fetchToDoDetailsModelToJson(FetchToDoDetailsModel data) =>
 class FetchToDoDetailsModel {
   final int status;
   final String message;
-  final Data data;
+  final ToDoDetailsData data;
 
   FetchToDoDetailsModel({
     required this.status,
@@ -21,7 +21,7 @@ class FetchToDoDetailsModel {
       FetchToDoDetailsModel(
         status: json["Status"],
         message: json["Message"],
-        data: Data.fromJson(json["Data"]),
+        data: ToDoDetailsData.fromJson(json["Data"]),
       );
 
   Map<String, dynamic> toJson() => {
@@ -31,7 +31,7 @@ class FetchToDoDetailsModel {
       };
 }
 
-class Data {
+class ToDoDetailsData {
   final String todo;
   final String id;
   final String category;
@@ -41,7 +41,7 @@ class Data {
   final String duedate;
   final String isdraft;
 
-  Data({
+  ToDoDetailsData({
     required this.todo,
     required this.id,
     required this.category,
@@ -52,7 +52,8 @@ class Data {
     required this.isdraft,
   });
 
-  factory Data.fromJson(Map<String, dynamic> json) => Data(
+  factory ToDoDetailsData.fromJson(Map<String, dynamic> json) =>
+      ToDoDetailsData(
         todo: json["todo"],
         id: json["id"],
         category: json["category"],
