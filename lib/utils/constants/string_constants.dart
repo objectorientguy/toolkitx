@@ -61,6 +61,7 @@ abstract class StringConstants {
   static const String kAssignedToMe = 'assignedtome'; //
   static const String kAssignedByMe = 'assignedbyme'; //
   static const String kViewHistory = 'View History'; //
+  static const String kViewAll = 'View All'; //
   static const String kCannotUnlinkPermit = 'Cannot unlink permit!';
   static const String kFiles = 'Files';
   static const String kOtpGenerated = 'OTP generated';

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 import 'package:toolkit/configs/app_spacing.dart';
+import 'package:toolkit/utils/constants/string_constants.dart';
 import 'package:toolkit/utils/database_utils.dart';
 import 'package:toolkit/widgets/custom_icon_button_row.dart';
 import 'package:toolkit/widgets/generic_app_bar.dart';
@@ -38,7 +39,7 @@ class TodoAssignedByMeAndToMeListScreen extends StatelessWidget {
               children: [
                 CustomIconButtonRow(
                     clearVisible: true,
-                    textValue: 'View History',
+                    textValue: StringConstants.kViewAll,
                     primaryVisible: false,
                     isEnabled: true,
                     primaryOnPress: () {},
@@ -72,7 +73,7 @@ class TodoAssignedByMeAndToMeListScreen extends StatelessWidget {
                               ],
                               activeBgColors: const [
                                 [AppColor.deepBlue],
-                                [AppColor.errorRed]
+                                [AppColor.deepBlue]
                               ],
                               onToggle: (index) {
                                 indexSelected = index!;
