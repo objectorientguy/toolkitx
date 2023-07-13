@@ -1,33 +1,57 @@
 import 'dart:async';
+import 'dart:convert';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:toolkit/blocs/todo/todo_states.dart';
 import 'package:toolkit/data/cache/cache_keys.dart';
 import 'package:toolkit/repositories/todo/todo_repository.dart';
 import 'package:toolkit/utils/constants/string_constants.dart';
+import 'package:toolkit/utils/database_utils.dart';
 import '../../../../data/cache/customer_cache.dart';
 import '../../../di/app_module.dart';
 import '../../data/models/todo/delete_todo_document_model.dart';
 import '../../data/models/todo/fetch_assign_todo_by_me_list_model.dart';
 import '../../data/models/todo/fetch_assign_todo_to_me_list_model.dart';
+import '../../data/models/todo/fetch_document_for_todo_model.dart';
 import '../../data/models/todo/fetch_todo_details_model.dart';
 import '../../data/models/todo/fetch_todo_document_details_model.dart';
+import '../../data/models/todo/fetch_todo_master_model.dart';
 import '../../data/models/todo/todo_mark_as_done_model.dart';
+import '../../data/models/todo/todo_upload_document_model.dart';
 import 'todo_event.dart';
 
-class TodoBloc extends Bloc<ToDoEvent, ToDoStates> {
+class ToDoBloc extends Bloc<ToDoEvent, ToDoStates> {
   final ToDoRepository _toDoRepository = getIt<ToDoRepository>();
   final CustomerCache _customerCache = getIt<CustomerCache>();
+  FetchDocumentForToDoModel fetchDocumentForToDoModel =
+      FetchDocumentForToDoModel();
   int initialIndex = 0;
   Map todoMap = {};
+  Map filters = {};
 
   ToDoStates get initialState => TodoInitial();
 
-  TodoBloc() : super(TodoInitial()) {
+  ToDoBloc() : super(TodoInitial()) {
     on<FetchTodoAssignedToMeAndByMeListEvent>(_fetchAssignToMeAndByMeList);
     on<ToDoToggleIndex>(_toggleIndexChanged);
     on<FetchToDoDetailsAndDocumentDetails>(_fetchDetails);
     on<DeleteToDoDocument>(_deleteDocument);
     on<ToDoMarkAsDone>(_markAsDone);
+    on<FetchDocumentForToDo>(_fetchDocumentForTodo);
+    on<SelectDocumentForToDo>(_selectDocumentForTodo);
+    on<FetchToDoMaster>(_fetchMaster);
+    on<SelectToDoDocumentType>(_selectDocumentType);
+    on<ToDoUploadDocument>(_uploadDocument);
+    on<ApplyToDoFilter>(_applyFilter);
+    on<ClearToDoFilter>(_clearFilter);
+  }
+
+  _applyFilter(ApplyToDoFilter event, Emitter<ToDoStates> emit) {
+    filters = event.todoFilterMap;
+  }
+
+  FutureOr<void> _clearFilter(
+      ClearToDoFilter event, Emitter<ToDoStates> emit) async {
+    filters = {};
   }
 
   FutureOr _fetchAssignToMeAndByMeList(
@@ -111,6 +135,7 @@ class TodoBloc extends Bloc<ToDoEvent, ToDoStates> {
   }
 
   FutureOr _markAsDone(ToDoMarkAsDone event, Emitter<ToDoStates> emit) async {
+    emit(ToDoMarkingAsDone());
     try {
       String? hashCode = await _customerCache.getHashCode(CacheKeys.hashcode);
       String? userId = await _customerCache.getUserId(CacheKeys.userId);
@@ -125,6 +150,104 @@ class TodoBloc extends Bloc<ToDoEvent, ToDoStates> {
       emit(ToDoMarkedAsDone(toDoMarkAsDoneModel: toDoMarkAsDoneModel));
     } catch (e) {
       e.toString();
+    }
+  }
+
+  FutureOr _fetchDocumentForTodo(
+      FetchDocumentForToDo event, Emitter<ToDoStates> emit) async {
+    emit(FetchingDocumentForToDo());
+    try {
+      todoMap = event.todoMap;
+      String? hashCode = await _customerCache.getHashCode(CacheKeys.hashcode);
+      if (event.isFromPopUpMenu == true) {
+        add(ClearToDoFilter());
+        fetchDocumentForToDoModel = await _toDoRepository.fetchDocumentForTodo(
+            1, hashCode!, todoMap['todoId'], '', '');
+        add(SelectDocumentForToDo(
+            selectedDocument: '', documentList: [], filtersMap: {}));
+      } else {
+        fetchDocumentForToDoModel = await _toDoRepository.fetchDocumentForTodo(
+            1, hashCode!, todoMap['todoId'], '', jsonEncode(filters));
+        add(SelectDocumentForToDo(
+            selectedDocument: '', documentList: [], filtersMap: filters));
+      }
+    } catch (e) {
+      e.toString();
+    }
+  }
+
+  _selectDocumentForTodo(
+      SelectDocumentForToDo event, Emitter<ToDoStates> emit) {
+    List selectedDocumentList = List.from(event.documentList);
+    if (event.selectedDocument != '') {
+      if (event.documentList.contains(event.selectedDocument) != true) {
+        selectedDocumentList.add(event.selectedDocument);
+      } else {
+        selectedDocumentList.remove(event.selectedDocument);
+      }
+    }
+    emit(DocumentForToDoFetched(
+        fetchDocumentForToDoModel: fetchDocumentForToDoModel,
+        selectDocumentList: selectedDocumentList,
+        filterMap: filters));
+  }
+
+  FutureOr _fetchMaster(FetchToDoMaster event, Emitter<ToDoStates> emit) async {
+    try {
+      String? hashCode = await _customerCache.getHashCode(CacheKeys.hashcode);
+      String? userId = await _customerCache.getUserId(CacheKeys.userId);
+      FetchToDoMasterModel fetchToDoMasterModel =
+          await _toDoRepository.fetchTodoMaster(hashCode!, userId!);
+      List popUpMenuList = [
+        DatabaseUtil.getText('MarkasDone'),
+        DatabaseUtil.getText('AssignDocuments'),
+        DatabaseUtil.getText('dms_uploaddocuments'),
+      ];
+      emit(ToDoMasterFetched(
+          fetchToDoMasterModel: fetchToDoMasterModel,
+          todoPopUpMenuList: popUpMenuList));
+    } catch (e) {
+      e.toString();
+    }
+  }
+
+  _selectDocumentType(SelectToDoDocumentType event, Emitter<ToDoStates> emit) {
+    emit(ToDoDocumentTypeSelected(
+        documentTypeName: event.documentTypeName,
+        documentTypeId: (event.documentTypeId)));
+  }
+
+  FutureOr _uploadDocument(
+      ToDoUploadDocument event, Emitter<ToDoStates> emit) async {
+    emit(UploadingToDoDocument());
+    try {
+      todoMap = event.todoMap;
+      String? hashCode = await _customerCache.getHashCode(CacheKeys.hashcode);
+      String? userId = await _customerCache.getUserId(CacheKeys.userId);
+      if (todoMap['name'] == null || todoMap['name'].toString().isEmpty) {
+        emit(ToDoDocumentNotUploaded(
+            documentNotUploaded: StringConstants.kDocumentNameValidation));
+      } else if (todoMap['files'] == null ||
+          todoMap['files'].toString().isEmpty) {
+        emit(ToDoDocumentNotUploaded(
+            documentNotUploaded: StringConstants.kDocumentUploadValidation));
+      } else {
+        Map uploadDocumentMap = {
+          "idm": todoMap['todoId'],
+          "todoid": todoMap['todoId'],
+          "name": todoMap['name'],
+          "files": todoMap['files'],
+          "userid": userId,
+          "type": todoMap['type'],
+          "hashcode": hashCode
+        };
+        ToDoUploadDocumentModel uploadDocumentModel =
+            await _toDoRepository.uploadToDoDocument(uploadDocumentMap);
+        emit(
+            ToDoDocumentUploaded(toDoUploadDocumentModel: uploadDocumentModel));
+      }
+    } catch (e) {
+      emit(ToDoDocumentNotUploaded(documentNotUploaded: e.toString()));
     }
   }
 }

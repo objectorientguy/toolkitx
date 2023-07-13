@@ -1,9 +1,12 @@
 import 'package:toolkit/data/models/todo/delete_todo_document_model.dart';
 import 'package:toolkit/data/models/todo/fetch_assign_todo_by_me_list_model.dart';
 import 'package:toolkit/data/models/todo/fetch_assign_todo_to_me_list_model.dart';
+import 'package:toolkit/data/models/todo/fetch_document_for_todo_model.dart';
 import 'package:toolkit/data/models/todo/fetch_todo_details_model.dart';
 import 'package:toolkit/data/models/todo/fetch_todo_document_details_model.dart';
+import 'package:toolkit/data/models/todo/fetch_todo_master_model.dart';
 import 'package:toolkit/data/models/todo/todo_mark_as_done_model.dart';
+import 'package:toolkit/data/models/todo/todo_upload_document_model.dart';
 import 'package:toolkit/repositories/todo/todo_repository.dart';
 
 import '../../utils/constants/api_constants.dart';
@@ -57,5 +60,29 @@ class ToDoRepositoryImpl extends ToDoRepository {
     final response = await DioClient()
         .post("${ApiConstants.baseUrl}todo/markasdone", todoMarkAsDoneMap);
     return ToDoMarkAsDoneModel.fromJson(response);
+  }
+
+  @override
+  Future<FetchDocumentForToDoModel> fetchDocumentForTodo(int pageNo,
+      String hashCode, String todoId, String name, String filter) async {
+    final response = await DioClient().get(
+        "${ApiConstants.baseUrl}todo/getdocumentsfortodo?pageno=1&hashcode=$hashCode&todoid=$todoId&name=$name&filter=$filter");
+    return FetchDocumentForToDoModel.fromJson(response);
+  }
+
+  @override
+  Future<FetchToDoMasterModel> fetchTodoMaster(
+      String hashCode, String userId) async {
+    final response = await DioClient().get(
+        "${ApiConstants.baseUrl}document/getmaster?hashcode=$hashCode&userid=$userId");
+    return FetchToDoMasterModel.fromJson(response);
+  }
+
+  @override
+  Future<ToDoUploadDocumentModel> uploadToDoDocument(
+      Map uploadDocumentMap) async {
+    final response = await DioClient()
+        .post("${ApiConstants.baseUrl}todo/uploaddocument", uploadDocumentMap);
+    return ToDoUploadDocumentModel.fromJson(response);
   }
 }

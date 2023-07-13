@@ -3,9 +3,7 @@ import '../../data/models/todo/fetch_assign_todo_to_me_list_model.dart';
 
 abstract class ToDoEvent {}
 
-class FetchTodoAssignedToMeAndByMeListEvent extends ToDoEvent {
-  FetchTodoAssignedToMeAndByMeListEvent();
-}
+class FetchTodoAssignedToMeAndByMeListEvent extends ToDoEvent {}
 
 class ToDoToggleIndex extends ToDoEvent {
   final int selectedIndex;
@@ -37,3 +35,47 @@ class ToDoMarkAsDone extends ToDoEvent {
 
   ToDoMarkAsDone({required this.todoMap});
 }
+
+class FetchDocumentForToDo extends ToDoEvent {
+  final Map todoMap;
+  final bool isFromPopUpMenu;
+
+  FetchDocumentForToDo({required this.isFromPopUpMenu, required this.todoMap});
+}
+
+class SelectDocumentForToDo extends ToDoEvent {
+  final String selectedDocument;
+  final List documentList;
+  final Map filtersMap;
+
+  SelectDocumentForToDo(
+      {required this.filtersMap,
+      required this.selectedDocument,
+      required this.documentList});
+}
+
+class FetchToDoMaster extends ToDoEvent {}
+
+class SelectToDoDocumentType extends ToDoEvent {
+  final String documentTypeName;
+  final int documentTypeId;
+
+  SelectToDoDocumentType(
+      {required this.documentTypeId, required this.documentTypeName});
+}
+
+class ToDoUpload extends ToDoEvent {}
+
+class ToDoUploadDocument extends ToDoEvent {
+  final Map todoMap;
+
+  ToDoUploadDocument({required this.todoMap});
+}
+
+class ApplyToDoFilter extends ToDoEvent {
+  final Map todoFilterMap;
+
+  ApplyToDoFilter({required this.todoFilterMap});
+}
+
+class ClearToDoFilter extends ToDoEvent {}

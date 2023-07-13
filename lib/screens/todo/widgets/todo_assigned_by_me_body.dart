@@ -69,12 +69,12 @@ class TodoAssignedByMeBody extends StatelessWidget {
                                           .copyWith(
                                               fontWeight: FontWeight.bold,
                                               color: AppColor.black)),
-                                  BlocListener<TodoBloc, ToDoStates>(
+                                  BlocListener<ToDoBloc, ToDoStates>(
                                     listener: (context, state) {
                                       if (state is ToDoMarkingAsDone) {
                                         ProgressBar.show(context);
                                       } else if (state is ToDoMarkedAsDone) {
-                                        context.read<TodoBloc>().add(
+                                        context.read<ToDoBloc>().add(
                                             FetchTodoAssignedToMeAndByMeListEvent());
                                       } else if (state
                                           is ToDoCannotMarkAsDone) {
@@ -104,7 +104,7 @@ class TodoAssignedByMeBody extends StatelessWidget {
                                                                   index]
                                                               .id;
                                                       context
-                                                          .read<TodoBloc>()
+                                                          .read<ToDoBloc>()
                                                           .add(ToDoMarkAsDone(
                                                               todoMap:
                                                                   todoMap));
