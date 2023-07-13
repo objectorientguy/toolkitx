@@ -37,3 +37,5 @@ class ToDoMarkAsDone extends ToDoEvent {
 
   ToDoMarkAsDone({required this.todoMap});
 }
+
+class FetchToDoHistoryList extends ToDoEvent {}

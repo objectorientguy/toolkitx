@@ -12,6 +12,7 @@ import '../../blocs/todo/todo_bloc.dart';
 import '../../configs/app_color.dart';
 import '../../configs/app_dimensions.dart';
 import 'todo_history_list_screen.dart';
+import 'todo_settings_screen.dart';
 import 'widgets/todo_assigned_by_me_body.dart';
 import 'widgets/todo_assigned_to_me_body.dart';
 
@@ -42,7 +43,10 @@ class TodoAssignedByMeAndToMeListScreen extends StatelessWidget {
                     primaryVisible: false,
                     isEnabled: true,
                     primaryOnPress: () {},
-                    secondaryOnPress: () {},
+                    secondaryOnPress: () {
+                      Navigator.pushNamed(
+                          context, ToDoSettingsScreen.routeName);
+                    },
                     clearOnPress: () {
                       Navigator.of(context)
                           .pushNamed(ToDoHistoryListScreen.routeName);

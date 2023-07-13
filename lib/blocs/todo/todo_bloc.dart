@@ -11,6 +11,7 @@ import '../../data/models/todo/fetch_assign_todo_by_me_list_model.dart';
 import '../../data/models/todo/fetch_assign_todo_to_me_list_model.dart';
 import '../../data/models/todo/fetch_todo_details_model.dart';
 import '../../data/models/todo/fetch_todo_document_details_model.dart';
+import '../../data/models/todo/fetch_todo_history_list_model.dart';
 import '../../data/models/todo/todo_mark_as_done_model.dart';
 import 'todo_event.dart';
 
@@ -28,6 +29,7 @@ class TodoBloc extends Bloc<ToDoEvent, ToDoStates> {
     on<FetchToDoDetailsAndDocumentDetails>(_fetchDetails);
     on<DeleteToDoDocument>(_deleteDocument);
     on<ToDoMarkAsDone>(_markAsDone);
+    on<FetchToDoHistoryList>(_fetchHistoryList);
   }
 
   FutureOr _fetchAssignToMeAndByMeList(
@@ -123,6 +125,21 @@ class TodoBloc extends Bloc<ToDoEvent, ToDoStates> {
       ToDoMarkAsDoneModel toDoMarkAsDoneModel =
           await _toDoRepository.toDoMarkAsDone(markAsDoneMapMap);
       emit(ToDoMarkedAsDone(toDoMarkAsDoneModel: toDoMarkAsDoneModel));
+    } catch (e) {
+      e.toString();
+    }
+  }
+
+  FutureOr _fetchHistoryList(
+      FetchToDoHistoryList event, Emitter<ToDoStates> emit) async {
+    emit(FetchingTodoHistoryList());
+    try {
+      String? userId = await _customerCache.getUserId(CacheKeys.userId);
+      String? hashCode = await _customerCache.getHashCode(CacheKeys.hashcode);
+      FetchToDoHistoryListModel fetchToDoHistoryListModel =
+          await _toDoRepository.fetchToDoHistoryList(1, hashCode!, userId!);
+      emit(TodoHistoryListFetched(
+          fetchToDoHistoryListModel: fetchToDoHistoryListModel));
     } catch (e) {
       e.toString();
     }

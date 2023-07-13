@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:toolkit/blocs/todo/todo_bloc.dart';
 import 'package:toolkit/configs/app_theme.dart';
 import 'package:toolkit/widgets/generic_app_bar.dart';
-import '../../blocs/todo/todoAssignToMeAndByMeList/todo_assign_to_me_and_by_me_event.dart';
-import '../../blocs/todo/todoAssignToMeAndByMeList/todo_assign_to_me_and_by_me_states.dart';
-import '../../blocs/todo/todoAssignToMeAndByMeList/todo_assigned_to_me_and_by_me_bloc.dart';
+import '../../blocs/todo/todo_event.dart';
+import '../../blocs/todo/todo_states.dart';
 import '../../configs/app_color.dart';
 import '../../configs/app_dimensions.dart';
 import '../../configs/app_spacing.dart';
@@ -20,7 +20,7 @@ class ToDoHistoryListScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    context.read<TodoAssignedToMeAndByMeBloc>().add(FetchToDoHistoryList());
+    context.read<TodoBloc>().add(FetchToDoHistoryList());
     return Scaffold(
         appBar: const GenericAppBar(title: 'ToDo History'),
         body: Padding(
@@ -28,8 +28,7 @@ class ToDoHistoryListScreen extends StatelessWidget {
               left: leftRightMargin,
               right: leftRightMargin,
               top: xxTinierSpacing),
-          child: BlocBuilder<TodoAssignedToMeAndByMeBloc,
-                  TodoAssignedToMeAndByMeStates>(
+          child: BlocBuilder<TodoBloc, ToDoStates>(
               buildWhen: (previousState, currentState) =>
                   currentState is FetchingTodoHistoryList ||
                   currentState is TodoHistoryListFetched,
