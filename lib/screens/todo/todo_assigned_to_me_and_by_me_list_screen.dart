@@ -6,9 +6,9 @@ import 'package:toolkit/utils/constants/string_constants.dart';
 import 'package:toolkit/utils/database_utils.dart';
 import 'package:toolkit/widgets/custom_icon_button_row.dart';
 import 'package:toolkit/widgets/generic_app_bar.dart';
-import '../../blocs/todo/todoAssignToMeAndByMeList/todo_assign_to_me_and_by_me_event.dart';
-import '../../blocs/todo/todoAssignToMeAndByMeList/todo_assign_to_me_and_by_me_states.dart';
-import '../../blocs/todo/todoAssignToMeAndByMeList/todo_assigned_to_me_and_by_me_bloc.dart';
+import '../../blocs/todo/todo_event.dart';
+import '../../blocs/todo/todo_states.dart';
+import '../../blocs/todo/todo_bloc.dart';
 import '../../configs/app_color.dart';
 import '../../configs/app_dimensions.dart';
 import 'todo_history_list_screen.dart';
@@ -18,14 +18,13 @@ import 'widgets/todo_assigned_to_me_body.dart';
 class TodoAssignedByMeAndToMeListScreen extends StatelessWidget {
   static const routeName = 'TodoAssignedByMeAndToMeListScreen';
   static int indexSelected = 0;
+  static Map todoMap = {};
 
   const TodoAssignedByMeAndToMeListScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    context
-        .read<TodoAssignedToMeAndByMeBloc>()
-        .add(FetchTodoAssignedToMeAndByMeListEvent());
+    context.read<TodoBloc>().add(FetchTodoAssignedToMeAndByMeListEvent());
     return Scaffold(
         appBar: GenericAppBar(title: DatabaseUtil.getText('ToDo')),
         floatingActionButton: FloatingActionButton(
@@ -49,8 +48,7 @@ class TodoAssignedByMeAndToMeListScreen extends StatelessWidget {
                           .pushNamed(ToDoHistoryListScreen.routeName);
                     }),
                 const SizedBox(height: xxTinySpacing),
-                BlocBuilder<TodoAssignedToMeAndByMeBloc,
-                        TodoAssignedToMeAndByMeStates>(
+                BlocBuilder<TodoBloc, ToDoStates>(
                     buildWhen: (previousState, currentState) =>
                         currentState is TodoAssignedToMeAndByMeListFetched,
                     builder: (context, state) {
@@ -77,13 +75,12 @@ class TodoAssignedByMeAndToMeListScreen extends StatelessWidget {
                               ],
                               onToggle: (index) {
                                 indexSelected = index!;
-                                context.read<TodoAssignedToMeAndByMeBloc>().add(
-                                    ToDoToggleIndex(
-                                        selectedIndex: indexSelected,
-                                        fetchToDoAssignToByListModel:
-                                            state.fetchToDoAssignToByListModel,
-                                        fetchToDoAssignToMeListModel: state
-                                            .fetchToDoAssignToMeListModel));
+                                context.read<TodoBloc>().add(ToDoToggleIndex(
+                                    selectedIndex: indexSelected,
+                                    fetchToDoAssignToByListModel:
+                                        state.fetchToDoAssignToByListModel,
+                                    fetchToDoAssignToMeListModel:
+                                        state.fetchToDoAssignToMeListModel));
                               },
                             ),
                           ],
@@ -93,8 +90,7 @@ class TodoAssignedByMeAndToMeListScreen extends StatelessWidget {
                       }
                     }),
                 const SizedBox(height: xxTinySpacing),
-                BlocBuilder<TodoAssignedToMeAndByMeBloc,
-                        TodoAssignedToMeAndByMeStates>(
+                BlocBuilder<TodoBloc, ToDoStates>(
                     buildWhen: (previousState, currentState) =>
                         currentState is FetchingTodoAssignedToMeAndByMeList ||
                         currentState is TodoAssignedToMeAndByMeListFetched,
@@ -112,12 +108,14 @@ class TodoAssignedByMeAndToMeListScreen extends StatelessWidget {
                           return TodoAssignedToMeBody(
                               assignToMeListDatum: state
                                   .fetchToDoAssignToMeListModel
-                                  .assignToMeListDatum);
+                                  .assignToMeListDatum,
+                              todoMap: todoMap);
                         } else {
                           return TodoAssignedByMeBody(
                               assignedByMeListDatum: state
                                   .fetchToDoAssignToByListModel
-                                  .assignedByMeListDatum);
+                                  .assignedByMeListDatum,
+                              todoMap: todoMap);
                         }
                       } else {
                         return const SizedBox();
